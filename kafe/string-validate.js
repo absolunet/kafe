@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.string.validate
 //-------------------------------------------
-kafe.import({name:'string.validate', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC

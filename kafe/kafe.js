@@ -71,10 +71,10 @@ var kafe = (function(w,d,$,undefined){
 	core.setReadOnlyProperties(core,{identify:__i});
 	core.setReadOnlyProperties(core,{version:{}});
 
-	// import (name/version/object)
+	// bonify (name/version/object)
 	// add module to core
 	//-------------------------------------------
-	core.import = function(options) {
+	core.bonify = function(options) {
 		
 		// if not already extended
 		if (!__exists(options.name)) {
@@ -156,7 +156,7 @@ var kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	core.plug = function(options) {
 		options.name = 'plugin.'+options.name;
-		this.import(options);
+		this.bonify(options);
 	};
 
 	// extend (name/version/object)
@@ -164,7 +164,7 @@ var kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	core.extend = function(options) {
 		options.name = 'ext.'+options.name;
-		this.import(options);
+		this.bonify(options);
 	};
 
 	// required (name)

@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.url
 //-------------------------------------------
-kafe.import({name:'url', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 
 	// __parseIt (string, type)
 	// parse url

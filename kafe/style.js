@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.style
 //-------------------------------------------
-kafe.import({name:'style', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'style', version:'1.0', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC

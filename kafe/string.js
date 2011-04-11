@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.string
 //-------------------------------------------
-kafe.import({name:'string', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'string', version:'1.0', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC

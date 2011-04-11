@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.date
 //-------------------------------------------
-kafe.import({name:'date', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 
 	// dictionary
 	var __dict = {

@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.string.encrypt
 //-------------------------------------------
-kafe.import({name:'string.encrypt', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC

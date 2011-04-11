@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.storage
 //-------------------------------------------
-kafe.import({name:'storage', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
 	
 	// test storage availability
 	var 

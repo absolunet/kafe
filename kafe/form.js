@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.import({name:'form', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'form', version:'1.0', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC
