@@ -32,8 +32,7 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 	// get a valid lang
 	//-------------------------------------------
 	function __lang(lang) {
-		lang = (lang) ? lang : K.env('lang');
-		return (__dict[lang]) ? lang : 'en';
+		return K.fn.lang(__dict,lang);
 	}
 	
 

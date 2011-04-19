@@ -49,7 +49,7 @@ kafe.bonify({name:'style', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	style.makeButton = function(e) {
 		$e = (e) ? $(e) : $('a.Btn');
-		$e.wrapInner('<span class="Text" />').prepend('<span class="Left" />');
+		$e.wrapInner('<span class="text" />').prepend('<span class="left" />');
 	};
 	
 	return style;

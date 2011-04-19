@@ -45,31 +45,51 @@ var kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	var core = {};
 
-	// setReadOnlyProperties (object, properties)
-	// force readonly properties if possible
 	//-------------------------------------------
-	core.setReadOnlyProperties = function (o,p) {
-		for (var i in p) {
-			if (o.__defineGetter__) {
-				eval("o.__defineGetter__(i, function(){ return p['"+i+"']; });");
-			} else if (Object.defineProperty) {
-				eval("Object.defineProperty(o, i, {get:function(){ return p['"+i+"']; }});");
-			} else {
-				o[i] = p[i];
+	// FN
+	//-------------------------------------------
+	core.fn  = (function(){
+		var fn = {};
+		
+		// setReadOnlyProperties (object, properties)
+		// force readonly properties if possible
+		//-------------------------------------------
+		fn.setReadOnlyProperties = function (o,p) {
+			for (var i in p) {
+				if (o.__defineGetter__) {
+					eval("o.__defineGetter__(i, function(){ return p['"+i+"']; });");
+				} else if (Object.defineProperty) {
+					eval("Object.defineProperty(o, i, {get:function(){ return p['"+i+"']; }});");
+				} else {
+					o[i] = p[i];
+				}
 			}
-		}
-	};
+		};
+		
+		// lang (dict,lang)
+		// get a existing lang
+		//-------------------------------------------
+		fn.lang = function(dict,lang) {
+			lang = (lang) ? lang : core.env('lang');
+			return (dict[lang]) ? lang : 'en';
+		};
+	
+		return fn;
+	})();
+
+
+
 	
 	// identification
 	var __i = {};
-	core.setReadOnlyProperties(__i = {}, {
+	core.fn.setReadOnlyProperties(__i = {}, {
 		name:    'kafe',
 		version: '1.0',
 		pare_a:  'absolunet.com'
 	});
-	core.setReadOnlyProperties(core,{kafe: __i.version});
-	core.setReadOnlyProperties(core,{identify:__i});
-	core.setReadOnlyProperties(core,{version:{}});
+	core.fn.setReadOnlyProperties(core,{kafe: __i.version});
+	core.fn.setReadOnlyProperties(core,{identify:__i});
+	core.fn.setReadOnlyProperties(core,{version:{}});
 
 	// bonify (name/version/object)
 	// add module to core
@@ -140,7 +160,7 @@ var kafe = (function(w,d,$,undefined){
 			// add version
 			var v = {};
 			v[options.name] = options.version;
-			core.setReadOnlyProperties(core.version,v);
+			core.fn.setReadOnlyProperties(core.version,v);
 			
 			// extend
 			eval(name+' = obj;');
@@ -167,11 +187,25 @@ var kafe = (function(w,d,$,undefined){
 		this.bonify(options);
 	};
 
-	// required (name)
+	// required (name_or_url)
 	// check if required module is included
 	//-------------------------------------------
 	core.required = function(name) {
-		if (!__exists(name)) {
+		if (name.substr(0,2) == '//') {
+
+			var found = false;
+			$('script').each(function(){
+				if (new RegExp(name).test(this.src)) {
+					found = true;
+					return false;
+				}
+			});
+
+			if (!found) {
+				throw this.error(new Error('\'' + name+'\' is required'));
+			}
+
+		} else if (!__exists(name)) {
 			throw this.error(new Error(name+' is required'));
 		}
 	};
@@ -204,6 +238,7 @@ var kafe = (function(w,d,$,undefined){
 		e.description = e.message = '<'+__i.name+':erè> : '+ ((msg) ? msg : 'anonim');
 		return ($.browser.msie && parseInt($.browser.version) == 8) ? new Error(e) : e;
 	};
+
 
 
 

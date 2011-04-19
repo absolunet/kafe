@@ -27,8 +27,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 	// get a valid lang
 	//-------------------------------------------
 	function __lang(lang) {
-		lang = (lang) ? lang : K.env('lang');
-		return (__dict[lang]) ? lang : 'en';
+		return K.fn.lang(__dict,lang);
 	}
 
 	// __m3 (month, [lang])
@@ -56,7 +55,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 
 	// constants
 	//-------------------------------------------
-	K.setReadOnlyProperties(date,{
+	K.fn.setReadOnlyProperties(date,{
 		SECOND:  1000,        // 1000 ms per second
 	    MINUTE:  60000,       // 60 seconds per minute
 	    HOUR:    3600000,     // 60 minutes per hour
