@@ -248,6 +248,65 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		}
 	};
 
+	// parse (string)
+	// parses a string into a date obj
+	//-------------------------------------------
+	date.parse = function(s) {
+
+		function y2y4(year) {
+			if (year > 69 && year < 100) {
+				return Number(year) + 1900;
+			} else if (year < 69) {
+				return Number(year) + 2000;
+			} else {
+				return year;
+			}
+		};
+		
+		var ts = Date.parse(s);
+		if (isNaN(ts)) {
+
+			var m = date.getMonth3Names('en');
+			var year, month, day, hour, minute, second, delta, e;
+
+			// 2011-03-08 09:25:15
+			if (e = new RegExp('^([0-9]{2,4})\-([0-9]{2})\-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(s)) {
+				year   = y2y4(e[1]);
+				month  = e[2];
+				day    = e[3];
+				hour   = e[4];
+				minute = e[5];
+				second = e[6];
+
+			// Sat, 30 Oct 10 13:51:32 +0000
+			} else if (e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\+\-][0-9]{4})$','gi').exec(s)) {
+				year   = y2y4(e[4]);
+				month  = $.inArray(e[3], m)+1;
+				day    = e[2];
+				hour   = e[5];
+				minute = e[6];
+				second = e[7];
+				delta  = e[8]/100;
+
+			// Mon Nov 01 01:49:22 +0000 2010
+			} else if (e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\+\-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s)) {
+				year   = y2y4(e[8]);
+				month  = $.inArray(e[3], m)+1;
+				day    = e[3];
+				hour   = e[4];
+				minute = e[5];
+				second = e[6];
+				delta  = e[7]/100;
+			}
+
+			var d = new Date(year, month-1, day, hour, minute, second, 0);
+			return (delta) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
+
+		} else {
+			return new Date(ts);
+		}
+	};
+
 	// refreshSelectDays (object, month, year)
 	// refresh a day dropdown depending of the month-year
 	//-------------------------------------------
