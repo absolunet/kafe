@@ -55,11 +55,12 @@ var kafe = (function(w,d,$,undefined){
 		// force readonly properties if possible
 		//-------------------------------------------
 		fn.setReadOnlyProperties = function (o,p) {
+			eval("var o=arguments[0], p=arguments[1];");
 			for (var i in p) {
 				if (o.__defineGetter__) {
-					eval("o.__defineGetter__(i, function(){ return p['"+i+"']; });");
+					eval("o.__defineGetter__('"+i+"', function(){ return p['"+i+"']; });");
 				} else if (Object.defineProperty) {
-					eval("Object.defineProperty(o, i, {get:function(){ return p['"+i+"']; }});");
+					eval("Object.defineProperty(o, '"+i+"', {get:function(){ return p['"+i+"']; }});");
 				} else {
 					o[i] = p[i];
 				}
@@ -99,11 +100,10 @@ var kafe = (function(w,d,$,undefined){
 		// if not already extended
 		if (!__exists(options.name)) {
 
-			var obj = options.obj;
 			var name = 'this.'+options.name; 
 
 			// if has Native methods
-			if (obj.Native != undefined) {
+			if (options.obj.Native != undefined) {
 				var 
 					type           = options.name.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
 					isNativeObject = (':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1) ? true : false,
@@ -128,8 +128,8 @@ var kafe = (function(w,d,$,undefined){
 					}
 
 					// push methods
-					for (var i in obj.Native) {
-						__Native[type].prototype[sub+i] = obj.Native[i];
+					for (var i in options.obj.Native) {
+						__Native[type].prototype[sub+i] = options.obj.Native[i];
 					}
 
 				
@@ -148,13 +148,13 @@ var kafe = (function(w,d,$,undefined){
 					}
 					
 					// push methods
-					for (var i in obj.Native) {
+					for (var i in options.obj.Native) {
 						w[type].kafe[sub+i] = obj.Native[i];
 					}
 				}
 
 				// delete local reference
-				delete obj.Native;
+				delete arguments[0].obj.Native;
 			}
 
 			// add version
@@ -163,7 +163,7 @@ var kafe = (function(w,d,$,undefined){
 			core.fn.setReadOnlyProperties(core.version,v);
 			
 			// extend
-			eval(name+' = obj;');
+			eval(name+' = arguments[0].obj;');
 			
 		// throw error
 		} else {
