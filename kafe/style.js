@@ -48,7 +48,7 @@ kafe.bonify({name:'style', version:'1.0', obj:(function($,K,undefined){
 	// add spans to create a flexible button
 	//-------------------------------------------
 	style.makeButton = function(e) {
-		$e = (e) ? $(e) : $('a.Btn');
+		var $e = (e) ? $(e) : $('a.Btn');
 		$e.wrapInner('<span class="text" />').prepend('<span class="left" />');
 	};
 	

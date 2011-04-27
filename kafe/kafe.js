@@ -57,12 +57,14 @@ var kafe = (function(w,d,$,undefined){
 		fn.setReadOnlyProperties = function (o,p) {
 			eval("var o=arguments[0], p=arguments[1];");
 			for (var i in p) {
-				if (o.__defineGetter__) {
+				try {
 					eval("o.__defineGetter__('"+i+"', function(){ return p['"+i+"']; });");
-				} else if (Object.defineProperty) {
-					eval("Object.defineProperty(o, '"+i+"', {get:function(){ return p['"+i+"']; }});");
-				} else {
-					o[i] = p[i];
+				} catch (e) {
+					try {
+						eval("Object.defineProperty(o, '"+i+"', {get:function(){ return p['"+i+"']; }});");
+					} catch (e) {
+						o[i] = p[i];
+					}
 				}
 			}
 		};
@@ -91,6 +93,7 @@ var kafe = (function(w,d,$,undefined){
 	core.fn.setReadOnlyProperties(core,{kafe: __i.version});
 	core.fn.setReadOnlyProperties(core,{identify:__i});
 	core.fn.setReadOnlyProperties(core,{version:{}});
+
 
 	// bonify (name/version/object)
 	// add module to core

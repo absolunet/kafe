@@ -27,6 +27,11 @@ kafe.bonify({name:'form', version:'1.0', obj:(function($,K,undefined){
 	// add an inline label on input/textarea with a title attribute
 	//-------------------------------------------
 	form.label = function() {
+
+		function __isEmpty() {
+			 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '') ? true : false;
+		};
+
 		$('input[title!=""], textarea[title!=""]').each(function() {
 
 			var $this = $(this);
@@ -36,13 +41,13 @@ kafe.bonify({name:'form', version:'1.0', obj:(function($,K,undefined){
 				.attr('title','')
 				.bind('focus', function() {
 					var $this = $(this);
-					if (isEmpty($this.val()) || $this.val() == $this.data('Label')) {
+					if (__isEmpty($this.val()) || $this.val() == $this.data('Label')) {
 						$this.removeClass('Label').val('');
 					}
 				})
 				.bind('blur', function() {
 					var $this = $(this);
-					if (isEmpty($this.val()) || $this.val() == $this.data('Label')) {
+					if (__isEmpty($this.val()) || $this.val() == $this.data('Label')) {
 						$this.addClass('Label').val($this.data('Label'));
 					}
 				})

@@ -9,106 +9,105 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		__all = {}
 	;
 
-	// __change (carousel, target_position)
-	// do a position change
+	// __refresh
 	//-------------------------------------------
-	function __change(c, target) {
+	function __refresh(c) {
 
-		// __refresh
-		//-------------------------------------------
-		function __refresh(c) {
+		function none(e) { e.preventDefault(); }
 
-			function none(e) { e.preventDefault(); }
+		if (!c.wrap) {
 
-			if (!c.wrap) {
-
-				// précédent
-				if (c.curr == 0) {
-					c.$start
-						.addClass('kafeCarousel-Inactive')
-						.unbind('click', c.startClick)
-						.bind('click',   none)
-					;
-					c.$previous
-						.addClass('kafeCarousel-Inactive')
-						.unbind('click', c.previousClick)
-						.bind('click',   none)
-					;
-				} else {
-					c.$start
-						.removeClass('kafeCarousel-Inactive')
-						.unbind('click', c.startClick)
-						.bind('click',   c.startClick)
-					;
-					c.$previous
-						.removeClass('kafeCarousel-Inactive')
-						.unbind('click', c.previousClick)
-						.bind('click',   c.previousClick)
-					;
-				}
-
-				// next
-				if (c.curr == (c.total-1)) {
-					c.$next
-						.addClass('kafeCarousel-Inactive')
-						.unbind('click', c.nextClick)
-						.bind('click',   none)
-					;
-					c.$end
-						.addClass('kafeCarousel-Inactive')
-						.unbind('click', c.endClick)
-						.bind('click',   none)
-					;
-				} else {
-					c.$next
-						.removeClass('kafeCarousel-Inactive')
-						.unbind('click', c.nextClick)
-						.bind('click',   c.nextClick)
-					;
-					c.$end
-						.removeClass('kafeCarousel-Inactive')
-						.unbind('click', c.endClick)
-						.bind('click',   c.endClick)
-					;
-				}
+			// précédent
+			if (c.curr == 0) {
+				c.$start
+					.addClass('kafeCarousel-Inactive')
+					.unbind('click', c.startClick)
+					.bind('click',   none)
+				;
+				c.$previous
+					.addClass('kafeCarousel-Inactive')
+					.unbind('click', c.previousClick)
+					.bind('click',   none)
+				;
+			} else {
+				c.$start
+					.removeClass('kafeCarousel-Inactive')
+					.unbind('click', c.startClick)
+					.bind('click',   c.startClick)
+				;
+				c.$previous
+					.removeClass('kafeCarousel-Inactive')
+					.unbind('click', c.previousClick)
+					.bind('click',   c.previousClick)
+				;
 			}
 
-
-			// position
-			c.$position.html(c.curr+1);
-
-			// status
-			c.$status.html('');
-			c.$statusNum.html('');
-			for (var i=0; i<c.total; ++i) {
-				if (i == c.curr) {
-					c.$status.append('<strong>'+c.statusBullet+'</strong>');
-					c.$statusNum.append('<strong>'+(i+1)+'</strong>');
-				} else {
-					if(c.statusLink) {
-						c.$status.append(
-							$("<a>")
-								.attr("href","#")
-								.addClass('kafeCarousel-'+c.id+'-Item-'+(i+1))
-								.click(c.itemSimpleClick)
-								.html(c.statusBullet)
-						);
-						c.$statusNum.append(
-							$("<a>")
-								.attr("href","#")
-								.addClass('kafeCarousel-'+c.id+'-Item-'+(i+1))
-								.click(c.itemSimpleClick)
-								.html(i+1)
-						);
-					} else {
-						c.$status.append(c.statusBullet);
-						c.$statusNum.append(i+1);
-					}
-				}
+			// next
+			if (c.curr == (c.total-1)) {
+				c.$next
+					.addClass('kafeCarousel-Inactive')
+					.unbind('click', c.nextClick)
+					.bind('click',   none)
+				;
+				c.$end
+					.addClass('kafeCarousel-Inactive')
+					.unbind('click', c.endClick)
+					.bind('click',   none)
+				;
+			} else {
+				c.$next
+					.removeClass('kafeCarousel-Inactive')
+					.unbind('click', c.nextClick)
+					.bind('click',   c.nextClick)
+				;
+				c.$end
+					.removeClass('kafeCarousel-Inactive')
+					.unbind('click', c.endClick)
+					.bind('click',   c.endClick)
+				;
 			}
 		}
 
 
+		// position
+		c.$position.html(c.curr+1);
+
+		// status
+		c.$status.html('');
+		c.$statusNum.html('');
+		for (var i=0; i<c.total; ++i) {
+			if (i == c.curr) {
+				c.$status.append('<strong>'+c.statusBullet+'</strong>');
+				c.$statusNum.append('<strong>'+(i+1)+'</strong>');
+			} else {
+				if(c.statusLink) {
+					c.$status.append(
+						$("<a>")
+							.attr("href","#")
+							.addClass('kafeCarousel-'+c.id+'-Item-'+(i+1))
+							.click(c.itemSimpleClick)
+							.html(c.statusBullet)
+					);
+					c.$statusNum.append(
+						$("<a>")
+							.attr("href","#")
+							.addClass('kafeCarousel-'+c.id+'-Item-'+(i+1))
+							.click(c.itemSimpleClick)
+							.html(i+1)
+					);
+				} else {
+					c.$status.append(c.statusBullet);
+					c.$statusNum.append(i+1);
+				}
+			}
+		}
+	}
+
+
+	// __change (carousel, target_position)
+	// do a position change
+	//-------------------------------------------
+	function __change(c, target) {
 
 		if (c.changing) {
 			return false;
@@ -437,7 +436,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		
 			// intialiser look
 			c.$total.html(c.total);
-			Refresh(c);
+			__refresh(c);
 
 			c.$MainItems.hide();
 			c.$Main.find('> li:nth-child('+c.startId+')').show();
