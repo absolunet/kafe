@@ -1,11 +1,11 @@
 //-------------------------------------------
 // kafe.ext.facebook
 //-------------------------------------------
-kafe.extend({name:'facebook', version:'1.0', obj:(function($,K,undefined){
+kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 
 	// dictionary
 	var __locale = {
-		fr: 'fr_CA',
+		fr: 'fr_FR',
 		en: 'en_US'
 	};
 
@@ -14,6 +14,16 @@ kafe.extend({name:'facebook', version:'1.0', obj:(function($,K,undefined){
 	$(function(){
 		__defaultLocale = __locale[K.fn.lang(__locale)];
 		__params = {
+			init: {
+				app_id:      '',
+				status:      true,
+				cookie:      true,
+				xfbml:       true,
+				locale:      __defaultLocale,
+				statusConnected:    null,
+				statusNotConnected: null,
+				statusUnknown:      null
+			},
 			likeButton: {
 				href:        '', 
 				layout:      'standard', 
@@ -86,6 +96,64 @@ kafe.extend({name:'facebook', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	var facebook = {};
 	
+	// init (options)
+	// renders the required script and html tags and inits using the app_id
+	//-------------------------------------------
+	facebook.init = function(options) {
+		var p = __mergeParams(options,__params.init);
+		
+		if (p.app_id) {
+			
+			$('body').append('<div id="fb-root"></div>');
+			
+			window.fbAsyncInit = function() {
+				
+				// Starts a relation with the Facebook app.
+				FB.init({
+					appId: p.app_id,
+					status: p.status, // check login status
+					cookie: p.cookie, // enable cookies to allow the server to access the session
+					xfbml: p.xfbml  // parse XFBML
+				});
+				
+				// Listen to status changes to apply layout changes accordingly.
+				FB.Event.subscribe('auth.statusChange', function(response) {
+					if (response.status == 'connected' && typeof p.statusConnected == 'function') {
+						p.statusConnected();
+					} else if (response.status == 'notconnected' && typeof p.statusNotConnected == 'function') {
+						p.statusNotConnected();
+					} else if (response.status == 'unknown' && typeof p.statusUnknown == 'function') {
+						p.statusUnknown();
+					}
+				});
+				
+				// Apply immediate layout changes depending of user login status.
+				FB.getLoginStatus(function(response) {
+					alert(response.toSource());
+				});
+				
+				
+			};
+			
+			var e = document.createElement('script');
+			//e.src = document.location.protocol + '//connect.facebook.net/' + p.locale + '/all.js';
+			e.src = 'http://connect.facebook.net/' + p.locale + '/all.js';
+			e.async = true;
+			document.getElementById('fb-root').appendChild(e);
+			
+		} else {
+			throw K.error(new Error('Facebook requires an app_id to be initiated.'));
+		}
+		
+	};
+	
+	// setInitParams (options)
+	// set default init params
+	//-------------------------------------------
+	facebook.setInitParams = function() {
+		__params.init = __mergeParams(arguments[0],__params.init);
+	};
+
 	// likeButton (selector,options)
 	// output like button in selector
 	//-------------------------------------------
