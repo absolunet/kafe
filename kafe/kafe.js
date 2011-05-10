@@ -268,11 +268,12 @@ var kafe = (function(w,d,$,undefined){
 			;
 
 			// parse doc
-			__data.culture = $html.attr('id');
+			__data.culture = $html.attr('id') || '';
 			__data.lang    = $html.attr('lang').toLowerCase();
-			__data.page    = $body.attr('id');
-			__data.tmpl    = $body.attr('class').split(' ')[0];
-
+			__data.page    = $body.attr('id') || '';
+			__data.tmpl    = $body.attr('class') || '';
+			__data.tmpl    = __data.tmpl.toString().split(' ')[0];
+			
 			// parse detections
 			var dtc = $html.attr('class').split(' ');
 			if (dtc.length) {
