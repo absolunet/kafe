@@ -1,0 +1,1 @@
+NuGet pack NuGet/kafe.nuspec
