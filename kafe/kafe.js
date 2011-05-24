@@ -322,13 +322,13 @@ var kafe = (function(w,d,$,undefined){
 //-------------------------------------------
 // patch ie8 and less for HTML5 
 //-------------------------------------------
-(function(d,$){
+(function($){
 	var __patchHTML5 = ($.browser.msie && parseInt($.browser.version) < 9);
 
 	if (__patchHTML5) {
 		var html5 = "address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video".split('|');
 		for (var i=0; i<html5.length; ++i){
-			d.createElement(html5[i]);
+			document.createElement(html5[i]);
 		}
 	}
 
@@ -337,15 +337,15 @@ var kafe = (function(w,d,$,undefined){
 			var d, r;
 			function innerShiv (h, u) {
 				if (!d) {
-					d = d.createElement('div');
-					r = d.createDocumentFragment();
+					d = document.createElement('div');
+					r = document.createDocumentFragment();
 					/*@cc_on d.style.display = 'none';@*/
 				}
 
 				var e = d.cloneNode(true);
-				/*@cc_on d.body.appendChild(e);@*/
+				/*@cc_on document.body.appendChild(e);@*/
 				e.innerHTML = h.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-				/*@cc_on d.body.removeChild(e);@*/
+				/*@cc_on document.body.removeChild(e);@*/
 
 				if (u === false) return e.childNodes;
 
@@ -359,4 +359,4 @@ var kafe = (function(w,d,$,undefined){
 		$(this[0]).append(str);
 	    return this;
 	}
-})(document,jQuery);	
+})(jQuery);	
