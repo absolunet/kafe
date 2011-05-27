@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.style
 //-------------------------------------------
-kafe.bonify({name:'style', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC
@@ -50,6 +50,20 @@ kafe.bonify({name:'style', version:'1.0', obj:(function($,K,undefined){
 	style.makeButton = function(e) {
 		var $e = (e) ? $(e) : $('a.Btn');
 		$e.wrapInner('<span class="text" />').prepend('<span class="left" />');
+	};
+	
+	// vAlign ([elements])
+	// vertically align an element inside its parent
+	//-------------------------------------------
+	style.vAlign = function(e) {
+		$(e).each(function(){
+			var $this = $(this);
+			var $children = $this.children();
+			if($children.length == 1) {
+				var h = Math.floor(($this.height() - $children.height()) / 2);
+				$children.css({display: "block", "margin-top": h + "px"});
+			}	
+		});
 	};
 	
 	return style;
