@@ -21,8 +21,7 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 				xfbml:       true,
 				locale:      __defaultLocale,
 				statusConnected:    null,
-				statusNotConnected: null,
-				statusUnknown:      null
+				statusNotConnected: null
 			},
 			likeButton: {
 				href:        '', 
@@ -119,19 +118,20 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 				// Listen to status changes to apply layout changes accordingly.
 				FB.Event.subscribe('auth.statusChange', function(response) {
 					if (response.status == 'connected' && typeof p.statusConnected == 'function') {
-						p.statusConnected();
-					} else if (response.status == 'notconnected' && typeof p.statusNotConnected == 'function') {
-						p.statusNotConnected();
-					} else if (response.status == 'unknown' && typeof p.statusUnknown == 'function') {
-						p.statusUnknown();
+						p.statusConnected(response);
+					} else if (typeof p.statusNotConnected == 'function') {
+						p.statusNotConnected(response);
 					}
 				});
 				
 				// Apply immediate layout changes depending of user login status.
 				FB.getLoginStatus(function(response) {
-					alert(response.toSource());
+					if (response.status == 'connected' && typeof p.statusConnected == 'function') {
+						p.statusConnected(response);
+					} else if (typeof p.statusNotConnected == 'function') {
+						p.statusNotConnected(response);
+					}
 				});
-				
 				
 			};
 			
