@@ -275,7 +275,8 @@ var kafe = (function(w,d,$,undefined){
 			__data.tmpl    = __data.tmpl.toString().split(' ')[0];
 			
 			// parse detections
-			var dtc = $html.attr('class').split(' ');
+			var dtc = $html.attr('class') || '';
+			dtc = dtc.split(' ');
 			if (dtc.length) {
 				for (var i in dtc) {
 					if (dtc[i].substring(0,4) == 'dtc-') {
