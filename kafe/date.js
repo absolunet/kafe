@@ -46,6 +46,17 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		return (d.w3 && d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].substring(0,3);
 	}
 
+	// __trim (list, nb)
+	// trim every element of the array
+	//-------------------------------------------
+	function __trim(list,nb) {
+		var d = [];
+		for (var i in list) {
+			d.push(list[i].substr(0,nb));
+		}
+		return d;
+	}
+
 
 
 	//-------------------------------------------
@@ -101,6 +112,13 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		return __dict[__lang(lang)].m;
 	};
 
+	// getMonth1Names ([lang])
+	// get the 1-char month abbreviation
+	//-------------------------------------------
+	date.getMonth1Names = function(lang) {
+		return __trim(__dict[__lang(lang)].m,1);
+	};
+
 	// getMonth2Names ([lang])
 	// get the 2-char month abbreviation
 	//-------------------------------------------
@@ -127,6 +145,20 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		return __dict[__lang(lang)].w;
 	};
 
+	// getWeekday1Names ([lang])
+	// get the 1-char weekday abbreviation
+	//-------------------------------------------
+	date.getWeekday1Names = function(lang) {
+		return __trim(__dict[__lang(lang)].w,1);
+	};
+
+	// getWeekday2Names ([lang])
+	// get the 2-char weekday abbreviation
+	//-------------------------------------------
+	date.getWeekday2Names = function(lang) {
+		return __trim(__dict[__lang(lang)].w,2);
+	};
+
 	// getWeekday3Names ([lang])
 	// get the 3-char weekday abbreviation
 	//-------------------------------------------
@@ -137,7 +169,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		}
 		return d;
 	};
-
+	
 	// getDayNames ([lang])
 	// get the month day clean representation
 	//-------------------------------------------
@@ -189,6 +221,8 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 				w: d.w[weekday-1].toLowerCase(),                              // weekday      sunday
 				X: this.getWeekday3Names(lang)[weekday-1],                    // weekday         Sun
 				x: this.getWeekday3Names(lang)[weekday-1].toLowerCase(),      // weekday         sun
+				Z: this.getWeekday2Names(lang)[weekday-1],                    // weekday          Su
+				z: this.getWeekday2Names(lang)[weekday-1].toLowerCase(),      // weekday          su
 				H: pad(hours),                                                // hour             15
 				h: hours,                                                     // hour             15
 				K: pad(hours12),                                              // hour             03 
