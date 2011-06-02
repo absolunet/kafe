@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.colorbox
 //-------------------------------------------
-kafe.extend({name:'colorbox', version:'0.1', obj:(function($,K,undefined){
+kafe.extend({name:'colorbox', version:'0.2', obj:(function($,K,undefined){
 
 	//default params
 	var __params = {
@@ -40,6 +40,12 @@ kafe.extend({name:'colorbox', version:'0.1', obj:(function($,K,undefined){
 		$.colorbox(this.getParams('cb-display'));
 	};
 
+	// moveInForm ()
+	// move colorbox in webform
+	//-------------------------------------------
+	colorbox.moveInForm = function() {
+		$("#colorbox").appendTo('form');
+	};
 	
 	// more to come from Leanders
 

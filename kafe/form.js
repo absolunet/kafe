@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.bonify({name:'form', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'form', version:'1.1', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC
@@ -54,6 +54,17 @@ kafe.bonify({name:'form', version:'1.0', obj:(function($,K,undefined){
 				.blur()
 			;
 		});
+	};
+	
+	// onEnter (elements,callback)
+	// add onEnter event
+	//-------------------------------------------
+	form.onEnter = function(elements,callback) {
+		$(elements).keypress(function(e) {
+			if (((!!e.which) ? e.which : e.keyCode) == 13) {
+				callback(this);
+			}
+	    });
 	};
 
 	return form;
