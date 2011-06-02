@@ -3,8 +3,6 @@
 //-------------------------------------------
 kafe.extend({name:'bbq', version:'0.1', obj:(function($,K,undefined){
 
-	kafe.required('plugins/jquery/jquery.ba-bbq.js');
-
 	//default params
 	var __params = {
 		symbol: '#!',
@@ -30,8 +28,7 @@ kafe.extend({name:'bbq', version:'0.1', obj:(function($,K,undefined){
 	// return default params
 	//-------------------------------------------
 	bbq.getParams = function() {
-		var p = __params;
-		return p;
+		return __params;
 	};
 	
 	// setParams (options)

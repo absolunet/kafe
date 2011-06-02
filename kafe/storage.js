@@ -50,8 +50,8 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
 		if (__isAvailable(type)) {
 			var data = K.string.toObject(__getStorageObj(type).getItem(key));
 		
-			if (data) {
-				if (data.expires && data.expires < new Date()) {
+			if (!!data) {
+				if (!!data.expires && data.expires < new Date()) {
 					__remove(type,key);
 				} else {
 					return data.data;
@@ -74,7 +74,7 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
 				data:     value
 			};
 		
-			if (options.expires) {
+			if (!!options.expires) {
 				data.expires = new Date( new Date().getTime()+(options.expires * 1000) );
 			}
 		

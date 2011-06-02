@@ -65,7 +65,7 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 				// success
 				function(position) {
 					$msg.html(d.position + ': ' + position.coords.latitude + ', ' +  position.coords.longitude);
-					if (successCallback) {
+					if (!!successCallback) {
 						successCallback({coords:position.coords});
 					}
 				},
@@ -80,7 +80,7 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 					}
 
 					$msg.html(msg);
-					if (errorCallback) {
+					if (!!errorCallback) {
 						errorCallback({message:msg});
 					}
 				}
@@ -90,7 +90,7 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 		} else {
 			var msg = d.unavailable;
 			$msg.html(msg);
-			if (errorCallback) {
+			if (!!errorCallback) {
 				errorCallback({message:msg});
 			}
 		}

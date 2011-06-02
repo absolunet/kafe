@@ -5,9 +5,9 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 
 	// local variables
 	var
-		__name        = K.identify.name,
+		__name        = K.idantite.non,
 		__$html       = $('html'),
-		__iOsWebApp   = window.navigator.standalone ? true : false,
+		__iOsWebApp   = !!window.navigator.standalone,
 		__orientation
 	;
 
@@ -20,7 +20,7 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	// mobile orientation
 	$(window)
 		.bind('orientationchange', function() { 
-			__orientation = (this.orientation) ? 'landscape' : 'portrait';
+			__orientation = (!!this.orientation) ? 'landscape' : 'portrait';
 
 			K.env('mobile-orientation', __orientation);
 			__$html
@@ -56,7 +56,7 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 		function __saveCookie(activate) {
 			var domain = window.location.hostname.split('.');
 			domain = (domain.length >=2) ? domain[domain.length-2]+'.'+ domain[domain.length-1] : '';
-			if (activate) {
+			if (!!activate) {
 	            document.cookie = 'NoRedirectMobile=0;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date('2010-04-19').toUTCString());
 	        } else {
 	            document.cookie = 'NoRedirectMobile=1;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date(new Date().getTime() + 90 * 24 * 60 * 60 * 1000).toUTCString());

@@ -101,7 +101,7 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 	facebook.init = function(options) {
 		var p = __mergeParams(options,__params.init);
 		
-		if (p.app_id) {
+		if (!!p.app_id) {
 			
 			$('body').append('<div id="fb-root"></div>');
 			

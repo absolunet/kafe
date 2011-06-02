@@ -23,11 +23,11 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 		var nbPerRow    = options.nbPerRow;
 		var resetHeight = options.resetHeight;
 
-		if (resetHeight) {
+		if (!!resetHeight) {
 			$o.height('auto');
 		}
 		
-		if (nbPerRow) {
+		if (!!nbPerRow) {
 			var max = Math.ceil($o.length / nbPerRow);
 			for (var i=0; i<max; ++i) {
 				__doIt($($o.splice(0, nbPerRow)));

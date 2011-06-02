@@ -29,7 +29,7 @@ kafe.bonify({name:'form', version:'1.0', obj:(function($,K,undefined){
 	form.label = function() {
 
 		function __isEmpty() {
-			 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '') ? true : false;
+			 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
 		};
 
 		$('input[title!=""], textarea[title!=""]').each(function() {

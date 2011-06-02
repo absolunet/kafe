@@ -28,7 +28,7 @@ kafe.bonify({name:'number', version:'1.0', obj:(function($,K,undefined){
 		// foreach numeral
 		for (var i in data) {
 			var matches = parseInt(n / data[i]);
-			if (matches) {
+			if (!!matches) {
 				result += repeat(i, matches);
 				n = n % data[i];
 			}

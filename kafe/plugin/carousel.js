@@ -80,7 +80,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 				c.$status.append('<strong>'+c.statusBullet+'</strong>');
 				c.$statusNum.append('<strong>'+(i+1)+'</strong>');
 			} else {
-				if(c.statusLink) {
+				if(!!c.statusLink) {
 					c.$status.append(
 						$("<a>")
 							.attr("href","#")
@@ -109,7 +109,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	function __change(c, target) {
 
-		if (c.changing) {
+		if (!!c.changing) {
 			return false;
 		}
 		if (target == c.curr) {
@@ -161,7 +161,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		callbackData.target.position = c.curr+1;
 		callbackData.target.obj      = $liNew.get(0);
 
-		if (c.preSwitchCallback) {
+		if (!!c.preSwitchCallback) {
 			c.preSwitchCallback(callbackData);
 		}
 	
@@ -259,7 +259,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		__refresh(c);
 
 		// éventuellement positionner dans le animate callback
-		if (c.postSwitchCallback) {
+		if (!!c.postSwitchCallback) {
 			c.postSwitchCallback(callbackData);
 		}
 
@@ -289,7 +289,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 	
 		var options  = (arguments) ? arguments[0] : {};
 		c.id         = options.id;
-		c.wrap       = (options.wrap) ? true : false;
+		c.wrap       = !!options.wrap;
 		c.transition = (options.transition) ? options.transition : 'slideLeft';
 		c.speed      = (Number(options.speed))   ? Number(options.speed)   : 500;
 		c.startId    = (Number(options.startId)) ? Number(options.startId) : 1;
@@ -310,7 +310,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		;
 		c.preSwitchCallback  = (typeof(options.preSwitchCallback)  == 'function') ? options.preSwitchCallback  : undefined;
 		c.postSwitchCallback = (typeof(options.postSwitchCallback) == 'function') ? options.postSwitchCallback : undefined;
-		c.statusLink         = (options.statusLink) ? true : false;
+		c.statusLink         = !!options.statusLink;
 		c.statusBullet       = (options.statusBullet) ? options.statusBullet : '&bull;';
 
 		// Liste

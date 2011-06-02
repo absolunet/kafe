@@ -86,13 +86,13 @@ var kafe = (function(w,d,$,undefined){
 	// identification
 	var __i = {};
 	core.fn.setReadOnlyProperties(__i = {}, {
-		name:    'kafe',
-		version: '1.0',
-		pare_a:  'absolunet.com'
+		non:    'kafe',
+		vesyon: '1.0',
+		griyaj: 'absolunet.com'
 	});
-	core.fn.setReadOnlyProperties(core,{kafe: __i.version});
-	core.fn.setReadOnlyProperties(core,{identify:__i});
-	core.fn.setReadOnlyProperties(core,{version:{}});
+	core.fn.setReadOnlyProperties(core,{kafe: __i.vesyon});
+	core.fn.setReadOnlyProperties(core,{idantite:__i});
+	core.fn.setReadOnlyProperties(core,{vesyon:{}});
 
 
 	// bonify (name/version/object)
@@ -109,8 +109,8 @@ var kafe = (function(w,d,$,undefined){
 			if (options.obj.Native != undefined) {
 				var 
 					type           = options.name.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
-					isNativeObject = (':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1) ? true : false,
-					isNativeModule = (':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1) ? true : false						
+					isNativeObject = !!(':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1),
+					isNativeModule = !!(':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1)						
 				;
 				
 				// if object
@@ -147,12 +147,12 @@ var kafe = (function(w,d,$,undefined){
 						sub = sub.join('_') + '_';
 					} else {
 						sub = '';
-						w[type].kafe = {};
+						w[type].kafe = w[type].K = {};
 					}
 					
 					// push methods
 					for (var i in options.obj.Native) {
-						w[type].kafe[sub+i] = obj.Native[i];
+						w[type].kafe[sub+i] = w[type].K[sub+i] = obj.Native[i];
 					}
 				}
 
@@ -163,14 +163,14 @@ var kafe = (function(w,d,$,undefined){
 			// add version
 			var v = {};
 			v[options.name] = options.version;
-			core.fn.setReadOnlyProperties(core.version,v);
+			core.fn.setReadOnlyProperties(core.vesyon,v);
 			
 			// extend
 			eval(name+' = arguments[0].obj;');
 			
 		// throw error
 		} else {
-			throw this.error(new Error(__i.name+'.'+options.name+' already exists'));
+			throw this.error(new Error(__i.non+'.'+options.name+' already exists'));
 		}
 	};
 	
@@ -238,7 +238,7 @@ var kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	core.error = function(e) {
 		var msg = ((e.description) ? e.description : e.message);
-		e.description = e.message = '<'+__i.name+':erè> : '+ ((msg) ? msg : 'anonim');
+		e.description = e.message = '<'+__i.non+':erè> : '+ ((!!msg) ? msg : 'anonim');
 		return ($.browser.msie && parseInt($.browser.version) == 8) ? new Error(e) : e;
 	};
 
@@ -277,7 +277,7 @@ var kafe = (function(w,d,$,undefined){
 			// parse detections
 			var dtc = $html.attr('class') || '';
 			dtc = dtc.split(' ');
-			if (dtc.length) {
+			if (!!dtc.length) {
 				for (var i in dtc) {
 					if (dtc[i].substring(0,4) == 'dtc-') {
 						__data.dtc[dtc[i].substring(4).replace(/-/g,'_')] = true;
@@ -297,7 +297,7 @@ var kafe = (function(w,d,$,undefined){
 
 			// already set 
 			} else if (__data[name] != undefined && updatable.search(new RegExp('\:'+name+'\:')) == -1) {
-				throw this.error(new Error(__i.name+'.env > property \''+name+'\' already defined'));
+				throw this.error(new Error(__i.non+'.env > property \''+name+'\' already defined'));
 
 			// set
 			} else {

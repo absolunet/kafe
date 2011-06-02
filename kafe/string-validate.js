@@ -28,7 +28,7 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 	validate.isEmail = function(s) {
 		s = s.replace(/^\s*|\s*$/g, '');
 		s = s.replace(/^\t*|\t*$/g, '');
-		return (/^\w+([\.\+-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(s) == 0) ? false : true;
+		return (/^\w+([\.\+-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(s) != 0);
 	};
 	
 	// isPostalCode (str, [format])

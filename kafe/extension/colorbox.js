@@ -21,7 +21,7 @@ kafe.extend({name:'colorbox', version:'0.1', obj:(function($,K,undefined){
 	//-------------------------------------------
 	colorbox.getParams = function(id) {
 		var p = __params
-		if (id) { p.id = '#'+id; }
+		if (!!id) { p.id = '#'+id; }
 		return p;
 	};
 	
