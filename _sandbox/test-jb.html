@@ -1,0 +1,128 @@
+<!doctype html>
+<html id="fr-ca" lang="fr" class="dtc-e3 dtc-modile dtc-ie-6-8">
+<head>
+	<meta charset="utf-8" />
+	<title>kafe | complile test </title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="http://platform.twitter.com/widgets.js"></script>
+	<script src="../plugins/jquery/json.js"></script>
+	<script src="../plugins/jquery/inputmask.js"></script>
+
+	<script src="../kafe/kafe.js"></script>
+		<script src="../kafe/date.js"></script>
+		<script src="../kafe/form.js"></script>
+		<script src="../kafe/geolocation.js"></script>
+		<script src="../kafe/mobile.js"></script>
+		<script src="../kafe/number.js"></script>
+		<script src="../kafe/storage.js"></script>
+		<script src="../kafe/string.js"></script>
+		<script src="../kafe/string-encrypt.js"></script>
+		<script src="../kafe/string-validate.js"></script>
+		<script src="../kafe/style.js"></script>
+		<script src="../kafe/url.js"></script>
+	<script src="../kafe/plugin/carousel.js"></script>
+	<script src="../kafe/extension/colorbox.js"></script>
+	<script src="../kafe/extension/facebook.js"></script>
+	<script src="../kafe/extension/inputmask.js"></script>
+	<script src="../kafe/extension/twitter.js"></script>
+</head>
+<body id="treasure" class="Room">
+
+	<input type="text" class="Date" />
+	
+	<div id="LOG"></div>
+
+	<div id="gl"></div>
+
+
+	<script>
+
+		$(function(){
+
+		/*
+		
+			var o = {
+				patate: {
+					d:  new Date(),
+					b1: true,
+					b2: false,
+					n1: 43,
+					n2: 43.5,
+					f:  function(e) { return e;	},
+					a: [1,2,3,true,new Date(),'ddd'],
+					s: 'fdhjkfdldsf'
+				},
+				patate2: {
+					dd:  new Date(2000,0,1,2,2,2),
+					bb1: false,
+					bb2: true,
+					nn1: 23,
+					nn2: 433.5,
+					ff:  function(e) { return e; },
+					aa: ['sdsd',324],
+					ss: 'lorem'
+				}
+			};
+
+			kafe.storage.setPersistentItem('testJb', o);
+			kafe.storage.setPersistentItem('name', 'n4m3');
+			kafe.storage.setPersistentItem('name:dhjsdkl', 'alpha');
+			kafe.storage.setPersistentItem('name:34u34dsm', '4lph4num');
+
+			console.log( kafe.storage.getPersistentItem('testJb') );
+			console.log( kafe.storage.getPersistentItem('name') );
+
+			console.log( kafe.storage.getPersistentNamespaceKeys('testJb') );
+			console.log( kafe.storage.getPersistentNamespaceItems('testJb') );
+			console.log( kafe.storage.getPersistentNamespaceKeys('name') );
+			console.log( kafe.storage.getPersistentNamespaceItems('name') );
+			console.log( kafe.storage.getAllPersistentKeys() );
+			console.log( kafe.storage.getAllPersistentItems() );
+
+			kafe.storage.removeAllPersistent();
+
+			console.log( kafe.storage.getAllPersistentItems() );
+
+
+			kafe.geolocation.locate({
+				msgContainer: '#gl',
+				lang:'fr',
+				success: function(d) {
+					console.log(d);
+				},
+				error: function(d) {
+					console.log(d);
+				}
+			});
+
+
+
+			$('body').append(
+				kafe.ext.twitter.linkifyTweet('#patate Lancement http://www.twitter.com officiel de la #nouvelle technologie http://www.google.com Smart Layer et du premier produit de @cette technologie, @ruin11 le Smart Server.',{
+					link: '<a rel="link2">',
+					hash: '<a rel="hash3">',
+					user: '<a rel="user3">'
+				})
+			);
+
+
+			kafe.form.onEnter('input.Patate',function(obj) {
+				alert($(obj).val());
+			});
+
+*/
+			var kMask = kafe.ext.inputmask; 
+			$("input.Date").inputmask( kMask.getMask('phoneext') );
+			
+		
+		
+		});
+
+	</script>
+
+
+</body>
+</html>
+
+
