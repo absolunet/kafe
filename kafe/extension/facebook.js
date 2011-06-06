@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.facebook
 //-------------------------------------------
-kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
+kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 
 	// dictionary
 	var __locale = {
@@ -54,7 +54,6 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 		};
 	});
 	
-	
 	// __mergeParams (options)
 	// return merged params
 	//-------------------------------------------
@@ -88,20 +87,72 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 		return '<iframe src="http://www.facebook.com/plugins/'+type+'.php?'+__queryString(p)+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'+p.width+'px; height:'+p.height+'px;" allowTransparency="true"></iframe>';
 	}
 
+	// __handleResponse (response,callback)
+	// handling behavior relative to login status
+	//-------------------------------------------
+	function __handleResponse(response) {
+		
+		if (response.status == 'connected' && typeof __params.init.statusConnected == 'function') {
+			
+			__userSession = response.session;
+			__getUserDetails( function( user ) {
+				__params.init.statusConnected( user );
+			});
 
-	
+		} else if (typeof __params.init.statusNotConnected == 'function') {
+
+			__userSession = null;
+			__params.init.statusNotConnected();
+
+		}
+		
+	}
+
+	// __getUserDetails ([callback])
+	// stores user info relative to session (public or detailed), then forwards callback
+	//-------------------------------------------
+	function __getUserDetails(callback) {
+		
+		$.ajax({
+			url: 'https://graph.facebook.com/' + __userSession.uid,
+			dataType: 'json',
+			data: 'access_token=' + __userSession.access_token + '&callback=?',
+			success: function(data, textStatus, jqXHR) {
+				
+				__userDetails = data;
+				
+				if ( callback != undefined )
+					callback(data);
+				
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				throw K.error(new Error(errorThrown));
+			}
+		});
+		
+	}
+
 	//-------------------------------------------
 	// PUBLIC
 	//-------------------------------------------
-	var facebook = {};
+	var facebook = {},
+		__userSession = null,
+		__userDetails = null;
 	
+	// setInitParams (options)
+	// set default init params
+	//-------------------------------------------
+	facebook.setInitParams = function() {
+		__params.init = __mergeParams(arguments[0],__params.init);
+	};
+
 	// init (options)
-	// renders the required script and html tags and inits using the app_id
+	// renders the required script and html tags then inits the Facebook API
 	//-------------------------------------------
 	facebook.init = function(options) {
 		var p = __mergeParams(options,__params.init);
 		
-		if (!!p.app_id) {
+		if (p.app_id) {
 			
 			$('body').append('<div id="fb-root"></div>');
 			
@@ -116,28 +167,15 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 				});
 				
 				// Listen to status changes to apply layout changes accordingly.
-				FB.Event.subscribe('auth.statusChange', function(response) {
-					if (response.status == 'connected' && typeof p.statusConnected == 'function') {
-						p.statusConnected(response);
-					} else if (typeof p.statusNotConnected == 'function') {
-						p.statusNotConnected(response);
-					}
-				});
+				FB.Event.subscribe( 'auth.statusChange', __handleResponse );
 				
 				// Apply immediate layout changes depending of user login status.
-				FB.getLoginStatus(function(response) {
-					if (response.status == 'connected' && typeof p.statusConnected == 'function') {
-						p.statusConnected(response);
-					} else if (typeof p.statusNotConnected == 'function') {
-						p.statusNotConnected(response);
-					}
-				});
+				FB.getLoginStatus( __handleResponse );
 				
 			};
 			
 			var e = document.createElement('script');
-			//e.src = document.location.protocol + '//connect.facebook.net/' + p.locale + '/all.js';
-			e.src = 'http://connect.facebook.net/' + p.locale + '/all.js';
+			e.src = document.location.protocol + '//connect.facebook.net/' + p.locale + '/all.js';
 			e.async = true;
 			document.getElementById('fb-root').appendChild(e);
 			
@@ -146,14 +184,53 @@ kafe.extend({name:'facebook', version:'1.1', obj:(function($,K,undefined){
 		}
 		
 	};
-	
-	// setInitParams (options)
-	// set default init params
-	//-------------------------------------------
-	facebook.setInitParams = function() {
-		__params.init = __mergeParams(arguments[0],__params.init);
-	};
 
+	// login ( [callback] )
+	// open the login dialog [and executes a callback on success]
+	//-------------------------------------------
+	facebook.login = function(callback) {
+		FB.login(function(response) {
+			if (response.session) {
+				
+				if ( callback != undefined )
+					callback(response);
+				
+			} else {
+				// user cancelled login
+			}
+		});
+	}
+
+	// logout ( [callback] )
+	// logs the user out [and executes a callback]
+	//-------------------------------------------
+	facebook.logout = function(callback) {
+		FB.logout(function(response) {
+			
+			if ( callback != undefined )
+				callback(response);
+			
+		});
+	}
+	
+	// getSession ()
+	// returns the session object or null if not logged
+	//-------------------------------------------
+	facebook.getSession = function() {
+		return __userSession;
+	}
+
+	// getUser ()
+	// returns the user details or null if not logged
+	//-------------------------------------------
+	facebook.getUser = function() {
+		return __userDetails;
+	}
+
+	
+	/* Social Plugins */
+	
+	
 	// likeButton (selector,options)
 	// output like button in selector
 	//-------------------------------------------
