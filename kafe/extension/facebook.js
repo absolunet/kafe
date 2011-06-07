@@ -127,6 +127,9 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				throw K.error(new Error(errorThrown));
+				
+				//Return public details instead?...
+				
 			}
 		});
 		
