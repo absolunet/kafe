@@ -87,7 +87,7 @@ var kafe = (function(w,d,$,undefined){
 	var __i = {};
 	core.fn.setReadOnlyProperties(__i = {}, {
 		non:    'kafe',
-		vesyon: '1.0',
+		vesyon: '1.1',
 		griyaj: 'absolunet.com'
 	});
 	core.fn.setReadOnlyProperties(core,{kafe: __i.vesyon});
