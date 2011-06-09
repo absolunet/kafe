@@ -23,7 +23,7 @@
                       `"""----"""`
 */
 
-var kafe = (function(w,d,$,undefined){
+window.kafe = (function(w,d,$,undefined){
 
 	// __exists (name)
 	// check if module imported
@@ -69,12 +69,12 @@ var kafe = (function(w,d,$,undefined){
 			}
 		};
 		
-		// lang (dict,lang)
+		// lang (dict,[lang])
 		// get a existing lang
 		//-------------------------------------------
 		fn.lang = function(dict,lang) {
-			lang = (lang) ? lang : core.env('lang');
-			return (dict[lang]) ? lang : 'en';
+			lang = (!!lang) ? lang : core.env('lang');
+			return (!!dict[lang]) ? lang : 'en';
 		};
 	
 		return fn;
@@ -127,7 +127,7 @@ var kafe = (function(w,d,$,undefined){
 					} else {
 						sub = '';
 						__Native[type] = function(o) { this.get = function(){return o;}; };
-						w[type].prototype.kafe = function() { return new __Native[type](this); };
+						w[type].prototype.K = function() { return new __Native[type](this); };
 					}
 
 					// push methods
@@ -147,12 +147,12 @@ var kafe = (function(w,d,$,undefined){
 						sub = sub.join('_') + '_';
 					} else {
 						sub = '';
-						w[type].kafe = w[type].K = {};
+						w[type].K = {};
 					}
 					
 					// push methods
 					for (var i in options.obj.Native) {
-						w[type].kafe[sub+i] = w[type].K[sub+i] = obj.Native[i];
+						w[type].K[sub+i] = obj.Native[i];
 					}
 				}
 
