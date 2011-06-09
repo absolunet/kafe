@@ -4,22 +4,22 @@
 kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 
 	// dictionary
-	var __locale = {
+	var _locale = {
 		fr: 'fr_FR',
 		en: 'en_US'
 	};
 
 	// default params
-	var __defaultLocale, __params;
+	var _defaultLocale, _params;
 	$(function(){
-		__defaultLocale = __locale[K.fn.lang(__locale)];
-		__params = {
+		_defaultLocale = _locale[K.fn.lang(_locale)];
+		_params = {
 			init: {
 				app_id:      '',
 				status:      true,
 				cookie:      true,
 				xfbml:       true,
-				locale:      __defaultLocale,
+				locale:      _defaultLocale,
 				statusConnected:    null,
 				statusNotConnected: null
 			},
@@ -32,7 +32,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 				action:      'like',
 				font:        '',
 				colorscheme: 'light',
-				locale:      __defaultLocale
+				locale:      _defaultLocale
 			},
 			likeBox: {
 				href:        '', 
@@ -42,26 +42,26 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 				width:       292,
 				height:      427,
 				colorscheme: 'light',
-				locale:      __defaultLocale
+				locale:      _defaultLocale
 			},
 			facepile: {
 				href:      '', 
 				width:     292,
 				max_rows:  1,
 				app_id:    '',
-				locale:    __defaultLocale
+				locale:    _defaultLocale
 			}
 		};
 	});
 	
-	// __mergeParams (options)
+	// _mergeParams (options)
 	// return merged params
 	//-------------------------------------------
-	function __mergeParams(options,defaults) {
+	function _mergeParams(options,defaults) {
 		options = options || {};
 		if (options.lang != undefined) {
 			if (options.locale == undefined) {
-				options.locale = __locale[K.fn.lang(__locale,options.lang)];
+				options.locale = _locale[K.fn.lang(_locale,options.lang)];
 			}
 			delete options.lang;
 		}
@@ -69,10 +69,10 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 		return $.extend({}, defaults, options);
 	}
 
-	// __queryString (data)
+	// _queryString (data)
 	// return query string
 	//-------------------------------------------
-	function __queryString(data) {
+	function _queryString(data) {
 		var q = '';
 		for (var i in data) {
 			q += i+'='+data[i].toString()+'&amp;';
@@ -80,46 +80,46 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 		return q.substr(0,q.length-5);
 	}
 
-	// __iframe (type,params)
+	// _iframe (type,params)
 	// return iframe line
 	//-------------------------------------------
-	function __iframe(type,p) {
-		return '<iframe src="http://www.facebook.com/plugins/'+type+'.php?'+__queryString(p)+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'+p.width+'px; height:'+p.height+'px;" allowTransparency="true"></iframe>';
+	function _iframe(type,p) {
+		return '<iframe src="http://www.facebook.com/plugins/'+type+'.php?'+_queryString(p)+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'+p.width+'px; height:'+p.height+'px;" allowTransparency="true"></iframe>';
 	}
 
-	// __handleResponse (response,callback)
+	// _handleResponse (response,callback)
 	// handling behavior relative to login status
 	//-------------------------------------------
-	function __handleResponse(response) {
+	function _handleResponse(response) {
 		
-		if (response.status == 'connected' && typeof __params.init.statusConnected == 'function') {
+		if (response.status == 'connected' && typeof _params.init.statusConnected == 'function') {
 			
-			__userSession = response.session;
-			__getUserDetails( function( user ) {
-				__params.init.statusConnected( user );
+			_userSession = response.session;
+			_getUserDetails( function( user ) {
+				_params.init.statusConnected( user );
 			});
 
-		} else if (typeof __params.init.statusNotConnected == 'function') {
+		} else if (typeof _params.init.statusNotConnected == 'function') {
 
-			__userSession = null;
-			__params.init.statusNotConnected();
+			_userSession = null;
+			_params.init.statusNotConnected();
 
 		}
 		
 	}
 
-	// __getUserDetails ([callback])
+	// _getUserDetails ([callback])
 	// stores user info relative to session (public or detailed), then forwards callback
 	//-------------------------------------------
-	function __getUserDetails(callback) {
+	function _getUserDetails(callback) {
 		
 		$.ajax({
-			url: 'https://graph.facebook.com/' + __userSession.uid,
+			url: 'https://graph.facebook.com/' + _userSession.uid,
 			dataType: 'json',
-			data: 'access_token=' + __userSession.access_token + '&callback=?',
+			data: 'access_token=' + _userSession.access_token + '&callback=?',
 			success: function(data, textStatus, jqXHR) {
 				
-				__userDetails = data;
+				_userDetails = data;
 				
 				if ( callback != undefined )
 					callback(data);
@@ -139,21 +139,21 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	// PUBLIC
 	//-------------------------------------------
 	var facebook = {},
-		__userSession = null,
-		__userDetails = null;
+		_userSession = null,
+		_userDetails = null;
 	
 	// setInitParams (options)
 	// set default init params
 	//-------------------------------------------
 	facebook.setInitParams = function() {
-		__params.init = __mergeParams(arguments[0],__params.init);
+		_params.init = _mergeParams(arguments[0],_params.init);
 	};
 
 	// init (options)
 	// renders the required script and html tags then inits the Facebook API
 	//-------------------------------------------
 	facebook.init = function(options) {
-		var p = __mergeParams(options,__params.init);
+		var p = _mergeParams(options,_params.init);
 		
 		if (p.app_id) {
 			
@@ -170,10 +170,10 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 				});
 				
 				// Listen to status changes to apply layout changes accordingly.
-				FB.Event.subscribe( 'auth.statusChange', __handleResponse );
+				FB.Event.subscribe( 'auth.statusChange', _handleResponse );
 				
 				// Apply immediate layout changes depending of user login status.
-				FB.getLoginStatus( __handleResponse );
+				FB.getLoginStatus( _handleResponse );
 				
 			};
 			
@@ -220,14 +220,14 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	// returns the session object or null if not logged
 	//-------------------------------------------
 	facebook.getSession = function() {
-		return __userSession;
+		return _userSession;
 	}
 
 	// getUser ()
 	// returns the user details or null if not logged
 	//-------------------------------------------
 	facebook.getUser = function() {
-		return __userDetails;
+		return _userDetails;
 	}
 
 	
@@ -238,45 +238,45 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	// output like button in selector
 	//-------------------------------------------
 	facebook.likeButton = function(selector,options) {
-		var p = __mergeParams(options,__params.likeButton);
-		$(selector).html(__iframe('like',p));
+		var p = _mergeParams(options,_params.likeButton);
+		$(selector).html(_iframe('like',p));
 	};
 	
 	// setLikeButtonParams (options)
 	// set default like button params
 	//-------------------------------------------
 	facebook.setLikeButtonParams = function() {
-		__params.likeButton = __mergeParams(arguments[0],__params.likeButton);
+		_params.likeButton = _mergeParams(arguments[0],_params.likeButton);
 	};
 
 	// likeBox (selector,options)
 	// output like box in selector
 	//-------------------------------------------
 	facebook.likeBox = function(selector,options) {
-		var p = __mergeParams(options,__params.likeBox);
-		$(selector).html(__iframe('likebox',p));
+		var p = _mergeParams(options,_params.likeBox);
+		$(selector).html(_iframe('likebox',p));
 	};
 	
 	// setLikeBoxParams (options)
 	// set default like box params
 	//-------------------------------------------
 	facebook.setLikeBoxParams = function() {
-		__params.likeBox = __mergeParams(arguments[0],__params.likeBox);
+		_params.likeBox = _mergeParams(arguments[0],_params.likeBox);
 	};
 
 	// facepile (selector,options)
 	// output facepile in selector
 	//-------------------------------------------
 	facebook.facepile = function(selector,options) {
-		var p = __mergeParams(options,__params.facepile);
-		$(selector).html(__iframe('facepile',p));
+		var p = _mergeParams(options,_params.facepile);
+		$(selector).html(_iframe('facepile',p));
 	};
 	
 	// setFacepileParams (options)
 	// set default facepile params
 	//-------------------------------------------
 	facebook.setFacepileParams = function() {
-		__params.facepile = __mergeParams(arguments[0],__params.facepile);
+		_params.facepile = _mergeParams(arguments[0],_params.facepile);
 	};
 
 

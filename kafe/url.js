@@ -3,10 +3,10 @@
 //-------------------------------------------
 kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 
-	// __parseIt (string, type)
+	// _parseIt (string, type)
 	// parse url
 	//-------------------------------------------
-	function __parseIt(str,type) {
+	function _parseIt(str,type) {
 		switch (type) {
 			case 'params': {
 				var data  = {};
@@ -34,7 +34,7 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	url.parseSearchParams = function(s) {
 		s = (s) ? s : window.location.search;
-		return __parseIt(s.substring(1), 'params');
+		return _parseIt(s.substring(1), 'params');
 	};
 
 	// parseSearchPath ([url])
@@ -42,7 +42,7 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	url.parseSearchPath = function(s) {
 		s = (s) ? s : window.location.search;
-		return (s.substring(1,2) == '/') ? __parseIt(s.substring(2), 'path') : [];
+		return (s.substring(1,2) == '/') ? _parseIt(s.substring(2), 'path') : [];
 	};
 	
 	// parseHashParams ([url])
@@ -50,7 +50,7 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	url.parseHashParams = function(s) {
 		s = (s) ? s : window.location.hash;
-		return __parseIt(s.substring(1), 'params');
+		return _parseIt(s.substring(1), 'params');
 	};
 
 	// parseHashParams ([url])
@@ -58,7 +58,7 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	url.parseHashPath = function(s) {
 		s = (s) ? s : window.location.hash;
-		return (s.substring(1,2) == '/') ? __parseIt(s.substring(2), 'path') : [];
+		return (s.substring(1,2) == '/') ? _parseIt(s.substring(2), 'path') : [];
 	};
 
 	// parseAjaxParams ([url])
@@ -66,7 +66,7 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	url.parseAjaxParams = function(s) {
 		s = (s) ? s : window.location.hash;
-		return (s.substring(1,2) == '!') ? __parseIt(s.substring(2), 'params') : {};
+		return (s.substring(1,2) == '!') ? _parseIt(s.substring(2), 'params') : {};
 	};
 	
 	// parseAjaxPath ([url])
@@ -74,7 +74,7 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	url.parseAjaxPath = function(s) {
 		s = (s) ? s : window.location.hash;
-		return (s.substring(1,3) == '!/') ? __parseIt(s.substring(3), 'path') : [];
+		return (s.substring(1,3) == '!/') ? _parseIt(s.substring(3), 'path') : [];
 	};
 	
 	return url;

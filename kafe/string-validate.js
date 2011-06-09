@@ -51,7 +51,7 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 		// http://davidwalsh.name/validate-credit-cards
 		// http://jsfiddle.net/silvinci/84bru/
 		
-		var __pattern = {
+		var _pattern = {
 			mc:  '5[1-5][0-9]{14}',                          // Master Card
 			ec:  '5[1-5][0-9]{14}',                          // Electronic Cash
 			vi:  '4(?:[0-9]{12}|[0-9]{15})',                 // Visa
@@ -63,7 +63,7 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 			er:  '2(?:014|149)[0-9]{11}'                     // ER
 	    };
 	    
-		function __validateStructure(value, ccType) {
+		function _validateStructure(value, ccType) {
 			value = String(value).replace(/[^0-9]/g, ''); // ignore dashes and whitespaces - We could even ignore all non-numeric chars (/[^0-9]/g)
 
 			var cardinfo = creditCardValidator.cards,
@@ -84,7 +84,7 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 		}
 
 	    // Luhn validator 
-		function __validateChecksum(value) {
+		function _validateChecksum(value) {
 			value = String(value).replace(/[^0-9]/g, ''); // ignore dashes and whitespaces - We could even ignore all non-numeric chars (/[^0-9]/g)
 			var sum       = 0,
 				parity    = value.length % 2
@@ -104,8 +104,8 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 			return ((sum % 10) == 0); // divide by 10 and check if it ends in 0 - return true | false
 		}
 			
-        if (__validateChecksum(s)) {
-            return __validateStructure(s, type);
+        if (_validateChecksum(s)) {
+            return _validateStructure(s, type);
         }
 
         return false;

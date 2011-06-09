@@ -4,7 +4,7 @@
 kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 
 	// dictionary
-	var __dict = {
+	var _dict = {
 		fr: {
 			m:  ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
 			m3: [0,0,0,0,0,'Jun','Jul'],
@@ -23,33 +23,33 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		}
 	};
 
-	// __lang ([lang])
+	// _lang ([lang])
 	// get a valid lang
 	//-------------------------------------------
-	function __lang(lang) {
-		return K.fn.lang(__dict,lang);
+	function _lang(lang) {
+		return K.fn.lang(_dict,lang);
 	}
 
-	// __m3 (month, [lang])
+	// _m3 (month, [lang])
 	// get the 3-char month abbreviation
 	//-------------------------------------------
-	function __m3(month, lang) {
-		var d = __dict[__lang(lang)];
+	function _m3(month, lang) {
+		var d = _dict[_lang(lang)];
 		return (d.m3 && d.m3[month]) ? d.m3[month] : d.m[month].substring(0,3);
 	}
 
-	// __w3 (weekday, [lang])
+	// _w3 (weekday, [lang])
 	// get the 3-char weekday abbreviation
 	//-------------------------------------------
-	function __w3(weekday, lang) {
-		var d = __dict[__lang(lang)];
+	function _w3(weekday, lang) {
+		var d = _dict[_lang(lang)];
 		return (d.w3 && d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].substring(0,3);
 	}
 
-	// __trim (list, nb)
+	// _trim (list, nb)
 	// trim every element of the array
 	//-------------------------------------------
-	function __trim(list,nb) {
+	function _trim(list,nb) {
 		var d = [];
 		for (var i in list) {
 			d.push(list[i].substr(0,nb));
@@ -109,22 +109,22 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 	// get the month names
 	//-------------------------------------------
 	date.getMonthNames = function(lang) {
-		return __dict[__lang(lang)].m;
+		return _dict[_lang(lang)].m;
 	};
 
 	// getMonth1Names ([lang])
 	// get the 1-char month abbreviation
 	//-------------------------------------------
 	date.getMonth1Names = function(lang) {
-		return __trim(__dict[__lang(lang)].m,1);
+		return _trim(_dict[_lang(lang)].m,1);
 	};
 
 	// getMonth2Names ([lang])
 	// get the 2-char month abbreviation
 	//-------------------------------------------
 	date.getMonth2Names = function(lang) {
-		lang = __lang(lang);
-		return (__dict[lang].m2) ? __dict[lang].m2 : __dict.multi.m2;
+		lang = _lang(lang);
+		return (_dict[lang].m2) ? _dict[lang].m2 : _dict.multi.m2;
 	};
 
 	// getMonth3Names ([lang])
@@ -133,7 +133,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 	date.getMonth3Names = function(lang) {
 		var d = [];
 		for (var i=0; i<12; ++i) {
-			d.push(__m3(i, lang));
+			d.push(_m3(i, lang));
 		}
 		return d;
 	};
@@ -142,21 +142,21 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 	// get the weekday names
 	//-------------------------------------------
 	date.getWeekdayNames = function(lang) {
-		return __dict[__lang(lang)].w;
+		return _dict[_lang(lang)].w;
 	};
 
 	// getWeekday1Names ([lang])
 	// get the 1-char weekday abbreviation
 	//-------------------------------------------
 	date.getWeekday1Names = function(lang) {
-		return __trim(__dict[__lang(lang)].w,1);
+		return _trim(_dict[_lang(lang)].w,1);
 	};
 
 	// getWeekday2Names ([lang])
 	// get the 2-char weekday abbreviation
 	//-------------------------------------------
 	date.getWeekday2Names = function(lang) {
-		return __trim(__dict[__lang(lang)].w,2);
+		return _trim(_dict[_lang(lang)].w,2);
 	};
 
 	// getWeekday3Names ([lang])
@@ -165,7 +165,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 	date.getWeekday3Names = function(lang) {
 		var d = [];
 		for (var i=0; i<7; ++i) {
-			d.push(__w3(i, lang));
+			d.push(_w3(i, lang));
 		}
 		return d;
 	};
@@ -174,7 +174,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 	// get the month day clean representation
 	//-------------------------------------------
 	date.getDayNames = function(lang) {
-		var d = __dict[__lang(lang)].d;
+		var d = _dict[_lang(lang)].d;
 		var l = d.length;
 		for (var i=l; i<31; ++i) {
 			d[i] = i+1;
@@ -190,8 +190,8 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		function pad() { return ('0'+arguments[0].toString()).slice(-2); }
 		
 		var 
-			lang = __lang(lang),
-			d    = __dict[lang],
+			lang = _lang(lang),
+			d    = _dict[lang],
 
 			year      = date.getFullYear(),
 			month     = date.getMonth()+1,
@@ -249,7 +249,7 @@ kafe.bonify({name:'date', version:'1.0', obj:(function($,K,undefined){
 		now = (now) ? now : new Date();
 
 		var 
-			d     = __dict[__lang(lang)].r,
+			d     = _dict[_lang(lang)].r,
 			delta = (now.getTime() - time.getTime()) / 1000
 		;
 	

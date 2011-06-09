@@ -25,9 +25,9 @@
 
 window.kafe = (function(w,d,$,undefined){
 
-	// __exists (name)
+	// _exists (name)
 	// check if module imported
-	function __exists(name) {
+	function _exists(name) {
 		try {
 			return eval("("+name+" == undefined) ? false : true;");
 		} catch(e) {
@@ -36,7 +36,7 @@ window.kafe = (function(w,d,$,undefined){
 	};
 
 	// native extensions
-	var __Native = {};
+	var _Native = {};
 	 
 
 
@@ -73,26 +73,26 @@ window.kafe = (function(w,d,$,undefined){
 		// get a existing lang
 		//-------------------------------------------
 		fn.lang = function(dict,lang) {
-			lang = (!!lang) ? lang : core.env('lang');
+			lang = (!!lang) ? lang : _coreEnv('lang');
 			return (!!dict[lang]) ? lang : 'en';
 		};
 	
 		return fn;
 	})();
 
-
+	var _coreReadOnly = core.fn.setReadOnlyProperties;
 
 	
 	// identification
-	var __i = {};
-	core.fn.setReadOnlyProperties(__i = {}, {
+	var _i = {};
+	_coreReadOnly(_i = {}, {
 		non:    'kafe',
-		vesyon: '1.1',
+		vesyon: '1.1-dev',
 		griyaj: 'absolunet.com'
 	});
-	core.fn.setReadOnlyProperties(core,{kafe: __i.vesyon});
-	core.fn.setReadOnlyProperties(core,{idantite:__i});
-	core.fn.setReadOnlyProperties(core,{vesyon:{}});
+	_coreReadOnly(core,{kafe: _i.vesyon});
+	_coreReadOnly(core,{idantite:_i});
+	_coreReadOnly(core,{vesyon:{}});
 
 
 	// bonify (name/version/object)
@@ -101,14 +101,15 @@ window.kafe = (function(w,d,$,undefined){
 	core.bonify = function(options) {
 		
 		// if not already extended
-		if (!__exists(options.name)) {
+		if (!_exists(options.name)) {
 
-			var name = 'this.'+options.name; 
+			var oname = options.name; 
+			var name = 'this.'+oname; 
 
 			// if has Native methods
 			if (options.obj.Native != undefined) {
 				var 
-					type           = options.name.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
+					type           = oname.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
 					isNativeObject = !!(':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1),
 					isNativeModule = !!(':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1)						
 				;
@@ -116,7 +117,7 @@ window.kafe = (function(w,d,$,undefined){
 				// if object
 				if (isNativeObject) {
 
-					var sub = options.name.split('.');
+					var sub = oname.split('.');
 					
 					// if subclass
 					if (sub.length > 1) {
@@ -126,20 +127,20 @@ window.kafe = (function(w,d,$,undefined){
 					// if not
 					} else {
 						sub = '';
-						__Native[type] = function(o) { this.get = function(){return o;}; };
-						w[type].prototype.K = function() { return new __Native[type](this); };
+						_Native[type] = function(o) { this.get = function(){return o;}; };
+						w[type].prototype.K = function() { return new _Native[type](this); };
 					}
 
 					// push methods
 					for (var i in options.obj.Native) {
-						__Native[type].prototype[sub+i] = options.obj.Native[i];
+						_Native[type].prototype[sub+i] = options.obj.Native[i];
 					}
 
 				
 				
 				// if module
 				} else if (isNativeModule) {
-					var sub = options.name.split('.');
+					var sub = oname.split('.');
 					
 					// if subclass
 					if (sub.length > 1) {
@@ -162,15 +163,15 @@ window.kafe = (function(w,d,$,undefined){
 
 			// add version
 			var v = {};
-			v[options.name] = options.version;
-			core.fn.setReadOnlyProperties(core.vesyon,v);
+			v[oname] = options.version;
+			_coreReadOnly(core.vesyon,v);
 			
 			// extend
 			eval(name+' = arguments[0].obj;');
 			
 		// throw error
 		} else {
-			throw this.error(new Error(__i.non+'.'+options.name+' already exists'));
+			throw _coreError(new Error(_coreName+'.'+oname+' already exists'));
 		}
 	};
 	
@@ -205,11 +206,11 @@ window.kafe = (function(w,d,$,undefined){
 			});
 
 			if (!found) {
-				throw this.error(new Error('\'' + name+'\' is required'));
+				throw _coreError(new Error('\'' + name+'\' is required'));
 			}
 
-		} else if (!__exists(name)) {
-			throw this.error(new Error(name+' is required'));
+		} else if (!_exists(name)) {
+			throw _coreError(new Error(name+' is required'));
 		}
 	};
 
@@ -238,7 +239,7 @@ window.kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	core.error = function(e) {
 		var msg = ((e.description) ? e.description : e.message);
-		e.description = e.message = '<'+__i.non+':erè> : '+ ((!!msg) ? msg : 'anonim');
+		e.description = e.message = '<'+_coreName+':erè> : '+ ((!!msg) ? msg : 'anonim');
 		return ($.browser.msie && parseInt($.browser.version) == 8) ? new Error(e) : e;
 	};
 
@@ -252,7 +253,7 @@ window.kafe = (function(w,d,$,undefined){
 	core.env = (function(){
 
 		// base vals
-		var __data = {
+		var _data = {
 			culture: '',
 			lang:    '',
 			page:    '',
@@ -268,11 +269,11 @@ window.kafe = (function(w,d,$,undefined){
 			;
 
 			// parse doc
-			__data.culture = $html.attr('id') || '';
-			__data.lang    = $html.attr('lang').toLowerCase();
-			__data.page    = $body.attr('id') || '';
-			__data.tmpl    = $body.attr('class') || '';
-			__data.tmpl    = __data.tmpl.toString().split(' ')[0];
+			_data.culture = $html.attr('id') || '';
+			_data.lang    = $html.attr('lang').toLowerCase();
+			_data.page    = $body.attr('id') || '';
+			_data.tmpl    = $body.attr('class') || '';
+			_data.tmpl    = _data.tmpl.toString().split(' ')[0];
 			
 			// parse detections
 			var dtc = $html.attr('class') || '';
@@ -280,7 +281,7 @@ window.kafe = (function(w,d,$,undefined){
 			if (!!dtc.length) {
 				for (var i in dtc) {
 					if (dtc[i].substring(0,4) == 'dtc-') {
-						__data.dtc[dtc[i].substring(4).replace(/-/g,'_')] = true;
+						_data.dtc[dtc[i].substring(4).replace(/-/g,'_')] = true;
 					} 
 				}
 			}
@@ -293,15 +294,15 @@ window.kafe = (function(w,d,$,undefined){
 
 			// get
 			if (value == undefined) {
-				return __data[name];
+				return _data[name];
 
 			// already set 
-			} else if (__data[name] != undefined && updatable.search(new RegExp('\:'+name+'\:')) == -1) {
-				throw this.error(new Error(__i.non+'.env > property \''+name+'\' already defined'));
+			} else if (_data[name] != undefined && updatable.search(new RegExp('\:'+name+'\:')) == -1) {
+				throw _coreError(new Error(_coreName+'.env > property \''+name+'\' already defined'));
 
 			// set
 			} else {
-				__data[name] = value;
+				_data[name] = value;
 			}
 		};
 
@@ -311,6 +312,13 @@ window.kafe = (function(w,d,$,undefined){
 	// namespace for plugins and extensions
 	core.plugin = {};
 	core.ext    = {};
+
+	// local vars
+	var 
+		_coreName  = _i.non,
+		_coreEnv   = core.error,
+		_coreError = core.env
+	;
 
 	return core;
 
@@ -324,9 +332,9 @@ window.kafe = (function(w,d,$,undefined){
 // patch ie8 and less for HTML5 
 //-------------------------------------------
 (function($){
-	var __patchHTML5 = ($.browser.msie && parseInt($.browser.version) < 9);
+	var _patchHTML5 = ($.browser.msie && parseInt($.browser.version) < 9);
 
-	if (__patchHTML5) {
+	if (_patchHTML5) {
 		var html5 = "address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video".split('|');
 		for (var i=0; i<html5.length; ++i){
 			document.createElement(html5[i]);
@@ -334,7 +342,7 @@ window.kafe = (function(w,d,$,undefined){
 	}
 
 	$.fn.appendHTML5 = function(str) {
-		if (__patchHTML5) {
+		if (_patchHTML5) {
 			var d, r;
 			function innerShiv (h, u) {
 				if (!d) {

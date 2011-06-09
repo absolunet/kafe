@@ -17,9 +17,9 @@
 */
 window.tequila = (function(w,d,$,K,undefined){
 
-	// __exists (name)
+	// _exists (name)
 	// check if module imported
-	function __exists(name) {
+	function _exists(name) {
 		try {
 			return eval("("+name+" == undefined) ? false : true;");
 		} catch(e) {
@@ -59,7 +59,7 @@ window.tequila = (function(w,d,$,K,undefined){
 	;
 	_setReadOnly(_i = {}, {
 		nombre:      'tequila',
-		version:     '0.1',
+		version:     '0.1-dev',
 		destilacion: 'absolunet.com'
 	});
 	_setReadOnly(core,{tequila: _i.version});
@@ -73,7 +73,7 @@ window.tequila = (function(w,d,$,K,undefined){
 	core.bonify = function(options) {
 		
 		// if not already extended
-		if (!__exists(options.name)) {
+		if (!_exists(options.name)) {
 
 			var name = 'this.'+options.name; 
 

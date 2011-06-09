@@ -28,7 +28,7 @@ kafe.bonify({name:'form', version:'1.1', obj:(function($,K,undefined){
 	//-------------------------------------------
 	form.label = function() {
 
-		function __isEmpty() {
+		function _isEmpty() {
 			 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
 		};
 
@@ -41,13 +41,13 @@ kafe.bonify({name:'form', version:'1.1', obj:(function($,K,undefined){
 				.attr('title','')
 				.bind('focus', function() {
 					var $this = $(this);
-					if (__isEmpty($this.val()) || $this.val() == $this.data('Label')) {
+					if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
 						$this.removeClass('Label').val('');
 					}
 				})
 				.bind('blur', function() {
 					var $this = $(this);
-					if (__isEmpty($this.val()) || $this.val() == $this.data('Label')) {
+					if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
 						$this.addClass('Label').val($this.data('Label'));
 					}
 				})

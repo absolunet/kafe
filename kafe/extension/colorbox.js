@@ -4,7 +4,7 @@
 kafe.extend({name:'colorbox', version:'0.2', obj:(function($,K,undefined){
 
 	//default params
-	var __params = {
+	var _params = {
 		inline:true, 
 		opacity:0.9, 
 		transition:'none'
@@ -20,7 +20,7 @@ kafe.extend({name:'colorbox', version:'0.2', obj:(function($,K,undefined){
 	// return default params
 	//-------------------------------------------
 	colorbox.getParams = function(id) {
-		var p = __params
+		var p = _params
 		if (!!id) { p.id = '#'+id; }
 		return p;
 	};
@@ -29,7 +29,7 @@ kafe.extend({name:'colorbox', version:'0.2', obj:(function($,K,undefined){
 	// set default params
 	//-------------------------------------------
 	colorbox.setParams = function() {
-		__params = arguments[0];
+		_params = arguments[0];
 	};
 
 	// display (string)

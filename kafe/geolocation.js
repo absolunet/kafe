@@ -4,10 +4,10 @@
 kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 	
 	// is available
-	var __isAvailable = !!navigator.geolocation;
+	var _isAvailable = !!navigator.geolocation;
 
 	// dictonary
-	var __dict = {
+	var _dict = {
 		fr: {
 			search:      'Recherche de votre positionnement',
 			position:    'Votre position',
@@ -28,11 +28,11 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 		}
 	};
 
-	// __lang ([lang])
+	// _lang ([lang])
 	// get a valid lang
 	//-------------------------------------------
-	function __lang(lang) {
-		return K.fn.lang(__dict,lang);
+	function _lang(lang) {
+		return K.fn.lang(_dict,lang);
 	}
 	
 
@@ -49,10 +49,10 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 	//------------------------------------------
 	geolocation.locate = function(options) {
 		
-		var d = __dict[__lang(options.lang)];
+		var d = _dict[_lang(options.lang)];
 
 		// if service available
-		if (__isAvailable) {
+		if (_isAvailable) {
 			var $msg            = $(options.msgContainer);
 			var successCallback = options.success;
 			var errorCallback   = options.error;

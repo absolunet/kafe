@@ -1,17 +1,17 @@
 //-------------------------------------------
 // kafe.plugin.carousel
 //-------------------------------------------
-kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
+kafe.plug({name:'carousel', version:'0.6', obj:(function($,K,undefined){
 
 	// local variables
 	var
-		__DEBUG = false,
-		__all = {}
+		_DEBUG = false,
+		_all = {}
 	;
 
-	// __refresh
+	// _refresh
 	//-------------------------------------------
-	function __refresh(c) {
+	function _refresh(c) {
 
 		function none(e) { e.preventDefault(); }
 
@@ -104,10 +104,10 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 	}
 
 
-	// __change (carousel, target_position)
+	// _change (carousel, target_position)
 	// do a position change
 	//-------------------------------------------
-	function __change(c, target) {
+	function _change(c, target) {
 
 		if (!!c.changing) {
 			return false;
@@ -256,7 +256,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 			break;
 		}
 
-		__refresh(c);
+		_refresh(c);
 
 		// éventuellement positionner dans le animate callback
 		if (!!c.postSwitchCallback) {
@@ -360,27 +360,27 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 			// general events				
 			c.startClick = function(e){ 
 				e.preventDefault();
-				__change(c, 0);
+				_change(c, 0);
 			};
 		
 			c.previousClick = function(e){ 
 				e.preventDefault();
-				__change(c, 'prev');
+				_change(c, 'prev');
 			};
 		
 			c.nextClick = function(e){ 
 				e.preventDefault();
-				__change(c, 'next');
+				_change(c, 'next');
 			};
 		
 			c.endClick = function(e){ 
 				e.preventDefault();
-				__change(c, c.total-1);
+				_change(c, c.total-1);
 			};
 		
 			c.itemSimpleClick = function(e){ 
 				e.preventDefault();
-				__change(c, new RegExp('kafeCarousel-'+c.id+'-Item-([0-9]+)').exec($(this).attr('class'))[1] - 1);
+				_change(c, new RegExp('kafeCarousel-'+c.id+'-Item-([0-9]+)').exec($(this).attr('class'))[1] - 1);
 			};
 		
 			c.playClick = function(e){ 
@@ -397,7 +397,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 
 			c.slideStartAuto = function(){ 
 				if (c.AutoRunning) {
-					c.Timeout = setTimeout(function(){ __change(c, 'next', true); }, c.autointerval);
+					c.Timeout = setTimeout(function(){ _change(c, 'next', true); }, c.autointerval);
 				}
 			};
 		
@@ -419,7 +419,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 			c.$items.find('> li').each(function(i){ 
 				$(this).click(function(e){
 					e.preventDefault();
-					__change(c, i);
+					_change(c, i);
 				});
 			});
 
@@ -436,7 +436,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		
 			// intialiser look
 			c.$total.html(c.total);
-			__refresh(c);
+			_refresh(c);
 
 			c.$MainItems.hide();
 			c.$Main.find('> li:nth-child('+c.startId+')').show();
@@ -476,7 +476,7 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 		
 
 			// Ajouter à la liste
-			__all[c.id] = c;
+			_all[c.id] = c;
 		}
 	}; 
 
@@ -485,12 +485,12 @@ kafe.plug({name:'carousel', version:'0.6.0', obj:(function($,K,undefined){
 	// manual change
 	//-------------------------------------------
 	carousel.change = function(id, target) {
-		return __change(__all[id], (Number(target) == target) ? target-1 : target);
+		return _change(_all[id], (Number(target) == target) ? target-1 : target);
 	};
 
 	// debug only
-	if (__DEBUG) {
-		carousel.carousels = __all;
+	if (_DEBUG) {
+		carousel.carousels = _all;
 	}
 	
 

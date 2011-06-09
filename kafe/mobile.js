@@ -5,27 +5,27 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 
 	// local variables
 	var
-		__name        = K.idantite.non,
-		__$html       = $('html'),
-		__iOsWebApp   = !!window.navigator.standalone,
-		__orientation
+		_name        = K.idantite.non,
+		_$html       = $('html'),
+		_iOsWebApp   = !!window.navigator.standalone,
+		_orientation
 	;
 
 	// ios webapp mode
-	K.env('mobile-iOsWebApp', __iOsWebApp);
-	if (__iOsWebApp) {
-		__$html.addClass(__name+'-mobile-iOsWebApp');
+	K.env('mobile-iOsWebApp', _iOsWebApp);
+	if (_iOsWebApp) {
+		_$html.addClass(_name+'-mobile-iOsWebApp');
 	}
 	
 	// mobile orientation
 	$(window)
 		.bind('orientationchange', function() { 
-			__orientation = (!!this.orientation) ? 'landscape' : 'portrait';
+			_orientation = (!!this.orientation) ? 'landscape' : 'portrait';
 
-			K.env('mobile-orientation', __orientation);
-			__$html
-				.removeClass(__name+'-mobile-landscape '+__name+'-mobile-portrait')
-				.addClass(__name+'-mobile-'+__orientation)
+			K.env('mobile-orientation', _orientation);
+			_$html
+				.removeClass(_name+'-mobile-landscape '+_name+'-mobile-portrait')
+				.addClass(_name+'-mobile-'+_orientation)
 			;
 		})
 		.trigger('orientationchange')
@@ -43,7 +43,7 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	// remove top navigation bar
 	//-------------------------------------------
 	mobile.scrollTop = function() {
-		if (!__iOSWebApp) {
+		if (!_iOSWebApp) {
 			window.scrollTo(0,1);
 		}
 	};
@@ -53,7 +53,7 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	mobile.redirector = function() {
 		
-		function __saveCookie(activate) {
+		function _saveCookie(activate) {
 			var domain = window.location.hostname.split('.');
 			domain = (domain.length >=2) ? domain[domain.length-2]+'.'+ domain[domain.length-1] : '';
 			if (!!activate) {
@@ -63,10 +63,10 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	        }
 		}
 
-		$('a[rel="'+__name+'Mobile-Redirector"]').live('click', function(){ __saveCookie(false); });
+		$('a[rel="'+_name+'Mobile-Redirector"]').live('click', function(){ _saveCookie(false); });
 		
 		if (window.location.search.substr(1) == 'mobile') {
-	        __saveCookie(true);
+	        _saveCookie(true);
 	    }
     };
 
@@ -74,8 +74,8 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	// reverse internal/external links behaviour for an iOS web application mode
 	//-------------------------------------------
 	mobile.iOsWepAppPatchLinks = function() {
-		if (__iOSWebApp) {
-			$('a[rel~="external"][rel~="'+__name+'-IgnoreWepAppPatch"][target!="_blank"]').live('click',function(e) {
+		if (_iOSWebApp) {
+			$('a[rel~="external"][rel~="'+_name+'-IgnoreWepAppPatch"][target!="_blank"]').live('click',function(e) {
 				e.preventDefault();
 				window.location.href = $(this).attr('href'); 
 			});

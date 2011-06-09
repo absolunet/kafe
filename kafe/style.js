@@ -13,7 +13,7 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 	// make all elements the same height
 	//-------------------------------------------
 	style.equalHeight = function() {
-		function __doIt() {
+		function _doIt() {
 			var $z = $(arguments[0]);
 			$z.height( Math.max.apply(Math, $z.map(function(){ return $(this).height(); }).get()) );
 		}
@@ -30,10 +30,10 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 		if (!!nbPerRow) {
 			var max = Math.ceil($o.length / nbPerRow);
 			for (var i=0; i<max; ++i) {
-				__doIt($($o.splice(0, nbPerRow)));
+				_doIt($($o.splice(0, nbPerRow)));
 			}
 		} else {
-			__doIt($o);
+			_doIt($o);
 		}
 	};
 	

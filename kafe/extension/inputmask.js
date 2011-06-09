@@ -6,7 +6,7 @@ kafe.extend({name:'inputmask', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	// PRIVATE
 	//-------------------------------------------
-	var __masks = {
+	var _masks = {
 		datetime:   'y-m-d h:i',
 		date:       'y-m-d',
 		time:       'h:i',
@@ -56,7 +56,7 @@ kafe.extend({name:'inputmask', version:'1.0', obj:(function($,K,undefined){
 	// return predefined mask
 	//-------------------------------------------
 	inputmask.getMask = function(name) {
-		return (!!__masks[name]) ? __masks[name] : '';
+		return (!!_masks[name]) ? _masks[name] : '';
 	};
 	
 
