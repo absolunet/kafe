@@ -29,7 +29,7 @@ window.kafe = (function(w,d,$,undefined){
 	// check if module imported
 	function _exists(name) {
 		try {
-			return eval("("+name+" == undefined) ? false : true;");
+			return eval("("+name+" != undefined)");
 		} catch(e) {
 			return false;
 		}
@@ -44,7 +44,8 @@ window.kafe = (function(w,d,$,undefined){
 	// CORE
 	//-------------------------------------------
 	var core = {};
-
+	core.kafe = '';
+	
 	//-------------------------------------------
 	// FN
 	//-------------------------------------------
@@ -101,13 +102,15 @@ window.kafe = (function(w,d,$,undefined){
 	core.bonify = function(options) {
 		
 		// if not already extended
-		if (!_exists(options.name)) {
-
-			var oname = options.name; 
-			var name = 'this.'+oname; 
+		var oname     = options.name; 
+		var name      = 'this.'+oname; 
+		var obj       = options.obj; 
+		var objNative = obj.Native; 
+		
+		if (!_exists('core.'+oname)) {
 
 			// if has Native methods
-			if (options.obj.Native != undefined) {
+			if (objNative != undefined) {
 				var 
 					type           = oname.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
 					isNativeObject = !!(':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1),
@@ -132,8 +135,8 @@ window.kafe = (function(w,d,$,undefined){
 					}
 
 					// push methods
-					for (var i in options.obj.Native) {
-						_Native[type].prototype[sub+i] = options.obj.Native[i];
+					for (var i in objNative) {
+						_Native[type].prototype[sub+i] = objNative[i];
 					}
 
 				
@@ -152,8 +155,8 @@ window.kafe = (function(w,d,$,undefined){
 					}
 					
 					// push methods
-					for (var i in options.obj.Native) {
-						w[type].K[sub+i] = obj.Native[i];
+					for (var i in objNative) {
+						w[type].K[sub+i] = objNative[i];
 					}
 				}
 
@@ -289,7 +292,7 @@ window.kafe = (function(w,d,$,undefined){
 
 		// public method (name, [value])
 		//-------------------------------------------
-		var env = function(name, value) {
+		return function(name, value) {
 			var updatable = ':mobile-orientation:';
 
 			// get
@@ -305,8 +308,6 @@ window.kafe = (function(w,d,$,undefined){
 				_data[name] = value;
 			}
 		};
-
-		return env;
 	})();
 
 	// namespace for plugins and extensions
@@ -316,8 +317,8 @@ window.kafe = (function(w,d,$,undefined){
 	// local vars
 	var 
 		_coreName  = _i.non,
-		_coreEnv   = core.error,
-		_coreError = core.env
+		_coreEnv   = core.env,
+		_coreError = core.error
 	;
 
 	return core;

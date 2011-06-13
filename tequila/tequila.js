@@ -21,7 +21,7 @@ window.tequila = (function(w,d,$,K,undefined){
 	// check if module imported
 	function _exists(name) {
 		try {
-			return eval("("+name+" == undefined) ? false : true;");
+			return eval("("+name+" != undefined);");
 		} catch(e) {
 			return false;
 		}
@@ -31,7 +31,8 @@ window.tequila = (function(w,d,$,K,undefined){
 	// CORE
 	//-------------------------------------------
 	var core = {};
-
+	core.tequila = '';
+	
 	//-------------------------------------------
 	// FN
 	//-------------------------------------------
@@ -73,13 +74,15 @@ window.tequila = (function(w,d,$,K,undefined){
 	core.bonify = function(options) {
 		
 		// if not already extended
-		if (!_exists(options.name)) {
+		var oname = options.name; 
+		var name  = 'this.'+oname; 
 
-			var name = 'this.'+options.name; 
+		// if not already extended
+		if (!_exists('core.'+oname)) {
 
 			// add version
 			var v = {};
-			v[options.name] = options.version;
+			v[oname] = options.version;
 			_setReadOnly(core.version,v);
 			
 			// extend
@@ -87,7 +90,7 @@ window.tequila = (function(w,d,$,K,undefined){
 			
 		// throw error
 		} else {
-			throw _kError(new Error(_i.nombre+'.'+options.name+' already exists'));
+			throw _kError(new Error(_i.nombre+'.'+oname+' already exists'));
 		}
 	};
 	
