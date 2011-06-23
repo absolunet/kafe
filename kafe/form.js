@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.bonify({name:'form', version:'1.1', obj:(function($,K,undefined){
+kafe.bonify({name:'form', version:'1.2', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC
@@ -13,7 +13,7 @@ kafe.bonify({name:'form', version:'1.1', obj:(function($,K,undefined){
 	// add focus styles on input/textarea/select
 	//-------------------------------------------
 	form.focus = function() {
-		$('input[type="text"], textarea, select')
+		$('input, textarea, select')
 			.bind('focus', function() {
 				$(this).prev('label').andSelf().addClass('Focus');
 			})
@@ -65,6 +65,52 @@ kafe.bonify({name:'form', version:'1.1', obj:(function($,K,undefined){
 				callback(this);
 			}
 	    });
+	};
+	
+	// autofocusOnNext (elements)
+	// moves focus on next input
+	//-------------------------------------------
+	form.autofocusOnNext = function(elements) {
+		$(elements).bind('keyup input',function(e) {
+			var $this = $(this);
+			if($this.val().length == $this.attr('maxlength')) {
+				var inputs = $('input, textarea, select');
+		        inputs.eq( inputs.index(this)+1 ).focus();
+		    }
+		});
+	};
+
+	// maxLength (elements, max, block, [callback])
+	// manages a maxlength on a textarea
+	//-------------------------------------------
+	form.maxLength = function(elements, max, block, callback) {
+		$(elements)
+			.bind('input paste cut keyup',function(e) {
+			
+				var 
+					$this = $(this),
+					delay = ($.browser.msie & parseInt($.browser.version) <= 8) ? 1 : 0
+				;
+				
+				setTimeout(function(){
+					var 
+						val   = $this.val(),
+						nb    = max - val.length
+					;
+					
+					if (!!block && nb < 0) {
+						$this.val(val.substr(0,max));
+						nb = 0;
+					}
+
+					if ($.isFunction(callback)) {
+						callback(nb);
+					}
+					
+				},delay);
+			})
+			.trigger('keyup')
+		;
 	};
 
 	return form;

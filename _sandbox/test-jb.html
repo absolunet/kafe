@@ -40,6 +40,15 @@
 	<div id="gl"></div>
 
 
+	<input type="text" class="Date autofocus" maxlength="20" />
+	<input type="text" id="x1" class="autofocus" maxlength="3" />
+	<input type="text" id="x2" class="autofocus" maxlength="3" />
+	<input type="text" id="x3" class="autofocus" maxlength="3" />
+	<input type="text" id="x4" class="autofocus" maxlength="3" />
+
+	<textarea id="maxou"></textarea>
+
+
 	<script>
 
 
@@ -122,8 +131,16 @@
 			window.PATATE = new Date('2010-02-24');
 
 			var kMask = kafe.ext.inputmask; 
-			$("input.Date").inputmask( kMask.getMask('phoneext') );
+			$("input.Date").inputmask( kMask.getMask('date') );
 			
+			console.log( kafe.env('dtc').e3 );
+		
+		
+			kafe.form.autofocusOnNext('input.autofocus');
+			
+			kafe.form.maxLength('#maxou', 20, false, function(nb) {
+				$('#gl').html(nb);
+			});
 		
 		
 		});
