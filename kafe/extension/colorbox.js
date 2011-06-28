@@ -40,7 +40,7 @@ kafe.extend({name:'colorbox', version:'0.2', obj:(function($,K,undefined){
 		$.colorbox(this.getParams('cb-display'));
 	};
 
-	// moveInForm ()
+	// moveInForm
 	// move colorbox in webform
 	//-------------------------------------------
 	colorbox.moveInForm = function() {

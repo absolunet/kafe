@@ -39,6 +39,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 				show_faces:  true,
 				stream:      true,
 				header:      true,
+				force_wall:  true,
 				width:       292,
 				height:      427,
 				colorscheme: 'light',

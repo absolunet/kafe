@@ -47,7 +47,7 @@ kafe.extend({name:'twitter', version:'1.1', obj:(function($,K,undefined){
 		_params = _mergeParams(arguments[0],_params);
 	};
 
-	// linkifyTweet (tweet,options)
+	// linkifyTweet (tweet, [options])
 	// output tweet with links
 	//-------------------------------------------
 	twitter.linkifyTweet = function(tweet,options) {

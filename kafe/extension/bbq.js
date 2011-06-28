@@ -52,7 +52,7 @@ kafe.extend({name:'bbq', version:'0.1', obj:(function($,K,undefined){
 		return $.deparam.fragment( _unHashbangUrl(), true );
 	};
 
-	// setHashbang (options)
+	// setHashbang (params, mergemode)
 	// set hashbang url parameters according to object or string specified
 	//-------------------------------------------
 	bbq.setHashbang = function(params, mergemode) {
