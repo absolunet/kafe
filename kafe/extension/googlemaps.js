@@ -4,7 +4,7 @@
 //-------------------------------------------
 kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	
-	// Kafe.require("maps.google.com/maps/api/js?sensor=\ ");
+	K.required('//maps.google.com/maps/api/js');
 	
 	var _mapLayout = {}
 		_mapConfiguration = {}
@@ -14,237 +14,6 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		_markersArray = []
 		_infoWindowOverlay = null
 	;
-	
-	// ------------------------------------------
-	// PUBLIC
-	// ------------------------------------------
-	
-	var GM = {};
-	
-	/* --------------------------------------------------  
-		Function create(params)
-		Description : This method create a new cool Google Maps.
-		@param params: Object. 
-			Possible attributes are : 
-				'parentId' : String. The id of the parent of the new GMaps.
-				'parent' : Object. The parent himself of the new GMaps.
-				'width' : Int. The width of the new GMaps.
-				'height' : Int. The height of the new GMaps.
-				'visible' : Boolean. Display of the new GMaps. If False, the new GMaps will be Display:none;.
-				'mapStyle' : Object. Pre-defited style are in the ext googlemaps.styles.
-				'markers' : Array. All the marker of the new GMaps. See description of method GM.addMarker for marker structure.
-				*All the native GoogleMaps Options. See there all the niceeee attributes http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MapOptions
-	 --------------------------------------------------  */
-
-	GM.create = function(params){
-		_create(params);
-	}
-	
-	/* --------------------------------------------------  
-		Function addMarkers(pMarkers)
-		Description : The method add all the marker to the map and keep a reference of it. 
-		@params pMarkers: Array.
-			Required attributes are : 
-				'position' : Array. The Latitude and Longitude of the marker.
-				'width': Int. The width of the marker.
-				'height': Int. The height of the marker.
-				'title': String. The title of the marker.
-				'clickCallBack' : Function. When the marker is clicked, this function is called.
-				'clickInfoWindow' : Boolean. If TRUE, will show content in the infowindow on click.
-				'content' : String. The content of the info window.
-				'iconImage' : String. Image of the marker.
-				'labelOptions' : Object
-					attributes :
-						'className' : String. The class of the label.
-						'anchor' : Array. Set an anchor to the label.
-				*All the native MarkerOptions. See there http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MarkerOptions
-	--------------------------------------------------  */
-	
-	GM.addMarkers = function(pMarkers){
-		if(_ifMapExist(true, "GM.addMarkers()") && pMarkers){
-			_addMarkers(pMarkers)
-		}		
-	}
-	
-	/* --------------------------------------------------  
-		Function addMarker(pMarker)
-		Description : The method add a single marker to the map and keep a reference of it. 
-		@params pMarker: Object.
-			*See required attributes from GM.addMarkers() description.
-	--------------------------------------------------  */
-	
-	GM.addMarker = function(pMarker){
-		if(_ifMapExist(true, "GM.addMarkers()") && pMarkers){
-			_addMarkers([pMarker])
-		}	
-	}
-	
-	/* --------------------------------------------------  
-		Function removeMarkers()
-		Description : Remove all the markers on the map and clear reference.
-	--------------------------------------------------  */
-
-	GM.removeMarkers = function(){
-		if(_ifMapExist(true, "GM.removeMarkers()")){
-			_removeMarkers();
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function removeMarker(pLatLng, pTitle)
-		Description : Remove marker by the latitude/longiture or the title. 
-		@params params : Object. 
-			Required attributes are :
-				'latlng' : Array. The position of the marker.
-				'title' : String. The title of the marker.
-	--------------------------------------------------  */
-	
-	GM.removeMarker = function(params){
-		if(_ifMapExist(true, "GM.removeMarker()")){
-			_removeMarker(params);
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function hideMarkers()
-		Description : Hide all the markers.
-	--------------------------------------------------  */
-	
-	GM.hideMarkers = function(){
-		if(_ifMapExist(true, "GM.hideMarkers()")){
-			
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function hideMarker(params)
-		Description : Hide a specific marker by the title or the latitude and longitude).
-	--------------------------------------------------  */
-	
-	GM.hideMarker = function(params){
-		if(_ifMapExist(true, "GM.hideMarker()")){
-			
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function infoWindow(params)
-		Description : Show the info window.
-		@params params : Object. 
-			Required attributes are :
-				'content' : String. The content of the info window. Can be html style!!
-	--------------------------------------------------  */
-	
-	GM.infoWindow = function(params){
-		if(_ifMapExist(true, "GM.infoWindow()")){
-			if(!params){
-				_throwGoogleMapsError("The params is null!, @GM.infoWindow();");
-				return;
-			}
-			
-			_infoWindow(params);
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function panTo(latLng)
-		Description : Pan the google maps to the Latitude and longitude passed in params.
-		@params latLng: google.maps.LatLng.
-	--------------------------------------------------  */
-	
-	GM.panTo = function(latLng){
-		if(_ifMapExist(true, "GM.panTo()") && latLng){
-			_map.panTo(latLng);
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function setMapOptions(params)
-		Description : Change a map options property. This change will be live. That's rock !
-		@params params: Object.
-			Possible attributes are : 
-				*All the native GoogleMaps Options. See there all the niceeee attributes http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MapOptions
-	--------------------------------------------------  */
-	
-	GM.setMapOptions = function(params){
-		if(_ifMapExist(true, "GM.setMapOptions()")){
-			_mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
-			_map.setOptions(_mapConfiguration);
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function setStyle(pStyle)
-		Description : Change the style of the maps. This change will be live. That's too cool !
-		@params params: Object. Pre-defited style are in the Kafe.ext googlemaps.styles.
-	--------------------------------------------------  */
-	
-	GM.setStyle = function(pStyle){
-		if(_ifMapExist(true, "GM.setStyle()")){
-		    _map.mapTypes.set(pStyle.name, pStyle);
-			_map.setMapTypeId(pStyle.name);
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function resetMapOptions()
-		Description : This will reset the original MapOptions. Warning!!! The current map configuration is destroyed !
-	--------------------------------------------------  */
-	
-	GM.resetMapOptions = function(){
-		if(_ifMapExist(true, "GM.resetMapOptions()")){
-			_setDefaultMapConfiguration();
-			_map.setOptions(_mapConfiguration);
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function getMapConfiguration()
-		Description : Return the current map configuration.
-	--------------------------------------------------  */
-		
-	GM.getMapConfiguration = function(){return _mapConfiguration;};
-	
-	/* --------------------------------------------------  
-		Function getMapLayout()
-		Description : Return the current map layout configuration.
-	--------------------------------------------------  */
-	
-	GM.getMapLayout = function(){return _mapLayout;};
-	
-	/* --------------------------------------------------  
-		Function getMapCenter()
-		Description : Return the map center position.
-	--------------------------------------------------  */
-	
-	GM.getMapCenter = function(){
-		if(_ifMapExist(true, "GM.getMapCenter()")){
-			return _map.getCenter();
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function dismiss()
-		Description : Kill the current GMaps.
-	--------------------------------------------------  */
-	
-	GM.dismiss = function(){
-		if(_ifMapExist(true, "GM.dismiss()")){
-			_removeMarkers();
-			$("#" + _mapLayout.mapId).remove();
-		}
-	}
-	
-	/* --------------------------------------------------  
-		Function hide()
-		Description : Hide the current GMaps.
-	--------------------------------------------------  */
-	
-	GM.hide = function(){
-		if(_ifMapExist(true, "GM.hide()")){
-			$("#" + _mapLayout.mapId).hide();
-		}
-	}
 	
 	// ------------------------------------------
 	// PRIVATE
@@ -261,7 +30,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		if(params){
 			_mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
 			_mapLayout = _parseParamsCreateIfNotExist(params, _mapLayout);
-			_mapLayout.parentId = (_mapLayout.parentId != "body") ? "#" + _mapLayout.parentId : _mapLayout.parentId; 
+			_mapLayout.parentId = (_mapLayout.parentId != 'body') ? '#' + _mapLayout.parentId : _mapLayout.parentId; 
 		}
 		
 		var mapDiv = '<div id="' + _mapLayout.mapId +'" style="width:' + _mapLayout.width + '; height:' + _mapLayout.height + ';">&nbsp;</div>';
@@ -269,7 +38,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		var $parent = (_mapLayout.parent) ? _mapLayout.parent : $(_mapLayout.parentId);
 		
 		if(!($parent.get(0))){
-			_throwGoogleMapsError("Google Maps parent is null! @ GM.create()");
+			_throwGoogleMapsError('Google Maps parent is null! @ GM.create()');
 			return;
 		}
 		
@@ -311,7 +80,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 			if(mInfos.labelOptions){
 				var x = 0
 					y = 0
-					c = (mInfos.labelOptions.className) ? mInfos.labelOptions.className : "CustomMarker"
+					c = (mInfos.labelOptions.className) ? mInfos.labelOptions.className : 'CustomMarker'
 				var anchor;
 				
 				
@@ -456,11 +225,11 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _setDefaultMapLayout(){
-		_mapLayout.parentId = "body";
-		_mapLayout.mapId = "map_canvas";
+		_mapLayout.parentId = 'body';
+		_mapLayout.mapId = 'map_canvas';
 		_mapLayout.parent = null;
-		_mapLayout.width = "500px";
-		_mapLayout.height = "500px";
+		_mapLayout.width = '500px';
+		_mapLayout.height = '500px';
 		_mapLayout.markers = [];
 		_mapLayout.visible = true;
 		_mapLayout.mapStyle = null;
@@ -487,7 +256,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _setDefaultInfoWindowConfiguration(){
-		_infoWindowConfiguration.content = "";
+		_infoWindowConfiguration.content = '';
 		_infoWindowConfiguration.disableAutoPan = true;
 		_infoWindowConfiguration.maxWidth = null;
 		_infoWindowConfiguration.pixelOffset = null;
@@ -563,7 +332,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _throwGoogleMapsError(pError){
-		console.log("googlemaps : " + pError);
+		console.log('googlemaps : ' + pError);
 	}
 	
 	/* --------------------------------------------------  
@@ -574,13 +343,13 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _ifMapExist(pThrowError, pErrorInfos){
-		if(_map && $("#" + _mapLayout.mapId).get(0)){
+		if(_map && $('#' + _mapLayout.mapId).get(0)){
 			return true;
 		}
 		else
 		{
 			if(pThrowError){
-				_throwGoogleMapsError(" Map doesn't exist! Create one it's free! " + pErrorInfos);
+				_throwGoogleMapsError(' Map doesn\'t exist! Create one it\'s free! ' + pErrorInfos);
 			}
 			return false;
 		}
@@ -593,7 +362,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	
 	function _returnMarkerByTitleOrLatLnt(params){
 		if(!params){
-			_throwGoogleMapsError("params is null! @Method _returnMarkerByTitleOrLatLnt();");
+			_throwGoogleMapsError('params is null! @Method _returnMarkerByTitleOrLatLnt();');
 			return;
 		}
 		for(var m in _markersArray){
@@ -627,15 +396,247 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	}
 	
 	// ------------------------------------------
+	// PUBLIC
+	// ------------------------------------------
+	
+	var GM = {};
+	
+	/* --------------------------------------------------  
+		Function create(params)
+		Description : This method create a new cool Google Maps.
+		@param params: Object. 
+			Possible attributes are : 
+				'parentId' : String. The id of the parent of the new GMaps.
+				'parent' : Object. The parent himself of the new GMaps.
+				'width' : Int. The width of the new GMaps.
+				'height' : Int. The height of the new GMaps.
+				'visible' : Boolean. Display of the new GMaps. If False, the new GMaps will be Display:none;.
+				'mapStyle' : Object. Pre-defited style are in the ext googlemaps.styles.
+				'markers' : Array. All the marker of the new GMaps. See description of method GM.addMarker for marker structure.
+				*All the native GoogleMaps Options. See there all the niceeee attributes http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MapOptions
+	 --------------------------------------------------  */
+
+	GM.create = function(params){
+		_create(params);
+	};
+	
+	/* --------------------------------------------------  
+		Function addMarkers(pMarkers)
+		Description : The method add all the marker to the map and keep a reference of it. 
+		@params pMarkers: Array.
+			Required attributes are : 
+				'position' : Array. The Latitude and Longitude of the marker.
+				'width': Int. The width of the marker.
+				'height': Int. The height of the marker.
+				'title': String. The title of the marker.
+				'clickCallBack' : Function. When the marker is clicked, this function is called.
+				'clickInfoWindow' : Boolean. If TRUE, will show content in the infowindow on click.
+				'content' : String. The content of the info window.
+				'iconImage' : String. Image of the marker.
+				'labelOptions' : Object
+					attributes :
+						'className' : String. The class of the label.
+						'anchor' : Array. Set an anchor to the label.
+				*All the native MarkerOptions. See there http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MarkerOptions
+	--------------------------------------------------  */
+	
+	GM.addMarkers = function(pMarkers){
+		if(_ifMapExist(true, 'GM.addMarkers()') && pMarkers){
+			_addMarkers(pMarkers)
+		}		
+	};
+	
+	/* --------------------------------------------------  
+		Function addMarker(pMarker)
+		Description : The method add a single marker to the map and keep a reference of it. 
+		@params pMarker: Object.
+			*See required attributes from GM.addMarkers() description.
+	--------------------------------------------------  */
+	
+	GM.addMarker = function(pMarker){
+		if(_ifMapExist(true, 'GM.addMarkers()') && pMarkers){
+			_addMarkers([pMarker])
+		}	
+	};
+	
+	/* --------------------------------------------------  
+		Function removeMarkers()
+		Description : Remove all the markers on the map and clear reference.
+	--------------------------------------------------  */
+
+	GM.removeMarkers = function(){
+		if(_ifMapExist(true, 'GM.removeMarkers()')){
+			_removeMarkers();
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function removeMarker(pLatLng, pTitle)
+		Description : Remove marker by the latitude/longiture or the title. 
+		@params params : Object. 
+			Required attributes are :
+				'latlng' : Array. The position of the marker.
+				'title' : String. The title of the marker.
+	--------------------------------------------------  */
+	
+	GM.removeMarker = function(params){
+		if(_ifMapExist(true, 'GM.removeMarker()')){
+			_removeMarker(params);
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function hideMarkers()
+		Description : Hide all the markers.
+	--------------------------------------------------  */
+	
+	GM.hideMarkers = function(){
+		if(_ifMapExist(true, 'GM.hideMarkers()')){
+			
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function hideMarker(params)
+		Description : Hide a specific marker by the title or the latitude and longitude).
+	--------------------------------------------------  */
+	
+	GM.hideMarker = function(params){
+		if(_ifMapExist(true, 'GM.hideMarker()')){
+			
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function infoWindow(params)
+		Description : Show the info window.
+		@params params : Object. 
+			Required attributes are :
+				'content' : String. The content of the info window. Can be html style!!
+	--------------------------------------------------  */
+	
+	GM.infoWindow = function(params){
+		if(_ifMapExist(true, 'GM.infoWindow()')){
+			if(!params){
+				_throwGoogleMapsError('The params is null!, @GM.infoWindow();');
+				return;
+			}
+			
+			_infoWindow(params);
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function panTo(latLng)
+		Description : Pan the google maps to the Latitude and longitude passed in params.
+		@params latLng: google.maps.LatLng.
+	--------------------------------------------------  */
+	
+	GM.panTo = function(latLng){
+		if(_ifMapExist(true, 'GM.panTo()') && latLng){
+			_map.panTo(latLng);
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function setMapOptions(params)
+		Description : Change a map options property. This change will be live. That's rock !
+		@params params: Object.
+			Possible attributes are : 
+				*All the native GoogleMaps Options. See there all the niceeee attributes http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MapOptions
+	--------------------------------------------------  */
+	
+	GM.setMapOptions = function(params){
+		if(_ifMapExist(true, 'GM.setMapOptions()')){
+			_mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
+			_map.setOptions(_mapConfiguration);
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function setStyle(pStyle)
+		Description : Change the style of the maps. This change will be live. That's too cool !
+		@params params: Object. Pre-defited style are in the kafe.ext googlemaps.styles.
+	--------------------------------------------------  */
+	
+	GM.setStyle = function(pStyle){
+		if(_ifMapExist(true, 'GM.setStyle()')){
+		    _map.mapTypes.set(pStyle.name, pStyle);
+			_map.setMapTypeId(pStyle.name);
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function resetMapOptions()
+		Description : This will reset the original MapOptions. Warning!!! The current map configuration is destroyed !
+	--------------------------------------------------  */
+	
+	GM.resetMapOptions = function(){
+		if(_ifMapExist(true, 'GM.resetMapOptions()')){
+			_setDefaultMapConfiguration();
+			_map.setOptions(_mapConfiguration);
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function getMapConfiguration()
+		Description : Return the current map configuration.
+	--------------------------------------------------  */
+		
+	GM.getMapConfiguration = function(){
+		return _mapConfiguration;
+	};
+	
+	/* --------------------------------------------------  
+		Function getMapLayout()
+		Description : Return the current map layout configuration.
+	--------------------------------------------------  */
+	
+	GM.getMapLayout = function(){
+		return _mapLayout;
+	};
+	
+	/* --------------------------------------------------  
+		Function getMapCenter()
+		Description : Return the map center position.
+	--------------------------------------------------  */
+	
+	GM.getMapCenter = function(){
+		if(_ifMapExist(true, 'GM.getMapCenter()')){
+			return _map.getCenter();
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function dismiss()
+		Description : Kill the current GMaps.
+	--------------------------------------------------  */
+	
+	GM.dismiss = function(){
+		if(_ifMapExist(true, 'GM.dismiss()')){
+			_removeMarkers();
+			$('#' + _mapLayout.mapId).remove();
+		}
+	};
+	
+	/* --------------------------------------------------  
+		Function hide()
+		Description : Hide the current GMaps.
+	--------------------------------------------------  */
+	
+	GM.hide = function(){
+		if(_ifMapExist(true, 'GM.hide()')){
+			$('#' + _mapLayout.mapId).hide();
+		}
+	};
+	
+	
+	// ------------------------------------------
 	// INIT
 	// ------------------------------------------
 	
 	// Call the init configuration on JS Loaded.
 	_initConfiguration();
-	
-	$(function(){
-		
-	});
 	
 	return GM;
 	
