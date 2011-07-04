@@ -32,6 +32,7 @@ h4 {
 	font-size:16px;
 }
 p {
+	line-height:1.4;
 	margin-bottom:1em;
 }
 a {
@@ -44,7 +45,12 @@ em {
 ul {
 	margin-bottom:1.2em;
 }
+ul ul {
+	margin-top:0.6em;
+}
 ul li {
+	list-style-type:square;
+	line-height:1.4;
 	margin-left:1.5em;
-	margin-bottom:0.2em;
+	margin-bottom:0.6em;
 }

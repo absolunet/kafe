@@ -93,14 +93,14 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	//-------------------------------------------
 	function _handleResponse(response) {
 		
-		if (response.status == 'connected' && typeof _params.init.statusConnected == 'function') {
+		if (response.status == 'connected' && !!_params.init.statusConnected) {
 			
 			_userSession = response.session;
 			_getUserDetails( function( user ) {
 				_params.init.statusConnected( user );
 			});
 
-		} else if (typeof _params.init.statusNotConnected == 'function') {
+		} else if (!!_params.init.statusNotConnected) {
 
 			_userSession = null;
 			_params.init.statusNotConnected();
@@ -122,7 +122,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 				
 				_userDetails = data;
 				
-				if ( callback != undefined )
+				if ( !!callback )
 					callback(data);
 				
 			},
@@ -196,7 +196,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 		FB.login(function(response) {
 			if (response.session) {
 				
-				if ( callback != undefined )
+				if ( !!callback )
 					callback(response);
 				
 			} else {
@@ -211,7 +211,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	facebook.logout = function(callback) {
 		FB.logout(function(response) {
 			
-			if ( callback != undefined )
+			if ( !!callback )
 				callback(response);
 			
 		});

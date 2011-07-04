@@ -18,23 +18,107 @@
 	
 	<div class="NotConnected">
 		<h2>You <em>are not</em> connected to Facebook.</h2>
+		<p><a href="javascript:void(0);">Click here to <em>log in</em>.</a></p>
 	</div>
 	<div class="Connected">
 		<h2>You <em>are</em> connected to Facebook.</h2>
+		<p><a href="javascript:void(0);">Click here to <em>log out</em>.</a></p>
 	</div>
-	<div class="NoPerms">
-		<h3>You have <em>have not</em> allowed our app.</h3>
+
+	<div>
+		<a id="setInitParams" name="setInitParams"></a>
+		<h3>kafe.ext.facebook.<em>setInitParams</em>( params )</h3>
+		<p> </p>
+		<ul>
+			<li>Sets the default app parameters to properly launch the Facebook application.</li>
+			<li>All Facebook API base inint params are supported. Using this extension, there are 3 major params that are needed :
+				<ul>
+					<li><em>app_id</em> (string) : <em>REQUIRED</em>. The App ID of your Facebook application. You must set the domaine you are using in the app settings or it will never init.</li>
+					<li><em>statusConnected</em> (function) : A callback that will be called the moment Facebook confirms the user is logged in. The detailed user info are returned in the first parameter of the function for its immediate use.</li>
+					<li><em>statusNotConnected</em> (function) : A callback that will be called the moment Facebook confirms the user is logged out.</li>
+				</ul>
+			</li>
+		</ul>
+		<pre>kafe.ext.facebook.setInitParams({
+	app_id: '228236983862336',
+	statusConnected: function(user) {
+		alert('Hello ' + user.first_name );
+	},
+	statusNotConnected: function() {
+		alert('Who are you?');
+	}
+});</pre>
 	</div>
 	
-	<p class="NotConnected"><a href="javascript:void(0);">Click here to <em>log in</em>.</a></p>
-	<p class="Connected"><a href="javascript:void(0);">Click here to <em>log out</em>.</a></p>
-
-	<pre>// IMPORTANT: Your domain must be allowed by the Facebook app.
-kafe.ext.facebook.init({
+	<div>
+		<a id="init" name="init"></a>
+		<h3>kafe.ext.facebook.<em>init</em>( [params] )</h3>
+		<ul>
+			<li>Launches the Facebook application using the specified parameters if specified.</li>
+			<li>See <a href="#setInitParams"><em>setInitParams</em></a> for more infos about the paramters.</li>
+			<li><em>Note</em> : Using this method will not override the default parameters. If you plan of referencing to those params in the future, use the <a href="#setInitParams"><em>setInitParams</em></a> method to set the parameters before launching the app using the init method.</li>
+		</ul>
+		<pre>kafe.ext.facebook.init({
 	app_id: '228236983862336',
-	statusConnected: myCallbackWhenLoggedIn,
-	statusNotConnected: myCallbackWhenLoggedOut
+	statusConnected: _myConnectedCallback,
+	statusNotConnected: _myNotConnectedCallback
 });</pre>
+		<p>or</p>
+		<pre>kafe.ext.facebook.setInitParams( [...] );
+kafe.ext.facebook.init();</pre>
+	</div>
+	
+	<div>
+		<a id="login" name="login"></a>
+		<h3>kafe.ext.facebook.<em>login</em>( [callback] )</h3>
+		<ul>
+			<li>Prompts the user with the Facebook login dialog.</li>
+			<li>If it's the user's first time using the app, permissions will be asked.</li>
+			<li>The callback will be executed once facebook has successfuly authenticated the user. Recommended for simple actions (ex.: redirecting, etc ). For more complex behaviors, use the <a href="#setInitParams"><em>statusConnected</em></a> callback.</li>
+		</ul>
+		<pre>kafe.ext.facebook.login(function() {
+	// Redirect to private profile.
+});</pre>
+	</div>
+
+	<div>
+		<a id="logout" name="logout"></a>
+		<h3>kafe.ext.facebook.<em>logout</em>( [callback] )</h3>
+		<ul>
+			<li>Simply logs the user out of Facebook.</li>
+			<li>The callback will be executed once facebook has successfuly logged the user out. Recommended for simple actions (ex.: redirecting, etc ). For more complex behaviors, use the <a href="#setInitParams"><em>statusNotConnected</em></a> callback.</li>
+		</ul>
+		<pre>kafe.ext.facebook.logout(function() {
+	// Redirect to public homepage.
+});</pre>
+	</div>
+
+	<div>
+		<a id="getSession" name="getSession"></a>
+		<h3>kafe.ext.facebook.<em>getSession</em>()</h3>
+		<ul>
+			<li>Returns the current Facebook session object.</li>
+			<li>Contains sensitive app info like the <em>access_token</em>, <em>uid</em> and <em>secret</em> used in most Graph API calls.</li>
+			<li><em>Note</em> : Will only return a value <em>AFTER</em> Facebook has authenticated the user since Facebook call are 'async'. It is recommended to use this function within the <a href="#setInitParams"><em>statusConnected</em></a> callback or in behaviors that require user interaction after the page has loaded. (ex.: click, etc )</li>
+			<li><em>Note</em> : Use <em>getSession</em> instead of <a href="#getUser"><em>getUser</em></a> when looking for the uid. The later requires a second call to the Facebook API when the prior already has the information.</li>
+		</ul>
+		<pre class="getSession">kafe.ext.facebook.getSession();
+// Currently returns :
+<span></span></pre>
+	</div>
+
+	<div>
+		<a id="getUser" name="getUser"></a>
+		<h3>kafe.ext.facebook.<em>getUser</em>()</h3>
+		<ul>
+			<li>Returns the current user's complete details.</li>
+			<li>Contains all info as per requested by the app permissions.</li>
+			<li><em>Note</em> : Will only return a value <em>AFTER</em> Facebook has authenticated the user since Facebook call are 'async'. It is recommended to use this function within the <a href="#setInitParams"><em>statusConnected</em></a> callback or in behaviors that require user interaction after the page has loaded. (ex.: click, etc )</li>
+		</ul>
+		<pre class="getUser">kafe.ext.facebook.getUser();
+// Currently returns :
+<span></span></pre>
+	</div>
 	
 </body>
 </html>

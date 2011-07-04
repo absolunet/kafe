@@ -11,17 +11,17 @@ var MONSITE = (function(w,d,$,K,undefined){
 	var kFacebook = K.ext.facebook;
 	var __appId = '228236983862336';
 	
-	var __pageLoadingCallback = function() {
-		
-		//Show Loading Animation
-		
-	}
 	var __pageConnectedCallback = function(user) {
 		
 		$('.NotConnected').hide();
-		$('.Connected').show(); //.NoPerms, 
+		$('.Connected').css({
+			backgroundImage: 'url(https://graph.facebook.com/' + user.id + '/picture)',
+			backgroundPosition: 'right bottom',
+			backgroundRepeat: 'no-repeat'
+		}).show();
 		
-		//Hide Loading Animation
+		$('pre.getSession span').html( '<em>' + kFacebook.getSession().toSource() + '</em>' );
+		$('pre.getUser span').html( '<em>' + kFacebook.getUser().toSource() + '</em>' );
 		
 	}
 	var __pageNotConnectedCallback = function() {
@@ -29,8 +29,9 @@ var MONSITE = (function(w,d,$,K,undefined){
 		$('.Connected').hide();
 		$('.NotConnected').show();
 		
-		//Hide Loading Animation
-		
+		$('pre.getSession span').html( '<em>null</em>, The user is logged out.' );
+		$('pre.getUser span').html( '<em>null</em>, The user is logged out.' );
+
 	}
 
 
@@ -48,20 +49,19 @@ var MONSITE = (function(w,d,$,K,undefined){
 		// IMPORTANT: Your domain must be allowed by the Facebook app.
 		kFacebook.setInitParams({
 			app_id: __appId,
-			statusTransition: __pageLoadingCallback,
 			statusConnected: __pageConnectedCallback,
 			statusNotConnected: __pageNotConnectedCallback
 		});
 
 		kFacebook.init();
 		
-		$('p.NotConnected a').bind('click', function(){
+		$('div.NotConnected a').bind('click', function(){
 			kFacebook.login(function() {
 				// user successfully logged in
 			});
 		});
 		
-		$('p.Connected a').bind('click', function(){
+		$('div.Connected a').bind('click', function(){
 			kFacebook.logout(function() {
 			  // user is now logged out
 			});
