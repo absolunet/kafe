@@ -24,18 +24,18 @@
 		<h2>You <em>are</em> connected to Facebook.</h2>
 		<p><a href="javascript:void(0);">Click here to <em>log out</em>.</a></p>
 	</div>
-
+	
 	<div>
 		<a id="setInitParams" name="setInitParams"></a>
 		<h3>kafe.ext.facebook.<em>setInitParams</em>( params )</h3>
 		<p> </p>
 		<ul>
 			<li>Sets the default app parameters to properly launch the Facebook application.</li>
-			<li>All Facebook API base inint params are supported. Using this extension, there are 3 major params that are needed :
+			<li>All Facebook API base init params are supported. When using this kafe extension, there are 3 major params that are needed :
 				<ul>
-					<li><em>app_id</em> (string) : <em>REQUIRED</em>. The App ID of your Facebook application. You must set the domaine you are using in the app settings or it will never init.</li>
-					<li><em>statusConnected</em> (function) : A callback that will be called the moment Facebook confirms the user is logged in. The detailed user info are returned in the first parameter of the function for its immediate use.</li>
-					<li><em>statusNotConnected</em> (function) : A callback that will be called the moment Facebook confirms the user is logged out.</li>
+					<li><em>app_id</em> ( string ) : <em>REQUIRED</em>. The App ID of your Facebook application. You must set the domaine you are using in the app settings or it will never init.</li>
+					<li><em>statusConnected</em> ( function(user) ) : Called the moment Facebook confirms the user is logged in. The detailed user info are returned as a first argument.</li>
+					<li><em>statusNotConnected</em> ( function ) : Called the moment Facebook confirms the user is logged out.</li>
 				</ul>
 			</li>
 		</ul>
@@ -54,9 +54,9 @@
 		<a id="init" name="init"></a>
 		<h3>kafe.ext.facebook.<em>init</em>( [params] )</h3>
 		<ul>
-			<li>Launches the Facebook application using the specified parameters if specified.</li>
-			<li>See <a href="#setInitParams"><em>setInitParams</em></a> for more infos about the paramters.</li>
-			<li><em>Note</em> : Using this method will not override the default parameters. If you plan of referencing to those params in the future, use the <a href="#setInitParams"><em>setInitParams</em></a> method to set the parameters before launching the app using the init method.</li>
+			<li>Launches the Facebook application using custom parameters if specified.</li>
+			<li>See <a href="#setInitParams"><em>setInitParams</em></a> for more infos about available paramters.</li>
+			<li><em>Note</em> : Using this method will not override the default parameters. If you plan of referencing to them in the future, use the <a href="#setInitParams"><em>setInitParams</em></a> method to override the default values before launching the app using the init method.</li>
 		</ul>
 		<pre>kafe.ext.facebook.init({
 	app_id: '228236983862336',
@@ -99,8 +99,8 @@ kafe.ext.facebook.init();</pre>
 		<ul>
 			<li>Returns the current Facebook session object.</li>
 			<li>Contains sensitive app info like the <em>access_token</em>, <em>uid</em> and <em>secret</em> used in most Graph API calls.</li>
-			<li><em>Note</em> : Will only return a value <em>AFTER</em> Facebook has authenticated the user since Facebook call are 'async'. It is recommended to use this function within the <a href="#setInitParams"><em>statusConnected</em></a> callback or in behaviors that require user interaction after the page has loaded. (ex.: click, etc )</li>
-			<li><em>Note</em> : Use <em>getSession</em> instead of <a href="#getUser"><em>getUser</em></a> when looking for the uid. The later requires a second call to the Facebook API when the prior already has the information.</li>
+			<li><em>Note</em> : Will only return a value <em>AFTER</em> Facebook has authenticated the user since Facebook call are 'async'. For that reason, it is recommended to use this function within the <a href="#setInitParams"><em>statusConnected</em></a> callback or in behaviors that require user interaction after the page has loaded. (ex.: click)</li>
+			<li><em>Note</em> : Use <em>getSession</em> instead of <a href="#getUser"><em>getUser</em></a> when looking for the uid. The later requires a second call to the Facebook API when the prior already contains the information.</li>
 		</ul>
 		<pre class="getSession">kafe.ext.facebook.getSession();
 // Currently returns :
@@ -113,7 +113,7 @@ kafe.ext.facebook.init();</pre>
 		<ul>
 			<li>Returns the current user's complete details.</li>
 			<li>Contains all info as per requested by the app permissions.</li>
-			<li><em>Note</em> : Will only return a value <em>AFTER</em> Facebook has authenticated the user since Facebook call are 'async'. It is recommended to use this function within the <a href="#setInitParams"><em>statusConnected</em></a> callback or in behaviors that require user interaction after the page has loaded. (ex.: click, etc )</li>
+			<li><em>Note</em> : Will only return a value <em>AFTER</em> Facebook has authenticated the user since Facebook call are 'async'. For that reason, it is recommended to use this function within the <a href="#setInitParams"><em>statusConnected</em></a> callback or in behaviors that require user interaction after the page has loaded. (ex.: click)</li>
 		</ul>
 		<pre class="getUser">kafe.ext.facebook.getUser();
 // Currently returns :
