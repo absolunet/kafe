@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html id="fr-CA" lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>kafe.ext.Facebook</title>
+	<link rel="stylesheet" href="css/youtube.css" type="text/css" media="all" />
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/kafe/kafe.js"></script>
+	
+	<script type="text/javascript" src="/kafe/extension/youtube.js"></script>
+	
+	<script type="text/javascript" src="js/youtube.js"></script>
+</head>
+<body>
+
+	<h1>kafe.ext.youtube</h1>
+	
+	<div>
+		<a id="init" name="init"></a>
+		<h3>kafe.ext.youtube.<em>search</em>( query, callback )</h3>
+		<ul>
+			<li>Searches youtube with the specified query then forwards the results as the first argument to the callback.</li>
+		</ul>
+		<pre>kafe.ext.youtube.search({
+	q: 'E-114',
+	author: 'Argon18bikes'
+}, function( results ) {
+	//Parse the simple results.
+});</pre>
+		<p>Returns</p>
+		<pre class="search"></pre>
+	</div>
+
+</body>
+</html>
