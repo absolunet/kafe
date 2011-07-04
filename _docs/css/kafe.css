@@ -1,0 +1,50 @@
+@import url(reset.css);
+
+body {
+	font-family:Georgia, Times, serif; font-size:14px; color:#fff;
+	background:#030483;
+	margin:10px 20px;
+}
+div {
+	background:#3637a6;
+	padding:10px 20px; margin-bottom:10px;
+}
+pre {
+	font-family:Monaco, Courier; font-size:12px; line-height:1.5;
+	background:#252695;
+	padding:15px; margin-bottom:10px;
+}
+
+h1, h2, h3, h4 {
+	font-weight:normal;
+	margin:0.75em 0;
+}
+h1 {
+	font-size:36px;
+}
+h2 {
+	font-size:24px;
+}
+h3 {
+	font-size:20px;
+}
+h4 {
+	font-size:16px;
+}
+p {
+	margin-bottom:1em;
+}
+a {
+	color:#fff;
+}
+em {
+	font-style:italic;
+	color:#ff6;
+}
+ul {
+	margin-bottom:1.2em;
+}
+ul li {
+	margin-left:1.5em;
+	margin-bottom:0.2em;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html id="fr-CA" lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>kafe.ext.Facebook</title>
+	<link rel="stylesheet" href="css/facebook.css" type="text/css" media="all" />
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/kafe/kafe.js"></script>
+	
+	<script type="text/javascript" src="/kafe/extension/facebook.js"></script>
+	
+	<script type="text/javascript" src="js/facebook.js"></script>
+</head>
+<body>
+
+	<h1>kafe.ext.facebook</h1>
+	
+	<div class="NotConnected">
+		<h2>You <em>are not</em> connected to Facebook.</h2>
+	</div>
+	<div class="Connected">
+		<h2>You <em>are</em> connected to Facebook.</h2>
+	</div>
+	<div class="NoPerms">
+		<h3>You have <em>have not</em> allowed our app.</h3>
+	</div>
+	
+	<p class="NotConnected"><a href="javascript:void(0);">Click here to <em>log in</em>.</a></p>
+	<p class="Connected"><a href="javascript:void(0);">Click here to <em>log out</em>.</a></p>
+
+	<pre>// IMPORTANT: Your domain must be allowed by the Facebook app.
+kafe.ext.facebook.init({
+	app_id: '228236983862336',
+	statusConnected: myCallbackWhenLoggedIn,
+	statusNotConnected: myCallbackWhenLoggedOut
+});</pre>
+	
+</body>
+</html>

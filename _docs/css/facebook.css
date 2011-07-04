@@ -1,0 +1,7 @@
+@import url(kafe.css);
+
+/* kafe.ext.facebook */
+.NotConnected, .Connected, .NoPerms {
+	display:none;
+}
+
