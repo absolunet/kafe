@@ -16,7 +16,9 @@ kafe.extend({name:'youtube', version:'1.0', obj:(function($,K,undefined){
 		_params = {
 			locale: _defaultLocale,
 			search: {
-				maxResults: 10
+				maxResults:   10,
+				startIndex:   1,
+				orderBy:      'relevance'
 			}
 		};
 	});
@@ -101,8 +103,24 @@ kafe.extend({name:'youtube', version:'1.0', obj:(function($,K,undefined){
 	youtube.search = function(params, callback) {
 		var s = _params.search;
 		
+		var path = 'https://gdata.youtube.com/feeds/api/videos?';
+		var query = 'alt=json&strict=true';
+		
+		query += '&max-results=' + s.maxResults;
+		query += '&start-index=' + s.startIndex;
+		query += '&orderby=' + s.orderBy;
+		
+		if ( !!params.query )
+			query += '&q=' + encodeURIComponent(params.query);
+			
+		if ( !!params.author )
+			query += '&author=' + encodeURIComponent(params.author);
+			
+		if ( !!params.category )
+			query += '&category=' + encodeURIComponent(params.category.join('|'));
+			
 		$.ajax({
-			url: 'https://gdata.youtube.com/feeds/api/videos?alt=json&amp;max-results=' + s.maxResults + '&amp;' + _queryString(params),
+			url: path + query,
 			dataType: 'json',
 			success: function(data, textStatus, jqXHR) {
 

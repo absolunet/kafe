@@ -12,9 +12,10 @@ var MONSITE = (function(w,d,$,K,undefined){
 	
 	var _parseResults = function(search) {
 		
-		$('pre.search').html( search.toSource() );
-		
-		console.log(search);
+		var $pre = $('pre.search').empty();
+		$.each(search, function(i, val) {
+			$pre.append('<a target="_blank" href="http://youtu.be/' + val.id + '">' + val.title + '</a> by ' + val.author + '<br />');
+		});
 		
 	}
 
@@ -29,12 +30,10 @@ var MONSITE = (function(w,d,$,K,undefined){
 
 	$(function(){
 		
-		kYoutube.search({
-			q: 'E-114',
-			author: 'Argon18bikes'
-		}, _parseResults);
+		kYoutube.search({ query: 'Gallium Pro', author: 'Argon18bikes' }, _parseResults);
 		
 	});
+	
 	
 	return MS;
 })(window,document,jQuery,kafe);

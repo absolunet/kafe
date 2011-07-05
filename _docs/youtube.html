@@ -2,7 +2,7 @@
 <html id="fr-CA" lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>kafe.ext.Facebook</title>
+	<title>kafe.ext.youtube</title>
 	<link rel="stylesheet" href="css/youtube.css" type="text/css" media="all" />
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -21,11 +21,15 @@
 		<h3>kafe.ext.youtube.<em>search</em>( query, callback )</h3>
 		<ul>
 			<li>Searches youtube with the specified query then forwards the results as the first argument to the callback.</li>
+			<li>There are 3 ways to search that can be conbined if needed :
+				<ul>
+					<li><em>q</em> ( string ) : Simple keywords query, works the same way as the search field on YouTube.com.</li>
+					<li><em>author</em> ( string ) : Only return results from a specific author.</li>
+					<li><em>category</em> ( array [ string ] ) : Try and find specific terms in the tags of the videos. (<em>Not very effective right now...</em>)</li>
+				</ul>
+			</li>
 		</ul>
-		<pre>kafe.ext.youtube.search({
-	q: 'E-114',
-	author: 'Argon18bikes'
-}, function( results ) {
+		<pre>kafe.ext.youtube.search({ query: 'Gallium Pro', author: 'Argon18bikes' }, function( results ) {
 	//Parse the simple results.
 });</pre>
 		<p>Returns</p>
