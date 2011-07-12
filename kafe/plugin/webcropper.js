@@ -150,10 +150,14 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 				delete onSubmit;
 	        },
 	        onComplete: function (file, response) {
-				_resetImage();
-				_imagePath = response;
- 				$image.attr('src', _imagePath);
-				delete onComplete;
+				if(response.length < 100){
+					_resetImage();
+					_imagePath = response;
+ 					$image.attr('src', _imagePath);
+					delete onComplete;
+				}else{
+					alert('Votre image ne doît pas dépasser 6mo.');
+				}
 	        }
 	    });
 	
@@ -166,17 +170,20 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	
 	function _setInteractivity() {
 		
-		_copperOptions.zoomIn = $(_copperOptions.zoomIn);
-		_copperOptions.zoomOut = $(_copperOptions.zoomOut);
-		
 		if(_copperOptions.rotation) {
 			_copperOptions.rotation = $(_copperOptions.rotation);
 			_copperOptions.rotation.bind('click', _rotate)
 		}
 		
 		if(_copperOptions.zoomIn != undefined && _copperOptions.zoomOut != undefined){
+			
+			_copperOptions.zoomIn = $(_copperOptions.zoomIn);
+			_copperOptions.zoomOut = $(_copperOptions.zoomOut);
+			
 			if(_copperOptions.mouseDownZoom){
+				
 				var interval = 0;
+				
 				_copperOptions.zoomIn
 					.bind('mousedown', function () { interval = setInterval(_zoomIn, _copperOptions.zoomingInterval)  })
 					.bind('mouseup mouseleave', function () { clearInterval(interval); })
@@ -229,7 +236,10 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _replaceImage(src) {
-		$image.attr('src', src);
+		_imagePath = src;
+		$image
+			.attr('src', _imagePath)
+			.bind('load', function(){_moveOrZoomActionDone();});
 	}
 	
 	/* --------------------------------------------------  
@@ -323,6 +333,7 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _zoomByCenter(factor) {
+		
 		var s = _resizeWithRatio($image.get(0), $image.width() + factor, $image.height() + factor);
 			iW = $image.width(),
 			iH = $image.height(),
@@ -364,8 +375,8 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	
 	function _zoom(w, h, t, l) {
 		
-		if(w < _copperOptions.minWidth || h < _copperOptions.minHeight) { return; };
-		if(w > _copperOptions.maxWidth || h > _copperOptions.maxHeight) { return; };
+		if(w < _copperOptions.minWidth || h < _copperOptions.minHeight) { return };
+		if(w > _copperOptions.maxWidth || h > _copperOptions.maxHeight) { return };
 		
 		if(_copperOptions.zoomAnimated){
 			$image.stop().animate({ width: w, height: h, top: t, left: l }, _copperOptions.zoomAnimationTime, _copperOptions.zoomEasing, _moveOrZoomActionDone);
