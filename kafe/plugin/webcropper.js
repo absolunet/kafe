@@ -201,13 +201,15 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	/* --------------------------------------------------  
 		PRIVATE Function _save()
 		Description : If you have set a Ajax webcropper, it will call the service with all the required value. If you have set a form webcropper, it will only refresh the value of the hidden input.
+		@success : Function -> Succes callback
+		@failed : Function -> Failed callback
 	--------------------------------------------------  */
 	
-	function _save() {
+	function _save(success, failed) {
 		if(_isFormBased){
 			_updateHiddenInput();
 		}else{
-			_sendAjaxInfos();
+			_sendAjaxInfos(success, failed);
 		}
 	}
 	
@@ -217,7 +219,7 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _clear() {
-		
+		// TODO
 	}
 	
 	/* --------------------------------------------------  
@@ -440,11 +442,13 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	}
 	
 	/* --------------------------------------------------  
-		PRIVATE Function _sendAjaxInfos()
+		PRIVATE Function _sendAjaxInfos(success, failed)
 		Description : Send to the ajaxServiceUrl the value needed for save the image.
+		@success : Function -> Succes callback
+		@failed : Function -> Failed callback
 	--------------------------------------------------  */
 	
-	function _sendAjaxInfos() {
+	function _sendAjaxInfos(success, failed) {
 		
 		if(_copperOptions.ajaxServiceUrl == '' || _copperOptions.ajaxServiceUrl == undefined){
 			_cropperError('You must specified a Ajax service url!');
@@ -464,12 +468,18 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 			success: function (data) {
                 if (data != null) {
 				    if (data) {
-						alert(true);
+						if(success){
+							success();
+						}
 				    } else {
-						alert(false);
+						if(failed){
+							failed();
+						}
 				    }
                 }else{
-					alert(data);
+					if(failed){
+						failed();
+					}
 				}
 			}
 		});
@@ -515,12 +525,13 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	/* --------------------------------------------------  
 		PUBLIC Function WC.save()
 		Description :  If you have set a Ajax webcropper, it will call the service with all the required value. If you have set a form webcropper, it will only refresh the value of the hidden input.
-			@PARAMS see line 56.
+			@success : Function -> Succes callback
+			@failed : Function -> Failed callback
 	--------------------------------------------------  */
 	
-	WC.save = function(){
+	WC.save = function(success, failed){
 		if(!_cropperExist){ _cropperError('You must create a webcropper first!'); return;}
-		_save();
+		_save(success, failed);
 	}
 	
 	/* --------------------------------------------------  
