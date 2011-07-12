@@ -519,7 +519,7 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	WC.initForm = function(params){
-		_initWithForm(params);
+		_initForm(params);
 	}
 	
 	/* --------------------------------------------------  
