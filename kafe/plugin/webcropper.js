@@ -364,8 +364,8 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	
 	function _zoom(w, h, t, l) {
 		
-		if(w < _copperOptions.minWidth || h < _copperOptions.minHeight) { return };
-		if(w > _copperOptions.maxWidth || h > _copperOptions.maxHeight) { return };
+		if(w < _copperOptions.minWidth || h < _copperOptions.minHeight) { return; };
+		if(w > _copperOptions.maxWidth || h > _copperOptions.maxHeight) { return; };
 		
 		if(_copperOptions.zoomAnimated){
 			$image.stop().animate({ width: w, height: h, top: t, left: l }, _copperOptions.zoomAnimationTime, _copperOptions.zoomEasing, _moveOrZoomActionDone);
