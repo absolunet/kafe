@@ -28,7 +28,7 @@ kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefine
 				    elementType: 'all',
 					stylers: [
 				        { hue: '#bdb2a8' },
-				        { saturation:-100 }
+				        { saturation:-100 }	
 					]
 				},
 				{
@@ -61,11 +61,14 @@ kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefine
 			}
 		}
 		
-		alert(style.name);
-		
-		return new google.maps.StyledMapType(style.style, {
-			name: (options.name) ? options.name : style.name
-		});
+	
+		if(style != null && style.style != null){
+			return new google.maps.StyledMapType(style.style, {
+				name: (options.name) ? options.name : style.name
+			});
+		}else{
+			K.log('googlemaps-styles: Ce style n\'existe pas!');
+		}
 	};
 
 	return STYLES;
