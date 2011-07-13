@@ -42,8 +42,6 @@ kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefine
 			]
 		}
 	};
-	
-
 
 	// ------------------------------------------
 	// PUBLIC
@@ -53,8 +51,17 @@ kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefine
 	STYLES.getStyle = function(id, options){
 		var 
 			options          = options || {}
-			style            = _styles[id]
+			style    		 = null;
 		;
+		
+		for(var o in _styles){
+			if(_styles[o].name === id){
+				style = _styles[o];
+				break;
+			}
+		}
+		
+		alert(style.name);
 		
 		return new google.maps.StyledMapType(style.style, {
 			name: (options.name) ? options.name : style.name
