@@ -30,12 +30,11 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		if(params){
 			_mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
 			_mapLayout = _parseParamsCreateIfNotExist(params, _mapLayout);
-			_mapLayout.parentId = (_mapLayout.parentId != 'body') ? '#' + _mapLayout.parentId : _mapLayout.parentId; 
 		}
 		
 		var mapDiv = '<div id="' + _mapLayout.mapId +'" style="width:' + _mapLayout.width + '; height:' + _mapLayout.height + ';">&nbsp;</div>';
 		
-		var $parent = (_mapLayout.parent) ? _mapLayout.parent : $(_mapLayout.parentId);
+		var $parent = $(_mapLayout.parent);
 		
 		if(!($parent.get(0))){
 			_throwGoogleMapsError('Google Maps parent is null! @ GM.create()');
@@ -47,7 +46,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		_map = new google.maps.Map(document.getElementById(_mapLayout.mapId), _mapConfiguration);
 		
 		if(!_mapLayout.visible){
-			$(_mapLayout.parentId).hide();
+			$parent.hide();
 		}
 		
 		if(_mapLayout.mapStyle) GM.setStyle(_mapLayout.mapStyle);
@@ -225,9 +224,8 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _setDefaultMapLayout(){
-		_mapLayout.parentId = 'body';
 		_mapLayout.mapId = 'map_canvas';
-		_mapLayout.parent = null;
+		_mapLayout.parent = 'body';
 		_mapLayout.width = '500px';
 		_mapLayout.height = '500px';
 		_mapLayout.markers = [];
@@ -406,8 +404,7 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		Description : This method create a new cool Google Maps.
 		@param params: Object. 
 			Possible attributes are : 
-				'parentId' : String. The id of the parent of the new GMaps.
-				'parent' : Object. The parent himself of the new GMaps.
+				'parent' :  String. The selector of the parent of the new GMaps.
 				'width' : Int. The width of the new GMaps.
 				'height' : Int. The height of the new GMaps.
 				'visible' : Boolean. Display of the new GMaps. If False, the new GMaps will be Display:none;.
