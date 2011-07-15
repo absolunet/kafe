@@ -88,9 +88,10 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
 
 						// evaluate horizontal position
 						if (align == 'left') {
-							attr.left = $e.offset().left;
+							attr.left = Math.ceil($e.offset().left);
 						} else {
-							attr.right = $document.width() - ($e.offset().left + $e.outerWidth());
+							// À VOIR (resize horizontal layout centré au milieu ...) --->      attr.right = Math.ceil($document.width()) - (Math.ceil($container.offset().left) + Math.ceil($container.outerWidth()) + Math.ceil($e.outerWidth()));
+							attr.right = Math.ceil($document.width()) - (Math.ceil($e.offset().left) + Math.ceil($e.outerWidth()));
 						}
 
 						// apply
