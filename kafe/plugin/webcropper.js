@@ -3,7 +3,7 @@
 // Produced by : Interactive Team
 //-------------------------------------------
 
-kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
+kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 	
 	K.required('jQuery.ui.draggable');
 	
@@ -52,14 +52,13 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 	// PRIVATE
 	// ------------------------------------------
 	
-	
 	// _initAjax and _initForm params possibility
 	/*
 	* @img 					: String -> Selector of the image. Ex. '.image'
 	* @imgContainer 		: String -> Selector of the image container. Ex. '.imageContainer'.
 	* @zoomIn 				: String -> Selector of the zoomIn button. Ex. '#zoomIn'.
 	* @zoomOut 				: String -> Selector of the zoomOut button. Ex. '#zoomOut'.
-	* @rotation 			: String -> Selector of the rotation button. Ex. '#rotation'.
+	* @rotation 			: String -> Selector of the rotation button. Ex. '#rotation'. TODO
 	* @filePicker 			: String -> Selector of the file picker or a «a». Ex. '#filePicker'.
 	* @draggable 			: Boolean -> Set if the image is draggble.
 	* @mouseDownZoom 		: Boolean -> Set if holding mouse down zoom the image in yoyo.
@@ -150,14 +149,20 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 				delete onSubmit;
 	        },
 	        onComplete: function (file, response) {
-				if(response.length < 100){
-					_resetImage();
-					_imagePath = response;
- 					$image.attr('src', _imagePath);
-					delete onComplete;
-				}else{
-					alert('Votre image ne doît pas dépasser 6mo.');
-				}
+                try{
+                    var myObject = JSON.parse(response);
+                    if(myObject.Path != undefined){
+                        _resetImage();
+                        _imagePath = myObject.Path;
+                        $image.attr('src', _imagePath);
+                        delete onComplete;
+                    }else{
+                        alert('Votre image ne doît pas dépasser 6mo.');
+                    }
+                }catch(e){
+                alert(e);
+                    alert('Votre image ne doît pas dépasser 6mo.');
+                }
 	        }
 	    });
 	
@@ -199,8 +204,9 @@ kafe.plug({name:'webcropper', version:'0.1', obj:(function($,K,undefined){
 			_copperOptions.zoomOut.bind('click', _zoomOut);
 		}
 		
+       
 		$image.draggable({
-			disabled:!_copperOptions.draggable, 
+			disabled:false, 
 			stop: _moveOrZoomActionDone
 		});
 	}
