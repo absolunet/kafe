@@ -408,7 +408,7 @@
                 'margin' : 0,
                 'padding' : 0,
                 'opacity' : 0,
-				// 'zIndex': 2147483583,
+                'zIndex': 2147483583,
                 // Make sure browse button is in the right side
                 // in Internet Explorer
                 // 'direction' : 'ltr',

@@ -39,6 +39,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 				boxWidth: '',
 				boxHeight: '',
 			},
+			maxSizeError: 'Votre image ne doît pas dépasser 6mo.'
 			zoomIn: '',
 			zoomOut: '',
 			rotation: '',
@@ -126,7 +127,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 		_setInteractivity();
 		_updateHiddenInput();
 		
-		if(_copperOptions.filePicker){
+		if(_copperOptions.filePicker && _copperOptions.filePicker != ''){
 			_ajaxImageUploader();
 		}
 		
@@ -157,11 +158,10 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
                         $image.attr('src', _imagePath);
                         delete onComplete;
                     }else{
-                        alert('Votre image ne doît pas dépasser 6mo.');
+                        alert(_copperOptions.maxSizeError);
                     }
                 }catch(e){
-                alert(e);
-                    alert('Votre image ne doît pas dépasser 6mo.');
+                    alert(_copperOptions.maxSizeError);
                 }
 	        }
 	    });
