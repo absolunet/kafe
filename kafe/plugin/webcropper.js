@@ -3,7 +3,7 @@
 // Produced by : Interactive Team
 //-------------------------------------------
 
-kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
+kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	
 	K.required('jQuery.ui.draggable');
 	
@@ -64,6 +64,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 	* @draggable 			: Boolean -> Set if the image is draggble.
 	* @mouseDownZoom 		: Boolean -> Set if holding mouse down zoom the image in yoyo.
 	* @zoomByCenter 		: Boolean -> Set if you zoom the image by the center of his container.
+	  @maxSizeError			: String -> Set the error message when the image is bigger than the server can handle(webconfig). 
 	* @zoomingInterval 		: Int -> Set the zooming animation interval.
 	* @zoomAnimated 		: Int -> Set if the zoom is animated.
 	* @zoomEasing 			: String -> Set the zooming animation easing. See the jquery easing choice.
@@ -547,7 +548,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	WC.save = function(success, failed){
-		if(!_cropperExist){ _cropperError('You must create a webcropper first!'); return;}
+		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method save()'); return;}
 		_save(success, failed);
 	}
 	
@@ -557,7 +558,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	WC.clear = function(){
-		if(!_cropperExist){ _cropperError('You must create a webcropper first!'); return;}
+		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method clear()'); return;}
 		_clear();
 	}
 	
@@ -567,7 +568,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	WC.clearTemp = function(){
-		if(!_cropperExist){ _cropperError('You must create a webcropper first!'); return;}
+		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method clearTemp()'); return;}
 		_clearTemp();
 	}
 	
@@ -577,7 +578,7 @@ kafe.plug({name:'webcropper', version:'0.2', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	WC.replaceImage = function(src){
-		if(!_cropperExist){ _cropperError('You must create a webcropper first!'); return;}
+		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method replaceImage()'); return;}
 		_replaceImage(src);
 	}
 	
