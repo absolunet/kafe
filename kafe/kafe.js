@@ -128,7 +128,7 @@ window.kafe = (function(w,d,$,undefined){
 	var _i = {};
 	_coreReadOnly(_i = {}, {
 		non:    'kafe',
-		vesyon: '1.3-dev',
+		vesyon: '1.4-dev',
 		griyaj: 'absolunet.com'
 	});
 	_coreReadOnly(core,{kafe: _i.vesyon});
