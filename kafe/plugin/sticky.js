@@ -80,25 +80,23 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
 					//---------------------------
 					if (position >= tippingTop && (!contain || position <= tippingBottom)) {
 						
+						// calculate offset left
+						var attrT = { position: 'absolute' };
+						attrT[align] = originalHori;
+						$e.css(attrT);
+						var offsetLeft = $e.offset().left;
+						
 						// stick it
 						var attr = {
 							position: 'fixed',
 							top:  topMargin
 						};
 
-
-						//-----------------------------------------------------
-						// À VOIR
-						// (resize horizontal layout centré au milieu ...  non fonctionnel mais une piste) --->      attr.right = Math.ceil($document.width()) - (Math.ceil($container.offset().left) + Math.ceil($container.outerWidth()) + Math.ceil($e.outerWidth()));
-						// au resize remettre temp à absolute pour recalculer les valeurs ?
-						// ie8-ie9 valeurs pas correctes ... mais ok ie7 (WEIRD)
-						//-----------------------------------------------------
-
 						// evaluate horizontal position
 						if (align == 'left') {
-							attr.left = Math.ceil($e.offset().left);
+							attr.left = Math.ceil(offsetLeft);
 						} else {
-							attr.right = Math.ceil($document.width()) - (Math.ceil($e.offset().left) + Math.ceil($e.outerWidth()));
+							attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
 						}
 
 						// apply
