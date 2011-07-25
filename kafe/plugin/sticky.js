@@ -60,7 +60,7 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
 					// current position
 					var 
 						position      = $window.scrollTop(),
-						tippingTop    = topOffset - topMargin
+						tippingTop    = topOffset - topMargin,
 						tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2))
 					;
 
