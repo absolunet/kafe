@@ -42,7 +42,9 @@ kafe.bonify({name:'form', version:'1.2', obj:(function($,K,undefined){
 				.bind('focus', function() {
 					var $this = $(this);
 					if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
-						$this.removeClass('Label').val('');
+						$this.removeClass('Label').one('keydown', function() {
+							$this.val('');
+						});
 					}
 				})
 				.bind('blur', function() {
