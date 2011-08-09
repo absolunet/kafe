@@ -141,7 +141,8 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	//-------------------------------------------
 	var facebook = {},
 		_userSession = null,
-		_userDetails = null;
+		_userDetails = null,
+		_userLikes = null;
 	
 	// setInitParams (options)
 	// set default init params
@@ -202,7 +203,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 			} else {
 				// user cancelled login
 			}
-		});
+		}, {scope: 'permissions'});
 	}
 
 	// logout ( [callback] )
@@ -229,6 +230,38 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	//-------------------------------------------
 	facebook.getUser = function() {
 		return _userDetails;
+	}
+
+	// checkUserLike (callback)
+	// returns the user likes or null if not logged
+	//-------------------------------------------
+	facebook.checkUserLike = function(id, callback) {
+
+		$.ajax({ 
+			url: 'https://graph.facebook.com/' + _userSession.uid + '/likes',
+			dataType: 'json',
+			data: 'access_token=' + _userSession.access_token + '&callback=?',
+			success: function(data, textStatus, jqXHR) {
+				
+				var _found = false;
+				$.each(data.data, function(i, val) {
+					
+					if (val.id == id)
+						_found = true;
+				});
+				
+				if ( !!callback )
+					callback(_found);
+				
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				throw K.error(new Error(errorThrown));
+				
+				//Return public details instead?...
+				
+			}
+		});
+
 	}
 
 	

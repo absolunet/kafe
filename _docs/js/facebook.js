@@ -9,9 +9,9 @@ var MONSITE = (function(w,d,$,K,undefined){
 	// ------------------------------------------
 
 	var kFacebook = K.ext.facebook;
-	var __appId = '228236983862336';
+	var _appId = '228236983862336';
 	
-	var __pageConnectedCallback = function(user) {
+	var _pageConnectedCallback = function(user) {
 		
 		$('.NotConnected').hide();
 		$('.Connected').css({
@@ -20,17 +20,22 @@ var MONSITE = (function(w,d,$,K,undefined){
 			backgroundRepeat: 'no-repeat'
 		}).show();
 		
-		$('pre.getSession span').html( '<em>' + kFacebook.getSession().toSource() + '</em>' );
-		$('pre.getUser span').html( '<em>' + kFacebook.getUser().toSource() + '</em>' );
+		//$('pre.getSession span').html( '<em>' + kFacebook.getSession().toSource() + '</em>' );
+		//$('pre.getUser span').html( '<em>' + kFacebook.getUser().toSource() + '</em>' );
+		
+		kFacebook.checkUserLike('165039663531531', function( isFound ) {
+			$('pre.checkUserLike span').html( '<em>The user likes "Minecraft" : ' + isFound + '</em>' );
+		});
 		
 	}
-	var __pageNotConnectedCallback = function() {
+	var _pageNotConnectedCallback = function() {
 		
 		$('.Connected').hide();
 		$('.NotConnected').show();
 		
 		$('pre.getSession span').html( '<em>null</em>, The user is logged out.' );
 		$('pre.getUser span').html( '<em>null</em>, The user is logged out.' );
+		$('pre.checkUserLike span').html( '<em>null</em>, The user is logged out.' );
 
 	}
 
@@ -48,9 +53,9 @@ var MONSITE = (function(w,d,$,K,undefined){
 		
 		// IMPORTANT: Your domain must be allowed by the Facebook app.
 		kFacebook.setInitParams({
-			app_id: __appId,
-			statusConnected: __pageConnectedCallback,
-			statusNotConnected: __pageNotConnectedCallback
+			app_id: _appId,
+			statusConnected: _pageConnectedCallback,
+			statusNotConnected: _pageNotConnectedCallback
 		});
 
 		kFacebook.init();
