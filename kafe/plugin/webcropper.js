@@ -341,7 +341,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	
 	function _zoomByCenter(factor) {
 		
-		var s = _resizeWithRatio($image.get(0), $image.width() + factor, $image.height() + factor);
+		var s = _resizeWithRatio($image.get(0), $image.width() + factor, $image.height() + factor),
 			iW = $image.width(),
 			iH = $image.height(),
 			iL = $image.position().left,
