@@ -250,7 +250,7 @@ kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
 
 		var 
 			d     = _dict[_lang(lang)].r,
-			delta = (now.getTime() - time.getTime()) / 1000
+			delta = now.getTime() - time.getTime()
 		;
 	
 		if (delta <= 0) {
@@ -260,7 +260,7 @@ kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
 		} else if(delta < 2*this.MINUTE) {
 			return d[2];
 		} else if(delta < this.HOUR) {
-			return d[3].replace('%n', Math.floor(delta/this.MIN));
+			return d[3].replace('%n', Math.floor(delta/this.MINUTE));
 		} else if(delta < 2*this.HOUR) {
 			return d[4];
 		} else if(delta < this.DAY) {
