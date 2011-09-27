@@ -64,6 +64,7 @@ kafe.bonify({name:'form', version:'1.2', obj:(function($,K,undefined){
 	form.onEnter = function(elements,callback) {
 		$(elements).keypress(function(e) {
 			if (((!!e.which) ? e.which : e.keyCode) == 13) {
+				e.preventDefault();
 				callback(this);
 			}
 	    });
