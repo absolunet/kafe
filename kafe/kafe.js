@@ -114,7 +114,7 @@ window.kafe = (function(w,d,$,undefined){
 		// get a existing lang
 		//-------------------------------------------
 		fn.lang = function(dict,lang) {
-			lang = (!!lang) ? lang : _coreEnv('lang');
+			lang = (!!lang) ? lang : core.env('lang');
 			return (!!dict[lang]) ? lang : 'en';
 		};
 	
@@ -214,7 +214,7 @@ window.kafe = (function(w,d,$,undefined){
 			
 		// throw error
 		} else {
-			throw _coreError(new Error(_coreName+'.'+oname+' already exists'));
+			throw core.error(new Error(_i.non+'.'+oname+' already exists'));
 		}
 	};
 	
@@ -249,11 +249,11 @@ window.kafe = (function(w,d,$,undefined){
 			});
 
 			if (!found) {
-				throw _coreError(new Error('\'' + name+'\' is required'));
+				throw core.error(new Error('\'' + name+'\' is required'));
 			}
 
 		} else if (!_exists(name)) {
-			throw _coreError(new Error(name+' is required'));
+			throw core.error(new Error(name+' is required'));
 		}
 	};
 
@@ -282,7 +282,7 @@ window.kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	core.error = function(e) {
 		var msg = ((!!e.description) ? e.description : e.message);
-		e.description = e.message = '<'+_coreName+':erè> : '+ ((!!msg) ? msg : 'anonim');
+		e.description = e.message = '<'+_i.non+':erè> : '+ ((!!msg) ? msg : 'anonim');
 		return ($.browser.msie && parseInt($.browser.version) == 8) ? new Error(e) : e;
 	};
 
@@ -295,40 +295,79 @@ window.kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	core.env = (function(){
 
+		core.required('cssua');
+
 		// base vals
-		var _data = {
-			culture: '',
-			lang:    '',
-			page:    '',
-			tmpl:    '',
-			dtc:     {}
-		};
-
-		// ready
-		$(function(){
-			var 
-				$html = $('html'),
-				$body = $('body')
-			;
-
-			// parse doc
-			_data.culture = $html.attr('id') || '';
-			_data.lang    = $html.attr('lang').toLowerCase();
-			_data.page    = $body.attr('id') || '';
-			_data.tmpl    = $body.attr('class') || '';
-			_data.tmpl    = _data.tmpl.toString().split(' ')[0];
-			
-			// parse detections
-			var dtc = $html.attr('class') || '';
-			dtc = dtc.split(' ');
-			if (!!dtc.length) {
-				for (var i in dtc) {
-					if (dtc[i].substring(0,4) == 'dtc-') {
-						_data.dtc[dtc[i].substring(4).replace(/-/g,'_')] = true;
-					} 
-				}
+		var 
+			_data = {
+				culture: '',
+				lang:    '',
+				page:    '',
+				tmpl:    '',
+				dtc:     {}
 			}
-		});
+			_dtc       = [],
+			_cssuaData = {},
+			_ua        = navigator.userAgent.toLowerCase(),
+			_de        = document.documentElement,
+	       	_r_Mac                    = /\bmacintosh; */,
+	        _r_MacIntelOsxWithVersion = /\bintel mac os x[\s]+(\d+(\.\d+)*)/,
+	        _r_MacIntelOsxGeneric     = /\bintel mac os x;*/,
+	        _r_MacPpcOsxWithVersion   = /\bppc mac os x[\s]+(\d+(\.\d+)*)/,
+	        _r_MacPpcOsxGeneric       = /\bppc mac os x;*/,
+	        _r_Windows                = /\bwindows */,
+	        _r_Linux                  = /\bx11; */
+		;
+
+		// grab kafe env
+		var extra = _de.title.split('|');
+		_de.removeAttribute('title');
+
+		_data.culture = _de.id.toLowerCase()   || '';
+		_data.lang    = _de.lang.toLowerCase() || '';
+		_data.page    = extra[0] || '';
+		_data.tmpl    = extra[1] || '';
+
+		// os check via cssua
+		if (_ua.match(_r_Windows)) {
+			_cssuaData.pc = 'windows';
+		
+		} else if (_ua.match(_r_Linux)) {
+			_cssuaData.pc = 'linux';
+		
+		} else if (_ua.match(_r_Mac)) {
+		
+			if (_ua.match(_r_MacIntelOsxWithVersion)) {
+				_cssuaData.mac   = 'intel';
+				_r_MacIntelOsxWithVersion.exec(_ua);
+				_cssuaData.macos = RegExp.$1;
+		
+			} else if (_ua.match(_r_MacIntelOsxGeneric)) {
+				_cssuaData.mac = 'intel';
+				_cssuaData.macos = '10';
+		
+			} else if (_ua.match(_r_MacPpcOsxWithVersion)) {
+				_cssuaData.mac = 'ppc';
+				_r_MacPpcOsxWithVersion.exec(_ua);
+				_cssuaData.macos = RegExp.$1;
+		
+			} else if (_ua.match(_r_MacPpcOsxGeneric)) {
+				_cssuaData.mac = 'ppc';
+				_cssuaData.macos = '10';
+			}
+		}
+		_de.className = _de.className.replace(/\bjs\b/g, '') + cssua.format(_cssuaData);
+
+		// parse detections
+		_dtc = _de.className || '';
+		_dtc = _dtc.split(' ');
+		if (!!_dtc.length) {
+			for (var i in _dtc) {
+				if (_dtc[i].substring(0,4) == 'dtc-') {
+					_data.dtc[_dtc[i].substring(4).replace(/-/g,'_')] = true;
+				} 
+			}
+		}
 
 		// public method (name, [value])
 		//-------------------------------------------
@@ -341,7 +380,7 @@ window.kafe = (function(w,d,$,undefined){
 
 			// already set 
 			} else if (_data[name] != undefined && updatable.search(new RegExp('\:'+name+'\:')) == -1) {
-				throw _coreError(new Error(_coreName+'.env > property \''+name+'\' already defined'));
+				throw core.error(new Error(_i.non+'.env > property \''+name+'\' already defined'));
 
 			// set
 			} else {
@@ -353,13 +392,6 @@ window.kafe = (function(w,d,$,undefined){
 	// namespace for plugins and extensions
 	core.plugin = {};
 	core.ext    = {};
-
-	// local vars
-	var 
-		_coreName  = _i.non,
-		_coreEnv   = core.env,
-		_coreError = core.error
-	;
 
 	return core;
 

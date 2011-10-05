@@ -1,5 +1,5 @@
 <!doctype html>
-<html id="fr-ca" lang="fr" class="dtc-e3 dtc-modile dtc-ie-6-8">
+<html id="fr-CA" lang="fr" title="TreaZsure|RoZom">
 <head>
 	<meta charset="utf-8" />
 	<title>kafe | complile test </title>
@@ -11,6 +11,7 @@
 	<script src="../plugins/jquery/inputmask.js"></script>
 	<script src="../plugins/qrcode.js"></script>
 
+	<script src="../plugins/cssua.js"></script>
 	<script src="../kafe/kafe.js"></script>
 		<script src="../kafe/date.js"></script>
 		<script src="../kafe/form.js"></script>
@@ -52,7 +53,7 @@
 	}
 	</style>
 </head>
-<body id="treasure" class="Room">
+<body id="Treasure" class="Room">
 
 	<input type="text" class="Date" />
 	
@@ -73,7 +74,6 @@
 
 
 	<script>
-
 
 
 
@@ -169,6 +169,11 @@
 			//kafe.ext.googlemaps.create();
 			//kafe.ext.googlemaps.setStyle( kafe.ext.googlemaps.styles.getStyle('entrepreneur') );
 		
+			console.log( kafe.env('culture') );
+			console.log( kafe.env('lang') );
+			console.log( kafe.env('page') );
+			console.log( kafe.env('tmpl') );
+			console.log( kafe.env('dtc') );
 		
 			
 			$('#qr').html(
