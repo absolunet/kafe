@@ -10,9 +10,8 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 	};
 
 	// default params
-	var _defaultLocale, _params;
-	$(function(){
-		_defaultLocale = _locale[K.fn.lang(_locale)];
+	var
+		_defaultLocale = _locale[K.fn.lang(_locale)],
 		_params = {
 			init: {
 				app_id:      '',
@@ -52,8 +51,8 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 				app_id:    '',
 				locale:    _defaultLocale
 			}
-		};
-	});
+		}
+	;
 	
 	// _mergeParams (options)
 	// return merged params

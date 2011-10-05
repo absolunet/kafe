@@ -10,9 +10,8 @@ kafe.extend({name:'youtube', version:'1.0', obj:(function($,K,undefined){
 	};
 
 	// default params
-	var _defaultLocale, _params;
-	$(function(){
-		_defaultLocale = _locale[K.fn.lang(_locale)];
+	var 
+		_defaultLocale = _locale[K.fn.lang(_locale)],
 		_params = {
 			locale: _defaultLocale,
 			search: {
@@ -20,8 +19,8 @@ kafe.extend({name:'youtube', version:'1.0', obj:(function($,K,undefined){
 				startIndex:   1,
 				orderBy:      'relevance'
 			}
-		};
-	});
+		}
+	;
 	
 	// _mergeParams (options)
 	// return merged params

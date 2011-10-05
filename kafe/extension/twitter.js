@@ -4,19 +4,16 @@
 kafe.extend({name:'twitter', version:'1.1', obj:(function($,K,undefined){
 
 	// default params
-	var _params;
-	$(function(){
-		_params = {
-			href:        '', 
-			text:        '',
-			via:         '',
-			related:     '',
-			relatedText: '',
-			type:        'none',
-			lang:        K.env('lang')
-		};
-	});
-	
+	var _params = {
+		href:        '', 
+		text:        '',
+		via:         '',
+		related:     '',
+		relatedText: '',
+		type:        'none',
+		lang:        K.env('lang')
+	};
+
 	
 	// _mergeParams (options)
 	// return merged params
