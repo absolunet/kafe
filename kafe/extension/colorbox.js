@@ -74,7 +74,7 @@ kafe.extend({name:'colorbox', version:'1.1', obj:(function($,K,undefined){
 		
 	};
 
-	// confirm ( selector, message )
+	// confirm ( selector, message, OKLabel, CancelLabel )
 	// simulate a confirm() behavior using colorbox.dialog
 	//-------------------------------------------
 	colorbox.confirm = function( selector, message, OKLabel, CancelLabel ) {

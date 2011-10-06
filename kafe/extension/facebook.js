@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.facebook
 //-------------------------------------------
-kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
+kafe.extend({name:'facebook', version:'1.3', obj:(function($,K,undefined){
 
 	// dictionary
 	var _locale = {
@@ -231,7 +231,7 @@ kafe.extend({name:'facebook', version:'1.2', obj:(function($,K,undefined){
 		return _userDetails;
 	}
 
-	// checkUserLike (callback)
+	// checkUserLike (id, [callback])
 	// returns the user likes or null if not logged
 	//-------------------------------------------
 	facebook.checkUserLike = function(id, callback) {
