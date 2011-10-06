@@ -305,7 +305,7 @@ window.kafe = (function(w,d,$,undefined){
 				page:    '',
 				tmpl:    '',
 				dtc:     {}
-			}
+			},
 			_dtc       = [],
 			_cssuaData = {},
 			_ua        = navigator.userAgent.toLowerCase(),
