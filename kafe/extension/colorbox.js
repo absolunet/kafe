@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.colorbox
 //-------------------------------------------
-kafe.extend({name:'colorbox', version:'1.1', obj:(function($,K,undefined){
+kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 
 	//default params
 	var _params = {
@@ -40,6 +40,20 @@ kafe.extend({name:'colorbox', version:'1.1', obj:(function($,K,undefined){
 	colorbox.display = function(string) {
 		$('#cb-display').html(string);
 		$.colorbox( this.getParams({ id:'#cb-display' }) );
+	};
+
+	// inline (stringID)
+	// show an inline element in a colorbox
+	//-------------------------------------------
+	colorbox.inline = function(stringID) {
+		$.colorbox( this.getParams({ inline:true, href:'#'+stringID }) );
+	};
+
+	// ajax (stringID)
+	// load html of a specific url and show in a colorbox
+	//-------------------------------------------
+	colorbox.ajax = function(stringID) {
+		$.colorbox( this.getParams({ href:stringID }) );
 	};
 
 	// moveInForm ()
