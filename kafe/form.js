@@ -74,14 +74,17 @@ kafe.bonify({name:'form', version:'1.3', obj:(function($,K,undefined){
 	// moves focus on next input
 	//-------------------------------------------
 	form.autofocusOnNext = function(elements) {
-		$(elements).bind('keyup input',function(e) {
+		$(elements).bind('keyup',function(e) {
 			var $this = $(this);
 			if($this.val().length == $this.attr('maxlength')) {
 				var inputs = $('input, textarea, select');
-		        inputs.eq( inputs.index(this)+1 ).focus();
+		        inputs.eq( inputs.index(this)+1 ).focus().select();
 		    }
 		});
 	};
+
+
+
 
 	// maxLength (elements, max, block, [callback])
 	// manages a maxlength on a textarea
