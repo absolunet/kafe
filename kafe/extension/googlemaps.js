@@ -6,12 +6,12 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 	
 	K.required('//maps.google.com/maps/api/js');
 	
-	var _mapLayout = {}
-		_mapConfiguration = {}
-		_markersConfiguration = {}
-		_infoWindowConfiguration = {}
-		_map = {}
-		_markersArray = []
+	var _mapLayout = {},
+		_mapConfiguration = {},
+		_markersConfiguration = {},
+		_infoWindowConfiguration = {},
+		_map = {},
+		_markersArray = [],
 		_infoWindowOverlay = null
 	;
 	
