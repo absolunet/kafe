@@ -34,6 +34,27 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 		//_params = arguments[0];
 	};
 
+	// changeTheme (theme)
+	// change colorbox theme
+	//-------------------------------------------
+	colorbox.changeTheme = function(theme) {
+		var $body = $('body');
+		
+		if (!$body.hasClass('cb-'+theme)) {
+			
+			var classes = $body.attr('class').split(' ');
+			for (var i in classes) {
+				if (/^cb-/.test(classes[i])) {
+					$body.removeClass(classes[i]);
+				}
+			}
+
+			$body.addClass('cb-'+theme);
+			$.colorbox.remove()
+			$.colorbox.init();
+		}
+	};
+
 	// display (string)
 	// show a colorbox alert
 	//-------------------------------------------
