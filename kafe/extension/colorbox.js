@@ -51,7 +51,8 @@ kafe.extend({name:'colorbox', version:'1.3', obj:(function($,K,undefined){
 		
 		if (!$body.hasClass('cb-'+theme)) {
 			
-			var classes = $body.attr('class').split(' ');
+			var classes = $body.attr('class') || '';
+			classes = classes.split(' ');
 			for (var i in classes) {
 				if (/^cb-/.test(classes[i])) {
 					$body.removeClass(classes[i]);
