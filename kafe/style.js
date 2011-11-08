@@ -37,11 +37,12 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 		}
 	};
 	
-	// replaceHr ()
+	// replaceHr ([elements])
 	// replace <hr> tag with a <div>
 	//-------------------------------------------
 	style.replaceHr = function() {
-		$('hr').replaceWith('<div class="hr"></div>');
+		var $e = (arguments[0]) ? $('hr', $(arguments[0])) : $('hr');
+		$e.replaceWith('<div class="hr"></div>');
 	};
 
 	// makeButton ([elements])
