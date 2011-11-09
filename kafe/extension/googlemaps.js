@@ -2,7 +2,7 @@
 // kafe.ext.googlemaps
 // Produced by : Interactive Team
 //-------------------------------------------
-kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
+kafe.extend({name:'googlemaps', version:'0.2', obj:(function($,K,undefined){
 	
 	K.required('//maps.google.com/maps/api/js');
 	
@@ -534,6 +534,19 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 			_map.panTo(latLng);
 		}
 	};
+
+	/* --------------------------------------------------  
+		Function fitBounds(latLngBounds)
+		Description : Pan and zoom the google maps to the Latitude and longitude bound box passed in params.
+		@params latLng: google.maps.LatLngBounds.
+	--------------------------------------------------  */
+	
+	GM.fitBounds = function(latLngBounds){
+		if(_ifMapExist(true, 'GM.fitBounds()') && latLngBounds){
+			console.log(latLngBounds);
+			_map.fitBounds(latLngBounds);
+		}
+	};
 	
 	/* --------------------------------------------------  
 		Function setMapOptions(params)
@@ -604,6 +617,38 @@ kafe.extend({name:'googlemaps', version:'0.1', obj:(function($,K,undefined){
 		}
 	};
 	
+	/* --------------------------------------------------  
+		Function getMarkersBounds()
+		Description : Return bound box of array of markers
+	--------------------------------------------------  */
+	
+	GM.getMarkersBounds = function(d) {
+		var
+			minLat = 90,
+			maxLat = -90,
+			minLon = 180,
+			maxLon = -180
+		;
+		for (var i in d) {
+			minLat = Math.min(minLat, Number(d[i][0]));
+			maxLat = Math.max(maxLat, Number(d[i][0]));
+			minLon = Math.min(minLon, Number(d[i][1]));
+			maxLon = Math.max(maxLon, Number(d[i][1]));
+		}
+		
+		return {sw:[minLat,minLon], ne:[maxLat,maxLon]};
+	};
+	
+	/* --------------------------------------------------  
+		Function toLatLngBounds()
+		Description : a latLongBounds object
+	--------------------------------------------------  */
+	
+	GM.toLatLngBounds = function(d) {
+		return new google.maps.LatLngBounds(new google.maps.LatLng(d.sw[0],d.sw[1]),new google.maps.LatLng(d.ne[0],d.ne[1]));
+	};
+
+
 	/* --------------------------------------------------  
 		Function dismiss()
 		Description : Kill the current GMaps.
