@@ -405,9 +405,7 @@ window.kafe = (function(w,d,$,undefined){
 // patch ie8 and less for HTML5 
 //-------------------------------------------
 (function($){
-	var _patchHTML5 = ($.browser.msie && parseInt($.browser.version) < 9);
-
-	if (_patchHTML5) {
+	if ($.browser.msie && parseInt($.browser.version) < 9) {
 		var html5 = "address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video".split('|');
 		for (var i=0; i<html5.length; ++i){
 			document.createElement(html5[i]);
@@ -415,29 +413,7 @@ window.kafe = (function(w,d,$,undefined){
 	}
 
 	$.fn.appendHTML5 = function(str) {
-		if (_patchHTML5) {
-			var d, r;
-			function innerShiv (h, u) {
-				if (!d) {
-					d = document.createElement('div');
-					r = document.createDocumentFragment();
-					/*@cc_on d.style.display = 'none';@*/
-				}
-
-				var e = d.cloneNode(true);
-				/*@cc_on document.body.appendChild(e);@*/
-				e.innerHTML = h.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-				/*@cc_on document.body.removeChild(e);@*/
-
-				if (u === false) return e.childNodes;
-
-				var f = r.cloneNode(true), i = e.childNodes.length;
-				while (i--) f.appendChild(e.firstChild);
-
-				return f;
-			}
-			str = innerShiv(str);
-	    }
+		console.log('<kafe:avètisman> : appendHTML5 obsoleted');
 		$(this[0]).append(str);
 	    return this;
 	}
