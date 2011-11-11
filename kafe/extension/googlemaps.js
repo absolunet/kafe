@@ -549,6 +549,16 @@ kafe.extend({name:'googlemaps', version:'0.2', obj:(function($,K,undefined){
 	};
 	
 	/* --------------------------------------------------  
+		Function fitToMarkers()
+		Description : Pan and zoom the google maps to the Latitude and longitude to fit all markers in max zoom level.
+		@params 
+	--------------------------------------------------  */
+	
+	GM.fitToMarkers = function(){
+		GM.fitBounds(GM.toLatLngBounds(GM.getMarkersBounds(arguments[0])));
+	};
+
+	/* --------------------------------------------------  
 		Function setMapOptions(params)
 		Description : Change a map options property. This change will be live. That's rock !
 		@params params: Object.
