@@ -413,7 +413,7 @@ window.kafe = (function(w,d,$,undefined){
 	}
 
 	$.fn.appendHTML5 = function(str) {
-		console.log('<kafe:avètisman> : appendHTML5 obsoleted');
+		if (console) { console.log('<kafe:avètisman> : appendHTML5 obsoleted'); }
 		$(this[0]).append(str);
 	    return this;
 	}
