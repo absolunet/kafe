@@ -23,16 +23,18 @@ kafe.bonify({name:'form', version:'1.3', obj:(function($,K,undefined){
 		);
 	};
 
-	// label ()
+	// label (element container)
 	// add an inline label on input/textarea with a title attribute
 	//-------------------------------------------
 	form.label = function() {
+
+		var $e = (arguments[0]) ? $('input[title!=""], textarea[title!=""]', $(arguments[0])) : $('input[title!=""], textarea[title!=""]');
 
 		function _isEmpty() {
 			 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
 		};
 
-		$('input[title!=""], textarea[title!=""]').each(function() {
+		$e.each(function() {
 
 			var $this = $(this);
 
