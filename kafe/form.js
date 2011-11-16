@@ -196,7 +196,23 @@ kafe.bonify({name:'form', version:'1.3', obj:(function($,K,undefined){
 		;
 	};
 
+	// sanitizeFormData (form)
+	// sanitize form text entry for .net validator
+	//-------------------------------------------
+	form.sanitizeFormData = function(form) {
+		var
+			$form = $(form),
+			data  = $this.serializeArray()
+		;
 
+		for (var i in data) {
+			$form.find('input[type="text"][name="'+data[i].name+'"],textarea[name="'+data[i].name+'"]').val(
+				data[i].value.toString()
+					.replace(/\</g,'&lt;')
+					.replace(/\>/g,'&gt;')
+			);
+		}
+    };
 
 	return form;
 
