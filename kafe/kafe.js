@@ -320,13 +320,10 @@ window.kafe = (function(w,d,$,undefined){
 		;
 
 		// grab kafe env
-		var extra = _de.title.split('|');
-		_de.removeAttribute('title');
-
 		_data.culture = _de.id.toLowerCase()   || '';
 		_data.lang    = _de.lang.toLowerCase() || '';
-		_data.page    = extra[0] || '';
-		_data.tmpl    = extra[1] || '';
+		_data.page    = _de.getAttribute('data-kafe-page') || '';
+		_data.tmpl    = _de.getAttribute('data-kafe-tmpl') || '';
 
 		// os check via cssua
 		if (_ua.match(_r_Windows)) {
@@ -413,7 +410,7 @@ window.kafe = (function(w,d,$,undefined){
 	}
 
 	$.fn.appendHTML5 = function(str) {
-		if (console) { console.log('<kafe:avètisman> : appendHTML5 obsoleted'); }
+		if (typeof(console) != 'undefined') { console.log('<kafe:avètisman> : appendHTML5 obsoleted'); }
 		$(this[0]).append(str);
 	    return this;
 	}

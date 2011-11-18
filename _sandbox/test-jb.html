@@ -1,10 +1,10 @@
 <!doctype html>
-<html id="fr-CA" lang="fr" title="TreaZsure|RoZom">
+<html id="fr-CA" lang="fr" data-kafe-page="testDataPage">
 <head>
 	<meta charset="utf-8" />
 	<title>kafe | complile test </title>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 	<script src="http://platform.twitter.com/widgets.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="../plugins/jquery/json.js"></script>
@@ -157,7 +157,7 @@
 			var kMask = kafe.ext.inputmask; 
 			$("input.Date").inputmask( kMask.getMask('date') );
 			
-			console.log( kafe.env('dtc').e3 );
+			//console.log( kafe.env('dtc').e3 );
 		
 		
 			kafe.form.autofocusOnNext('input.autofocus');
@@ -176,11 +176,13 @@
 			console.log( kafe.env('tmpl') );
 			console.log( kafe.env('dtc') );
 		
-			
+			$('#qr').appendHTML5('dd');
+
+			/*
 			$('#qr').html(
 				kafe.plugin.qrcode.generate('http://www.absolunet.com')
 			);
-			
+			*/
 		});
 
 	</script>

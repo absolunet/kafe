@@ -63,7 +63,7 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	        }
 		}
 
-		$('a[rel="'+_name+'Mobile-Redirector"]').live('click', function(){ _saveCookie(false); });
+		$('a[data-'+_name+'mobile-redirector="true"]').live('click', function(){ _saveCookie(false); });
 		
 		if (window.location.search.substr(1) == 'mobile') {
 	        _saveCookie(true);
@@ -75,7 +75,7 @@ kafe.bonify({name:'mobile', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	mobile.iOsWepAppPatchLinks = function() {
 		if (_iOSWebApp) {
-			$('a[rel~="external"][rel~="'+_name+'-IgnoreWepAppPatch"][target!="_blank"]').live('click',function(e) {
+			$('a[rel="external"][data-'+_name+'mobile-IgnoreWepAppPatch="true"][target!="_blank"]').live('click',function(e) {
 				e.preventDefault();
 				window.location.href = $(this).attr('href'); 
 			});
