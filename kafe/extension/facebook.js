@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.facebook
 //-------------------------------------------
-kafe.extend({name:'facebook', version:'1.3', obj:(function($,K,undefined){
+kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 
 	// dictionary
 	var _locale = {
@@ -13,14 +13,15 @@ kafe.extend({name:'facebook', version:'1.3', obj:(function($,K,undefined){
 	var
 		_defaultLocale = _locale[K.fn.lang(_locale)],
 		_params = {
-			init: {
-				app_id:      '',
-				status:      true,
-				cookie:      true,
-				xfbml:       true,
-				locale:      _defaultLocale,
+			init: {               
+				app_id:             '',
+				status:             true,
+				cookie:             true,
+				xfbml:              true,
+				locale:             _defaultLocale,
 				statusConnected:    null,
-				statusNotConnected: null
+				statusNotConnected: null,
+				permissions:        ''
 			},
 			likeButton: {
 				href:        '', 
@@ -192,7 +193,9 @@ kafe.extend({name:'facebook', version:'1.3', obj:(function($,K,undefined){
 	// login ( [callback] )
 	// open the login dialog [and executes a callback on success]
 	//-------------------------------------------
-	facebook.login = function(callback) {
+	facebook.login = function(options,callback) {
+		var p = _mergeParams(options,_params.init);
+
 		FB.login(function(response) {
 			if (response.session) {
 				
@@ -202,7 +205,9 @@ kafe.extend({name:'facebook', version:'1.3', obj:(function($,K,undefined){
 			} else {
 				// user cancelled login
 			}
-		}, {scope: 'permissions'});
+			
+			
+		}, {perms: p.permissions });
 	}
 
 	// logout ( [callback] )
