@@ -94,8 +94,8 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 	function _handleResponse(response) {
 		
 		if (response.status == 'connected' && !!_params.init.statusConnected) {
-			
-			_userSession = response.session;
+
+			_userSession = response.authResponse;
 			_getUserDetails( function( user ) {
 				_params.init.statusConnected( user );
 			});
@@ -113,11 +113,11 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 	// stores user info relative to session (public or detailed), then forwards callback
 	//-------------------------------------------
 	function _getUserDetails(callback) {
-		
+
 		$.ajax({
-			url: 'https://graph.facebook.com/' + _userSession.uid,
+			url: 'https://graph.facebook.com/' + _userSession.userID,
 			dataType: 'json',
-			data: 'access_token=' + _userSession.access_token + '&callback=?',
+			data: 'accessToken=' + _userSession.accessToken + '&callback=?',
 			success: function(data, textStatus, jqXHR) {
 				
 				_userDetails = data;
@@ -197,7 +197,7 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 		var p = _mergeParams(options,_params.init);
 
 		FB.login(function(response) {
-			if (response.session) {
+			if (response.authResponse) {
 				
 				if ( !!callback )
 					callback(response);
@@ -207,7 +207,7 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 			}
 			
 			
-		}, {perms: p.permissions });
+		}, {scope: p.permissions });
 	}
 
 	// logout ( [callback] )
@@ -242,9 +242,9 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 	facebook.checkUserLike = function(id, callback) {
 
 		$.ajax({ 
-			url: 'https://graph.facebook.com/' + _userSession.uid + '/likes',
+			url: 'https://graph.facebook.com/' + _userSession.userID + '/likes',
 			dataType: 'json',
-			data: 'access_token=' + _userSession.access_token + '&callback=?',
+			data: 'accessToken=' + _userSession.accessToken + '&callback=?',
 			success: function(data, textStatus, jqXHR) {
 				
 				var _found = false;
