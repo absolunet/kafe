@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.colorbox
 //-------------------------------------------
-kafe.extend({name:'colorbox', version:'1.3', obj:(function($,K,undefined){
+kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 
 	//default params
 	var _params = {

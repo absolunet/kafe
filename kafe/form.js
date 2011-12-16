@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.bonify({name:'form', version:'1.3', obj:(function($,K,undefined){
+kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC

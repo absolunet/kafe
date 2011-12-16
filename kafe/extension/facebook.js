@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.facebook
 //-------------------------------------------
-kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
+kafe.extend({name:'facebook', version:'1.3.1', obj:(function($,K,undefined){
 
 	// dictionary
 	var _locale = {
