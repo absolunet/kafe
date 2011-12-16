@@ -103,7 +103,7 @@ kafe.extend({name:'youtube', version:'1.0', obj:(function($,K,undefined){
 		var s = _params.search;
 		
 		var path = 'https://gdata.youtube.com/feeds/api/videos?';
-		var query = 'alt=json&strict=true';
+		var query = 'alt=json-in-script&callback=?';
 		
 		query += '&max-results=' + s.maxResults;
 		query += '&start-index=' + s.startIndex;
