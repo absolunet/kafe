@@ -54,29 +54,30 @@ kafe.extend({name:'youtube', version:'1.0.1', obj:(function($,K,undefined){
 	function _simpleSearchResults(results) {
 		
 		var simpleResults = [];
-		
-		$.each(results, function(i, val) {
-			
-			var entry = {};
-
-			entry.id = (val.id.$t).split('/').pop();
-			entry.title = val.title.$t;
-			entry.author = val.author[0].name.$t;
-			entry.publishedDate = new Date(val.published.$t);
-			
-			entry.thumbnail = {};
-				entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
-				entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
+		if (results != undefined) {
+			$.each(results, function(i, val) {
 				
-			entry.categories = [];
-			$.each(val.category, function(ci, cval) {
-				if (ci > 0)
-					entry.categories.push(cval.term);
+				var entry = {};
+
+				entry.id = (val.id.$t).split('/').pop();
+				entry.title = val.title.$t;
+				entry.author = val.author[0].name.$t;
+				entry.publishedDate = new Date(val.published.$t);
+				
+				entry.thumbnail = {};
+					entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
+					entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
+					
+				entry.categories = [];
+				$.each(val.category, function(ci, cval) {
+					if (ci > 0)
+						entry.categories.push(cval.term);
+				});
+				
+				simpleResults.push(entry);
+				
 			});
-			
-			simpleResults.push(entry);
-			
-		});
+		}
 		
 		//console.log(results);
 		
