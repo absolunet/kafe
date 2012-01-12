@@ -2,7 +2,7 @@
 // kafe.ext.googlemaps
 // Produced by : Interactive Team
 //-------------------------------------------
-kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefined) {
+kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefined) {
 
     K.required('//maps.google.com/maps/api/js');
 
@@ -145,7 +145,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
             }
 
             if (!_mapConfiguration.usecluster) {
-                //alert("notcluster");
+                alert("notcluster");
                 tempM.setMap(_map);
             }
 
@@ -172,8 +172,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
         }
         //Bind to cluster
         if (_mapConfiguration.usecluster) {
-            K.required('MarkerClusterer');
-			_markerCluster = new MarkerClusterer(_map, _markersArray, _mapConfiguration.markerClusterOptions);
+            _markerCluster = new MarkerClusterer(_map, _markersArray, _mapConfiguration.markerClusterOptions);
         }
     }
 
@@ -758,6 +757,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 
     GM.fitBounds = function (latLngBounds) {
         if (_ifMapExist(true, 'GM.fitBounds()') && latLngBounds) {
+            console.log(latLngBounds);
             _map.fitBounds(latLngBounds);
         }
     };
@@ -812,4 +812,5 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 
     return GM;
 
-})(jQuery, kafe)});
+})(jQuery, kafe)
+});
