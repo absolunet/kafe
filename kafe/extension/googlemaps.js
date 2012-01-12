@@ -145,7 +145,6 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
             }
 
             if (!_mapConfiguration.usecluster) {
-                alert("notcluster");
                 tempM.setMap(_map);
             }
 
