@@ -24,40 +24,43 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 	};
 
 	// label (element container)
-	// add an inline label on input/textarea with a title attribute
+	// add an inline label on input/textarea with a placeholder attribute
 	//-------------------------------------------
 	form.label = function() {
 
-		var $e = (arguments[0]) ? $('input[title!=""], textarea[title!=""]', $(arguments[0])) : $('input[title!=""], textarea[title!=""]');
+		if ($.browser.msie && parseInt($.browser.version) < 10) {
+			
+			var $e = (arguments[0]) ? $(arguments[0]) : $('input[placeholder!=""], textarea[placeholder!=""]');
 
-		function _isEmpty() {
-			 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
-		};
+			function _isEmpty() {
+				 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
+			};
 
-		$e.each(function() {
+			$e.each(function() {
 
-			var $this = $(this);
+				var $this = $(this);
 
-			$this
-				.data('Label', $this.attr('title'))
-				.attr('title','')
-				.bind('focus', function() {
-					var $this = $(this);
-					if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
-						$this.one('keydown', function() {
-							$this.removeClass('Label').val('');
-						});
-					}
-				})
-				.bind('blur', function() {
-					var $this = $(this);
-					if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
-						$this.addClass('Label').val($this.data('Label'));
-					}
-				})
-				.blur()
-			;
-		});
+				$this
+					.data('Placeholder', $this.attr('placeholder'))
+					.attr('placeholder','')
+					.bind('focus', function() {
+						var $this = $(this);
+						if (_isEmpty($this.val()) || $this.val() == $this.data('Placeholder')) {
+							$this.one('keydown', function() {
+								$this.removeClass('Label').val('');
+							});
+						}
+					})
+					.bind('blur', function() {
+						var $this = $(this);
+						if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
+							$this.addClass('Label').val($this.data('Placeholder'));
+						}
+					})
+					.blur()
+				;
+			});
+		}
 	};
 	
 	// onEnter (elements,callback)
