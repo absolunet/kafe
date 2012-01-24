@@ -1,5 +1,6 @@
 //-------------------------------------------
 // kafe.ext.googlemaps.styles
+// Make your template online http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
 //-------------------------------------------
 kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefined){
 
