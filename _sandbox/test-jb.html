@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<title>kafe | complile test </title>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="http://platform.twitter.com/widgets.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="../plugins/jquery/json.js"></script>
@@ -13,7 +13,7 @@
 
 	<script src="../plugins/cssua.custom.js"></script>
 	<script src="../kafe/kafe.js"></script>
-		<script src="../kafe/date.js"></script>
+		<!-- script src="../kafe/date.js"></script>
 		<script src="../kafe/form.js"></script>
 		<script src="../kafe/geolocation.js"></script>
 		<script src="../kafe/mobile.js"></script>
@@ -36,7 +36,7 @@
 
 
 	<script src="../tequila/tequila.js"></script>
-		<script src="../tequila/tween.js"></script>
+		<script src="../tequila/tween.js"></script-->
 		
 		
 		
@@ -56,7 +56,7 @@
 </head>
 <body id="Treasure" class="Room">
 
-	<input type="text" class="Date" />
+	<!-- input type="text" class="Date" />
 	
 	<div id="LOG"></div>
 
@@ -71,14 +71,83 @@
 	<input type="text" id="x3" class="autofocus" maxlength="3" />
 	<input type="text" id="x4" class="autofocus" maxlength="3" />
 
-	<textarea id="maxou"></textarea>
+	<textarea id="maxou"></textarea -->
+		
+
 
 
 	<script>
 
+	kafe.extend({ name: 'test', version: '0.1', obj: (function ($, K, undefined) {
+
+
+	    var _patate = "privateStaticVar";
+
+		// private function with scope for instasiated stuff
+	    function _privateMethod(self, data) {
+			return 'private -- ' + _patate + ' -- ' + self.inst1 + ' -- ' + data;
+	    }
+
+
+	    // ------------------------------------------
+	    // PUBLIC
+	    // ------------------------------------------
+
+	    var TEST = K.fn.createInstantiableObject();
+	
+		// public static variable (never do)
+	    TEST.params = 'STATIC';
+
+		// public static function (ok for non-instatiable stuff)
+	    TEST.publicStaticFunction = function () {
+			console.log('func1-'+_patate);
+	    };
+	
+
+
+
+		// public instasiable variables (never do)
+		TEST.prototype.ddddd = 'NO GOOD';
+
+		// constructor
+		TEST.prototype.init = function(p) {
+			var self = this;
+			self.inst1 = p;
+		};
+
+		// public instasiable method
+	   TEST.prototype.func1 = function (data) {
+			var self = this;
+			
+			console.log( _privateMethod(self, data) );
+
+			$('html').click(function(){
+				console.log('func1'+self.inst1);
+				console.log('func1'+TEST.params);
+				console.log('func1'+self.ddddd);
+
+			});
+	    };
+
+
+
+	    return TEST;
+
+	})(jQuery, kafe)});
+
+
+
 
 
 		$(function(){
+			
+			var kTest = kafe.ext.test;
+
+
+			var abc = kTest('patate');
+			var efg = kTest('poil');
+			abc.func1('hey');
+			efg.func1('you');
 
 		/*
 		
@@ -151,7 +220,6 @@
 				alert($(obj).val());
 			});
 
-*/
 			window.PATATE = new Date('2010-02-24');
 
 			var kMask = kafe.ext.inputmask; 
@@ -177,6 +245,7 @@
 			console.log( kafe.env('dtc') );
 		
 			$('#qr').appendHTML5('dd');
+			*/
 
 			/*
 			$('#qr').html(
