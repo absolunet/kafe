@@ -2,18 +2,19 @@
 // kafe.ext.googlemaps
 // Produced by : Interactive Team
 //-------------------------------------------
-kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefined) {
+kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefined) {
 
     K.required('//maps.google.com/maps/api/js');
 
-    var _mapLayout = {},
+    var 
+		_mapLayout = {},
 		_mapConfiguration = {},
 		_markersConfiguration = {},
 		_infoWindowConfiguration = {},
 		_map = {},
 		_markersArray = [],
         _infoWindowsArray = [],
-		_infoWindowOverlay = null,
+		_infoWindowOverlay,
 		_geocoder,
         _markerCluster
 	;
@@ -34,7 +35,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
             _mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
             _mapLayout = _parseParamsCreateIfNotExist(params, _mapLayout);
         }
-
+		
         var mapDiv = '<div id="' + _mapLayout.mapId + '" style="width:' + _mapLayout.width + '; height:' + _mapLayout.height + ';">&nbsp;</div>';
 
         var $parent = $(_mapLayout.parent);
@@ -211,8 +212,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     @params params : Object. 
     Required attributes are :
     'content' : String. The content of the info window. Can be html style!!
-    --------------------------------------------------  */
-    ;
+    --------------------------------------------------  */   
 
     function _infoWindow(params) {
         _parseParamsCreateIfNotExist(params, _infoWindowConfiguration);
@@ -230,7 +230,6 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
         _infoWindowOverlay.open(_map);
     }
 
-
     /* --------------------------------------------------  
     Function geocodeByAddress(address)
     Description : Center the map on the seach location.
@@ -238,7 +237,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     zoomLevel : int.
     callback : callback function
     --------------------------------------------------  */
-    ;
+    
     function _geocodeByAddress(address, zoomLevel, callback) {
         _geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
@@ -259,14 +258,13 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     @params latlng : Array of 2 [lat,lng]. 
     zoomLevel : int
     --------------------------------------------------  */
-    ;
+    
     function _setCenterAndZoom(latlng, zoomLevel) {
         if (latlng.length == 2) {
             _map.setCenter(new google.maps.LatLng(latlng[0], latlng[1]));
             _map.setZoom(zoomLevel);
         }
     }
-
 
     /* --------------------------------------------------  
     PRIVATE Function _setDefaultMapConfiguration()
@@ -475,12 +473,12 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     // PUBLIC
     // ------------------------------------------
 
-    var GM = {};
+    var GM = K.fn.createInstantiableObject();
 
     /*-------------------------------------------------- 
     Public constant & enum
     --------------------------------------------------  */
-    GM.MarkerIconPosition = {
+    GM.prototype.MarkerIconPosition = {
         TopLeft: 0,
         TopMiddle: 1,
         TopRight: 2,
@@ -503,7 +501,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     *All the native GoogleMaps Options. See there all the niceeee attributes http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MapOptions
     --------------------------------------------------  */
 
-    GM.create = function (params) {
+    GM.prototype.create = function (params) {
         _create(params);
     };
 
@@ -528,7 +526,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     *All the native MarkerOptions. See there http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MarkerOptions
     --------------------------------------------------  */
 
-    GM.addMarkers = function (pMarkers) {
+    GM.prototype.addMarkers = function (pMarkers) {
         if (_ifMapExist(true, 'GM.addMarkers()') && pMarkers) {
             _addMarkers(pMarkers)
         }
@@ -541,8 +539,8 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     *See required attributes from GM.addMarkers() description.
     --------------------------------------------------  */
 
-    GM.addMarker = function (pMarker) {
-        if (_ifMapExist(true, 'GM.addMarkers()') && pMarkers) {
+    GM.prototype.addMarker = function (pMarker) {
+        if (_ifMapExist(true, 'GM.addMarkers()') && pMarker) {
             _addMarkers([pMarker])
         }
     };
@@ -552,7 +550,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Remove all the markers on the map and clear reference.
     --------------------------------------------------  */
 
-    GM.removeMarkers = function () {
+    GM.prototype.removeMarkers = function () {
         if (_ifMapExist(true, 'GM.removeMarkers()')) {
             _removeMarkers();
         }
@@ -567,7 +565,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     'title' : String. The title of the marker.
     --------------------------------------------------  */
 
-    GM.removeMarker = function (params) {
+    GM.prototype.removeMarker = function (params) {
         if (_ifMapExist(true, 'GM.removeMarker()')) {
             _removeMarker(params);
         }
@@ -578,7 +576,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Hide all the markers.
     --------------------------------------------------  */
 
-    GM.hideMarkers = function () {
+    GM.prototype.hideMarkers = function () {
         if (_ifMapExist(true, 'GM.hideMarkers()')) {
 
         }
@@ -589,7 +587,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Hide a specific marker by the title or the latitude and longitude).
     --------------------------------------------------  */
 
-    GM.hideMarker = function (params) {
+    GM.prototype.hideMarker = function (params) {
         if (_ifMapExist(true, 'GM.hideMarker()')) {
 
         }
@@ -603,7 +601,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     'content' : String. The content of the info window. Can be html style!!
     --------------------------------------------------  */
 
-    GM.infoWindow = function (params) {
+    GM.prototype.infoWindow = function (params) {
         if (_ifMapExist(true, 'GM.infoWindow()')) {
             if (!params) {
                 _throwGoogleMapsError('The params is null!, @GM.infoWindow();');
@@ -624,7 +622,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
 						
     --------------------------------------------------  */
 
-    GM.geocodeByAddress = function (address, zoomLevel, callback) {
+    GM.prototype.geocodeByAddress = function (address, zoomLevel, callback) {
         if (_ifMapExist(true, 'GM.geocodeByAddress()')) {
             _geocodeByAddress(address, zoomLevel, callback);
         }
@@ -637,7 +635,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     zoomLevel : int
     --------------------------------------------------  */
 
-    GM.setCenterAndZoom = function (latlng, zoomLevel) {
+    GM.prototype.setCenterAndZoom = function (latlng, zoomLevel) {
         if (_ifMapExist(true, 'GM.setCenterAndZoom()')) {
             _setCenterAndZoom(latlng, zoomLevel);
         }
@@ -649,7 +647,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     @params latLng: google.maps.LatLng.
     --------------------------------------------------  */
 
-    GM.panTo = function (latLng) {
+    GM.prototype.panTo = function (latLng) {
         if (_ifMapExist(true, 'GM.panTo()') && latLng) {
             _map.panTo(latLng);
         }
@@ -663,7 +661,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     *All the native GoogleMaps Options. See there all the niceeee attributes http://code.google.com/intl/fr-FR/apis/maps/documentation/javascript/reference.html#MapOptions
     --------------------------------------------------  */
 
-    GM.setMapOptions = function (params) {
+    GM.prototype.setMapOptions = function (params) {
         if (_ifMapExist(true, 'GM.setMapOptions()')) {
             _mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
             _map.setOptions(_mapConfiguration);
@@ -676,7 +674,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     @params params: Object. Pre-defited style are in the kafe.ext googlemaps.styles.
     --------------------------------------------------  */
 
-    GM.setStyle = function (pStyle) {
+    GM.prototype.setStyle = function (pStyle) {
         if (_ifMapExist(true, 'GM.setStyle()')) {
             _map.mapTypes.set(pStyle.name, pStyle);
             _map.setMapTypeId(pStyle.name);
@@ -688,7 +686,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : This will reset the original MapOptions. Warning!!! The current map configuration is destroyed !
     --------------------------------------------------  */
 
-    GM.resetMapOptions = function () {
+    GM.prototype.resetMapOptions = function () {
         if (_ifMapExist(true, 'GM.resetMapOptions()')) {
             _setDefaultMapConfiguration();
             _map.setOptions(_mapConfiguration);
@@ -700,7 +698,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Return the current map configuration.
     --------------------------------------------------  */
 
-    GM.getMapConfiguration = function () {
+    GM.prototype.getMapConfiguration = function () {
         return _mapConfiguration;
     };
 
@@ -709,7 +707,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Return the current map layout configuration.
     --------------------------------------------------  */
 
-    GM.getMapLayout = function () {
+    GM.prototype.getMapLayout = function () {
         return _mapLayout;
     };
 
@@ -718,7 +716,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Return the map center position.
     --------------------------------------------------  */
 
-    GM.getMapCenter = function () {
+    GM.prototype.getMapCenter = function () {
         if (_ifMapExist(true, 'GM.getMapCenter()')) {
             return _map.getCenter();
         }
@@ -729,7 +727,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Kill the current GMaps.
     --------------------------------------------------  */
 
-    GM.dismiss = function () {
+    GM.prototype.dismiss = function () {
         if (_ifMapExist(true, 'GM.dismiss()')) {
             _removeMarkers();
             $('#' + _mapLayout.mapId).remove();
@@ -741,7 +739,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Hide the current GMaps.
     --------------------------------------------------  */
 
-    GM.hide = function () {
+    GM.prototype.hide = function () {
         if (_ifMapExist(true, 'GM.hide()')) {
             $('#' + _mapLayout.mapId).hide();
         }
@@ -754,7 +752,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     @params latLng: google.maps.LatLngBounds.
     --------------------------------------------------  */
 
-    GM.fitBounds = function (latLngBounds) {
+    GM.prototype.fitBounds = function (latLngBounds) {
         if (_ifMapExist(true, 'GM.fitBounds()') && latLngBounds) {
             console.log(latLngBounds);
             _map.fitBounds(latLngBounds);
@@ -767,8 +765,8 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     @params 
     --------------------------------------------------  */
 
-    GM.fitToMarkers = function () {
-        GM.fitBounds(GM.toLatLngBounds(GM.getMarkersBounds(arguments[0])));
+    GM.prototype.fitToMarkers = function () {
+        this.fitBounds(this.toLatLngBounds(this.getMarkersBounds(arguments[0])));
     };
 
     /* --------------------------------------------------  
@@ -776,7 +774,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : Return bound box of array of markers
     --------------------------------------------------  */
 
-    GM.getMarkersBounds = function (d) {
+    GM.prototype.getMarkersBounds = function (d) {
         var 
 				minLat = 90,
 				maxLat = -90,
@@ -798,7 +796,7 @@ kafe.extend({ name: 'googlemaps', version: '0.1', obj: (function ($, K, undefine
     Description : a latLongBounds object
     --------------------------------------------------  */
 
-    GM.toLatLngBounds = function (d) {
+    GM.prototype.toLatLngBounds = function (d) {
         return new google.maps.LatLngBounds(new google.maps.LatLng(d.sw[0], d.sw[1]), new google.maps.LatLng(d.ne[0], d.ne[1]));
     };
 
