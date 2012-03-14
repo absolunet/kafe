@@ -76,22 +76,22 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
                 var iconPosition = new google.maps.Point(0, 0);
                 if (mInfos.iconPosition) {
                     switch (mInfos.iconPosition) {
-                        case GM.MarkerIconPosition.TopLeft:
+                        case GM.prototype.MarkerIconPosition.TopLeft:
                             iconPosition = new google.maps.Point(0, 0);
                             break;
-                        case GM.MarkerIconPosition.TopMiddle:
+                        case GM.prototype.MarkerIconPosition.TopMiddle:
                             iconPosition = new google.maps.Point(Math.round(mInfos.width / 2), 0);
                             break;
-                        case GM.MarkerIconPosition.TopRight:
+                        case GM.prototype.MarkerIconPosition.TopRight:
                             iconPosition = new google.maps.Point(mInfos.width, 0);
                             break;
-                        case GM.MarkerIconPosition.BottomLeft:
+                        case GM.prototype.MarkerIconPosition.BottomLeft:
                             iconPosition = new google.maps.Point(0, mInfos.height);
                             break;
-                        case GM.MarkerIconPosition.BottomMiddle:
+                        case GM.prototype.MarkerIconPosition.BottomMiddle:
                             iconPosition = new google.maps.Point(Math.round(mInfos.width / 2), mInfos.height);
                             break;
-                        case GM.MarkerIconPosition.BottomRight:
+                        case GM.prototype.MarkerIconPosition.BottomRight:
                             iconPosition = new google.maps.Point(mInfos.width, mInfos.height);
                             break;
                         default:
