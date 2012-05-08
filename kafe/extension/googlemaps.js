@@ -35,7 +35,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
             _mapConfiguration = _parseParamsCreateIfNotExist(params, _mapConfiguration);
             _mapLayout = _parseParamsCreateIfNotExist(params, _mapLayout);
         }
-		
+
         var mapDiv = '<div id="' + _mapLayout.mapId + '" style="width:' + _mapLayout.width + '; height:' + _mapLayout.height + ';">&nbsp;</div>';
 
         var $parent = $(_mapLayout.parent);
@@ -56,6 +56,19 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 
         if (_mapLayout.mapStyle) GM.setStyle(_mapLayout.mapStyle);
         if (_mapLayout.markers) _addMarkers(_mapLayout.markers);
+        if (_mapLayout.kmlLayersUrls) _addOverlays(_mapLayout.kmlLayersUrls);
+    }
+
+    /* --------------------------------------------------  
+    PRIVATE Function _addMarkers(pMarkers)
+    Description : Add the KML overlay in the map. 
+    @params pKmlLayersUrls : Array. Contains all the urls of the KML files.
+    --------------------------------------------------  */
+    function _addOverlays(pKmlLayersUrls) {
+        for (var k in pKmlLayersUrls) {
+            var kmlLayer = new google.maps.KmlLayer(pKmlLayersUrls[k]);
+            kmlLayer.setMap(_map);
+        }
     }
 
     /* --------------------------------------------------  
@@ -212,7 +225,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
     @params params : Object. 
     Required attributes are :
     'content' : String. The content of the info window. Can be html style!!
-    --------------------------------------------------  */   
+    --------------------------------------------------  */
 
     function _infoWindow(params) {
         _parseParamsCreateIfNotExist(params, _infoWindowConfiguration);
@@ -237,7 +250,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
     zoomLevel : int.
     callback : callback function
     --------------------------------------------------  */
-    
+
     function _geocodeByAddress(address, zoomLevel, callback) {
         _geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
@@ -258,7 +271,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
     @params latlng : Array of 2 [lat,lng]. 
     zoomLevel : int
     --------------------------------------------------  */
-    
+
     function _setCenterAndZoom(latlng, zoomLevel) {
         if (latlng.length == 2) {
             _map.setCenter(new google.maps.LatLng(latlng[0], latlng[1]));
@@ -306,6 +319,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
         _mapLayout.width = '500px';
         _mapLayout.height = '500px';
         _mapLayout.markers = [];
+        _mapLayout.kmlLayersUrls = [];
         _mapLayout.visible = true;
         _mapLayout.mapStyle = null;
     }
