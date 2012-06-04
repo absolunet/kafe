@@ -16,7 +16,7 @@ kafe.bonify({name:'number', version:'1.0', obj:(function($,K,undefined){
 		// repeat string n times
 		function repeat(s,nb) {
 			return new Array(Number(nb)+1).join(s);
-		};
+		}
 
 		// transform to int
 		n = parseInt(n);

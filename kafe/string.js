@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.string
 //-------------------------------------------
-kafe.bonify({name:'string', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'string', version:'1.1', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC
@@ -83,6 +83,16 @@ kafe.bonify({name:'string', version:'1.0', obj:(function($,K,undefined){
 		return cast($.evalJSON(s));
 	};
 
+	// generateGuid ()
+	// generates a random GUID/UUID
+	//-------------------------------------------
+	string.generateGuid = function() {
+			function() S4 {
+				return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+			}
+			return (S4()+S4()+'-'+S4()+'-'+S4()+'-'+S4()+'-'+S4()+S4()+S4());
+		}
+	};
 
 
 

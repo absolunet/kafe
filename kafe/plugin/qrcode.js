@@ -12,16 +12,6 @@ kafe.plug({name:'qrcode', version:'0.1', obj:(function($,K,undefined){
 		correctLevel : QRErrorCorrectLevel.H
 	};
 
-	// _mergeParams (options)
-	// return merged params
-	//-------------------------------------------
-	function _mergeParams(options,defaults) {
-		return $.extend({}, defaults, options);
-	}
-
-
-
-
 	//-------------------------------------------
 	// PUBLIC
 	//-------------------------------------------
@@ -32,7 +22,7 @@ kafe.plug({name:'qrcode', version:'0.1', obj:(function($,K,undefined){
 	// set default params
 	//-------------------------------------------
 	qrcode.setParams = function() {
-		_params = _mergeParams(arguments[0],_params);
+		$.extend(_params, arguments[0]);
 	};
 
 	// generate (text)

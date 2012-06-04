@@ -2,6 +2,8 @@
 // kafe.style
 //-------------------------------------------
 kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
+	
+	var _name = K.idantite.non;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -41,16 +43,16 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 	// replace <hr> tag with a <div>
 	//-------------------------------------------
 	style.replaceHr = function() {
-		var $e = (arguments[0]) ? $('hr', $(arguments[0])) : $('hr');
-		$e.replaceWith('<div class="hr"></div>');
+		var $e = (arguments[0]) ? $('hr:not('+_name+'-replacehr-processed)', $(arguments[0])) : $('hr');
+		$e.addClass(_name+'-replacehr-processed').hide().wrap('<div class="hr"></div>');
 	};
 
 	// makeButton ([elements])
 	// add spans to create a flexible button
 	//-------------------------------------------
 	style.makeButton = function(e) {
-		var $e = (e) ? $(e) : $('a.Btn');
-		$e.wrapInner('<span class="text" />').prepend('<span class="left" />');
+		var $e = (e) ? $(e) : $('a.Btn:not('+_name+'-makebutton-processed)');
+		$e.addClass(_name+'-makebutton-processed').wrapInner('<span class="text" />').prepend('<span class="left" />');
 	};
 	
 	// vAlign ([elements])
@@ -62,7 +64,7 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 			var $children = $this.children();
 			if($children.length == 1) {
 				var h = Math.floor(($this.height() - $children.height()) / 2);
-				$children.css({display: "block", "margin-top": h + "px"});
+				$children.css({display: 'block', marginTop: h + 'px'});
 			}	
 		});
 	};

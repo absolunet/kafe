@@ -19,7 +19,7 @@ kafe.bonify({name:'mobile', version:'1.1', obj:(function($,K,undefined){
 	
 	// mobile orientation
 	$(window)
-		.bind('orientationchange', function() { 
+		.on('orientationchange', function() { 
 			_orientation = (!!this.orientation) ? 'landscape' : 'portrait';
 
 			K.env('mobile-orientation', _orientation);
@@ -43,8 +43,8 @@ kafe.bonify({name:'mobile', version:'1.1', obj:(function($,K,undefined){
 	// remove top navigation bar
 	//-------------------------------------------
 	mobile.scrollTop = function() {
-		if (!_iOSWebApp) {
-			window.scrollTo(0,1);
+		if (!_iOsWebApp) {
+			window.scrollTo(0,0);
 		}
 	};
 
@@ -63,7 +63,7 @@ kafe.bonify({name:'mobile', version:'1.1', obj:(function($,K,undefined){
 	        }
 		}
 
-		$('a[data-'+_name+'mobile-redirector="true"]').live('click', function(){ _saveCookie(false); });
+		$('body').on('click', function(){ _saveCookie(false); }, 'a[data-'+_name+'mobile-redirector="true"]');
 		
 		if (window.location.search.substr(1) == 'mobile') {
 	        _saveCookie(true);
@@ -75,10 +75,10 @@ kafe.bonify({name:'mobile', version:'1.1', obj:(function($,K,undefined){
 	//-------------------------------------------
 	mobile.iOsWepAppPatchLinks = function() {
 		if (_iOSWebApp) {
-			$('a[rel="external"][data-'+_name+'mobile-IgnoreWepAppPatch="true"][target!="_blank"]').live('click',function(e) {
+			$('body').on('click' ,function(e) {
 				e.preventDefault();
 				window.location.href = $(this).attr('href'); 
-			});
+			}, 'a[rel="external"][data-'+_name+'mobile-IgnoreWepAppPatch="true"][target!="_blank"]');
 		}
 	};
 

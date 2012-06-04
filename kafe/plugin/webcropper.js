@@ -178,7 +178,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 		
 		if(_copperOptions.rotation) {
 			_copperOptions.rotation = $(_copperOptions.rotation);
-			_copperOptions.rotation.bind('click', _rotate)
+			_copperOptions.rotation.on('click', _rotate)
 		}
 		
 		if(_copperOptions.zoomIn != undefined && _copperOptions.zoomOut != undefined){
@@ -191,18 +191,18 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 				var interval = 0;
 				
 				_copperOptions.zoomIn
-					.bind('mousedown', function () { interval = setInterval(_zoomIn, _copperOptions.zoomingInterval)  })
-					.bind('mouseup mouseleave', function () { clearInterval(interval); })
+					.on('mousedown', function () { interval = setInterval(_zoomIn, _copperOptions.zoomingInterval)  })
+					.on('mouseup mouseleave', function () { clearInterval(interval); })
 				;
 
 				_copperOptions.zoomOut
-					.bind('mousedown', function () { interval = setInterval(_zoomOut, _copperOptions.zoomingInterval) })
-					.bind('mouseup mouseleave', function () { clearInterval(interval); })
+					.on('mousedown', function () { interval = setInterval(_zoomOut, _copperOptions.zoomingInterval) })
+					.on('mouseup mouseleave', function () { clearInterval(interval); })
 				;
 			}
 		
-			_copperOptions.zoomIn.bind('click', _zoomIn);
-			_copperOptions.zoomOut.bind('click', _zoomOut);
+			_copperOptions.zoomIn.on('click', _zoomIn);
+			_copperOptions.zoomOut.on('click', _zoomOut);
 		}
 		
        
@@ -246,7 +246,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 		_imagePath = src;
 		$image
 			.attr('src', _imagePath)
-			.bind('load', function(){_moveOrZoomActionDone();});
+			.on('load', function(){_moveOrZoomActionDone();});
 	}
 	
 	/* --------------------------------------------------  
@@ -511,7 +511,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	--------------------------------------------------  */
 	
 	function _cropperError(error) {
-		throw kafe.error(new Error('webcropper-> ' + error));
+		throw K.error(new Error('webcropper-> ' + error));
 	}
 	
 	// ------------------------------------------

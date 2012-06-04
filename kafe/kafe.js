@@ -61,7 +61,7 @@
                            ..,,,,'..... ...                                  ...,;:;,..                        
                                 ....,,,'''''......           ...........',;,,''..                              
                                          ....'''''',,;;;;:c:::;,,''....                                        
-*/                                                                                                                
+*/
 
 window.kafe = (function(w,d,$,undefined){
 
@@ -168,7 +168,7 @@ window.kafe = (function(w,d,$,undefined){
 				var 
 					type           = oname.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
 					isNativeObject = !!(':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1),
-					isNativeModule = !!(':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1)						
+					isNativeModule = !!(':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1)
 				;
 				
 				// if object

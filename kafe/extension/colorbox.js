@@ -5,12 +5,12 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 
 	//default params
 	var _params = {
-		theme: '',
-		opacity:0.5, 
-		transition:'none',
-		overlayClose:true,
-		escKey:true,
-		scrolling:false
+		theme:        '',
+		opacity:      0.5, 
+		transition:   'none',
+		overlayClose: true,
+		escKey:       true,
+		scrolling:    false
 	};
 
 
@@ -23,17 +23,14 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 	// move colorbox in webform
 	//-------------------------------------------
 	colorbox.moveInForm = function() {
-		$("#colorbox").appendTo('form');
+		$('#colorbox').appendTo('form');
 	};
 
 	// getParams ([options])
 	// return default params with optional extra params
 	//-------------------------------------------
-	colorbox.getParams = function(options) {
-		var p = {};
-		$.extend(p, _params);
-		$.extend(p, (!!options) ? options : {});
-		return p;
+	colorbox.getParams = function() {
+		return $.extend({}, _params, (!!arguments[0]) ? arguments[0] : {});
 	};
 	
 	// setParams (options)
@@ -71,9 +68,9 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 	colorbox.open = function(options) {
 		options = colorbox.getParams(options);
 		
-		if (options['theme']) {
-			colorbox.changeTheme((options['theme']));
-			delete options['theme'];
+		if (options.theme) {
+			colorbox.changeTheme((options.theme));
+			delete options.theme;
 		}
 
 		$.colorbox(options);
@@ -128,7 +125,7 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 
 		var content = $(html);
 		$.each(commands, function(i, btn){
-			content.find('.Btn:eq(' + i + ')').bind('click', function(e) {
+			content.find('.Btn:eq(' + i + ')').on('click', function(e) {
 				e.preventDefault();
 				if (typeof btn.callback === 'function') {
 					btn.callback();
@@ -147,7 +144,7 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 	colorbox.confirm = function( selector, message, OKLabel, CancelLabel ) {
 		var kDialog = this;
 		$(function(){
-			$(selector).bind('click', function(e) {
+			$(selector).on('click', function(e) {
 				e.preventDefault();
 				var $this = $(this);
 				kDialog.dialog( message, [

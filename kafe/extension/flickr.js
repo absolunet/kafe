@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.flickr
 //-------------------------------------------
-kafe.extend({name:'flickr', version:'0.1', obj:(function($,K,undefined){
+kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
 
 	// default params
 	var _params = {
@@ -11,9 +11,8 @@ kafe.extend({name:'flickr', version:'0.1', obj:(function($,K,undefined){
 		sort:           'date-posted-desc',                  // date-posted-asc / date-posted-desc / date-taken-asc / date-taken-desc / interestingness-desc / interestingness-asc / relevance
 		page:           1,                 
 		per_page:       10,                
-		extras:         ['url_sq','url_t','url_s','url_m','url_z','url_l','url_o','description','date_upload','date_taken','path_alias']
+		extras:         ['url_sq','url_q','url_t','url_s','url_n','url_m','url_z','url_c','url_l','url_o','description','date_upload','date_taken','path_alias']
 	};
-
 
 	// _mergeParams (options,defaults)
 	// return merged params
@@ -67,7 +66,7 @@ kafe.extend({name:'flickr', version:'0.1', obj:(function($,K,undefined){
 			photo.description = photo.description._content;
 			
 			// sizes
-			var s  = ['sq','t','s','m','z','l','o'];
+			var s  = ['sq','q','t','s','n','m','z','c','l','o'];
 			photo.sizes = _getSizes(photo);
 
 			for (var j in s) {
@@ -98,28 +97,29 @@ kafe.extend({name:'flickr', version:'0.1', obj:(function($,K,undefined){
 			}
 		}
 
-	    function large() {
-			return data(
+	    var 
+			large = data(
 				(photo.url_l) ? 'l' : 
 				(photo.url_o) ? 'o' : 
+				(photo.url_c) ? 'c' : 
 				(photo.url_z) ? 'z' : 'm'
-			);
-		}
-
-		var original = (photo.url_o) ? data('o') : large();
+			),
+			original = (photo.url_o) ? data('o') : large 
+		;
 
 		return {
-			thumb_square: data('sq'),                            // 75x75
-			thumb:        data('t'),                             //   100
-			small:        (photo.url_s) ? data('s') : original,  //   240
-			medium:       (photo.url_m) ? data('m') : original,  //   500
-			medium_large: (photo.url_z) ? data('z') : original,  //   640
-			large:        large(),                               //  1024
+			thumb_square: data('sq'),                            //   75x75
+			large_square: data('q'),                             // 150x150
+			thumb:        data('t'),                             //     100
+			small:        (photo.url_s) ? data('s') : original,  //     240
+			small2:       (photo.url_n) ? data('n') : original,  //     320
+			medium:       (photo.url_m) ? data('m') : original,  //     500
+			medium2:      (photo.url_z) ? data('z') : original,  //     640
+			medium3:      (photo.url_c) ? data('c') : large,     //     800
+			large:        large,                                 //    1024
 			original:     original
 		};
 	}
-
-
 
 
 	//-------------------------------------------

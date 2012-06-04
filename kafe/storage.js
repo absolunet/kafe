@@ -6,20 +6,20 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
 	// test storage availability
 	var 
 		_isLocalStorage = (function() {
- 	       try {
-	            return !!localStorage.getItem;
-	        } catch(e) {
-	            return false;
-	        }
-	    })(),
+			try {
+				return !!localStorage.getItem;
+			} catch(e) {
+				return false;
+			}
+		})(),
 
 		_isSessionStorage = (function() {
-	        try {
-	            return !!sessionStorage.getItem;
-	        } catch(e) {
-	            return false;
-	        }
-	    })(),
+			try {
+				return !!sessionStorage.getItem;
+			} catch(e) {
+				return false;
+			}
+		})(),
 	
 		LOCAL   = 1,
 		SESSION = 2

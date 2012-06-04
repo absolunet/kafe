@@ -53,7 +53,7 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
 				
 				// on scroll & resize
 				//---------------------------
-				.bind('scroll resize',function(event) {
+				.on('scroll resize',function(event) {
 					
 					_updateOffset();
 					

@@ -5,8 +5,9 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 
 	// local variables
 	var
-		_DEBUG = false,
-		_all = {}
+		_DEBUG  = false,
+		_prefix = K.idantite.non + 'Carousel',
+		_all    = {}
 	;
 
 	// _refresh
@@ -20,50 +21,50 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 			// précédent
 			if (c.curr == 0) {
 				c.$start
-					.addClass('kafeCarousel-Inactive')
-					.unbind('click', c.startClick)
-					.bind('click',   none)
+					.addClass(_prefix+'-Inactive')
+					.off('click', c.startClick)
+					.on('click',  none)
 				;
 				c.$previous
-					.addClass('kafeCarousel-Inactive')
-					.unbind('click', c.previousClick)
-					.bind('click',   none)
+					.addClass(_prefix+'-Inactive')
+					.off('click', c.previousClick)
+					.on('click',  none)
 				;
 			} else {
 				c.$start
-					.removeClass('kafeCarousel-Inactive')
-					.unbind('click', c.startClick)
-					.bind('click',   c.startClick)
+					.removeClass(_prefix+'-Inactive')
+					.off('click', c.startClick)
+					.on('click',  c.startClick)
 				;
 				c.$previous
-					.removeClass('kafeCarousel-Inactive')
-					.unbind('click', c.previousClick)
-					.bind('click',   c.previousClick)
+					.removeClass(_prefix+'-Inactive')
+					.off('click', c.previousClick)
+					.on('click',  c.previousClick)
 				;
 			}
 
 			// next
 			if (c.curr == (c.total-1)) {
 				c.$next
-					.addClass('kafeCarousel-Inactive')
-					.unbind('click', c.nextClick)
-					.bind('click',   none)
+					.addClass(_prefix+'-Inactive')
+					.off('click', c.nextClick)
+					.on('click',  none)
 				;
 				c.$end
-					.addClass('kafeCarousel-Inactive')
-					.unbind('click', c.endClick)
-					.bind('click',   none)
+					.addClass(_prefix+'-Inactive')
+					.off('click', c.endClick)
+					.on('click',  none)
 				;
 			} else {
 				c.$next
-					.removeClass('kafeCarousel-Inactive')
-					.unbind('click', c.nextClick)
-					.bind('click',   c.nextClick)
+					.removeClass(_prefix+'-Inactive')
+					.off('click', c.nextClick)
+					.on('click',  c.nextClick)
 				;
 				c.$end
-					.removeClass('kafeCarousel-Inactive')
-					.unbind('click', c.endClick)
-					.bind('click',   c.endClick)
+					.removeClass(_prefix+'-Inactive')
+					.off('click', c.endClick)
+					.on('click',  c.endClick)
 				;
 			}
 		}
@@ -82,17 +83,17 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 			} else {
 				if(!!c.statusLink) {
 					c.$status.append(
-						$("<a>")
-							.attr("href","#")
-							.data('kafecarousel-itemid', i+1)
-							.click(c.itemSimpleClick)
+						$('<a>')
+							.attr('href','#')
+							.data(_prefix+'-itemid', i+1)
+							.on('click',c.itemSimpleClick)
 							.html(c.statusBullet)
 					);
 					c.$statusNum.append(
-						$("<a>")
-							.attr("href","#")
-							.data('kafecarousel-itemid', i+1)
-							.click(c.itemSimpleClick)
+						$('<a>')
+							.attr('href','#')
+							.data(_prefix+'-itemid', i+1)
+							.on('click',c.itemSimpleClick)
 							.html(i+1)
 					);
 				} else {
@@ -129,7 +130,7 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 		var way;
 
 		// current li
-		var $liCurr = c.$Main.find('> li:nth-child('+(c.curr+1)+')')
+		var $liCurr = c.$Main.children(':nth-child('+(c.curr+1)+')')
 
 		// prev/next
 		if (target == 'prev' || target == 'next') {
@@ -153,7 +154,7 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 		}
 
 		// new li
-		var $liNew = c.$Main.find('> li:nth-child('+(c.curr+1)+')');
+		var $liNew = c.$Main.children(':nth-child('+(c.curr+1)+')');
 
 
 		// add callback data
@@ -290,7 +291,7 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 		var options  = (arguments) ? arguments[0] : {};
 		c.id         = options.id;
 		c.wrap       = !!options.wrap;
-		c.transition = (options.transition) ? options.transition : 'slideLeft';
+		c.transition = (options.transition)      ? options.transition : 'slideLeft';
 		c.speed      = (Number(options.speed))   ? Number(options.speed)   : 500;
 		c.startId    = (Number(options.startId)) ? Number(options.startId) : 1;
 		/*
@@ -317,39 +318,39 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 		c.$Main      = $('#'+c.id);
 		if (!c.$Main.length) { return false; }
 
-		c.$MainItems     = c.$Main.find('> li');
-		c.$MainFirstItem = c.$Main.find('> li:first-child');
+		c.$MainItems     = c.$Main.children();
+		c.$MainFirstItem = c.$MainItems.eq(0);
 		c.total          = c.$MainItems.length;
 
 		// nav
-		c.$all        = $('[data-kafecarousel-id="'+c.id+'"]');
-		c.$nav        = c.$all.filter('[data-kafecarousel-action="nav"]');
-		c.$start      = c.$all.filter('[data-kafecarousel-action="start"]');
-		c.$previous   = c.$all.filter('[data-kafecarousel-action="prev"]');
-		c.$next       = c.$all.filter('[data-kafecarousel-action="next"]');
-		c.$end        = c.$all.filter('[data-kafecarousel-action="end"]');
-		c.$items      = c.$all.filter('[data-kafecarousel-action="items"]');
-		c.$itemsimple = c.$all.filter('[data-kafecarousel-action="item"]');
-		c.$play       = c.$all.filter('[data-kafecarousel-action="play"]');
-		c.$pause      = c.$all.filter('[data-kafecarousel-action="pause"]');
+		c.$all        = $('[data-'+_prefix+"-id='"+c.id+"']");
+		c.$nav        = c.$all.filter('[data-'+_prefix+"-action='nav']");
+		c.$start      = c.$all.filter('[data-'+_prefix+"-action='start']");
+		c.$previous   = c.$all.filter('[data-'+_prefix+"-action='prev']");
+		c.$next       = c.$all.filter('[data-'+_prefix+"-action='next']");
+		c.$end        = c.$all.filter('[data-'+_prefix+"-action='end']");
+		c.$items      = c.$all.filter('[data-'+_prefix+"-action='items']");
+		c.$itemsimple = c.$all.filter('[data-'+_prefix+"-action='item']");
+		c.$play       = c.$all.filter('[data-'+_prefix+"-action='play']");
+		c.$pause      = c.$all.filter('[data-'+_prefix+"-action='pause']");
 
 		// position
-		c.$position  = c.$all.filter('[data-kafecarousel-action="position"]');
-		c.$total     = c.$all.filter('[data-kafecarousel-action="total"]');
-		c.$status    = c.$all.filter('[data-kafecarousel-action="status"]');
-		c.$statusNum = c.$all.filter('[data-kafecarousel-action="status-num"]');
+		c.$position  = c.$all.filter('[data-'+_prefix+"-action='position']");
+		c.$total     = c.$all.filter('[data-'+_prefix+"-action='total']");
+		c.$status    = c.$all.filter('[data-'+_prefix+"-action='status']");
+		c.$statusNum = c.$all.filter('[data-'+_prefix+"-action='status-num']");
 
 		// désactiver tout si un seul item
 		if (c.total == 1) {
-			c.$nav.addClass('kafeCarousel-None');
-			c.$previous.addClass('kafeCarousel-None');
-			c.$next.addClass('kafeCarousel-None');
-			c.$items.addClass('kafeCarousel-None');
-			c.$itemsimple.addClass('kafeCarousel-None');
-			c.$position.addClass('kafeCarousel-None');
-			c.$total.addClass('kafeCarousel-None');
-			c.$status.addClass('kafeCarousel-None');
-			c.$statusNum.addClass('kafeCarousel-None');
+			c.$nav.addClass(_prefix+'-None');
+			c.$previous.addClass(_prefix+'-None');
+			c.$next.addClass(_prefix+'-None');
+			c.$items.addClass(_prefix+'-None');
+			c.$itemsimple.addClass(_prefix+'-None');
+			c.$position.addClass(_prefix+'-None');
+			c.$total.addClass(_prefix+'-None');
+			c.$status.addClass(_prefix+'-None');
+			c.$statusNum.addClass(_prefix+'-None');
 
 		// sinon préparer carousel
 		} else {
@@ -381,7 +382,7 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 
 			c.itemSimpleClick = function(e){ 
 				e.preventDefault();
-				_change(c, $(this).data('kafecarousel-itemid') - 1);
+				_change(c, $(this).data(_prefix+'-itemid') - 1);
 			};
 
 			c.playClick = function(e){ 
@@ -410,27 +411,27 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 
 
 
-			// bind events				
-			c.$start.click(c.startClick)
-			c.$previous.click(c.previousClick)
-			c.$next.click(c.nextClick)
-			c.$end.click(c.endClick)
-			c.$itemsimple.click(c.itemSimpleClick);
+			// on events
+			c.$start.on('click',c.startClick)
+			c.$previous.on('click',c.previousClick)
+			c.$next.on('click',c.nextClick)
+			c.$end.on('click',c.endClick)
+			c.$itemsimple.on('click',c.itemSimpleClick);
 
-			c.$items.find('> li').each(function(i){ 
-				$(this).click(function(e){
+			c.$items.children().each(function(i){ 
+				$(this).on('click',function(e){
 					e.preventDefault();
 					_change(c, i);
 				});
 			});
 
-			c.$play.click(c.playClick)
-			c.$pause.click(c.pauseClick);
+			c.$play.on('click',c.playClick)
+			c.$pause.on('click',c.pauseClick);
 
-			c.$MainItems
-				.mouseenter(c.slideStopAuto)
-				.mouseleave(c.slideStartAuto)
-			;
+			c.$MainItems.on({
+				mouseenter: c.slideStopAuto,
+				mouseleave: c.slideStartAuto
+			});
 
 
 
@@ -440,7 +441,7 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 			_refresh(c);
 
 			c.$MainItems.hide();
-			c.$Main.find('> li:nth-child('+c.startId+')').show();
+			c.$Main.children(':nth-child('+c.startId+')').show();
 
 			switch (c.transition) {
 				// fade

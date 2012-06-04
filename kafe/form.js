@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
+kafe.bonify({name:'form', version:'1.4.1', obj:(function($,K,undefined){
 
 	//-------------------------------------------
 	// PUBLIC
@@ -13,53 +13,45 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 	// add focus styles on input/textarea/select
 	//-------------------------------------------
 	form.focus = function() {
-		$('input, textarea, select')
-			.bind('focus', function() {
+		$('body').on({
+			focus: function() {
 				$(this).prev('label').andSelf().addClass('Focus');
-			})
-			.bind('blur', function() {
+			},
+			blur: function() {
 				$(this).prev('label').andSelf().removeClass('Focus');
 			}
-		);
+		}, 'input, textarea, select');
 	};
 
 	// label (element container)
 	// add an inline label on input/textarea with a placeholder attribute
 	//-------------------------------------------
 	form.label = function() {
-
 		if ($.browser.msie && parseInt($.browser.version) < 10) {
 			
-			var $e = (arguments[0]) ? $(arguments[0]) : $('input[placeholder!=""], textarea[placeholder!=""]');
-
 			function _isEmpty() {
 				 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
 			};
 
-			$e.each(function() {
-
-				var $this = $(this);
-
-				$this
-					.data('Placeholder', $this.attr('placeholder'))
-					.attr('placeholder','')
-					.bind('focus', function() {
-						var $this = $(this);
-						if (_isEmpty($this.val()) || $this.val() == $this.data('Placeholder')) {
-							$this.one('keydown', function() {
-								$this.removeClass('Label').val('');
-							});
-						}
-					})
-					.bind('blur', function() {
-						var $this = $(this);
-						if (_isEmpty($this.val()) || $this.val() == $this.data('Label')) {
-							$this.addClass('Label').val($this.data('Placeholder'));
-						}
-					})
-					.blur()
-				;
-			});
+			var selector  = 'input[placeholder!=""], textarea[placeholder!=""]';
+			$('body').on({
+				focus: function() {
+					var $this = $(this);
+					if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
+						$this.one('keydown', function() {
+							$this.removeClass('Placeholder').val('');
+						});
+					}
+				},
+				blur: function() {
+					var $this = $(this);
+					if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
+						$this.addClass('Placeholder').val($this.attr('placeholder'));
+					}
+				}
+			}, selector);
+			
+			$(selector).trigger('blur');
 		}
 	};
 	
@@ -67,7 +59,7 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 	// add onEnter event
 	//-------------------------------------------
 	form.onEnter = function(elements,callback) {
-		$(elements).keypress(function(e) {
+		$(elements).on('keypress', function(e) {
 			if (((!!e.which) ? e.which : e.keyCode) == 13) {
 				e.preventDefault();
 				callback(this);
@@ -79,7 +71,7 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 	// moves focus on next input
 	//-------------------------------------------
 	form.autofocusOnNext = function(elements) {
-		$(elements).bind('keyup',function(e) {
+		$(elements).on('keyup',function(e) {
 			var $this = $(this);
 			if($this.val().length == $this.attr('maxlength')) {
 				var inputs = $('input, textarea, select');
@@ -96,7 +88,7 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 	//-------------------------------------------
 	form.maxLength = function(elements, max, block, callback) {
 		$(elements)
-			.bind('input paste cut keyup',function(e) {
+			.on('input paste cut keyup',function(e) {
 			
 				var 
 					$this = $(this),
@@ -129,13 +121,12 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 	//-------------------------------------------
 	form.passwordStrength = function(elements, callback) {
 		
-		var min_length = 6;
-		
-		var _countRegexp = function (val, rex) {
+		function _countRegexp(val, rex) {
 			var match = val.match(rex);
 			return match ? match.length : 0;
-		};
-		var _getStrength = function (val, minLength) {
+		}
+		
+		function _getStrength(val, minLength) {
 			var len = val.length;
 
 			// too short =(
@@ -161,8 +152,9 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 			if (len > 10) { strength += 1; }
 
 			return strength;
-		};
-		var _getStrengthLevel = function (val, minLength) {
+		}
+		
+		function _getStrengthLevel(val, minLength) {
 			var strength = _getStrength(val, minLength),
 				val = 1;
 			if (strength <= 0) {
@@ -178,10 +170,12 @@ kafe.bonify({name:'form', version:'1.4', obj:(function($,K,undefined){
 			}
 
 			return val;
-		};
+		}
+
+		var min_length = 6;
 		
 		$(elements)
-			.bind('input paste cut keyup',function(e) {
+			.on('input paste cut keyup',function(e) {
 			
 				var $this = $(this),
 					delay = ($.browser.msie & parseInt($.browser.version) <= 8) ? 1 : 0;
