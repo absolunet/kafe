@@ -321,53 +321,15 @@ window.kafe = (function(w,d,$,undefined){
 				dtc:     {}
 			},
 			_dtc       = [],
-			_cssuaData = {},
-			_ua        = navigator.userAgent.toLowerCase(),
-			_de        = document.documentElement,
-	       	_r_Mac                    = /\bmacintosh; */,
-	        _r_MacIntelOsxWithVersion = /\bintel mac os x[\s]+(\d+(\.\d+)*)/,
-	        _r_MacIntelOsxGeneric     = /\bintel mac os x;*/,
-	        _r_MacPpcOsxWithVersion   = /\bppc mac os x[\s]+(\d+(\.\d+)*)/,
-	        _r_MacPpcOsxGeneric       = /\bppc mac os x;*/,
-	        _r_Windows                = /\bwindows */,
-	        _r_Linux                  = /\bx11; */
+			_de        = document.documentElement
 		;
 
 		// grab kafe env
 		_data.culture = _de.id.toLowerCase()   || '';
 		_data.lang    = _de.lang.toLowerCase() || '';
-		_data.page    = _de.getAttribute('data-kafe-page') || '';
-		_data.tmpl    = _de.getAttribute('data-kafe-tmpl') || '';
-
-		// os check via cssua
-		if (_ua.match(_r_Windows)) {
-			_cssuaData.pc = 'windows';
-		
-		} else if (_ua.match(_r_Linux)) {
-			_cssuaData.pc = 'linux';
-		
-		} else if (_ua.match(_r_Mac)) {
-		
-			if (_ua.match(_r_MacIntelOsxWithVersion)) {
-				_cssuaData.mac   = 'intel';
-				_r_MacIntelOsxWithVersion.exec(_ua);
-				_cssuaData.macos = RegExp.$1;
-		
-			} else if (_ua.match(_r_MacIntelOsxGeneric)) {
-				_cssuaData.mac = 'intel';
-				_cssuaData.macos = '10';
-		
-			} else if (_ua.match(_r_MacPpcOsxWithVersion)) {
-				_cssuaData.mac = 'ppc';
-				_r_MacPpcOsxWithVersion.exec(_ua);
-				_cssuaData.macos = RegExp.$1;
-		
-			} else if (_ua.match(_r_MacPpcOsxGeneric)) {
-				_cssuaData.mac = 'ppc';
-				_cssuaData.macos = '10';
-			}
-		}
-		_de.className = _de.className.replace(/\bjs\b/g, '') + cssua.format(_cssuaData);
+		_data.page    = _de.getAttribute('data-'+_i.non+'-page') || '';
+		_data.tmpl    = _de.getAttribute('data-'+_i.non+'-tmpl') || '';
+		_de.className = _de.className.replace(/\bjs\b/g, '');
 
 		// parse detections
 		_dtc = _de.className || '';
@@ -417,7 +379,7 @@ window.kafe = (function(w,d,$,undefined){
 //-------------------------------------------
 (function($){
 	if ($.browser.msie && parseInt($.browser.version) < 9) {
-		var html5 = "address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video".split('|');
+		var html5 = 'address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video'.split('|');
 		for (var i=0; i<html5.length; ++i){
 			document.createElement(html5[i]);
 		}
@@ -427,5 +389,5 @@ window.kafe = (function(w,d,$,undefined){
 		if (typeof(console) != 'undefined') { console.log('<kafe:avètisman> : appendHTML5 obsoleted'); }
 		$(this[0]).append(str);
 	    return this;
-	}
+	};
 })(jQuery);	

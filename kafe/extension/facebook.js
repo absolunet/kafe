@@ -72,7 +72,7 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 				data:     'accessToken=' + _userSession.accessToken + '&callback=?',
 				success:  function(data, textStatus, jqXHR) {
 					_userDetails = data;
-					if (callback)
+					if (callback) {
 						callback(data);
 					}
 				},
@@ -130,7 +130,7 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 
 		FB.login(function(response) {
 			if (response.authResponse) {
-				if (callback)
+				if (callback) {
 					callback(response);
 				}
 			}
@@ -169,13 +169,13 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 			success:  function(data, textStatus, jqXHR) {
 				var _found = false;
 				$.each(data.data, function(i, val) {
-					if (val.id == id)
+					if (val.id == id) {
 						_found = true;
 						return false;
 					}
 				});
 				
-				if (callback)
+				if (callback) {
 					callback(_found);
 				}
 			},

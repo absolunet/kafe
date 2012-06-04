@@ -4,14 +4,17 @@
 kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 
 	//default params
-	var _params = {
-		theme:        '',
-		opacity:      0.5, 
-		transition:   'none',
-		overlayClose: true,
-		escKey:       true,
-		scrolling:    false
-	};
+	var 
+		_name   = K.idantite.non,
+		_params = {
+			theme:        '',
+			opacity:      0.5, 
+			transition:   'none',
+			overlayClose: true,
+			escKey:       true,
+			scrolling:    false
+		}
+	;
 
 	$(document).on('cbox_closed', function(){
 		var 
@@ -127,7 +130,7 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 	//-------------------------------------------
 	colorbox.dialog = function( content, commands  ) {
 		
-		var html = '<div id="kafe-colorbox-dialog">' + content;
+		var html = '<div id="'+_name+'-colorbox-dialog">' + content;
 
 		if (commands == undefined || commands.length == 0)
 			commands = [{ label:'OK', callback:function(){ $.colorbox.close(); } }];

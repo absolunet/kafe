@@ -43,7 +43,7 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 	// replace <hr> tag with a <div>
 	//-------------------------------------------
 	style.replaceHr = function() {
-		var $e = (arguments[0]) ? $('hr:not('+_name+'-replacehr-processed)', $(arguments[0])) : $('hr');
+		var $e = (arguments[0]) ? $('hr:not(.'+_name+'-replacehr-processed)', $(arguments[0])) : $('hr');
 		$e.addClass(_name+'-replacehr-processed').hide().wrap('<div class="hr"></div>');
 	};
 
@@ -51,7 +51,7 @@ kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
 	// add spans to create a flexible button
 	//-------------------------------------------
 	style.makeButton = function(e) {
-		var $e = (e) ? $(e) : $('a.Btn:not('+_name+'-makebutton-processed)');
+		var $e = (e) ? $(e) : $('a.Btn:not(.'+_name+'-makebutton-processed)');
 		$e.addClass(_name+'-makebutton-processed').wrapInner('<span class="text" />').prepend('<span class="left" />');
 	};
 	

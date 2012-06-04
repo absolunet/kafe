@@ -323,22 +323,22 @@ kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
 		c.total          = c.$MainItems.length;
 
 		// nav
-		c.$all        = $('[data-'+_prefix+"-id='"+c.id+"']");
-		c.$nav        = c.$all.filter('[data-'+_prefix+"-action='nav']");
-		c.$start      = c.$all.filter('[data-'+_prefix+"-action='start']");
-		c.$previous   = c.$all.filter('[data-'+_prefix+"-action='prev']");
-		c.$next       = c.$all.filter('[data-'+_prefix+"-action='next']");
-		c.$end        = c.$all.filter('[data-'+_prefix+"-action='end']");
-		c.$items      = c.$all.filter('[data-'+_prefix+"-action='items']");
-		c.$itemsimple = c.$all.filter('[data-'+_prefix+"-action='item']");
-		c.$play       = c.$all.filter('[data-'+_prefix+"-action='play']");
-		c.$pause      = c.$all.filter('[data-'+_prefix+"-action='pause']");
+		c.$all        = $('[data-'+_prefix+'-id="'+c.id+'"]');
+		c.$nav        = c.$all.filter('[data-'+_prefix+'-action="nav"]');
+		c.$start      = c.$all.filter('[data-'+_prefix+'-action="start"]');
+		c.$previous   = c.$all.filter('[data-'+_prefix+'-action="prev"]');
+		c.$next       = c.$all.filter('[data-'+_prefix+'-action="next"]');
+		c.$end        = c.$all.filter('[data-'+_prefix+'-action="end"]');
+		c.$items      = c.$all.filter('[data-'+_prefix+'-action="items"]');
+		c.$itemsimple = c.$all.filter('[data-'+_prefix+'-action="item"]');
+		c.$play       = c.$all.filter('[data-'+_prefix+'-action="play"]');
+		c.$pause      = c.$all.filter('[data-'+_prefix+'-action="pause"]');
 
 		// position
-		c.$position  = c.$all.filter('[data-'+_prefix+"-action='position']");
-		c.$total     = c.$all.filter('[data-'+_prefix+"-action='total']");
-		c.$status    = c.$all.filter('[data-'+_prefix+"-action='status']");
-		c.$statusNum = c.$all.filter('[data-'+_prefix+"-action='status-num']");
+		c.$position  = c.$all.filter('[data-'+_prefix+'-action="position"]');
+		c.$total     = c.$all.filter('[data-'+_prefix+'-action="total"]');
+		c.$status    = c.$all.filter('[data-'+_prefix+'-action="status"]');
+		c.$statusNum = c.$all.filter('[data-'+_prefix+'-action="status-num"]');
 
 		// désactiver tout si un seul item
 		if (c.total == 1) {

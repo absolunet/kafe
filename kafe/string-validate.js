@@ -104,9 +104,9 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 			return ((sum % 10) == 0); // divide by 10 and check if it ends in 0 - return true | false
 		}
 			
-        if (_validateChecksum(s)) {
-            return _validateStructure(s, type);
-        }
+		if (_validateChecksum(s)) {
+			return _validateStructure(s, type);
+		}
 
         return false;
 	};

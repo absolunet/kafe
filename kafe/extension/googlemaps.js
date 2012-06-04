@@ -257,11 +257,11 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
             if (status == google.maps.GeocoderStatus.OK) {
                 _map.setCenter(results[0].geometry.location);
                 _map.setZoom(zoomLevel);
-                if (callback && typeof (callback) === "function") {
+                if (callback && typeof (callback) === 'function') {
                     callback([results[0].geometry.location.lat(), results[0].geometry.location.lng()]);
                 }
             } else {
-                alert("Geocode was not successful for the following reason: " + status);
+                alert('Geocode was not successful for the following reason: ' + status);
             }
         });
     }
@@ -741,9 +741,8 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 	Function resize()
 	Description : Refresh resized map
 	--------------------------------------------------  */
-	
 	GM.prototype.resize = function(){
-		google.maps.event.trigger(_map, "resize");
+		google.maps.event.trigger(_map, 'resize');
 	};
 	
 	/* --------------------------------------------------  
@@ -812,14 +811,14 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 				minLon = 180,
 				maxLon = -180
 			;
-        for (var i in d) {
-            if (typeof (d[i]) != "function") {
-                 minLat = Math.min(minLat, Number(d[i][0]));
-                 maxLat = Math.max(maxLat, Number(d[i][0]));
-                 minLon = Math.min(minLon, Number(d[i][1]));
-                 maxLon = Math.max(maxLon, Number(d[i][1]));
-             }
-        }
+			for (var i in d) {
+				if (typeof (d[i]) != 'function') {
+					minLat = Math.min(minLat, Number(d[i][0]));
+					maxLat = Math.max(maxLat, Number(d[i][0]));
+					minLon = Math.min(minLon, Number(d[i][1]));
+					maxLon = Math.max(maxLon, Number(d[i][1]));
+				}
+			}
 
         return { sw: [minLat, minLon], ne: [maxLat, maxLon] };
     };
@@ -842,5 +841,4 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 
     return GM;
 
-})(jQuery, kafe)
-});
+})(jQuery, kafe)});

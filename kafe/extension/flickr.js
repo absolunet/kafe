@@ -178,7 +178,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
 	api.photos_search = function(options, callback) {
 		_call(
 			'photos.search', 
-			['api_key','user_id','per_page','extras'], 
+			['api_key','user_id','per_page','page','extras'], 
 			options,
 			function (data) {
 				data.photos.photo = _processPhotos(data.photos.photo);

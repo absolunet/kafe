@@ -33,7 +33,7 @@ kafe.bonify({name:'form', version:'1.4.1', obj:(function($,K,undefined){
 				 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
 			};
 
-			var selector  = 'input[placeholder!=""], textarea[placeholder!=""]';
+			var selector  = 'input[placeholder], textarea[placeholder]';
 			$('body').on({
 				focus: function() {
 					var $this = $(this);
@@ -72,8 +72,13 @@ kafe.bonify({name:'form', version:'1.4.1', obj:(function($,K,undefined){
 	//-------------------------------------------
 	form.autofocusOnNext = function(elements) {
 		$(elements).on('keyup',function(e) {
-			var $this = $(this);
-			if($this.val().length == $this.attr('maxlength')) {
+			var 
+				$this = $(this),
+				key   = (!!e.which) ? e.which : e.keyCode
+			;
+			
+			 // tab / alt+tab / arrows
+			if (key != 9 && key != 16 && !(key >=36 && key <=40) && $this.val().length == $this.attr('maxlength')) {
 				var inputs = $('input, textarea, select');
 		        inputs.eq( inputs.index(this)+1 ).focus().select();
 		    }

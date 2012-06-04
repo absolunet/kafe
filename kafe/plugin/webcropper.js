@@ -37,15 +37,15 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 				imgHeight: '',
 				topLeft: '',
 				boxWidth: '',
-				boxHeight: '',
+				boxHeight: ''
 			},
-			maxSizeError: 'Votre image ne doît pas dépasser 6mo.'
+			maxSizeError: 'Votre image ne doît pas dépasser 6mo.',
 			zoomIn: '',
 			zoomOut: '',
 			rotation: '',
 			ajaxServiceUrl: '/Tools/CropperService.ashx',
 			imageGeneratorPath: '/Tools/ImageGenerator.aspx',
-			imgExt: ['png', 'jpg', 'bmp', 'gif', 'jpeg'],
+			imgExt: ['png', 'jpg', 'bmp', 'gif', 'jpeg']
 		}
 	;
 
@@ -178,7 +178,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 		
 		if(_copperOptions.rotation) {
 			_copperOptions.rotation = $(_copperOptions.rotation);
-			_copperOptions.rotation.on('click', _rotate)
+			_copperOptions.rotation.on('click', _rotate);
 		}
 		
 		if(_copperOptions.zoomIn != undefined && _copperOptions.zoomOut != undefined){
@@ -257,9 +257,9 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	function _clearTemp() {
 		
 		$.ajax({
-			type: "GET",
+			type: 'GET',
 			url: _ajaxServiceUrl + '?action=delete&tip=' + _imagePath,
-			dataType: "json",
+			dataType: 'json',
 			success: function (data) {
                 if (data != null) {
 				    if (data) {
@@ -456,7 +456,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 			$(f.boxWidth).val(Math.round($container.width()));
 			$(f.boxHeight).val(Math.round($container.height()));
 			
-		}, _inputUpdateInterval)
+		}, _inputUpdateInterval);
 	}
 	
 	/* --------------------------------------------------  
@@ -480,9 +480,9 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 			oy = t.substring(t.indexOf(',')+1, t.length);
 		
 		$.ajax({
-			type: "GET",
+			type: 'GET',
 			url: _copperOptions.ajaxServiceUrl + '?action=cropper' + '&ox=' + ox + '&oy=' + oy  + '&bw=' + Math.round($container.width()) + '&bh=' + Math.round($container.height()) + '&inw=' + Math.round($image.width()) + '&inh=' + Math.round($image.height()) + '&tip=' + _imagePath + '&tpu=' + false,
-			dataType: "json",
+			dataType: 'json',
 			success: function (data) {
                 if (data != null) {
 				    if (data) {
@@ -528,7 +528,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	
 	WC.initAjax = function(params){
 		_initAjax(params);
-	}
+	};
 	
 	/* --------------------------------------------------  
 		PUBLIC Function WC.initForm(params)
@@ -538,7 +538,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	
 	WC.initForm = function(params){
 		_initForm(params);
-	}
+	};
 	
 	/* --------------------------------------------------  
 		PUBLIC Function WC.save()
@@ -550,7 +550,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	WC.save = function(success, failed){
 		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method save()'); return;}
 		_save(success, failed);
-	}
+	};
 	
 	/* --------------------------------------------------  
 		PUBLIC Function WC.clear()
@@ -560,7 +560,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	WC.clear = function(){
 		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method clear()'); return;}
 		_clear();
-	}
+	};
 	
 	/* --------------------------------------------------  
 		PUBLIC Function WC.clearTemp()
@@ -570,7 +570,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	WC.clearTemp = function(){
 		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method clearTemp()'); return;}
 		_clearTemp();
-	}
+	};
 	
 	/* --------------------------------------------------  
 		PUBLIC Function WC.replaceImage(src)
@@ -580,7 +580,7 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	WC.replaceImage = function(src){
 		if(!_cropperExist){ _cropperError('You must create a webcropper first! Method replaceImage()'); return;}
 		_replaceImage(src);
-	}
+	};
 	
 	return WC;
 	
