@@ -13,6 +13,18 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 		scrolling:    false
 	};
 
+	$(document).on('cbox_closed', function(){
+		var 
+			$body = $('body'),
+			classes = $body.attr('class') || ''
+		;
+		classes = classes.split(' ');
+		for (var i in classes) {
+			if (/^cb-/.test(classes[i])) {
+				$body.removeClass(classes[i]);
+			}
+		}
+	});
 
 	//-------------------------------------------
 	// PUBLIC
@@ -69,7 +81,7 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 		options = colorbox.getParams(options);
 		
 		if (options.theme) {
-			colorbox.changeTheme((options.theme));
+			colorbox.changeTheme(options.theme);
 			delete options.theme;
 		}
 
@@ -92,12 +104,15 @@ kafe.extend({name:'colorbox', version:'1.2', obj:(function($,K,undefined){
 		colorbox.open({ inline:true, href:'#'+stringID });
 	};
 
-	// ajax (stringID)
+	// ajax (stringID, [options])
 	// load html of a specific url and show in a colorbox
 	//-------------------------------------------
-	colorbox.ajax = function(stringID) {
-		colorbox.open({ href:stringID });
+	colorbox.ajax = function(stringID, options) {
+		options = colorbox.getParams(options);
+		options.href = stringID;
+		colorbox.open(options);
 	};
+
 
 	// display (string)
 	// show a colorbox alert

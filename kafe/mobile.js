@@ -65,9 +65,7 @@ kafe.bonify({name:'mobile', version:'1.1', obj:(function($,K,undefined){
 
 		$('body').on('click', function(){ _saveCookie(false); }, 'a[data-'+_name+'mobile-redirector="true"]');
 		
-		if (window.location.search.substr(1) == 'mobile') {
-	        _saveCookie(true);
-	    }
+		_saveCookie(true);
     };
 
  	// iOsWepAppPatchLinks ()

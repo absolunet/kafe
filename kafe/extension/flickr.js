@@ -1,4 +1,4 @@
-//-------------------------------------------
+	//-------------------------------------------
 // kafe.ext.flickr
 //-------------------------------------------
 kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
@@ -144,6 +144,12 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
 		_params = _mergeParams(arguments[0],_params);
 	};
 
+	// getPhotostream (options)
+	// get photoStream
+	//-------------------------------------------
+	flickr.getPhotostream = function(options, callback) {
+		return api.photos_search(options, callback);
+	};
 
 
 	//-------------------------------------------
@@ -166,6 +172,20 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
 		);
 	};
 
+	// photos_search (options)
+	// search photos
+	//-------------------------------------------
+	api.photos_search = function(options, callback) {
+		_call(
+			'photos.search', 
+			['api_key','user_id','per_page','extras'], 
+			options,
+			function (data) {
+				data.photos.photo = _processPhotos(data.photos.photo);
+				callback(data.photos);
+			}
+		);
+	};
 	
 	flickr.api = api;
 	return flickr;

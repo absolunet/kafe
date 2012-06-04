@@ -65,8 +65,8 @@ kafe.extend({name:'youtube', version:'1.0.1', obj:(function($,K,undefined){
 				entry.publishedDate = new Date(val.published.$t);
 				
 				entry.thumbnail = {};
-					entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
-					entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
+				entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
+				entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
 					
 				entry.categories = [];
 				$.each(val.category, function(ci, cval) {
@@ -123,10 +123,8 @@ kafe.extend({name:'youtube', version:'1.0.1', obj:(function($,K,undefined){
 			url: path + query,
 			dataType: 'json',
 			success: function(data, textStatus, jqXHR) {
-
 				var simpleResults = _simpleSearchResults(data.feed.entry);
 				callback(simpleResults);
-
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				throw K.error(new Error(errorThrown));
@@ -135,9 +133,52 @@ kafe.extend({name:'youtube', version:'1.0.1', obj:(function($,K,undefined){
 		
 	};
 
+	// getPlaylistVideos (params, callback)
+	// ---
+	//-------------------------------------------
+	youtube.getPlaylistVideos = function (playlistId, callback) {
+		K.required('kafe.url');
 
+		if (!playlistId) {
+			if (callback) callback(null);
+			return;
+		}
 
-	
+		if (playlistId.substr(0, 2) == 'PL') {
+			playlistId = playlistId.substr(2, playlistId.length);
+		}
+		
+		var playListURL = 'http://gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?';
+		var videoURL = 'http://www.youtube.com/watch?v=';
+		var imageURL = 'http://img.youtube.com/vi/';
+		$.ajax({
+			url: playListURL,
+			dataType: 'json',
+			success: function (data) {
+				var videos = [];
+				$.each(data.feed.entry, function (i, item) {
+					$.each(item.link, function (y, subitem) {
+						if (subitem.rel == 'alternate') {
+							var qs = K.url.parseSearchParams('?' + subitem.href.split('?')[1])
+							var videoId = qs.v;
+							var video = {
+								title: item.title.$t,
+								id: videoId,
+								url: videoURL + videoId,
+								img_thumb: imageURL + videoId + '/default.jpg',
+								img_large: imageURL + videoId + '/hqdefault.jpg'
+							};
+							videos.push(video);
+						}
+					});
+				});
+				callback(videos);
+			},
+			error: function () {
+				callback(null);
+			}
+		});
+	};
 
 	return youtube;
 

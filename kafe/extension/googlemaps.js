@@ -112,9 +112,10 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
                     }
                 }
                 var iconImage = new google.maps.MarkerImage(mInfos.iconImage,
-					new google.maps.Size(mInfos.width, mInfos.height),
+					null,
 				    new google.maps.Point(0, 0),
-				 	iconPosition
+				 	iconPosition,
+					new google.maps.Size(mInfos.width, mInfos.height)
 				);
             }
 
@@ -736,6 +737,24 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
         }
     };
 
+	/* --------------------------------------------------  
+	Function resize()
+	Description : Refresh resized map
+	--------------------------------------------------  */
+	
+	GM.prototype.resize = function(){
+		google.maps.event.trigger(_map, "resize");
+	};
+	
+	/* --------------------------------------------------  
+	Function setCenter()
+	Description : Pan by center LatLon.
+	--------------------------------------------------  */
+	GM.prototype.setCenter = function() {
+		_map.setCenter(arguments[0]);
+	};
+	
+
     /* --------------------------------------------------  
     Function dismiss()
     Description : Kill the current GMaps.
@@ -761,16 +780,14 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 
 
     /* --------------------------------------------------  
-    Function fitBounds(latLngBounds)
+    Function fitBounds(latLngBounds, [map])
     Description : Pan and zoom the google maps to the Latitude and longitude bound box passed in params.
     @params latLng: google.maps.LatLngBounds.
     --------------------------------------------------  */
 
-    GM.prototype.fitBounds = function (latLngBounds) {
-        if (_ifMapExist(true, 'GM.fitBounds()') && latLngBounds) {
-            console.log(latLngBounds);
-            _map.fitBounds(latLngBounds);
-        }
+    GM.prototype.fitBounds = function (latLngBounds, map) {
+        map = (map) ? map : _map;
+        map.fitBounds(latLngBounds);
     };
 
     /* --------------------------------------------------  
@@ -780,7 +797,7 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
     --------------------------------------------------  */
 
     GM.prototype.fitToMarkers = function () {
-        this.fitBounds(this.toLatLngBounds(this.getMarkersBounds(arguments[0])));
+        this.fitBounds(this.toLatLngBounds(this.getMarkersBounds(arguments[0])), _map);
     };
 
     /* --------------------------------------------------  
@@ -796,10 +813,12 @@ kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefine
 				maxLon = -180
 			;
         for (var i in d) {
-            minLat = Math.min(minLat, Number(d[i][0]));
-            maxLat = Math.max(maxLat, Number(d[i][0]));
-            minLon = Math.min(minLon, Number(d[i][1]));
-            maxLon = Math.max(maxLon, Number(d[i][1]));
+            if (typeof (d[i]) != "function") {
+                 minLat = Math.min(minLat, Number(d[i][0]));
+                 maxLat = Math.max(maxLat, Number(d[i][0]));
+                 minLon = Math.min(minLon, Number(d[i][1]));
+                 maxLon = Math.max(maxLon, Number(d[i][1]));
+             }
         }
 
         return { sw: [minLat, minLon], ne: [maxLat, maxLon] };
