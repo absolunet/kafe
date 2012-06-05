@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.style
 //-------------------------------------------
-kafe.bonify({name:'style', version:'1.1', obj:(function($,K,undefined){
+kafe.bonify({name:'style', version:'1.2', obj:(function($,K,undefined){
 	
 	var _name = K.idantite.non;
 

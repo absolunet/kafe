@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.youtube
 //-------------------------------------------
-kafe.extend({name:'youtube', version:'1.0.1', obj:(function($,K,undefined){
+kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
 
 	// dictionary
 	var _locale = {

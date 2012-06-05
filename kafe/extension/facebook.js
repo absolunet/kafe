@@ -61,7 +61,7 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 	};
 
 	// init ([options])
-	// renders the required script and html tags then inits the Facebook API
+	// inits the Facebook API
 	//-------------------------------------------
 	facebook.init = function() {
 

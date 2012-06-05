@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------
 // kafe.ext.soundcloud
 //-------------------------------------------
-kafe.extend({ name: 'soundcloud', version: '1.0', obj: (function ($, K, undefined) {
+kafe.extend({ name: 'soundcloud', version: '0.1', obj: (function ($, K, undefined) {
 
 	// default params
 	var _params = {

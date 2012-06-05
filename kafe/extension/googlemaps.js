@@ -2,7 +2,7 @@
 // kafe.ext.googlemaps
 // Produced by : Interactive Team
 //-------------------------------------------
-kafe.extend({ name: 'googlemaps', version: '1.0', obj: (function ($, K, undefined) {
+kafe.extend({ name: 'googlemaps', version: '1.1', obj: (function ($, K, undefined) {
 
     K.required('//maps.google.com/maps/api/js');
 

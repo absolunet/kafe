@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.plugin.carousel
 //-------------------------------------------
-kafe.plug({name:'carousel', version:'1.0', obj:(function($,K,undefined){
+kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
 
 	// local variables
 	var

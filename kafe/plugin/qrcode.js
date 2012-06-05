@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.plugin.qrcode
 //-------------------------------------------
-kafe.plug({name:'qrcode', version:'0.1', obj:(function($,K,undefined){
+kafe.plug({name:'qrcode', version:'0.1.1', obj:(function($,K,undefined){
 
 	K.required('qrcode');
 	

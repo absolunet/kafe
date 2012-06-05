@@ -1,7 +1,7 @@
 ﻿//-------------------------------------------
 // kafe.ext.disqus
 //-------------------------------------------
-kafe.extend({ name: 'disqus', version: '1.0', obj: (function ($, K, undefined) {
+kafe.extend({ name: 'disqus', version: '0.1', obj: (function ($, K, undefined) {
 
 	window.disqus_title      = null;
 	window.disqus_shortname  = null;
@@ -64,8 +64,8 @@ kafe.extend({ name: 'disqus', version: '1.0', obj: (function ($, K, undefined) {
 		}
 	};
 
-	// initialize (pageId, url)
-	// init Disqus async.
+	// reset (pageId, url)
+	// reset data
 	//-------------------------------------------
 	disqus.reset = function (pageId, url) {
 		DISQUS.reset({

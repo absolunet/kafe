@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.mobile
 //-------------------------------------------
-kafe.bonify({name:'mobile', version:'1.1', obj:(function($,K,undefined){
+kafe.bonify({name:'mobile', version:'1.1.1', obj:(function($,K,undefined){
 
 	// local variables
 	var

@@ -1,4 +1,4 @@
-	//-------------------------------------------
+//-------------------------------------------
 // kafe.ext.flickr
 //-------------------------------------------
 kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
@@ -144,7 +144,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function($,K,undefined){
 		_params = _mergeParams(arguments[0],_params);
 	};
 
-	// getPhotostream (options)
+	// getPhotostream (options, callback)
 	// get photoStream
 	//-------------------------------------------
 	flickr.getPhotostream = function(options, callback) {
