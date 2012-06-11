@@ -8,19 +8,19 @@ kafe.bonify({name:'url', version:'1.0', obj:(function($,K,undefined){
 	//-------------------------------------------
 	function _parseIt(str,type) {
 		switch (type) {
-			case 'params': {
+			case 'params': 
 				var data  = {};
 				var pairs = str.split('&');
 				for (var i in pairs) {
-					var e = pairs[i].split('=');
+					var e = pairs[i].toString().split('=');
 					data[e[0]] = decodeURI(e[1]);
 				}
 				return data;
-			}
+			break;
 			
-			case 'path': {
+			case 'path':
 				return str.split('/');
-			}
+			break;
 		}
 	}
 
