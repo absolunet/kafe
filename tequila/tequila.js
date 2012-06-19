@@ -15,7 +15,7 @@
             ############
 
 */
-window.tequila = (function(w,d,$,K,undefined){
+window.tequila = (function(w,d,$,undefined){
 
 	// _exists (name)
 	// check if module imported
@@ -33,6 +33,7 @@ window.tequila = (function(w,d,$,K,undefined){
 	var core = {};
 	core.tequila = '';
 	
+	
 	//-------------------------------------------
 	// FN
 	//-------------------------------------------
@@ -45,18 +46,45 @@ window.tequila = (function(w,d,$,K,undefined){
 		fn.internalUsefulFunction = function () {
 
 		};
+		
+		fn.setReadOnlyProperties = function (o,p) {
+			eval("var o=arguments[0], p=arguments[1];");
+			for (var i in p) {
+				try {
+					eval("o.__defineGetter__('"+i+"', function(){ return p['"+i+"']; });");
+				} catch (e) {
+					try {
+						eval("Object.defineProperty(o, '"+i+"', {get:function(){ return p['"+i+"']; }});");
+					} catch (e) {
+						o[i] = p[i];
+					}
+				}
+			}
+		};
 	
 		return fn;
 	})();
-
+	
+	// animation
+	core.animate = function(){
+		return core.tween.to.apply(core.tween.to, arguments)
+	}
+	
+	core.pauseAll = function() {
+		core.tween.pauseAllTweens();
+	}
+	
+	core.resumeAll = function() {
+		core.tween.resumeAllTweens();
+	}
 
 
 	
 	// identification
 	var 
 		_i           = {},
-		_setReadOnly = K.fn.setReadOnlyProperties,
-		_kError      = K.error
+		_setReadOnly = core.fn.setReadOnlyProperties
+		// _kError      = K.error
 	;
 	_setReadOnly(_i = {}, {
 		nombre:      'tequila',
@@ -94,6 +122,29 @@ window.tequila = (function(w,d,$,K,undefined){
 		}
 	};
 	
+	// required (name_or_url)
+	// check if required module is included
+	//-------------------------------------------
+	core.required = function(name) {
+		if (name.substr(0,2) == '//') {
+
+			var found = false;
+			$('script').each(function(){
+				if (new RegExp(name).test(this.src)) {
+					found = true;
+					return false;
+				}
+			});
+
+			if (!found) {
+				throw core.error(new Error('\'' + name+'\' is required'));
+			}
+
+		} else if (!_exists(name)) {
+			throw core.error(new Error(name+' is required'));
+		}
+	};
+	
 	return core;
 
-})(window,document,jQuery,kafe);
+})(window,document,jQuery);
