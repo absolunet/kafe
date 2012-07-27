@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.style
 //-------------------------------------------
-kafe.bonify({name:'style', version:'1.2', obj:(function($,K,undefined){
+kafe.bonify({name:'style', version:'1.3', obj:(function($,K,undefined){
 	
 	var _name = K.idantite.non;
 
@@ -67,6 +67,114 @@ kafe.bonify({name:'style', version:'1.2', obj:(function($,K,undefined){
 				$children.css({display: 'block', marginTop: h + 'px'});
 			}	
 		});
+	};
+	
+	// quickMenu ([params])
+	// add an opening and closing behavior on a list with custom speeds, delays and animation
+	//-------------------------------------------
+	style.quickMenu = function() {
+		
+		var c = {};
+		
+		var options  = (arguments) ? arguments[0] : {};
+		
+		c.selector = options.selector;
+		c.animation = (options.animation) ? options.animation : 'slide';
+		c.openSpeed = (Number(options.openSpeed)) ? Number(options.openSpeed) : 200;
+		c.openDelay = (Number(options.openDelay)) ? Number(options.openDelay) : 500;
+		c.closeSpeed = (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150;
+		c.closeDelay = (Number(options.closeDelay)) ? Number(options.closeDelay) : 400;
+		
+		var $menu = $(c.selector);
+		if (!$menu.length) { return false; }
+		
+		$menu.children()
+			.bind('mouseenter', function(){
+				var $parent = $(this);
+				var $sub = $parent.children('ul');
+				
+				if ($sub.data('kafe-quickmenu-timer') != undefined)
+					clearTimeout($sub.data('kafe-quickmenu-timer'));
+				
+				$parent.addClass('kafe-quickmenu-open');
+				$sub.data('kafe-quickmenu-timer', setTimeout(function() {
+					switch (c.animation) {
+						case 'fade' :
+							$sub.fadeIn(c.openSpeed);
+							break;
+						case 'slide' :
+						default :
+							$sub.slideDown(c.openSpeed);
+							break;
+					}
+				}, c.openDelay));
+			})
+			.bind('mouseleave', function(){
+				var $parent = $(this);
+				var $sub = $parent.children('ul');
+				
+				if ($sub.data('kafe-quickmenu-timer') != undefined)
+					clearTimeout($sub.data('kafe-quickmenu-timer'));
+					
+				$sub.data('kafe-quickmenu-timer', setTimeout(function() {
+					$parent.removeClass('kafe-quickmenu-open');
+					switch (c.animation) {
+						case 'fade' :
+							$sub.fadeOut(c.closeSpeed);
+							break;
+						case 'slide' :
+						default :
+							$sub.slideUp(c.closeSpeed);
+							break;
+					}
+				}, c.closeDelay));
+			});
+		
+	};
+	
+	// quickTip ([params])
+	// add an opening and closing behavior
+	//-------------------------------------------
+	style.quickTip = function() {
+		
+		var c = {};
+		
+		var options  = (arguments) ? arguments[0] : {};
+		
+		c.selector = options.selector;
+		c.openSpeed = (Number(options.openSpeed)) ? Number(options.openSpeed) : 200;
+		c.openDelay = (Number(options.openDelay)) ? Number(options.openDelay) : 500;
+		c.closeSpeed = (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150;
+		c.closeDelay = (Number(options.closeDelay)) ? Number(options.closeDelay) : 400;
+		
+		var $tips = $(c.selector);
+		if (!$tips.length) { return false; }
+		
+		// WIP
+		/*
+		$tips
+			.bind('mouseenter', function(){
+				var $sub = $(this).children('[data-kafequicktip-content]');
+				
+				if ($sub.data('kafequicktip-timer') != undefined)
+					clearTimeout($sub.data('kafequicktip-timer'));
+					
+				$sub.parent().addClass('kafequicktip-open').end().data('kafequicktip-timer', setTimeout(function() {
+					$sub.fadeIn(c.openSpeed);
+				}, c.openDelay));
+			})
+			.bind('mouseleave', function(){
+				var $sub = $(this).next();
+				
+				if ($sub.data('kafequicktip-timer') != undefined)
+					clearTimeout($sub.data('kafequicktip-timer'));
+					
+				$sub.data('kafequicktip-timer', setTimeout(function() {
+					$sub.parent().removeClass('kafequicktip-open').end().fadeOut(c.closeSpeed);
+				}, c.closeDelay));
+			});
+		*/
+		
 	};
 	
 	return style;
