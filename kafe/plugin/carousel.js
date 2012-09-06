@@ -1,4 +1,4 @@
-//-------------------------------------------
+﻿//-------------------------------------------
 // kafe.plugin.carousel
 //-------------------------------------------
 kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
@@ -6,7 +6,7 @@ kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
 	// local variables
 	var
 		_DEBUG  = false,
-		_prefix = K.idantite.non + 'Carousel',
+		_prefix = K.idantite.non + 'carousel',
 		_all    = {}
 	;
 
@@ -147,7 +147,7 @@ kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
 
 		// item
 		} else {
-			target == Number(target);
+			target = Number(target);
 
 			way = (target < c.curr) ? -1 : 1;
 			c.curr = target;
