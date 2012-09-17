@@ -311,6 +311,7 @@ kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
 		;
 		c.preSwitchCallback  = (typeof(options.preSwitchCallback)  == 'function') ? options.preSwitchCallback  : undefined;
 		c.postSwitchCallback = (typeof(options.postSwitchCallback) == 'function') ? options.postSwitchCallback : undefined;
+		c.initCompleteCallback  = (typeof(options.initCompleteCallback)  == 'function') ? options.initCompleteCallback  : undefined;
 		c.statusLink         = !!options.statusLink;
 		c.statusBullet       = (options.statusBullet) ? options.statusBullet : '&bull;';
 
@@ -479,6 +480,12 @@ kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
 
 			// Ajouter à la liste
 			_all[c.id] = c;
+			
+			// Init. Completed callback
+			if (!!c.initCompleteCallback) {
+				c.initCompleteCallback(c);
+			}
+			
 		}
 	}; 
 
