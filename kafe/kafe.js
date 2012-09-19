@@ -336,8 +336,8 @@ window.kafe = (function(w,d,$,undefined){
 		_dtc = _dtc.split(' ');
 		if (!!_dtc.length) {
 			for (var i in _dtc) {
-				if (_dtc[i].substring(0,4) == 'dtc-') {
-					_data.dtc[_dtc[i].substring(4).replace(/-/g,'_')] = true;
+				if (_dtc[i].toString().substring(0,4) == 'dtc-') {
+					_data.dtc[_dtc[i].toString().substring(4).replace(/-/g,'_')] = true;
 				} 
 			}
 		}
