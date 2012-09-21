@@ -481,12 +481,13 @@ kafe.plug({name:'carousel', version:'1.0.1', obj:(function($,K,undefined){
 			// Ajouter à la liste
 			_all[c.id] = c;
 			
-			// Init. Completed callback
-			if (!!c.initCompleteCallback) {
-				c.initCompleteCallback(c);
-			}
-			
 		}
+		
+		// Init. Completed callback
+		if (!!c.initCompleteCallback) {
+			c.initCompleteCallback(c);
+		}
+		
 	}; 
 
 
