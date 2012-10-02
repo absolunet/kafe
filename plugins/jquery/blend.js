@@ -74,4 +74,4 @@
 	blend.speed = 350;
 	blend.callback = false;
 	
-}(jQuery, this));
+}(kafe.jQuery, this));

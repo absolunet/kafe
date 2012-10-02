@@ -2,7 +2,8 @@
 // kafe.ext.googlemaps.styles
 // Make your template online http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
 //-------------------------------------------
-kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefined){
+kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	var _styles = {
 		entrepreneur: {
@@ -73,4 +74,4 @@ kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function($,K,undefine
 	};
 
 	return STYLES;
-})(jQuery,kafe)});
+})(kafe)});

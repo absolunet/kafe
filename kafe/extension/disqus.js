@@ -1,7 +1,8 @@
 ﻿//-------------------------------------------
 // kafe.ext.disqus
 //-------------------------------------------
-kafe.extend({ name: 'disqus', version: '0.1', obj: (function ($, K, undefined) {
+kafe.extend({name:'disqus', version:'0.1', obj:(function (K,undefined) {
+	var $ = K.jQuery;
 
 	window.disqus_title      = null;
 	window.disqus_shortname  = null;
@@ -79,4 +80,4 @@ kafe.extend({ name: 'disqus', version: '0.1', obj: (function ($, K, undefined) {
 
 	return disqus;
 
-})(jQuery, kafe)});
+})(kafe)});

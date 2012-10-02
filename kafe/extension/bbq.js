@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.bbq
 //-------------------------------------------
-kafe.extend({name:'bbq', version:'0.1', obj:(function($,K,undefined){
+kafe.extend({name:'bbq', version:'0.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//default params
 	var _params = {
@@ -63,4 +64,4 @@ kafe.extend({name:'bbq', version:'0.1', obj:(function($,K,undefined){
 
 	return bbq;
 
-})(jQuery,kafe)});
+})(kafe)});

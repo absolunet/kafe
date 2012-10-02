@@ -3,9 +3,10 @@
 // Produced by : Interactive Team
 //-------------------------------------------
 
-kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
+kafe.plug({name:'webcropper', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 	
-	K.required('jQuery.ui.draggable');
+	K.required('kafe.jQuery.ui.draggable');
 	
 	var _cropperExist = false,
 		_isFormBased = false,
@@ -476,8 +477,8 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 		var iLX = $image.position().left.toFixed(2),
 			iLY = $image.position().top.toFixed(2),
 			t = Math.round(iLX) + ',' + Math.round(iLY),
-			ox = t.substring(0, t.indexOf(',')),
-			oy = t.substring(t.indexOf(',')+1, t.length);
+			ox = t.toString().substring(0, t.indexOf(',')),
+			oy = t.toString().substring(t.indexOf(',')+1, t.length);
 		
 		$.ajax({
 			type: 'GET',
@@ -584,4 +585,4 @@ kafe.plug({name:'webcropper', version:'1.0', obj:(function($,K,undefined){
 	
 	return WC;
 	
-})(jQuery,kafe)});
+})(kafe)});

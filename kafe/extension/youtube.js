@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.youtube
 //-------------------------------------------
-kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
+kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	// dictionary
 	var _locale = {
@@ -45,7 +46,7 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
 		for (var i in data) {
 			q += i+'='+data[i].toString()+'&amp;';
 		}
-		return q.substr(0,q.length-5);
+		return q.toString().substr(0,q.length-5);
 	}
 
 	// _simpleSearchResults (options)
@@ -59,7 +60,7 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
 				
 				var entry = {};
 
-				entry.id = (val.id.$t).split('/').pop();
+				entry.id = (val.id.$t).toString().split('/').pop();
 				entry.title = val.title.$t;
 				entry.author = val.author[0].name.$t;
 				entry.publishedDate = new Date(val.published.$t);
@@ -144,8 +145,8 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
 			return;
 		}
 
-		if (playlistId.substr(0, 2) == 'PL') {
-			playlistId = playlistId.substr(2, playlistId.length);
+		if (playlistId.toString().substr(0, 2) == 'PL') {
+			playlistId = playlistId.toString().substr(2, playlistId.length);
 		}
 		
 		var playListURL = 'http://gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?';
@@ -159,7 +160,7 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
 				$.each(data.feed.entry, function (i, item) {
 					$.each(item.link, function (y, subitem) {
 						if (subitem.rel == 'alternate') {
-							var qs = K.url.parseSearchParams('?' + subitem.href.split('?')[1])
+							var qs = K.url.parseSearchParams('?' + subitem.href.toString().split('?')[1])
 							var videoId = qs.v;
 							var video = {
 								title: item.title.$t,
@@ -182,4 +183,4 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function($,K,undefined){
 
 	return youtube;
 
-})(jQuery,kafe)});
+})(kafe)});

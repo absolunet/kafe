@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.plugin.sticky
 //-------------------------------------------
-kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
+kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	// local variables
 	var 
@@ -39,7 +40,7 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
 
 				// original position
 				topOffset     = null,
-				originalTop   = parseInt($e.css('top').substr(0, $e.css('top').length-2)),
+				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2)),
 				originalHori  = $e.css(align),
 				topMargin     = originalTop,
 				sticking      = true,
@@ -149,4 +150,4 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function($,K,undefined){
 	
 	return sticky;
 
-})(jQuery,kafe)});
+})(kafe)});

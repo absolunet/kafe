@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.bonify({name:'form', version:'1.4.1', obj:(function($,K,undefined){
+kafe.bonify({name:'form', version:'1.4.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -107,7 +108,7 @@ kafe.bonify({name:'form', version:'1.4.1', obj:(function($,K,undefined){
 					;
 					
 					if (!!block && nb < 0) {
-						$this.val(val.substr(0,max));
+						$this.val(val.toString().substr(0,max));
 						nb = 0;
 					}
 
@@ -218,4 +219,4 @@ kafe.bonify({name:'form', version:'1.4.1', obj:(function($,K,undefined){
 
 	return form;
 
-})(jQuery,kafe)});
+})(kafe)});

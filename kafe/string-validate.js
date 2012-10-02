@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.string.validate
 //-------------------------------------------
-kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'string.validate', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -161,5 +162,5 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function($,K,undefined)
 
 
 	return validate;
-})(jQuery,kafe)});
+})(kafe)});
 

@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.twitter
 //-------------------------------------------
-kafe.extend({name:'twitter', version:'1.1', obj:(function($,K,undefined){
+kafe.extend({name:'twitter', version:'1.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	// default params
 	var _params = {
@@ -78,4 +79,4 @@ kafe.extend({name:'twitter', version:'1.1', obj:(function($,K,undefined){
 
 	return twitter;
 
-})(jQuery,kafe)});
+})(kafe)});

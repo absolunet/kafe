@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.string.encrypt
 //-------------------------------------------
-kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -93,7 +94,7 @@ kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function($,K,undefined){
 			for (lCount = 0;lCount<=3;lCount++) {
 				lByte = (lValue>>>(lCount*8)) & 255;
 				WordToHexValue_temp = '0' + lByte.toString(16);
-				WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
+				WordToHexValue = WordToHexValue + WordToHexValue_temp.toString().substr(WordToHexValue_temp.length-2,2);
 			}
 			return WordToHexValue;
 		};
@@ -235,4 +236,4 @@ kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function($,K,undefined){
 
 	return encrypt;
 
-})(jQuery,kafe)});
+})(kafe)});

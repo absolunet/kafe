@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.storage
 //-------------------------------------------
-kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'storage', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 	
 	// test storage availability
 	var 
@@ -65,7 +66,7 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
 	// set data in storage
 	//-------------------------------------------
 	function _set(type,key,value,options) {
-		K.required('jQuery.toJSON');
+		K.required('kafe.jQuery.toJSON');
 
 		if (_isAvailable(type)) {
 			options = options || {};
@@ -360,4 +361,4 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function($,K,undefined){
 
 	return storage;
 
-})(jQuery,kafe)});
+})(kafe)});

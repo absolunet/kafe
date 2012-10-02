@@ -1,8 +1,9 @@
 //-------------------------------------------
 // kafe.date
 //-------------------------------------------
-kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
-
+kafe.bonify({name:'date', version:'1.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
+	
 	// dictionary
 	var _dict = {
 		fr: {
@@ -35,7 +36,7 @@ kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
 	//-------------------------------------------
 	function _m3(month, lang) {
 		var d = _dict[_lang(lang)];
-		return (d.m3 && d.m3[month]) ? d.m3[month] : d.m[month].substring(0,3);
+		return (d.m3 && d.m3[month]) ? d.m3[month] : d.m[month].toString().substring(0,3);
 	}
 
 	// _w3 (weekday, [lang])
@@ -43,7 +44,7 @@ kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
 	//-------------------------------------------
 	function _w3(weekday, lang) {
 		var d = _dict[_lang(lang)];
-		return (d.w3 && d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].substring(0,3);
+		return (d.w3 && d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].toString().substring(0,3);
 	}
 
 	// _trim (list, nb)
@@ -52,7 +53,7 @@ kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
 	function _trim(list,nb) {
 		var d = [];
 		for (var i in list) {
-			d.push(list[i].substr(0,nb));
+			d.push(list[i].toString().substr(0,nb));
 		}
 		return d;
 	}
@@ -428,4 +429,4 @@ kafe.bonify({name:'date', version:'1.1', obj:(function($,K,undefined){
 
 	return date;
 
-})(jQuery,kafe)});
+})(kafe)});

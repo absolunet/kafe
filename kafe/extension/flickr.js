@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.flickr
 //-------------------------------------------
-kafe.extend({ name: 'flickr', version: '1.0', obj: (function ($, K, undefined) {
+kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
+	var $ = K.jQuery;
 
     // default params
     var _params = {
@@ -427,5 +428,4 @@ kafe.extend({ name: 'flickr', version: '1.0', obj: (function ($, K, undefined) {
     flickr.api = api;
     return flickr;
 
-})(jQuery, kafe)
-});
+})(kafe)});

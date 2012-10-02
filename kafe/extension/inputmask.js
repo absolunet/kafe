@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.inputmask
 //-------------------------------------------
-kafe.extend({name:'inputmask', version:'1.0', obj:(function($,K,undefined){
+kafe.extend({name:'inputmask', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PRIVATE
@@ -62,4 +63,4 @@ kafe.extend({name:'inputmask', version:'1.0', obj:(function($,K,undefined){
 
 	return inputmask;
 
-})(jQuery,kafe)});
+})(kafe)});

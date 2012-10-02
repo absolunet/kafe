@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.number
 //-------------------------------------------
-kafe.bonify({name:'number', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'number', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -59,5 +60,5 @@ kafe.bonify({name:'number', version:'1.0', obj:(function($,K,undefined){
 
 	return number;
 
-})(jQuery,kafe)});
+})(kafe)});
 

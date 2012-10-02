@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.plugin.qrcode
 //-------------------------------------------
-kafe.plug({name:'qrcode', version:'0.1.1', obj:(function($,K,undefined){
+kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	K.required('qrcode');
 	
@@ -56,4 +57,4 @@ kafe.plug({name:'qrcode', version:'0.1.1', obj:(function($,K,undefined){
 
 	return qrcodeX;
 
-})(jQuery,kafe)});
+})(kafe)});

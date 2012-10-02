@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.geolocation
 //-------------------------------------------
-kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
+kafe.bonify({name:'geolocation', version:'1.0', obj:(function(K,undefined){
+	var $ = K.jQuery;
 	
 	// is available
 	var _isAvailable = !!navigator.geolocation;
@@ -98,4 +99,4 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function($,K,undefined){
 
 	return geolocation;
 
-})(jQuery,kafe)});
+})(kafe)});

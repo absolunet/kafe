@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.mobile
 //-------------------------------------------
-kafe.bonify({name:'mobile', version:'1.1.1', obj:(function($,K,undefined){
+kafe.bonify({name:'mobile', version:'1.1.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	// local variables
 	var
@@ -54,7 +55,7 @@ kafe.bonify({name:'mobile', version:'1.1.1', obj:(function($,K,undefined){
 	mobile.redirector = function() {
 		
 		function _saveCookie(activate) {
-			var domain = window.location.hostname.split('.');
+			var domain = window.location.hostname.toString().split('.');
 			domain = (domain.length >=2) ? domain[domain.length-2]+'.'+ domain[domain.length-1] : '';
 			if (!!activate) {
 	            document.cookie = 'NoRedirectMobile=0;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date('2010-04-19').toUTCString());
@@ -82,4 +83,4 @@ kafe.bonify({name:'mobile', version:'1.1.1', obj:(function($,K,undefined){
 
 	return mobile;
 
-})(jQuery,kafe)});
+})(kafe)});

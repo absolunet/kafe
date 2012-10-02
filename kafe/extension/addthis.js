@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.addthis
 //-------------------------------------------
-kafe.extend({name:'addthis', version:'0.1', obj:(function($,K,undefined){
+kafe.extend({name:'addthis', version:'0.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -22,4 +23,4 @@ kafe.extend({name:'addthis', version:'0.1', obj:(function($,K,undefined){
 	
 	return addthis;
 
-})(jQuery,kafe)});
+})(kafe)});

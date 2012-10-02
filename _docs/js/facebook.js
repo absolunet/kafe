@@ -2,7 +2,8 @@
 // Client : kafe.ext.facebook
 //------------------------------------------------------------------------------------*/
 
-var MONSITE = (function(w,d,$,K,undefined){
+var MONSITE = (function(w,d,K,undefined){
+	var $ = K.jQuery;
 	
 	// ------------------------------------------
 	// PRIVATE
@@ -75,5 +76,5 @@ var MONSITE = (function(w,d,$,K,undefined){
 	});
 	
 	return MS;
-})(window,document,jQuery,kafe);
+})(window,document,kafe);
 

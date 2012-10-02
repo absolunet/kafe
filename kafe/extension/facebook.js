@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.facebook
 //-------------------------------------------
-kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
+kafe.extend({name:'facebook', version:'1.4', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	// dictionary
 	var _locale = {
@@ -188,4 +189,4 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function($,K,undefined){
 
 	return facebook;
 
-})(jQuery,kafe)});
+})(kafe)});

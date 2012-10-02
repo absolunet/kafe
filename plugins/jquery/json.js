@@ -190,4 +190,4 @@
 		return '"' + string + '"';
 	};
 
-})( jQuery );
+})( kafe.jQuery );

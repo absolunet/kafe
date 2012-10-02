@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.ext.colorbox
 //-------------------------------------------
-kafe.extend({name:'colorbox', version:'1.2.1', obj:(function($,K,undefined){
+kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//default params
 	var 
@@ -21,7 +22,7 @@ kafe.extend({name:'colorbox', version:'1.2.1', obj:(function($,K,undefined){
 			$body = $('body'),
 			classes = $body.attr('class') || ''
 		;
-		classes = classes.split(' ');
+		classes = classes.toString().split(' ');
 		for (var i in classes) {
 			if (/^cb-/.test(classes[i])) {
 				$body.removeClass(classes[i]);
@@ -64,7 +65,7 @@ kafe.extend({name:'colorbox', version:'1.2.1', obj:(function($,K,undefined){
 		if (!$body.hasClass('cb-'+theme)) {
 			
 			var classes = $body.attr('class') || '';
-			classes = classes.split(' ');
+			classes = classes.toString().split(' ');
 			for (var i in classes) {
 				if (/^cb-/.test(classes[i])) {
 					$body.removeClass(classes[i]);
@@ -178,4 +179,4 @@ kafe.extend({name:'colorbox', version:'1.2.1', obj:(function($,K,undefined){
 
 	return colorbox;
 
-})(jQuery,kafe)});
+})(kafe)});

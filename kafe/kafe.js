@@ -63,7 +63,7 @@
                                          ....'''''',,;;;;:c:::;,,''....                                        
 */
 
-window.kafe = (function(w,d,$,undefined){
+window.kafe = (function(w,d,undefined){
 
 	// _exists (name)
 	// check if module imported
@@ -85,6 +85,12 @@ window.kafe = (function(w,d,$,undefined){
 	//-------------------------------------------
 	var core = {};
 	core.kafe = '';
+	
+	//-------------------------------------------
+	// jQuery charger
+	//-------------------------------------------
+	var $ = core.jQuery = (w.kafe_jQuery != undefined) ? w.kafe_jQuery : w.jQuery;
+	delete w.kafe_jQuery;
 	
 	//-------------------------------------------
 	// FN
@@ -166,7 +172,7 @@ window.kafe = (function(w,d,$,undefined){
 			// if has Native methods
 			if (objNative != undefined) {
 				var 
-					type           = oname.split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
+					type           = oname.toString().split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
 					isNativeObject = !!(':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1),
 					isNativeModule = !!(':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1)
 				;
@@ -174,7 +180,7 @@ window.kafe = (function(w,d,$,undefined){
 				// if object
 				if (isNativeObject) {
 
-					var sub = oname.split('.');
+					var sub = oname.toString().split('.');
 					
 					// if subclass
 					if (sub.length > 1) {
@@ -197,7 +203,7 @@ window.kafe = (function(w,d,$,undefined){
 				
 				// if module
 				} else if (isNativeModule) {
-					var sub = oname.split('.');
+					var sub = oname.toString().split('.');
 					
 					// if subclass
 					if (sub.length > 1) {
@@ -252,7 +258,7 @@ window.kafe = (function(w,d,$,undefined){
 	// check if required module is included
 	//-------------------------------------------
 	core.required = function(name) {
-		if (name.substr(0,2) == '//') {
+		if (name.toString().substr(0,2) == '//') {
 
 			var found = false;
 			$('script').each(function(){
@@ -333,7 +339,7 @@ window.kafe = (function(w,d,$,undefined){
 
 		// parse detections
 		_dtc = _de.className || '';
-		_dtc = _dtc.split(' ');
+		_dtc = _dtc.toString().split(' ');
 		if (!!_dtc.length) {
 			for (var i in _dtc) {
 				if (_dtc[i].toString().substring(0,4) == 'dtc-') {
@@ -368,7 +374,7 @@ window.kafe = (function(w,d,$,undefined){
 
 	return core;
 
-})(window,document,jQuery);
+})(window,document);
 
 
 
@@ -390,4 +396,4 @@ window.kafe = (function(w,d,$,undefined){
 		$(this[0]).append(str);
 	    return this;
 	};
-})(jQuery);	
+})(kafe.jQuery);	

@@ -1,7 +1,8 @@
 //-------------------------------------------
 // kafe.string
 //-------------------------------------------
-kafe.bonify({name:'string', version:'1.1', obj:(function($,K,undefined){
+kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
+	var $ = K.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -79,7 +80,7 @@ kafe.bonify({name:'string', version:'1.1', obj:(function($,K,undefined){
 			return o;
 		}
 
-		K.required('jQuery.toJSON');
+		K.required('kafe.jQuery.toJSON');
 		return cast($.evalJSON(s));
 	};
 
@@ -148,5 +149,5 @@ kafe.bonify({name:'string', version:'1.1', obj:(function($,K,undefined){
 
 	return string;
 
-})(jQuery,kafe)});
+})(kafe)});
 
