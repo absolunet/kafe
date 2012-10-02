@@ -78,26 +78,33 @@ kafe.bonify({name:'style', version:'1.3', obj:(function($,K,undefined){
 		
 		var options  = (arguments) ? arguments[0] : {};
 		
-		c.selector = options.selector;
+		c.container = options.container;
+		c.handle = (options.handle) ? options.handle : 'li';
+		c.submenus = (options.submenus) ? options.submenus : 'ul';
 		c.animation = (options.animation) ? options.animation : 'slide';
 		c.openSpeed = (Number(options.openSpeed)) ? Number(options.openSpeed) : 200;
 		c.openDelay = (Number(options.openDelay)) ? Number(options.openDelay) : 500;
 		c.closeSpeed = (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150;
 		c.closeDelay = (Number(options.closeDelay)) ? Number(options.closeDelay) : 400;
+		c.enterCallback  = (typeof(options.enterCallback)  == 'function') ? options.enterCallback  : undefined;
+		c.leaveCallback  = (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined;
 		
-		var $menu = $(c.selector);
+		var $menu = $(c.container);
 		if (!$menu.length) { return false; }
 		
-		$menu.children()
+		$menu.children(c.handle)
 			.bind('mouseenter', function(){
 				var $parent = $(this);
-				var $sub = $parent.children('ul');
+				var $sub = $parent.children(c.submenus);
 				
 				if ($sub.data('kafe-quickmenu-timer') != undefined)
 					clearTimeout($sub.data('kafe-quickmenu-timer'));
 				
 				$parent.addClass('kafe-quickmenu-open');
 				$sub.data('kafe-quickmenu-timer', setTimeout(function() {
+					if (!!c.enterCallback) {
+						c.enterCallback($sub);
+					}
 					switch (c.animation) {
 						case 'fade' :
 							$sub.fadeIn(c.openSpeed);
@@ -111,23 +118,33 @@ kafe.bonify({name:'style', version:'1.3', obj:(function($,K,undefined){
 			})
 			.bind('mouseleave', function(){
 				var $parent = $(this);
-				var $sub = $parent.children('ul');
+				var $sub = $parent.children(c.submenus);
 				
 				if ($sub.data('kafe-quickmenu-timer') != undefined)
 					clearTimeout($sub.data('kafe-quickmenu-timer'));
-					
-				$sub.data('kafe-quickmenu-timer', setTimeout(function() {
+				
+				if ($sub.size() > 0) {
+					$sub.data('kafe-quickmenu-timer', setTimeout(function() {
+						$parent.removeClass('kafe-quickmenu-open');
+						if (!!c.leaveCallback) {
+							c.leaveCallback($sub);
+						}
+						switch (c.animation) {
+							case 'fade' :
+								$sub.fadeOut(c.closeSpeed);
+								break;
+							case 'slide' :
+							default :
+								$sub.slideUp(c.closeSpeed);
+								break;
+						}
+					}, c.closeDelay));
+				} else {
 					$parent.removeClass('kafe-quickmenu-open');
-					switch (c.animation) {
-						case 'fade' :
-							$sub.fadeOut(c.closeSpeed);
-							break;
-						case 'slide' :
-						default :
-							$sub.slideUp(c.closeSpeed);
-							break;
+					if (!!c.leaveCallback) {
+						c.leaveCallback($sub);
 					}
-				}, c.closeDelay));
+				}
 			});
 		
 	};
