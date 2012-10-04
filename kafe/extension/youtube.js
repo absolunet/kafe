@@ -149,9 +149,9 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
 			playlistId = playlistId.toString().substr(2, playlistId.length);
 		}
 		
-		var playListURL = 'http://gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?';
-		var videoURL = 'http://www.youtube.com/watch?v=';
-		var imageURL = 'http://img.youtube.com/vi/';
+		var playListURL = '//gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?';
+		var videoURL = '//www.youtube.com/watch?v=';
+		var imageURL = '//img.youtube.com/vi/';
 		$.ajax({
 			url: playListURL,
 			dataType: 'json',

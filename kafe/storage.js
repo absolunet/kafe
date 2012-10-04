@@ -358,6 +358,29 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function(K,undefined){
 	storage.removeAllSession = function() {
 		_removeAll(SESSION);
 	};
+	
+	// getJSON (url [,data] ,callback)
+	// remove all data from session storage
+	//-------------------------------------------
+	storage.getJSON = function() {
+		var 
+			url      = arguments[0],
+			options  = (typeof(arguments[1]) != 'function') ? arguments[1] : {expires:600},
+			callback = (typeof(arguments[1]) != 'function') ? arguments[2] : arguments[1],
+			key      = 'kafe.storage.getJSON<'+url+'>',
+			cache    = storage.getSessionItem(key)
+		;
+		
+		if (cache != undefined) {
+			callback(cache);
+		} else {
+			$.getJSON(url, function(data) {
+				storage.setSessionItem(key, data, options);
+				callback(data);
+			});
+		}
+	};	
+
 
 	return storage;
 

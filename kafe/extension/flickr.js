@@ -71,7 +71,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
             var photo = photos[i];
 
             // url
-            photo.url = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id + '/';
+            photo.url = '//www.flickr.com/photos/' + photo.pathalias + '/' + photo.id + '/';
             photo.description = photo.description._content;
 
             // sizes

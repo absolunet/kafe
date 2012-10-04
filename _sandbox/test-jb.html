@@ -30,6 +30,7 @@
 	<script src="../plugins/jquery/iviewer.js"></script>
 	<script src="../plugins/jquery/json.js"></script>
 	<script src="../plugins/jquery/mobile-gestures.custom.js"></script>
+	<script src="../plugins/jquery/mobile.custom.js"></script>
 	<script src="../plugins/jquery/scrollto.js"></script>
 	<script src="../plugins/jquery/textselect.js"></script>
 	<script src="../plugins/jquery/tmpl.js"></script>
@@ -229,6 +230,11 @@
 			kafe.storage.removeAllPersistent();
 
 			console.log( kafe.storage.getAllPersistentItems() );
+
+
+			kafe.storage.getJSON('//twitter.com/statuses/user_timeline/absolunet.json?count=3&callback=?', function(data) {
+				console.log(data);
+			});
 
 
 			kafe.geolocation.locate({
