@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.style
 //-------------------------------------------
-kafe.bonify({name:'style', version:'1.4', obj:(function(K,undefined){
+kafe.bonify({name:'style', version:'1.5', obj:(function(K,undefined){
 	var $ = K.jQuery;
 	
 	var _name = K.idantite.non;
@@ -18,7 +18,11 @@ kafe.bonify({name:'style', version:'1.4', obj:(function(K,undefined){
 	style.equalHeight = function() {
 		function _doIt() {
 			var $z = $(arguments[0]);
-			$z.height( Math.max.apply(Math, $z.map(function(){ return $(this).height(); }).get()) );
+			var maxOuterHeight = Math.max.apply(Math, $z.map(function(){ return $(this).outerHeight(); }).get());
+			$z.each(function() {
+				var $this = $(this);
+				$this.height( maxOuterHeight - ( $this.outerHeight() - $this.height() ) );
+			})
 		}
 
 		var $o          = $(arguments[0]);
