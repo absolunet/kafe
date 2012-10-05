@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.ext.flickr
 //-------------------------------------------
-kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
+kafe.extend({name:'flickr', version:'1.1', obj:(function (K,undefined) {
 	var $ = K.jQuery;
 
 	// default params
@@ -271,7 +271,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
 		return api.photosets_getList(options, callback);
 	};
 
-	// getPhotosetCover (options, callback)
+	// getPhotosetCover (photoset, callback)
 	// get a photoset cover
 	//-------------------------------------------
 	flickr.getPhotosetCover = function (photoset, callback) {
@@ -301,7 +301,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
 		return api.photos_search(options, callback);
 	};
 
-	// getOptimizedSize (options, callback)
+	// getOptimizedSize (photo,options)
 	// get optimized size (optSize) for a photo
 	//-------------------------------------------
 	flickr.getOptimizedSize = function (photo, options) {
@@ -362,7 +362,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
 		return imgElement;
 	};
 
-	// getBgImg (photo, options, attributes)
+	// getBgImg (photo, options)
 	// return optimized background styles for a photo
 	//-------------------------------------------
 	flickr.getBgImageStyles = function (photo, options) {
@@ -379,7 +379,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
 	//-------------------------------------------
 	var api = {};
 
-	// photosets_getList (options)
+	// photosets_getList (options,callback)
 	// get the photosets
 	//-------------------------------------------
 	api.photosets_getList = function (options, callback) {
@@ -394,7 +394,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
 		);
     };
 
-    // photosets_getPhotos (options)
+    // photosets_getPhotos (options,callback)
     // get the list of photos in a set.
     //-------------------------------------------
     api.photosets_getPhotos = function (options, callback) {
@@ -409,7 +409,7 @@ kafe.extend({name:'flickr', version:'1.0', obj:(function (K,undefined) {
 		);
     };
 
-    // photos_search (options)
+    // photos_search (options,callback)
     // search photos
     //-------------------------------------------
     api.photos_search = function (options, callback) {

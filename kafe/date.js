@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.date
 //-------------------------------------------
-kafe.bonify({name:'date', version:'1.1', obj:(function(K,undefined){
+kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 	var $ = K.jQuery;
 	
 	// dictionary
@@ -376,8 +376,8 @@ kafe.bonify({name:'date', version:'1.1', obj:(function(K,undefined){
 		}
 	};
 
-	// makeMonthCalendar (month,year,links)
-	// refresh a day dropdown depending of the month-year
+	// makeMonthCalendar (year,month,[links])
+	// returns a html table containg the monthly calendar
 	//-------------------------------------------
 	date.makeMonthCalendar = function(y,m,links) {
 		--m;

@@ -1,7 +1,7 @@
 //-------------------------------------------
 // kafe.storage
 //-------------------------------------------
-kafe.bonify({name:'storage', version:'1.0', obj:(function(K,undefined){
+kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 	var $ = K.jQuery;
 	
 	// test storage availability
@@ -360,7 +360,7 @@ kafe.bonify({name:'storage', version:'1.0', obj:(function(K,undefined){
 	};
 	
 	// getJSON (url [,data] ,callback)
-	// remove all data from session storage
+	// call and cache a getJSON() call
 	//-------------------------------------------
 	storage.getJSON = function() {
 		var 
