@@ -203,36 +203,36 @@ kafe.bonify({name:'date', version:'1.1', obj:(function(K,undefined){
 			seconds   = date.getSeconds(),
 			hours12   = ((hours % 12) == 0) ? 12 : (hours % 12),
 			hoursAmPm = Math.floor(hours/12),
-		                                                                      // 2011-01-02 15:04:05
-			data = {                                                          // -------------------
-				Y: year,                                                      // year           2011
-				y: year.toString().substring(2),                              // year             11
-				M: pad(month),                                                // month            01
-				m: month,                                                     // month             1
-				A: d.m[month-1],                                              // month       January
-				a: d.m[month-1].toLowerCase(),                                // month       january
-				B: this.getMonth3Names(lang)[month-1],                        // month           Jan
-				b: this.getMonth3Names(lang)[month-1].toLowerCase(),          // month           jan
-				C: this.getMonth2Names(lang)[month-1].toUpperCase(),          // month            JA
-				c: this.getMonth2Names(lang)[month-1],                        // month            Ja
-				D: pad(day),                                                  // day              02
-				d: day,                                                       // day               2
-				e: this.getDayNames(lang)[day-1],                             // day             2nd
-				W: d.w[weekday-1],                                            // weekday      Sunday
-				w: d.w[weekday-1].toLowerCase(),                              // weekday      sunday
-				X: this.getWeekday3Names(lang)[weekday-1],                    // weekday         Sun
-				x: this.getWeekday3Names(lang)[weekday-1].toLowerCase(),      // weekday         sun
-				Z: this.getWeekday2Names(lang)[weekday-1],                    // weekday          Su
-				z: this.getWeekday2Names(lang)[weekday-1].toLowerCase(),      // weekday          su
-				H: pad(hours),                                                // hour             15
-				h: hours,                                                     // hour             15
-				K: pad(hours12),                                              // hour             03 
-				k: hours12,                                                   // hour              3
-				p: (hoursAmPm) ? 'pm' : 'am',                                 // hour             pm
-				I: pad(minutes),                                              // minute           04
-				i: minutes,                                                   // minute            4
-				S: pad(seconds),                                              // second           05
-				s: seconds                                                    // second            5
+		                                                                    // 2011-01-02 15:04:05
+			data = {                                                        // -------------------
+				Y: year,                                                    // year           2011
+				y: year.toString().substring(2),                            // year             11
+				M: pad(month),                                              // month            01
+				m: month,                                                   // month             1
+				A: d.m[month-1],                                            // month       January
+				a: d.m[month-1].toLowerCase(),                              // month       january
+				B: this.getMonth3Names(lang)[month-1],                      // month           Jan
+				b: this.getMonth3Names(lang)[month-1].toLowerCase(),        // month           jan
+				C: this.getMonth2Names(lang)[month-1].toUpperCase(),        // month            JA
+				c: this.getMonth2Names(lang)[month-1],                      // month            Ja
+				D: pad(day),                                                // day              02
+				d: day,                                                     // day               2
+				e: this.getDayNames(lang)[day-1],                           // day             2nd
+				W: d.w[weekday],                                            // weekday      Sunday
+				w: d.w[weekday].toLowerCase(),                              // weekday      sunday
+				X: this.getWeekday3Names(lang)[weekday],                    // weekday         Sun
+				x: this.getWeekday3Names(lang)[weekday].toLowerCase(),      // weekday         sun
+				Z: this.getWeekday2Names(lang)[weekday],                    // weekday          Su
+				z: this.getWeekday2Names(lang)[weekday].toLowerCase(),      // weekday          su
+				H: pad(hours),                                              // hour             15
+				h: hours,                                                   // hour             15
+				K: pad(hours12),                                            // hour             03 
+				k: hours12,                                                 // hour              3
+				p: (hoursAmPm) ? 'pm' : 'am',                               // hour             pm
+				I: pad(minutes),                                            // minute           04
+				i: minutes,                                                 // minute            4
+				S: pad(seconds),                                            // second           05
+				s: seconds                                                  // second            5
 			}
 		;	
 
@@ -376,7 +376,53 @@ kafe.bonify({name:'date', version:'1.1', obj:(function(K,undefined){
 		}
 	};
 
+	// makeMonthCalendar (month,year,links)
+	// refresh a day dropdown depending of the month-year
+	//-------------------------------------------
+	date.makeMonthCalendar = function(y,m,links) {
+		--m;
+		
+		var 
+			links    = links || {},
+			weekdays = date.getWeekday3Names(),
+			max      = date.getMaxMonth(y)[m],
+			firstDay = new Date(y,m,1).getDay(),
+			week     = 0,
+			html     = '<table data-month="'+date.format('%Y-%M', new Date(y,m,1))+'"><caption>'+date.getMonthNames()[m]+' '+y+'</caption><thead><tr>'
+		;
+		
+		// weekdays
+		for (var i in weekdays) {
+			html += '<th>'+weekdays[i]+'</th>'
+		}
 
+		html += '</thead><tbody><tr>'
+
+		// start padding
+		for (var i=0; i<firstDay; ++i) {
+			html += '<td>&nbsp;</td>';
+			++week;
+		}
+
+		// days
+		for (var i=1; i<=max; ++i) {
+			if (week == 7) {
+				html += '</tr><tr>';
+				week = 0;
+			}
+			
+			var thisDate = date.format('%Y-%M-%D', new Date(y,m,i));
+			html += '<td data-date="'+thisDate+'">' + ((links[thisDate]) ? '<a href="'+links[thisDate]+'">'+i+'</a>' : '<span>'+i+'</span>') + '</td>';
+			++week;
+		}
+
+		// end padding
+		for (var i=week; i<7; ++i) {
+			html += '<td>&nbsp;</td>';
+		}
+
+		return html+'</tr></tbody></table>';
+	};
 
 
 

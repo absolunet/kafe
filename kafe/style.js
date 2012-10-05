@@ -44,14 +44,6 @@ kafe.bonify({name:'style', version:'1.5', obj:(function(K,undefined){
 		}
 	};
 	
-	// makeButton ([elements])
-	// add spans to create a flexible button
-	//-------------------------------------------
-	style.makeButton = function(e) {
-		var $e = (e) ? $(e) : $('a.Btn:not(.'+_name+'-makebutton-processed)');
-		$e.addClass(_name+'-makebutton-processed').wrapInner('<span class="text" />').prepend('<span class="left" />');
-	};
-	
 	// vAlign ([elements])
 	// vertically align an element inside its parent
 	//-------------------------------------------

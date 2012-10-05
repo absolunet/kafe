@@ -58,10 +58,10 @@ kafe.bonify({name:'mobile', version:'1.1.1', obj:(function(K,undefined){
 			var domain = window.location.hostname.toString().split('.');
 			domain = (domain.length >=2) ? domain[domain.length-2]+'.'+ domain[domain.length-1] : '';
 			if (!!activate) {
-	            document.cookie = 'NoRedirectMobile=0;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date('2010-04-19').toUTCString());
-	        } else {
-	            document.cookie = 'NoRedirectMobile=1;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date(new Date().getTime() + 90 * 24 * 60 * 60 * 1000).toUTCString());
-	        }
+				document.cookie = 'NoRedirectMobile=0;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date('2010-04-19').toUTCString());
+			} else {
+				document.cookie = 'NoRedirectMobile=1;' + ((domain) ? 'domain='+domain+';' :'')  +'expires=' + (new Date(new Date().getTime() + 90 * 24 * 60 * 60 * 1000).toUTCString());
+			}
 		}
 
 		$('body').on('click', 'a[data-'+_name+'mobile-redirector="true"]', function(){ _saveCookie(false); } );
