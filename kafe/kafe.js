@@ -1,4 +1,4 @@
-/*                                                                                                             
+﻿/*                                                                                                             
                                                     .   ..  ..                                                 
                              ....',;;:::clccllodddoooddoolodddocllclolllodollccccc::;,'...                     
                    ..,;:codddollllcccc:;,,'','........   ....    ...........';:c:cllodddxxkxxdolc;'..          
@@ -148,7 +148,7 @@ window.kafe = (function(w,d,undefined){
 	var _i = {};
 	_coreReadOnly(_i = {}, {
 		non:    'kafe',
-		vesyon: '1.6-trunk',
+		vesyon: '1.7.0-trunk',
 		griyaj: 'absolunet.com'
 	});
 	_coreReadOnly(core,{kafe: _i.vesyon});
