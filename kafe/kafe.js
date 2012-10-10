@@ -90,8 +90,12 @@ window.kafe = (function(w,d,undefined){
 	// jQuery charger
 	//-------------------------------------------
 	var $ = core.jQuery = (w.kafe_jQuery != undefined) ? w.kafe_jQuery : w.jQuery;
-	delete w.kafe_jQuery;
-	
+	try {
+		delete w.kafe_jQuery;
+	} catch(e) {
+		w.kafe_jQuery = undefined;
+	}	
+
 	//-------------------------------------------
 	// FN
 	//-------------------------------------------

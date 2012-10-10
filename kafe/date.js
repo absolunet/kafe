@@ -326,16 +326,26 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 			// Mon Nov 01 01:49:22 +0000 2010
 			} else if (e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\+\-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s)) {
 				year   = y2y4(e[8]);
-				month  = $.inArray(e[3], m)+1;
+				month  = $.inArray(e[2], m)+1;
 				day    = e[3];
 				hour   = e[4];
 				minute = e[5];
 				second = e[6];
 				delta  = e[7]/100;
+
+			// 2012-08-08T12:18:00.000-04:00
+			} else if (e = new RegExp('^([0-9]{2,4})\-([0-9]{2})\-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\.([0-9]{3})([\+\-])([0-9]{2})\:([0-9]{2})$','gi').exec(s)) {
+				year   = y2y4(e[1]);
+				month  = e[2];
+				day    = e[3];
+				hour   = e[4];
+				minute = e[5];
+				second = e[6];
+				delta  = (Number(e[9]) + (Number(e[10])/60)) * ((e[8] == '-') ? -1 : 1);
 			}
 
 			var d = new Date(year, month-1, day, hour, minute, second, 0);
-			return (delta) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
+			return (delta != undefined) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
 
 		} else {
 			return new Date(ts);
