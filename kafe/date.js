@@ -388,6 +388,7 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 			max      = date.getMaxMonth(y)[m],
 			firstDay = new Date(y,m,1).getDay(),
 			week     = 0,
+			today    = date.format('%Y-%M-%D', new Date()),
 			html     = '<table data-month="'+date.format('%Y-%M', new Date(y,m,1))+'"><caption>'+date.getMonthNames()[m]+' '+y+'</caption><thead><tr>'
 		;
 		
@@ -411,8 +412,9 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 				week = 0;
 			}
 			
+			
 			var thisDate = date.format('%Y-%M-%D', new Date(y,m,i));
-			html += '<td data-date="'+thisDate+'">' + ((links[thisDate]) ? '<a href="'+links[thisDate]+'">'+i+'</a>' : '<span>'+i+'</span>') + '</td>';
+			html += '<td data-date="'+thisDate+'"'+((thisDate == today) ? ' class="Today"' : '')+'>' + ((links[thisDate]) ? '<a href="'+links[thisDate]+'">'+i+'</a>' : '<span>'+i+'</span>') + '</td>';
 			++week;
 		}
 
@@ -423,6 +425,7 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 
 		return html+'</tr></tbody></table>';
 	};
+
 
 
 
