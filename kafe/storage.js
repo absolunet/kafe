@@ -40,22 +40,50 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 		return (arguments[0] == LOCAL) ? localStorage : sessionStorage;
 	}
 
+	// _toObject(string)
+	// same as kafe.string.toObject()
+	//-------------------------------------------
+	function _toObject(s) {
+		
+		function cast(o) {
+			for (var i in o) {
+				// object
+				if (typeof(o[i]) == 'object') {
+					o[i] = cast(o[i]);
+				
+				// date
+				} else if (/^\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(o[i])) {
+					o[i] = new Date(o[i]);
+				}
+			}
+			return o;
+		}
 
+		K.required('kafe.jQuery.toJSON');
+		return cast($.evalJSON(s));
+	}
 
 	// _get (type, key)
 	// get data from storage
 	//-------------------------------------------
 	function _get(type, key) {
-		K.required('kafe.string');
-
 		if (_isAvailable(type)) {
-			var data = K.string.toObject(_getStorageObj(type).getItem(key));
+			var data = _toObject(_getStorageObj(type).getItem(key));
 		
 			if (!!data) {
+				
 				if (!!data.expires && data.expires < new Date()) {
 					_remove(type,key);
-				} else {
-					return data.data;
+
+				} else if (!!data.cookie) {
+
+					K.required('kafe.jQuery.cookie');
+					if (data.cookie != $.cookie(key)) {
+						_remove(type,key);
+
+					} else {
+						return data.data;
+					}
 				}
 			}
 		}
@@ -72,11 +100,16 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 			options = options || {};
 			var data = {
 				//modified: new Date(),
-				data:     value
+				data: value
 			};
 		
 			if (!!options.expires) {
-				data.expires = new Date( new Date().getTime()+(options.expires * 1000) );
+				if (options.expires == 'cookie') {
+					K.required('kafe.jQuery.cookie');
+					data.cookie = $.cookie(key);
+				} else {
+					data.expires = new Date( new Date().getTime()+(options.expires * 1000) );
+				}
 			}
 		
 			_getStorageObj(type).setItem(key, $.toJSON(data));
@@ -363,23 +396,26 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 	// call and cache a getJSON() call
 	//-------------------------------------------
 	storage.getJSON = function() {
-		var 
-			url      = arguments[0],
-			options  = (typeof(arguments[1]) != 'function') ? arguments[1] : {expires:600},
-			callback = (typeof(arguments[1]) != 'function') ? arguments[2] : arguments[1],
-			key      = 'kafe.storage.getJSON<'+url+'>',
-			cache    = storage.getSessionItem(key)
-		;
+		if (_isAvailable(SESSION)) {
+			var 
+				url      = arguments[0],
+				options  = (typeof(arguments[1]) != 'function') ? arguments[1] : {expires:600},
+				callback = (typeof(arguments[1]) != 'function') ? arguments[2] : arguments[1],
+				key      = 'kafe-storage-getJSON_'+url.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+				cache    = storage.getSessionItem(key)
+			;
 		
-		if (cache != undefined) {
-			callback(cache);
-		} else {
-			$.getJSON(url, function(data) {
-				storage.setSessionItem(key, data, options);
-				callback(data);
-			});
+			if (cache != undefined) {
+				callback(cache);
+			} else {
+				$.getJSON(url, function(data) {
+					storage.setSessionItem(key, data, options);
+					callback(data);
+				});
+			}
 		}
 	};	
+
 
 
 	return storage;
