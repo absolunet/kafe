@@ -68,8 +68,10 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 	//-------------------------------------------
 	function _get(type, key) {
 		if (_isAvailable(type)) {
-			var data = _toObject(_getStorageObj(type).getItem(key));
-		
+			var 
+				sData = _getStorageObj(type).getItem(key),
+				data = (sData) ? K.string.toObject(sData) : undefined
+			;
 			if (!!data) {
 				
 				if (!!data.expires && data.expires < new Date()) {
