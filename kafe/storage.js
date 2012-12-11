@@ -86,6 +86,8 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 					} else {
 						return data.data;
 					}
+				} else {
+					return data.data;
 				}
 			}
 		}
