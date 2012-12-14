@@ -42,6 +42,35 @@ kafe.extend({name:'googlemaps.styles', version:'1.0', obj:(function(K,undefined)
 					]
 				}
 			]
+		},
+		blackwhite: {
+			name:   'BlackAndWhite',
+			style: [
+				{
+					featureType: 'all',
+				    elementType: 'all',
+					stylers: [
+						{ Visibility: 'on'},
+						{ Weight: 1},
+				        { saturation:-100 },
+						{ Invertlightness:true },
+						{ Lightness:-55 },
+						{ Gamma : 1.22 }
+				      ]	
+				}
+			]
+		},
+		noLabels: {
+			name:   'noLabels',
+			style: [
+				{
+					featureType: 'poi',
+				    elementType: 'labels',
+					stylers: [
+						{ Visibility: 'off'}
+				      ]	
+				}
+			]
 		}
 	};
 
