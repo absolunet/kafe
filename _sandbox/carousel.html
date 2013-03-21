@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>kafe | carousel</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+	<script src="../plugins/cssua.custom.js"></script>
+	<script src="../kafe/kafe.js"></script>
+	<script src="../kafe/plugin/carousel.js"></script>
+</head>
+<body>
+
+<script>
+$(function() {
+
+	var kCarousel = kafe.plugin.carousel;
+
+	var a = new kCarousel({
+		id:          'Partenaires', 
+		wrap:         true,
+		autoInterval: 4000
+	});
+
+	a.dump();
+	
+});
+		
+
+</script>
+
+
+
+
+<section data-kafecarousel="Partenaires">
+	<a href="http://www.bos.ca/" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_bos.png" alt="Agence Bos" /></a>
+	<a href="http://www.clraymond.com/" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_lyseraymond.png" alt="Communications Lise Raymond" /></a>
+	<a href="http://www.cafellini.com/" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_cafellini.png" alt="Cafellini" /></a>
+	<a href="http://www.sunlife.ca/F/search/branch/default.aspx?BID=B095" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_sunlife.png" alt="La Financière Sun Life – Sainte-Julie" /></a>
+	<a href="http://www.starquality.ca/" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_starquality.png" alt="Star Quality" /></a>
+	<img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_bureauplus.png" alt="La procure de la Rive-Sud" />
+	<a href="http://www.wcommunication.com/" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_wcommunication.png" alt="W Communication L’objet Intelligent" /></a>
+	<img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_michelnadeau.png" alt="Michel Nadeau" />
+	<img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_assemblenationale.png" alt="Assemblée nationale du Québec" />
+	<a href="http://bilodeauinc.com/fr/produits/bilodeau" rel="external"><img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_bilodeau.png" alt="Bilodeau" /></a>
+	<img src="http://www.fondationdedefortin.com/documents/images/collaborateurs/logo_copiexpert.png" alt="Imprimerie copieXpert Alma" />
+</section>
+
+</body>
+</html>
+
+

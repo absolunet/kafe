@@ -89,7 +89,7 @@ window.kafe = (function(w,d,undefined){
 	//-------------------------------------------
 	// jQuery charger
 	//-------------------------------------------
-	var $ = core.jQuery = (w.kafe_jQuery != undefined) ? w.kafe_jQuery : w.jQuery;
+	core.jQuery = (w.kafe_jQuery != undefined) ? w.kafe_jQuery : w.jQuery;
 	try {
 		delete w.kafe_jQuery;
 	} catch(e) {
@@ -158,6 +158,19 @@ window.kafe = (function(w,d,undefined){
 	_coreReadOnly(core,{kafe: _i.vesyon});
 	_coreReadOnly(core,{idantite:_i});
 	_coreReadOnly(core,{vesyon:{}});
+	_coreReadOnly(core,{ie: (function(){
+		var
+			undef,
+			v = 3,
+			div = document.createElement('div'),
+			all = div.getElementsByTagName('i')
+		;
+		while (
+			div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+			all[0]
+		);
+		return v > 4 ? v : undef;
+	})() });
 
 
 	// bonify (name/version/object)
@@ -264,13 +277,17 @@ window.kafe = (function(w,d,undefined){
 	core.required = function(name) {
 		if (name.toString().substr(0,2) == '//') {
 
-			var found = false;
-			$('script').each(function(){
-				if (new RegExp(name).test(this.src)) {
+			var 
+				found   = false,
+				scripts = document.getElementsByTagName('script')
+			;
+
+			for (var i=0; i<scripts.length; ++i) {
+				if (new RegExp(name).test(scripts[i].src)) {
 					found = true;
 					return false;
 				}
-			});
+			}
 
 			if (!found) {
 				throw core.error(new Error('\'' + name+'\' is required'));
@@ -307,7 +324,7 @@ window.kafe = (function(w,d,undefined){
 	core.error = function(e) {
 		var msg = ((!!e.description) ? e.description : e.message);
 		e.description = e.message = '<'+_i.non+':erè> : '+ ((!!msg) ? msg : 'anonim');
-		return ($.browser.msie && parseInt($.browser.version) == 8) ? new Error(e) : e;
+		return (core.ie && core.ie == 8) ? new Error(e) : e;
 	};
 
 
@@ -374,7 +391,7 @@ window.kafe = (function(w,d,undefined){
 
 	// namespace for plugins and extensions
 	core.plugin = {};
-	core.ext    = {};
+	core.ext    = { cms:{} };
 
 	return core;
 
@@ -387,17 +404,11 @@ window.kafe = (function(w,d,undefined){
 //-------------------------------------------
 // patch ie8 and less for HTML5 
 //-------------------------------------------
-(function($){
-	if ($.browser.msie && parseInt($.browser.version) < 9) {
+(function(K){
+	if (K.ie && K.ie < 9) {
 		var html5 = 'address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video'.split('|');
 		for (var i=0; i<html5.length; ++i){
 			document.createElement(html5[i]);
 		}
 	}
-
-	$.fn.appendHTML5 = function(str) {
-		if (typeof(console) != 'undefined') { console.log('<kafe:avètisman> : appendHTML5 obsoleted'); }
-		$(this[0]).append(str);
-	    return this;
-	};
-})(kafe.jQuery);	
+})(kafe);	

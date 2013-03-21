@@ -61,6 +61,19 @@ kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
 		return new Array(nb+1).join(s);
 	};
 
+	// contains (string, needles)
+	// check if space-separated string contains one of the needles
+	//-------------------------------------------
+	string.contains = function(s,n) {
+		var stack = s.split(' ');
+		for (var i = 0; i<n.length; ++i) {
+			if ($.inArray(n[i], stack) != -1) {
+				return true
+			}
+		}
+		return false;
+	};
+
 	// toObject (string)
 	// take a JSON string to javascript object
 	//-------------------------------------------
@@ -136,6 +149,13 @@ kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
 	//-------------------------------------------
 	Native.repeat = function(nb) {
 		return string.repeat(this.get(),nb);
+	};
+
+	// contains (needles)
+	// check if space-separated string contains one of the needles
+	//-------------------------------------------
+	Native.contains = function() {
+		return string.contains(this.get(), $.makeArray(arguments));
 	};
 
 	// toObject ()
