@@ -63,68 +63,62 @@
                                          ....'''''',,;;;;:c:::;,,''....                                        
 */
 
-window.kafe = (function(w,d,undefined){
+window.kafe = (function(undefined){
 
-	// _exists (name)
-	// check if module imported
-	function _exists(name) {
-		try {
-			return eval("("+name+" != undefined)");
-		} catch(e) {
-			return false;
+	var 
+		// _exists (name)
+		// check if module imported
+		_exists = function _exists(name) {
+			try {
+				return eval("("+name+" != undefined)");
+			} catch(e) {
+				return false;
+			}
+		},
+
+		// ie version
+		_ie = (function(){
+			var
+				undef,
+				v = 3,
+				div = document.createElement('div'),
+				all = div.getElementsByTagName('i')
+			;
+			while (
+				div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+				all[0]
+			);
+			return v > 4 ? v : undef;
+		}),
+		
+		//-------------------------------------------
+		// CORE
+		//-------------------------------------------
+		core = {
+			_vesyon: '2-alpha',
+			_griyaj: 'absolunet.com',
+			_chaje:  {},
+
+			plugin:       {},
+			ext:          { cms:{} },
+			dependencies: {
+				jQuery:     window.jQuery.noConflict(true),
+//				underscore: window._.noConflict()
+			}
 		}
-	};
-
-	// native extensions
-	var _Native = {};
-	 
-
-
-	//-------------------------------------------
-	// CORE
-	//-------------------------------------------
-	var core = {};
-	core.kafe = '';
+	;		
+	
 	
 	//-------------------------------------------
-	// jQuery charger
+	// general functions
 	//-------------------------------------------
-	core.jQuery = (w.kafe_jQuery != undefined) ? w.kafe_jQuery : w.jQuery;
-	try {
-		delete w.kafe_jQuery;
-	} catch(e) {
-		w.kafe_jQuery = undefined;
-	}	
-
-	//-------------------------------------------
-	// FN
-	//-------------------------------------------
-	core.fn  = (function(){
-		var fn = {};
-		
-		// setReadOnlyProperties (object, properties)
-		// force readonly properties if possible
-		//-------------------------------------------
-		fn.setReadOnlyProperties = function (o,p) {
-			eval("var o=arguments[0], p=arguments[1];");
-			for (var i in p) {
-				try {
-					eval("o.__defineGetter__('"+i+"', function(){ return p['"+i+"']; });");
-				} catch (e) {
-					try {
-						eval("Object.defineProperty(o, '"+i+"', {get:function(){ return p['"+i+"']; }});");
-					} catch (e) {
-						o[i] = p[i];
-					}
-				}
-			}
-		};
+	core.fn  = {
 
 		// createInstantiableObject ()
 		// create a instantiable object
 		// By John Resig (MIT Licensed) - http://ejohn.org/blog/simple-class-instantiation/
 		//-------------------------------------------
-		fn.createInstantiableObject = function() {
+		createInstantiableObject: function() {
 			return function(args){
 				if (this instanceof arguments.callee) {
 					if (typeof this.init == 'function')
@@ -132,128 +126,36 @@ window.kafe = (function(w,d,undefined){
 				} else
 					return new arguments.callee(arguments);
 			};
-		}
+		},
 		
 		// lang (dict,[lang])
 		// get a existing lang
 		//-------------------------------------------
-		fn.lang = function(dict,lang) {
+		lang: function(dict,lang) {
 			lang = (!!lang) ? lang : core.env('lang');
 			return (!!dict[lang]) ? lang : 'en';
-		};
-	
-		return fn;
-	})();
+		}
 
-	var _coreReadOnly = core.fn.setReadOnlyProperties;
-
-	
-	// identification
-	var _i = {};
-	_coreReadOnly(_i = {}, {
-		non:    'kafe',
-		vesyon: '1.7.0-trunk',
-		griyaj: 'absolunet.com'
-	});
-	_coreReadOnly(core,{kafe: _i.vesyon});
-	_coreReadOnly(core,{idantite:_i});
-	_coreReadOnly(core,{vesyon:{}});
-	_coreReadOnly(core,{ie: (function(){
-		var
-			undef,
-			v = 3,
-			div = document.createElement('div'),
-			all = div.getElementsByTagName('i')
-		;
-		while (
-			div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
-			all[0]
-		);
-		return v > 4 ? v : undef;
-	})() });
+	};
 
 
 	// bonify (name/version/object)
 	// add module to core
 	//-------------------------------------------
 	core.bonify = function(options) {
-		
+
 		// if not already extended
-		var oname     = options.name; 
-		var name      = 'this.'+oname; 
-		var obj       = options.obj; 
-		var objNative = obj.Native; 
-		
-		if (!_exists('core.'+oname)) {
+		if (!_exists('core.'+options.name)) {
 
-			// if has Native methods
-			if (objNative != undefined) {
-				var 
-					type           = oname.toString().split('.')[0].replace(/^\w/, function($0) { return $0.toUpperCase(); }),
-					isNativeObject = !!(':Array:Boolean:Date:Number:String:RegExp:'.search(new RegExp('\:'+type+'\:')) != -1),
-					isNativeModule = !!(':Math:Window:Navigator:Screen:History:Location:Document:'.search(new RegExp('\:'+type+'\:')) != -1)
-				;
-				
-				// if object
-				if (isNativeObject) {
-
-					var sub = oname.toString().split('.');
-					
-					// if subclass
-					if (sub.length > 1) {
-						sub.shift();
-						sub = sub.join('_') + '_';
-						
-					// if not
-					} else {
-						sub = '';
-						_Native[type] = function(o) { this.get = function(){return o;}; };
-						w[type].prototype.K = function() { return new _Native[type](this); };
-					}
-
-					// push methods
-					for (var i in objNative) {
-						_Native[type].prototype[sub+i] = objNative[i];
-					}
-
-				
-				
-				// if module
-				} else if (isNativeModule) {
-					var sub = oname.toString().split('.');
-					
-					// if subclass
-					if (sub.length > 1) {
-						sub.shift();
-						sub = sub.join('_') + '_';
-					} else {
-						sub = '';
-						w[type].K = {};
-					}
-					
-					// push methods
-					for (var i in objNative) {
-						w[type].K[sub+i] = objNative[i];
-					}
-				}
-
-				// delete local reference
-				delete arguments[0].obj.Native;
-			}
-
-			// add version
-			var v = {};
-			v[oname] = options.version;
-			_coreReadOnly(core.vesyon,v);
-			
-			// extend
-			eval(name+' = arguments[0].obj;');
+			core._chaje[options.name] = options.version;
+			eval('this.'+options.name+' = arguments[0].obj;');
 			
 		// throw error
 		} else {
-			throw core.error(new Error(_i.non+'.'+oname+' already exists'));
+			throw core.error('kafe.'+options.name+' already exists');
 		}
 	};
+	
 	
 	// plug (name/version/object)
 	// add a plugin
@@ -263,6 +165,7 @@ window.kafe = (function(w,d,undefined){
 		this.bonify(options);
 	};
 
+
 	// extend (name/version/object)
 	// add an external plugin extension
 	//-------------------------------------------
@@ -270,6 +173,7 @@ window.kafe = (function(w,d,undefined){
 		options.name = 'ext.'+options.name;
 		this.bonify(options);
 	};
+
 
 	// required (name_or_url)
 	// check if required module is included
@@ -298,37 +202,15 @@ window.kafe = (function(w,d,undefined){
 		}
 	};
 
-	// log (text)
-	// traces
-	//-------------------------------------------
-	core.log = function(t) {
-		try {
-			var node = d.getElementById('LOG');
-			var hr = d.createElement('hr');
-			var code = d.createElement('code');
-			code.appendChild(d.createTextNode(t))
-			node.appendChild(code);
-			node.appendChild(hr);
-		} catch (e) {
-			try {
-				console.log(t);
-			} catch (e) {
-				alert(t);
-			}
-		}
-	};
 
 	// error (error)
 	// throw errors - kafe.error(new Error('barf'));
 	//-------------------------------------------
 	core.error = function(e) {
 		var msg = ((!!e.description) ? e.description : e.message);
-		e.description = e.message = '<'+_i.non+':erè> : '+ ((!!msg) ? msg : 'anonim');
-		return (core.ie && core.ie == 8) ? new Error(e) : e;
+		e.description = e.message = '<kafe:erè> : '+ ((!!msg) ? msg : 'anonim');
+		return (_ie && _ie == 8) ? new Error(e) : e;
 	};
-
-
-
 
 
 	//-------------------------------------------
@@ -347,19 +229,20 @@ window.kafe = (function(w,d,undefined){
 				tmpl:    '',
 				dtc:     {}
 			},
-			_dtc       = [],
-			_de        = document.documentElement
+			_dtc       = []
 		;
 
 		// grab kafe env
-		_data.culture = _de.id.toLowerCase()   || '';
-		_data.lang    = _de.lang.toLowerCase() || '';
-		_data.page    = _de.getAttribute('data-'+_i.non+'-page') || '';
-		_data.tmpl    = _de.getAttribute('data-'+_i.non+'-tmpl') || '';
-		_de.className = _de.className.replace(/\bjs\b/g, '');
+		_data.culture = document.documentElement.id.toLowerCase()   || '';
+		_data.lang    = document.documentElement.lang.toLowerCase() || '';
+		_data.page    = document.documentElement.getAttribute('data-kafe-page') || '';
+		_data.tmpl    = document.documentElement.getAttribute('data-kafe-tmpl') || '';
+		_data.tmpl    = _data.tmpl.split(' ');
+		
+		document.documentElement.className = document.documentElement.className.replace(/\bjs\b/g, '');
 
 		// parse detections
-		_dtc = _de.className || '';
+		_dtc = document.documentElement.className || '';
 		_dtc = _dtc.toString().split(' ');
 		if (!!_dtc.length) {
 			for (var i in _dtc) {
@@ -380,7 +263,7 @@ window.kafe = (function(w,d,undefined){
 
 			// already set 
 			} else if (_data[name] != undefined && updatable.search(new RegExp('\:'+name+'\:')) == -1) {
-				throw core.error(new Error(_i.non+'.env > property \''+name+'\' already defined'));
+				throw core.error(new Error('kafe.env > property \''+name+'\' already defined'));
 
 			// set
 			} else {
@@ -389,26 +272,17 @@ window.kafe = (function(w,d,undefined){
 		};
 	})();
 
-	// namespace for plugins and extensions
-	core.plugin = {};
-	core.ext    = { cms:{} };
 
-	return core;
-
-})(window,document);
-
-
-
-
-
-//-------------------------------------------
-// patch ie8 and less for HTML5 
-//-------------------------------------------
-(function(K){
-	if (K.ie && K.ie < 9) {
+	//-------------------------------------------
+	// patch ie8 and less for HTML5 
+	//-------------------------------------------
+	if (_ie && _ie < 9) {
 		var html5 = 'address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video'.split('|');
 		for (var i=0; i<html5.length; ++i){
 			document.createElement(html5[i]);
 		}
 	}
-})(kafe);	
+
+	return core;
+
+})();
