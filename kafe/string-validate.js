@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.string.validate
 //-------------------------------------------
-kafe.bonify({name:'string.validate', version:'1.0', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -111,56 +111,8 @@ kafe.bonify({name:'string.validate', version:'1.0', obj:(function(K,undefined){
 
         return false;
 	};
-		
-	
-
-
-	//-------------------------------------------
-	// NATIVE
-	//-------------------------------------------
-	var Native = {};
-
-	// isEmpty ()
-	// if string is empty of contains only whitespaces
-	//-------------------------------------------
-	Native.isEmpty = function() {
-		return validate.isEmpty(this.get());
-	};
-
-	// isNum ()
-	// if string is numeric
-	//-------------------------------------------
-	Native.isNum = function() {
-		return validate.isNum(this.get());
-	};
-
-	// isEmail ()
-	// if string is a valid email
-	//-------------------------------------------
-	Native.isEmail = function() {
-		return validate.isEmail(this.get());
-	};
-
-	// isPostalCode ([format])
-	// if string is a valid postal code
-	//-------------------------------------------
-	Native.isPostalCode = function(format) {
-		return validate.isPostalCode(this.get(),format);
-	};
-
-	// isCreditCard (type)
-	// if string is a valid credit card
-	//-------------------------------------------
-	Native.isCreditCard = function(type) {
-		return validate.isEmpty(this.get(),type);
-	};
-
-	validate.Native = Native;
-
-
-
 
 
 	return validate;
-})(kafe)});
+})(window.kafe)});
 

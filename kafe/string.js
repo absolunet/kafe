@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.string
 //-------------------------------------------
-kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'string', version:'1.1', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -38,7 +38,7 @@ kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
 	// transform to a code-safe string
 	//-------------------------------------------
 	string.toCodeSafe = function(str,sub) {
-		return this.removeAccent(arguments[0].toLowerCase())
+		return string.removeAccent(arguments[0].toLowerCase())
 			.replace(/'/g, '')
 			.replace(/[^a-z0-9]/g, ' ')
 			.replace(/\s+/g, ' ')
@@ -93,7 +93,7 @@ kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
 			return o;
 		}
 
-		K.required('kafe.jQuery.toJSON');
+		kafe.required('kafe.jQuery.toJSON');
 		return cast($.evalJSON(s));
 	};
 
@@ -108,66 +108,7 @@ kafe.bonify({name:'string', version:'1.1', obj:(function(K,undefined){
 	};
 
 
-
-
-
-	//-------------------------------------------
-	// NATIVE
-	//-------------------------------------------
-	var Native = {};
-
-	// capitalize ()
-	// first char to uppercase
-	//-------------------------------------------
-	Native.capitalize = function() {
-		return string.capitalize(this.get());
-	};
-
-	// removeAccent ()
-	// replace accented letters with plain letter
-	//-------------------------------------------
-	Native.removeAccent = function() {
-		return string.removeAccent(this.get());
-	};
-
-	// toCodeSafe ([substitute])
-	// transform to a code-safe string
-	//-------------------------------------------
-	Native.toCodeSafe = function(sub) {
-		return string.toCodeSafe(this.get(),sub);
-	};
-
-	// zeroPad (nb_total)
-	// add zeros
-	//-------------------------------------------
-	Native.zeroPad = function(nb) {
-		return string.zeroPad(this.get(),nb);
-	};
-
-	// repeat (nb_repeat)
-	// repeat string n times
-	//-------------------------------------------
-	Native.repeat = function(nb) {
-		return string.repeat(this.get(),nb);
-	};
-
-	// contains (needles)
-	// check if space-separated string contains one of the needles
-	//-------------------------------------------
-	Native.contains = function() {
-		return string.contains(this.get(), $.makeArray(arguments));
-	};
-
-	// toObject ()
-	// take a JSON string to javascript object
-	//-------------------------------------------
-	Native.toObject = function() {
-		return string.toObject(this.get());
-	};
-
-	string.Native = Native;
-
 	return string;
 
-})(kafe)});
+})(window.kafe)});
 

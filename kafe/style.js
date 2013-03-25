@@ -1,11 +1,9 @@
 //-------------------------------------------
 // kafe.style
 //-------------------------------------------
-kafe.bonify({name:'style', version:'1.3', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 	
-	var _name = K.idantite.non;
-
 	//-------------------------------------------
 	// PUBLIC
 	//-------------------------------------------
@@ -48,8 +46,8 @@ kafe.bonify({name:'style', version:'1.3', obj:(function(K,undefined){
 	// replace <hr> tag with a <div>
 	//-------------------------------------------
 	style.replaceHr = function() {
-		var $e = (arguments[0]) ? $('hr:not(.'+_name+'-replacehr-processed)', $(arguments[0])) : $('hr');
-		$e.addClass(_name+'-replacehr-processed').hide().wrap('<div class="hr"></div>');
+		var $e = (arguments[0]) ? $('hr:not(.kafe-replacehr-processed)', $(arguments[0])) : $('hr');
+		$e.addClass('kafe-replacehr-processed').hide().wrap('<div class="hr"></div>');
 	};
 	
 	// vAlign ([elements])
@@ -193,4 +191,4 @@ kafe.bonify({name:'style', version:'1.3', obj:(function(K,undefined){
 	
 	return style;
 
-})(kafe)});
+})(window.kafe)});

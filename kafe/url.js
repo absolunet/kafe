@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.url
 //-------------------------------------------
-kafe.bonify({name:'url', version:'1.0', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 
 	// _parseIt (string, type)
 	// parse url
@@ -80,4 +80,4 @@ kafe.bonify({name:'url', version:'1.0', obj:(function(K,undefined){
 	
 	return url;
 
-})(kafe)});
+})(window.kafe)});

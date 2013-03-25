@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.number
 //-------------------------------------------
-kafe.bonify({name:'number', version:'1.0', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -37,28 +37,7 @@ kafe.bonify({name:'number', version:'1.0', obj:(function(K,undefined){
 		return result;
 	};
 
-
-
-
-
-
-
-
-	//-------------------------------------------
-	// NATIVE
-	//-------------------------------------------
-	var Native = {};
-
-	// toRoman ()
-	// to roman numerals
-	//-------------------------------------------
-	Native.toRoman = function() {
-		return number.toRoman(this.get());
-	};
-
-	number.Native = Native;
-
 	return number;
 
-})(kafe)});
+})(window.kafe)});
 

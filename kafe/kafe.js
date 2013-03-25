@@ -103,7 +103,7 @@ window.kafe = (function(undefined){
 			ext:          { cms:{} },
 			dependencies: {
 				jQuery:     window.jQuery.noConflict(true),
-//				underscore: window._.noConflict()
+				underscore: window._.noConflict()
 			}
 		}
 	;		
@@ -179,27 +179,8 @@ window.kafe = (function(undefined){
 	// check if required module is included
 	//-------------------------------------------
 	core.required = function(name) {
-		if (name.toString().substr(0,2) == '//') {
-
-			var 
-				found   = false,
-				scripts = document.getElementsByTagName('script')
-			;
-
-			for (var i=0; i<scripts.length; ++i) {
-				if (new RegExp(name).test(scripts[i].src)) {
-					found = true;
-					return false;
-				}
-			}
-
-			if (!found) {
-				throw core.error(new Error('\'' + name+'\' is required'));
-			}
-
-		} else if (!_exists(name)) {
-			throw core.error(new Error(name+' is required'));
-		}
+		// TO REPLACE WITH REQUIRE.JS DEPENDENCIES
+		console.log(name);
 	};
 
 
@@ -218,19 +199,14 @@ window.kafe = (function(undefined){
 	//-------------------------------------------
 	core.env = (function(){
 
-		core.required('cssua');
-
 		// base vals
-		var 
-			_data = {
-				culture: '',
-				lang:    '',
-				page:    '',
-				tmpl:    '',
-				dtc:     {}
-			},
-			_dtc       = []
-		;
+		var _data = {
+			culture: '',
+			lang:    '',
+			page:    '',
+			tmpl:    '',
+			ie:      _ie
+		};
 
 		// grab kafe env
 		_data.culture = document.documentElement.id.toLowerCase()   || '';
@@ -238,24 +214,11 @@ window.kafe = (function(undefined){
 		_data.page    = document.documentElement.getAttribute('data-kafe-page') || '';
 		_data.tmpl    = document.documentElement.getAttribute('data-kafe-tmpl') || '';
 		_data.tmpl    = _data.tmpl.split(' ');
-		
-		document.documentElement.className = document.documentElement.className.replace(/\bjs\b/g, '');
-
-		// parse detections
-		_dtc = document.documentElement.className || '';
-		_dtc = _dtc.toString().split(' ');
-		if (!!_dtc.length) {
-			for (var i in _dtc) {
-				if (_dtc[i].toString().substring(0,4) == 'dtc-') {
-					_data.dtc[_dtc[i].toString().substring(4).replace(/-/g,'_')] = true;
-				} 
-			}
-		}
 
 		// public method (name, [value])
 		//-------------------------------------------
 		return function(name, value) {
-			var updatable = ':mobile-orientation:';
+			var updatable = '';
 
 			// get
 			if (value == undefined) {
@@ -272,6 +235,15 @@ window.kafe = (function(undefined){
 		};
 	})();
 
+
+	// TODO -- ADD IE CLASSES 
+
+
+	// CHECK TO LOAD ALL DEPENDENCIES BEFORE KAFE.JS (good idea? - multiple builts...)
+
+	
+	// CHECK IF MODERNIZR DOES THIS
+	
 
 	//-------------------------------------------
 	// patch ie8 and less for HTML5 

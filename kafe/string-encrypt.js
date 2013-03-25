@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.string.encrypt
 //-------------------------------------------
-kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -215,25 +215,6 @@ kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(K,undefined){
 		return temp.toLowerCase();
 	};
 
-
-
-
-	//-------------------------------------------
-	// NATIVE
-	//-------------------------------------------
-	var Native = {};
-
-	// md5 ()
-	// encrypt to md5
-	//-------------------------------------------
-	Native.md5 = function() {
-		return encrypt.md5(this.get());
-	};
-
-
-
-	encrypt.Native = Native;
-
 	return encrypt;
 
-})(kafe)});
+})(window.kafe)});

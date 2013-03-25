@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.geolocation
 //-------------------------------------------
-kafe.bonify({name:'geolocation', version:'1.0', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 	
 	// is available
 	var _isAvailable = !!navigator.geolocation;
@@ -33,7 +33,7 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function(K,undefined){
 	// get a valid lang
 	//-------------------------------------------
 	function _lang(lang) {
-		return K.fn.lang(_dict,lang);
+		return kafe.fn.lang(_dict,lang);
 	}
 	
 
@@ -99,4 +99,4 @@ kafe.bonify({name:'geolocation', version:'1.0', obj:(function(K,undefined){
 
 	return geolocation;
 
-})(kafe)});
+})(window.kafe)});

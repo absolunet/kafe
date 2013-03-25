@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.storage
 //-------------------------------------------
-kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 	
 	// test storage availability
 	var 
@@ -59,7 +59,7 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 			return o;
 		}
 
-		K.required('kafe.jQuery.toJSON');
+		kafe.required('kafe.jQuery.toJSON');
 		return cast($.evalJSON(s));
 	}
 
@@ -424,4 +424,4 @@ kafe.bonify({name:'storage', version:'1.1', obj:(function(K,undefined){
 
 	return storage;
 
-})(kafe)});
+})(window.kafe)});

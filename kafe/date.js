@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.date
 //-------------------------------------------
-kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 	
 	// dictionary
 	var _dict = {
@@ -28,7 +28,7 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 	// get a valid lang
 	//-------------------------------------------
 	function _lang(lang) {
-		return K.fn.lang(_dict,lang);
+		return kafe.fn.lang(_dict,lang);
 	}
 
 	// _m3 (month, [lang])
@@ -63,19 +63,16 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 	//-------------------------------------------
 	// PUBLIC
 	//-------------------------------------------
-	var date = {};
-
-	// constants
-	//-------------------------------------------
-	K.fn.setReadOnlyProperties(date,{
+	var date = {
 		SECOND:  1000,        // 1000 ms per second
-	    MINUTE:  60000,       // 60 seconds per minute
-	    HOUR:    3600000,     // 60 minutes per hour
-	    DAY:     86400000,    // 24 hours per day
-	    WEEK:    604800000,   // 7 days per week
-	    MONTH:   2629743840,  // 4.348121428571429 weeks per month
-	    YEAR:    31556926080  // 365.2422 days per year
-	});
+		MINUTE:  60000,       // 60 seconds per minute
+		HOUR:    3600000,     // 60 minutes per hour
+		DAY:     86400000,    // 24 hours per day
+		WEEK:    604800000,   // 7 days per week
+		MONTH:   2629743840,  // 4.348121428571429 weeks per month
+		YEAR:    31556926080  // 365.2422 days per year
+	};
+
 
 	// getDayYear (date)
 	// get the day of the year
@@ -256,30 +253,30 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 	
 		if (delta <= 0) {
 			return d[0];
-		} else if (delta < this.MINUTE) {
+		} else if (delta < date.MINUTE) {
 			return d[1];
-		} else if(delta < 2*this.MINUTE) {
+		} else if(delta < 2*date.MINUTE) {
 			return d[2];
-		} else if(delta < this.HOUR) {
-			return d[3].replace('%n', Math.floor(delta/this.MINUTE));
-		} else if(delta < 2*this.HOUR) {
+		} else if(delta < date.HOUR) {
+			return d[3].replace('%n', Math.floor(delta/date.MINUTE));
+		} else if(delta < 2*date.HOUR) {
 			return d[4];
-		} else if(delta < this.DAY) {
-			return d[5].replace('%n', Math.floor(delta/this.HOUR));
-		} else if(delta < 2*this.DAY) {
+		} else if(delta < date.DAY) {
+			return d[5].replace('%n', Math.floor(delta/date.HOUR));
+		} else if(delta < 2*date.DAY) {
 			return d[6];
-		} else if(delta < 3*this.DAY) {
+		} else if(delta < 3*date.DAY) {
 			return d[7];
-		} else if(delta < this.WEEK) {
-			return d[8].replace('%n', Math.floor(delta/this.DAY));
-		} else if(delta < 2*this.WEEK) {
+		} else if(delta < date.WEEK) {
+			return d[8].replace('%n', Math.floor(delta/date.DAY));
+		} else if(delta < 2*date.WEEK) {
 			return d[9];
-		} else if(delta < this.MONTH) {
-			return d[10].replace('%n', Math.floor(delta/this.WEEK));
-		} else if(delta < 2*this.MONTH) {
+		} else if(delta < date.MONTH) {
+			return d[10].replace('%n', Math.floor(delta/date.WEEK));
+		} else if(delta < 2*date.MONTH) {
 			return d[11];
 		} else {
-			return d[12].replace('%n', Math.floor(delta/this.MONTH));
+			return d[12].replace('%n', Math.floor(delta/date.MONTH));
 		}
 	};
 
@@ -422,7 +419,6 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 				week = 0;
 			}
 			
-			
 			var thisDate = date.format('%Y-%M-%D', new Date(y,m,i));
 			html += '<td data-date="'+thisDate+'"'+((thisDate == today) ? ' class="Today"' : '')+'>' + ((links[thisDate]) ? '<a href="'+links[thisDate]+'">'+i+'</a>' : '<span>'+i+'</span>') + '</td>';
 			++week;
@@ -436,56 +432,6 @@ kafe.bonify({name:'date', version:'1.2', obj:(function(K,undefined){
 		return html+'</tr></tbody></table>';
 	};
 
-
-
-
-
-
-
-	//-------------------------------------------
-	// NATIVE
-	//-------------------------------------------
-	var Native = {};
-	
-	// getDayYear ()
-	// get the day of the year
-	//-------------------------------------------
-	Native.getDayYear = function() {
-		return date.getDayYear(this.get());
-	};
-
-	// isLeapYear ()
-	// is a leap year
-	//-------------------------------------------
-	Native.isLeapYear = function() {
-		return date.isLeapYear(this.get().getFullYear());
-	};
-
-	// getMaxMonth (year)
-	// get number of days in the month
-	//-------------------------------------------
-	Native.getMaxMonth = function() {
-		return date.getMaxMonth(this.get().getFullYear())[this.get().getMonth()];
-	};
-
-	// format (format, [lang])
-	// get a formatted date string
-	//-------------------------------------------
-	Native.format = function(format,lang) {
-		return date.format(format,this.get(),lang);
-	};
-
-	// formatRelative ([now], [lang])
-	// get a formatted relative date string
-	//-------------------------------------------
-	Native.formatRelative = function(now,lang) {
-		return date.formatRelative(this.get(),now,lang);
-	};
-
-	date.Native = Native;
-
-
-
 	return date;
 
-})(kafe)});
+})(window.kafe)});

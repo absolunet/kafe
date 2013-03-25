@@ -1,8 +1,8 @@
 //-------------------------------------------
 // kafe.form
 //-------------------------------------------
-kafe.bonify({name:'form', version:'1.4.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
+	var $ = kafe.jQuery;
 
 	//-------------------------------------------
 	// PUBLIC
@@ -28,7 +28,7 @@ kafe.bonify({name:'form', version:'1.4.1', obj:(function(K,undefined){
 	// add an inline label on input/textarea with a placeholder attribute
 	//-------------------------------------------
 	form.label = function() {
-		if ($.browser.msie && parseInt($.browser.version) < 10) {
+		if (kafe.env('ie') && kafe.env('ie') < 10) {
 			
 			function _isEmpty() {
 				 return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') == '');
@@ -219,4 +219,4 @@ kafe.bonify({name:'form', version:'1.4.1', obj:(function(K,undefined){
 
 	return form;
 
-})(kafe)});
+})(window.kafe)});
