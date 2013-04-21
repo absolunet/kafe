@@ -63,6 +63,14 @@
                                          ....'''''',,;;;;:c:::;,,''....                                        
 */
 
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'libs/external/dependencies/jquery', 
+	'libs/external/dependencies/underscore', 
+	'libs/external/dependencies/modernizr'
+]);
+//>>excludeEnd('excludeRequire');
+
 window.kafe = (function(undefined){
 
 	var 
@@ -97,16 +105,24 @@ window.kafe = (function(undefined){
 		core = {
 			_vesyon: '2-alpha',
 			_griyaj: 'absolunet.com',
-			_chaje:  {},
 
 			plugin:       {},
 			ext:          { cms:{} },
 			dependencies: {
 				jQuery:     window.jQuery.noConflict(true),
-				underscore: window._.noConflict()
+				underscore: window._.noConflict(),
+				Modernizr:  window.Modernizr
 			}
-		}
-	;		
+		};
+		core._chaje = {
+			'dependencies.jQuery':     core.dependencies.jQuery().jquery,
+			'dependencies.underscore': core.dependencies.underscore.VERSION,
+			'dependencies.Modernizr':  core.dependencies.Modernizr._version 
+		};
+
+	;
+
+	delete window.Modernizr;
 	
 	
 	//-------------------------------------------
@@ -239,21 +255,6 @@ window.kafe = (function(undefined){
 	// TODO -- ADD IE CLASSES 
 
 
-	// CHECK TO LOAD ALL DEPENDENCIES BEFORE KAFE.JS (good idea? - multiple builts...)
-
-	
-	// CHECK IF MODERNIZR DOES THIS
-	
-
-	//-------------------------------------------
-	// patch ie8 and less for HTML5 
-	//-------------------------------------------
-	if (_ie && _ie < 9) {
-		var html5 = 'address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video'.split('|');
-		for (var i=0; i<html5.length; ++i){
-			document.createElement(html5[i]);
-		}
-	}
 
 	return core;
 
