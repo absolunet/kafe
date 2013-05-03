@@ -65,7 +65,6 @@
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/dependencies/jquery', 
 	'libs/external/dependencies/underscore', 
 	'libs/external/dependencies/modernizr'
 ]);
@@ -109,7 +108,7 @@ window.kafe = (function(undefined){
 			plugin:       {},
 			ext:          { cms:{} },
 			dependencies: {
-				jQuery:     window.jQuery.noConflict(true),
+				jQuery:     window.kafejQuery.noConflict(true),
 				underscore: window._.noConflict(),
 				Modernizr:  window.Modernizr
 			}
