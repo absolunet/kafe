@@ -6,7 +6,7 @@
 kafe.plug({name:'webcropper', version:'1.0', obj:(function(K,undefined){
 	var $ = K.jQuery;
 	
-	K.required('kafe.jQuery.ui.draggable');
+	K.required('kafe.dependencies.jQuery.ui.draggable');
 	
 	var _cropperExist = false,
 		_isFormBased = false,

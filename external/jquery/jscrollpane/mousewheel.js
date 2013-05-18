@@ -81,4 +81,4 @@ function handler(event) {
     return ($.event.dispatch || $.event.handle).apply(this, args);
 }
 
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);

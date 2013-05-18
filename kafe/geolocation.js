@@ -1,67 +1,56 @@
-//-------------------------------------------
-// kafe.geolocation
-//-------------------------------------------
 window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.jQuery;
-	
-	// is available
-	var _isAvailable = !!navigator.geolocation;
+	var
+		$         = kafe.dependencies.jQuery,
+		Modernizr = kafe.dependencies.Modernizr,
 
-	// dictonary
-	var _dict = {
-		fr: {
-			search:      'Recherche de votre positionnement',
-			position:    'Votre position',
-			unavailable: 'Service de localisation non-disponible',
-			deactivated: 'Service de localisation désactivé',
-			notFound:    'Position indisponible',
-			timeout:     'Délai expiré',
-			error:       'Il y a eu un problème'
+		// dictonary
+		_dict = {
+			fr: {
+				search:      'Recherche de votre positionnement',
+				position:    'Votre position',
+				unavailable: 'Service de localisation non-disponible',
+				deactivated: 'Service de localisation désactivé',
+				notFound:    'Position indisponible',
+				timeout:     'Délai expiré',
+				error:       'Il y a eu un problème'
+			},
+			en: {
+				search:      'Searching your location',
+				position:    'Your position',
+				unavailable: 'Location service unavailable',
+				deactivated: 'Location service deactivated',
+				notFound:    'Position not found',
+				timeout:     'Timeout',
+				error:       'There has been a problem'
+			}
 		},
-		en: {
-			search:      'Searching your location',
-			position:    'Your position',
-			unavailable: 'Location service unavailable',
-			deactivated: 'Location service deactivated',
-			notFound:    'Position not found',
-			timeout:     'Timeout',
-			error:       'There has been a problem'
+
+		// get a valid lang
+		_lang = function(lang) {
+			return kafe.fn.lang(_dict,lang);
 		}
-	};
-
-	// _lang ([lang])
-	// get a valid lang
-	//-------------------------------------------
-	function _lang(lang) {
-		return kafe.fn.lang(_dict,lang);
-	}
-	
+	;
 
 
 
-	
-	//-------------------------------------------
 	// PUBLIC
-	//-------------------------------------------
 	var geolocation = {};
 
-	// locate ( message_container/success_callback/error_callback/[lang] )
 	// locate user
-	//------------------------------------------
 	geolocation.locate = function(options) {
-		
-		var d = _dict[_lang(options.lang)];
+		var
+			d               = _dict[_lang(options.lang)],
+			$msg            = $(options.msgContainer),
+			errorCallback   = options.error,
+			successCallback = options.success
+		;
 
 		// if service available
-		if (_isAvailable) {
-			var $msg            = $(options.msgContainer);
-			var successCallback = options.success;
-			var errorCallback   = options.error;
-		    
-		    $msg.html('... '+d.search+' ...'); 
+		if (Modernizr.geolocation) {
+			$msg.html('... '+d.search+' ...');
 
 			// try to get coords
-		    navigator.geolocation.getCurrentPosition(
+			navigator.geolocation.getCurrentPosition(
 
 				// success
 				function(position) {
@@ -70,7 +59,7 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 						successCallback({coords:position.coords});
 					}
 				},
-				
+
 				// failure
 				function(error) {
 					var msg = '';
@@ -86,7 +75,7 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 					}
 				}
 			);
-		
+
 		// if service unavailable
 		} else {
 			var msg = d.unavailable;

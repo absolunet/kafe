@@ -1,37 +1,35 @@
-//-------------------------------------------
-// kafe.style
-//-------------------------------------------
 window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
-	var $ = kafe.jQuery;
-	
-	//-------------------------------------------
+	var $ = kafe.dependencies.jQuery;
+
 	// PUBLIC
-	//-------------------------------------------
 	var style = {};
 
 
-	// equalHeight (elements, [nbPerRow/resetHeight])
 	// make all elements the same height
-	//-------------------------------------------
 	style.equalHeight = function() {
-		function _doIt() {
-			var $z = $(arguments[0]);
-			var maxOuterHeight = Math.max.apply(Math, $z.map(function(){ return $(this).outerHeight(); }).get());
-			$z.each(function() {
-				var $this = $(this);
-				$this.height( maxOuterHeight - ( $this.outerHeight() - $this.height() ) );
-			})
-		}
+		var
+			$o          = $(arguments[0]),
+			options     = arguments[1] || {},
+			nbPerRow    = options.nbPerRow,
+			resetHeight = options.resetHeight,
 
-		var $o          = $(arguments[0]);
-		var options     = arguments[1] || {};
-		var nbPerRow    = options.nbPerRow;
-		var resetHeight = options.resetHeight;
+			_doIt = function() {
+				var
+					$z = $(arguments[0]),
+					maxOuterHeight = Math.max.apply(Math, $z.map(function(){ return $(this).outerHeight(); }).get())
+				;
+				$z.each(function() {
+					var $this = $(this);
+					$this.height( maxOuterHeight - ( $this.outerHeight() - $this.height() ) );
+				});
+			}
+		;
+
 
 		if (!!resetHeight) {
 			$o.height('auto');
 		}
-		
+
 		if (!!nbPerRow) {
 			var max = Math.ceil($o.length / nbPerRow);
 			for (var i=0; i<max; ++i) {
@@ -41,60 +39,62 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 			_doIt($o);
 		}
 	};
-	
-	// replaceHr ([elements])
+
+
 	// replace <hr> tag with a <div>
-	//-------------------------------------------
 	style.replaceHr = function() {
 		var $e = (arguments[0]) ? $('hr:not(.kafe-replacehr-processed)', $(arguments[0])) : $('hr');
 		$e.addClass('kafe-replacehr-processed').hide().wrap('<div class="hr"></div>');
 	};
-	
-	// vAlign ([elements])
+
+
 	// vertically align an element inside its parent
-	//-------------------------------------------
 	style.vAlign = function(e) {
 		$(e).each(function(){
-			var $this = $(this);
-			var $children = $this.children();
-			if($children.length == 1) {
-				var h = Math.floor(($this.height() - $children.height()) / 2);
-				$children.css({display: 'block', marginTop: h + 'px'});
-			}	
+			var
+				$this = $(this),
+				$children = $this.children()
+			;
+			if ($children.length == 1) {
+				$children.css({display:'block', marginTop:Math.floor(($this.height() - $children.height()) / 2) + 'px'});
+			}
 		});
 	};
-	
-	// quickMenu ([params])
+
+
 	// add an opening and closing behavior on a list with custom speeds, delays and animation
-	//-------------------------------------------
 	style.quickMenu = function() {
-		
-		var c = {};
-		
-		var options  = (arguments) ? arguments[0] : {};
-		
-		c.container = options.container;
-		c.handle = (options.handle) ? options.handle : 'li';
-		c.submenus = (options.submenus) ? options.submenus : 'ul';
-		c.animation = (options.animation) ? options.animation : 'slide';
-		c.openSpeed = (Number(options.openSpeed)) ? Number(options.openSpeed) : 200;
-		c.openDelay = (Number(options.openDelay)) ? Number(options.openDelay) : 500;
-		c.closeSpeed = (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150;
-		c.closeDelay = (Number(options.closeDelay)) ? Number(options.closeDelay) : 400;
-		c.enterCallback  = (typeof(options.enterCallback)  == 'function') ? options.enterCallback  : undefined;
-		c.leaveCallback  = (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined;
-		
-		var $menu = $(c.container);
-		if (!$menu.length) { return false; }
-		
-		$menu.children(c.handle)
+		var
+			options = (arguments) ? arguments[0] : {},
+			c = {
+				$menu:         $(options.container),
+				handle:        (options.handle) ? options.handle : 'li',
+				submenus:      (options.submenus) ? options.submenus : 'ul',
+				animation:     (options.animation) ? options.animation : 'slide',
+				openSpeed:     (Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
+				openDelay:     (Number(options.openDelay)) ? Number(options.openDelay) : 500,
+				closeSpeed:    (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
+				closeDelay:    (Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
+				enterCallback: (typeof(options.enterCallback)  == 'function') ? options.enterCallback  : undefined,
+				leaveCallback: (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined
+			}
+		;
+
+		if (!c.$menu.length) {
+			return false;
+		}
+
+		c.$menu.children(c.handle)
 			.bind('mouseenter', function(){
-				var $parent = $(this);
-				var $sub = $parent.children(c.submenus);
-				
-				if ($sub.data('kafe-quickmenu-timer') != undefined)
+				var
+					$parent = $(this),
+					$sub = $parent.children(c.submenus)
+				;
+
+				if ($sub.data('kafe-quickmenu-timer') !== undefined) {
 					clearTimeout($sub.data('kafe-quickmenu-timer'));
-				
+				}
+
 				$parent.addClass('kafe-quickmenu-open');
 				$sub.data('kafe-quickmenu-timer', setTimeout(function() {
 					if (!!c.enterCallback) {
@@ -103,21 +103,25 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 					switch (c.animation) {
 						case 'fade' :
 							$sub.fadeIn(c.openSpeed);
-							break;
-						case 'slide' :
+						break;
+
+						//case 'slide' :
 						default :
 							$sub.slideDown(c.openSpeed);
-							break;
+						break;
 					}
 				}, c.openDelay));
 			})
 			.bind('mouseleave', function(){
-				var $parent = $(this);
-				var $sub = $parent.children(c.submenus);
-				
-				if ($sub.data('kafe-quickmenu-timer') != undefined)
+				var
+					$parent = $(this),
+					$sub = $parent.children(c.submenus)
+				;
+
+				if ($sub.data('kafe-quickmenu-timer') !== undefined) {
 					clearTimeout($sub.data('kafe-quickmenu-timer'));
-				
+				}
+
 				if ($sub.size() > 0) {
 					$sub.data('kafe-quickmenu-timer', setTimeout(function() {
 						$parent.removeClass('kafe-quickmenu-open');
@@ -127,11 +131,12 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 						switch (c.animation) {
 							case 'fade' :
 								$sub.fadeOut(c.closeSpeed);
-								break;
-							case 'slide' :
+							break;
+
+							//case 'slide' :
 							default :
 								$sub.slideUp(c.closeSpeed);
-								break;
+							break;
 						}
 					}, c.closeDelay));
 				} else {
@@ -140,31 +145,31 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 						c.leaveCallback($sub);
 					}
 				}
-			});
-		
+			})
+		;
 	};
-	
-	// quickTip ([params])
+
+
 	// add an opening and closing behavior
-	//-------------------------------------------
 	style.quickTip = function() {
-		
-		var c = {};
-		
-		var options  = (arguments) ? arguments[0] : {};
-		
-		c.selector = options.selector;
-		c.openSpeed = (Number(options.openSpeed)) ? Number(options.openSpeed) : 200;
-		c.openDelay = (Number(options.openDelay)) ? Number(options.openDelay) : 500;
-		c.closeSpeed = (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150;
-		c.closeDelay = (Number(options.closeDelay)) ? Number(options.closeDelay) : 400;
-		
-		var $tips = $(c.selector);
-		if (!$tips.length) { return false; }
-		
+		var
+			options = (arguments) ? arguments[0] : {},
+			c = {
+				$tips:      $(options.selector),
+				openSpeed:  (Number(options.openSpeed))  ? Number(options.openSpeed)  : 200,
+				openDelay:  (Number(options.openDelay))  ? Number(options.openDelay)  : 500,
+				closeSpeed: (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
+				closeDelay: (Number(options.closeDelay)) ? Number(options.closeDelay) : 400
+			}
+		;
+
+		if (!c.$tips.length) {
+			return false;
+		}
+
 		// WIP
 		/*
-		$tips
+		c.$tips
 			.bind('mouseenter', function(){
 				var $sub = $(this).children('[data-kafequicktip-content]');
 				
@@ -186,9 +191,9 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 				}, c.closeDelay));
 			});
 		*/
-		
+
 	};
-	
+
 	return style;
 
 })(window.kafe)});

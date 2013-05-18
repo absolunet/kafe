@@ -1,34 +1,28 @@
-//-------------------------------------------
-// kafe.number
-//-------------------------------------------
 window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.jQuery;
+	var $ = kafe.dependencies.jQuery;
 
-	//-------------------------------------------
 	// PUBLIC
-	//-------------------------------------------
 	var number = {};
 
-	// toRoman (num)
 	// to roman numerals
-	//-------------------------------------------
 	number.toRoman = function(n) {
 
-		// repeat string n times
-		function repeat(s,nb) {
-			return new Array(Number(nb)+1).join(s);
-		}
+		var
+			// repeat string n times
+			repeat = function (s,nb) {
+				return new Array(Number(nb)+1).join(s);
+			},
+
+			data   = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},
+			result = ''
+		;
 
 		// transform to int
-		n = parseInt(n);
-
-		// data
-		var data = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
-		var result = '';
+		n = parseInt(n,10);
 
 		// foreach numeral
 		for (var i in data) {
-			var matches = parseInt(n / data[i]);
+			var matches = parseInt(n / data[i], 10);
 			if (!!matches) {
 				result += repeat(i, matches);
 				n = n % data[i];
@@ -40,4 +34,3 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 	return number;
 
 })(window.kafe)});
-

@@ -175,7 +175,7 @@
 
 
 
-		kafe.jQuery(function(){
+		kafe.dependencies.jQuery(function(){
 			
 			console.log(kafe.string.generateGuid());
 			
@@ -250,7 +250,7 @@
 
 
 
-			kafe.jQuery('body').append(
+			kafe.dependencies.jQuery('body').append(
 				kafe.ext.twitter.linkifyTweet('#patate Lancement http://www.twitter.com officiel de la #nouvelle technologie http://www.google.com Smart Layer et du premier produit de @cette technologie, @ruin11 le Smart Server.',{
 					link: '<a rel="link2">',
 					hash: '<a rel="hash3">',
@@ -266,7 +266,7 @@
 			window.PATATE = new Date('2010-02-24');
 
 			var kMask = kafe.ext.inputmask; 
-			kafe.jQuery("input.Date").inputmask( kMask.getMask('date') );
+			kafe.dependencies.jQuery("input.Date").inputmask( kMask.getMask('date') );
 			
 			//console.log( kafe.env('dtc').e3 );
 		
@@ -274,7 +274,7 @@
 			kafe.form.autofocusOnNext('input.autofocus');
 			
 			kafe.form.maxLength('#maxou', 20, false, function(nb) {
-				kafe.jQuery('#gl').html(nb);
+				kafe.dependencies.jQuery('#gl').html(nb);
 			});
 		
 		
@@ -287,11 +287,11 @@
 			console.log( kafe.env('tmpl') );
 			console.log( kafe.env('dtc') );
 		
-			kafe.jQuery('#qr').appendHTML5('dd');
+			kafe.dependencies.jQuery('#qr').appendHTML5('dd');
 			/**/
 
 			/**/
-			kafe.jQuery('#qr').html(
+			kafe.dependencies.jQuery('#qr').html(
 				kafe.plugin.qrcode.generate('http://www.absolunet.com')
 			);
 			/**/

@@ -21,4 +21,4 @@ http://stackoverflow.com/questions/985272/jquery-selecting-text-in-an-element-ak
 	    return this;
 	}
 
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);

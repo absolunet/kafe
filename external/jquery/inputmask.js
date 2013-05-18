@@ -1022,7 +1022,7 @@
             }
         };
     }
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);
 
 
 
@@ -1045,7 +1045,7 @@ Optional extensions on the jquery.inputmask base
             casing: "upper"
         }
     });
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);
 
 
 
@@ -1162,7 +1162,7 @@ Optional extensions on the jquery.inputmask base
             alias: "decimal"
         }
     });
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);
 
 
 
@@ -1482,4 +1482,4 @@ Optional extensions on the jquery.inputmask base
                         alias: "date"
                     }
                 });
-            })(kafe.jQuery);
+            })(kafe.dependencies.jQuery);

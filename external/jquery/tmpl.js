@@ -481,4 +481,4 @@
 		jQuery.tmpl( null, null, null, this).insertBefore( coll[0] );
 		jQuery( coll ).remove();
 	}
-})( kafe.jQuery );
+})( kafe.dependencies.jQuery );

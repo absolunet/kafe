@@ -73,4 +73,4 @@ $(function(){
 	//assume that document is always scrollable, doesn't hurt if not
 	$(doc).bind('mwheelIntent.mwheelIntentDefault', $.noop);
 });
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);

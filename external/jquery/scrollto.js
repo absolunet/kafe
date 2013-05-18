@@ -215,4 +215,4 @@
 		return typeof val == 'object' ? val : { top:val, left:val };
 	};
 
-})( kafe.jQuery );
+})( kafe.dependencies.jQuery );

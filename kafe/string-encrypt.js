@@ -1,21 +1,19 @@
-//-------------------------------------------
-// kafe.string.encrypt
-//-------------------------------------------
-window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.jQuery;
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'libs/kafe/string'
+]);
+//>>excludeEnd('excludeRequire');
 
-	//-------------------------------------------
+window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,undefined){
+	var $ = kafe.dependencies.jQuery;
+
 	// PUBLIC
-	//-------------------------------------------
 	var encrypt = {};
-	
-	// md5 (string)
+
 	// encrypt string to md5
-	//-------------------------------------------
 	encrypt.md5 = function (string) {
- 
+
 		// http://www.webtoolkit.info/
-		
 		function RotateLeft(lValue, iShiftBits) {
 			return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
 		}
@@ -39,32 +37,32 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 			} else {
 				return (lResult ^ lX8 ^ lY8);
 			}
-	 	}
+		}
 
-	 	function F(x,y,z) { return (x & y) | ((~x) & z); }
-	 	function G(x,y,z) { return (x & z) | (y & (~z)); }
-	 	function H(x,y,z) { return (x ^ y ^ z); }
+		function F(x,y,z) { return (x & y) | ((~x) & z); }
+		function G(x,y,z) { return (x & z) | (y & (~z)); }
+		function H(x,y,z) { return (x ^ y ^ z); }
 		function I(x,y,z) { return (y ^ (x | (~z))); }
 
 		function FF(a,b,c,d,x,s,ac) {
 			a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
 			return AddUnsigned(RotateLeft(a, s), b);
-		};
+		}
 
 		function GG(a,b,c,d,x,s,ac) {
 			a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
 			return AddUnsigned(RotateLeft(a, s), b);
-		};
+		}
 
 		function HH(a,b,c,d,x,s,ac) {
 			a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
 			return AddUnsigned(RotateLeft(a, s), b);
-		};
+		}
 
 		function II(a,b,c,d,x,s,ac) {
 			a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
 			return AddUnsigned(RotateLeft(a, s), b);
-		};
+		}
 
 		function ConvertToWordArray(string) {
 			var lWordCount;
@@ -87,7 +85,7 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 			lWordArray[lNumberOfWords-2] = lMessageLength<<3;
 			lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
 			return lWordArray;
-		};
+		}
 
 		function WordToHex(lValue) {
 			var WordToHexValue="",WordToHexValue_temp='',lByte,lCount;
@@ -97,7 +95,7 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 				WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
 			}
 			return WordToHexValue;
-		};
+		}
 
 		function Utf8Encode(string) {
 			string = string.replace(/\r\n/g,'\n');
@@ -123,7 +121,7 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 			}
 
 			return utftext;
-		};
+		}
 
 		var x=Array();
 		var k,AA,BB,CC,DD,a,b,c,d;
@@ -131,13 +129,13 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 		var S21=5, S22=9 , S23=14, S24=20;
 		var S31=4, S32=11, S33=16, S34=23;
 		var S41=6, S42=10, S43=15, S44=21;
- 
+
 		string = Utf8Encode(string);
- 
+
 		x = ConvertToWordArray(string);
- 
+
 		a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
- 
+
 		for (k=0;k<x.length;k+=16) {
 			AA=a; BB=b; CC=c; DD=d;
 			a=FF(a,b,c,d,x[k+0], S11,0xD76AA478);
@@ -209,9 +207,9 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 			c=AddUnsigned(c,CC);
 			d=AddUnsigned(d,DD);
 		}
- 
+
 		var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
- 
+
 		return temp.toLowerCase();
 	};
 

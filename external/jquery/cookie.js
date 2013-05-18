@@ -68,4 +68,4 @@
 		return false;
 	};
 
-})(kafe.jQuery, document);
+})(kafe.dependencies.jQuery, document);

@@ -879,4 +879,4 @@
 	// Setup ColorBox
 	publicMethod.init();
 
-}(kafe.jQuery, document, this));
+}(kafe.dependencies.jQuery, document, this));

@@ -120,7 +120,7 @@ var ieTransforms = {
             filter: 'progid:DXImageTransform.Microsoft.Matrix(M11=0, M12=1, M21=-1, M22=0, SizingMethod="auto expand")'
         }
     },
-    useIeTransforms = (kafe.jQuery.browser.msie && parseInt(kafe.jQuery.browser.version, 10) <= 8);
+    useIeTransforms = (kafe.dependencies.jQuery.browser.msie && parseInt(kafe.dependencies.jQuery.browser.version, 10) <= 8);
 
 $.widget( "ui.iviewer", $.ui.mouse, {
     widgetEventPrefix: "iviewer",
@@ -169,39 +169,39 @@ $.widget( "ui.iviewer", $.ui.mouse, {
         * @param int new zoom value
         * @return boolean if false zoom action is aborted
         **/
-        onZoom: kafe.jQuery.noop,
+        onZoom: kafe.dependencies.jQuery.noop,
         /**
         * event is triggered when zoom value is changed after image is set to the new dimensions
         * @param int new zoom value
         * @return boolean if false zoom action is aborted
         **/
-        onAfterZoom: kafe.jQuery.noop,
+        onAfterZoom: kafe.dependencies.jQuery.noop,
         /**
         * event is fired on drag begin
         * @param object coords mouse coordinates on the image
         * @return boolean if false is returned, drag action is aborted
         **/
-        onStartDrag: kafe.jQuery.noop,
+        onStartDrag: kafe.dependencies.jQuery.noop,
         /**
         * event is fired on drag action
         * @param object coords mouse coordinates on the image
         **/
-        onDrag: kafe.jQuery.noop,
+        onDrag: kafe.dependencies.jQuery.noop,
         /**
         * event is fired on drag stop
         * @param object coords mouse coordinates on the image
         **/
-        onStopDrag: kafe.jQuery.noop,
+        onStopDrag: kafe.dependencies.jQuery.noop,
         /**
         * event is fired when mouse moves over image
         * @param object coords mouse coordinates on the image
         **/
-        onMouseMove: kafe.jQuery.noop,
+        onMouseMove: kafe.dependencies.jQuery.noop,
         /**
         * mouse click event
         * @param object coords mouse coordinates on the image
         **/
-        onClick: kafe.jQuery.noop,
+        onClick: kafe.dependencies.jQuery.noop,
         /**
         * event is fired when image starts to load
         */
@@ -410,7 +410,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
      * Get container offset object.
      */
     getContainerOffset: function() {
-        return kafe.jQuery.extend({}, this.container.offset());
+        return kafe.dependencies.jQuery.extend({}, this.container.offset());
     },
 
     /**
@@ -872,7 +872,7 @@ $.ui.iviewer.ImageObject = function(do_anim) {
     this.load = function(src, loaded) {
         var self = this;
 
-        loaded = loaded || kafe.jQuery.noop;
+        loaded = loaded || kafe.dependencies.jQuery.noop;
         this._loaded = false;
 
         //If we assign new image url to the this._img IE9 fires onload event and image width and
@@ -976,12 +976,12 @@ $.ui.iviewer.ImageObject = function(do_anim) {
             var cssVal = 'rotate(' + deg + 'deg)',
                 img = this._img;
 
-            kafe.jQuery.each(['', '-webkit-', '-moz-', '-o-', '-ms-'], function(i, prefix) {
+            kafe.dependencies.jQuery.each(['', '-webkit-', '-moz-', '-o-', '-ms-'], function(i, prefix) {
                 img.css(prefix + 'transform', cssVal);
             });
 
             if (useIeTransforms) {
-                kafe.jQuery.each(['-ms-', ''], function(i, prefix) {
+                kafe.dependencies.jQuery.each(['-ms-', ''], function(i, prefix) {
                     img.css(prefix + 'filter', ieTransforms[deg].filter);
                 });
 
@@ -1033,7 +1033,7 @@ $.ui.iviewer.ImageObject = function(do_anim) {
     /**
      * @return {jQuery} Return image node. this is needed to add event handlers.
      */
-    this.object = setter(kafe.jQuery.noop,
+    this.object = setter(kafe.dependencies.jQuery.noop,
                            function() { return this._img; });
 
     /**
@@ -1048,7 +1048,7 @@ $.ui.iviewer.ImageObject = function(do_anim) {
      * @param {Function=} complete Call back will be fired when zoom will be complete.
      */
     this.setImageProps = function(disp_w, disp_h, x, y, skip_animation, complete) {
-        complete = complete || kafe.jQuery.noop;
+        complete = complete || kafe.dependencies.jQuery.noop;
 
         this.display_width(disp_w);
         this.display_height(disp_h);
@@ -1066,7 +1066,7 @@ $.ui.iviewer.ImageObject = function(do_anim) {
         };
 
         if (useIeTransforms) {
-            kafe.jQuery.extend(params, {
+            kafe.dependencies.jQuery.extend(params, {
                 marginLeft: ieTransforms[this.angle()].marginLeft * this.display_diff() / 2,
                 marginTop: ieTransforms[this.angle()].marginTop * this.display_diff() / 2
             });
@@ -1126,4 +1126,4 @@ var util = {
     }
 };
 
- } )( kafe.jQuery, undefined );
+ } )( kafe.dependencies.jQuery, undefined );

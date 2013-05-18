@@ -65,15 +65,14 @@
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/dependencies/underscore', 
+	'libs/external/dependencies/underscore',
 	'libs/external/dependencies/modernizr'
 ]);
 //>>excludeEnd('excludeRequire');
 
 window.kafe = (function(undefined){
 
-	var 
-		// _exists (name)
+	var
 		// check if module imported
 		_exists = function _exists(name) {
 			try {
@@ -91,48 +90,86 @@ window.kafe = (function(undefined){
 				div = document.createElement('div'),
 				all = div.getElementsByTagName('i')
 			;
-			while (
+			while ((
 				div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
 				all[0]
-			);
+			));
+
 			return v > 4 ? v : undef;
 		}),
-		
-		//-------------------------------------------
-		// CORE
-		//-------------------------------------------
+
+
+		/**
+		* ### Version 2-alpha
+		* kafe core
+		*
+		* @class kafe
+		*/
 		core = {
+
+			/**
+			* kafe version
+			*
+			* @property _vesyon 
+			* @for kafe
+			* @type String
+			**/
 			_vesyon: '2-alpha',
+
+			/**
+			* kafe author
+			*
+			* @property _griyaj 
+			* @for kafe
+			* @type String
+			**/
 			_griyaj: 'absolunet.com',
 
-			plugin:       {},
-			ext:          { cms:{} },
+			/**
+			* Versions of dependencies / kafe modules
+			*
+			* @property _chaje 
+			* @for kafe
+			* @type Object
+			**/
+			_chaje: {
+				'dependencies.jQuery':     window.kafejQuery().jquery,
+				'dependencies.underscore': window._.VERSION,
+				'dependencies.Modernizr':  window.Modernizr._version
+			},
+
+			// namespaces
+			plugin: {},
+			ext: { cms:{} },
+
+			// isolate core dependencies from DOM
 			dependencies: {
 				jQuery:     window.kafejQuery.noConflict(true),
 				underscore: window._.noConflict(),
 				Modernizr:  window.Modernizr
 			}
-		};
-		core._chaje = {
-			'dependencies.jQuery':     core.dependencies.jQuery().jquery,
-			'dependencies.underscore': core.dependencies.underscore.VERSION,
-			'dependencies.Modernizr':  core.dependencies.Modernizr._version 
-		};
-
+		}
 	;
-
 	delete window.Modernizr;
-	
-	
-	//-------------------------------------------
-	// general functions
-	//-------------------------------------------
-	core.fn  = {
 
-		// createInstantiableObject ()
-		// create a instantiable object
-		// By John Resig (MIT Licensed) - http://ejohn.org/blog/simple-class-instantiation/
-		//-------------------------------------------
+
+
+	/**
+	* Miscellaneous core functions
+	*
+	* @class kafe.fn
+	* @for kafe
+	*/
+	core.fn = {
+
+		/**
+		* Create a instantiable object
+		* By John Resig (MIT Licensed) - http://ejohn.org/blog/simple-class-instantiation/
+		*
+		* @method createInstantiableObject
+		* @for kafe.fn
+		* @return {Object} The instantiable object
+		*/
 		createInstantiableObject: function() {
 			return function(args){
 				if (this instanceof arguments.callee) {
@@ -142,11 +179,18 @@ window.kafe = (function(undefined){
 					return new arguments.callee(arguments);
 			};
 		},
-		
-		// lang (dict,[lang])
-		// get a existing lang
-		//-------------------------------------------
-		lang: function(dict,lang) {
+
+
+		/**
+		* Return the language if available or else 'en'
+		*
+		* @method lang
+		* @for kafe.fn
+		* @param {Object} dict The dictionary to check against
+		* @param {String} lang The language to check
+		* @return {String} The available language
+		*/
+		lang: function(dict, lang) {
 			lang = (!!lang) ? lang : core.env('lang');
 			return (!!dict[lang]) ? lang : 'en';
 		}
@@ -154,64 +198,16 @@ window.kafe = (function(undefined){
 	};
 
 
-	// bonify (name/version/object)
-	// add module to core
-	//-------------------------------------------
-	core.bonify = function(options) {
 
-		// if not already extended
-		if (!_exists('core.'+options.name)) {
-
-			core._chaje[options.name] = options.version;
-			eval('this.'+options.name+' = arguments[0].obj;');
-			
-		// throw error
-		} else {
-			throw core.error('kafe.'+options.name+' already exists');
-		}
-	};
-	
-	
-	// plug (name/version/object)
-	// add a plugin
-	//-------------------------------------------
-	core.plug = function(options) {
-		options.name = 'plugin.'+options.name;
-		this.bonify(options);
-	};
-
-
-	// extend (name/version/object)
-	// add an external plugin extension
-	//-------------------------------------------
-	core.extend = function(options) {
-		options.name = 'ext.'+options.name;
-		this.bonify(options);
-	};
-
-
-	// required (name_or_url)
-	// check if required module is included
-	//-------------------------------------------
-	core.required = function(name) {
-		// TO REPLACE WITH REQUIRE.JS DEPENDENCIES
-		console.log(name);
-	};
-
-
-	// error (error)
-	// throw errors - kafe.error(new Error('barf'));
-	//-------------------------------------------
-	core.error = function(e) {
-		var msg = ((!!e.description) ? e.description : e.message);
-		e.description = e.message = '<kafe:erè> : '+ ((!!msg) ? msg : 'anonim');
-		return (_ie && _ie == 8) ? new Error(e) : e;
-	};
-
-
-	//-------------------------------------------
-	// ENV
-	//-------------------------------------------
+	/**
+	* Environment constants
+	*
+	* @method env
+	* @for kafe
+	* @param {String} name The constant to get/set
+	* @param {String} [value] The value to set
+	* @return {String} The value of the environment constant
+	*/
 	core.env = (function(){
 
 		// base vals
@@ -230,29 +226,113 @@ window.kafe = (function(undefined){
 		_data.tmpl    = document.documentElement.getAttribute('data-kafe-tmpl') || '';
 		_data.tmpl    = _data.tmpl.split(' ');
 
-		// public method (name, [value])
-		//-------------------------------------------
+		// public method
 		return function(name, value) {
 			var updatable = '';
 
-			// get
-			if (value == undefined) {
-				return _data[name];
+			if (value !== undefined) {
 
-			// already set 
-			} else if (_data[name] != undefined && updatable.search(new RegExp('\:'+name+'\:')) == -1) {
-				throw core.error(new Error('kafe.env > property \''+name+'\' already defined'));
+				// if not already set 
+				if (!(_data[name] !== undefined && updatable.search(new RegExp(':'+name+':')) == -1)) {
+					_data[name] = value;
 
-			// set
-			} else {
-				_data[name] = value;
+				// throw error
+				} else {
+					throw core.error(new Error("kafe.env > property '"+name+"' already defined"));
+				}
 			}
+
+			return _data[name];
 		};
 	})();
 
 
+	// 
+	// 
+	// 
 	// TODO -- ADD IE CLASSES 
+	// 
+	// 
+	// 
 
+
+	/**
+	* Add module to core
+	*
+	* @method bonify
+	* @for kafe
+	* @param {Object} options The options
+	*	@param {String} options.name The module name
+	*	@param {String} options.version The module version
+	*	@param {Object} options.obj The module itself
+	*/
+	core.bonify = function(options) {
+
+		// if not already extended
+		if (!_exists('core.'+options.name)) {
+
+			core._chaje[options.name] = options.version;
+			eval('this.'+options.name+' = arguments[0].obj;');
+
+		// throw error
+		} else {
+			throw core.error('kafe.'+options.name+' already exists');
+		}
+	};
+
+
+	/**
+	* Add a plugin
+	*
+	* @method plug
+	* @for kafe
+	* @param {Object} options The options
+	*	@param {String} options.name The plugin name
+	*	@param {String} options.version The plugin version
+	*	@param {Object} options.obj The plugin itself
+	*/
+	core.plug = function(options) {
+		options.name = 'plugin.'+options.name;
+		this.bonify(options);
+	};
+
+
+	/**
+	* Add an external plugin extension
+	*
+	* @method extend
+	* @for kafe
+	* @param {Object} options The options
+	*	@param {String} options.name The plugin extension name
+	*	@param {String} options.version The plugin extension version
+	*	@param {Object} options.obj The plugin extension itself
+	*/
+	core.extend = function(options) {
+		options.name = 'ext.'+options.name;
+		this.bonify(options);
+	};
+
+
+	/**
+	* Throw kafe errors
+	*
+	* @method error
+	* @for kafe
+	* @param {Error} error The error with description
+	* @return {Error} error The error
+	* @example kafe.error(new Error('barf'));
+	*/
+	core.error = function(e) {
+		var msg = ((!!e.description) ? e.description : e.message);
+		e.description = e.message = '<kafe:erè> : '+ ((!!msg) ? msg : 'anonim');
+		return (_ie && _ie == 8) ? new Error(e) : e;
+	};
+
+
+
+
+	// TO REPLACE WITH REQUIRE.JS DEPENDENCIES
+	core.required = function(name) { console.log(name); };
 
 
 	return core;

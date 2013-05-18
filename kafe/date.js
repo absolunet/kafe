@@ -1,133 +1,219 @@
-//-------------------------------------------
-// kafe.date
-//-------------------------------------------
 window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
-	var $ = kafe.jQuery;
-	
-	// dictionary
-	var _dict = {
-		fr: {
-			m:  ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-			m3: [0,0,0,0,0,'Jun','Jul'],
-			w:  ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-			d:  ['1er'],
-			r:  ['en ce moment','il y a moins d\'une minute','il y a environ une minute','il y a %n minutes','il y a environ une heure','il y a %n heures','hier','avant-hier','il y a %n jours','la semaine passée','il y a %n semaines','le mois passé','il y a %n mois']
+	var
+		$ = kafe.dependencies.jQuery,
+
+		// dictionary
+		_dict = {
+			fr: {
+				m:  ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+				m3: [0,0,0,0,0,'Jun','Jul'],
+				w:  ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+				d:  ['1er'],
+				r:  ['en ce moment',"il y a moins d'une minute",'il y a environ une minute','il y a %n minutes','il y a environ une heure','il y a %n heures','hier','avant-hier','il y a %n jours','la semaine passée','il y a %n semaines','le mois passé','il y a %n mois']
+			},
+			en: {
+				m:  ['January','February','March','April','May','June','July','August','September','October','November','December'],
+				w:  ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+				d:  ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th','14th','15th','16th','17th','18th','19th','20th','21st','22nd','23rd','24th','25th','26th','27th','28th','29th','30th','31st'],
+				r:  ['now','less than a minute ago','about a minute ago','%n minutes ago','about an hour ago','%n hours ago','yesterday','day before yesterday','%n days ago','last week','%n weeks ago','last month','%n months ago']
+			},
+			multi: {
+				m2: ['Ja','Fe','Mr','Al','Ma','Jn','Jl','Au','Se','Oc','No','De']
+			}
 		},
-		en: {
-			m:  ['January','February','March','April','May','June','July','August','September','October','November','December'],
-			w:  ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-			d:  ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th','14th','15th','16th','17th','18th','19th','20th','21st','22nd','23rd','24th','25th','26th','27th','28th','29th','30th','31st'],
-			r:  ['now','less than a minute ago','about a minute ago','%n minutes ago','about an hour ago','%n hours ago','yesterday','day before yesterday','%n days ago','last week','%n weeks ago','last month','%n months ago']
+
+		// get a valid lang
+		_lang = function(lang) {
+			return kafe.fn.lang(_dict,lang);
 		},
-		multi: {
-			m2: ['Ja','Fe','Mr','Al','Ma','Jn','Jl','Au','Se','Oc','No','De']
+
+		// get the 3-char month abbreviation
+		_m3 = function(month, lang) {
+			var d = _dict[_lang(lang)];
+			return (d.m3 && d.m3[month]) ? d.m3[month] : d.m[month].toString().substring(0,3);
+		},
+
+		// get the 3-char weekday abbreviation
+		_w3 = function(weekday, lang) {
+			var d = _dict[_lang(lang)];
+			return (d.w3 && d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].toString().substring(0,3);
+		},
+
+		// trim every element of the array
+		_trim = function(list, nb) {
+			var d = [];
+			for (var i in list) {
+				d.push(list[i].toString().substr(0,nb));
+			}
+			return d;
 		}
-	};
-
-	// _lang ([lang])
-	// get a valid lang
-	//-------------------------------------------
-	function _lang(lang) {
-		return kafe.fn.lang(_dict,lang);
-	}
-
-	// _m3 (month, [lang])
-	// get the 3-char month abbreviation
-	//-------------------------------------------
-	function _m3(month, lang) {
-		var d = _dict[_lang(lang)];
-		return (d.m3 && d.m3[month]) ? d.m3[month] : d.m[month].toString().substring(0,3);
-	}
-
-	// _w3 (weekday, [lang])
-	// get the 3-char weekday abbreviation
-	//-------------------------------------------
-	function _w3(weekday, lang) {
-		var d = _dict[_lang(lang)];
-		return (d.w3 && d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].toString().substring(0,3);
-	}
-
-	// _trim (list, nb)
-	// trim every element of the array
-	//-------------------------------------------
-	function _trim(list,nb) {
-		var d = [];
-		for (var i in list) {
-			d.push(list[i].toString().substr(0,nb));
-		}
-		return d;
-	}
+	;
 
 
 
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+	/**
+	* ### Version 1.2
+	* Additionnal methods for date manipulation
+	*
+	* @class kafe.date 
+	*/
 	var date = {
-		SECOND:  1000,        // 1000 ms per second
-		MINUTE:  60000,       // 60 seconds per minute
-		HOUR:    3600000,     // 60 minutes per hour
-		DAY:     86400000,    // 24 hours per day
-		WEEK:    604800000,   // 7 days per week
-		MONTH:   2629743840,  // 4.348121428571429 weeks per month
-		YEAR:    31556926080  // 365.2422 days per year
+
+		/**
+		* Number of milliseconds in a second (1000 ms per second)
+		*
+		* @property SECOND 
+		* @for kafe.date
+		* @type Number
+		**/
+		SECOND:1000,
+
+		/**
+		* Number of milliseconds in a minute (60 seconds per minute)
+		*
+		* @property MINUTE 
+		* @for kafe.date
+		* @type Number
+		**/
+		MINUTE:60000,
+
+		/**
+		* Number of milliseconds in an hour (60 minutes per hour)
+		*
+		* @property HOUR 
+		* @for kafe.date
+		* @type Number
+		**/
+		HOUR:3600000,
+
+		/**
+		* Number of milliseconds in a day (24 hours per day)
+		*
+		* @property DAY 
+		* @for kafe.date
+		* @type Number
+		**/
+		DAY:86400000,
+
+		/**
+		* Number of milliseconds in a week (7 days per week)
+		*
+		* @property WEEK 
+		* @for kafe.date
+		* @type Number
+		**/
+		WEEK:604800000,
+
+		/**
+		* Number of milliseconds in a month (4.348121428571429 weeks per month)
+		*
+		* @property MONTH 
+		* @for kafe.date
+		* @type Number
+		**/
+		MONTH:2629743840,
+
+		/**
+		* Number of milliseconds in a year (365.2422 days per year)
+		*
+		* @property YEAR 
+		* @for kafe.date
+		* @type Number
+		**/
+		YEAR:31556926080
 	};
 
 
-	// getDayYear (date)
-	// get the day of the year
-	//-------------------------------------------
+	/**
+	* Get the day of the year
+	*
+	* @method getDayYear
+	* @param {Date} d The date
+	* @return {Number} The day of the year
+	*/
 	date.getDayYear = function(d) {
-		var max = this.getMaxMonth(d.getFullYear());
-		var m   = d.getMonth();
-		var total = -1;
-		
+		var
+			max = this.getMaxMonth(d.getFullYear()),
+			m   = d.getMonth(),
+			total = -1
+		;
+
 		for (var i=0; i<m; ++i) {
 			total += max[i];
 		}
-		
+
 		return total+d.getDate();
 	};
 
-	// isLeapYear (year)
-	// is a leap year
-	//-------------------------------------------
-	date.isLeapYear = function(y) {
-		return ((y%4 == 0 && y%400 != 0) || y == 2000);
+
+	/**
+	* Is it a leap year ?
+	*
+	* @method isLeapYear
+	* @param {Number} year The year 
+	* @return {Number} The day of the year
+	*/
+	date.isLeapYear = function(year) {
+		return ((year%4 === 0 && year%400 !== 0) || year == 2000);
 	};
 
-	// getMaxMonth (year)
-	// get number of days in the months for a year
-	//-------------------------------------------
-	date.getMaxMonth = function(y) {
-		return [31, (this.isLeapYear(y) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+	/**
+	* Get number of days in the months for a year
+	*
+	* @method getMaxMonth
+	* @param {Number} year The year 
+	* @return {Array} The number of days in the months of the year
+	*/
+	date.getMaxMonth = function(year) {
+		return [31, (this.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	};
-	
-	// getMonthNames ([lang])
-	// get the month names
-	//-------------------------------------------
+
+
+	/**
+	* Get the month names
+	*
+	* @method getMonthNames
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The months names
+	*/
 	date.getMonthNames = function(lang) {
 		return _dict[_lang(lang)].m;
 	};
 
-	// getMonth1Names ([lang])
-	// get the 1-char month abbreviation
-	//-------------------------------------------
+
+	/**
+	* Get the 1-char month abbreviations
+	*
+	* @method getMonth1Names
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The 1-char months abbreviations
+	*/
 	date.getMonth1Names = function(lang) {
 		return _trim(_dict[_lang(lang)].m,1);
 	};
 
-	// getMonth2Names ([lang])
-	// get the 2-char month abbreviation
-	//-------------------------------------------
+
+	/**
+	* Get the 2-char month abbreviations
+	*
+	* @method getMonth2Names
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The 2-char months abbreviations
+	*/
 	date.getMonth2Names = function(lang) {
 		lang = _lang(lang);
 		return (_dict[lang].m2) ? _dict[lang].m2 : _dict.multi.m2;
 	};
 
-	// getMonth3Names ([lang])
-	// get the 3-char month abbreviation
-	//-------------------------------------------
+
+	/**
+	* Get the 3-char month abbreviations
+	*
+	* @method getMonth3Names
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The 3-char months abbreviations
+	*/
 	date.getMonth3Names = function(lang) {
 		var d = [];
 		for (var i=0; i<12; ++i) {
@@ -136,30 +222,50 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		return d;
 	};
 
-	// getWeekdayNames ([lang])
-	// get the weekday names
-	//-------------------------------------------
+
+	/**
+	* Get the weekday names
+	*
+	* @method getWeekdayNames
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The weekdays names
+	*/
 	date.getWeekdayNames = function(lang) {
 		return _dict[_lang(lang)].w;
 	};
 
-	// getWeekday1Names ([lang])
-	// get the 1-char weekday abbreviation
-	//-------------------------------------------
+
+	/**
+	* Get the 1-char weekday abbreviations
+	*
+	* @method getWeekday1Names
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The 1-char weekdays abbreviations
+	*/
 	date.getWeekday1Names = function(lang) {
 		return _trim(_dict[_lang(lang)].w,1);
 	};
 
-	// getWeekday2Names ([lang])
-	// get the 2-char weekday abbreviation
-	//-------------------------------------------
+
+	/**
+	* Get the 2-char weekday abbreviations
+	*
+	* @method getWeekday2Names
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The 2-char weekdays abbreviations
+	*/
 	date.getWeekday2Names = function(lang) {
 		return _trim(_dict[_lang(lang)].w,2);
 	};
 
-	// getWeekday3Names ([lang])
-	// get the 3-char weekday abbreviation
-	//-------------------------------------------
+
+	/**
+	* Get the 3-char weekday abbreviations
+	*
+	* @method getWeekday3Names
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The 3-char weekdays abbreviations
+	*/
 	date.getWeekday3Names = function(lang) {
 		var d = [];
 		for (var i=0; i<7; ++i) {
@@ -167,28 +273,42 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		}
 		return d;
 	};
-	
-	// getDayNames ([lang])
-	// get the month day clean representation
-	//-------------------------------------------
+
+
+	/**
+	* Get the month day clean representation
+	*
+	* @method getDayNames
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {Array} The days clean representations
+	*/
 	date.getDayNames = function(lang) {
-		var d = _dict[_lang(lang)].d;
-		var l = d.length;
+		var
+			d = _dict[_lang(lang)].d,
+			l = d.length
+		;
 		for (var i=l; i<31; ++i) {
 			d[i] = i+1;
 		}
 		return d;
 	};
 
-	// format (format, date, [lang])
-	// get a formatted date string
-	//-------------------------------------------
-	date.format = function(format,date,lang) {
-		
-		function pad() { return ('0'+arguments[0].toString()).slice(-2); }
-		
-		var 
-			lang = _lang(lang),
+
+	/**
+	* Get a formatted date
+	*
+	* @method format
+	* @param {String} format The format with %- keys 
+	* @param {Date} [date=NOW] The date to format
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {String} The formatted date
+	*/
+	date.format = function(format, date, lang) {
+		date = (date) ? date : new Date();
+		lang = _lang(lang);
+
+		var
+			pad  = function() { return ('0'+arguments[0].toString()).slice(-2); },
 			d    = _dict[lang],
 
 			year      = date.getFullYear(),
@@ -198,9 +318,10 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 			hours     = date.getHours(),
 			minutes   = date.getMinutes(),
 			seconds   = date.getSeconds(),
-			hours12   = ((hours % 12) == 0) ? 12 : (hours % 12),
+			hours12   = ((hours % 12) === 0) ? 12 : (hours % 12),
 			hoursAmPm = Math.floor(hours/12),
-		                                                                    // 2011-01-02 15:04:05
+
+			//                                                                 2011-01-02 15:04:05
 			data = {                                                        // -------------------
 				Y: year,                                                    // year           2011
 				y: year.toString().substring(2),                            // year             11
@@ -231,7 +352,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				S: pad(seconds),                                            // second           05
 				s: seconds                                                  // second            5
 			}
-		;	
+		;
 
 		for (var i in data) {
 			format = format.replace(new RegExp('%'+i,'g'),data[i]);
@@ -240,17 +361,24 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		return format;
 	};
 
-	// formatRelative (time, [now], [lang])
-	// get a formatted relative date string
-	//-------------------------------------------
-	date.formatRelative = function (time,now,lang) {
+
+	/**
+	* Get a relative time expression
+	*
+	* @method formatRelative
+	* @param {Date} time The datetime we want 
+	* @param {Date} [now=NOW] The datetime from which it is relative to
+	* @param {String} [lang=CURRENT_ENV_LANG] The language
+	* @return {String} The relative time expression
+	*/
+	date.formatRelative = function(time, now, lang) {
 		now = (now) ? now : new Date();
 
-		var 
+		var
 			d     = _dict[_lang(lang)].r,
 			delta = now.getTime() - time.getTime()
 		;
-	
+
 		if (delta <= 0) {
 			return d[0];
 		} else if (delta < date.MINUTE) {
@@ -280,29 +408,36 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		}
 	};
 
-	// parse (string)
-	// parses a string into a date obj
-	//-------------------------------------------
-	date.parse = function(s) {
 
-		function y2y4(year) {
-			if (year > 69 && year < 100) {
-				return Number(year) + 1900;
-			} else if (year < 69) {
-				return Number(year) + 2000;
-			} else {
-				return year;
-			}
-		};
-		
-		var ts = Date.parse(s);
+	/**
+	* Parses a datetime string into a date object
+	*
+	* @method parse
+	* @param {String} dtstring The datetime string 
+	* @return {Date} The date object
+	*/
+	date.parse = function(dtstring) {
+
+		var ts = Date.parse(dtstring);
+
 		if (isNaN(ts)) {
 
-			var m = date.getMonth3Names('en');
-			var year, month, day, hour, minute, second, delta, e;
+			var
+				y2y4 = function(year) {
+					if (year > 69 && year < 100) {
+						return Number(year) + 1900;
+					} else if (year < 69) {
+						return Number(year) + 2000;
+					} else {
+						return year;
+					}
+				},
+				m = date.getMonth3Names('en'),
+				year, month, day, hour, minute, second, delta, e, d
+			;
 
 			// 2011-03-08 09:25:15
-			if (e = new RegExp('^([0-9]{2,4})\-([0-9]{2})\-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(s)) {
+			if ((e = new RegExp('^([0-9]{2,4})\\-([0-9]{2})\\-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(s))) {
 				year   = y2y4(e[1]);
 				month  = e[2];
 				day    = e[3];
@@ -311,7 +446,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				second = e[6];
 
 			// Sat, 30 Oct 10 13:51:32 +0000
-			} else if (e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\+\-][0-9]{4})$','gi').exec(s)) {
+			} else if ((e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\\+\\-][0-9]{4})$','gi').exec(s))) {
 				year   = y2y4(e[4]);
 				month  = $.inArray(e[3], m)+1;
 				day    = e[2];
@@ -321,7 +456,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				delta  = e[8]/100;
 
 			// Mon Nov 01 01:49:22 +0000 2010
-			} else if (e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\+\-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s)) {
+			} else if ((e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\\+\\-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s))) {
 				year   = y2y4(e[8]);
 				month  = $.inArray(e[2], m)+1;
 				day    = e[3];
@@ -331,7 +466,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				delta  = e[7]/100;
 
 			// 2012-08-08T12:18:00.000-04:00
-			} else if (e = new RegExp('^([0-9]{2,4})\-([0-9]{2})\-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\.([0-9]{3})([\+\-])([0-9]{2})\:([0-9]{2})$','gi').exec(s)) {
+			} else if ((e = new RegExp('^([0-9]{2,4})\\-([0-9]{2})\\-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([\\+\\-])([0-9]{2})\\:([0-9]{2})$','gi').exec(s))) {
 				year   = y2y4(e[1]);
 				month  = e[2];
 				day    = e[3];
@@ -341,91 +476,107 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				delta  = (Number(e[9]) + (Number(e[10])/60)) * ((e[8] == '-') ? -1 : 1);
 			}
 
-			var d = new Date(year, month-1, day, hour, minute, second, 0);
-			return (delta != undefined) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
+			d = new Date(year, month-1, day, hour, minute, second, 0);
+			return (delta !== undefined) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
 
 		} else {
 			return new Date(ts);
 		}
 	};
 
-	// refreshSelectDays (object, month, year)
-	// refresh a day dropdown depending of the month-year
-	//-------------------------------------------
-	date.refreshSelectDays = function(o,m,y) {
+
+	/**
+	* Refresh a day dropdown depending of the month-year combination
+	*
+	* @method refreshSelectDays
+	* @param {DOMElement} obj The &lt;select&gt; element
+	* @param {Number} month The month 
+	* @param {Number} year The year
+	*/
+	date.refreshSelectDays = function(obj, month, year) {
 
 		// if a title in the dropdown
-		var dp = (Number(o.options[0].value)) ? 0 : 1;
-		var dn = -diffp;
-		
-		var nb = this.getMaxMonth(y)[m-1];
-		
+		var
+			dp = (Number(obj.options[0].value)) ? 0 : 1,
+			dn = -dp,
+			nb = this.getMaxMonth(year)[month-1]
+		;
+
 		// if there are less day in the new month
-		if (o.length+dn > nb) {
+		if (obj.length+dn > nb) {
 
 			// if a impossible day for the new days is selected
-			if (o.selectedIndex+1 > nb+dn) {
-				o.selectedIndex = nb-1+dp;
+			if (obj.selectedIndex+1 > nb+dn) {
+				obj.selectedIndex = nb-1+dp;
 			}
-			o.length = nb+dp;
+			obj.length = nb+dp;
 
 		// if there are more days in the new month
-		} else if ( o.length+dn < nb ) {
+		} else if ( obj.length+dn < nb ) {
 
-			var curr = o.length;
-			o.length = nb+dp;
+			var curr = obj.length;
+			obj.length = nb+dp;
 
 			// rebuild the new days
 			for (var i=curr; i<nb+dp; ++i) {
-				o.options[i].text = i+1+dn;
-				o.options[i].value = i+1+dn;
+				obj.options[i].text = i+1+dn;
+				obj.options[i].value = i+1+dn;
 			}
 		}
 	};
 
-	// makeMonthCalendar (year,month,[links])
-	// returns a html table containg the monthly calendar
-	//-------------------------------------------
-	date.makeMonthCalendar = function(y,m,links) {
+
+	/**
+	* Make a html table containg the monthly calendar
+	*
+	* @method makeMonthCalendar
+	* @param {Number} year The year
+	* @param {Number} month The month 
+	* @param {Object} [links] The links by date
+	*	@param {Array} links.YYYY-MM-DD The links
+	* @return {String} The rendered HTML
+	*/
+	date.makeMonthCalendar = function(year, month, links) {
+		links = links || {};
 		--m;
-		
-		var 
-			links    = links || {},
+
+		var
+			i,
 			weekdays = date.getWeekday3Names(),
-			max      = date.getMaxMonth(y)[m],
-			firstDay = new Date(y,m,1).getDay(),
+			max      = date.getMaxMonth(year)[month],
+			firstDay = new Date(year,month,1).getDay(),
 			week     = 0,
 			today    = date.format('%Y-%M-%D', new Date()),
-			html     = '<table data-month="'+date.format('%Y-%M', new Date(y,m,1))+'"><caption>'+date.getMonthNames()[m]+' '+y+'</caption><thead><tr>'
+			html     = '<table data-month="'+date.format('%Y-%M', new Date(year,month,1))+'"><caption>'+date.getMonthNames()[month]+' '+year+'</caption><thead><tr>'
 		;
-		
+
 		// weekdays
-		for (var i in weekdays) {
-			html += '<th>'+weekdays[i]+'</th>'
+		for (i in weekdays) {
+			html += '<th>'+weekdays[i]+'</th>';
 		}
 
-		html += '</thead><tbody><tr>'
+		html += '</thead><tbody><tr>';
 
 		// start padding
-		for (var i=0; i<firstDay; ++i) {
+		for (i=0; i<firstDay; ++i) {
 			html += '<td>&nbsp;</td>';
 			++week;
 		}
 
 		// days
-		for (var i=1; i<=max; ++i) {
+		for (i=1; i<=max; ++i) {
 			if (week == 7) {
 				html += '</tr><tr>';
 				week = 0;
 			}
-			
-			var thisDate = date.format('%Y-%M-%D', new Date(y,m,i));
+
+			var thisDate = date.format('%Y-%M-%D', new Date(year,month,i));
 			html += '<td data-date="'+thisDate+'"'+((thisDate == today) ? ' class="Today"' : '')+'>' + ((links[thisDate]) ? '<a href="'+links[thisDate]+'">'+i+'</a>' : '<span>'+i+'</span>') + '</td>';
 			++week;
 		}
 
 		// end padding
-		for (var i=week; i<7; ++i) {
+		for (i=week; i<7; ++i) {
 			html += '<td>&nbsp;</td>';
 		}
 

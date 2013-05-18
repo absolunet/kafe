@@ -1432,4 +1432,4 @@
 		scrollPagePercent			: .8		// Percent of visible area scrolled when pageUp/Down or track area pressed
 	};
 
-})(kafe.jQuery,this);
+})(kafe.dependencies.jQuery,this);

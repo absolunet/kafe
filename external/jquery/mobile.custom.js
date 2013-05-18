@@ -56,7 +56,7 @@
 			heldCall,
 			curr,
 			diff;
-	})( kafe.jQuery );
+	})( kafe.dependencies.jQuery );
 (function( $, window, undefined ) {
 
 	var nsNormalizeDict = {};
@@ -383,7 +383,7 @@
 	$.find.matchesSelector = function( node, expr ) {
 		return $.find( expr, null, null, [ node ] ).length > 0;
 	};
-})( kafe.jQuery, this );
+})( kafe.dependencies.jQuery, this );
 
 
 (function( $, undefined ) {
@@ -426,13 +426,13 @@ $.mobile.media = (function() {
 	};
 })();
 
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);
 
 	(function( $, undefined ) {
 		$.extend( $.support, {
 			orientation: "orientation" in window && "onorientationchange" in window
 		});
-	}( kafe.jQuery ));
+	}( kafe.dependencies.jQuery ));
 
 
 (function( $, window ) {
@@ -576,7 +576,7 @@ $.mobile.media = (function() {
 		$.attrFn[ event_name ] = true;
 	}
 
-}( kafe.jQuery, this ));
+}( kafe.dependencies.jQuery, this ));
 
 	(function( $, undefined ) {
 		var support = {
@@ -587,7 +587,7 @@ $.mobile.media = (function() {
 		$.mobile.support = $.mobile.support || {};
 		$.extend( $.support, support );
 		$.extend( $.mobile.support, support );
-	}( kafe.jQuery ));
+	}( kafe.dependencies.jQuery ));
 
 (function( $, undefined ) {
 
@@ -772,7 +772,7 @@ if ( !$.support.boxShadow ) {
 	$( "html" ).addClass( "ui-mobile-nosupport-boxshadow" );
 }
 
-})( kafe.jQuery );
+})( kafe.dependencies.jQuery );
 
 
 // This plugin is an experiment for abstracting away the touch and mouse
@@ -1275,7 +1275,7 @@ if ( eventCaptureSupported ) {
 		}
 	}, true);
 }
-})( kafe.jQuery, window, document );
+})( kafe.dependencies.jQuery, window, document );
 
 
 (function( $, window, undefined ) {
@@ -1471,7 +1471,7 @@ if ( eventCaptureSupported ) {
 		};
 	});
 
-})( kafe.jQuery, this );
+})( kafe.dependencies.jQuery, this );
 
 
 (function( $ ) {
@@ -1506,7 +1506,7 @@ if ( eventCaptureSupported ) {
 		}
 	});
 
-}( kafe.jQuery ));
+}( kafe.dependencies.jQuery ));
 
 (function( $, window ) {
 
@@ -1540,6 +1540,6 @@ if ( eventCaptureSupported ) {
 		.bind( "orientationchange.iosorientationfix", zoom.enable )
 		.bind( "devicemotion.iosorientationfix", checkTilt );
 
-}( kafe.jQuery, this ));
+}( kafe.dependencies.jQuery, this ));
 
 }));

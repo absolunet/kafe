@@ -101,7 +101,7 @@
 				
 		});
 	};
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);
 
 
 
@@ -152,4 +152,4 @@
             $(this).data('lastTouch', now);
         });
     };
-})(kafe.jQuery);
+})(kafe.dependencies.jQuery);

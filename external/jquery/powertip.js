@@ -793,4 +793,4 @@
 		return collisions;
 	}
 
-}(kafe.jQuery));
+}(kafe.dependencies.jQuery));
