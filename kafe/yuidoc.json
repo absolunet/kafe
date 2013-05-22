@@ -6,7 +6,7 @@
     "logo": "http://www.absolunet.com/images/Logo_Absolunet.gif",
     "options": {
         "outdir": "../_documentation/kafe",
-        "tabtospace": "4",
+        "tabtospace": "3",
         "linkNatives": "true"
     }
 }
