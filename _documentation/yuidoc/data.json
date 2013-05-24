@@ -1,0 +1,1000 @@
+{
+    "project": {
+        "name": "kafe",
+        "description": "kafe RULZ",
+        "version": "kafe version 2-alpha",
+        "url": "http://github.com/absolunet/kafe",
+        "logo": "http://www.absolunet.com/images/Logo_Absolunet.gif"
+    },
+    "files": {
+        "kafe/cms/cms.js": {
+            "name": "kafe/cms/cms.js",
+            "modules": {
+                "kafe.cms": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/cms/drupal.js": {
+            "name": "kafe/cms/drupal.js",
+            "modules": {},
+            "classes": {
+                "kafe.cms.drupal": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/cms/magento.js": {
+            "name": "kafe/cms/magento.js",
+            "modules": {},
+            "classes": {
+                "kafe.cms.magento": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/cms/sitecore.js": {
+            "name": "kafe/cms/sitecore.js",
+            "modules": {},
+            "classes": {
+                "kafe.cms.sitecore": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/ext/addthis.js": {
+            "name": "kafe/ext/addthis.js",
+            "modules": {},
+            "classes": {
+                "kafe.ext.addthis": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/ext/ext.js": {
+            "name": "kafe/ext/ext.js",
+            "modules": {
+                "kafe.ext": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/plugin/plugin.js": {
+            "name": "kafe/plugin/plugin.js",
+            "modules": {
+                "kafe.plugin": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/date.js": {
+            "name": "kafe/date.js",
+            "modules": {},
+            "classes": {
+                "kafe.date": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/kafe.js": {
+            "name": "kafe/kafe.js",
+            "modules": {
+                "kafe": 1
+            },
+            "classes": {
+                "kafe": 1
+            },
+            "fors": {
+                "kafe": 1
+            },
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "kafe.cms": {
+            "name": "kafe.cms",
+            "submodules": {},
+            "classes": {
+                "kafe.cms.drupal": 1,
+                "kafe.cms.magento": 1,
+                "kafe.cms.sitecore": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "kafe/cms/sitecore.js",
+            "line": 11,
+            "description": "methods for CMS",
+            "itemtype": "main"
+        },
+        "kafe.ext": {
+            "name": "kafe.ext",
+            "submodules": {},
+            "classes": {
+                "kafe.ext.addthis": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "kafe/ext/addthis.js",
+            "line": 4,
+            "description": "extensions for external plugins",
+            "itemtype": "main"
+        },
+        "kafe.plugin": {
+            "name": "kafe.plugin",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "kafe/plugin/plugin.js",
+            "line": 3,
+            "description": "homebrewed plugins",
+            "itemtype": "main"
+        },
+        "kafe": {
+            "name": "kafe",
+            "submodules": {},
+            "classes": {
+                "kafe.date": 1,
+                "kafe": 1
+            },
+            "fors": {
+                "kafe": 1
+            },
+            "namespaces": {},
+            "tag": "main",
+            "file": "kafe/kafe.js",
+            "line": 109,
+            "description": "### Version 2-alpha\nkafe RULZ",
+            "itemtype": "main"
+        }
+    },
+    "classes": {
+        "kafe.cms.drupal": {
+            "name": "kafe.cms.drupal",
+            "shortname": "kafe.cms.drupal",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.cms",
+            "namespace": "",
+            "file": "kafe/cms/drupal.js",
+            "line": 12,
+            "description": "### Version 0.1\nAdditionnal methods for Drupal"
+        },
+        "kafe.cms.magento": {
+            "name": "kafe.cms.magento",
+            "shortname": "kafe.cms.magento",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.cms",
+            "namespace": "",
+            "file": "kafe/cms/magento.js",
+            "line": 11,
+            "description": "### Version 0.1\nAdditionnal methods for Magento"
+        },
+        "kafe.cms.sitecore": {
+            "name": "kafe.cms.sitecore",
+            "shortname": "kafe.cms.sitecore",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.cms",
+            "namespace": "",
+            "file": "kafe/cms/sitecore.js",
+            "line": 11,
+            "description": "### Version 0.1\nAdditionnal methods for Sitecore"
+        },
+        "kafe.ext.addthis": {
+            "name": "kafe.ext.addthis",
+            "shortname": "kafe.ext.addthis",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.ext",
+            "namespace": "",
+            "file": "kafe/ext/addthis.js",
+            "line": 4,
+            "description": "### Version 0.1\nAdditionnal methods for AddThis"
+        },
+        "kafe.date": {
+            "name": "kafe.date",
+            "shortname": "kafe.date",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/date.js",
+            "line": 54,
+            "description": "### Version 1.2\nAdditionnal methods for date manipulation"
+        },
+        "kafe": {
+            "name": "kafe",
+            "shortname": "kafe",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/kafe.js",
+            "line": 109,
+            "description": "kafe core"
+        }
+    },
+    "classitems": [
+        {
+            "file": "kafe/ext/addthis.js",
+            "line": 13,
+            "description": "Refresh addthis share data",
+            "itemtype": "method",
+            "name": "refreshData",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "url",
+                            "description": "The url",
+                            "type": "String"
+                        },
+                        {
+                            "name": "title",
+                            "description": "The page title",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "kafe.ext.addthis",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 63,
+            "description": "Number of milliseconds in a second (1000 ms per second)",
+            "itemtype": "property",
+            "name": "SECOND",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 71,
+            "description": "Number of milliseconds in a minute (60 seconds per minute)",
+            "itemtype": "property",
+            "name": "MINUTE",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 79,
+            "description": "Number of milliseconds in an hour (60 minutes per hour)",
+            "itemtype": "property",
+            "name": "HOUR",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 87,
+            "description": "Number of milliseconds in a day (24 hours per day)",
+            "itemtype": "property",
+            "name": "DAY",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 95,
+            "description": "Number of milliseconds in a week (7 days per week)",
+            "itemtype": "property",
+            "name": "WEEK",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 103,
+            "description": "Number of milliseconds in a month (4.348121428571429 weeks per month)",
+            "itemtype": "property",
+            "name": "MONTH",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 111,
+            "description": "Number of milliseconds in a year (365.2422 days per year)",
+            "itemtype": "property",
+            "name": "YEAR",
+            "type": "Number",
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 121,
+            "description": "Get the day of the year",
+            "itemtype": "method",
+            "name": "getDayYear",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "The date",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "The day of the year",
+                "type": "Number"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 143,
+            "description": "Is it a leap year ?",
+            "itemtype": "method",
+            "name": "isLeapYear",
+            "params": [
+                {
+                    "name": "year",
+                    "description": "The year",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The day of the year",
+                "type": "Number"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 155,
+            "description": "Get number of days in the months for a year",
+            "itemtype": "method",
+            "name": "getMaxMonth",
+            "params": [
+                {
+                    "name": "year",
+                    "description": "The year",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The number of days in the months of the year",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 167,
+            "description": "Get the month names",
+            "itemtype": "method",
+            "name": "getMonthNames",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The months names",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 179,
+            "description": "Get the 1-char month abbreviations",
+            "itemtype": "method",
+            "name": "getMonth1Names",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The 1-char months abbreviations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 191,
+            "description": "Get the 2-char month abbreviations",
+            "itemtype": "method",
+            "name": "getMonth2Names",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The 2-char months abbreviations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 204,
+            "description": "Get the 3-char month abbreviations",
+            "itemtype": "method",
+            "name": "getMonth3Names",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The 3-char months abbreviations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 220,
+            "description": "Get the weekday names",
+            "itemtype": "method",
+            "name": "getWeekdayNames",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The weekdays names",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 232,
+            "description": "Get the 1-char weekday abbreviations",
+            "itemtype": "method",
+            "name": "getWeekday1Names",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The 1-char weekdays abbreviations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 244,
+            "description": "Get the 2-char weekday abbreviations",
+            "itemtype": "method",
+            "name": "getWeekday2Names",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The 2-char weekdays abbreviations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 256,
+            "description": "Get the 3-char weekday abbreviations",
+            "itemtype": "method",
+            "name": "getWeekday3Names",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The 3-char weekdays abbreviations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 272,
+            "description": "Get the month day clean representation",
+            "itemtype": "method",
+            "name": "getDayNames",
+            "params": [
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The days clean representations",
+                "type": "Array"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 291,
+            "description": "Get a formatted date",
+            "itemtype": "method",
+            "name": "format",
+            "params": [
+                {
+                    "name": "format",
+                    "description": "The format with %- keys",
+                    "type": "String"
+                },
+                {
+                    "name": "date",
+                    "description": "The date to format",
+                    "type": "Date",
+                    "optional": true,
+                    "optdefault": "NOW"
+                },
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The formatted date",
+                "type": "String"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 359,
+            "description": "Get a relative time expression",
+            "itemtype": "method",
+            "name": "formatRelative",
+            "params": [
+                {
+                    "name": "time",
+                    "description": "The datetime we want",
+                    "type": "Date"
+                },
+                {
+                    "name": "now",
+                    "description": "The datetime from which it is relative to",
+                    "type": "Date",
+                    "optional": true,
+                    "optdefault": "NOW"
+                },
+                {
+                    "name": "lang",
+                    "description": "The language",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_ENV_LANG"
+                }
+            ],
+            "return": {
+                "description": "The relative time expression",
+                "type": "String"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 406,
+            "description": "Parses a datetime string into a date object",
+            "itemtype": "method",
+            "name": "parse",
+            "params": [
+                {
+                    "name": "dtstring",
+                    "description": "The datetime string",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The date object",
+                "type": "Date"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 482,
+            "description": "Refresh a day dropdown depending of the month-year combination",
+            "itemtype": "method",
+            "name": "refreshSelectDays",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The &lt;select&gt; element",
+                    "type": "DOMElement"
+                },
+                {
+                    "name": "month",
+                    "description": "The month",
+                    "type": "Number"
+                },
+                {
+                    "name": "year",
+                    "description": "The year",
+                    "type": "Number"
+                }
+            ],
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/date.js",
+            "line": 523,
+            "description": "Make a html table containg the monthly calendar",
+            "itemtype": "method",
+            "name": "makeMonthCalendar",
+            "params": [
+                {
+                    "name": "year",
+                    "description": "The year",
+                    "type": "Number"
+                },
+                {
+                    "name": "month",
+                    "description": "The month",
+                    "type": "Number"
+                },
+                {
+                    "name": "links",
+                    "description": "The links by date",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "YYYY-MM-DD",
+                            "description": "The links",
+                            "type": "Array"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "The rendered HTML",
+                "type": "String"
+            },
+            "class": "kafe.date",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 117,
+            "description": "kafe version",
+            "itemtype": "property",
+            "name": "_vesyon",
+            "type": "String",
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 126,
+            "description": "kafe author",
+            "itemtype": "property",
+            "name": "_griyaj",
+            "type": "String",
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 135,
+            "description": "Versions of dependencies / kafe modules",
+            "itemtype": "property",
+            "name": "_chaje",
+            "type": "Object",
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 151,
+            "description": "jQuery defined under window.kafejQuery  \nref: [http://jquery.com/](http://jquery.com/)",
+            "itemtype": "property",
+            "name": "dependencies.jQuery",
+            "type": "Object",
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 161,
+            "description": "underscore.js defined under window._  \nref: [http://underscorejs.org/](http://underscorejs.org/)",
+            "itemtype": "property",
+            "name": "dependencies.underscore",
+            "type": "Object",
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 171,
+            "description": "Modernizr defined under window.Modernizr  \nref: [http://modernizr.com/](http://modernizr.com/)",
+            "itemtype": "property",
+            "name": "dependencies.Modernizr",
+            "type": "Object",
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 190,
+            "description": "Create a instantiable object  \nBy John Resig (MIT Licensed)  \nref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)",
+            "itemtype": "method",
+            "name": "fn.createInstantiableObject",
+            "return": {
+                "description": "The instantiable object",
+                "type": "Object"
+            },
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 210,
+            "description": "Return the language if available or else 'en'",
+            "itemtype": "method",
+            "name": "fn.lang",
+            "params": [
+                {
+                    "name": "dict",
+                    "description": "The dictionary to check against",
+                    "type": "Object"
+                },
+                {
+                    "name": "lang",
+                    "description": "The language to check",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The available language",
+                "type": "String"
+            },
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 228,
+            "description": "Environment constants",
+            "itemtype": "method",
+            "name": "env",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The constant to get/set",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "The value to set",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The value of the environment constant",
+                "type": "String"
+            },
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 285,
+            "description": "Add module to core",
+            "itemtype": "method",
+            "name": "bonify",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "name",
+                            "description": "The module name",
+                            "type": "String"
+                        },
+                        {
+                            "name": "version",
+                            "description": "The module version",
+                            "type": "String"
+                        },
+                        {
+                            "name": "obj",
+                            "description": "The module itself",
+                            "type": "Object"
+                        }
+                    ]
+                }
+            ],
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 310,
+            "description": "Add a homebrewed plugin",
+            "itemtype": "method",
+            "name": "plug",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "name",
+                            "description": "The plugin name",
+                            "type": "String"
+                        },
+                        {
+                            "name": "version",
+                            "description": "The plugin version",
+                            "type": "String"
+                        },
+                        {
+                            "name": "obj",
+                            "description": "The plugin itself",
+                            "type": "Object"
+                        }
+                    ]
+                }
+            ],
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 326,
+            "description": "Add an external plugin extension",
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "name",
+                            "description": "The plugin extension name",
+                            "type": "String"
+                        },
+                        {
+                            "name": "version",
+                            "description": "The plugin extension version",
+                            "type": "String"
+                        },
+                        {
+                            "name": "obj",
+                            "description": "The plugin extension itself",
+                            "type": "Object"
+                        }
+                    ]
+                }
+            ],
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 342,
+            "description": "Throw kafe errors",
+            "itemtype": "method",
+            "name": "error",
+            "params": [
+                {
+                    "name": "error",
+                    "description": "The error with description",
+                    "type": "Error"
+                }
+            ],
+            "return": {
+                "description": "error The error",
+                "type": "Error"
+            },
+            "example": [
+                " kafe.error(new Error('barf'));"
+            ],
+            "class": "kafe",
+            "module": "kafe"
+        }
+    ],
+    "warnings": []
+}

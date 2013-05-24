@@ -70,6 +70,13 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
+/**
+* ### Version 2-alpha
+* kafe RULZ
+*
+* @module kafe
+* @main kafe
+*/
 window.kafe = (function(undefined){
 
 	var
@@ -100,9 +107,9 @@ window.kafe = (function(undefined){
 
 
 		/**
-		* ### Version 2-alpha
 		* kafe core
 		*
+		* @module kafe
 		* @class kafe
 		*/
 		core = {
@@ -138,15 +145,38 @@ window.kafe = (function(undefined){
 				'dependencies.Modernizr':  window.Modernizr._version
 			},
 
-			// namespaces
-			plugin: {},
-			ext: { cms:{} },
-
-			// isolate core dependencies from DOM
+			// isolate core dependencies
 			dependencies: {
-				jQuery:     window.kafejQuery.noConflict(true),
+
+				/**
+				* jQuery defined under window.kafejQuery  
+				* ref: [http://jquery.com/](http://jquery.com/)
+				*
+				* @property dependencies.jQuery 
+				* @for kafe
+				* @type Object
+				**/
+				jQuery: window.kafejQuery.noConflict(true),
+
+				/**
+				* underscore.js defined under window._  
+				* ref: [http://underscorejs.org/](http://underscorejs.org/)
+				*
+				* @property dependencies.underscore 
+				* @for kafe
+				* @type Object
+				**/
 				underscore: window._.noConflict(),
-				Modernizr:  window.Modernizr
+
+				/**
+				* Modernizr defined under window.Modernizr  
+				* ref: [http://modernizr.com/](http://modernizr.com/)
+				*
+				* @property dependencies.Modernizr 
+				* @for kafe
+				* @type Object
+				**/
+				Modernizr: window.Modernizr
 			}
 		}
 	;
@@ -154,20 +184,16 @@ window.kafe = (function(undefined){
 
 
 
-	/**
-	* Miscellaneous core functions
-	*
-	* @class kafe.fn
-	* @for kafe
-	*/
+	// miscellaneous core functions
 	core.fn = {
 
 		/**
-		* Create a instantiable object
-		* By John Resig (MIT Licensed) - http://ejohn.org/blog/simple-class-instantiation/
+		* Create a instantiable object  
+		* By John Resig (MIT Licensed)  
+		* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
 		*
-		* @method createInstantiableObject
-		* @for kafe.fn
+		* @method fn.createInstantiableObject
+		* @for kafe
 		* @return {Object} The instantiable object
 		*/
 		createInstantiableObject: function() {
@@ -184,8 +210,8 @@ window.kafe = (function(undefined){
 		/**
 		* Return the language if available or else 'en'
 		*
-		* @method lang
-		* @for kafe.fn
+		* @method fn.lang
+		* @for kafe
 		* @param {Object} dict The dictionary to check against
 		* @param {String} lang The language to check
 		* @return {String} The available language
@@ -282,7 +308,7 @@ window.kafe = (function(undefined){
 
 
 	/**
-	* Add a plugin
+	* Add a homebrewed plugin
 	*
 	* @method plug
 	* @for kafe
@@ -338,3 +364,11 @@ window.kafe = (function(undefined){
 	return core;
 
 })();
+
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'kafe/cms/cms.js',
+	'kafe/ext/ext.js',
+	'kafe/plugin/plugin.js'
+]);
+//>>excludeEnd('excludeRequire');

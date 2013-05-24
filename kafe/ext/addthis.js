@@ -1,17 +1,23 @@
-//-------------------------------------------
-// kafe.ext.addthis
-//-------------------------------------------
-kafe.extend({name:'addthis', version:'0.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+kafe.extend({name:'addthis', version:'0.1', obj:(function(kafe,undefined) {
+	var $ = kafe.dependencies.jQuery;
 
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+	/**
+	* ### Version 0.1
+	* Additionnal methods for AddThis
+	*
+	* @module kafe.ext
+	* @class kafe.ext.addthis 
+	*/
 	var addthis = {};
 
-	// refreshData ([options])
-	// refresh addthis share data
-	//-------------------------------------------
+	/**
+	* Refresh addthis share data
+	*
+	* @method refreshData
+	* @param {Object} options Options
+	*	@param {String} options.url The url
+	*	@param {String} options.title The page title
+	*/
     addthis.refreshData = function (options) {
 		options = options || {};
 		window.addthis.ost = 0;
@@ -20,7 +26,7 @@ kafe.extend({name:'addthis', version:'0.1', obj:(function(K,undefined){
 		window.addthis.ready();
 		window.addthis.toolbox('.addthis_toolbox');
     };
-	
+
 	return addthis;
 
-})(kafe)});
+})(window.kafe)});
