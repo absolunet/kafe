@@ -11,7 +11,8 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 			$o          = $(arguments[0]),
 			options     = arguments[1] || {},
 			nbPerRow    = options.nbPerRow,
-			resetHeight = options.resetHeight,
+			resetHeight = !!options.resetHeight,
+			borderBox   = !!options.borderBox,
 
 			_doIt = function() {
 				var
@@ -20,13 +21,13 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 				;
 				$z.each(function() {
 					var $this = $(this);
-					$this.height( maxOuterHeight - ( $this.outerHeight() - $this.height() ) );
+					$this.height( (borderBox) ? maxOuterHeight : (maxOuterHeight - ($this.outerHeight() - $this.height())) );
 				});
 			}
 		;
 
 
-		if (!!resetHeight) {
+		if (resetHeight) {
 			$o.height('auto');
 		}
 
@@ -49,15 +50,13 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 
 
 	// vertically align an element inside its parent
-	style.vAlign = function(e) {
+	style.vAlign = function(e, parent) {
 		$(e).each(function(){
 			var
-				$this = $(this),
-				$children = $this.children()
+				$this   = $(this),
+				$parent = (parent) ? $(parent) : $this.parent()
 			;
-			if ($children.length == 1) {
-				$children.css({display:'block', marginTop:Math.floor(($this.height() - $children.height()) / 2) + 'px'});
-			}
+			$this.css({display: 'block', marginTop: Math.floor(($parent.height() - $this.height()) / 2) + 'px'});
 		});
 	};
 
