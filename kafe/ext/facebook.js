@@ -34,19 +34,18 @@ kafe.extend({name:'facebook', version:'1.4', obj:(function(K,undefined){
 				var js, fjs = d.getElementsByTagName(s)[0];
 				if (d.getElementById(id)) return;
 				js = d.createElement(s); js.id = id;
-				js.src = '//connect.facebook.net/' + _locale[K.env('lang')] + '/all.js#xfbml=1';
+				js.async = true;
+				js.src = '//connect.facebook.net/' + _locale[kafe.env('lang')] + '/all.js#xfbml=1';
+				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		}
 	});
-	
-
-
 
 	//-------------------------------------------
 	// PUBLIC
 	//-------------------------------------------
 	var facebook = {};
-	
+
 	// setParams (options)
 	// set default params
 	//-------------------------------------------
