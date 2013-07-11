@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.ext.addthis - kafe</title>
+    <title>kafe.plugin.tooltip - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -106,7 +106,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.ext.addthis Class</h1>
+                        <h1>kafe.plugin.tooltip Class</h1>
 <div class="box meta">
     
 
@@ -114,13 +114,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_ext_addthis.js.html#l4"><code>kafe&#x2F;ext&#x2F;addthis.js:4</code></a>
+            Defined in: <a href="../files/kafe_plugin_tooltip.js.html#l8"><code>kafe&#x2F;plugin&#x2F;tooltip.js:8</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/kafe.ext.html">kafe.ext</a>
+            Module: <a href="../modules/kafe.plugin.html">kafe.plugin</a>
         
     
 
@@ -132,7 +132,7 @@
 <div class="box intro">
     <h3>Version 0.1</h3>
 
-<p>Additionnal methods for AddThis</p>
+<p>Quick tooltip</p>
 </div>
 
 
@@ -160,7 +160,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_refreshData">refreshData</a>
+                                <a href="#method_init">init</a>
 
                                 
                                 
@@ -182,8 +182,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_refreshData" class="method item">
-    <h3 class="name"><code>refreshData</code></h3>
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
 
     
         <div class="args">
@@ -224,7 +224,7 @@
             
         
         
-        <a href="../files/kafe_ext_addthis.js.html#l13"><code>kafe&#x2F;ext&#x2F;addthis.js:13</code></a>
+        <a href="../files/kafe_plugin_tooltip.js.html#l18"><code>kafe&#x2F;plugin&#x2F;tooltip.js:18</code></a>
         
         </p>
 
@@ -235,7 +235,7 @@
     </div>
 
     <div class="description">
-        <p>Refresh addthis share data</p>
+        <p>Initialize tooltip</p>
     </div>
 
     
@@ -261,12 +261,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name">url</code>
-                                    <span class="type">String</span>
+                                    <code class="param-name">selector</code>
+                                    <span class="type">JQuerySelector</span>
                                 
 
                                 <div class="param-description">
-                                    <p>The url</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -274,12 +274,55 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name">title</code>
-                                    <span class="type">String</span>
+                                    <code class="param-name optional">[openSpeed=200]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>The page title</p>
+                                    <p>TODO</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[openDelay=500]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>TODO</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[closeSpeed=150]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>TODO</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[closeDelay=400]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -295,6 +338,15 @@
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>$('#id').kafeTooltip(options)
+</code></pre>
+            </div>
+        </div>
     
 </div>
 

@@ -7,8 +7,8 @@
         "logo": "http://www.absolunet.com/images/Logo_Absolunet.gif"
     },
     "files": {
-        "kafe/cms/cms.js": {
-            "name": "kafe/cms/cms.js",
+        "kafe/cms/_cms.js": {
+            "name": "kafe/cms/_cms.js",
             "modules": {
                 "kafe.cms": 1
             },
@@ -43,6 +43,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "kafe/ext/_ext.js": {
+            "name": "kafe/ext/_ext.js",
+            "modules": {
+                "kafe.ext": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "kafe/ext/addthis.js": {
             "name": "kafe/ext/addthis.js",
             "modules": {},
@@ -52,21 +61,39 @@
             "fors": {},
             "namespaces": {}
         },
-        "kafe/ext/ext.js": {
-            "name": "kafe/ext/ext.js",
+        "kafe/plugin/_plugin.js": {
+            "name": "kafe/plugin/_plugin.js",
             "modules": {
-                "kafe.ext": 1
+                "kafe.plugin": 1
             },
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "kafe/plugin/plugin.js": {
-            "name": "kafe/plugin/plugin.js",
-            "modules": {
-                "kafe.plugin": 1
+        "kafe/plugin/menu.js": {
+            "name": "kafe/plugin/menu.js",
+            "modules": {},
+            "classes": {
+                "kafe.plugin.menu": 1
             },
-            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/plugin/sticky.js": {
+            "name": "kafe/plugin/sticky.js",
+            "modules": {},
+            "classes": {
+                "kafe.plugin.sticky": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/plugin/tooltip.js": {
+            "name": "kafe/plugin/tooltip.js",
+            "modules": {},
+            "classes": {
+                "kafe.plugin.tooltip": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -87,9 +114,7 @@
             "classes": {
                 "kafe": 1
             },
-            "fors": {
-                "kafe": 1
-            },
+            "fors": {},
             "namespaces": {}
         }
     },
@@ -127,12 +152,16 @@
         "kafe.plugin": {
             "name": "kafe.plugin",
             "submodules": {},
-            "classes": {},
+            "classes": {
+                "kafe.plugin.menu": 1,
+                "kafe.plugin.sticky": 1,
+                "kafe.plugin.tooltip": 1
+            },
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "kafe/plugin/plugin.js",
-            "line": 3,
+            "file": "kafe/plugin/tooltip.js",
+            "line": 8,
             "description": "homebrewed plugins",
             "itemtype": "main"
         },
@@ -143,9 +172,7 @@
                 "kafe.date": 1,
                 "kafe": 1
             },
-            "fors": {
-                "kafe": 1
-            },
+            "fors": {},
             "namespaces": {},
             "tag": "main",
             "file": "kafe/kafe.js",
@@ -211,6 +238,48 @@
             "line": 4,
             "description": "### Version 0.1\nAdditionnal methods for AddThis"
         },
+        "kafe.plugin.menu": {
+            "name": "kafe.plugin.menu",
+            "shortname": "kafe.plugin.menu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.plugin",
+            "namespace": "",
+            "file": "kafe/plugin/menu.js",
+            "line": 8,
+            "description": "### Version 0.1\nQuick menu with submenus"
+        },
+        "kafe.plugin.sticky": {
+            "name": "kafe.plugin.sticky",
+            "shortname": "kafe.plugin.sticky",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.plugin",
+            "namespace": "",
+            "file": "kafe/plugin/sticky.js",
+            "line": 10,
+            "description": "### Version 0.1\nSticky box"
+        },
+        "kafe.plugin.tooltip": {
+            "name": "kafe.plugin.tooltip",
+            "shortname": "kafe.plugin.tooltip",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.plugin",
+            "namespace": "",
+            "file": "kafe/plugin/tooltip.js",
+            "line": 8,
+            "description": "### Version 0.1\nQuick tooltip"
+        },
         "kafe.date": {
             "name": "kafe.date",
             "shortname": "kafe.date",
@@ -268,6 +337,194 @@
             ],
             "class": "kafe.ext.addthis",
             "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/plugin/menu.js",
+            "line": 18,
+            "description": "Initialize menu",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "container",
+                            "description": "TODO",
+                            "type": "JQuerySelector"
+                        },
+                        {
+                            "name": "handle",
+                            "description": "TODO",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'li'"
+                        },
+                        {
+                            "name": "submenus",
+                            "description": "TODO",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'ul'"
+                        },
+                        {
+                            "name": "animation",
+                            "description": "TODO",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'slide'"
+                        },
+                        {
+                            "name": "openSpeed",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "200"
+                        },
+                        {
+                            "name": "openDelay",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "500"
+                        },
+                        {
+                            "name": "closeSpeed",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "150"
+                        },
+                        {
+                            "name": "closeDelay",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "400"
+                        },
+                        {
+                            "name": "enterCallback",
+                            "description": "TODO",
+                            "type": "Function",
+                            "optional": true
+                        },
+                        {
+                            "name": "leaveCallback",
+                            "description": "TODO",
+                            "type": "Function",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "example": [
+                "\n\t$('#id').kafeMenu(options)"
+            ],
+            "class": "kafe.plugin.menu",
+            "module": "kafe.plugin"
+        },
+        {
+            "file": "kafe/plugin/sticky.js",
+            "line": 20,
+            "description": "Initialize sticky",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "selector",
+                            "description": "TODO",
+                            "type": "JQuerySelector"
+                        },
+                        {
+                            "name": "align",
+                            "description": "TODO",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'left'"
+                        },
+                        {
+                            "name": "contains",
+                            "description": "TODO",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        },
+                        {
+                            "name": "container",
+                            "description": "TODO",
+                            "type": "JQuerySelector",
+                            "optional": true,
+                            "optdefault": "PARENT"
+                        }
+                    ]
+                }
+            ],
+            "example": [
+                "\n\t$('#id').kafeSticky(options)"
+            ],
+            "class": "kafe.plugin.sticky",
+            "module": "kafe.plugin"
+        },
+        {
+            "file": "kafe/plugin/tooltip.js",
+            "line": 18,
+            "description": "Initialize tooltip",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "selector",
+                            "description": "TODO",
+                            "type": "JQuerySelector"
+                        },
+                        {
+                            "name": "openSpeed",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "200"
+                        },
+                        {
+                            "name": "openDelay",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "500"
+                        },
+                        {
+                            "name": "closeSpeed",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "150"
+                        },
+                        {
+                            "name": "closeDelay",
+                            "description": "TODO",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "400"
+                        }
+                    ]
+                }
+            ],
+            "example": [
+                "\n\t$('#id').kafeTooltip(options)"
+            ],
+            "class": "kafe.plugin.tooltip",
+            "module": "kafe.plugin"
         },
         {
             "file": "kafe/date.js",
@@ -373,8 +630,8 @@
                 }
             ],
             "return": {
-                "description": "The day of the year",
-                "type": "Number"
+                "description": "If it is a leap year",
+                "type": "Boolean"
             },
             "class": "kafe.date",
             "module": "kafe"
@@ -761,7 +1018,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 126,
+            "line": 125,
             "description": "kafe author",
             "itemtype": "property",
             "name": "_griyaj",
@@ -771,7 +1028,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 135,
+            "line": 133,
             "description": "Versions of dependencies / kafe modules",
             "itemtype": "property",
             "name": "_chaje",
@@ -781,7 +1038,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 151,
+            "line": 148,
             "description": "jQuery defined under window.kafejQuery  \nref: [http://jquery.com/](http://jquery.com/)",
             "itemtype": "property",
             "name": "dependencies.jQuery",
@@ -791,7 +1048,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 161,
+            "line": 157,
             "description": "underscore.js defined under window._  \nref: [http://underscorejs.org/](http://underscorejs.org/)",
             "itemtype": "property",
             "name": "dependencies.underscore",
@@ -801,7 +1058,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 171,
+            "line": 166,
             "description": "Modernizr defined under window.Modernizr  \nref: [http://modernizr.com/](http://modernizr.com/)",
             "itemtype": "property",
             "name": "dependencies.Modernizr",
@@ -811,7 +1068,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 190,
+            "line": 188,
             "description": "Create a instantiable object  \nBy John Resig (MIT Licensed)  \nref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)",
             "itemtype": "method",
             "name": "fn.createInstantiableObject",
@@ -824,7 +1081,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 210,
+            "line": 207,
             "description": "Return the language if available or else 'en'",
             "itemtype": "method",
             "name": "fn.lang",
@@ -849,7 +1106,28 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 228,
+            "line": 221,
+            "description": "Add method as jQuery plugin",
+            "itemtype": "method",
+            "name": "fn.plugIntojQuery",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The jQuery plugin name",
+                    "type": "String"
+                },
+                {
+                    "name": "func",
+                    "description": "The function called by jQuery",
+                    "type": "Function"
+                }
+            ],
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 240,
             "description": "Environment constants",
             "itemtype": "method",
             "name": "env",
@@ -875,7 +1153,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 285,
+            "line": 296,
             "description": "Add module to core",
             "itemtype": "method",
             "name": "bonify",
@@ -908,7 +1186,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 310,
+            "line": 320,
             "description": "Add a homebrewed plugin",
             "itemtype": "method",
             "name": "plug",
@@ -941,7 +1219,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 326,
+            "line": 335,
             "description": "Add an external plugin extension",
             "itemtype": "method",
             "name": "extend",
@@ -974,7 +1252,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 342,
+            "line": 350,
             "description": "Throw kafe errors",
             "itemtype": "method",
             "name": "error",
@@ -990,7 +1268,7 @@
                 "type": "Error"
             },
             "example": [
-                " kafe.error(new Error('barf'));"
+                "\n\tkafe.error(new Error('barf'));"
             ],
             "class": "kafe",
             "module": "kafe"

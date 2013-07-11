@@ -145,7 +145,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method isLeapYear
 	* @param {Number} year The year 
-	* @return {Number} The day of the year
+	* @return {Boolean} If it is a leap year
 	*/
 	date.isLeapYear = function(year) {
 		return ((year%4 === 0 && year%400 !== 0) || year == 2000);

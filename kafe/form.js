@@ -19,7 +19,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 
 
 	// add an inline label on input/textarea with a placeholder attribute
-	form.label = function() {
+	form.placeholder = function() {
 		if (kafe.env('ie') && kafe.env('ie') < 10) {
 
 			var

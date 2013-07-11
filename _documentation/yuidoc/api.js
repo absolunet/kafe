@@ -6,7 +6,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "kafe.cms.magento",
         "kafe.cms.sitecore",
         "kafe.date",
-        "kafe.ext.addthis"
+        "kafe.ext.addthis",
+        "kafe.plugin.menu",
+        "kafe.plugin.sticky",
+        "kafe.plugin.tooltip"
     ],
     "modules": [
         "kafe",

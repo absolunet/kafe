@@ -1,38 +1,44 @@
-//-------------------------------------------
-// kafe.plugin.sticky
-//-------------------------------------------
-kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
-
-	// local variables
-	var 
+window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery,
 		$window   = $(window),
 		$document = $(document)
 	;
-	
 
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+
+
+	/**
+	* ### Version 0.1
+	* Sticky box
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.sticky
+	*/
 	var sticky = {};
 
-	// stick (e/[see below])
-	// stick a element
-	//-------------------------------------------
-	sticky.stick = function(e, options) {
 
-		var $e = $(e);
-		
+	/**
+	* Initialize sticky
+	*
+	* @method init
+	* @param {Object} options Options
+	*	@param {jQuerySelector} options.selector TODO
+	*	@param {String} [options.align='left'] TODO
+	*	@param {Boolean} [options.contains=false] TODO
+	*	@param {jQuerySelector} [options.container=PARENT] TODO
+	*
+	* @example
+	*	$('#id').kafeSticky(options)
+	*/
+	sticky.init = function(options) {
+		options = options || {};
+
+		var $e = $(options.selector);
+
 		// if lone object
 		if ($e.length == 1) {
 
-			function _updateOffset() {
-				topOffset = $container.offset().top + topMargin;
-			}
-
-			options = options || {};
-
-			var 
+			var
 				// options
 				align      = (options.align == 'right') ? 'right' : 'left',
 				contain    = !!options.contain,
@@ -40,36 +46,41 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
 
 				// original position
 				topOffset     = null,
-				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2)),
+				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2),10),
 				originalHori  = $e.css(align),
 				topMargin     = originalTop,
 				sticking      = true,
 				fromBottom    = false,
-				initiate      = true
+				initiate      = true,
+
+				_updateOffset = function () {
+					topOffset = $container.offset().top + topMargin;
+				}
 			;
 
 			_updateOffset();
-			
+
 			$window
-				
+
 				// on scroll & resize
 				//---------------------------
 				.on('scroll resize',function(event) {
-					
+
 					_updateOffset();
-					
+
 					// current position
-					var 
+					var
 						position      = $window.scrollTop(),
 						tippingTop    = topOffset - topMargin,
-						tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2))
+						tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2)),
+						attr          = {}
 					;
 
 					// onresize
 					if (event.type == 'resize' && fromBottom) {
 						$e.css('top', $container.outerHeight() - $e.outerHeight() - originalTop);
 					}
-					
+
 					// initiate the first time
 					//---------------------------
 					if (initiate) {
@@ -80,15 +91,15 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
 					// if is about to stick
 					//---------------------------
 					if (position >= tippingTop && (!contain || position <= tippingBottom)) {
-						
+
 						// calculate offset left
 						var attrT = { position: 'absolute' };
 						attrT[align] = originalHori;
 						$e.css(attrT);
 						var offsetLeft = $e.offset().left;
-						
+
 						// stick it
-						var attr = {
+						attr = {
 							position: 'fixed',
 							top:  topMargin
 						};
@@ -111,7 +122,7 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
 					} else if (position < tippingTop) {
 
 						// unstick it
-						var attr = {
+						attr = {
 							position: 'absolute',
 							top:      originalTop+'px'
 						};
@@ -128,7 +139,7 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
 					} else if (contain && position >= tippingBottom) {
 
 						// unstick it
-						var attr = {
+						attr = {
 							position: 'absolute',
 							top:      ($container.outerHeight() - $e.outerHeight() - originalTop)+'px'
 						};
@@ -141,13 +152,19 @@ kafe.plug({name:'sticky', version:'0.1', obj:(function(K,undefined){
 					}
 
 				})
-				
+
 				// initiate
 				.trigger('scroll')
 			;
 		}
 	};
-	
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery('Sticky', function(self, parameters) {
+		sticky.init($.extend({}, parameters[0], {selector:self}));
+	});
+
 	return sticky;
 
 })(kafe)});

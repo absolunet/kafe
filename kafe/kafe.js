@@ -118,7 +118,6 @@ window.kafe = (function(undefined){
 			* kafe version
 			*
 			* @property _vesyon 
-			* @for kafe
 			* @type String
 			**/
 			_vesyon: '2-alpha',
@@ -127,7 +126,6 @@ window.kafe = (function(undefined){
 			* kafe author
 			*
 			* @property _griyaj 
-			* @for kafe
 			* @type String
 			**/
 			_griyaj: 'absolunet.com',
@@ -136,7 +134,6 @@ window.kafe = (function(undefined){
 			* Versions of dependencies / kafe modules
 			*
 			* @property _chaje 
-			* @for kafe
 			* @type Object
 			**/
 			_chaje: {
@@ -153,7 +150,6 @@ window.kafe = (function(undefined){
 				* ref: [http://jquery.com/](http://jquery.com/)
 				*
 				* @property dependencies.jQuery 
-				* @for kafe
 				* @type Object
 				**/
 				jQuery: window.kafejQuery.noConflict(true),
@@ -163,7 +159,6 @@ window.kafe = (function(undefined){
 				* ref: [http://underscorejs.org/](http://underscorejs.org/)
 				*
 				* @property dependencies.underscore 
-				* @for kafe
 				* @type Object
 				**/
 				underscore: window._.noConflict(),
@@ -173,11 +168,14 @@ window.kafe = (function(undefined){
 				* ref: [http://modernizr.com/](http://modernizr.com/)
 				*
 				* @property dependencies.Modernizr 
-				* @for kafe
 				* @type Object
 				**/
 				Modernizr: window.Modernizr
-			}
+			},
+
+			cms:    {},
+			ext:    {},
+			plugin: {}
 		}
 	;
 	delete window.Modernizr;
@@ -193,7 +191,6 @@ window.kafe = (function(undefined){
 		* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
 		*
 		* @method fn.createInstantiableObject
-		* @for kafe
 		* @return {Object} The instantiable object
 		*/
 		createInstantiableObject: function() {
@@ -211,7 +208,6 @@ window.kafe = (function(undefined){
 		* Return the language if available or else 'en'
 		*
 		* @method fn.lang
-		* @for kafe
 		* @param {Object} dict The dictionary to check against
 		* @param {String} lang The language to check
 		* @return {String} The available language
@@ -219,8 +215,24 @@ window.kafe = (function(undefined){
 		lang: function(dict, lang) {
 			lang = (!!lang) ? lang : core.env('lang');
 			return (!!dict[lang]) ? lang : 'en';
-		}
+		},
 
+
+		/**
+		* Add method as jQuery plugin
+		*
+		* @method fn.plugIntojQuery
+		* @param {String} name The jQuery plugin name
+		* @param {Function} func The function called by jQuery
+		*/
+		plugIntojQuery: function(name, func) {
+			var $ = core.dependencies.jQuery;
+			$.fn['kafe'+name] = function() {
+				return this.each(function() {
+					func(this, $.makeArray(arguments));
+				});
+			};
+		}
 	};
 
 
@@ -229,7 +241,6 @@ window.kafe = (function(undefined){
 	* Environment constants
 	*
 	* @method env
-	* @for kafe
 	* @param {String} name The constant to get/set
 	* @param {String} [value] The value to set
 	* @return {String} The value of the environment constant
@@ -286,7 +297,6 @@ window.kafe = (function(undefined){
 	* Add module to core
 	*
 	* @method bonify
-	* @for kafe
 	* @param {Object} options The options
 	*	@param {String} options.name The module name
 	*	@param {String} options.version The module version
@@ -311,7 +321,6 @@ window.kafe = (function(undefined){
 	* Add a homebrewed plugin
 	*
 	* @method plug
-	* @for kafe
 	* @param {Object} options The options
 	*	@param {String} options.name The plugin name
 	*	@param {String} options.version The plugin version
@@ -327,7 +336,6 @@ window.kafe = (function(undefined){
 	* Add an external plugin extension
 	*
 	* @method extend
-	* @for kafe
 	* @param {Object} options The options
 	*	@param {String} options.name The plugin extension name
 	*	@param {String} options.version The plugin extension version
@@ -343,10 +351,10 @@ window.kafe = (function(undefined){
 	* Throw kafe errors
 	*
 	* @method error
-	* @for kafe
 	* @param {Error} error The error with description
 	* @return {Error} error The error
-	* @example kafe.error(new Error('barf'));
+	* @example
+	*	kafe.error(new Error('barf'));
 	*/
 	core.error = function(e) {
 		var msg = ((!!e.description) ? e.description : e.message);
@@ -360,15 +368,6 @@ window.kafe = (function(undefined){
 	// TO REPLACE WITH REQUIRE.JS DEPENDENCIES
 	core.required = function(name) { console.log(name); };
 
-
 	return core;
 
 })();
-
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'kafe/cms/cms.js',
-	'kafe/ext/ext.js',
-	'kafe/plugin/plugin.js'
-]);
-//>>excludeEnd('excludeRequire');

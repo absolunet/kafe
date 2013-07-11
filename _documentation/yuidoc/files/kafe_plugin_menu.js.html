@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.cms.sitecore - kafe</title>
+    <title>kafe/plugin/menu.js - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -106,68 +106,140 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.cms.sitecore Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: kafe/plugin/menu.js</h1>
 
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../files/kafe_cms_sitecore.js.html#l11"><code>kafe&#x2F;cms&#x2F;sitecore.js:11</code></a>
-        </div>
-    
-
-    
-        
-            Module: <a href="../modules/kafe.cms.html">kafe.cms</a>
-        
-    
-
-    
-</div>
+<div class="file">
+    <pre class="code prettyprint linenums">
+window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery
+	;
 
 
 
-<div class="box intro">
-    <h3>Version 0.1</h3>
+	/**
+	* ### Version 0.1
+	* Quick menu with submenus
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.menu
+	*/
+	var menu = {};
 
-<p>Additionnal methods for Sitecore</p>
-</div>
+
+	/**
+	* Initialize menu
+	*
+	* @method init
+	* @param {Object} options Options
+	*	@param {jQuerySelector} options.container TODO
+	*	@param {String} [options.handle=&#x27;li&#x27;] TODO
+	*	@param {String} [options.submenus=&#x27;ul&#x27;] TODO
+	*	@param {String} [options.animation=&#x27;slide&#x27;] TODO
+	*	@param {Number} [options.openSpeed=200] TODO
+	*	@param {Number} [options.openDelay=500] TODO
+	*	@param {Number} [options.closeSpeed=150] TODO
+	*	@param {Number} [options.closeDelay=400] TODO
+	*	@param {Function} [options.enterCallback] TODO
+	*	@param {Function} [options.leaveCallback] TODO
+	*
+	* @example
+	*	$(&#x27;#id&#x27;).kafeMenu(options)
+	*/
+	menu.init = function() {
+		var
+			options = (arguments) ? arguments[0] : {},
+			c = {
+				$menu:         $(options.container),
+				handle:        (options.handle) ? options.handle : &#x27;li&#x27;,
+				submenus:      (options.submenus) ? options.submenus : &#x27;ul&#x27;,
+				animation:     (options.animation) ? options.animation : &#x27;slide&#x27;,
+				openSpeed:     (Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
+				openDelay:     (Number(options.openDelay)) ? Number(options.openDelay) : 500,
+				closeSpeed:    (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
+				closeDelay:    (Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
+				enterCallback: (typeof(options.enterCallback)  == &#x27;function&#x27;) ? options.enterCallback  : undefined,
+				leaveCallback: (typeof(options.leaveCallback)  == &#x27;function&#x27;) ? options.leaveCallback  : undefined
+			}
+		;
+
+		if (!c.$menu.length) {
+			return false;
+		}
+
+		c.$menu.children(c.handle)
+			.bind(&#x27;mouseenter&#x27;, function(){
+				var
+					$parent = $(this),
+					$sub = $parent.children(c.submenus)
+				;
+
+				if ($sub.data(&#x27;kafe-quickmenu-timer&#x27;) !== undefined) {
+					clearTimeout($sub.data(&#x27;kafe-quickmenu-timer&#x27;));
+				}
+
+				$parent.addClass(&#x27;kafe-quickmenu-open&#x27;);
+				$sub.data(&#x27;kafe-quickmenu-timer&#x27;, setTimeout(function() {
+					if (!!c.enterCallback) {
+						c.enterCallback($sub);
+					}
+					switch (c.animation) {
+						case &#x27;fade&#x27; :
+							$sub.fadeIn(c.openSpeed);
+						break;
+
+						//case &#x27;slide&#x27; :
+						default :
+							$sub.slideDown(c.openSpeed);
+						break;
+					}
+				}, c.openDelay));
+			})
+			.bind(&#x27;mouseleave&#x27;, function(){
+				var
+					$parent = $(this),
+					$sub = $parent.children(c.submenus)
+				;
+
+				if ($sub.data(&#x27;kafe-quickmenu-timer&#x27;) !== undefined) {
+					clearTimeout($sub.data(&#x27;kafe-quickmenu-timer&#x27;));
+				}
+
+				if ($sub.size() &gt; 0) {
+					$sub.data(&#x27;kafe-quickmenu-timer&#x27;, setTimeout(function() {
+						$parent.removeClass(&#x27;kafe-quickmenu-open&#x27;);
+						if (!!c.leaveCallback) {
+							c.leaveCallback($sub);
+						}
+						switch (c.animation) {
+							case &#x27;fade&#x27; :
+								$sub.fadeOut(c.closeSpeed);
+							break;
+
+							//case &#x27;slide&#x27; :
+							default :
+								$sub.slideUp(c.closeSpeed);
+							break;
+						}
+					}, c.closeDelay));
+				} else {
+					$parent.removeClass(&#x27;kafe-quickmenu-open&#x27;);
+					if (!!c.leaveCallback) {
+						c.leaveCallback($sub);
+					}
+				}
+			})
+		;
+	};
 
 
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery(&#x27;Menu&#x27;, function(self, parameters) {
+		menu.init($.extend({}, parameters[0], {container:self}));
+	});
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-
-        
-
-        
-
-        
-    </div>
+})(window.kafe)});
+    </pre>
 </div>
 
                     </div>
