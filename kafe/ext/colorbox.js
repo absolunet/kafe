@@ -92,12 +92,12 @@ kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(K,undefined){
 		$.colorbox(options);
 	};
 
-	// tmpl (id, [data], [options])
-	// open colorbox with a jquery tmpl
+	// tmpl (tmpl, [data], [options])
+	// open colorbox with a jsrender tmpl
 	//-------------------------------------------
-	colorbox.tmpl = function(id,data,options) {
+	colorbox.tmpl = function(tmpl,data,options) {
 		options = (!!options) ? options : {};
-		$.extend(options, {html:$.tmpl(id,data)});
+		$.extend(options, {html:tmpl.render(data)});
 		colorbox.open(options);
 	};
 
