@@ -1,11 +1,24 @@
 window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	var $ = kafe.dependencies.jQuery;
 
-	// PUBLIC
+	/**
+	* ### Version 1.4.1
+	* Additionnal methods for html forms and related controls.
+	*
+	* @module kafe
+	* @class kafe.form
+	*/
 	var form = {};
 
 
-	// add focus styles on input/textarea/select
+	/**
+	* Add a class on focus to all input/textarea/select controls and their related label.
+	*
+	* @method focus
+	* @return null
+	* @example
+	* 	kafe.form.focus();
+	*/
 	form.focus = function() {
 		$('body').on({
 			focus: function() {
@@ -18,7 +31,15 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	};
 
 
-	// add an inline label on input/textarea with a placeholder attribute
+	/**
+	* Adds a class based support for the placeholder attribute for older browsers. (class="Placeholder")
+	*
+	* @method placeholder
+	* @param {String|jQueryObject|HtmlObject} [selector='input[placeholder], textarea[placeholder]'] Selector of text-based form elements.
+	* @return null
+	* @example
+	* 	kafe.form.placeholder('.search-field');
+	*/
 	form.placeholder = function() {
 		if (kafe.env('ie') && kafe.env('ie') < 10) {
 
@@ -51,7 +72,18 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	};
 
 
-	// add onEnter event
+	/**
+	* Detects the RETURN key, then triggers a callback.
+	*
+	* @method onEnter
+	* @param {String|jQueryObject|HtmlObject} elements Selector of text-based form elements.
+	* @param {Function} callback Function to be fired by the keypress.
+	* @return null
+	* @example
+	* 	kafe.form.onEnter('.search-field', function(input) {
+	* 		$(input).parents('form').submit();
+	* 	});
+	*/
 	form.onEnter = function(elements,callback) {
 		$(elements).on('keypress', function(e) {
 			if (((!!e.which) ? e.which : e.keyCode) == 13) {
@@ -62,7 +94,15 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	};
 
 
-	// moves focus on next input
+	/**
+	* Automaticaly jump the focus to the next field once the maxlength has been reached.
+	*
+	* @method autofocusOnNext
+	* @param {String|jQueryObject|HtmlObject} elements Selector of text-based form elements.
+	* @return null
+	* @example
+	* 	kafe.form.autofocusOnNext('.first-name, .last-name, .email');
+	*/
 	form.autofocusOnNext = function(elements) {
 		$(elements).on('keyup',function(e) {
 			var
@@ -79,7 +119,20 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	};
 
 
-	// manages a maxlength on a textarea
+	/**
+	* Adds a simulated maxlength support for textarea elements
+	*
+	* @method maxLength
+	* @param {String|jQueryObject|HtmlObject} elements Selector of textarea form elements.
+	* @param {Integer} max Maximum number of characters.
+	* @param {Boolean} [block=false] Prevent further character entry once the limit is reached.
+	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
+	* @return null
+	* @example
+	* 	kafe.form.maxLength('.twitter-post', 140, false, function(count) {
+	* 		console.log(count);
+	* 	});
+	*/
 	form.maxLength = function(elements, max, block, callback) {
 		$(elements)
 			.on('input paste cut keyup',function(e) {
@@ -111,7 +164,18 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	};
 
 
-	// calculates the password strength value of given fields
+	/**
+	* Calculates the password strength value of given fields.
+	*
+	* @method passwordStrength
+	* @param {String|jQueryObject|HtmlObject} elements Selector of text-based form elements.
+	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
+	* @return null
+	* @example
+	* 	kafe.form.passwordStrength('.password', function(strengh) {
+	* 		console.log(strengh);
+	* 	});
+	*/
 	form.passwordStrength = function(elements, callback) {
 
 		var
@@ -196,7 +260,15 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	};
 
 
-	// sanitize form text entry for .net validator
+	/**
+	* Sanitize form text entry for .net validator.
+	*
+	* @method sanitizeFormData
+	* @param {String|jQueryObject|HtmlObject} elements Reference to the current .Net form.
+	* @return null
+	* @example
+	* 	kafe.form.sanitizeFormData('#Form1');
+	*/
 	form.sanitizeFormData = function(form) {
 		var
 			$form = $(form),
