@@ -1,10 +1,25 @@
 window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 	var $ = kafe.dependencies.jQuery;
 
-	// PUBLIC
+	/**
+	* ### Version 1.0
+	* Additionnal manipulation methods for numbers.
+	*
+	* @module kafe
+	* @class kafe.number 
+	*/
 	var number = {};
 
-	// to roman numerals
+	/**
+	* Converts a number to its roman numeral value.
+	*
+	* @method toRoman
+	* @param {Number} number
+	* @return (String) The roman numeral value.
+	* @example
+	* 	kafe.number.toRoman(1954);
+	* 	// returns "MCMLIV"
+	*/
 	number.toRoman = function(n) {
 
 		var

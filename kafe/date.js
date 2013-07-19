@@ -119,11 +119,14 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the day of the year
+	* Get the day number out of the full year (365 days).
 	*
 	* @method getDayYear
 	* @param {Date} d The date
-	* @return {Number} The day of the year
+	* @return (Number) The day of the year
+	* @example
+	* 	kafe.date.getDayYear(new Date('2013-07-17'));
+	* 	// returns 196
 	*/
 	date.getDayYear = function(d) {
 		var
@@ -141,11 +144,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Is it a leap year ?
+	* Returns whether the date is within a leap year or not.
 	*
 	* @method isLeapYear
-	* @param {Number} year The year 
-	* @return {Boolean} If it is a leap year
+	* @param {Number} year
+	* @return (Boolean) If it is a leap year or not.
+	* @example
+	* 	kafe.date.isLeapYear(2013);
+	* 	// returns false
+	* 	kafe.date.isLeapYear(2004);
+	* 	// returns true
 	*/
 	date.isLeapYear = function(year) {
 		return ((year%4 === 0 && year%400 !== 0) || year == 2000);
@@ -153,11 +161,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get number of days in the months for a year
+	* Get the number of days for all the months of a given year.
 	*
 	* @method getMaxMonth
-	* @param {Number} year The year 
-	* @return {Array} The number of days in the months of the year
+	* @param {Number} year
+	* @return (Array[Number]) An ordered array of day counts for each months of the given year.
+	* @example
+	* 	kafe.date.getMaxMonth(2013);
+	* 	// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	* 	kafe.date.getMaxMonth(2013)[3];
+	* 	// returns 30
 	*/
 	date.getMaxMonth = function(year) {
 		return [31, (this.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -165,11 +178,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the month names
+	* Get the full name of the months of the year.
 	*
 	* @method getMonthNames
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The months names
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of month names.
+	* @example
+	* 	kafe.date.getMonthNames('en');
+	* 	// returns ["January", "February", "March", "April", "May", "June", ... ]
+	* 	kafe.date.getMonthNames('en')[3];
+	* 	// returns "April"
 	*/
 	date.getMonthNames = function(lang) {
 		return _dict[_lang(lang)].m;
@@ -177,11 +195,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the 1-char month abbreviations
+	* Get the 1-char abbreviations of the months of the year.
 	*
 	* @method getMonth1Names
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The 1-char months abbreviations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of 1-char month abbreviations.
+	* @example
+	* 	kafe.date.getMonth1Names('en');
+	* 	// returns ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
+	* 	kafe.date.getMonth1Names('en')[3];
+	* 	// returns "A"
 	*/
 	date.getMonth1Names = function(lang) {
 		return _trim(_dict[_lang(lang)].m,1);
@@ -189,11 +212,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the 2-char month abbreviations
+	* Get the 2-char abbreviations of the months of the year.
 	*
 	* @method getMonth2Names
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The 2-char months abbreviations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of 2-char month abbreviations.
+	* @example
+	* 	kafe.date.getMonth2Names('en');
+	* 	// returns ["Ja", "Fe", "Mr", "Al", "Ma", "Jn", "Jl", "Au", "Se", "Oc", "No", "De"]
+	* 	kafe.date.getMonth2Names('en')[3];
+	* 	// returns "Al"
 	*/
 	date.getMonth2Names = function(lang) {
 		lang = _lang(lang);
@@ -202,11 +230,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the 3-char month abbreviations
+	* Get the 3-char abbreviations of the months of the year.
 	*
 	* @method getMonth3Names
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The 3-char months abbreviations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of 3-char month abbreviations.
+	* @example
+	* 	kafe.date.getMonth3Names('en');
+	* 	// returns ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+	* 	kafe.date.getMonth3Names('en')[3];
+	* 	// returns "Apr"
 	*/
 	date.getMonth3Names = function(lang) {
 		var d = [];
@@ -218,11 +251,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the weekday names
+	* Get the full name of the days of the week.
 	*
 	* @method getWeekdayNames
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The weekdays names
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of weekday names.
+	* @example
+	* 	kafe.date.getWeekdayNames('en');
+	* 	// returns ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+	* 	kafe.date.getWeekdayNames('en')[3];
+	* 	// returns "Wednesday"
 	*/
 	date.getWeekdayNames = function(lang) {
 		return _dict[_lang(lang)].w;
@@ -230,11 +268,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the 1-char weekday abbreviations
+	* Get the 1-char abbreviations of the days of the week.
 	*
 	* @method getWeekday1Names
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The 1-char weekdays abbreviations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of 1-char weekday abbreviations.
+	* @example
+	* 	kafe.date.getWeekday1Names('en');
+	* 	// returns ["S", "M", "T", "W", "T", "F", "S"]
+	* 	kafe.date.getWeekday1Names('en')[3];
+	* 	// returns "W"
 	*/
 	date.getWeekday1Names = function(lang) {
 		return _trim(_dict[_lang(lang)].w,1);
@@ -242,11 +285,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the 2-char weekday abbreviations
+	* Get the 2-char abbreviations of the days of the week.
 	*
 	* @method getWeekday2Names
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The 2-char weekdays abbreviations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of 2-char weekday abbreviations.
+	* @example
+	* 	kafe.date.getWeekday2Names('en');
+	* 	// returns ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+	* 	kafe.date.getWeekday2Names('en')[3];
+	* 	// returns "We"
 	*/
 	date.getWeekday2Names = function(lang) {
 		return _trim(_dict[_lang(lang)].w,2);
@@ -254,11 +302,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the 3-char weekday abbreviations
+	* Get the 3-char abbreviations of the days of the week.
 	*
 	* @method getWeekday3Names
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The 3-char weekdays abbreviations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of 3-char weekday abbreviations.
+	* @example
+	* 	kafe.date.getWeekday3Names('en');
+	* 	// returns ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+	* 	kafe.date.getWeekday3Names('en')[3];
+	* 	// returns "Wed"
 	*/
 	date.getWeekday3Names = function(lang) {
 		var d = [];
@@ -270,11 +323,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get the month day clean representation
+	* Get a clean representation for all possible days of a month.
 	*
 	* @method getDayNames
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {Array} The days clean representations
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (Array[String]) An ordered array of clean representations for all possible days of a month.
+	* @example
+	* 	kafe.date.getDayNames('en');
+	* 	// returns ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", ... ]
+	* 	kafe.date.getDayNames('en')[3];
+	* 	// returns "4th"
 	*/
 	date.getDayNames = function(lang) {
 		var
@@ -289,13 +347,25 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get a formatted date
+	* Flexible formatting a given date object.
 	*
 	* @method format
-	* @param {String} format The format with %- keys 
-	* @param {Date} [date=NOW] The date to format
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {String} The formatted date
+	* @param {String} format A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.
+	* 	@param {Token} format.%Y,%y Year variants: [2011, 11]
+	* 	@param {Token} format.%M,%m,%A,%a,%B,%b,%C,%c Month variants: [01, 1, January, january, Jan, jan, JA, Ja]
+	* 	@param {Token} format.%D,%d,%e Day variants: [02, 2, 2nd]
+	* 	@param {Token} format.%W,%w,%X,%x,%Z,%z Weekday variants: [Sunday, sunday, Sun, sun, Su, su]
+	* 	@param {Token} format.%H,%h,%K,%k,%p Hour variants [15, 15, 03, 3, pm]
+	* 	@param {Token} format.%I,%i Minute variants [04, 4]
+	* 	@param {Token} format.%S,%s Second variants [05, 5]
+	* @param {Date} [date=NOW] A date to be formatted.
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (String) The formatted date.
+	* @example
+	* 	kafe.date.format('%W, %A %e, %Y', new Date('2013-07-17'), 'en');
+	* 	// returns "Tuesday, July 16th, 2013"
+	* 	kafe.date.format('%W, %d %a, %Y', new Date('2013-07-17'), 'fr');
+	* 	// returns "Mardi, 16 juillet, 2013"
 	*/
 	date.format = function(format, date, lang) {
 		date = (date) ? date : new Date();
@@ -357,13 +427,18 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Get a relative time expression
+	* Get a relative time expression from a specific datetime.
 	*
 	* @method formatRelative
-	* @param {Date} time The datetime we want 
-	* @param {Date} [now=NOW] The datetime from which it is relative to
-	* @param {String} [lang=CURRENT_ENV_LANG] The language
-	* @return {String} The relative time expression
+	* @param {Date} time Specific datetime object.
+	* @param {Date} [now=NOW] Comparative datetime object to calculate the time difference.
+	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+	* @return (String) The relative time expression
+	* @example
+	* 	kafe.date.formatRelative(new Date('2013-07-19 6:00:00'), new Date('2013-07-19 20:00:00'), 'en');
+	* 	// returns "14 hours ago"
+	* 	kafe.date.formatRelative(new Date('2013-05-19'), new Date('2013-07-19'), 'en');
+	* 	// returns "2 months ago"
 	*/
 	date.formatRelative = function(time, now, lang) {
 		now = (now) ? now : new Date();
@@ -404,11 +479,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Parses a datetime string into a date object
+	* Parses a given datetime string into a standard datetime object.
 	*
 	* @method parse
-	* @param {String} dtstring The datetime string 
-	* @return {Date} The date object
+	* @param {String} dtstring Custom datetime string
+	* @return (Date) The date object
+	* @example
+	* 	kafe.date.parse('2012-08-08T12:18:00.000-04:00');
+	* 	// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
+	* 	kafe.date.parse('June 3, 2013');
+	* 	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
 	*/
 	date.parse = function(dtstring) {
 
@@ -480,12 +560,16 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Refresh a day dropdown depending of the month-year combination
+	* Refreshes a dropdown containing the days of a given year/month combination.
 	*
 	* @method refreshSelectDays
 	* @param {DOMElement} obj The &lt;select&gt; element
 	* @param {Number} month The month 
 	* @param {Number} year The year
+	* @example
+	* 	$('.select-month').on('change', function(e) {
+	* 		kafe.date.refreshSelectDays('.select-day', $(this).val(), $('.select-year').val());
+	* 	})
 	*/
 	date.refreshSelectDays = function(obj, month, year) {
 
@@ -521,14 +605,17 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Make a html table containg the monthly calendar
+	* Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.
 	*
 	* @method makeMonthCalendar
 	* @param {Number} year The year
 	* @param {Number} month The month 
 	* @param {Object} [links] The links by date
 	*	@param {Array} links.YYYY-MM-DD The links
-	* @return {String} The rendered HTML
+	* @return (String) The rendered HTML
+	* @example
+	* 	kafe.date.makeMonthCalendar(2013, 4, {'2013-04-03':'http://mybirthday.com/'});
+	* 	// returns "<table data-month="2013-04"><caption>Avril 2013</caption><thead><tr><th>Dim</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th></thead><tbody><tr><td>&nbsp;</td><td data-date="2013-04-01"><span>1</span></td><td data-date="2013-04-02"><span>2</span></td><td data-date="2013-04-03"><a href="http://mybirthday.com/">3</a></td><td data-date="2013-04-04"><span>4</span></td><td data-date="2013-04-05"><span>5</span></td><td data-date="2013-04-06"><span>6</span></td></tr><tr><td data-date="2013-04-07"><span>7</span></td><td data-date="2013-04-08"><span>8</span></td><td data-date="2013-04-09"><span>9</span></td><td data-date="2013-04-10"><span>10</span></td><td data-date="2013-04-11"><span>11</span></td><td data-date="2013-04-12"><span>12</span></td><td data-date="2013-04-13"><span>13</span></td></tr><tr><td data-date="2013-04-14"><span>14</span></td><td data-date="2013-04-15"><span>15</span></td><td data-date="2013-04-16"><span>16</span></td><td data-date="2013-04-17"><span>17</span></td><td data-date="2013-04-18"><span>18</span></td><td data-date="2013-04-19"><span>19</span></td><td data-date="2013-04-20"><span>20</span></td></tr><tr><td data-date="2013-04-21"><span>21</span></td><td data-date="2013-04-22"><span>22</span></td><td data-date="2013-04-23"><span>23</span></td><td data-date="2013-04-24"><span>24</span></td><td data-date="2013-04-25"><span>25</span></td><td data-date="2013-04-26"><span>26</span></td><td data-date="2013-04-27"><span>27</span></td></tr><tr><td data-date="2013-04-28"><span>28</span></td><td data-date="2013-04-29"><span>29</span></td><td data-date="2013-04-30"><span>30</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>"
 	*/
 	date.makeMonthCalendar = function(year, month, links) {
 		links = links || {};
