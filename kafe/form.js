@@ -125,7 +125,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
 	* @example
 	* 	kafe.form.maxLength('.twitter-post', 140, false, function(count) {
-	* 		console.log(count);
+	* 		kafe.log(count);
 	* 	});
 	*/
 	form.maxLength = function(elements, max, block, callback) {
@@ -167,7 +167,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
 	* @example
 	* 	kafe.form.passwordStrength('.password', function(strengh) {
-	* 		console.log(strengh);
+	* 		kafe.log(strengh);
 	* 	});
 	*/
 	form.passwordStrength = function(elements, callback) {

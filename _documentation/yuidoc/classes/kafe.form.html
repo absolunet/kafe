@@ -55,6 +55,8 @@
             
                 <li><a href="../classes/kafe.form.html">kafe.form</a></li>
             
+                <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
+            
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
@@ -553,7 +555,7 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
-    console.log(count);
+    kafe.log(count);
 });</code></pre>
 
             </div>
@@ -798,7 +800,7 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
-    console.log(strengh);
+    kafe.log(strengh);
 });</code></pre>
 
             </div>

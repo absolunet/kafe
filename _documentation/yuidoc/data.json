@@ -115,6 +115,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "kafe/geolocation.js": {
+            "name": "kafe/geolocation.js",
+            "modules": {},
+            "classes": {
+                "kafe.geolocation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "kafe/kafe.js": {
             "name": "kafe/kafe.js",
             "modules": {
@@ -207,6 +216,7 @@
             "classes": {
                 "kafe.date": 1,
                 "kafe.form": 1,
+                "kafe.geolocation": 1,
                 "kafe": 1,
                 "kafe.number": 1,
                 "kafe.storage": 1,
@@ -347,6 +357,20 @@
             "file": "kafe/form.js",
             "line": 4,
             "description": "### Version 1.4.1\nUtilitary methods for html forms and related interactions."
+        },
+        "kafe.geolocation": {
+            "name": "kafe.geolocation",
+            "shortname": "kafe.geolocation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/geolocation.js",
+            "line": 36,
+            "description": "### Version 1.0\nMethods to access geolocalization information about the client."
         },
         "kafe": {
             "name": "kafe",
@@ -1281,7 +1305,7 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tconsole.log(count);\n\t});"
+                "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1306,7 +1330,7 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tconsole.log(strengh);\n\t});"
+                "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tkafe.log(strengh);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1328,6 +1352,55 @@
                 "\n\tkafe.form.sanitizeFormData('#Form1');"
             ],
             "class": "kafe.form",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/geolocation.js",
+            "line": 46,
+            "description": "Get the current geolocalization information of the client.",
+            "itemtype": "method",
+            "name": "locate",
+            "params": [
+                {
+                    "name": "parameters",
+                    "description": "Parameters for the current request.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "msgContainer",
+                            "description": "Element used to show status messages.",
+                            "type": "String|jQueryObject|DOMElement",
+                            "optional": true,
+                            "optdefault": "undefined"
+                        },
+                        {
+                            "name": "lang",
+                            "description": "A two character language code.",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "CURRENT_ENV_LANG"
+                        },
+                        {
+                            "name": "success",
+                            "description": "Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.",
+                            "type": "Function",
+                            "optional": true,
+                            "optdefault": "undefined"
+                        },
+                        {
+                            "name": "error",
+                            "description": "Callback triggered on geolocalization errors. The error message is passed as the first argument.",
+                            "type": "Function",
+                            "optional": true,
+                            "optdefault": "undefined"
+                        }
+                    ]
+                }
+            ],
+            "example": [
+                "\n\tkafe.geolocation.locate({\n\t\tmsgContainer: '#GeoLocStatus', lang: 'en',\n\t\tsuccess: function(coords) {\n\t\t\tkafe.log('latitude: ' + coords.latitude);\n\t\t\tkafe.log('longitude: ' + coords.longitude);\n\t\t}\n\t\terror: function(msg) {\n\t\t\tkafe.log('Cannot geoloc: ' + msg);\n\t\t}\n\t});"
+            ],
+            "class": "kafe.geolocation",
             "module": "kafe"
         },
         {
@@ -1705,7 +1778,7 @@
                 }
             ],
             "example": [
-                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });\n\t// The local storage value will return undefined in one hour.\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });\n\t// The local storage value will return undefined if the cookie value for 'last-visit-cookie' is changed."
+                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });\n\t// The local storage value will return undefined in one hour.\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });\n\t// The local storage value will return undefined if the value of the cookie 'last-visit-cookie' is changed."
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -1752,7 +1825,7 @@
                 }
             ],
             "example": [
-                "\n\tkafe.storage.setSessionItem('user:first-name', 'John', { expires: 3600 });\n\t// The session storage value will return undefined in one hour.\n\tkafe.storage.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });\n\t// The session storage value will return undefined if the cookie value for 'logged-user' is changed."
+                "\n\tkafe.storage.setSessionItem('user:first-name', 'John', { expires: 3600 });\n\t// The session storage value will return undefined in one hour.\n\tkafe.storage.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });\n\t// The session storage value will return undefined if the value of the cookie 'logged-user' is changed."
             ],
             "class": "kafe.storage",
             "module": "kafe"

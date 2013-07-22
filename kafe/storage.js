@@ -265,7 +265,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });
 	* 	// The local storage value will return undefined in one hour.
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });
-	* 	// The local storage value will return undefined if the cookie value for 'last-visit-cookie' is changed.
+	* 	// The local storage value will return undefined if the value of the cookie 'last-visit-cookie' is changed.
 	*/
 	storage.setPersistentItem = function(key,value,options) {
 		_set(LOCAL,key,value,options);
@@ -284,7 +284,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setSessionItem('user:first-name', 'John', { expires: 3600 });
 	* 	// The session storage value will return undefined in one hour.
 	* 	kafe.storage.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });
-	* 	// The session storage value will return undefined if the cookie value for 'logged-user' is changed.
+	* 	// The session storage value will return undefined if the value of the cookie 'logged-user' is changed.
 	*/
 	storage.setSessionItem = function(key,value,options) {
 		_set(SESSION,key,value,options);

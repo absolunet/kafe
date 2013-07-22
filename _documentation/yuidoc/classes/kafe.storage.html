@@ -55,6 +55,8 @@
             
                 <li><a href="../classes/kafe.form.html">kafe.form</a></li>
             
+                <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
+            
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
@@ -2203,7 +2205,7 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
                 <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: 3600 });
 // The local storage value will return undefined in one hour.
 kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: &#39;last-visit-cookie&#39; });
-// The local storage value will return undefined if the cookie value for &#39;last-visit-cookie&#39; is changed.</code></pre>
+// The local storage value will return undefined if the value of the cookie &#39;last-visit-cookie&#39; is changed.</code></pre>
 
             </div>
         </div>
@@ -2381,7 +2383,7 @@ kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39
                 <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: 3600 });
 // The session storage value will return undefined in one hour.
 kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: &#39;logged-user&#39; });
-// The session storage value will return undefined if the cookie value for &#39;logged-user&#39; is changed.</code></pre>
+// The session storage value will return undefined if the value of the cookie &#39;logged-user&#39; is changed.</code></pre>
 
             </div>
         </div>

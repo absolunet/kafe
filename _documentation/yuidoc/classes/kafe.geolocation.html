@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.plugin.menu - kafe</title>
+    <title>kafe.geolocation - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -116,7 +116,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.plugin.menu Class</h1>
+                        <h1>kafe.geolocation Class</h1>
 <div class="box meta">
     
 
@@ -124,13 +124,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_plugin_menu.js.html#l8"><code>kafe&#x2F;plugin&#x2F;menu.js:8</code></a>
+            Defined in: <a href="../files/kafe_geolocation.js.html#l36"><code>kafe&#x2F;geolocation.js:36</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/kafe.plugin.html">kafe.plugin</a>
+            Module: <a href="../modules/kafe.html">kafe</a>
         
     
 
@@ -140,8 +140,8 @@
 
 
 <div class="box intro">
-    <h3>Version 0.1</h3>
-<p>Quick menu with submenus</p>
+    <h3>Version 1.0</h3>
+<p>Methods to access geolocalization information about the client.</p>
 
 </div>
 
@@ -170,7 +170,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_init">init</a>
+                                <a href="#method_locate">locate</a>
 
                                 
                                 
@@ -192,8 +192,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_init" class="method item">
-    <h3 class="name"><code>init</code></h3>
+                    <div id="method_locate" class="method item">
+    <h3 class="name"><code>locate</code></h3>
 
     
         <div class="args">
@@ -201,7 +201,7 @@
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>parameters</code>
                     
                 </li>
             
@@ -234,7 +234,7 @@
             
         
         
-        <a href="../files/kafe_plugin_menu.js.html#l18"><code>kafe&#x2F;plugin&#x2F;menu.js:18</code></a>
+        <a href="../files/kafe_geolocation.js.html#l46"><code>kafe&#x2F;geolocation.js:46</code></a>
         
         </p>
 
@@ -245,7 +245,7 @@
     </div>
 
     <div class="description">
-        <p>Initialize menu</p>
+        <p>Get the current geolocalization information of the client.</p>
 
     </div>
 
@@ -257,14 +257,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">options</code>
+                        <code class="param-name">parameters</code>
                         <span class="type">Object</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Options</p>
+                        <p>Parameters for the current request.</p>
 
                     </div>
 
@@ -273,12 +273,13 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name">container</code>
-                                    <span class="type">JQuerySelector</span>
+                                    <code class="param-name optional">[msgContainer=undefined]</code>
+                                    <span class="type">String | JQueryObject | DOMElement</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>Element used to show status messages.</p>
 
                                 </div>
 
@@ -287,13 +288,13 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[handle=&#x27;li&#x27;]</code>
+                                    <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
                                     <span class="type">String</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>A two character language code.</p>
 
                                 </div>
 
@@ -302,103 +303,13 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[submenus=&#x27;ul&#x27;]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[animation=&#x27;slide&#x27;]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[openSpeed=200]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[openDelay=500]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[closeSpeed=150]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[closeDelay=400]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[enterCallback]</code>
+                                    <code class="param-name optional">[success=undefined]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.</p>
 
                                 </div>
 
@@ -407,13 +318,13 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[leaveCallback]</code>
+                                    <code class="param-name optional">[error=undefined]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>Callback triggered on geolocalization errors. The error message is passed as the first argument.</p>
 
                                 </div>
 
@@ -435,7 +346,16 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>$(&#39;#id&#39;).kafeMenu(options)</code></pre>
+                <pre class="code prettyprint"><code>kafe.geolocation.locate({
+    msgContainer: &#39;#GeoLocStatus&#39;, lang: &#39;en&#39;,
+    success: function(coords) {
+        kafe.log(&#39;latitude: &#39; + coords.latitude);
+        kafe.log(&#39;longitude: &#39; + coords.longitude);
+    }
+    error: function(msg) {
+        kafe.log(&#39;Cannot geoloc: &#39; + msg);
+    }
+});</code></pre>
 
             </div>
         </div>

@@ -8,6 +8,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "kafe.date",
         "kafe.ext.addthis",
         "kafe.form",
+        "kafe.geolocation",
         "kafe.number",
         "kafe.plugin.menu",
         "kafe.plugin.sticky",
