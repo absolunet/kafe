@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.plugin.sticky - kafe</title>
+    <title>kafe.string.encrypt - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -120,7 +120,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.plugin.sticky Class</h1>
+                        <h1>kafe.string.encrypt Class</h1>
 <div class="box meta">
     
 
@@ -128,13 +128,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_plugin_sticky.js.html#l10"><code>kafe&#x2F;plugin&#x2F;sticky.js:10</code></a>
+            Defined in: <a href="../files/kafe_string-encrypt.js.html#l10"><code>kafe&#x2F;string-encrypt.js:10</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/kafe.plugin.html">kafe.plugin</a>
+            Module: <a href="../modules/kafe.html">kafe</a>
         
     
 
@@ -144,8 +144,8 @@
 
 
 <div class="box intro">
-    <h3>Version 0.1</h3>
-<p>Sticky box</p>
+    <h3>Version 1.0</h3>
+<p>String encryption tools.</p>
 
 </div>
 
@@ -174,7 +174,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_init">init</a>
+                                <a href="#method_md5">md5</a>
 
                                 
                                 
@@ -196,8 +196,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_init" class="method item">
-    <h3 class="name"><code>init</code></h3>
+                    <div id="method_md5" class="method item">
+    <h3 class="name"><code>md5</code></h3>
 
     
         <div class="args">
@@ -205,7 +205,7 @@
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>string</code>
                     
                 </li>
             
@@ -213,6 +213,10 @@
         </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
 
     
@@ -238,7 +242,7 @@
             
         
         
-        <a href="../files/kafe_plugin_sticky.js.html#l20"><code>kafe&#x2F;plugin&#x2F;sticky.js:20</code></a>
+        <a href="../files/kafe_string-encrypt.js.html#l19"><code>kafe&#x2F;string-encrypt.js:19</code></a>
         
         </p>
 
@@ -249,7 +253,7 @@
     </div>
 
     <div class="description">
-        <p>Initialize sticky</p>
+        <p>Encrypts a given string to md5.</p>
 
     </div>
 
@@ -261,80 +265,16 @@
             
                 <li class="param">
                     
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
+                        <code class="param-name">string</code>
+                        <span class="type">String</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Options</p>
-
+                         
                     </div>
 
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">selector</code>
-                                    <span class="type">JQuerySelector</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[align=&#x27;left&#x27;]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[contains=false]</code>
-                                    <span class="type">Boolean</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[container=PARENT]</code>
-                                    <span class="type">JQuerySelector</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>TODO</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                        </ul>
                     
                 </li>
             
@@ -343,13 +283,26 @@
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(String) The encrypted value.</p>
+
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>$(&#39;#id&#39;).kafeSticky(options)</code></pre>
+                <pre class="code prettyprint"><code>kafe.string.encrypt.md5(&#39;kafe is awesome.&#39;);
+// Returns &quot;1fc5f96ff478b0c37baaf27506063603&quot;</code></pre>
 
             </div>
         </div>

@@ -42,7 +42,6 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 	*/
 	var geolocation = {};
 
-	// locate user
 	/**
 	* Get the current geolocalization information of the client.
 	*

@@ -14,6 +14,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "kafe.plugin.sticky",
         "kafe.plugin.tooltip",
         "kafe.storage",
+        "kafe.string.encrypt",
+        "kafe.string.validate",
         "kafe.style"
     ],
     "modules": [

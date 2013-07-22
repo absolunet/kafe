@@ -153,6 +153,24 @@
             "fors": {},
             "namespaces": {}
         },
+        "kafe/string-encrypt.js": {
+            "name": "kafe/string-encrypt.js",
+            "modules": {},
+            "classes": {
+                "kafe.string.encrypt": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/string-validate.js": {
+            "name": "kafe/string-validate.js",
+            "modules": {},
+            "classes": {
+                "kafe.string.validate": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "kafe/style.js": {
             "name": "kafe/style.js",
             "modules": {},
@@ -220,6 +238,8 @@
                 "kafe": 1,
                 "kafe.number": 1,
                 "kafe.storage": 1,
+                "kafe.string.encrypt": 1,
+                "kafe.string.validate": 1,
                 "kafe.style": 1
             },
             "fors": {},
@@ -413,6 +433,34 @@
             "file": "kafe/storage.js",
             "line": 220,
             "description": "### Version 1.1\nEasily access, sort and manipulate local and session storage values."
+        },
+        "kafe.string.encrypt": {
+            "name": "kafe.string.encrypt",
+            "shortname": "kafe.string.encrypt",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/string-encrypt.js",
+            "line": 10,
+            "description": "### Version 1.0\nString encryption tools."
+        },
+        "kafe.string.validate": {
+            "name": "kafe.string.validate",
+            "shortname": "kafe.string.validate",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/string-validate.js",
+            "line": 11,
+            "description": "### Version 1.0\nString validation tools."
         },
         "kafe.style": {
             "name": "kafe.style",
@@ -1356,7 +1404,7 @@
         },
         {
             "file": "kafe/geolocation.js",
-            "line": 46,
+            "line": 45,
             "description": "Get the current geolocalization information of the client.",
             "itemtype": "method",
             "name": "locate",
@@ -2127,6 +2175,150 @@
             "module": "kafe"
         },
         {
+            "file": "kafe/string-encrypt.js",
+            "line": 19,
+            "description": "Encrypts a given string to md5.",
+            "itemtype": "method",
+            "name": "md5",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "(String) The encrypted value."
+            },
+            "example": [
+                "\n\tkafe.string.encrypt.md5('kafe is awesome.');\n\t// Returns \"1fc5f96ff478b0c37baaf27506063603\""
+            ],
+            "class": "kafe.string.encrypt",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string-validate.js",
+            "line": 21,
+            "description": "Checks if a string is empty or contains only whitespaces.",
+            "itemtype": "method",
+            "name": "isEmpty",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "(Boolean) If true, the string is empty or contains only whitespaces."
+            },
+            "example": [
+                "\n\tkafe.string.validate.isEmpty('kafe is awesome.');\n\t// Returns false\n\tkafe.string.validate.isEmpty(' ');\n\t// Returns true"
+            ],
+            "class": "kafe.string.validate",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string-validate.js",
+            "line": 37,
+            "description": "Checks if a string is numeric.",
+            "itemtype": "method",
+            "name": "isNum",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "(Boolean) If true, the string could be converted to a number."
+            },
+            "example": [
+                "\n\tkafe.string.validate.isNum('k4f3');\n\t// Returns false\n\tkafe.string.validate.isNum('43');\n\t// Returns true"
+            ],
+            "class": "kafe.string.validate",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string-validate.js",
+            "line": 53,
+            "description": "Checks if a string is a valid email address.",
+            "itemtype": "method",
+            "name": "isEmail",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "(Boolean) If true, the string is a valid email address."
+            },
+            "example": [
+                "\n\tkafe.string.validate.isEmail('mailbox@mailaddress');\n\t// Returns false\n\tkafe.string.validate.isEmail('kafe.feedback@absolunet.com');\n\t// Returns true"
+            ],
+            "class": "kafe.string.validate",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string-validate.js",
+            "line": 71,
+            "description": "Checks if a string is a valid or part of a valid Canadian postal code.",
+            "itemtype": "method",
+            "name": "isPostalCode",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "format",
+                    "description": "Validation pattern (Regular expression). Default pattern is *([a-z][0-9]){3}*. Can also be set to *A1A 1A1* for a single precise value or as *A1A* and *1A1* when divided into two values.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "(Boolean) If true, the string matches the validation format."
+            },
+            "example": [
+                "\n\tkafe.string.validate.isPostalCode('KAF123');\n\t// Returns false\n\tkafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');\n\t// Returns true"
+            ],
+            "class": "kafe.string.validate",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string-validate.js",
+            "line": 95,
+            "description": "Checks if a string is a valid credit card number and fits a specific brand pattern.\nSource: [http://davidwalsh.name/validate-credit-cards](http://davidwalsh.name/validate-credit-cards)",
+            "itemtype": "method",
+            "name": "isCreditCard",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "cardtype",
+                    "description": "A credit card brand abbreviation. Possible values are **mc** (Master Card), **ec** (Electronic Cash), **vi** (Visa), **ax** (American Express), **dc** (DC), **bl** (BL), **di** (Diner's Club), **jcb** (JCB) or **er** (ER).",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "(Boolean) If true, the string is a valid credit card number."
+            },
+            "example": [
+                "\n\tkafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');\n\t// Returns false\n\tkafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');\n\t// Returns true"
+            ],
+            "class": "kafe.string.validate",
+            "module": "kafe"
+        },
+        {
             "file": "kafe/style.js",
             "line": 14,
             "description": "Equalizes the height css property of every element in a selector. If no height is currently present, the method computes the height values before equalizing. Elements must be visible at the time or will be considered as having a height of 0.",
@@ -2215,5 +2407,30 @@
             "module": "kafe"
         }
     ],
-    "warnings": []
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " kafe/string-encrypt.js:19"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " kafe/string-validate.js:21"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " kafe/string-validate.js:37"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " kafe/string-validate.js:53"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " kafe/string-validate.js:71"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " kafe/string-validate.js:95"
+        }
+    ]
 }
