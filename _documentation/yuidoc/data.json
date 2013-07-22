@@ -2022,7 +2022,6 @@
                     "description": "Other parameters",
                     "type": "Object",
                     "optional": true,
-                    "optdefault": "undefined",
                     "props": [
                         {
                             "name": "expires",
