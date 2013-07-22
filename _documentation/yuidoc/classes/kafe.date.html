@@ -53,11 +53,19 @@
             
                 <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
             
+                <li><a href="../classes/kafe.form.html">kafe.form</a></li>
+            
+                <li><a href="../classes/kafe.number.html">kafe.number</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
+            
+                <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
+            
+                <li><a href="../classes/kafe.style.html">kafe.style</a></li>
             
             </ul>
 
@@ -131,8 +139,8 @@
 
 <div class="box intro">
     <h3>Version 1.2</h3>
-
 <p>Additionnal methods for date manipulation</p>
+
 </div>
 
 
@@ -384,7 +392,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">String</span>
+            <span class="type"></span>
         </span>
     
 
@@ -411,7 +419,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l291"><code>kafe&#x2F;date.js:291</code></a>
+        <a href="../files/kafe_date.js.html#l349"><code>kafe&#x2F;date.js:349</code></a>
         
         </p>
 
@@ -422,7 +430,8 @@
     </div>
 
     <div class="description">
-        <p>Get a formatted date</p>
+        <p>Flexible formatting a given date object.</p>
+
     </div>
 
     
@@ -440,9 +449,112 @@
                     
 
                     <div class="param-description">
-                        <p>The format with %- keys</p>
+                        <p>A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.</p>
+
                     </div>
 
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%Y,%y</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Year variants: [2011, 11]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%M,%m,%A,%a,%B,%b,%C,%c</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Month variants: [01, 1, January, january, Jan, jan, JA, Ja]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%D,%d,%e</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Day variants: [02, 2, 2nd]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%W,%w,%X,%x,%Z,%z</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Weekday variants: [Sunday, sunday, Sun, sun, Su, su]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%H,%h,%K,%k,%p</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Hour variants [15, 15, 03, 3, pm]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%I,%i</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Minute variants [04, 4]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">%S,%s</code>
+                                    <span class="type">Token</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Second variants [05, 5]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -456,7 +568,8 @@
                     
 
                     <div class="param-description">
-                        <p>The date to format</p>
+                        <p>A date to be formatted.</p>
+
                     </div>
 
                     
@@ -472,7 +585,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -489,14 +603,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">String</span>:
-                    
-                    The formatted date
+                    <p>(String) The formatted date.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %A %e, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;en&#39;);
+// returns &quot;Tuesday, July 16th, 2013&quot;
+kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;fr&#39;);
+// returns &quot;Mardi, 16 juillet, 2013&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -532,7 +657,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">String</span>
+            <span class="type"></span>
         </span>
     
 
@@ -559,7 +684,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l359"><code>kafe&#x2F;date.js:359</code></a>
+        <a href="../files/kafe_date.js.html#l429"><code>kafe&#x2F;date.js:429</code></a>
         
         </p>
 
@@ -570,7 +695,8 @@
     </div>
 
     <div class="description">
-        <p>Get a relative time expression</p>
+        <p>Get a relative time expression from a specific datetime.</p>
+
     </div>
 
     
@@ -588,7 +714,8 @@
                     
 
                     <div class="param-description">
-                        <p>The datetime we want</p>
+                        <p>Specific datetime object.</p>
+
                     </div>
 
                     
@@ -604,7 +731,8 @@
                     
 
                     <div class="param-description">
-                        <p>The datetime from which it is relative to</p>
+                        <p>Comparative datetime object to calculate the time difference.</p>
+
                     </div>
 
                     
@@ -620,7 +748,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -637,14 +766,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">String</span>:
-                    
-                    The relative time expression
+                    <p>(String) The relative time expression</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-07-19 6:00:00&#39;), new Date(&#39;2013-07-19 20:00:00&#39;), &#39;en&#39;);
+// returns &quot;14 hours ago&quot;
+kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-19&#39;), &#39;en&#39;);
+// returns &quot;2 months ago&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -668,7 +808,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -695,7 +835,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l272"><code>kafe&#x2F;date.js:272</code></a>
+        <a href="../files/kafe_date.js.html#l325"><code>kafe&#x2F;date.js:325</code></a>
         
         </p>
 
@@ -706,7 +846,8 @@
     </div>
 
     <div class="description">
-        <p>Get the month day clean representation</p>
+        <p>Get a clean representation for all possible days of a month.</p>
+
     </div>
 
     
@@ -725,7 +866,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -742,14 +884,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The days clean representations
+                    <p>(Array[String]) An ordered array of clean representations for all possible days of a month.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;);
+// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]
+kafe.date.getDayNames(&#39;en&#39;)[3];
+// returns &quot;4th&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -773,7 +926,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Number</span>
+            <span class="type"></span>
         </span>
     
 
@@ -811,7 +964,8 @@
     </div>
 
     <div class="description">
-        <p>Get the day of the year</p>
+        <p>Get the day number out of the full year (365 days).</p>
+
     </div>
 
     
@@ -830,6 +984,7 @@
 
                     <div class="param-description">
                         <p>The date</p>
+
                     </div>
 
                     
@@ -846,14 +1001,23 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Number</span>:
-                    
-                    The day of the year
+                    <p>(Number) The day of the year</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getDayYear(new Date(&#39;2013-07-17&#39;));
+// returns 196</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -877,7 +1041,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -904,7 +1068,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l155"><code>kafe&#x2F;date.js:155</code></a>
+        <a href="../files/kafe_date.js.html#l163"><code>kafe&#x2F;date.js:163</code></a>
         
         </p>
 
@@ -915,7 +1079,8 @@
     </div>
 
     <div class="description">
-        <p>Get number of days in the months for a year</p>
+        <p>Get the number of days for all the months of a given year.</p>
+
     </div>
 
     
@@ -933,7 +1098,7 @@
                     
 
                     <div class="param-description">
-                        <p>The year</p>
+                         
                     </div>
 
                     
@@ -950,14 +1115,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The number of days in the months of the year
+                    <p>(Array[Number]) An ordered array of day counts for each months of the given year.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013);
+// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+kafe.date.getMaxMonth(2013)[3];
+// returns 30</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -981,7 +1157,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1008,7 +1184,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l179"><code>kafe&#x2F;date.js:179</code></a>
+        <a href="../files/kafe_date.js.html#l197"><code>kafe&#x2F;date.js:197</code></a>
         
         </p>
 
@@ -1019,7 +1195,8 @@
     </div>
 
     <div class="description">
-        <p>Get the 1-char month abbreviations</p>
+        <p>Get the 1-char abbreviations of the months of the year.</p>
+
     </div>
 
     
@@ -1038,7 +1215,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -1055,14 +1233,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The 1-char months abbreviations
+                    <p>(Array[String]) An ordered array of 1-char month abbreviations.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;);
+// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]
+kafe.date.getMonth1Names(&#39;en&#39;)[3];
+// returns &quot;A&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1086,7 +1275,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1113,7 +1302,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l191"><code>kafe&#x2F;date.js:191</code></a>
+        <a href="../files/kafe_date.js.html#l214"><code>kafe&#x2F;date.js:214</code></a>
         
         </p>
 
@@ -1124,7 +1313,8 @@
     </div>
 
     <div class="description">
-        <p>Get the 2-char month abbreviations</p>
+        <p>Get the 2-char abbreviations of the months of the year.</p>
+
     </div>
 
     
@@ -1143,7 +1333,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -1160,14 +1351,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The 2-char months abbreviations
+                    <p>(Array[String]) An ordered array of 2-char month abbreviations.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;);
+// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]
+kafe.date.getMonth2Names(&#39;en&#39;)[3];
+// returns &quot;Al&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1191,217 +1393,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_date.js.html#l204"><code>kafe&#x2F;date.js:204</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Get the 3-char month abbreviations</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The language</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array</span>:
-                    
-                    The 3-char months abbreviations
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_getMonthNames" class="method item">
-    <h3 class="name"><code>getMonthNames</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_date.js.html#l167"><code>kafe&#x2F;date.js:167</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Get the month names</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The language</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array</span>:
-                    
-                    The months names
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_getWeekday1Names" class="method item">
-    <h3 class="name"><code>getWeekday1Names</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1439,7 +1431,8 @@
     </div>
 
     <div class="description">
-        <p>Get the 1-char weekday abbreviations</p>
+        <p>Get the 3-char abbreviations of the months of the year.</p>
+
     </div>
 
     
@@ -1458,7 +1451,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -1475,14 +1469,261 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The 1-char weekdays abbreviations
+                    <p>(Array[String]) An ordered array of 3-char month abbreviations.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;);
+// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]
+kafe.date.getMonth3Names(&#39;en&#39;)[3];
+// returns &quot;Apr&quot;</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_getMonthNames" class="method item">
+    <h3 class="name"><code>getMonthNames</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_date.js.html#l180"><code>kafe&#x2F;date.js:180</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get the full name of the months of the year.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A two character language code.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Array[String]) An ordered array of month names.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;);
+// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]
+kafe.date.getMonthNames(&#39;en&#39;)[3];
+// returns &quot;April&quot;</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_getWeekday1Names" class="method item">
+    <h3 class="name"><code>getWeekday1Names</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_date.js.html#l270"><code>kafe&#x2F;date.js:270</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get the 1-char abbreviations of the days of the week.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A two character language code.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Array[String]) An ordered array of 1-char weekday abbreviations.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;);
+// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]
+kafe.date.getWeekday1Names(&#39;en&#39;)[3];
+// returns &quot;W&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1506,7 +1747,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1533,7 +1774,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l244"><code>kafe&#x2F;date.js:244</code></a>
+        <a href="../files/kafe_date.js.html#l287"><code>kafe&#x2F;date.js:287</code></a>
         
         </p>
 
@@ -1544,7 +1785,8 @@
     </div>
 
     <div class="description">
-        <p>Get the 2-char weekday abbreviations</p>
+        <p>Get the 2-char abbreviations of the days of the week.</p>
+
     </div>
 
     
@@ -1563,7 +1805,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -1580,14 +1823,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The 2-char weekdays abbreviations
+                    <p>(Array[String]) An ordered array of 2-char weekday abbreviations.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;);
+// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]
+kafe.date.getWeekday2Names(&#39;en&#39;)[3];
+// returns &quot;We&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1611,7 +1865,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1638,7 +1892,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l256"><code>kafe&#x2F;date.js:256</code></a>
+        <a href="../files/kafe_date.js.html#l304"><code>kafe&#x2F;date.js:304</code></a>
         
         </p>
 
@@ -1649,7 +1903,8 @@
     </div>
 
     <div class="description">
-        <p>Get the 3-char weekday abbreviations</p>
+        <p>Get the 3-char abbreviations of the days of the week.</p>
+
     </div>
 
     
@@ -1668,7 +1923,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -1685,14 +1941,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The 3-char weekdays abbreviations
+                    <p>(Array[String]) An ordered array of 3-char weekday abbreviations.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;);
+// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]
+kafe.date.getWeekday3Names(&#39;en&#39;)[3];
+// returns &quot;Wed&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1716,7 +1983,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Array</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1743,7 +2010,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l220"><code>kafe&#x2F;date.js:220</code></a>
+        <a href="../files/kafe_date.js.html#l253"><code>kafe&#x2F;date.js:253</code></a>
         
         </p>
 
@@ -1754,7 +2021,8 @@
     </div>
 
     <div class="description">
-        <p>Get the weekday names</p>
+        <p>Get the full name of the days of the week.</p>
+
     </div>
 
     
@@ -1773,7 +2041,8 @@
                     
 
                     <div class="param-description">
-                        <p>The language</p>
+                        <p>A two character language code.</p>
+
                     </div>
 
                     
@@ -1790,14 +2059,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Array</span>:
-                    
-                    The weekdays names
+                    <p>(Array[String]) An ordered array of weekday names.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;);
+// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]
+kafe.date.getWeekdayNames(&#39;en&#39;)[3];
+// returns &quot;Wednesday&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1821,7 +2101,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Boolean</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1848,7 +2128,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l143"><code>kafe&#x2F;date.js:143</code></a>
+        <a href="../files/kafe_date.js.html#l146"><code>kafe&#x2F;date.js:146</code></a>
         
         </p>
 
@@ -1859,7 +2139,8 @@
     </div>
 
     <div class="description">
-        <p>Is it a leap year ?</p>
+        <p>Returns whether the date is within a leap year or not.</p>
+
     </div>
 
     
@@ -1877,7 +2158,7 @@
                     
 
                     <div class="param-description">
-                        <p>The year</p>
+                         
                     </div>
 
                     
@@ -1894,14 +2175,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Boolean</span>:
-                    
-                    If it is a leap year
+                    <p>(Boolean) If it is a leap year or not.</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.isLeapYear(2013);
+// returns false
+kafe.date.isLeapYear(2004);
+// returns true</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -1937,7 +2229,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">String</span>
+            <span class="type"></span>
         </span>
     
 
@@ -1964,7 +2256,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l523"><code>kafe&#x2F;date.js:523</code></a>
+        <a href="../files/kafe_date.js.html#l607"><code>kafe&#x2F;date.js:607</code></a>
         
         </p>
 
@@ -1975,7 +2267,8 @@
     </div>
 
     <div class="description">
-        <p>Make a html table containg the monthly calendar</p>
+        <p>Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.</p>
+
     </div>
 
     
@@ -1994,6 +2287,7 @@
 
                     <div class="param-description">
                         <p>The year</p>
+
                     </div>
 
                     
@@ -2009,6 +2303,7 @@
 
                     <div class="param-description">
                         <p>The month</p>
+
                     </div>
 
                     
@@ -2025,6 +2320,7 @@
 
                     <div class="param-description">
                         <p>The links by date</p>
+
                     </div>
 
                     
@@ -2038,6 +2334,7 @@
 
                                 <div class="param-description">
                                     <p>The links</p>
+
                                 </div>
 
                                 
@@ -2058,14 +2355,23 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">String</span>:
-                    
-                    The rendered HTML
+                    <p>(String) The rendered HTML</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.makeMonthCalendar(2013, 4, {&#39;2013-04-03&#39;:&#39;http://mybirthday.com/&#39;});
+// returns &quot;&lt;table data-month=&quot;2013-04&quot;&gt;&lt;caption&gt;Avril 2013&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dim&lt;/th&gt;&lt;th&gt;Lun&lt;/th&gt;&lt;th&gt;Mar&lt;/th&gt;&lt;th&gt;Mer&lt;/th&gt;&lt;th&gt;Jeu&lt;/th&gt;&lt;th&gt;Ven&lt;/th&gt;&lt;th&gt;Sam&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td data-date=&quot;2013-04-01&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-02&quot;&gt;&lt;span&gt;2&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-03&quot;&gt;&lt;a href=&quot;http://mybirthday.com/&quot;&gt;3&lt;/a&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-04&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-05&quot;&gt;&lt;span&gt;5&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-06&quot;&gt;&lt;span&gt;6&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-07&quot;&gt;&lt;span&gt;7&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-08&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-09&quot;&gt;&lt;span&gt;9&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-10&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-11&quot;&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-12&quot;&gt;&lt;span&gt;12&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-13&quot;&gt;&lt;span&gt;13&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-14&quot;&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-15&quot;&gt;&lt;span&gt;15&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-16&quot;&gt;&lt;span&gt;16&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-17&quot;&gt;&lt;span&gt;17&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-18&quot;&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-19&quot;&gt;&lt;span&gt;19&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-20&quot;&gt;&lt;span&gt;20&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-21&quot;&gt;&lt;span&gt;21&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-22&quot;&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-23&quot;&gt;&lt;span&gt;23&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-24&quot;&gt;&lt;span&gt;24&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-25&quot;&gt;&lt;span&gt;25&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-26&quot;&gt;&lt;span&gt;26&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-27&quot;&gt;&lt;span&gt;27&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-28&quot;&gt;&lt;span&gt;28&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-29&quot;&gt;&lt;span&gt;29&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-30&quot;&gt;&lt;span&gt;30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot;</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -2089,7 +2395,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Date</span>
+            <span class="type"></span>
         </span>
     
 
@@ -2116,7 +2422,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l406"><code>kafe&#x2F;date.js:406</code></a>
+        <a href="../files/kafe_date.js.html#l481"><code>kafe&#x2F;date.js:481</code></a>
         
         </p>
 
@@ -2127,7 +2433,8 @@
     </div>
 
     <div class="description">
-        <p>Parses a datetime string into a date object</p>
+        <p>Parses a given datetime string into a standard datetime object.</p>
+
     </div>
 
     
@@ -2145,7 +2452,8 @@
                     
 
                     <div class="param-description">
-                        <p>The datetime string</p>
+                        <p>Custom datetime string</p>
+
                     </div>
 
                     
@@ -2162,14 +2470,25 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Date</span>:
-                    
-                    The date object
+                    <p>(Date) The date object</p>
+
                 
             </div>
         </div>
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.date.parse(&#39;2012-08-08T12:18:00.000-04:00&#39;);
+// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
+kafe.date.parse(&#39;June 3, 2013&#39;);
+// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -2228,7 +2547,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l482"><code>kafe&#x2F;date.js:482</code></a>
+        <a href="../files/kafe_date.js.html#l562"><code>kafe&#x2F;date.js:562</code></a>
         
         </p>
 
@@ -2239,7 +2558,8 @@
     </div>
 
     <div class="description">
-        <p>Refresh a day dropdown depending of the month-year combination</p>
+        <p>Refreshes a dropdown containing the days of a given year/month combination.</p>
+
     </div>
 
     
@@ -2258,6 +2578,7 @@
 
                     <div class="param-description">
                         <p>The &lt;select&gt; element</p>
+
                     </div>
 
                     
@@ -2273,6 +2594,7 @@
 
                     <div class="param-description">
                         <p>The month</p>
+
                     </div>
 
                     
@@ -2288,6 +2610,7 @@
 
                     <div class="param-description">
                         <p>The year</p>
+
                     </div>
 
                     
@@ -2299,6 +2622,17 @@
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>$(&#39;.select-month&#39;).on(&#39;change&#39;, function(e) {
+    kafe.date.refreshSelectDays(&#39;.select-day&#39;, $(this).val(), $(&#39;.select-year&#39;).val());
+})</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
@@ -2345,6 +2679,7 @@
 
     <div class="description">
         <p>Number of milliseconds in a day (24 hours per day)</p>
+
     </div>
 
     
@@ -2389,6 +2724,7 @@
 
     <div class="description">
         <p>Number of milliseconds in an hour (60 minutes per hour)</p>
+
     </div>
 
     
@@ -2433,6 +2769,7 @@
 
     <div class="description">
         <p>Number of milliseconds in a minute (60 seconds per minute)</p>
+
     </div>
 
     
@@ -2477,6 +2814,7 @@
 
     <div class="description">
         <p>Number of milliseconds in a month (4.348121428571429 weeks per month)</p>
+
     </div>
 
     
@@ -2521,6 +2859,7 @@
 
     <div class="description">
         <p>Number of milliseconds in a second (1000 ms per second)</p>
+
     </div>
 
     
@@ -2565,6 +2904,7 @@
 
     <div class="description">
         <p>Number of milliseconds in a week (7 days per week)</p>
+
     </div>
 
     
@@ -2609,6 +2949,7 @@
 
     <div class="description">
         <p>Number of milliseconds in a year (365.2422 days per year)</p>
+
     </div>
 
     

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.cms.drupal - kafe</title>
+    <title>kafe/style.js - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -114,68 +114,108 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.cms.drupal Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: kafe/style.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+window.kafe.bonify({name:&#x27;style&#x27;, version:&#x27;1.3&#x27;, obj:(function(kafe,undefined){
+	var $ = kafe.dependencies.jQuery;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/kafe_cms_drupal.js.html#l12"><code>kafe&#x2F;cms&#x2F;drupal.js:12</code></a>
-        </div>
-    
-
-    
-        
-            Module: <a href="../modules/kafe.cms.html">kafe.cms</a>
-        
-    
-
-    
-</div>
+	/**
+	* ### Version 1.3
+	* Common adjustment and manipulation methods for html layouts.
+	*
+	* @module kafe
+	* @class kafe.style 
+	*/
+	var style = {};
 
 
+	/**
+	* Equalizes the height css property of every element in a selector. If no height is currently present, the method computes the height values before equalizing. Elements must be visible at the time or will be considered as having a height of 0.
+	*
+	* @method equalHeight
+	* @param {String|jQueryObject|DOMElement} selector The affected elements.
+	* @param {Object} [options] Additional options.
+	* 	@param {Number} [options.nbPerRow=0] Allows the elements to be compared in groups of a given number.
+	* 	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to &#x27;auto&#x27; before comparing.
+	* 	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the &#x27;box-sizing&#x27; css attribute to &#x27;border-box&#x27;.
+	* @example
+	* 	kafe.style.equalHeight(&#x27;.products&#x27;, { nbPerRow: 3, resetHeight: true });
+	*/
+	style.equalHeight = function() {
+		var
+			$o          = $(arguments[0]),
+			options     = arguments[1] || {},
+			nbPerRow    = options.nbPerRow,
+			resetHeight = !!options.resetHeight,
+			borderBox   = !!options.borderBox,
 
-<div class="box intro">
-    <h3>Version 0.1</h3>
-<p>Additionnal methods for Drupal</p>
+			_doIt = function() {
+				var
+					$z = $(arguments[0]),
+					maxOuterHeight = Math.max.apply(Math, $z.map(function(){ return $(this).outerHeight(); }).get())
+				;
+				$z.each(function() {
+					var $this = $(this);
+					$this.height( (borderBox) ? maxOuterHeight : (maxOuterHeight - ($this.outerHeight() - $this.height())) );
+				});
+			}
+		;
 
-</div>
+
+		if (resetHeight) {
+			$o.height(&#x27;auto&#x27;);
+		}
+
+		if (!!nbPerRow) {
+			var max = Math.ceil($o.length / nbPerRow);
+			for (var i=0; i&lt;max; ++i) {
+				_doIt($($o.splice(0, nbPerRow)));
+			}
+		} else {
+			_doIt($o);
+		}
+	};
 
 
+	/**
+	* Replaces &amp;lt;hr&amp;gt; tags into &amp;lt;div class=&quot;hr&quot;&amp;gt;&amp;lt;/div&amp;gt; tags to eliminate styling restrictions.
+	*
+	* @method replaceHr
+	* @param {String|jQueryObject|DOMElement} [selector=&#x27;hr&#x27;] Restricts the process to a specific context.
+	* @example
+	* 	kafe.style.replaceHr(&#x27;.page-content&#x27;);
+	*/
+	style.replaceHr = function() {
+		var $e = (arguments[0]) ? $(&#x27;hr:not(.kafe-replacehr-processed)&#x27;, $(arguments[0])) : $(&#x27;hr&#x27;);
+		$e.addClass(&#x27;kafe-replacehr-processed&#x27;).hide().wrap(&#x27;&lt;div class=&quot;hr&quot;&gt;&lt;/div&gt;&#x27;);
+	};
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-        
-        
-        
-        
-    </ul>
+	// 
+	/**
+	* Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.
+	*
+	* @method vAlign
+	* @param {String|jQueryObject|DOMElement} selector Affected elements.
+	* @example
+	* 	kafe.style.vAlign(&#x27;.menu-items &gt; .label&#x27;);
+	*/
+	style.vAlign = function(e, parent) {
+		$(e).each(function(){
+			var
+				$this   = $(this),
+				$parent = (parent) ? $(parent) : $this.parent()
+			;
+			$this.css({display: &#x27;block&#x27;, marginTop: Math.floor(($parent.height() - $this.height()) / 2) + &#x27;px&#x27;});
+		});
+	};
 
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
+	return style;
 
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-
-        
-
-        
-
-        
-    </div>
+})(window.kafe)});
+    </pre>
 </div>
 
                     </div>

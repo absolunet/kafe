@@ -7,9 +7,13 @@ YUI.add("yuidoc-meta", function(Y) {
         "kafe.cms.sitecore",
         "kafe.date",
         "kafe.ext.addthis",
+        "kafe.form",
+        "kafe.number",
         "kafe.plugin.menu",
         "kafe.plugin.sticky",
-        "kafe.plugin.tooltip"
+        "kafe.plugin.tooltip",
+        "kafe.storage",
+        "kafe.style"
     ],
     "modules": [
         "kafe",

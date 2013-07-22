@@ -17,9 +17,9 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @method equalHeight
 	* @param {String|jQueryObject|DOMElement} selector The affected elements.
 	* @param {Object} [options] Additional options.
-	* 	@param {Number} [options.nbPerRow] Allows the elements to be compared in groups of a given number.
-	* 	@param {Boolean} [options.resetHeight] Resets css height of all elements to 'auto' before comparing.
-	* 	@param {Boolean} [options.borderBox] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
+	* 	@param {Number} [options.nbPerRow=0] Allows the elements to be compared in groups of a given number.
+	* 	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to 'auto' before comparing.
+	* 	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
 	* @example
 	* 	kafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
 	*/
@@ -63,7 +63,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* Replaces &lt;hr&gt; tags into &lt;div class="hr"&gt;&lt;/div&gt; tags to eliminate styling restrictions.
 	*
 	* @method replaceHr
-	* @param {String|jQueryObject|DOMElement} [selector] Restricts the process to a specific context.
+	* @param {String|jQueryObject|DOMElement} [selector='hr'] Restricts the process to a specific context.
 	* @example
 	* 	kafe.style.replaceHr('.page-content');
 	*/
@@ -78,7 +78,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.
 	*
 	* @method vAlign
-	* @param {String|jQueryObject|DOMElement} [selector] Affected elements.
+	* @param {String|jQueryObject|DOMElement} selector Affected elements.
 	* @example
 	* 	kafe.style.vAlign('.menu-items > .label');
 	*/
