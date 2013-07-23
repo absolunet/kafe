@@ -74,9 +74,10 @@ window.kafe.plug({name:'tooltip', version:'0.1', obj:(function(kafe,undefined){
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('Tooltip', function(self, parameters) {
-		tooltip.init($.extend({}, parameters[0], {container:self}));
+	kafe.fn.plugIntojQuery('Tooltip', {
+		init: function(self, parameters) {
+			tooltip.init($.extend({}, parameters[0], {container:self}));
+		}
 	});
-
 
 })(window.kafe)});

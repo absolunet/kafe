@@ -105,6 +105,9 @@ window.kafe = (function(undefined){
 			return v > 4 ? v : undef;
 		}),
 
+		// jquery methods
+		_jQueryMethods = {},
+
 
 		/**
 		* kafe core
@@ -223,15 +226,25 @@ window.kafe = (function(undefined){
 		*
 		* @method fn.plugIntojQuery
 		* @param {String} name The jQuery plugin name
-		* @param {Function} func The function called by jQuery
+		* @param {Object[Function]} methods Action:Method hash
 		*/
-		plugIntojQuery: function(name, func) {
-			var $ = core.dependencies.jQuery;
-			$.fn['kafe'+name] = function() {
-				return this.each(function() {
-					func(this, $.makeArray(arguments));
-				});
-			};
+		plugIntojQuery: function(name, methods) {
+			var
+				$  = core.dependencies.jQuery,
+				id = 'kafe'+name
+			;
+
+			if ($.fn[id] === undefined) {
+				_jQueryMethods[name] = {};
+
+				$.fn[id] = function() {
+					return this.each(function() {
+						_jQueryMethods[name][arguments.shift()]( this, $.makeArray(arguments) );
+					});
+				};
+			}
+
+			$.extend(_jQueryMethods[name], methods);
 		}
 	};
 

@@ -17,11 +17,11 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @method equalHeight
 	* @param {String|jQueryObject|DOMElement} selector The affected elements.
 	* @param {Object} [options] Additional options.
-	* 	@param {Number} [options.nbPerRow=0] Allows the elements to be compared in groups of a given number.
-	* 	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to 'auto' before comparing.
-	* 	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
+	*	@param {Number} [options.nbPerRow=0] Allows the elements to be compared in groups of a given number.
+	*	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to 'auto' before comparing.
+	*	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
 	* @example
-	* 	kafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
+	*	kafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
 	*/
 	style.equalHeight = function() {
 		var
@@ -65,7 +65,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @method replaceHr
 	* @param {String|jQueryObject|DOMElement} [selector='hr'] Restricts the process to a specific context.
 	* @example
-	* 	kafe.style.replaceHr('.page-content');
+	*	kafe.style.replaceHr('.page-content');
 	*/
 	style.replaceHr = function() {
 		var $e = (arguments[0]) ? $('hr:not(.kafe-replacehr-processed)', $(arguments[0])) : $('hr');
@@ -73,14 +73,14 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	};
 
 
-	// 
 	/**
 	* Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.
 	*
 	* @method vAlign
 	* @param {String|jQueryObject|DOMElement} selector Affected elements.
+	* @param {String|jQueryObject|DOMElement} [parent=DIRECT_PARENT] Container in which we want to be centered.
 	* @example
-	* 	kafe.style.vAlign('.menu-items > .label');
+	*	kafe.style.vAlign('.menu-items > .label');
 	*/
 	style.vAlign = function(e, parent) {
 		$(e).each(function(){
@@ -91,6 +91,18 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 			$this.css({display: 'block', marginTop: Math.floor(($parent.height() - $this.height()) / 2) + 'px'});
 		});
 	};
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery('', {
+		'style.replaceHr': function(self, parameters) {
+			style.replaceHr(self);
+		},
+		'style.vAlign': function(self, parameters) {
+			style.replaceHr(self, parameters[0]);
+		}
+	});
+
 
 	return style;
 

@@ -122,8 +122,10 @@ window.kafe.plug({name:'menu', version:'0.1', obj:(function(kafe,undefined){
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('Menu', function(self, parameters) {
-		menu.init($.extend({}, parameters[0], {container:self}));
+	kafe.fn.plugIntojQuery('Menu', {
+		init: function(self, parameters) {
+			menu.init($.extend({}, parameters[0], {container:self}));
+		}
 	});
 
 })(window.kafe)});
