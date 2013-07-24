@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -372,7 +376,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.style.equalHeight(&#39;.products&#39;, { nbPerRow: 3, resetHeight: true });</code></pre>
+                <pre class="code prettyprint"><code>kafe.style.equalHeight(&#39;.products&#39;, { nbPerRow: 3, resetHeight: true });
+$(&#39;.products&#39;).kafe(&#39;equalHeight&#39;, { nbPerRow: 3, resetHeight: true });</code></pre>
 
             </div>
         </div>
@@ -422,7 +427,7 @@
             
         
         
-        <a href="../files/kafe_style.js.html#l62"><code>kafe&#x2F;style.js:62</code></a>
+        <a href="../files/kafe_style.js.html#l63"><code>kafe&#x2F;style.js:63</code></a>
         
         </p>
 
@@ -471,7 +476,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.style.replaceHr(&#39;.page-content&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.style.replaceHr(&#39;.page-content&#39;);
+$(&#39;.page-content&#39;).kafe(&#39;replaceHr&#39;);</code></pre>
 
             </div>
         </div>
@@ -489,6 +495,12 @@
                 <li class="arg">
                     
                         <code>selector</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[parent=DIRECT_PARENT]</code>
                     
                 </li>
             
@@ -521,7 +533,7 @@
             
         
         
-        <a href="../files/kafe_style.js.html#l77"><code>kafe&#x2F;style.js:77</code></a>
+        <a href="../files/kafe_style.js.html#l78"><code>kafe&#x2F;style.js:78</code></a>
         
         </p>
 
@@ -558,6 +570,23 @@
                     
                 </li>
             
+                <li class="param">
+                    
+                        <code class="param-name optional">[parent=DIRECT_PARENT]</code>
+                        <span class="type">String | JQueryObject | DOMElement</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Container in which we want to be centered.</p>
+
+                    </div>
+
+                    
+                </li>
+            
             </ul>
         </div>
     
@@ -569,7 +598,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.style.vAlign(&#39;.menu-items &gt; .label&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.style.vAlign(&#39;.menu-items &gt; .label&#39;);
+$(&#39;..menu-items &gt; .label&#39;).kafe(&#39;vAlign&#39;);</code></pre>
 
             </div>
         </div>

@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -231,6 +235,9 @@ window.kafe = (function(undefined){
 			return v &gt; 4 ? v : undef;
 		}),
 
+		// jquery methods
+		_jQueryMethods = {},
+
 
 		/**
 		* kafe core
@@ -349,15 +356,25 @@ window.kafe = (function(undefined){
 		*
 		* @method fn.plugIntojQuery
 		* @param {String} name The jQuery plugin name
-		* @param {Function} func The function called by jQuery
+		* @param {Object[Function]} methods Action:Method hash
 		*/
-		plugIntojQuery: function(name, func) {
-			var $ = core.dependencies.jQuery;
-			$.fn[&#x27;kafe&#x27;+name] = function() {
-				return this.each(function() {
-					func(this, $.makeArray(arguments));
-				});
-			};
+		plugIntojQuery: function(name, methods) {
+			var
+				$  = core.dependencies.jQuery,
+				id = &#x27;kafe&#x27;+name
+			;
+
+			if ($.fn[id] === undefined) {
+				_jQueryMethods[name] = {};
+
+				$.fn[id] = function() {
+					return this.each(function() {
+						_jQueryMethods[name][arguments.shift()]( this, $.makeArray(arguments) );
+					});
+				};
+			}
+
+			$.extend(_jQueryMethods[name], methods);
 		}
 	};
 

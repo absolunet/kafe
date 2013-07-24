@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.form - kafe</title>
+    <title>kafe.url - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,7 +124,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.form Class</h1>
+                        <h1>kafe.url Class</h1>
 <div class="box meta">
     
 
@@ -132,7 +132,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_form.js.html#l4"><code>kafe&#x2F;form.js:4</code></a>
+            Defined in: <a href="../files/kafe_url.js.html#l26"><code>kafe&#x2F;url.js:26</code></a>
         </div>
     
 
@@ -148,8 +148,8 @@
 
 
 <div class="box intro">
-    <h3>Version 1.4.1</h3>
-<p>Utilitary methods for html forms and related interactions.</p>
+    <h3>Version 1.0</h3>
+<p>Manipulation tools for route-based urls.</p>
 
 </div>
 
@@ -178,49 +178,42 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_autofocusOnNext">autofocusOnNext</a>
+                                <a href="#method_parseAjaxParams">parseAjaxParams</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_focus">focus</a>
+                                <a href="#method_parseAjaxPath">parseAjaxPath</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_maxLength">maxLength</a>
+                                <a href="#method_parseHashParams">parseHashParams</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_onEnter">onEnter</a>
+                                <a href="#method_parseHashPath">parseHashPath</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_passwordStrength">passwordStrength</a>
+                                <a href="#method_parseSearchParams">parseSearchParams</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_placeholder">placeholder</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_sanitizeFormData">sanitizeFormData</a>
+                                <a href="#method_parseSearchPath">parseSearchPath</a>
 
                                 
                                 
@@ -242,8 +235,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_autofocusOnNext" class="method item">
-    <h3 class="name"><code>autofocusOnNext</code></h3>
+                    <div id="method_parseAjaxParams" class="method item">
+    <h3 class="name"><code>parseAjaxParams</code></h3>
 
     
         <div class="args">
@@ -251,7 +244,7 @@
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code class="optional">[hashbang=CURRENT_LOCATION_HASH]</code>
                     
                 </li>
             
@@ -259,6 +252,10 @@
         </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
 
     
@@ -284,7 +281,7 @@
             
         
         
-        <a href="../files/kafe_form.js.html#l98"><code>kafe&#x2F;form.js:98</code></a>
+        <a href="../files/kafe_url.js.html#l98"><code>kafe&#x2F;url.js:98</code></a>
         
         </p>
 
@@ -295,7 +292,7 @@
     </div>
 
     <div class="description">
-        <p>Automaticaly jump the focus to the next field once the maxlength has been reached.</p>
+        <p>Parses a hashbang (#!) as a key/value list and creates a javascript object.</p>
 
     </div>
 
@@ -307,246 +304,130 @@
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);
-$(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_focus" class="method item">
-    <h3 class="name"><code>focus</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_form.js.html#l14"><code>kafe&#x2F;form.js:14</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Add a class on focus to all input/textarea/select controls and the label placed immediatly before it.</p>
-
-    </div>
-
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.focus();</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_maxLength" class="method item">
-    <h3 class="name"><code>maxLength</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>elements</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>max</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[block=false]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[callback]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_form.js.html#l123"><code>kafe&#x2F;form.js:123</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Adds a simulated maxlength support for textarea elements.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">elements</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">max</code>
-                        <span class="type">Integer</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Maximum number of characters.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[block=false]</code>
-                        <span class="type">Boolean</span>
+                        <code class="param-name optional">[hashbang=CURRENT_LOCATION_HASH]</code>
+                        <span class="type">String</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Prevent further character entry once the limit is reached.</p>
-
+                         
                     </div>
 
                     
                 </li>
             
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Object) An object represention of the hashbang.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.url.parseAjaxParams(&#39;#!color=blue&amp;size=large&amp;extras=false&#39;);
+// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_parseAjaxPath" class="method item">
+    <h3 class="name"><code>parseAjaxPath</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[hashbang=CURRENT_LOCATION_HASH]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_url.js.html#l113"><code>kafe&#x2F;url.js:113</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parses a hashbang (#!) as a path and creates an ordered array.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
                 <li class="param">
                     
-                        <code class="param-name optional">[callback]</code>
-                        <span class="type">Function</span>
+                        <code class="param-name optional">[hashbang=CURRENT_LOCATION_HASH]</code>
+                        <span class="type">String</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.</p>
-
+                         
                     </div>
 
                     
@@ -557,18 +438,26 @@ $(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</c
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Array) An array represention of the hashbang path.</p>
+
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
-    kafe.log(count);
-});
-$(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count) {
-    kafe.log(count);
-});</code></pre>
+                <pre class="code prettyprint"><code>kafe.url.parseAjaxPath(&#39;#!/clothing/man/shirts&#39;);
+// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]</code></pre>
 
             </div>
         </div>
@@ -576,8 +465,8 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
 </div>
 
                 
-                    <div id="method_onEnter" class="method item">
-    <h3 class="name"><code>onEnter</code></h3>
+                    <div id="method_parseHashParams" class="method item">
+    <h3 class="name"><code>parseHashParams</code></h3>
 
     
         <div class="args">
@@ -585,13 +474,7 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
             
                 <li class="arg">
                     
-                        <code>elements</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
+                        <code class="optional">[hash=CURRENT_LOCATION_HASH]</code>
                     
                 </li>
             
@@ -599,6 +482,10 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
         </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
 
     
@@ -624,7 +511,7 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
             
         
         
-        <a href="../files/kafe_form.js.html#l74"><code>kafe&#x2F;form.js:74</code></a>
+        <a href="../files/kafe_url.js.html#l67"><code>kafe&#x2F;url.js:67</code></a>
         
         </p>
 
@@ -635,7 +522,7 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
     </div>
 
     <div class="description">
-        <p>Detects the RETURN key, then triggers a callback.</p>
+        <p>Parses a hash string as a key/value list and creates a javascript object.</p>
 
     </div>
 
@@ -647,157 +534,15 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type">Function</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Function to be fired by the keypress.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
-    $(input).parents(&#39;form&#39;).submit();
-});
-$(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
-    $(input).parents(&#39;form&#39;).submit();
-});</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_passwordStrength" class="method item">
-    <h3 class="name"><code>passwordStrength</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>elements</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[callback]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_form.js.html#l170"><code>kafe&#x2F;form.js:170</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Calculates the password strength value of given fields.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">elements</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[callback]</code>
-                        <span class="type">Function</span>
+                        <code class="param-name optional">[hash=CURRENT_LOCATION_HASH]</code>
+                        <span class="type">String</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.</p>
-
+                         
                     </div>
 
                     
@@ -808,18 +553,26 @@ $(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Object) An object represention of the hash string.</p>
+
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
-    kafe.log(strengh);
-});
-$(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
-    kafe.log(strengh);
-});</code></pre>
+                <pre class="code prettyprint"><code>kafe.url.parseHashParams(&#39;#color=blue&amp;size=large&amp;extras=false&#39;);
+// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}</code></pre>
 
             </div>
         </div>
@@ -827,8 +580,8 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
 </div>
 
                 
-                    <div id="method_placeholder" class="method item">
-    <h3 class="name"><code>placeholder</code></h3>
+                    <div id="method_parseHashPath" class="method item">
+    <h3 class="name"><code>parseHashPath</code></h3>
 
     
         <div class="args">
@@ -836,7 +589,7 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
             
                 <li class="arg">
                     
-                        <code class="optional">[selector]</code>
+                        <code class="optional">[hash=CURRENT_LOCATION_HASH]</code>
                     
                 </li>
             
@@ -844,6 +597,10 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
         </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
 
     
@@ -869,7 +626,7 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
             
         
         
-        <a href="../files/kafe_form.js.html#l33"><code>kafe&#x2F;form.js:33</code></a>
+        <a href="../files/kafe_url.js.html#l82"><code>kafe&#x2F;url.js:82</code></a>
         
         </p>
 
@@ -880,7 +637,7 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
     </div>
 
     <div class="description">
-        <p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.</p>
+        <p>Parses a hash string as a path and creates an ordered array.</p>
 
     </div>
 
@@ -892,16 +649,15 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
             
                 <li class="param">
                     
-                        <code class="param-name optional">[selector]</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
+                        <code class="param-name optional">[hash=CURRENT_LOCATION_HASH]</code>
+                        <span class="type">String</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Selector of text-based form elements. Defaults to &#39;input&#91;placeholder&#93;, textarea&#91;placeholder&#93;&#39; when left undefined.</p>
-
+                         
                     </div>
 
                     
@@ -912,14 +668,26 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Array) An array represention of the hash path.</p>
+
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);
-$(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.url.parseHashPath(&#39;#/clothing/man/shirts&#39;);
+// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]</code></pre>
 
             </div>
         </div>
@@ -927,8 +695,8 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
 </div>
 
                 
-                    <div id="method_sanitizeFormData" class="method item">
-    <h3 class="name"><code>sanitizeFormData</code></h3>
+                    <div id="method_parseSearchParams" class="method item">
+    <h3 class="name"><code>parseSearchParams</code></h3>
 
     
         <div class="args">
@@ -936,7 +704,7 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code class="optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
                     
                 </li>
             
@@ -944,6 +712,10 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
         </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
 
     
@@ -969,7 +741,7 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
             
         
         
-        <a href="../files/kafe_form.js.html#l268"><code>kafe&#x2F;form.js:268</code></a>
+        <a href="../files/kafe_url.js.html#l36"><code>kafe&#x2F;url.js:36</code></a>
         
         </p>
 
@@ -980,7 +752,7 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
     </div>
 
     <div class="description">
-        <p>Sanitize form text entry for .NET validator.</p>
+        <p>Parses a querystring as a key/value list and creates a javascript object.</p>
 
     </div>
 
@@ -992,15 +764,15 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
+                        <code class="param-name optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Reference to the current .NET form.</p>
-
+                         
                     </div>
 
                     
@@ -1011,14 +783,141 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Object) An object represention of the querystring.</p>
+
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);
-$(&#39;#Form1&#39;).kafe(&#39;sanitizeFormData&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.url.parseSearchParams(&#39;?group=players&amp;team=blue&amp;ranking=3&#39;);
+// returns Object {group: &quot;players&quot;, team: &quot;blue&quot;, ranking: &quot;3&quot;}</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_parseSearchPath" class="method item">
+    <h3 class="name"><code>parseSearchPath</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_url.js.html#l51"><code>kafe&#x2F;url.js:51</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parses a querystring as a path and creates an ordered array.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Array) An array represention of the querystring path.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.url.parseSearchPath(&#39;?/Players/Teams/Blue&#39;);
+// returns [&quot;Players&quot;, &quot;Teams&quot;, &quot;Blue&quot;]</code></pre>
 
             </div>
         </div>

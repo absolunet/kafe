@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -163,6 +167,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {String|jQueryObject|DOMElement} [selector] Selector of text-based form elements. Defaults to &#x27;input&amp;#91;placeholder&amp;#93;, textarea&amp;#91;placeholder&amp;#93;&#x27; when left undefined.
 	* @example
 	* 	kafe.form.placeholder(&#x27;.search-field&#x27;);
+	* 	$(&#x27;.search-field&#x27;).kafe(&#x27;placeholder&#x27;);
 	*/
 	form.placeholder = function() {
 		if (kafe.env(&#x27;ie&#x27;) &amp;&amp; kafe.env(&#x27;ie&#x27;) &lt; 10) {
@@ -206,6 +211,9 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* 	kafe.form.onEnter(&#x27;.search-field&#x27;, function(input) {
 	* 		$(input).parents(&#x27;form&#x27;).submit();
 	* 	});
+	* 	$(&#x27;.search-field&#x27;).kafe(&#x27;onEnter&#x27;, function(input) {
+	* 		$(input).parents(&#x27;form&#x27;).submit();
+	* 	});
 	*/
 	form.onEnter = function(elements,callback) {
 		$(elements).on(&#x27;keypress&#x27;, function(e) {
@@ -224,6 +232,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
 	* @example
 	* 	kafe.form.autofocusOnNext(&#x27;.first-name, .last-name, .email&#x27;);
+	* 	$(&#x27;.first-name, .last-name, .email&#x27;).kafe(&#x27;autofocusOnNext&#x27;);
 	*/
 	form.autofocusOnNext = function(elements) {
 		$(elements).on(&#x27;keyup&#x27;,function(e) {
@@ -251,6 +260,9 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
 	* @example
 	* 	kafe.form.maxLength(&#x27;.twitter-post&#x27;, 140, false, function(count) {
+	* 		kafe.log(count);
+	* 	});
+	* 	$(&#x27;.twitter-post&#x27;).kafe(&#x27;maxLength&#x27;, 140, false, function(count) {
 	* 		kafe.log(count);
 	* 	});
 	*/
@@ -293,6 +305,9 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
 	* @example
 	* 	kafe.form.passwordStrength(&#x27;.password&#x27;, function(strengh) {
+	* 		kafe.log(strengh);
+	* 	});
+	*	$(&#x27;.password&#x27;).kafe(&#x27;passwordStrength&#x27;, function(strengh) {
 	* 		kafe.log(strengh);
 	* 	});
 	*/
@@ -387,6 +402,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {String|jQueryObject|DOMElement} elements Reference to the current .NET form.
 	* @example
 	* 	kafe.form.sanitizeFormData(&#x27;#Form1&#x27;);
+	*	$(&#x27;#Form1&#x27;).kafe(&#x27;sanitizeFormData&#x27;);
 	*/
 	form.sanitizeFormData = function(form) {
 		var
@@ -401,7 +417,31 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 					.replace(/\\&gt;/g,&#x27;&amp;gt;&#x27;)
 			);
 		}
-    };
+	};
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
+		&#x27;form.placeholder&#x27;: function(self, parameters) {
+			form.placeholder(self);
+		},
+		&#x27;form.onEnter&#x27;: function(self, parameters) {
+			form.onEnter(self, parameters[0]);
+		},
+		&#x27;form.autofocusOnNext&#x27;: function(self, parameters) {
+			form.autofocusOnNext(self);
+		},
+		&#x27;form.maxLength&#x27;: function(self, parameters) {
+			form.maxLength(self, parameters[0]);
+		},
+		&#x27;form.passwordStrength&#x27;: function(self, parameters) {
+			form.passwordStrength(self, parameters[0]);
+		},
+		&#x27;form.sanitizeFormData&#x27;: function(self, parameters) {
+			form.sanitizeFormData(self);
+		}
+	});
+
 
 	return form;
 

@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -398,7 +402,7 @@
 kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
 
 kafe.storage.getAllPersistentItems();
-// Returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }</code></pre>
+// returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }</code></pre>
 
             </div>
         </div>
@@ -482,7 +486,7 @@ kafe.storage.getAllPersistentItems();
 kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
 
 kafe.storage.getAllPersistentKeys();
-// Returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]</code></pre>
+// returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]</code></pre>
 
             </div>
         </div>
@@ -566,7 +570,7 @@ kafe.storage.getAllPersistentKeys();
 kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
 
 kafe.storage.getAllSessionItems();
-// Returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }</code></pre>
+// returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }</code></pre>
 
             </div>
         </div>
@@ -650,7 +654,7 @@ kafe.storage.getAllSessionItems();
 kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
 
 kafe.storage.getAllSessionKeys();
-// Returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]</code></pre>
+// returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]</code></pre>
 
             </div>
         </div>
@@ -1051,7 +1055,7 @@ kafe.storage.getAllSessionKeys();
 kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
 
 kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
-// Returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }</code></pre>
+// returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }</code></pre>
 
             </div>
         </div>
@@ -1168,7 +1172,7 @@ kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
 kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
 
 kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
-// Returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]</code></pre>
+// returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]</code></pre>
 
             </div>
         </div>
@@ -1398,7 +1402,7 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
 kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
 
 kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
-// Returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }</code></pre>
+// returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }</code></pre>
 
             </div>
         </div>
@@ -1515,7 +1519,7 @@ kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
 kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
 
 kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
-// Returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]</code></pre>
+// returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]</code></pre>
 
             </div>
         </div>

@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -248,8 +252,10 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;0.1&#x27;, obj:(function(
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery(&#x27;Menu&#x27;, function(self, parameters) {
-		menu.init($.extend({}, parameters[0], {container:self}));
+	kafe.fn.plugIntojQuery(&#x27;Menu&#x27;, {
+		init: function(self, parameters) {
+			menu.init($.extend({}, parameters[0], {container:self}));
+		}
 	});
 
 })(window.kafe)});

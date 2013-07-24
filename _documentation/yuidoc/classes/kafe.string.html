@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.geolocation - kafe</title>
+    <title>kafe.string - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,7 +124,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.geolocation Class</h1>
+                        <h1>kafe.string Class</h1>
 <div class="box meta">
     
 
@@ -132,7 +132,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_geolocation.js.html#l36"><code>kafe&#x2F;geolocation.js:36</code></a>
+            Defined in: <a href="../files/kafe_string.js.html#l11"><code>kafe&#x2F;string.js:11</code></a>
         </div>
     
 
@@ -148,8 +148,8 @@
 
 
 <div class="box intro">
-    <h3>Version 1.0</h3>
-<p>Methods to access geolocalization information about the client.</p>
+    <h3>Version 1.2</h3>
+<p>Additionnal methods for string manipulation and generation.</p>
 
 </div>
 
@@ -178,7 +178,21 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_locate">locate</a>
+                                <a href="#method_generateGuid">generateGuid</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_removeAccent">removeAccent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_toObject">toObject</a>
 
                                 
                                 
@@ -200,23 +214,17 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_locate" class="method item">
-    <h3 class="name"><code>locate</code></h3>
+                    <div id="method_generateGuid" class="method item">
+    <h3 class="name"><code>generateGuid</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>parameters</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
 
     
@@ -242,7 +250,7 @@
             
         
         
-        <a href="../files/kafe_geolocation.js.html#l45"><code>kafe&#x2F;geolocation.js:45</code></a>
+        <a href="../files/kafe_string.js.html#l77"><code>kafe&#x2F;string.js:77</code></a>
         
         </p>
 
@@ -253,7 +261,98 @@
     </div>
 
     <div class="description">
-        <p>Get the current geolocalization information of the client.</p>
+        <p>Generates a random GUID/UUID. (Version 4, random)</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(String) A random valid GUID/UUID.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.string.generateGuid();
+// returns &quot;c573f4f3-982a-4046-818a-083757f98804&quot;</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_removeAccent" class="method item">
+    <h3 class="name"><code>removeAccent</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>string</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_string.js.html#l21"><code>kafe&#x2F;string.js:21</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Removes accented charaters from a string.</p>
 
     </div>
 
@@ -265,81 +364,16 @@
             
                 <li class="param">
                     
-                        <code class="param-name">parameters</code>
-                        <span class="type">Object</span>
+                        <code class="param-name">string</code>
+                        <span class="type">String</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Parameters for the current request.</p>
-
+                         
                     </div>
 
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[msgContainer=undefined]</code>
-                                    <span class="type">String | JQueryObject | DOMElement</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Element used to show status messages.</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>A two character language code.</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[success=undefined]</code>
-                                    <span class="type">Function</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[error=undefined]</code>
-                                    <span class="type">Function</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Callback triggered on geolocalization errors. The error message is passed as the first argument.</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                        </ul>
                     
                 </li>
             
@@ -348,22 +382,141 @@
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(String) The unaccented string.</p>
+
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.geolocation.locate({
-    msgContainer: &#39;#GeoLocStatus&#39;, lang: &#39;en&#39;,
-    success: function(coords) {
-        kafe.log(&#39;latitude: &#39; + coords.latitude);
-        kafe.log(&#39;longitude: &#39; + coords.longitude);
-    }
-    error: function(msg) {
-        kafe.log(&#39;Cannot geoloc: &#39; + msg);
-    }
-});</code></pre>
+                <pre class="code prettyprint"><code>kafe.string.removeAccent(&#39;Kafe signifie café en créole.&#39;);
+// returns &quot;Kafe signifie cafe en creole.&quot;</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_toObject" class="method item">
+    <h3 class="name"><code>toObject</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>string</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_string.js.html#l47"><code>kafe&#x2F;string.js:47</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Transforms a JSON string into a javascript object.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">string</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A JSON string.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>(Object) A valid javascript object.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.string.toObject(&#39;{&quot;UserId&quot;:&quot;456&quot;,&quot;Items&quot;:[&quot;first&quot;, &quot;second&quot;, &quot;last&quot;],&quot;State&quot;:true,&quot;TotalAmount&quot;:52,&quot;Taxes&quot;:[]}&#39;);
+// returns Object {UserId: &quot;456&quot;, Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}</code></pre>
 
             </div>
         </div>

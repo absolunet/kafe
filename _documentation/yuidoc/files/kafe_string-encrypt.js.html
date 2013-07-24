@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -139,6 +143,7 @@ window.kafe.bonify({name:&#x27;string.encrypt&#x27;, version:&#x27;1.0&#x27;, ob
 	*
 	* @module kafe
 	* @class kafe.string.encrypt 
+	* @extensionfor kafe.string
 	*/
 	var encrypt = {};
 
@@ -147,10 +152,10 @@ window.kafe.bonify({name:&#x27;string.encrypt&#x27;, version:&#x27;1.0&#x27;, ob
 	*
 	* @method md5
 	* @param {String} string
-	* @returns (String) The encrypted value.
+	* @return (String) The encrypted value.
 	* @example
 	* 	kafe.string.encrypt.md5(&#x27;kafe is awesome.&#x27;);
-	* 	// Returns &quot;1fc5f96ff478b0c37baaf27506063603&quot;
+	* 	// returns &quot;1fc5f96ff478b0c37baaf27506063603&quot;
 	*/
 	encrypt.md5 = function (string) {
 

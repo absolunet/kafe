@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -143,11 +147,12 @@ window.kafe.bonify({name:&#x27;style&#x27;, version:&#x27;1.3&#x27;, obj:(functi
 	* @method equalHeight
 	* @param {String|jQueryObject|DOMElement} selector The affected elements.
 	* @param {Object} [options] Additional options.
-	* 	@param {Number} [options.nbPerRow=0] Allows the elements to be compared in groups of a given number.
-	* 	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to &#x27;auto&#x27; before comparing.
-	* 	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the &#x27;box-sizing&#x27; css attribute to &#x27;border-box&#x27;.
+	*	@param {Number} [options.nbPerRow=0] Allows the elements to be compared in groups of a given number.
+	*	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to &#x27;auto&#x27; before comparing.
+	*	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the &#x27;box-sizing&#x27; css attribute to &#x27;border-box&#x27;.
 	* @example
-	* 	kafe.style.equalHeight(&#x27;.products&#x27;, { nbPerRow: 3, resetHeight: true });
+	*	kafe.style.equalHeight(&#x27;.products&#x27;, { nbPerRow: 3, resetHeight: true });
+	*	$(&#x27;.products&#x27;).kafe(&#x27;equalHeight&#x27;, { nbPerRow: 3, resetHeight: true });
 	*/
 	style.equalHeight = function() {
 		var
@@ -191,7 +196,8 @@ window.kafe.bonify({name:&#x27;style&#x27;, version:&#x27;1.3&#x27;, obj:(functi
 	* @method replaceHr
 	* @param {String|jQueryObject|DOMElement} [selector=&#x27;hr&#x27;] Restricts the process to a specific context.
 	* @example
-	* 	kafe.style.replaceHr(&#x27;.page-content&#x27;);
+	*	kafe.style.replaceHr(&#x27;.page-content&#x27;);
+	*	$(&#x27;.page-content&#x27;).kafe(&#x27;replaceHr&#x27;);
 	*/
 	style.replaceHr = function() {
 		var $e = (arguments[0]) ? $(&#x27;hr:not(.kafe-replacehr-processed)&#x27;, $(arguments[0])) : $(&#x27;hr&#x27;);
@@ -199,14 +205,15 @@ window.kafe.bonify({name:&#x27;style&#x27;, version:&#x27;1.3&#x27;, obj:(functi
 	};
 
 
-	// 
 	/**
 	* Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.
 	*
 	* @method vAlign
 	* @param {String|jQueryObject|DOMElement} selector Affected elements.
+	* @param {String|jQueryObject|DOMElement} [parent=DIRECT_PARENT] Container in which we want to be centered.
 	* @example
-	* 	kafe.style.vAlign(&#x27;.menu-items &gt; .label&#x27;);
+	*	kafe.style.vAlign(&#x27;.menu-items &gt; .label&#x27;);
+	*	$(&#x27;..menu-items &gt; .label&#x27;).kafe(&#x27;vAlign&#x27;);
 	*/
 	style.vAlign = function(e, parent) {
 		$(e).each(function(){
@@ -217,6 +224,21 @@ window.kafe.bonify({name:&#x27;style&#x27;, version:&#x27;1.3&#x27;, obj:(functi
 			$this.css({display: &#x27;block&#x27;, marginTop: Math.floor(($parent.height() - $this.height()) / 2) + &#x27;px&#x27;});
 		});
 	};
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
+		&#x27;style.equalHeight&#x27;: function(self, parameters) {
+			style.equalHeight(self, parameters[0]);
+		},
+		&#x27;style.replaceHr&#x27;: function(self, parameters) {
+			style.replaceHr(self);
+		},
+		&#x27;style.vAlign&#x27;: function(self, parameters) {
+			style.replaceHr(self, parameters[0]);
+		}
+	});
+
 
 	return style;
 

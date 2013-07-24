@@ -4,21 +4,30 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.bonify({name:'string', version:'1.1', obj:(function(kafe,undefined){
+window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	var $ = kafe.dependencies.jQuery;
 
 
-	// PUBLIC
+	/**
+	* ### Version 1.2
+	* Additionnal methods for string manipulation and generation.
+	*
+	* @module kafe
+	* @class kafe.string
+	*/
 	var string = {};
 
 
-	// first char to uppercase
-	string.capitalize = function() {
-		return arguments[0].replace(/^\w/, function($0) { return $0.toUpperCase(); });
-	};
-
-
-	// replace accented letters with plain letter
+	/**
+	* Removes accented charaters from a string.
+	*
+	* @method removeAccent
+	* @param {String} string
+	* @return (String) The unaccented string.
+	* @example
+	* 	kafe.string.removeAccent('Kafe signifie café en créole.');
+	* 	// returns "Kafe signifie cafe en creole."
+	*/
 	string.removeAccent = function() {
 		return arguments[0]
 			.replace(/[àáâãäå]/g, 'a') .replace(/[ÀÁÂÃÄÅ]/g, 'A')
@@ -35,43 +44,16 @@ window.kafe.bonify({name:'string', version:'1.1', obj:(function(kafe,undefined){
 	};
 
 
-	// transform to a code-safe string
-	string.toCodeSafe = function(str,sub) {
-		return string.removeAccent(arguments[0].toLowerCase())
-			.replace(/'/g, '')
-			.replace(/[^a-z0-9]/g, ' ')
-			.replace(/\s+/g, ' ')
-			.replace(/^\s|\s$/g, '')
-			.replace(/\s/g, (sub) ? sub : '-')
-		;
-	};
-
-
-	// add zeros
-	string.zeroPad = function(s,nb) {
-		return ('00000000000000000000'+s).toString().slice(-nb);
-	};
-
-
-	// repeat string n times
-	string.repeat = function(s,nb) {
-		return new Array(nb+1).join(s);
-	};
-
-
-	// check if space-separated string contains one of the needles
-	string.contains = function(s,n) {
-		var stack = s.split(' ');
-		for (var i = 0; i<n.length; ++i) {
-			if ($.inArray(n[i], stack) != -1) {
-				return true;
-			}
-		}
-		return false;
-	};
-
-
-	// take a JSON string to javascript object
+	/**
+	* Transforms a JSON string into a javascript object.
+	*
+	* @method toObject
+	* @param {String} string A JSON string.
+	* @return (Object) A valid javascript object.
+	* @example
+	* 	kafe.string.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
+	* 	// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
+	*/
 	string.toObject = function(s) {
 
 		var cast = function(o) {
@@ -92,7 +74,15 @@ window.kafe.bonify({name:'string', version:'1.1', obj:(function(kafe,undefined){
 	};
 
 
-	// generates a random GUID/UUID Version 4 (random)
+	/**
+	* Generates a random GUID/UUID. (Version 4, random)
+	*
+	* @method generateGuid
+	* @return (String) A random valid GUID/UUID.
+	* @example
+	* 	kafe.string.generateGuid();
+	* 	// returns "c573f4f3-982a-4046-818a-083757f98804"
+	*/
 	string.generateGuid = function() {
 		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 			var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);

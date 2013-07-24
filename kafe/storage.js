@@ -327,7 +327,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setPersistentItem('history:last-page', '/about-us');
 	* 	
 	* 	kafe.storage.getPersistentNamespaceKeys('history');
-	* 	// Returns ["history:last-page", "history:last-visit"]
+	* 	// returns ["history:last-page", "history:last-visit"]
 	*/
 	storage.getPersistentNamespaceKeys = function(name) {
 		return _getNamespaceKeys(LOCAL,name);
@@ -344,7 +344,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setSessionItem('user:last-name', 'Doe');
 	* 	
 	* 	kafe.storage.getSessionNamespaceKeys('user');
-	* 	// Returns ["user:first-name", "user:last-name"]
+	* 	// returns ["user:first-name", "user:last-name"]
 	*/
 	storage.getSessionNamespaceKeys = function(name) {
 		return _getNamespaceKeys(SESSION,name);
@@ -361,7 +361,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setPersistentItem('history:last-page', '/about-us');
 	* 	
 	* 	kafe.storage.getPersistentNamespaceItems('history');
-	* 	// Returns { "history:last-page": "/about-us", "history:last-visit": "2013-07-21" }
+	* 	// returns { "history:last-page": "/about-us", "history:last-visit": "2013-07-21" }
 	*/
 	storage.getPersistentNamespaceItems = function(name) {
 		return _getNamespaceItems(LOCAL,name);
@@ -378,7 +378,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setSessionItem('user:last-name', 'Doe');
 	* 	
 	* 	kafe.storage.getSessionNamespaceItems('user');
-	* 	// Returns { "user:first-name": "John", "user:last-name": "Doe" }
+	* 	// returns { "user:first-name": "John", "user:last-name": "Doe" }
 	*/
 	storage.getSessionNamespaceItems = function(name) {
 		return _getNamespaceItems(SESSION,name);
@@ -420,7 +420,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setPersistentItem('website:show-ads', 'true');
 	* 	
 	* 	kafe.storage.getAllPersistentKeys();
-	* 	// Returns ["history:last-visit", "website:show-ads"]
+	* 	// returns ["history:last-visit", "website:show-ads"]
 	*/
 	storage.getAllPersistentKeys = function() {
 		return _getAllKeys(LOCAL);
@@ -436,7 +436,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setSessionItem('preferences:tutorials', 'false');
 	* 	
 	* 	kafe.storage.getAllSessionKeys();
-	* 	// Returns ["user:first-name", "preferences:tutorials"]
+	* 	// returns ["user:first-name", "preferences:tutorials"]
 	*/
 	storage.getAllSessionKeys = function() {
 		return _getAllKeys(SESSION);
@@ -452,7 +452,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setPersistentItem('website:show-ads', 'true');
 	* 	
 	* 	kafe.storage.getAllPersistentItems();
-	* 	// Returns { "history:last-visit": "2013-07-21", "settings:show-ads": "true" }
+	* 	// returns { "history:last-visit": "2013-07-21", "settings:show-ads": "true" }
 	*/
 	storage.getAllPersistentItems = function() {
 		return _getAllItems(LOCAL);
@@ -468,7 +468,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* 	kafe.storage.setSessionItem('preferences:tutorials', 'false');
 	* 	
 	* 	kafe.storage.getAllSessionItems();
-	* 	// Returns { "preferences:tutorials": "false", "user:first-name": "John" }
+	* 	// returns { "preferences:tutorials": "false", "user:first-name": "John" }
 	*/
 	storage.getAllSessionItems = function() {
 		return _getAllItems(SESSION);

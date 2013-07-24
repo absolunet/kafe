@@ -171,11 +171,29 @@
             "fors": {},
             "namespaces": {}
         },
+        "kafe/string.js": {
+            "name": "kafe/string.js",
+            "modules": {},
+            "classes": {
+                "kafe.string": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "kafe/style.js": {
             "name": "kafe/style.js",
             "modules": {},
             "classes": {
                 "kafe.style": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/url.js": {
+            "name": "kafe/url.js",
+            "modules": {},
+            "classes": {
+                "kafe.url": 1
             },
             "fors": {},
             "namespaces": {}
@@ -240,13 +258,15 @@
                 "kafe.storage": 1,
                 "kafe.string.encrypt": 1,
                 "kafe.string.validate": 1,
-                "kafe.style": 1
+                "kafe.string": 1,
+                "kafe.style": 1,
+                "kafe.url": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "kafe/style.js",
-            "line": 4,
+            "file": "kafe/url.js",
+            "line": 26,
             "description": "### Version 2-alpha\nkafe RULZ",
             "itemtype": "main"
         }
@@ -403,7 +423,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "kafe/kafe.js",
-            "line": 109,
+            "line": 112,
             "description": "kafe core"
         },
         "kafe.number": {
@@ -441,7 +461,9 @@
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": [],
+            "extension_for": [
+                "kafe.string"
+            ],
             "module": "kafe",
             "namespace": "",
             "file": "kafe/string-encrypt.js",
@@ -455,12 +477,28 @@
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": [],
+            "extension_for": [
+                "kafe.string"
+            ],
             "module": "kafe",
             "namespace": "",
             "file": "kafe/string-validate.js",
             "line": 11,
             "description": "### Version 1.0\nString validation tools."
+        },
+        "kafe.string": {
+            "name": "kafe.string",
+            "shortname": "kafe.string",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/string.js",
+            "line": 11,
+            "description": "### Version 1.2\nAdditionnal methods for string manipulation and generation."
         },
         "kafe.style": {
             "name": "kafe.style",
@@ -475,6 +513,20 @@
             "file": "kafe/style.js",
             "line": 4,
             "description": "### Version 1.3\nCommon adjustment and manipulation methods for html layouts."
+        },
+        "kafe.url": {
+            "name": "kafe.url",
+            "shortname": "kafe.url",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe",
+            "namespace": "",
+            "file": "kafe/url.js",
+            "line": 26,
+            "description": "### Version 1.0\nManipulation tools for route-based urls."
         }
     },
     "classitems": [
@@ -1273,14 +1325,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.placeholder('.search-field');"
+                "\n\tkafe.form.placeholder('.search-field');\n\t$('.search-field').kafe('placeholder');"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "kafe/form.js",
-            "line": 73,
+            "line": 74,
             "description": "Detects the RETURN key, then triggers a callback.",
             "itemtype": "method",
             "name": "onEnter",
@@ -1297,14 +1349,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.onEnter('.search-field', function(input) {\n\t\t$(input).parents('form').submit();\n\t});"
+                "\n\tkafe.form.onEnter('.search-field', function(input) {\n\t\t$(input).parents('form').submit();\n\t});\n\t$('.search-field').kafe('onEnter', function(input) {\n\t\t$(input).parents('form').submit();\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "kafe/form.js",
-            "line": 94,
+            "line": 98,
             "description": "Automaticaly jump the focus to the next field once the maxlength has been reached.",
             "itemtype": "method",
             "name": "autofocusOnNext",
@@ -1316,14 +1368,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.autofocusOnNext('.first-name, .last-name, .email');"
+                "\n\tkafe.form.autofocusOnNext('.first-name, .last-name, .email');\n\t$('.first-name, .last-name, .email').kafe('autofocusOnNext');"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "kafe/form.js",
-            "line": 118,
+            "line": 123,
             "description": "Adds a simulated maxlength support for textarea elements.",
             "itemtype": "method",
             "name": "maxLength",
@@ -1353,14 +1405,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});"
+                "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});\n\t$('.twitter-post').kafe('maxLength', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "kafe/form.js",
-            "line": 162,
+            "line": 170,
             "description": "Calculates the password strength value of given fields.",
             "itemtype": "method",
             "name": "passwordStrength",
@@ -1378,14 +1430,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tkafe.log(strengh);\n\t});"
+                "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tkafe.log(strengh);\n\t});\n\t$('.password').kafe('passwordStrength', function(strengh) {\n\t\tkafe.log(strengh);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "kafe/form.js",
-            "line": 257,
+            "line": 268,
             "description": "Sanitize form text entry for .NET validator.",
             "itemtype": "method",
             "name": "sanitizeFormData",
@@ -1397,7 +1449,7 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.sanitizeFormData('#Form1');"
+                "\n\tkafe.form.sanitizeFormData('#Form1');\n\t$('#Form1').kafe('sanitizeFormData');"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1453,7 +1505,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 117,
+            "line": 120,
             "description": "kafe version",
             "itemtype": "property",
             "name": "_vesyon",
@@ -1463,7 +1515,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 125,
+            "line": 128,
             "description": "kafe author",
             "itemtype": "property",
             "name": "_griyaj",
@@ -1473,7 +1525,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 133,
+            "line": 136,
             "description": "Versions of dependencies / kafe modules",
             "itemtype": "property",
             "name": "_chaje",
@@ -1483,7 +1535,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 148,
+            "line": 151,
             "description": "jQuery defined under window.kafejQuery  \nref: [http://jquery.com/](http://jquery.com/)",
             "itemtype": "property",
             "name": "dependencies.jQuery",
@@ -1493,7 +1545,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 157,
+            "line": 160,
             "description": "underscore.js defined under window._  \nref: [http://underscorejs.org/](http://underscorejs.org/)",
             "itemtype": "property",
             "name": "dependencies.underscore",
@@ -1503,7 +1555,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 166,
+            "line": 169,
             "description": "Modernizr defined under window.Modernizr  \nref: [http://modernizr.com/](http://modernizr.com/)",
             "itemtype": "property",
             "name": "dependencies.Modernizr",
@@ -1513,7 +1565,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 188,
+            "line": 191,
             "description": "Create a instantiable object  \nBy John Resig (MIT Licensed)  \nref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)",
             "itemtype": "method",
             "name": "fn.createInstantiableObject",
@@ -1526,7 +1578,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 207,
+            "line": 210,
             "description": "Return the language if available or else 'en'",
             "itemtype": "method",
             "name": "fn.lang",
@@ -1551,7 +1603,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 221,
+            "line": 224,
             "description": "Add method as jQuery plugin",
             "itemtype": "method",
             "name": "fn.plugIntojQuery",
@@ -1562,9 +1614,9 @@
                     "type": "String"
                 },
                 {
-                    "name": "func",
-                    "description": "The function called by jQuery",
-                    "type": "Function"
+                    "name": "methods",
+                    "description": "Action:Method hash",
+                    "type": "Object[Function]"
                 }
             ],
             "class": "kafe",
@@ -1572,7 +1624,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 240,
+            "line": 253,
             "description": "Environment constants",
             "itemtype": "method",
             "name": "env",
@@ -1598,7 +1650,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 296,
+            "line": 309,
             "description": "Add module to core",
             "itemtype": "method",
             "name": "bonify",
@@ -1631,7 +1683,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 320,
+            "line": 333,
             "description": "Add a homebrewed plugin",
             "itemtype": "method",
             "name": "plug",
@@ -1664,7 +1716,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 335,
+            "line": 348,
             "description": "Add an external plugin extension",
             "itemtype": "method",
             "name": "extend",
@@ -1697,7 +1749,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 350,
+            "line": 363,
             "description": "Throw kafe errors",
             "itemtype": "method",
             "name": "error",
@@ -1933,7 +1985,7 @@
                 "description": "(Array[String]) A list of keys."
             },
             "example": [
-                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('history:last-page', '/about-us');\n\t\n\tkafe.storage.getPersistentNamespaceKeys('history');\n\t// Returns [\"history:last-page\", \"history:last-visit\"]"
+                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('history:last-page', '/about-us');\n\t\n\tkafe.storage.getPersistentNamespaceKeys('history');\n\t// returns [\"history:last-page\", \"history:last-visit\"]"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -1955,7 +2007,7 @@
                 "description": "(Array[String]) A list of keys."
             },
             "example": [
-                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('user:last-name', 'Doe');\n\t\n\tkafe.storage.getSessionNamespaceKeys('user');\n\t// Returns [\"user:first-name\", \"user:last-name\"]"
+                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('user:last-name', 'Doe');\n\t\n\tkafe.storage.getSessionNamespaceKeys('user');\n\t// returns [\"user:first-name\", \"user:last-name\"]"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -1977,7 +2029,7 @@
                 "description": "(Object) An object containing all local key/value combinations for the namespace."
             },
             "example": [
-                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('history:last-page', '/about-us');\n\t\n\tkafe.storage.getPersistentNamespaceItems('history');\n\t// Returns { \"history:last-page\": \"/about-us\", \"history:last-visit\": \"2013-07-21\" }"
+                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('history:last-page', '/about-us');\n\t\n\tkafe.storage.getPersistentNamespaceItems('history');\n\t// returns { \"history:last-page\": \"/about-us\", \"history:last-visit\": \"2013-07-21\" }"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -1999,7 +2051,7 @@
                 "description": "(Object) An object containing all session key/value combinations for the namespace."
             },
             "example": [
-                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('user:last-name', 'Doe');\n\t\n\tkafe.storage.getSessionNamespaceItems('user');\n\t// Returns { \"user:first-name\": \"John\", \"user:last-name\": \"Doe\" }"
+                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('user:last-name', 'Doe');\n\t\n\tkafe.storage.getSessionNamespaceItems('user');\n\t// returns { \"user:first-name\": \"John\", \"user:last-name\": \"Doe\" }"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -2052,7 +2104,7 @@
                 "description": "(Array[String]) A list of keys."
             },
             "example": [
-                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('website:show-ads', 'true');\n\t\n\tkafe.storage.getAllPersistentKeys();\n\t// Returns [\"history:last-visit\", \"website:show-ads\"]"
+                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('website:show-ads', 'true');\n\t\n\tkafe.storage.getAllPersistentKeys();\n\t// returns [\"history:last-visit\", \"website:show-ads\"]"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -2067,7 +2119,7 @@
                 "description": "(Array[String]) A list of keys."
             },
             "example": [
-                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('preferences:tutorials', 'false');\n\t\n\tkafe.storage.getAllSessionKeys();\n\t// Returns [\"user:first-name\", \"preferences:tutorials\"]"
+                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('preferences:tutorials', 'false');\n\t\n\tkafe.storage.getAllSessionKeys();\n\t// returns [\"user:first-name\", \"preferences:tutorials\"]"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -2082,7 +2134,7 @@
                 "description": "(Object) An object containing all local key/value combinations."
             },
             "example": [
-                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('website:show-ads', 'true');\n\t\n\tkafe.storage.getAllPersistentItems();\n\t// Returns { \"history:last-visit\": \"2013-07-21\", \"settings:show-ads\": \"true\" }"
+                "\n\tkafe.storage.setPersistentItem('history:last-visit', '2013-07-21');\n\tkafe.storage.setPersistentItem('website:show-ads', 'true');\n\t\n\tkafe.storage.getAllPersistentItems();\n\t// returns { \"history:last-visit\": \"2013-07-21\", \"settings:show-ads\": \"true\" }"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -2097,7 +2149,7 @@
                 "description": "(Object) An object containing all session key/value combinations."
             },
             "example": [
-                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('preferences:tutorials', 'false');\n\t\n\tkafe.storage.getAllSessionItems();\n\t// Returns { \"preferences:tutorials\": \"false\", \"user:first-name\": \"John\" }"
+                "\n\tkafe.storage.setSessionItem('user:first-name', 'John');\n\tkafe.storage.setSessionItem('preferences:tutorials', 'false');\n\t\n\tkafe.storage.getAllSessionItems();\n\t// returns { \"preferences:tutorials\": \"false\", \"user:first-name\": \"John\" }"
             ],
             "class": "kafe.storage",
             "module": "kafe"
@@ -2176,7 +2228,7 @@
         },
         {
             "file": "kafe/string-encrypt.js",
-            "line": 19,
+            "line": 20,
             "description": "Encrypts a given string to md5.",
             "itemtype": "method",
             "name": "md5",
@@ -2191,14 +2243,14 @@
                 "description": "(String) The encrypted value."
             },
             "example": [
-                "\n\tkafe.string.encrypt.md5('kafe is awesome.');\n\t// Returns \"1fc5f96ff478b0c37baaf27506063603\""
+                "\n\tkafe.string.encrypt.md5('kafe is awesome.');\n\t// returns \"1fc5f96ff478b0c37baaf27506063603\""
             ],
             "class": "kafe.string.encrypt",
             "module": "kafe"
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 21,
+            "line": 22,
             "description": "Checks if a string is empty or contains only whitespaces.",
             "itemtype": "method",
             "name": "isEmpty",
@@ -2213,14 +2265,14 @@
                 "description": "(Boolean) If true, the string is empty or contains only whitespaces."
             },
             "example": [
-                "\n\tkafe.string.validate.isEmpty('kafe is awesome.');\n\t// Returns false\n\tkafe.string.validate.isEmpty(' ');\n\t// Returns true"
+                "\n\tkafe.string.validate.isEmpty('kafe is awesome.');\n\t// returns false\n\tkafe.string.validate.isEmpty(' ');\n\t// returns true"
             ],
             "class": "kafe.string.validate",
             "module": "kafe"
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 37,
+            "line": 38,
             "description": "Checks if a string is numeric.",
             "itemtype": "method",
             "name": "isNum",
@@ -2235,14 +2287,14 @@
                 "description": "(Boolean) If true, the string could be converted to a number."
             },
             "example": [
-                "\n\tkafe.string.validate.isNum('k4f3');\n\t// Returns false\n\tkafe.string.validate.isNum('43');\n\t// Returns true"
+                "\n\tkafe.string.validate.isNum('k4f3');\n\t// returns false\n\tkafe.string.validate.isNum('43');\n\t// returns true"
             ],
             "class": "kafe.string.validate",
             "module": "kafe"
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 53,
+            "line": 54,
             "description": "Checks if a string is a valid email address.",
             "itemtype": "method",
             "name": "isEmail",
@@ -2257,14 +2309,14 @@
                 "description": "(Boolean) If true, the string is a valid email address."
             },
             "example": [
-                "\n\tkafe.string.validate.isEmail('mailbox@mailaddress');\n\t// Returns false\n\tkafe.string.validate.isEmail('kafe.feedback@absolunet.com');\n\t// Returns true"
+                "\n\tkafe.string.validate.isEmail('mailbox@mailaddress');\n\t// returns false\n\tkafe.string.validate.isEmail('kafe.feedback@absolunet.com');\n\t// returns true"
             ],
             "class": "kafe.string.validate",
             "module": "kafe"
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 71,
+            "line": 72,
             "description": "Checks if a string is a valid or part of a valid Canadian postal code.",
             "itemtype": "method",
             "name": "isPostalCode",
@@ -2285,14 +2337,14 @@
                 "description": "(Boolean) If true, the string matches the validation format."
             },
             "example": [
-                "\n\tkafe.string.validate.isPostalCode('KAF123');\n\t// Returns false\n\tkafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');\n\t// Returns true"
+                "\n\tkafe.string.validate.isPostalCode('KAF123');\n\t// returns false\n\tkafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');\n\t// returns true"
             ],
             "class": "kafe.string.validate",
             "module": "kafe"
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 95,
+            "line": 96,
             "description": "Checks if a string is a valid credit card number and fits a specific brand pattern.\nSource: [http://davidwalsh.name/validate-credit-cards](http://davidwalsh.name/validate-credit-cards)",
             "itemtype": "method",
             "name": "isCreditCard",
@@ -2313,9 +2365,68 @@
                 "description": "(Boolean) If true, the string is a valid credit card number."
             },
             "example": [
-                "\n\tkafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');\n\t// Returns false\n\tkafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');\n\t// Returns true"
+                "\n\tkafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');\n\t// returns false\n\tkafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');\n\t// returns true"
             ],
             "class": "kafe.string.validate",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string.js",
+            "line": 21,
+            "description": "Removes accented charaters from a string.",
+            "itemtype": "method",
+            "name": "removeAccent",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "(String) The unaccented string."
+            },
+            "example": [
+                "\n\tkafe.string.removeAccent('Kafe signifie café en créole.');\n\t// returns \"Kafe signifie cafe en creole.\""
+            ],
+            "class": "kafe.string",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string.js",
+            "line": 47,
+            "description": "Transforms a JSON string into a javascript object.",
+            "itemtype": "method",
+            "name": "toObject",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "A JSON string.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "(Object) A valid javascript object."
+            },
+            "example": [
+                "\n\tkafe.string.toObject('{\"UserId\":\"456\",\"Items\":[\"first\", \"second\", \"last\"],\"State\":true,\"TotalAmount\":52,\"Taxes\":[]}');\n\t// returns Object {UserId: \"456\", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}"
+            ],
+            "class": "kafe.string",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/string.js",
+            "line": 77,
+            "description": "Generates a random GUID/UUID. (Version 4, random)",
+            "itemtype": "method",
+            "name": "generateGuid",
+            "return": {
+                "description": "(String) A random valid GUID/UUID."
+            },
+            "example": [
+                "\n\tkafe.string.generateGuid();\n\t// returns \"c573f4f3-982a-4046-818a-083757f98804\""
+            ],
+            "class": "kafe.string",
             "module": "kafe"
         },
         {
@@ -2361,14 +2472,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });"
+                "\n\tkafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });\n\t$('.products').kafe('equalHeight', { nbPerRow: 3, resetHeight: true });"
             ],
             "class": "kafe.style",
             "module": "kafe"
         },
         {
             "file": "kafe/style.js",
-            "line": 62,
+            "line": 63,
             "description": "Replaces &lt;hr&gt; tags into &lt;div class=\"hr\"&gt;&lt;/div&gt; tags to eliminate styling restrictions.",
             "itemtype": "method",
             "name": "replaceHr",
@@ -2382,14 +2493,14 @@
                 }
             ],
             "example": [
-                "\n\tkafe.style.replaceHr('.page-content');"
+                "\n\tkafe.style.replaceHr('.page-content');\n\t$('.page-content').kafe('replaceHr');"
             ],
             "class": "kafe.style",
             "module": "kafe"
         },
         {
             "file": "kafe/style.js",
-            "line": 77,
+            "line": 78,
             "description": "Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.",
             "itemtype": "method",
             "name": "vAlign",
@@ -2398,39 +2509,165 @@
                     "name": "selector",
                     "description": "Affected elements.",
                     "type": "String|jQueryObject|DOMElement"
+                },
+                {
+                    "name": "parent",
+                    "description": "Container in which we want to be centered.",
+                    "type": "String|jQueryObject|DOMElement",
+                    "optional": true,
+                    "optdefault": "DIRECT_PARENT"
                 }
             ],
             "example": [
-                "\n\tkafe.style.vAlign('.menu-items > .label');"
+                "\n\tkafe.style.vAlign('.menu-items > .label');\n\t$('..menu-items > .label').kafe('vAlign');"
             ],
             "class": "kafe.style",
             "module": "kafe"
+        },
+        {
+            "file": "kafe/url.js",
+            "line": 36,
+            "description": "Parses a querystring as a key/value list and creates a javascript object.",
+            "itemtype": "method",
+            "name": "parseSearchParams",
+            "params": [
+                {
+                    "name": "querystring",
+                    "description": "",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_LOCATION_SEARCH"
+                }
+            ],
+            "return": {
+                "description": "(Object) An object represention of the querystring."
+            },
+            "example": [
+                "\n\tkafe.url.parseSearchParams('?group=players&team=blue&ranking=3');\n\t// returns Object {group: \"players\", team: \"blue\", ranking: \"3\"}"
+            ],
+            "class": "kafe.url",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/url.js",
+            "line": 51,
+            "description": "Parses a querystring as a path and creates an ordered array.",
+            "itemtype": "method",
+            "name": "parseSearchPath",
+            "params": [
+                {
+                    "name": "querystring",
+                    "description": "",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_LOCATION_SEARCH"
+                }
+            ],
+            "return": {
+                "description": "(Array) An array represention of the querystring path."
+            },
+            "example": [
+                "\n\tkafe.url.parseSearchPath('?/Players/Teams/Blue');\n\t// returns [\"Players\", \"Teams\", \"Blue\"]"
+            ],
+            "class": "kafe.url",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/url.js",
+            "line": 67,
+            "description": "Parses a hash string as a key/value list and creates a javascript object.",
+            "itemtype": "method",
+            "name": "parseHashParams",
+            "params": [
+                {
+                    "name": "hash",
+                    "description": "",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_LOCATION_HASH"
+                }
+            ],
+            "return": {
+                "description": "(Object) An object represention of the hash string."
+            },
+            "example": [
+                "\n\tkafe.url.parseHashParams('#color=blue&size=large&extras=false');\n\t// returns Object {color: \"blue\", size: \"large\", extras: \"false\"}"
+            ],
+            "class": "kafe.url",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/url.js",
+            "line": 82,
+            "description": "Parses a hash string as a path and creates an ordered array.",
+            "itemtype": "method",
+            "name": "parseHashPath",
+            "params": [
+                {
+                    "name": "hash",
+                    "description": "",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_LOCATION_HASH"
+                }
+            ],
+            "return": {
+                "description": "(Array) An array represention of the hash path."
+            },
+            "example": [
+                "\n\tkafe.url.parseHashPath('#/clothing/man/shirts');\n\t// returns [\"clothing\", \"man\", \"shirts\"]"
+            ],
+            "class": "kafe.url",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/url.js",
+            "line": 98,
+            "description": "Parses a hashbang (#!) as a key/value list and creates a javascript object.",
+            "itemtype": "method",
+            "name": "parseAjaxParams",
+            "params": [
+                {
+                    "name": "hashbang",
+                    "description": "",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_LOCATION_HASH"
+                }
+            ],
+            "return": {
+                "description": "(Object) An object represention of the hashbang."
+            },
+            "example": [
+                "\n\tkafe.url.parseAjaxParams('#!color=blue&size=large&extras=false');\n\t// returns Object {color: \"blue\", size: \"large\", extras: \"false\"}"
+            ],
+            "class": "kafe.url",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/url.js",
+            "line": 113,
+            "description": "Parses a hashbang (#!) as a path and creates an ordered array.",
+            "itemtype": "method",
+            "name": "parseAjaxPath",
+            "params": [
+                {
+                    "name": "hashbang",
+                    "description": "",
+                    "type": "String",
+                    "optional": true,
+                    "optdefault": "CURRENT_LOCATION_HASH"
+                }
+            ],
+            "return": {
+                "description": "(Array) An array represention of the hashbang path."
+            },
+            "example": [
+                "\n\tkafe.url.parseAjaxPath('#!/clothing/man/shirts');\n\t// returns [\"clothing\", \"man\", \"shirts\"]"
+            ],
+            "class": "kafe.url",
+            "module": "kafe"
         }
     ],
-    "warnings": [
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " kafe/string-encrypt.js:19"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " kafe/string-validate.js:21"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " kafe/string-validate.js:37"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " kafe/string-validate.js:53"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " kafe/string-validate.js:71"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " kafe/string-validate.js:95"
-        }
-    ]
+    "warnings": []
 }

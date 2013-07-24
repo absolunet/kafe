@@ -67,11 +67,15 @@
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
                 <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
             
                 <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
             
                 <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
             
             </ul>
 
@@ -453,7 +457,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setPersistentItem(&#x27;history:last-page&#x27;, &#x27;/about-us&#x27;);
 	* 	
 	* 	kafe.storage.getPersistentNamespaceKeys(&#x27;history&#x27;);
-	* 	// Returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]
+	* 	// returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]
 	*/
 	storage.getPersistentNamespaceKeys = function(name) {
 		return _getNamespaceKeys(LOCAL,name);
@@ -470,7 +474,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setSessionItem(&#x27;user:last-name&#x27;, &#x27;Doe&#x27;);
 	* 	
 	* 	kafe.storage.getSessionNamespaceKeys(&#x27;user&#x27;);
-	* 	// Returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]
+	* 	// returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]
 	*/
 	storage.getSessionNamespaceKeys = function(name) {
 		return _getNamespaceKeys(SESSION,name);
@@ -487,7 +491,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setPersistentItem(&#x27;history:last-page&#x27;, &#x27;/about-us&#x27;);
 	* 	
 	* 	kafe.storage.getPersistentNamespaceItems(&#x27;history&#x27;);
-	* 	// Returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }
+	* 	// returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }
 	*/
 	storage.getPersistentNamespaceItems = function(name) {
 		return _getNamespaceItems(LOCAL,name);
@@ -504,7 +508,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setSessionItem(&#x27;user:last-name&#x27;, &#x27;Doe&#x27;);
 	* 	
 	* 	kafe.storage.getSessionNamespaceItems(&#x27;user&#x27;);
-	* 	// Returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }
+	* 	// returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }
 	*/
 	storage.getSessionNamespaceItems = function(name) {
 		return _getNamespaceItems(SESSION,name);
@@ -546,7 +550,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setPersistentItem(&#x27;website:show-ads&#x27;, &#x27;true&#x27;);
 	* 	
 	* 	kafe.storage.getAllPersistentKeys();
-	* 	// Returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]
+	* 	// returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]
 	*/
 	storage.getAllPersistentKeys = function() {
 		return _getAllKeys(LOCAL);
@@ -562,7 +566,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setSessionItem(&#x27;preferences:tutorials&#x27;, &#x27;false&#x27;);
 	* 	
 	* 	kafe.storage.getAllSessionKeys();
-	* 	// Returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]
+	* 	// returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]
 	*/
 	storage.getAllSessionKeys = function() {
 		return _getAllKeys(SESSION);
@@ -578,7 +582,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setPersistentItem(&#x27;website:show-ads&#x27;, &#x27;true&#x27;);
 	* 	
 	* 	kafe.storage.getAllPersistentItems();
-	* 	// Returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }
+	* 	// returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }
 	*/
 	storage.getAllPersistentItems = function() {
 		return _getAllItems(LOCAL);
@@ -594,7 +598,7 @@ window.kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(func
 	* 	kafe.storage.setSessionItem(&#x27;preferences:tutorials&#x27;, &#x27;false&#x27;);
 	* 	
 	* 	kafe.storage.getAllSessionItems();
-	* 	// Returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }
+	* 	// returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }
 	*/
 	storage.getAllSessionItems = function() {
 		return _getAllItems(SESSION);
