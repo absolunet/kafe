@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -243,6 +243,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 						// apply
 						$e.css(attr);
+						$container.addClass(&#x27;kafesticky-Sticking&#x27;);
 						sticking = true;
 						fromBottom = false;
 
@@ -260,6 +261,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 						// apply
 						$e.css(attr);
+						$container.removeClass(&#x27;kafesticky-Sticking&#x27;);
 						sticking   = false;
 						fromBottom = false;
 
@@ -277,6 +279,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 						// apply
 						$e.css(attr);
+						$container.removeClass(&#x27;kafesticky-Sticking&#x27;);
 						sticking   = false;
 						fromBottom = true;
 					}

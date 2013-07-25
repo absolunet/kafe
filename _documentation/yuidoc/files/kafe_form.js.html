@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -167,6 +167,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {String|jQueryObject|DOMElement} [selector] Selector of text-based form elements. Defaults to &#x27;input&amp;#91;placeholder&amp;#93;, textarea&amp;#91;placeholder&amp;#93;&#x27; when left undefined.
 	* @example
 	* 	kafe.form.placeholder(&#x27;.search-field&#x27;);
+	* @example
 	* 	$(&#x27;.search-field&#x27;).kafe(&#x27;placeholder&#x27;);
 	*/
 	form.placeholder = function() {
@@ -211,6 +212,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* 	kafe.form.onEnter(&#x27;.search-field&#x27;, function(input) {
 	* 		$(input).parents(&#x27;form&#x27;).submit();
 	* 	});
+	* @example
 	* 	$(&#x27;.search-field&#x27;).kafe(&#x27;onEnter&#x27;, function(input) {
 	* 		$(input).parents(&#x27;form&#x27;).submit();
 	* 	});
@@ -232,6 +234,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
 	* @example
 	* 	kafe.form.autofocusOnNext(&#x27;.first-name, .last-name, .email&#x27;);
+	* @example
 	* 	$(&#x27;.first-name, .last-name, .email&#x27;).kafe(&#x27;autofocusOnNext&#x27;);
 	*/
 	form.autofocusOnNext = function(elements) {
@@ -262,6 +265,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* 	kafe.form.maxLength(&#x27;.twitter-post&#x27;, 140, false, function(count) {
 	* 		kafe.log(count);
 	* 	});
+	* @example
 	* 	$(&#x27;.twitter-post&#x27;).kafe(&#x27;maxLength&#x27;, 140, false, function(count) {
 	* 		kafe.log(count);
 	* 	});
@@ -307,6 +311,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* 	kafe.form.passwordStrength(&#x27;.password&#x27;, function(strengh) {
 	* 		kafe.log(strengh);
 	* 	});
+	* @example
 	*	$(&#x27;.password&#x27;).kafe(&#x27;passwordStrength&#x27;, function(strengh) {
 	* 		kafe.log(strengh);
 	* 	});
@@ -402,6 +407,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {String|jQueryObject|DOMElement} elements Reference to the current .NET form.
 	* @example
 	* 	kafe.form.sanitizeFormData(&#x27;#Form1&#x27;);
+	* @example
 	*	$(&#x27;#Form1&#x27;).kafe(&#x27;sanitizeFormData&#x27;);
 	*/
 	form.sanitizeFormData = function(form) {

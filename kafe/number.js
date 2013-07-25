@@ -15,7 +15,7 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 	*
 	* @method toRoman
 	* @param {Number} number
-	* @return (String) The roman numeral value.
+	* @return {String} The roman numeral value.
 	* @example
 	* 	kafe.number.toRoman(1954);
 	* 	// returns "MCMLIV"

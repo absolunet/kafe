@@ -37,6 +37,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} [selector] Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.
 	* @example
 	* 	kafe.form.placeholder('.search-field');
+	* @example
 	* 	$('.search-field').kafe('placeholder');
 	*/
 	form.placeholder = function() {
@@ -81,6 +82,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* 	kafe.form.onEnter('.search-field', function(input) {
 	* 		$(input).parents('form').submit();
 	* 	});
+	* @example
 	* 	$('.search-field').kafe('onEnter', function(input) {
 	* 		$(input).parents('form').submit();
 	* 	});
@@ -102,6 +104,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
 	* @example
 	* 	kafe.form.autofocusOnNext('.first-name, .last-name, .email');
+	* @example
 	* 	$('.first-name, .last-name, .email').kafe('autofocusOnNext');
 	*/
 	form.autofocusOnNext = function(elements) {
@@ -132,6 +135,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* 	kafe.form.maxLength('.twitter-post', 140, false, function(count) {
 	* 		kafe.log(count);
 	* 	});
+	* @example
 	* 	$('.twitter-post').kafe('maxLength', 140, false, function(count) {
 	* 		kafe.log(count);
 	* 	});
@@ -177,6 +181,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* 	kafe.form.passwordStrength('.password', function(strengh) {
 	* 		kafe.log(strengh);
 	* 	});
+	* @example
 	*	$('.password').kafe('passwordStrength', function(strengh) {
 	* 		kafe.log(strengh);
 	* 	});
@@ -272,6 +277,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} elements Reference to the current .NET form.
 	* @example
 	* 	kafe.form.sanitizeFormData('#Form1');
+	* @example
 	*	$('#Form1').kafe('sanitizeFormData');
 	*/
 	form.sanitizeFormData = function(form) {

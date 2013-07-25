@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -312,12 +312,16 @@
                                 <a href="#property_DAY">DAY</a>
 
                                 
+                                    <span class="flag static">static</span>
+                                
                                 
                             </li>
                         
                             <li class="index-item property">
                                 <a href="#property_HOUR">HOUR</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -326,12 +330,16 @@
                                 <a href="#property_MINUTE">MINUTE</a>
 
                                 
+                                    <span class="flag static">static</span>
+                                
                                 
                             </li>
                         
                             <li class="index-item property">
                                 <a href="#property_MONTH">MONTH</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -340,6 +348,8 @@
                                 <a href="#property_SECOND">SECOND</a>
 
                                 
+                                    <span class="flag static">static</span>
+                                
                                 
                             </li>
                         
@@ -347,12 +357,16 @@
                                 <a href="#property_WEEK">WEEK</a>
 
                                 
+                                    <span class="flag static">static</span>
+                                
                                 
                             </li>
                         
                             <li class="index-item property">
                                 <a href="#property_YEAR">YEAR</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -402,7 +416,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">String</span>
         </span>
     
 
@@ -429,7 +443,7 @@
             
         
         
-        <a href="../files/kafe_date.js.html#l349"><code>kafe&#x2F;date.js:349</code></a>
+        <a href="../files/kafe_date.js.html#l374"><code>kafe&#x2F;date.js:374</code></a>
         
         </p>
 
@@ -613,7 +627,9 @@
             <div class="returns-description">
                 
                     
-                    <p>(String) The formatted date.</p>
+                        <span class="type">String</span>:
+                    
+                    <p>The formatted date.</p>
 
                 
             </div>
@@ -626,8 +642,8 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %A %e, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;en&#39;);
-// returns &quot;Tuesday, July 16th, 2013&quot;
-kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;fr&#39;);
+// returns &quot;Tuesday, July 16th, 2013&quot;</code></pre>
+<pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;fr&#39;);
 // returns &quot;Mardi, 16 juillet, 2013&quot;</code></pre>
 
             </div>
@@ -667,7 +683,7 @@ kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;f
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">String</span>
         </span>
     
 
@@ -694,7 +710,7 @@ kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;f
             
         
         
-        <a href="../files/kafe_date.js.html#l429"><code>kafe&#x2F;date.js:429</code></a>
+        <a href="../files/kafe_date.js.html#l455"><code>kafe&#x2F;date.js:455</code></a>
         
         </p>
 
@@ -776,7 +792,9 @@ kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;f
             <div class="returns-description">
                 
                     
-                    <p>(String) The relative time expression</p>
+                        <span class="type">String</span>:
+                    
+                    <p>The relative time expression</p>
 
                 
             </div>
@@ -789,8 +807,8 @@ kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;f
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-07-19 6:00:00&#39;), new Date(&#39;2013-07-19 20:00:00&#39;), &#39;en&#39;);
-// returns &quot;14 hours ago&quot;
-kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-19&#39;), &#39;en&#39;);
+// returns &quot;14 hours ago&quot;</code></pre>
+<pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-19&#39;), &#39;en&#39;);
 // returns &quot;2 months ago&quot;</code></pre>
 
             </div>
@@ -818,7 +836,7 @@ kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-1
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -845,7 +863,7 @@ kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-1
             
         
         
-        <a href="../files/kafe_date.js.html#l325"><code>kafe&#x2F;date.js:325</code></a>
+        <a href="../files/kafe_date.js.html#l349"><code>kafe&#x2F;date.js:349</code></a>
         
         </p>
 
@@ -894,7 +912,9 @@ kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-1
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of clean representations for all possible days of a month.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of clean representations for all possible days of a month.</p>
 
                 
             </div>
@@ -907,8 +927,8 @@ kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-1
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;);
-// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]
-kafe.date.getDayNames(&#39;en&#39;)[3];
+// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;)[3];
 // returns &quot;4th&quot;</code></pre>
 
             </div>
@@ -936,7 +956,7 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Number</span>
         </span>
     
 
@@ -963,7 +983,7 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l121"><code>kafe&#x2F;date.js:121</code></a>
+        <a href="../files/kafe_date.js.html#l135"><code>kafe&#x2F;date.js:135</code></a>
         
         </p>
 
@@ -1011,7 +1031,9 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Number) The day of the year</p>
+                        <span class="type">Number</span>:
+                    
+                    <p>The day of the year</p>
 
                 
             </div>
@@ -1051,7 +1073,7 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayNumber</span>
         </span>
     
 
@@ -1078,7 +1100,7 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l163"><code>kafe&#x2F;date.js:163</code></a>
+        <a href="../files/kafe_date.js.html#l178"><code>kafe&#x2F;date.js:178</code></a>
         
         </p>
 
@@ -1125,7 +1147,9 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[Number]) An ordered array of day counts for each months of the given year.</p>
+                        <span class="type">ArrayNumber</span>:
+                    
+                    <p>An ordered array of day counts for each months of the given year.</p>
 
                 
             </div>
@@ -1138,8 +1162,8 @@ kafe.date.getDayNames(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013);
-// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-kafe.date.getMaxMonth(2013)[3];
+// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013)[3];
 // returns 30</code></pre>
 
             </div>
@@ -1167,7 +1191,7 @@ kafe.date.getMaxMonth(2013)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1194,7 +1218,7 @@ kafe.date.getMaxMonth(2013)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l197"><code>kafe&#x2F;date.js:197</code></a>
+        <a href="../files/kafe_date.js.html#l214"><code>kafe&#x2F;date.js:214</code></a>
         
         </p>
 
@@ -1243,7 +1267,9 @@ kafe.date.getMaxMonth(2013)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of 1-char month abbreviations.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of 1-char month abbreviations.</p>
 
                 
             </div>
@@ -1256,8 +1282,8 @@ kafe.date.getMaxMonth(2013)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;);
-// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]
-kafe.date.getMonth1Names(&#39;en&#39;)[3];
+// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;)[3];
 // returns &quot;A&quot;</code></pre>
 
             </div>
@@ -1285,7 +1311,7 @@ kafe.date.getMonth1Names(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1312,7 +1338,7 @@ kafe.date.getMonth1Names(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l214"><code>kafe&#x2F;date.js:214</code></a>
+        <a href="../files/kafe_date.js.html#l232"><code>kafe&#x2F;date.js:232</code></a>
         
         </p>
 
@@ -1361,7 +1387,9 @@ kafe.date.getMonth1Names(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of 2-char month abbreviations.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of 2-char month abbreviations.</p>
 
                 
             </div>
@@ -1374,8 +1402,8 @@ kafe.date.getMonth1Names(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;);
-// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]
-kafe.date.getMonth2Names(&#39;en&#39;)[3];
+// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;)[3];
 // returns &quot;Al&quot;</code></pre>
 
             </div>
@@ -1403,7 +1431,7 @@ kafe.date.getMonth2Names(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1430,7 +1458,7 @@ kafe.date.getMonth2Names(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l232"><code>kafe&#x2F;date.js:232</code></a>
+        <a href="../files/kafe_date.js.html#l251"><code>kafe&#x2F;date.js:251</code></a>
         
         </p>
 
@@ -1479,7 +1507,9 @@ kafe.date.getMonth2Names(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of 3-char month abbreviations.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of 3-char month abbreviations.</p>
 
                 
             </div>
@@ -1492,8 +1522,8 @@ kafe.date.getMonth2Names(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;);
-// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]
-kafe.date.getMonth3Names(&#39;en&#39;)[3];
+// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;)[3];
 // returns &quot;Apr&quot;</code></pre>
 
             </div>
@@ -1521,7 +1551,7 @@ kafe.date.getMonth3Names(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1548,7 +1578,7 @@ kafe.date.getMonth3Names(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l180"><code>kafe&#x2F;date.js:180</code></a>
+        <a href="../files/kafe_date.js.html#l196"><code>kafe&#x2F;date.js:196</code></a>
         
         </p>
 
@@ -1597,7 +1627,9 @@ kafe.date.getMonth3Names(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of month names.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of month names.</p>
 
                 
             </div>
@@ -1610,8 +1642,8 @@ kafe.date.getMonth3Names(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;);
-// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]
-kafe.date.getMonthNames(&#39;en&#39;)[3];
+// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;)[3];
 // returns &quot;April&quot;</code></pre>
 
             </div>
@@ -1639,7 +1671,7 @@ kafe.date.getMonthNames(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1666,7 +1698,7 @@ kafe.date.getMonthNames(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l270"><code>kafe&#x2F;date.js:270</code></a>
+        <a href="../files/kafe_date.js.html#l291"><code>kafe&#x2F;date.js:291</code></a>
         
         </p>
 
@@ -1715,7 +1747,9 @@ kafe.date.getMonthNames(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of 1-char weekday abbreviations.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of 1-char weekday abbreviations.</p>
 
                 
             </div>
@@ -1728,8 +1762,8 @@ kafe.date.getMonthNames(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;);
-// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]
-kafe.date.getWeekday1Names(&#39;en&#39;)[3];
+// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;)[3];
 // returns &quot;W&quot;</code></pre>
 
             </div>
@@ -1757,7 +1791,7 @@ kafe.date.getWeekday1Names(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1784,7 +1818,7 @@ kafe.date.getWeekday1Names(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l287"><code>kafe&#x2F;date.js:287</code></a>
+        <a href="../files/kafe_date.js.html#l309"><code>kafe&#x2F;date.js:309</code></a>
         
         </p>
 
@@ -1833,7 +1867,9 @@ kafe.date.getWeekday1Names(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of 2-char weekday abbreviations.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of 2-char weekday abbreviations.</p>
 
                 
             </div>
@@ -1846,8 +1882,8 @@ kafe.date.getWeekday1Names(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;);
-// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]
-kafe.date.getWeekday2Names(&#39;en&#39;)[3];
+// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;)[3];
 // returns &quot;We&quot;</code></pre>
 
             </div>
@@ -1875,7 +1911,7 @@ kafe.date.getWeekday2Names(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -1902,7 +1938,7 @@ kafe.date.getWeekday2Names(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l304"><code>kafe&#x2F;date.js:304</code></a>
+        <a href="../files/kafe_date.js.html#l327"><code>kafe&#x2F;date.js:327</code></a>
         
         </p>
 
@@ -1951,7 +1987,9 @@ kafe.date.getWeekday2Names(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of 3-char weekday abbreviations.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of 3-char weekday abbreviations.</p>
 
                 
             </div>
@@ -1964,8 +2002,8 @@ kafe.date.getWeekday2Names(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;);
-// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]
-kafe.date.getWeekday3Names(&#39;en&#39;)[3];
+// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;)[3];
 // returns &quot;Wed&quot;</code></pre>
 
             </div>
@@ -1993,7 +2031,7 @@ kafe.date.getWeekday3Names(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ArrayString</span>
         </span>
     
 
@@ -2020,7 +2058,7 @@ kafe.date.getWeekday3Names(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l253"><code>kafe&#x2F;date.js:253</code></a>
+        <a href="../files/kafe_date.js.html#l273"><code>kafe&#x2F;date.js:273</code></a>
         
         </p>
 
@@ -2069,7 +2107,9 @@ kafe.date.getWeekday3Names(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Array[String]) An ordered array of weekday names.</p>
+                        <span class="type">ArrayString</span>:
+                    
+                    <p>An ordered array of weekday names.</p>
 
                 
             </div>
@@ -2082,8 +2122,8 @@ kafe.date.getWeekday3Names(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;);
-// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]
-kafe.date.getWeekdayNames(&#39;en&#39;)[3];
+// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;)[3];
 // returns &quot;Wednesday&quot;</code></pre>
 
             </div>
@@ -2111,7 +2151,7 @@ kafe.date.getWeekdayNames(&#39;en&#39;)[3];
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Boolean</span>
         </span>
     
 
@@ -2138,7 +2178,7 @@ kafe.date.getWeekdayNames(&#39;en&#39;)[3];
             
         
         
-        <a href="../files/kafe_date.js.html#l146"><code>kafe&#x2F;date.js:146</code></a>
+        <a href="../files/kafe_date.js.html#l160"><code>kafe&#x2F;date.js:160</code></a>
         
         </p>
 
@@ -2185,7 +2225,9 @@ kafe.date.getWeekdayNames(&#39;en&#39;)[3];
             <div class="returns-description">
                 
                     
-                    <p>(Boolean) If it is a leap year or not.</p>
+                        <span class="type">Boolean</span>:
+                    
+                    <p>If it is a leap year or not.</p>
 
                 
             </div>
@@ -2198,8 +2240,8 @@ kafe.date.getWeekdayNames(&#39;en&#39;)[3];
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.isLeapYear(2013);
-// returns false
-kafe.date.isLeapYear(2004);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.date.isLeapYear(2004);
 // returns true</code></pre>
 
             </div>
@@ -2239,7 +2281,7 @@ kafe.date.isLeapYear(2004);
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">String</span>
         </span>
     
 
@@ -2266,7 +2308,7 @@ kafe.date.isLeapYear(2004);
             
         
         
-        <a href="../files/kafe_date.js.html#l607"><code>kafe&#x2F;date.js:607</code></a>
+        <a href="../files/kafe_date.js.html#l635"><code>kafe&#x2F;date.js:635</code></a>
         
         </p>
 
@@ -2365,7 +2407,9 @@ kafe.date.isLeapYear(2004);
             <div class="returns-description">
                 
                     
-                    <p>(String) The rendered HTML</p>
+                        <span class="type">String</span>:
+                    
+                    <p>The rendered HTML</p>
 
                 
             </div>
@@ -2405,7 +2449,7 @@ kafe.date.isLeapYear(2004);
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Date</span>
         </span>
     
 
@@ -2432,7 +2476,7 @@ kafe.date.isLeapYear(2004);
             
         
         
-        <a href="../files/kafe_date.js.html#l481"><code>kafe&#x2F;date.js:481</code></a>
+        <a href="../files/kafe_date.js.html#l508"><code>kafe&#x2F;date.js:508</code></a>
         
         </p>
 
@@ -2480,7 +2524,9 @@ kafe.date.isLeapYear(2004);
             <div class="returns-description">
                 
                     
-                    <p>(Date) The date object</p>
+                        <span class="type">Date</span>:
+                    
+                    <p>The date object</p>
 
                 
             </div>
@@ -2493,8 +2539,8 @@ kafe.date.isLeapYear(2004);
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.date.parse(&#39;2012-08-08T12:18:00.000-04:00&#39;);
-// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
-kafe.date.parse(&#39;June 3, 2013&#39;);
+// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)</code></pre>
+<pre class="code prettyprint"><code>kafe.date.parse(&#39;June 3, 2013&#39;);
 // returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)</code></pre>
 
             </div>
@@ -2557,7 +2603,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l562"><code>kafe&#x2F;date.js:562</code></a>
+        <a href="../files/kafe_date.js.html#l590"><code>kafe&#x2F;date.js:590</code></a>
         
         </p>
 
@@ -2664,7 +2710,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2678,7 +2728,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l87"><code>kafe&#x2F;date.js:87</code></a>
+        <a href="../files/kafe_date.js.html#l93"><code>kafe&#x2F;date.js:93</code></a>
         
         </p>
 
@@ -2709,7 +2759,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2723,7 +2777,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l79"><code>kafe&#x2F;date.js:79</code></a>
+        <a href="../files/kafe_date.js.html#l83"><code>kafe&#x2F;date.js:83</code></a>
         
         </p>
 
@@ -2754,7 +2808,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2768,7 +2826,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l71"><code>kafe&#x2F;date.js:71</code></a>
+        <a href="../files/kafe_date.js.html#l73"><code>kafe&#x2F;date.js:73</code></a>
         
         </p>
 
@@ -2799,7 +2857,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2813,7 +2875,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l103"><code>kafe&#x2F;date.js:103</code></a>
+        <a href="../files/kafe_date.js.html#l113"><code>kafe&#x2F;date.js:113</code></a>
         
         </p>
 
@@ -2844,7 +2906,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2889,7 +2955,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2903,7 +2973,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l95"><code>kafe&#x2F;date.js:95</code></a>
+        <a href="../files/kafe_date.js.html#l103"><code>kafe&#x2F;date.js:103</code></a>
         
         </p>
 
@@ -2934,7 +3004,11 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
     
 
     
+        <span class="flag final">final</span>
+    
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -2948,7 +3022,7 @@ kafe.date.parse(&#39;June 3, 2013&#39;);
             
         
         
-        <a href="../files/kafe_date.js.html#l111"><code>kafe&#x2F;date.js:111</code></a>
+        <a href="../files/kafe_date.js.html#l123"><code>kafe&#x2F;date.js:123</code></a>
         
         </p>
 

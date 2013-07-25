@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -195,6 +195,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property SECOND 
 		* @type Number
+		* @static
+		* @final
 		**/
 		SECOND:1000,
 
@@ -203,6 +205,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property MINUTE 
 		* @type Number
+		* @static
+		* @final
 		**/
 		MINUTE:60000,
 
@@ -211,6 +215,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property HOUR 
 		* @type Number
+		* @static
+		* @final
 		**/
 		HOUR:3600000,
 
@@ -219,6 +225,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property DAY 
 		* @type Number
+		* @static
+		* @final
 		**/
 		DAY:86400000,
 
@@ -227,6 +235,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property WEEK 
 		* @type Number
+		* @static
+		* @final
 		**/
 		WEEK:604800000,
 
@@ -235,6 +245,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property MONTH 
 		* @type Number
+		* @static
+		* @final
 		**/
 		MONTH:2629743840,
 
@@ -243,6 +255,8 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 		*
 		* @property YEAR 
 		* @type Number
+		* @static
+		* @final
 		**/
 		YEAR:31556926080
 	};
@@ -253,7 +267,7 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getDayYear
 	* @param {Date} d The date
-	* @return (Number) The day of the year
+	* @return {Number} The day of the year
 	* @example
 	* 	kafe.date.getDayYear(new Date(&#x27;2013-07-17&#x27;));
 	* 	// returns 196
@@ -278,10 +292,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method isLeapYear
 	* @param {Number} year
-	* @return (Boolean) If it is a leap year or not.
+	* @return {Boolean} If it is a leap year or not.
 	* @example
 	* 	kafe.date.isLeapYear(2013);
 	* 	// returns false
+	* @example
 	* 	kafe.date.isLeapYear(2004);
 	* 	// returns true
 	*/
@@ -295,10 +310,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getMaxMonth
 	* @param {Number} year
-	* @return (Array[Number]) An ordered array of day counts for each months of the given year.
+	* @return {Array[Number]} An ordered array of day counts for each months of the given year.
 	* @example
 	* 	kafe.date.getMaxMonth(2013);
 	* 	// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	* @example
 	* 	kafe.date.getMaxMonth(2013)[3];
 	* 	// returns 30
 	*/
@@ -312,10 +328,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getMonthNames
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of month names.
+	* @return {Array[String]} An ordered array of month names.
 	* @example
 	* 	kafe.date.getMonthNames(&#x27;en&#x27;);
 	* 	// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]
+	* @example
 	* 	kafe.date.getMonthNames(&#x27;en&#x27;)[3];
 	* 	// returns &quot;April&quot;
 	*/
@@ -329,10 +346,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getMonth1Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of 1-char month abbreviations.
+	* @return {Array[String]} An ordered array of 1-char month abbreviations.
 	* @example
 	* 	kafe.date.getMonth1Names(&#x27;en&#x27;);
 	* 	// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]
+	* @example
 	* 	kafe.date.getMonth1Names(&#x27;en&#x27;)[3];
 	* 	// returns &quot;A&quot;
 	*/
@@ -346,10 +364,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getMonth2Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of 2-char month abbreviations.
+	* @return {Array[String]} An ordered array of 2-char month abbreviations.
 	* @example
 	* 	kafe.date.getMonth2Names(&#x27;en&#x27;);
 	* 	// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]
+	* @example
 	* 	kafe.date.getMonth2Names(&#x27;en&#x27;)[3];
 	* 	// returns &quot;Al&quot;
 	*/
@@ -364,10 +383,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getMonth3Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of 3-char month abbreviations.
+	* @return {Array[String]} An ordered array of 3-char month abbreviations.
 	* @example
 	* 	kafe.date.getMonth3Names(&#x27;en&#x27;);
 	* 	// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]
+	* @example
 	* 	kafe.date.getMonth3Names(&#x27;en&#x27;)[3];
 	* 	// returns &quot;Apr&quot;
 	*/
@@ -385,10 +405,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getWeekdayNames
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of weekday names.
+	* @return {Array[String]} An ordered array of weekday names.
 	* @example
 	* 	kafe.date.getWeekdayNames(&#x27;en&#x27;);
 	* 	// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]
+	* @example
 	* 	kafe.date.getWeekdayNames(&#x27;en&#x27;)[3];
 	* 	// returns &quot;Wednesday&quot;
 	*/
@@ -402,10 +423,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getWeekday1Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of 1-char weekday abbreviations.
+	* @return {Array[String]} An ordered array of 1-char weekday abbreviations.
 	* @example
 	* 	kafe.date.getWeekday1Names(&#x27;en&#x27;);
 	* 	// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]
+	* @example
 	* 	kafe.date.getWeekday1Names(&#x27;en&#x27;)[3];
 	* 	// returns &quot;W&quot;
 	*/
@@ -419,10 +441,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getWeekday2Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of 2-char weekday abbreviations.
+	* @return {Array[String]} An ordered array of 2-char weekday abbreviations.
 	* @example
 	* 	kafe.date.getWeekday2Names(&#x27;en&#x27;);
 	* 	// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]
+	* @example
 	* 	kafe.date.getWeekday2Names(&#x27;en&#x27;)[3];
 	* 	// returns &quot;We&quot;
 	*/
@@ -436,10 +459,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getWeekday3Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of 3-char weekday abbreviations.
+	* @return {Array[String]} An ordered array of 3-char weekday abbreviations.
 	* @example
 	* 	kafe.date.getWeekday3Names(&#x27;en&#x27;);
 	* 	// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]
+	* @example
 	* 	kafe.date.getWeekday3Names(&#x27;en&#x27;)[3];
 	* 	// returns &quot;Wed&quot;
 	*/
@@ -457,10 +481,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method getDayNames
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (Array[String]) An ordered array of clean representations for all possible days of a month.
+	* @return {Array[String]} An ordered array of clean representations for all possible days of a month.
 	* @example
 	* 	kafe.date.getDayNames(&#x27;en&#x27;);
 	* 	// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]
+	* @example
 	* 	kafe.date.getDayNames(&#x27;en&#x27;)[3];
 	* 	// returns &quot;4th&quot;
 	*/
@@ -490,10 +515,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	* 	@param {Token} format.%S,%s Second variants [05, 5]
 	* @param {Date} [date=NOW] A date to be formatted.
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (String) The formatted date.
+	* @return {String} The formatted date.
 	* @example
 	* 	kafe.date.format(&#x27;%W, %A %e, %Y&#x27;, new Date(&#x27;2013-07-17&#x27;), &#x27;en&#x27;);
 	* 	// returns &quot;Tuesday, July 16th, 2013&quot;
+	* @example
 	* 	kafe.date.format(&#x27;%W, %d %a, %Y&#x27;, new Date(&#x27;2013-07-17&#x27;), &#x27;fr&#x27;);
 	* 	// returns &quot;Mardi, 16 juillet, 2013&quot;
 	*/
@@ -563,10 +589,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	* @param {Date} time Specific datetime object.
 	* @param {Date} [now=NOW] Comparative datetime object to calculate the time difference.
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return (String) The relative time expression
+	* @return {String} The relative time expression
 	* @example
 	* 	kafe.date.formatRelative(new Date(&#x27;2013-07-19 6:00:00&#x27;), new Date(&#x27;2013-07-19 20:00:00&#x27;), &#x27;en&#x27;);
 	* 	// returns &quot;14 hours ago&quot;
+	* @example
 	* 	kafe.date.formatRelative(new Date(&#x27;2013-05-19&#x27;), new Date(&#x27;2013-07-19&#x27;), &#x27;en&#x27;);
 	* 	// returns &quot;2 months ago&quot;
 	*/
@@ -613,10 +640,11 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method parse
 	* @param {String} dtstring Custom datetime string
-	* @return (Date) The date object
+	* @return {Date} The date object
 	* @example
 	* 	kafe.date.parse(&#x27;2012-08-08T12:18:00.000-04:00&#x27;);
 	* 	// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
+	* @example
 	* 	kafe.date.parse(&#x27;June 3, 2013&#x27;);
 	* 	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
 	*/
@@ -742,7 +770,7 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	* @param {Number} month The month 
 	* @param {Object} [links] The links by date
 	*	@param {Array} links.YYYY-MM-DD The links
-	* @return (String) The rendered HTML
+	* @return {String} The rendered HTML
 	* @example
 	* 	kafe.date.makeMonthCalendar(2013, 4, {&#x27;2013-04-03&#x27;:&#x27;http://mybirthday.com/&#x27;});
 	* 	// returns &quot;&lt;table data-month=&quot;2013-04&quot;&gt;&lt;caption&gt;Avril 2013&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dim&lt;/th&gt;&lt;th&gt;Lun&lt;/th&gt;&lt;th&gt;Mar&lt;/th&gt;&lt;th&gt;Mer&lt;/th&gt;&lt;th&gt;Jeu&lt;/th&gt;&lt;th&gt;Ven&lt;/th&gt;&lt;th&gt;Sam&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td data-date=&quot;2013-04-01&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-02&quot;&gt;&lt;span&gt;2&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-03&quot;&gt;&lt;a href=&quot;http://mybirthday.com/&quot;&gt;3&lt;/a&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-04&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-05&quot;&gt;&lt;span&gt;5&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-06&quot;&gt;&lt;span&gt;6&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-07&quot;&gt;&lt;span&gt;7&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-08&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-09&quot;&gt;&lt;span&gt;9&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-10&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-11&quot;&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-12&quot;&gt;&lt;span&gt;12&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-13&quot;&gt;&lt;span&gt;13&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-14&quot;&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-15&quot;&gt;&lt;span&gt;15&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-16&quot;&gt;&lt;span&gt;16&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-17&quot;&gt;&lt;span&gt;17&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-18&quot;&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-19&quot;&gt;&lt;span&gt;19&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-20&quot;&gt;&lt;span&gt;20&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-21&quot;&gt;&lt;span&gt;21&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-22&quot;&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-23&quot;&gt;&lt;span&gt;23&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-24&quot;&gt;&lt;span&gt;24&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-25&quot;&gt;&lt;span&gt;25&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-26&quot;&gt;&lt;span&gt;26&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-27&quot;&gt;&lt;span&gt;27&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-28&quot;&gt;&lt;span&gt;28&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-29&quot;&gt;&lt;span&gt;29&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-30&quot;&gt;&lt;span&gt;30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot;

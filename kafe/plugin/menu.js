@@ -1,4 +1,4 @@
-window.kafe.plug({name:'menu', version:'0.1', obj:(function(kafe,undefined){
+window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 	var
 		$ = kafe.dependencies.jQuery
 	;
@@ -6,8 +6,10 @@ window.kafe.plug({name:'menu', version:'0.1', obj:(function(kafe,undefined){
 
 
 	/**
-	* ### Version 0.1
-	* Quick menu with submenus
+	* ### Version 1.0
+	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
+	* 
+	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafe-quickmenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
 	* @module kafe.plugin
 	* @class kafe.plugin.menu
@@ -16,23 +18,49 @@ window.kafe.plug({name:'menu', version:'0.1', obj:(function(kafe,undefined){
 
 
 	/**
-	* Initialize menu
+	* Attach behaviors to the menu structure.
 	*
 	* @method init
-	* @param {Object} options Options
-	*	@param {jQuerySelector} options.container TODO
-	*	@param {String} [options.handle='li'] TODO
-	*	@param {String} [options.submenus='ul'] TODO
-	*	@param {String} [options.animation='slide'] TODO
-	*	@param {Number} [options.openSpeed=200] TODO
-	*	@param {Number} [options.openDelay=500] TODO
-	*	@param {Number} [options.closeSpeed=150] TODO
-	*	@param {Number} [options.closeDelay=400] TODO
-	*	@param {Function} [options.enterCallback] TODO
-	*	@param {Function} [options.leaveCallback] TODO
+	* @param {Object} options Initial configurations.
+	*	@param {jQuerySelector} options.container Root element of the menu strusture.
+	*	@param {String} [options.handle='li'] Children element of the container that will serve as a handle to open and close the submenu.
+	*	@param {String} [options.submenus='ul'] Children element of the handle that will serve as a submenu, opening and closing when the handle is used.
+	*	@param {String} [options.animation='slide'] Animation used when opening and closing the submenus.
+	*	@param {Number} [options.openSpeed=200] Duration (in milliseconds) of the opening animation.
+	*	@param {Number} [options.openDelay=500] Delay (in milliseconds) used when entering the handle before starting the opening animation.
+	*	@param {Number} [options.closeSpeed=150] Duration (in milliseconds) of the closing animation.
+	*	@param {Number} [options.closeDelay=400] Delay (in milliseconds) used when exiting the handle before starting the closing animation.
+	*	@param {Function} [options.enterCallback] Upon entering a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.
+	*	@param {Function} [options.leaveCallback] Upon exiting a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.
 	*
 	* @example
-	*	$('#id').kafeMenu(options)
+	*	// Sample menu structure
+	*	<nav id="main-menu">
+	*		<ul>
+	*			<li><a href="#">Menu 1</a>
+	*				<ul>
+	*					<li><a href="#">Submenu 1.1</a></li>
+	*					<li><a href="#">Submenu 1.2</a></li>
+	*					<li><a href="#">Submenu 1.3</a></li>
+	*				</ul>
+	*			</li>
+	*			<li><a href="#">Menu 2</a>
+	*				<ul>
+	*					<li><a href="#">Submenu 2.1</a></li>
+	*					<li><a href="#">Submenu 2.2</a></li>
+	*					<li><a href="#">Submenu 2.3</a></li>
+	*				</ul>
+	*			</li>
+	*		</ul>
+	*	</nav>
+	*	
+	* @example
+	*	// Attach behaviors using...
+	*	kafe.plugin.menu.init({ container: '#main-menu > ul' });
+	*	
+	* @example
+	*	// Or use the jQuery alternative...
+	*	$('#main-menu > ul').kafeMenu();
 	*/
 	menu.init = function() {
 		var

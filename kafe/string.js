@@ -23,7 +23,7 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method removeAccent
 	* @param {String} string
-	* @return (String) The unaccented string.
+	* @return {String} The unaccented string.
 	* @example
 	* 	kafe.string.removeAccent('Kafe signifie café en créole.');
 	* 	// returns "Kafe signifie cafe en creole."
@@ -49,7 +49,7 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method toObject
 	* @param {String} string A JSON string.
-	* @return (Object) A valid javascript object.
+	* @return {Object} A valid javascript object.
 	* @example
 	* 	kafe.string.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
 	* 	// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
@@ -78,7 +78,7 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	* Generates a random GUID/UUID. (Version 4, random)
 	*
 	* @method generateGuid
-	* @return (String) A random valid GUID/UUID.
+	* @return {String} A random valid GUID/UUID.
 	* @example
 	* 	kafe.string.generateGuid();
 	* 	// returns "c573f4f3-982a-4046-818a-083757f98804"

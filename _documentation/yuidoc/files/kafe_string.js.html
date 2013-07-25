@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -153,7 +153,7 @@ window.kafe.bonify({name:&#x27;string&#x27;, version:&#x27;1.2&#x27;, obj:(funct
 	*
 	* @method removeAccent
 	* @param {String} string
-	* @return (String) The unaccented string.
+	* @return {String} The unaccented string.
 	* @example
 	* 	kafe.string.removeAccent(&#x27;Kafe signifie café en créole.&#x27;);
 	* 	// returns &quot;Kafe signifie cafe en creole.&quot;
@@ -179,7 +179,7 @@ window.kafe.bonify({name:&#x27;string&#x27;, version:&#x27;1.2&#x27;, obj:(funct
 	*
 	* @method toObject
 	* @param {String} string A JSON string.
-	* @return (Object) A valid javascript object.
+	* @return {Object} A valid javascript object.
 	* @example
 	* 	kafe.string.toObject(&#x27;{&quot;UserId&quot;:&quot;456&quot;,&quot;Items&quot;:[&quot;first&quot;, &quot;second&quot;, &quot;last&quot;],&quot;State&quot;:true,&quot;TotalAmount&quot;:52,&quot;Taxes&quot;:[]}&#x27;);
 	* 	// returns Object {UserId: &quot;456&quot;, Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
@@ -208,7 +208,7 @@ window.kafe.bonify({name:&#x27;string&#x27;, version:&#x27;1.2&#x27;, obj:(funct
 	* Generates a random GUID/UUID. (Version 4, random)
 	*
 	* @method generateGuid
-	* @return (String) A random valid GUID/UUID.
+	* @return {String} A random valid GUID/UUID.
 	* @example
 	* 	kafe.string.generateGuid();
 	* 	// returns &quot;c573f4f3-982a-4046-818a-083757f98804&quot;

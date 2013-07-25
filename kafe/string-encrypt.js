@@ -22,7 +22,7 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 	*
 	* @method md5
 	* @param {String} string
-	* @return (String) The encrypted value.
+	* @return {String} The encrypted value.
 	* @example
 	* 	kafe.string.encrypt.md5('kafe is awesome.');
 	* 	// returns "1fc5f96ff478b0c37baaf27506063603"

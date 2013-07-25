@@ -277,15 +277,63 @@ kafe.plug({name:'carousel', version:'1.0.2', obj:(function(K,undefined){
 
 
 
-
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+	/**
+	* ### Version 1.0.2
+	* Carousel, image scroller, ticker, whatever you wanna call it...
+	*
+	* They can also be interacted with remotely by first, linking to the carousel using the `data-kafecarousel-id` attribute and then choosing a specific action with the `data-kafecarousel-action` attribute.
+	* Possible actions are `nav`, `start`, `prev`, `next`, `end`, `items`, `item`, `play`, `pause`, `position`, `total`, `status` and `status-num`.
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.carousel
+	*/
 	var carousel  = {};
 
-	// init (id/[see below])
-	// initialize a new carousel
-	//-------------------------------------------
+	/**
+	* Attach behaviors to the carousel structure.
+	*
+	* @method init
+	* @param {Object} options Initial configurations
+	*	@param {String} options.id `id` of the slide container.
+	*	@param {Boolean} [options.wrap=false] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
+	*	@param {String} [options.transition='slideLeft'] Animation used during a transition. Possible values are `slideLeft`, `slideRight`, `slideUp`, `slideDown` and `fade`.
+	*	@param {Number} [options.speed=500] Duration (in milliseconds) of the transition.
+	*	@param {Number} [options.startId=1] Index of the starting slide, starting at 1.
+	*	@param {Object} [options.autostart=undefined] Allows slides to change without a user interaction after a chosen delay.
+	*		@param {Number} [options.autostart.interval=3000] Delay (in milliseconds) before starting a transition to the next slide. The transition duration is included in the delay. As an example, an `interval` of 3000 combined with a `speed` of 500 will hold a slide still for 2500 milliseconds before starting the transition.
+	*	@param {Function} [options.preSwitchCallback=undefined] Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:
+	*		@param {Object} options.preSwitchCallback.data An object containing information relative to the transition in progress.
+	*			@param {String} options.preSwitchCallback.data.action Current action being performed. Possible values are `prev`, `next` or `item` when using a specific index.
+	*			@param {Object} options.preSwitchCallback.data.source Information about the slide being changed.
+	*				@param {Number} options.preSwitchCallback.data.source.position Index of the source slide.
+	*				@param {jQueryObject} options.preSwitchCallback.data.source.obj Reference to the source slide.
+	*			@param {Object} options.preSwitchCallback.data.target Information about the destination slide.
+	*				@param {Number} options.preSwitchCallback.data.target.position Index of the target slide.
+	*				@param {jQueryObject} options.preSwitchCallback.data.target.obj Reference to the target slide.
+	*	@param {Function} [options.postSwitchCallback=undefined] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the `preSwitchCallback`.
+	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via `data-kafecarousel-id` and the `data-kafecarousel-action="status"` attribute.
+	*	@param {String} [options.statusBullet='&bull;'] Text used as the content of generated link in a `statusLink` navigation.
+	*
+	* @example
+	*	// Sample carousel structure
+	*	<section class="home-carousel">
+	*		<ul id="home-slides">
+	*			<li><a href="#"><img src="/images/slide-01.jpg" /></a></li>
+	*			<li><a href="#"><img src="/images/slide-01.jpg" /></a></li>
+	*			<li><a href="#"><img src="/images/slide-01.jpg" /></a></li>
+	*		</ul>
+	*		<a href="" data-kafecarousel-id="home-slides" data-kafecarousel-action="prev">Back</a>
+	*		<a href="" data-kafecarousel-id="home-slides" data-kafecarousel-action="next">Next</a>
+	*		<div data-kafecarousel-id="home-slides" data-kafecarousel-action="status"></div>
+	*	</section>
+	*	
+	* @example
+	*	// Attach behaviors using...
+	*	kafe.plugin.carousel.init({ id: 'home-slides' });
+	* @example
+	*	// Carousels can be remotely interacted with using custom data attributes...
+	*	kafe.plugin.carousel.init({ id: 'home-slides' });
+	*/
 	carousel.init = function() {
 		var c = {};
 

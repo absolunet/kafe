@@ -231,7 +231,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	*
 	* @method getPersistentItem
 	* @param {String} key
-	* @return (String) If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns *undefined*.
+	* @return {String} If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns *undefined*.
 	* @example
 	* 	kafe.storage.getPersistentItem('history:last-visit');
 	*/
@@ -244,7 +244,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	*
 	* @method getSessionItem
 	* @param {String} key
-	* @return (String) If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns *undefined*.
+	* @return {String} If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns *undefined*.
 	* @example
 	* 	kafe.storage.getSessionItem('user:first-name');
 	*/
@@ -264,6 +264,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* @example
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });
 	* 	// The local storage value will return undefined in one hour.
+	* @example
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });
 	* 	// The local storage value will return undefined if the value of the cookie 'last-visit-cookie' is changed.
 	*/
@@ -283,6 +284,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* @example
 	* 	kafe.storage.setSessionItem('user:first-name', 'John', { expires: 3600 });
 	* 	// The session storage value will return undefined in one hour.
+	* @example
 	* 	kafe.storage.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });
 	* 	// The session storage value will return undefined if the value of the cookie 'logged-user' is changed.
 	*/
@@ -321,7 +323,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	*
 	* @method getPersistentNamespaceKeys
 	* @param {String} namespace
-	* @return (Array[String]) A list of keys.
+	* @return {Array[String]} A list of keys.
 	* @example
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	* 	kafe.storage.setPersistentItem('history:last-page', '/about-us');
@@ -338,7 +340,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	*
 	* @method getSessionNamespaceKeys
 	* @param {String} namespace
-	* @return (Array[String]) A list of keys.
+	* @return {Array[String]} A list of keys.
 	* @example
 	* 	kafe.storage.setSessionItem('user:first-name', 'John');
 	* 	kafe.storage.setSessionItem('user:last-name', 'Doe');
@@ -355,7 +357,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	*
 	* @method getPersistentNamespaceItems
 	* @param {String} namespace
-	* @return (Object) An object containing all local key/value combinations for the namespace.
+	* @return {Object} An object containing all local key/value combinations for the namespace.
 	* @example
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	* 	kafe.storage.setPersistentItem('history:last-page', '/about-us');
@@ -372,7 +374,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	*
 	* @method getSessionNamespaceItems
 	* @param {String} namespace
-	* @return (Object) An object containing all session key/value combinations for the namespace.
+	* @return {Object} An object containing all session key/value combinations for the namespace.
 	* @example
 	* 	kafe.storage.setSessionItem('user:first-name', 'John');
 	* 	kafe.storage.setSessionItem('user:last-name', 'Doe');
@@ -414,7 +416,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* Returns an array of all local storage keys.
 	*
 	* @method getAllPersistentKeys
-	* @return (Array[String]) A list of keys.
+	* @return {Array[String]} A list of keys.
 	* @example
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	* 	kafe.storage.setPersistentItem('website:show-ads', 'true');
@@ -430,7 +432,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* Returns an array of all session storage keys.
 	*
 	* @method getAllSessionKeys
-	* @return (Array[String]) A list of keys.
+	* @return {Array[String]} A list of keys.
 	* @example
 	* 	kafe.storage.setSessionItem('user:first-name', 'John');
 	* 	kafe.storage.setSessionItem('preferences:tutorials', 'false');
@@ -446,7 +448,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* Returns all local storage key values.
 	*
 	* @method getAllPersistentItems
-	* @return (Object) An object containing all local key/value combinations.
+	* @return {Object} An object containing all local key/value combinations.
 	* @example
 	* 	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	* 	kafe.storage.setPersistentItem('website:show-ads', 'true');
@@ -462,7 +464,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 	* Returns all session storage key values.
 	*
 	* @method getAllSessionItems
-	* @return (Object) An object containing all session key/value combinations.
+	* @return {Object} An object containing all session key/value combinations.
 	* @example
 	* 	kafe.storage.setSessionItem('user:first-name', 'John');
 	* 	kafe.storage.setSessionItem('preferences:tutorials', 'false');

@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -253,7 +253,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Boolean</span>
         </span>
     
 
@@ -280,7 +280,7 @@
             
         
         
-        <a href="../files/kafe_string-validate.js.html#l96"><code>kafe&#x2F;string-validate.js:96</code></a>
+        <a href="../files/kafe_string-validate.js.html#l100"><code>kafe&#x2F;string-validate.js:100</code></a>
         
         </p>
 
@@ -291,8 +291,8 @@
     </div>
 
     <div class="description">
-        <p>Checks if a string is a valid credit card number and fits a specific brand pattern.
-Source: <a href="http://davidwalsh.name/validate-credit-cards"><a href="http://davidwalsh.name/validate-credit-cards">http://davidwalsh.name/validate-credit-cards</a></a></p>
+        <p>Checks if a string is a valid credit card number and fits a specific brand pattern.</p>
+<p>Source: <a href="http://davidwalsh.name/validate-credit-cards"><a href="http://davidwalsh.name/validate-credit-cards">http://davidwalsh.name/validate-credit-cards</a></a></p>
 
     </div>
 
@@ -345,7 +345,9 @@ Source: <a href="http://davidwalsh.name/validate-credit-cards"><a href="http://d
             <div class="returns-description">
                 
                     
-                    <p>(Boolean) If true, the string is a valid credit card number.</p>
+                        <span class="type">Boolean</span>:
+                    
+                    <p>If true, the string is a valid credit card number.</p>
 
                 
             </div>
@@ -358,8 +360,8 @@ Source: <a href="http://davidwalsh.name/validate-credit-cards"><a href="http://d
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;k789 kafe 3789&#39;, &#39;mc&#39;);
-// returns false
-kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
 // returns true</code></pre>
 
             </div>
@@ -387,7 +389,7 @@ kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Boolean</span>
         </span>
     
 
@@ -414,7 +416,7 @@ kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
             
         
         
-        <a href="../files/kafe_string-validate.js.html#l54"><code>kafe&#x2F;string-validate.js:54</code></a>
+        <a href="../files/kafe_string-validate.js.html#l56"><code>kafe&#x2F;string-validate.js:56</code></a>
         
         </p>
 
@@ -461,7 +463,9 @@ kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
             <div class="returns-description">
                 
                     
-                    <p>(Boolean) If true, the string is a valid email address.</p>
+                        <span class="type">Boolean</span>:
+                    
+                    <p>If true, the string is a valid email address.</p>
 
                 
             </div>
@@ -474,8 +478,8 @@ kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;mailbox@mailaddress&#39;);
-// returns false
-kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
 // returns true</code></pre>
 
             </div>
@@ -503,7 +507,7 @@ kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Boolean</span>
         </span>
     
 
@@ -577,7 +581,9 @@ kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
             <div class="returns-description">
                 
                     
-                    <p>(Boolean) If true, the string is empty or contains only whitespaces.</p>
+                        <span class="type">Boolean</span>:
+                    
+                    <p>If true, the string is empty or contains only whitespaces.</p>
 
                 
             </div>
@@ -590,8 +596,8 @@ kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.string.validate.isEmpty(&#39;kafe is awesome.&#39;);
-// returns false
-kafe.string.validate.isEmpty(&#39; &#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isEmpty(&#39; &#39;);
 // returns true</code></pre>
 
             </div>
@@ -619,7 +625,7 @@ kafe.string.validate.isEmpty(&#39; &#39;);
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Boolean</span>
         </span>
     
 
@@ -646,7 +652,7 @@ kafe.string.validate.isEmpty(&#39; &#39;);
             
         
         
-        <a href="../files/kafe_string-validate.js.html#l38"><code>kafe&#x2F;string-validate.js:38</code></a>
+        <a href="../files/kafe_string-validate.js.html#l39"><code>kafe&#x2F;string-validate.js:39</code></a>
         
         </p>
 
@@ -693,7 +699,9 @@ kafe.string.validate.isEmpty(&#39; &#39;);
             <div class="returns-description">
                 
                     
-                    <p>(Boolean) If true, the string could be converted to a number.</p>
+                        <span class="type">Boolean</span>:
+                    
+                    <p>If true, the string could be converted to a number.</p>
 
                 
             </div>
@@ -706,8 +714,8 @@ kafe.string.validate.isEmpty(&#39; &#39;);
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;k4f3&#39;);
-// returns false
-kafe.string.validate.isNum(&#39;43&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;43&#39;);
 // returns true</code></pre>
 
             </div>
@@ -741,7 +749,7 @@ kafe.string.validate.isNum(&#39;43&#39;);
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Boolean</span>
         </span>
     
 
@@ -768,7 +776,7 @@ kafe.string.validate.isNum(&#39;43&#39;);
             
         
         
-        <a href="../files/kafe_string-validate.js.html#l72"><code>kafe&#x2F;string-validate.js:72</code></a>
+        <a href="../files/kafe_string-validate.js.html#l75"><code>kafe&#x2F;string-validate.js:75</code></a>
         
         </p>
 
@@ -832,7 +840,9 @@ kafe.string.validate.isNum(&#39;43&#39;);
             <div class="returns-description">
                 
                     
-                    <p>(Boolean) If true, the string matches the validation format.</p>
+                        <span class="type">Boolean</span>:
+                    
+                    <p>If true, the string matches the validation format.</p>
 
                 
             </div>
@@ -845,8 +855,8 @@ kafe.string.validate.isNum(&#39;43&#39;);
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;KAF123&#39;);
-// returns false
-kafe.string.validate.isPostalCode(&#39;K4F 3F3&#39;, &#39;A1A 1A1&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;K4F 3F3&#39;, &#39;A1A 1A1&#39;);
 // returns true</code></pre>
 
             </div>

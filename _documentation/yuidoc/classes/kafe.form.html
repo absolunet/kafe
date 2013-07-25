@@ -59,11 +59,11 @@
             
                 <li><a href="../classes/kafe.number.html">kafe.number</a></li>
             
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.plugin.tooltip.html">kafe.plugin.tooltip</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
             
@@ -284,7 +284,7 @@
             
         
         
-        <a href="../files/kafe_form.js.html#l98"><code>kafe&#x2F;form.js:98</code></a>
+        <a href="../files/kafe_form.js.html#l100"><code>kafe&#x2F;form.js:100</code></a>
         
         </p>
 
@@ -332,8 +332,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);
-$(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);</code></pre>
+<pre class="code prettyprint"><code>$(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</code></pre>
 
             </div>
         </div>
@@ -465,7 +465,7 @@ $(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</c
             
         
         
-        <a href="../files/kafe_form.js.html#l123"><code>kafe&#x2F;form.js:123</code></a>
+        <a href="../files/kafe_form.js.html#l126"><code>kafe&#x2F;form.js:126</code></a>
         
         </p>
 
@@ -565,8 +565,8 @@ $(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</c
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
     kafe.log(count);
-});
-$(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count) {
+});</code></pre>
+<pre class="code prettyprint"><code>$(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count) {
     kafe.log(count);
 });</code></pre>
 
@@ -624,7 +624,7 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
             
         
         
-        <a href="../files/kafe_form.js.html#l74"><code>kafe&#x2F;form.js:74</code></a>
+        <a href="../files/kafe_form.js.html#l75"><code>kafe&#x2F;form.js:75</code></a>
         
         </p>
 
@@ -690,8 +690,8 @@ $(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count)
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
     $(input).parents(&#39;form&#39;).submit();
-});
-$(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
+});</code></pre>
+<pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
     $(input).parents(&#39;form&#39;).submit();
 });</code></pre>
 
@@ -749,7 +749,7 @@ $(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
             
         
         
-        <a href="../files/kafe_form.js.html#l170"><code>kafe&#x2F;form.js:170</code></a>
+        <a href="../files/kafe_form.js.html#l174"><code>kafe&#x2F;form.js:174</code></a>
         
         </p>
 
@@ -816,8 +816,8 @@ $(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
     kafe.log(strengh);
-});
-$(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
+});</code></pre>
+<pre class="code prettyprint"><code>$(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
     kafe.log(strengh);
 });</code></pre>
 
@@ -918,8 +918,8 @@ $(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);
-$(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);</code></pre>
+<pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
 
             </div>
         </div>
@@ -969,7 +969,7 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
             
         
         
-        <a href="../files/kafe_form.js.html#l268"><code>kafe&#x2F;form.js:268</code></a>
+        <a href="../files/kafe_form.js.html#l273"><code>kafe&#x2F;form.js:273</code></a>
         
         </p>
 
@@ -1017,8 +1017,8 @@ $(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);
-$(&#39;#Form1&#39;).kafe(&#39;sanitizeFormData&#39;);</code></pre>
+                <pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
+<pre class="code prettyprint"><code>$(&#39;#Form1&#39;).kafe(&#39;sanitizeFormData&#39;);</code></pre>
 
             </div>
         </div>

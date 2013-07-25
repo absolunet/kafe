@@ -22,6 +22,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	*	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
 	* @example
 	*	kafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
+	* @example
 	*	$('.products').kafe('equalHeight', { nbPerRow: 3, resetHeight: true });
 	*/
 	style.equalHeight = function() {
@@ -67,6 +68,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} [selector='hr'] Restricts the process to a specific context.
 	* @example
 	*	kafe.style.replaceHr('.page-content');
+	* @example
 	*	$('.page-content').kafe('replaceHr');
 	*/
 	style.replaceHr = function() {
@@ -83,7 +85,8 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} [parent=DIRECT_PARENT] Container in which we want to be centered.
 	* @example
 	*	kafe.style.vAlign('.menu-items > .label');
-	*	$('..menu-items > .label').kafe('vAlign');
+	* @example
+	*	$('.menu-items > .label').kafe('vAlign');
 	*/
 	style.vAlign = function(e, parent) {
 		$(e).each(function(){
