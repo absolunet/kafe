@@ -113,6 +113,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 						// apply
 						$e.css(attr);
+						$container.addClass('kafesticky-Sticking');
 						sticking = true;
 						fromBottom = false;
 
@@ -130,6 +131,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 						// apply
 						$e.css(attr);
+						$container.removeClass('kafesticky-Sticking');
 						sticking   = false;
 						fromBottom = false;
 
@@ -147,6 +149,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 						// apply
 						$e.css(attr);
+						$container.removeClass('kafesticky-Sticking');
 						sticking   = false;
 						fromBottom = true;
 					}
