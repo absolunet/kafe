@@ -149,9 +149,10 @@
 
 <div class="box intro">
     <h3>Version 1.0</h3>
-<p>Attaches javascript behaviors to an HTML menu structure to create a <em>dropdown</em> style navigation.</p>
-<p>To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (<code>kafe-quickmenu-open</code>) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.</p>
 
+<p>Attaches javascript behaviors to an HTML menu structure to create a <em>dropdown</em> style navigation.</p>
+
+<p>To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (<code>kafe-quickmenu-open</code>) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.</p>
 </div>
 
 
@@ -255,7 +256,6 @@
 
     <div class="description">
         <p>Attach behaviors to the menu structure.</p>
-
     </div>
 
     
@@ -274,7 +274,6 @@
 
                     <div class="param-description">
                         <p>Initial configurations.</p>
-
                     </div>
 
                     
@@ -288,7 +287,6 @@
 
                                 <div class="param-description">
                                     <p>Root element of the menu strusture.</p>
-
                                 </div>
 
                                 
@@ -303,7 +301,6 @@
 
                                 <div class="param-description">
                                     <p>Children element of the container that will serve as a handle to open and close the submenu.</p>
-
                                 </div>
 
                                 
@@ -318,7 +315,6 @@
 
                                 <div class="param-description">
                                     <p>Children element of the handle that will serve as a submenu, opening and closing when the handle is used.</p>
-
                                 </div>
 
                                 
@@ -333,7 +329,6 @@
 
                                 <div class="param-description">
                                     <p>Animation used when opening and closing the submenus.</p>
-
                                 </div>
 
                                 
@@ -348,7 +343,6 @@
 
                                 <div class="param-description">
                                     <p>Duration (in milliseconds) of the opening animation.</p>
-
                                 </div>
 
                                 
@@ -363,7 +357,6 @@
 
                                 <div class="param-description">
                                     <p>Delay (in milliseconds) used when entering the handle before starting the opening animation.</p>
-
                                 </div>
 
                                 
@@ -378,7 +371,6 @@
 
                                 <div class="param-description">
                                     <p>Duration (in milliseconds) of the closing animation.</p>
-
                                 </div>
 
                                 
@@ -393,7 +385,6 @@
 
                                 <div class="param-description">
                                     <p>Delay (in milliseconds) used when exiting the handle before starting the closing animation.</p>
-
                                 </div>
 
                                 
@@ -408,7 +399,6 @@
 
                                 <div class="param-description">
                                     <p>Upon entering a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.</p>
-
                                 </div>
 
                                 
@@ -423,7 +413,6 @@
 
                                 <div class="param-description">
                                     <p>Upon exiting a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.</p>
-
                                 </div>
 
                                 
@@ -445,29 +434,29 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>// Sample menu structure
-&lt;nav id=&quot;main-menu&quot;&gt;
+&lt;nav id="main-menu"&gt;
     &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu 1&lt;/a&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Menu 1&lt;/a&gt;
             &lt;ul&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 1.1&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 1.2&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 1.3&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Submenu 1.1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Submenu 1.2&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Submenu 1.3&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
         &lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu 2&lt;/a&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Menu 2&lt;/a&gt;
             &lt;ul&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 2.1&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 2.2&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 2.3&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Submenu 2.1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Submenu 2.2&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Submenu 2.3&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
         &lt;/li&gt;
     &lt;/ul&gt;
-&lt;/nav&gt;</code></pre>
-<pre class="code prettyprint"><code>// Attach behaviors using...
-kafe.plugin.menu.init({ container: &#39;#main-menu &gt; ul&#39; });</code></pre>
-<pre class="code prettyprint"><code>// Or use the jQuery alternative...
-$(&#39;#main-menu &gt; ul&#39;).kafeMenu();</code></pre>
-
+&lt;/nav&gt;
+</code></pre><pre class="code prettyprint"><code>// Attach behaviors using...
+kafe.plugin.menu.init({ container: '#main-menu &gt; ul' });
+</code></pre><pre class="code prettyprint"><code>// Or use the jQuery alternative...
+$('#main-menu &gt; ul').kafeMenu();
+</code></pre>
             </div>
         </div>
     

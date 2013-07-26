@@ -339,7 +339,7 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "kafe/plugin/carousel.js",
-            "line": 280,
+            "line": 270,
             "description": "### Version 1.0.2\nCarousel, image scroller, ticker, whatever you wanna call it...\n\nThey can also be interacted with remotely by first, linking to the carousel using the `data-kafecarousel-id` attribute and then choosing a specific action with the `data-kafecarousel-action` attribute.\nPossible actions are `nav`, `start`, `prev`, `next`, `end`, `items`, `item`, `play`, `pause`, `position`, `total`, `status` and `status-num`."
         },
         "kafe.plugin.menu": {
@@ -560,7 +560,7 @@
         },
         {
             "file": "kafe/plugin/carousel.js",
-            "line": 292,
+            "line": 282,
             "description": "Attach behaviors to the carousel structure.",
             "itemtype": "method",
             "name": "init",
@@ -570,11 +570,6 @@
                     "description": "Initial configurations",
                     "type": "Object",
                     "props": [
-                        {
-                            "name": "id",
-                            "description": "`id` of the slide container.",
-                            "type": "String"
-                        },
                         {
                             "name": "wrap",
                             "description": "If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.",
@@ -690,12 +685,44 @@
                             "optdefault": "'&bull;'"
                         }
                     ]
+                },
+                {
+                    "name": "selector",
+                    "description": "The slide container.",
+                    "type": "String|jQueryObject|DOMElement"
                 }
             ],
             "example": [
-                "\n\t// Sample carousel structure\n\t<section class=\"home-carousel\">\n\t\t<ul id=\"home-slides\">\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t</ul>\n\t\t<a href=\"\" data-kafecarousel-id=\"home-slides\" data-kafecarousel-action=\"prev\">Back</a>\n\t\t<a href=\"\" data-kafecarousel-id=\"home-slides\" data-kafecarousel-action=\"next\">Next</a>\n\t\t<div data-kafecarousel-id=\"home-slides\" data-kafecarousel-action=\"status\"></div>\n\t</section>",
-                "\n\t// Attach behaviors using...\n\tkafe.plugin.carousel.init({ id: 'home-slides' });",
-                "\n\t// Carousels can be remotely interacted with using custom data attributes...\n\tkafe.plugin.carousel.init({ id: 'home-slides' });"
+                "\n\t// Sample carousel structure\n\t<section class=\"home-carousel\">\n\t\t<ul id=\"home-slides\" data-kafecarousel-id=\"home-news\">\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t</ul>\n\t\t<a href=\"\" data-kafecarousel-id=\"home-news\" data-kafecarousel-action=\"prev\">Back</a>\n\t\t<a href=\"\" data-kafecarousel-id=\"home-news\" data-kafecarousel-action=\"next\">Next</a>\n\t\t<div data-kafecarousel-id=\"home-news\" data-kafecarousel-action=\"status\"></div>\n\t</section>",
+                "\n\t// Attach behaviors using...\n\tkafe.plugin.carousel.init({ selector: '#home-slides' });",
+                "\n\t// Carousels can be remotely interacted with using custom data attributes...\n\tkafe.plugin.carousel.init({ selector: '#home-slides' });",
+                "\n\t// The jQuery alternative...\n\t$('#home-slides').kafeCarousel('init', {});"
+            ],
+            "class": "kafe.plugin.carousel",
+            "module": "kafe.plugin"
+        },
+        {
+            "file": "kafe/plugin/carousel.js",
+            "line": 533,
+            "description": "Manually call a slide change",
+            "itemtype": "method",
+            "name": "change",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "Carousel `data-kafecarousel-id` id",
+                    "type": "String"
+                },
+                {
+                    "name": "target",
+                    "description": "Action or 1-based slide position",
+                    "type": "String|Number"
+                }
+            ],
+            "example": [
+                "\n\t// Go to next slide\n\tkafe.plugin.carousel.change('home-news', 'next');",
+                "\n\t// Go to first slide \n\tkafe.plugin.carousel.change('home-news', 1);",
+                "\n\t// The jQuery alternative...\n\t$('#home-slides').kafeCarousel('change', 1);"
             ],
             "class": "kafe.plugin.carousel",
             "module": "kafe.plugin"
@@ -1764,7 +1791,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 253,
+            "line": 255,
             "description": "Environment constants",
             "itemtype": "method",
             "name": "env",
@@ -1790,7 +1817,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 309,
+            "line": 311,
             "description": "Add module to core",
             "itemtype": "method",
             "name": "bonify",
@@ -1823,7 +1850,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 333,
+            "line": 335,
             "description": "Add a homebrewed plugin",
             "itemtype": "method",
             "name": "plug",
@@ -1856,7 +1883,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 348,
+            "line": 350,
             "description": "Add an external plugin extension",
             "itemtype": "method",
             "name": "extend",
@@ -1889,7 +1916,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 363,
+            "line": 365,
             "description": "Throw kafe errors",
             "itemtype": "method",
             "name": "error",

@@ -149,8 +149,8 @@
 
 <div class="box intro">
     <h3>Version 1.1</h3>
-<p>Easily access, sort and manipulate local and session storage values.</p>
 
+<p>Easily access, sort and manipulate local and session storage values.</p>
 </div>
 
 
@@ -374,7 +374,6 @@
 
     <div class="description">
         <p>Returns all local storage key values.</p>
-
     </div>
 
     
@@ -388,8 +387,7 @@
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object containing all local key/value combinations.</p>
-
+                    An object containing all local key/value combinations.
                 
             </div>
         </div>
@@ -400,12 +398,12 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
-kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
+kafe.storage.setPersistentItem('website:show-ads', 'true');
 
 kafe.storage.getAllPersistentItems();
-// returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }</code></pre>
-
+// returns { "history:last-visit": "2013-07-21", "settings:show-ads": "true" }
+</code></pre>
             </div>
         </div>
     
@@ -460,7 +458,6 @@ kafe.storage.getAllPersistentItems();
 
     <div class="description">
         <p>Returns an array of all local storage keys.</p>
-
     </div>
 
     
@@ -474,8 +471,7 @@ kafe.storage.getAllPersistentItems();
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>A list of keys.</p>
-
+                    A list of keys.
                 
             </div>
         </div>
@@ -486,12 +482,12 @@ kafe.storage.getAllPersistentItems();
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
-kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
+kafe.storage.setPersistentItem('website:show-ads', 'true');
 
 kafe.storage.getAllPersistentKeys();
-// returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]</code></pre>
-
+// returns ["history:last-visit", "website:show-ads"]
+</code></pre>
             </div>
         </div>
     
@@ -546,7 +542,6 @@ kafe.storage.getAllPersistentKeys();
 
     <div class="description">
         <p>Returns all session storage key values.</p>
-
     </div>
 
     
@@ -560,8 +555,7 @@ kafe.storage.getAllPersistentKeys();
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object containing all session key/value combinations.</p>
-
+                    An object containing all session key/value combinations.
                 
             </div>
         </div>
@@ -572,12 +566,12 @@ kafe.storage.getAllPersistentKeys();
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
-kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setSessionItem('user:first-name', 'John');
+kafe.storage.setSessionItem('preferences:tutorials', 'false');
 
 kafe.storage.getAllSessionItems();
-// returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }</code></pre>
-
+// returns { "preferences:tutorials": "false", "user:first-name": "John" }
+</code></pre>
             </div>
         </div>
     
@@ -632,7 +626,6 @@ kafe.storage.getAllSessionItems();
 
     <div class="description">
         <p>Returns an array of all session storage keys.</p>
-
     </div>
 
     
@@ -646,8 +639,7 @@ kafe.storage.getAllSessionItems();
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>A list of keys.</p>
-
+                    A list of keys.
                 
             </div>
         </div>
@@ -658,12 +650,12 @@ kafe.storage.getAllSessionItems();
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
-kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setSessionItem('user:first-name', 'John');
+kafe.storage.setSessionItem('preferences:tutorials', 'false');
 
 kafe.storage.getAllSessionKeys();
-// returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]</code></pre>
-
+// returns ["user:first-name", "preferences:tutorials"]
+</code></pre>
             </div>
         </div>
     
@@ -730,7 +722,6 @@ kafe.storage.getAllSessionKeys();
 
     <div class="description">
         <p>Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the <em>kafe-storage-getJSON</em> namespace.</p>
-
     </div>
 
     
@@ -749,7 +740,6 @@ kafe.storage.getAllSessionKeys();
 
                     <div class="param-description">
                         <p>URL address of the webservice.</p>
-
                     </div>
 
                     
@@ -766,7 +756,6 @@ kafe.storage.getAllSessionKeys();
 
                     <div class="param-description">
                         <p>Other parameters</p>
-
                     </div>
 
                     
@@ -780,8 +769,7 @@ kafe.storage.getAllSessionKeys();
                                 
 
                                 <div class="param-description">
-                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will force a new call to the webservice on the next use.</p>
-
+                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will force a new call to the webservice on the next use.</p>
                                 </div>
 
                                 
@@ -796,7 +784,6 @@ kafe.storage.getAllSessionKeys();
 
                                 <div class="param-description">
                                     <p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the next use will call the webservice instead of using the session storage.</p>
-
                                 </div>
 
                                 
@@ -811,7 +798,6 @@ kafe.storage.getAllSessionKeys();
 
                                 <div class="param-description">
                                     <p>Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.</p>
-
                                 </div>
 
                                 
@@ -832,9 +818,9 @@ kafe.storage.getAllSessionKeys();
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.getJSON(&#39;/UserServices/GetUserInfos?username=john_doe&#39;, { expires: 3600 });
-// Using this same line will use the session stored value instead of calling the service unless one hour has passed.</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.getJSON('/UserServices/GetUserInfos?username=john_doe', { expires: 3600 });
+// Using this same line will use the session stored value instead of calling the service unless one hour has passed.
+</code></pre>
             </div>
         </div>
     
@@ -899,7 +885,6 @@ kafe.storage.getAllSessionKeys();
 
     <div class="description">
         <p>Returns the local value for a specific key.</p>
-
     </div>
 
     
@@ -936,8 +921,7 @@ kafe.storage.getAllSessionKeys();
                     
                         <span class="type">String</span>:
                     
-                    <p>If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns <em>undefined</em>.</p>
-
+                    If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns <em>undefined</em>.
                 
             </div>
         </div>
@@ -948,8 +932,8 @@ kafe.storage.getAllSessionKeys();
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.getPersistentItem(&#39;history:last-visit&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.getPersistentItem('history:last-visit');
+</code></pre>
             </div>
         </div>
     
@@ -1014,7 +998,6 @@ kafe.storage.getAllSessionKeys();
 
     <div class="description">
         <p>Returns all local storage key values for a specific namespace.</p>
-
     </div>
 
     
@@ -1051,8 +1034,7 @@ kafe.storage.getAllSessionKeys();
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object containing all local key/value combinations for the namespace.</p>
-
+                    An object containing all local key/value combinations for the namespace.
                 
             </div>
         </div>
@@ -1063,12 +1045,12 @@ kafe.storage.getAllSessionKeys();
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
-kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
+kafe.storage.setPersistentItem('history:last-page', '/about-us');
 
-kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
-// returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }</code></pre>
-
+kafe.storage.getPersistentNamespaceItems('history');
+// returns { "history:last-page": "/about-us", "history:last-visit": "2013-07-21" }
+</code></pre>
             </div>
         </div>
     
@@ -1133,7 +1115,6 @@ kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
 
     <div class="description">
         <p>Returns an array of local storage keys for a specific namespace.</p>
-
     </div>
 
     
@@ -1170,8 +1151,7 @@ kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>A list of keys.</p>
-
+                    A list of keys.
                 
             </div>
         </div>
@@ -1182,12 +1162,12 @@ kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
-kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
+kafe.storage.setPersistentItem('history:last-page', '/about-us');
 
-kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
-// returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]</code></pre>
-
+kafe.storage.getPersistentNamespaceKeys('history');
+// returns ["history:last-page", "history:last-visit"]
+</code></pre>
             </div>
         </div>
     
@@ -1252,7 +1232,6 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
 
     <div class="description">
         <p>Returns the session value for a specific key.</p>
-
     </div>
 
     
@@ -1289,8 +1268,7 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
                     
                         <span class="type">String</span>:
                     
-                    <p>If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns <em>undefined</em>.</p>
-
+                    If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns <em>undefined</em>.
                 
             </div>
         </div>
@@ -1301,8 +1279,8 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.getSessionItem(&#39;user:first-name&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.getSessionItem('user:first-name');
+</code></pre>
             </div>
         </div>
     
@@ -1367,7 +1345,6 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
 
     <div class="description">
         <p>Returns all session storage key values for a specific namespace.</p>
-
     </div>
 
     
@@ -1404,8 +1381,7 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object containing all session key/value combinations for the namespace.</p>
-
+                    An object containing all session key/value combinations for the namespace.
                 
             </div>
         </div>
@@ -1416,12 +1392,12 @@ kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
-kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setSessionItem('user:first-name', 'John');
+kafe.storage.setSessionItem('user:last-name', 'Doe');
 
-kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
-// returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }</code></pre>
-
+kafe.storage.getSessionNamespaceItems('user');
+// returns { "user:first-name": "John", "user:last-name": "Doe" }
+</code></pre>
             </div>
         </div>
     
@@ -1486,7 +1462,6 @@ kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
 
     <div class="description">
         <p>Returns an array of session storage keys for a specific namespace.</p>
-
     </div>
 
     
@@ -1523,8 +1498,7 @@ kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>A list of keys.</p>
-
+                    A list of keys.
                 
             </div>
         </div>
@@ -1535,12 +1509,12 @@ kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
-kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
+                <pre class="code prettyprint"><code>kafe.storage.setSessionItem('user:first-name', 'John');
+kafe.storage.setSessionItem('user:last-name', 'Doe');
 
-kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
-// returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]</code></pre>
-
+kafe.storage.getSessionNamespaceKeys('user');
+// returns ["user:first-name", "user:last-name"]
+</code></pre>
             </div>
         </div>
     
@@ -1591,7 +1565,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
     <div class="description">
         <p>Removes all local storage keys.</p>
-
     </div>
 
     
@@ -1603,8 +1576,8 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeAllPersistent();</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.removeAllPersistent();
+</code></pre>
             </div>
         </div>
     
@@ -1655,7 +1628,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
     <div class="description">
         <p>Removes all session storage keys.</p>
-
     </div>
 
     
@@ -1667,8 +1639,8 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeAllSession();</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.removeAllSession();
+</code></pre>
             </div>
         </div>
     
@@ -1729,7 +1701,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
     <div class="description">
         <p>Removes the local storage value for a specific key.</p>
-
     </div>
 
     
@@ -1764,8 +1735,8 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removePersistentItem(&#39;history:last-visit&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.removePersistentItem('history:last-visit');
+</code></pre>
             </div>
         </div>
     
@@ -1826,7 +1797,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
     <div class="description">
         <p>Removes all local storage keys of a specific namespace.</p>
-
     </div>
 
     
@@ -1861,8 +1831,8 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removePersistentNamespace(&#39;history&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.removePersistentNamespace('history');
+</code></pre>
             </div>
         </div>
     
@@ -1923,7 +1893,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
     <div class="description">
         <p>Removes the session storage value for a specific key.</p>
-
     </div>
 
     
@@ -1958,8 +1927,8 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeSessionItem(&#39;user:first-name&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.removeSessionItem('user:first-name');
+</code></pre>
             </div>
         </div>
     
@@ -2020,7 +1989,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
     <div class="description">
         <p>Removes all session storage keys of a specific namespace.</p>
-
     </div>
 
     
@@ -2055,8 +2023,8 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeSessionNamespace(&#39;user&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.removeSessionNamespace('user');
+</code></pre>
             </div>
         </div>
     
@@ -2128,8 +2096,7 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
     </div>
 
     <div class="description">
-        <p>Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
-
+        <p>Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the ':' character.</p>
     </div>
 
     
@@ -2179,7 +2146,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
                     <div class="param-description">
                         <p>Expiration parameters</p>
-
                     </div>
 
                     
@@ -2193,8 +2159,7 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
                                 
 
                                 <div class="param-description">
-                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the local storage value for the provided key as expired.</p>
-
+                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will flag the local storage value for the provided key as expired.</p>
                                 </div>
 
                                 
@@ -2209,7 +2174,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
                                 <div class="param-description">
                                     <p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the local storage value for the provided key will be flagged as expired.</p>
-
                                 </div>
 
                                 
@@ -2230,11 +2194,11 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: 3600 });
-// The local storage value will return undefined in one hour.</code></pre>
-<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: &#39;last-visit-cookie&#39; });
-// The local storage value will return undefined if the value of the cookie &#39;last-visit-cookie&#39; is changed.</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });
+// The local storage value will return undefined in one hour.
+</code></pre><pre class="code prettyprint"><code>kafe.storage.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });
+// The local storage value will return undefined if the value of the cookie 'last-visit-cookie' is changed.
+</code></pre>
             </div>
         </div>
     
@@ -2306,8 +2270,7 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
     </div>
 
     <div class="description">
-        <p>Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
-
+        <p>Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the ':' character.</p>
     </div>
 
     
@@ -2357,7 +2320,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
                     <div class="param-description">
                         <p>Expiration parameters</p>
-
                     </div>
 
                     
@@ -2371,8 +2333,7 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
                                 
 
                                 <div class="param-description">
-                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the session storage value for the provided key as expired.</p>
-
+                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will flag the session storage value for the provided key as expired.</p>
                                 </div>
 
                                 
@@ -2387,7 +2348,6 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 
                                 <div class="param-description">
                                     <p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the session storage value for the provided key will be flagged as expired.</p>
-
                                 </div>
 
                                 
@@ -2408,11 +2368,11 @@ kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: 3600 });
-// The session storage value will return undefined in one hour.</code></pre>
-<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: &#39;logged-user&#39; });
-// The session storage value will return undefined if the value of the cookie &#39;logged-user&#39; is changed.</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.storage.setSessionItem('user:first-name', 'John', { expires: 3600 });
+// The session storage value will return undefined in one hour.
+</code></pre><pre class="code prettyprint"><code>kafe.storage.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });
+// The session storage value will return undefined if the value of the cookie 'logged-user' is changed.
+</code></pre>
             </div>
         </div>
     

@@ -233,13 +233,15 @@ window.kafe = (function(undefined){
 				$  = core.dependencies.jQuery,
 				id = 'kafe'+name
 			;
+			name = name || 'CORE';
 
 			if ($.fn[id] === undefined) {
 				_jQueryMethods[name] = {};
 
 				$.fn[id] = function() {
+					var args = $.makeArray(arguments);
 					return this.each(function() {
-						_jQueryMethods[name][arguments.shift()]( this, $.makeArray(arguments) );
+						_jQueryMethods[name][args.shift()]( this, args );
 					});
 				};
 			}

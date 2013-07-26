@@ -149,8 +149,8 @@
 
 <div class="box intro">
     <h3>Version 1.4.1</h3>
-<p>Utilitary methods for html forms and related interactions.</p>
 
+<p>Utilitary methods for html forms and related interactions.</p>
 </div>
 
 
@@ -296,7 +296,6 @@
 
     <div class="description">
         <p>Automaticaly jump the focus to the next field once the maxlength has been reached.</p>
-
     </div>
 
     
@@ -315,7 +314,6 @@
 
                     <div class="param-description">
                         <p>Selector of text-based form elements.</p>
-
                     </div>
 
                     
@@ -332,9 +330,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);</code></pre>
-<pre class="code prettyprint"><code>$(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;autofocusOnNext&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.form.autofocusOnNext('.first-name, .last-name, .email');
+</code></pre><pre class="code prettyprint"><code>$('.first-name, .last-name, .email').kafe('autofocusOnNext');
+</code></pre>
             </div>
         </div>
     
@@ -385,7 +383,6 @@
 
     <div class="description">
         <p>Add a class on focus to all input/textarea/select controls and the label placed immediatly before it.</p>
-
     </div>
 
     
@@ -397,8 +394,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.focus();</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.form.focus();
+</code></pre>
             </div>
         </div>
     
@@ -477,7 +474,6 @@
 
     <div class="description">
         <p>Adds a simulated maxlength support for textarea elements.</p>
-
     </div>
 
     
@@ -496,7 +492,6 @@
 
                     <div class="param-description">
                         <p>Selector of text-based form elements.</p>
-
                     </div>
 
                     
@@ -512,7 +507,6 @@
 
                     <div class="param-description">
                         <p>Maximum number of characters.</p>
-
                     </div>
 
                     
@@ -529,7 +523,6 @@
 
                     <div class="param-description">
                         <p>Prevent further character entry once the limit is reached.</p>
-
                     </div>
 
                     
@@ -546,7 +539,6 @@
 
                     <div class="param-description">
                         <p>Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.</p>
-
                     </div>
 
                     
@@ -563,13 +555,13 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
+                <pre class="code prettyprint"><code>kafe.form.maxLength('.twitter-post', 140, false, function(count) {
     kafe.log(count);
-});</code></pre>
-<pre class="code prettyprint"><code>$(&#39;.twitter-post&#39;).kafe(&#39;maxLength&#39;, 140, false, function(count) {
+});
+</code></pre><pre class="code prettyprint"><code>$('.twitter-post').kafe('maxLength', 140, false, function(count) {
     kafe.log(count);
-});</code></pre>
-
+});
+</code></pre>
             </div>
         </div>
     
@@ -636,7 +628,6 @@
 
     <div class="description">
         <p>Detects the RETURN key, then triggers a callback.</p>
-
     </div>
 
     
@@ -655,7 +646,6 @@
 
                     <div class="param-description">
                         <p>Selector of text-based form elements.</p>
-
                     </div>
 
                     
@@ -671,7 +661,6 @@
 
                     <div class="param-description">
                         <p>Function to be fired by the keypress.</p>
-
                     </div>
 
                     
@@ -688,13 +677,13 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
-    $(input).parents(&#39;form&#39;).submit();
-});</code></pre>
-<pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;onEnter&#39;, function(input) {
-    $(input).parents(&#39;form&#39;).submit();
-});</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.form.onEnter('.search-field', function(input) {
+    $(input).parents('form').submit();
+});
+</code></pre><pre class="code prettyprint"><code>$('.search-field').kafe('onEnter', function(input) {
+    $(input).parents('form').submit();
+});
+</code></pre>
             </div>
         </div>
     
@@ -761,7 +750,6 @@
 
     <div class="description">
         <p>Calculates the password strength value of given fields.</p>
-
     </div>
 
     
@@ -780,7 +768,6 @@
 
                     <div class="param-description">
                         <p>Selector of text-based form elements.</p>
-
                     </div>
 
                     
@@ -797,7 +784,6 @@
 
                     <div class="param-description">
                         <p>Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.</p>
-
                     </div>
 
                     
@@ -814,13 +800,13 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
+                <pre class="code prettyprint"><code>kafe.form.passwordStrength('.password', function(strengh) {
     kafe.log(strengh);
-});</code></pre>
-<pre class="code prettyprint"><code>$(&#39;.password&#39;).kafe(&#39;passwordStrength&#39;, function(strengh) {
+});
+</code></pre><pre class="code prettyprint"><code>$('.password').kafe('passwordStrength', function(strengh) {
     kafe.log(strengh);
-});</code></pre>
-
+});
+</code></pre>
             </div>
         </div>
     
@@ -880,8 +866,7 @@
     </div>
 
     <div class="description">
-        <p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.</p>
-
+        <p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a "Placeholder" class will also be present when the placeholder text is shown.</p>
     </div>
 
     
@@ -900,8 +885,7 @@
                     
 
                     <div class="param-description">
-                        <p>Selector of text-based form elements. Defaults to &#39;input&#91;placeholder&#93;, textarea&#91;placeholder&#93;&#39; when left undefined.</p>
-
+                        <p>Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.</p>
                     </div>
 
                     
@@ -918,9 +902,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);</code></pre>
-<pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;placeholder&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.form.placeholder('.search-field');
+</code></pre><pre class="code prettyprint"><code>$('.search-field').kafe('placeholder');
+</code></pre>
             </div>
         </div>
     
@@ -981,7 +965,6 @@
 
     <div class="description">
         <p>Sanitize form text entry for .NET validator.</p>
-
     </div>
 
     
@@ -1000,7 +983,6 @@
 
                     <div class="param-description">
                         <p>Reference to the current .NET form.</p>
-
                     </div>
 
                     
@@ -1017,9 +999,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
-<pre class="code prettyprint"><code>$(&#39;#Form1&#39;).kafe(&#39;sanitizeFormData&#39;);</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.form.sanitizeFormData('#Form1');
+</code></pre><pre class="code prettyprint"><code>$('#Form1').kafe('sanitizeFormData');
+</code></pre>
             </div>
         </div>
     

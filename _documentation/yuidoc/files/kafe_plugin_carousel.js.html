@@ -128,275 +128,265 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-﻿//-------------------------------------------
-// kafe.plugin.carousel
-//-------------------------------------------
-kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K,undefined){
-	var $ = K.jQuery;
-
-	// local variables
+﻿kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K,undefined){
 	var
-		_DEBUG  = false,
-		_prefix = K.idantite.non + &#x27;carousel&#x27;,
-		_all    = {}
-	;
+		$         = kafe.dependencies.jQuery,
+		carousels = {},
 
-	// _refresh
-	//-------------------------------------------
-	function _refresh(c) {
+		// refresh active/inactive controls, and statuses
+		_refresh = function(c) {
 
-		function none(e) { e.preventDefault(); }
+			var none = function(e) { e.preventDefault(); };
 
-		if (!c.wrap) {
+			if (!c.wrap) {
 
-			// précédent
-			if (c.curr == 0) {
-				c.$start
-					.addClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.startClick)
-					.on(&#x27;click&#x27;,  none)
-				;
-				c.$previous
-					.addClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.previousClick)
-					.on(&#x27;click&#x27;,  none)
-				;
-			} else {
-				c.$start
-					.removeClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.startClick)
-					.on(&#x27;click&#x27;,  c.startClick)
-				;
-				c.$previous
-					.removeClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.previousClick)
-					.on(&#x27;click&#x27;,  c.previousClick)
-				;
-			}
-
-			// next
-			if (c.curr == (c.total-1)) {
-				c.$next
-					.addClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.nextClick)
-					.on(&#x27;click&#x27;,  none)
-				;
-				c.$end
-					.addClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.endClick)
-					.on(&#x27;click&#x27;,  none)
-				;
-			} else {
-				c.$next
-					.removeClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.nextClick)
-					.on(&#x27;click&#x27;,  c.nextClick)
-				;
-				c.$end
-					.removeClass(_prefix+&#x27;-Inactive&#x27;)
-					.off(&#x27;click&#x27;, c.endClick)
-					.on(&#x27;click&#x27;,  c.endClick)
-				;
-			}
-		}
-
-
-		// position
-		c.$position.html(c.curr+1);
-
-		// status
-		c.$status.html(&#x27;&#x27;);
-		c.$statusNum.html(&#x27;&#x27;);
-		for (var i=0; i&lt;c.total; ++i) {
-			if (i == c.curr) {
-				c.$status.append(&#x27;&lt;strong&gt;&#x27;+c.statusBullet+&#x27;&lt;/strong&gt;&#x27;);
-				c.$statusNum.append(&#x27;&lt;strong&gt;&#x27;+(i+1)+&#x27;&lt;/strong&gt;&#x27;);
-			} else {
-				if(!!c.statusLink) {
-					c.$status.append(
-						$(&#x27;&lt;a&gt;&#x27;)
-							.attr(&#x27;href&#x27;,&#x27;#&#x27;)
-							.data(_prefix+&#x27;-itemid&#x27;, i+1)
-							.on(&#x27;click&#x27;,c.itemSimpleClick)
-							.html(c.statusBullet)
-					);
-					c.$statusNum.append(
-						$(&#x27;&lt;a&gt;&#x27;)
-							.attr(&#x27;href&#x27;,&#x27;#&#x27;)
-							.data(_prefix+&#x27;-itemid&#x27;, i+1)
-							.on(&#x27;click&#x27;,c.itemSimpleClick)
-							.html(i+1)
-					);
+				// précédent
+				if (c.curr === 0) {
+					c.$start
+						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.startClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+					c.$previous
+						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.previousClick)
+						.on(&#x27;click&#x27;,  none)
+					;
 				} else {
-					c.$status.append(c.statusBullet);
-					c.$statusNum.append(i+1);
+					c.$start
+						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.startClick)
+						.on(&#x27;click&#x27;,  c.startClick)
+					;
+					c.$previous
+						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.previousClick)
+						.on(&#x27;click&#x27;,  c.previousClick)
+					;
+				}
+
+				// next
+				if (c.curr == (c.total-1)) {
+					c.$next
+						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.nextClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+					c.$end
+						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.endClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+				} else {
+					c.$next
+						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.nextClick)
+						.on(&#x27;click&#x27;,  c.nextClick)
+					;
+					c.$end
+						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.off(&#x27;click&#x27;, c.endClick)
+						.on(&#x27;click&#x27;,  c.endClick)
+					;
 				}
 			}
-		}
-	}
 
 
-	// _change (carousel, target_position)
-	// do a position change
-	//-------------------------------------------
-	function _change(c, target) {
+			// position
+			c.$position.html(c.curr+1);
 
-		if (!!c.changing) {
-			return false;
-		}
-		if (target == c.curr) {
-			return false;
-		}	
-		c.changing = true;
-		c.slideStopAuto();
-
-		var callbackData = {
-			action: (Number(target) == target) ? &#x27;item&#x27; : target,
-			source: {
-				position: c.curr+1
-			},
-			target: {}
-		};
-
-		var way;
-
-		// current li
-		var $liCurr = c.$Main.children(&#x27;:nth-child(&#x27;+(c.curr+1)+&#x27;)&#x27;)
-
-		// prev/next
-		if (target == &#x27;prev&#x27; || target == &#x27;next&#x27;) {
-
-			way = (target == &#x27;prev&#x27;) ? -1 : 1;
-
-			c.curr = 
-				(c.wrap) ? 
-					(c.curr == 0 &amp;&amp; way == -1) ? 
-						(c.total-1)
-						: ((c.curr + way) % c.total)
-					: (c.curr + way)
-			;
-
-		// item
-		} else {
-			target = Number(target);
-
-			way = (target &lt; c.curr) ? -1 : 1;
-			c.curr = target;
-		}
-
-		// new li
-		var $liNew = c.$Main.children(&#x27;:nth-child(&#x27;+(c.curr+1)+&#x27;)&#x27;);
+			// status
+			c.$status.html(&#x27;&#x27;);
+			c.$statusNum.html(&#x27;&#x27;);
+			for (var i=0; i&lt;c.total; ++i) {
+				if (i == c.curr) {
+					c.$status.append(&#x27;&lt;strong&gt;&#x27;+c.statusBullet+&#x27;&lt;/strong&gt;&#x27;);
+					c.$statusNum.append(&#x27;&lt;strong&gt;&#x27;+(i+1)+&#x27;&lt;/strong&gt;&#x27;);
+				} else {
+					if(!!c.statusLink) {
+						c.$status.append(
+							$(&#x27;&lt;a&gt;&#x27;)
+								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
+								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
+								.on(&#x27;click&#x27;,c.itemSimpleClick)
+								.html(c.statusBullet)
+						);
+						c.$statusNum.append(
+							$(&#x27;&lt;a&gt;&#x27;)
+								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
+								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
+								.on(&#x27;click&#x27;,c.itemSimpleClick)
+								.html(i+1)
+						);
+					} else {
+						c.$status.append(c.statusBullet);
+						c.$statusNum.append(i+1);
+					}
+				}
+			}
+		},
 
 
-		// add callback data
-		callbackData.source.obj      = $liCurr.get(0);
-		callbackData.target.position = c.curr+1;
-		callbackData.target.obj      = $liNew.get(0);
+		// change the slide
+		_change = function(c, target) {
 
-		if (!!c.preSwitchCallback) {
-			c.preSwitchCallback(callbackData);
-		}
+			if (!!c.changing) {
+				return false;
+			}
+			if (target == c.curr) {
+				return false;
+			}
+			c.changing = true;
+			c.slideStopAuto();
 
+			var callbackData = {
+				action: (Number(target) == target) ? &#x27;item&#x27; : target,
+				source: {
+					position: c.curr+1
+				},
+				target: {}
+			};
 
+			var way;
 
-		// transitions
-		switch (c.transition) {
+			// current li
+			var $liCurr = c.$Main.children(&#x27;:nth-child(&#x27;+(c.curr+1)+&#x27;)&#x27;);
 
-			// fade
-			case &#x27;fade&#x27;: 
-				$liCurr.css(&#x27;z-index&#x27;,1);
+			// prev/next
+			if (target == &#x27;prev&#x27; || target == &#x27;next&#x27;) {
 
-				$liNew
-					.css(&#x27;z-index&#x27;,2)
-					.fadeIn(c.speed, function(){
-						$liCurr.hide();
-						c.changing = false;
-					})
+				way = (target == &#x27;prev&#x27;) ? -1 : 1;
+
+				c.curr =
+					(c.wrap) ?
+						(c.curr === 0 &amp;&amp; way == -1) ?
+							(c.total-1)
+							: ((c.curr + way) % c.total)
+						: (c.curr + way)
 				;
-			break;
+
+			// item
+			} else {
+				target = Number(target);
+
+				way = (target &lt; c.curr) ? -1 : 1;
+				c.curr = target;
+			}
+
+			// new li
+			var $liNew = c.$Main.children(&#x27;:nth-child(&#x27;+(c.curr+1)+&#x27;)&#x27;);
 
 
-			// move right-bottom &gt; top-left
-			/*
-			case &#x27;slideTopLeft&#x27;: 
-				var height = c.$Main.height() + &#x27;px&#x27;;
-				var width = c.$Main.width() + &#x27;px&#x27;;
+			// add callback data
+			callbackData.source.obj      = $liCurr.get(0);
+			callbackData.target.position = c.curr+1;
+			callbackData.target.obj      = $liNew.get(0);
 
-				$liCurr.animate({
-					top:  (way == 1) ? &#x27;-&#x27;+height : height,
-					left: (way == 1) ? &#x27;-&#x27;+width  : width
-				});
+			if (!!c.preSwitchCallback) {
+				c.preSwitchCallback(callbackData);
+			}
 
-				$liNew
-					.css(&#x27;top&#x27;,  (way == 1) ? height : &#x27;-&#x27;+height)
-					.css(&#x27;left&#x27;, (way == 1) ? width  : &#x27;-&#x27;+width)
-					.animate({
-						top:  &#x27;0px&#x27;,
-						left: &#x27;0px&#x27;
-					})
-				;
-			break;
-			*/
 
-			// slide horizontal
-			case &#x27;slideUp&#x27;: 
-			case &#x27;slideDown&#x27;: 
-				way = (c.transition == &#x27;slideDown&#x27;) ? -way : way;
 
-				var height = c.$Main.height() + &#x27;px&#x27;;
+			// transitions
+			switch (c.transition) {
 
-				$liCurr.animate(
-					{ top: (way == 1) ? &#x27;-&#x27;+height : height},
-					c.speed,
-					function() { $(this).hide(); c.changing = false; }
-				);
+				// fade
+				case &#x27;fade&#x27;:
+					$liCurr.css(&#x27;z-index&#x27;,1);
 
-				$liNew
-					.css({
-						top:     (way == 1) ? height : &#x27;-&#x27;+height,
-						display: &#x27;block&#x27;	
-					})
-					.animate({
-						top: &#x27;0px&#x27;
-					},c.speed)
-				;
-			break;
+					$liNew
+						.css(&#x27;z-index&#x27;,2)
+						.fadeIn(c.speed, function(){
+							$liCurr.hide();
+							c.changing = false;
+						})
+					;
+				break;
 
-			// slide vertical
-			case &#x27;slideLeft&#x27;: 
-			case &#x27;slideRight&#x27;: 
-			default: 
-				way = (c.transition == &#x27;slideRight&#x27;) ? -way : way;
 
-				var width = c.$Main.width() + &#x27;px&#x27;;
+				// move right-bottom &gt; top-left
+				/*
+				case &#x27;slideTopLeft&#x27;: 
+					var height = c.$Main.height() + &#x27;px&#x27;;
+					var width = c.$Main.width() + &#x27;px&#x27;;
 
-				$liCurr.animate(
-					{ left: (way == 1) ? &#x27;-&#x27;+width : width },
-					c.speed,
-					function() { $(this).hide(); c.changing = false; }
-				);
+					$liCurr.animate({
+						top:  (way == 1) ? &#x27;-&#x27;+height : height,
+						left: (way == 1) ? &#x27;-&#x27;+width  : width
+					});
 
-				$liNew
-					.css({
-						left:     (way == 1) ? width : &#x27;-&#x27;+width,
-						display: &#x27;block&#x27;	
-					})
-					.animate({
-						left: &#x27;0px&#x27;
-					},c.speed)
-				;
-			break;
+					$liNew
+						.css(&#x27;top&#x27;,  (way == 1) ? height : &#x27;-&#x27;+height)
+						.css(&#x27;left&#x27;, (way == 1) ? width  : &#x27;-&#x27;+width)
+						.animate({
+							top:  &#x27;0px&#x27;,
+							left: &#x27;0px&#x27;
+						})
+					;
+				break;
+				*/
+
+				// slide horizontal
+				case &#x27;slideUp&#x27;:
+				case &#x27;slideDown&#x27;:
+					way = (c.transition == &#x27;slideDown&#x27;) ? -way : way;
+
+					var height = c.$Main.height() + &#x27;px&#x27;;
+
+					$liCurr.animate(
+						{ top: (way == 1) ? &#x27;-&#x27;+height : height},
+						c.speed,
+						function() { $(this).hide(); c.changing = false; }
+					);
+
+					$liNew
+						.css({
+							top:     (way == 1) ? height : &#x27;-&#x27;+height,
+							display: &#x27;block&#x27;
+						})
+						.animate({
+							top: &#x27;0px&#x27;
+						},c.speed)
+					;
+				break;
+
+				// slide vertical
+				//case &#x27;slideLeft&#x27;:
+				//case &#x27;slideRight&#x27;:
+				default:
+					way = (c.transition == &#x27;slideRight&#x27;) ? -way : way;
+
+					var width = c.$Main.width() + &#x27;px&#x27;;
+
+					$liCurr.animate(
+						{ left: (way == 1) ? &#x27;-&#x27;+width : width },
+						c.speed,
+						function() { $(this).hide(); c.changing = false; }
+					);
+
+					$liNew
+						.css({
+							left:     (way == 1) ? width : &#x27;-&#x27;+width,
+							display: &#x27;block&#x27;
+						})
+						.animate({
+							left: &#x27;0px&#x27;
+						},c.speed)
+					;
+				break;
+			}
+
+			_refresh(c);
+
+			// éventuellement positionner dans le animate callback
+			if (!!c.postSwitchCallback) {
+				c.postSwitchCallback(callbackData);
+			}
+
+			c.slideStartAuto();
 		}
-
-		_refresh(c);
-
-		// éventuellement positionner dans le animate callback
-		if (!!c.postSwitchCallback) {
-			c.postSwitchCallback(callbackData);
-		}
-
-		c.slideStartAuto();
-	}
+	;
 
 
 
@@ -417,14 +407,14 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 	* @module kafe.plugin
 	* @class kafe.plugin.carousel
 	*/
-	var carousel  = {};
+	var carousel = {};
 
 	/**
 	* Attach behaviors to the carousel structure.
 	*
 	* @method init
 	* @param {Object} options Initial configurations
-	*	@param {String} options.id &#x60;id&#x60; of the slide container.
+	*	@param {String|jQueryObject|DOMElement} selector The slide container.
 	*	@param {Boolean} [options.wrap=false] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
 	*	@param {String} [options.transition=&#x27;slideLeft&#x27;] Animation used during a transition. Possible values are &#x60;slideLeft&#x60;, &#x60;slideRight&#x60;, &#x60;slideUp&#x60;, &#x60;slideDown&#x60; and &#x60;fade&#x60;.
 	*	@param {Number} [options.speed=500] Duration (in milliseconds) of the transition.
@@ -447,90 +437,91 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 	* @example
 	*	// Sample carousel structure
 	*	&lt;section class=&quot;home-carousel&quot;&gt;
-	*		&lt;ul id=&quot;home-slides&quot;&gt;
+	*		&lt;ul id=&quot;home-slides&quot; data-kafecarousel-id=&quot;home-news&quot;&gt;
 	*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
 	*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
 	*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
 	*		&lt;/ul&gt;
-	*		&lt;a href=&quot;&quot; data-kafecarousel-id=&quot;home-slides&quot; data-kafecarousel-action=&quot;prev&quot;&gt;Back&lt;/a&gt;
-	*		&lt;a href=&quot;&quot; data-kafecarousel-id=&quot;home-slides&quot; data-kafecarousel-action=&quot;next&quot;&gt;Next&lt;/a&gt;
-	*		&lt;div data-kafecarousel-id=&quot;home-slides&quot; data-kafecarousel-action=&quot;status&quot;&gt;&lt;/div&gt;
+	*		&lt;a href=&quot;&quot; data-kafecarousel-id=&quot;home-news&quot; data-kafecarousel-action=&quot;prev&quot;&gt;Back&lt;/a&gt;
+	*		&lt;a href=&quot;&quot; data-kafecarousel-id=&quot;home-news&quot; data-kafecarousel-action=&quot;next&quot;&gt;Next&lt;/a&gt;
+	*		&lt;div data-kafecarousel-id=&quot;home-news&quot; data-kafecarousel-action=&quot;status&quot;&gt;&lt;/div&gt;
 	*	&lt;/section&gt;
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	kafe.plugin.carousel.init({ id: &#x27;home-slides&#x27; });
+	*	kafe.plugin.carousel.init({ selector: &#x27;#home-slides&#x27; });
 	* @example
 	*	// Carousels can be remotely interacted with using custom data attributes...
-	*	kafe.plugin.carousel.init({ id: &#x27;home-slides&#x27; });
+	*	kafe.plugin.carousel.init({ selector: &#x27;#home-slides&#x27; });
+	* @example
+	*	// The jQuery alternative...
+	*	$(&#x27;#home-slides&#x27;).kafeCarousel(&#x27;init&#x27;, {});
 	*/
 	carousel.init = function() {
-		var c = {};
+		var
+			options = (arguments) ? arguments[0] : {},
 
-		var options  = (arguments) ? arguments[0] : {};
-		c.id         = options.id;
-		c.wrap       = !!options.wrap;
-		c.transition = (options.transition)      ? options.transition : &#x27;slideLeft&#x27;;
-		c.speed      = (Number(options.speed))   ? Number(options.speed)   : 500;
-		c.startId    = (Number(options.startId)) ? Number(options.startId) : 1;
-		/*
-		c.autostart  = 
-			(options.autostart) ? (
-				(Number(options.autostart.start)) ? 
-					Number(options.autostart.start)
-					: 3000)
-				: undefined
-		;*/
-		c.autointerval = 
-			(options.autostart) ? (
-				(Number(options.autostart.interval)) ? 
-					Number(options.autostart.interval) 
-					: 3000)
-				: undefined
+			c = {
+				$Main:        $(options.selector),
+				wrap:         !!options.wrap,
+				transition:   (options.transition)      ? options.transition : &#x27;slideLeft&#x27;,
+				speed:        (Number(options.speed))   ? Number(options.speed)   : 500,
+				startId:      (Number(options.startId)) ? Number(options.startId) : 1,
+				autointerval: (
+					(options.autostart) ? (
+						(Number(options.autostart.interval)) ?
+							Number(options.autostart.interval)
+							: 3000)
+						: undefined
+				),
+				preSwitchCallback:    (typeof(options.preSwitchCallback)  == &#x27;function&#x27;) ? options.preSwitchCallback  : undefined,
+				postSwitchCallback:   (typeof(options.postSwitchCallback) == &#x27;function&#x27;) ? options.postSwitchCallback : undefined,
+				initCompleteCallback: (typeof(options.initCompleteCallback)  == &#x27;function&#x27;) ? options.initCompleteCallback  : undefined,
+				statusLink:           !!options.statusLink,
+				statusBullet:         (options.statusBullet) ? options.statusBullet : &#x27;&amp;bull&#x27;
+			}
 		;
-		c.preSwitchCallback  = (typeof(options.preSwitchCallback)  == &#x27;function&#x27;) ? options.preSwitchCallback  : undefined;
-		c.postSwitchCallback = (typeof(options.postSwitchCallback) == &#x27;function&#x27;) ? options.postSwitchCallback : undefined;
-		c.initCompleteCallback  = (typeof(options.initCompleteCallback)  == &#x27;function&#x27;) ? options.initCompleteCallback  : undefined;
-		c.statusLink         = !!options.statusLink;
-		c.statusBullet       = (options.statusBullet) ? options.statusBullet : &#x27;&amp;bull;&#x27;;
 
 		// Liste
-		c.$Main      = $(&#x27;#&#x27;+c.id);
-		if (!c.$Main.length) { return false; }
+		if (!c.$Main.length) {
+			return false;
+		} else {
+			c.id = c.$Main.data(&#x27;kafecarousel-id&#x27;);
+		}
 
 		c.$MainItems     = c.$Main.children();
 		c.$MainFirstItem = c.$MainItems.eq(0);
 		c.total          = c.$MainItems.length;
 
 		// nav
-		c.$all        = $(&#x27;[data-&#x27;+_prefix+&#x27;-id=&quot;&#x27;+c.id+&#x27;&quot;]&#x27;);
-		c.$nav        = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;nav&quot;]&#x27;);
-		c.$start      = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;start&quot;]&#x27;);
-		c.$previous   = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;prev&quot;]&#x27;);
-		c.$next       = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;next&quot;]&#x27;);
-		c.$end        = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;end&quot;]&#x27;);
-		c.$items      = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;items&quot;]&#x27;);
-		c.$itemsimple = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;item&quot;]&#x27;);
-		c.$play       = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;play&quot;]&#x27;);
-		c.$pause      = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;pause&quot;]&#x27;);
+		c.$all        = $(&#x27;[data-kafecarousel-id=&quot;&#x27;+c.id+&#x27;&quot;]&#x27;);
+		c.$nav        = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;nav&quot;]&#x27;);
+		c.$start      = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;start&quot;]&#x27;);
+		c.$previous   = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;prev&quot;]&#x27;);
+		c.$next       = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;next&quot;]&#x27;);
+		c.$end        = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;end&quot;]&#x27;);
+		c.$items      = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;items&quot;]&#x27;);
+		c.$itemsimple = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;item&quot;]&#x27;);
+		c.$play       = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;play&quot;]&#x27;);
+		c.$pause      = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;pause&quot;]&#x27;);
 
 		// position
-		c.$position  = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;position&quot;]&#x27;);
-		c.$total     = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;total&quot;]&#x27;);
-		c.$status    = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;status&quot;]&#x27;);
-		c.$statusNum = c.$all.filter(&#x27;[data-&#x27;+_prefix+&#x27;-action=&quot;status-num&quot;]&#x27;);
+		c.$position  = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;position&quot;]&#x27;);
+		c.$total     = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;total&quot;]&#x27;);
+		c.$status    = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;status&quot;]&#x27;);
+		c.$statusNum = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;status-num&quot;]&#x27;);
 
 		// désactiver tout si un seul item
 		if (c.total == 1) {
-			c.$nav.addClass(_prefix+&#x27;-None&#x27;);
-			c.$previous.addClass(_prefix+&#x27;-None&#x27;);
-			c.$next.addClass(_prefix+&#x27;-None&#x27;);
-			c.$items.addClass(_prefix+&#x27;-None&#x27;);
-			c.$itemsimple.addClass(_prefix+&#x27;-None&#x27;);
-			c.$position.addClass(_prefix+&#x27;-None&#x27;);
-			c.$total.addClass(_prefix+&#x27;-None&#x27;);
-			c.$status.addClass(_prefix+&#x27;-None&#x27;);
-			c.$statusNum.addClass(_prefix+&#x27;-None&#x27;);
+			c.$nav.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$previous.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$next.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$items.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$itemsimple.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$position.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$total.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$status.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$statusNum.addClass(&#x27;kafecarousel-None&#x27;);
 
 		// sinon préparer carousel
 		} else {
@@ -540,50 +531,50 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 			c.changing = false;
 
 			// general events				
-			c.startClick = function(e){ 
+			c.startClick = function(e) {
 				e.preventDefault();
 				_change(c, 0);
 			};
 
-			c.previousClick = function(e){ 
+			c.previousClick = function(e) {
 				e.preventDefault();
 				_change(c, &#x27;prev&#x27;);
 			};
 
-			c.nextClick = function(e){ 
+			c.nextClick = function(e) {
 				e.preventDefault();
 				_change(c, &#x27;next&#x27;);
 			};
 
-			c.endClick = function(e){ 
+			c.endClick = function(e) {
 				e.preventDefault();
 				_change(c, c.total-1);
 			};
 
-			c.itemSimpleClick = function(e){ 
+			c.itemSimpleClick = function(e) {
 				e.preventDefault();
-				_change(c, $(this).data(_prefix+&#x27;-itemid&#x27;) - 1);
+				_change(c, $(this).data(&#x27;kafecarousel-itemid&#x27;) - 1);
 			};
 
-			c.playClick = function(e){ 
+			c.playClick = function(e) {
 				e.preventDefault();
 				c.AutoRunning = true;
 				c.slideStartAuto();
 			};
 
-			c.pauseClick = function(e){ 
+			c.pauseClick = function(e) {
 				e.preventDefault();
 				c.AutoRunning = false;
 				c.slideStopAuto();
 			};
 
-			c.slideStartAuto = function(){ 
+			c.slideStartAuto = function() {
 				if (c.AutoRunning) {
 					c.Timeout = setTimeout(function(){ _change(c, &#x27;next&#x27;, true); }, c.autointerval);
 				}
 			};
 
-			c.slideStopAuto = function(){ 
+			c.slideStopAuto = function() {
 				clearTimeout(c.Timeout);
 				c.Timeout = undefined;
 			};
@@ -592,20 +583,20 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 
 
 			// on events
-			c.$start.on(&#x27;click&#x27;,c.startClick)
-			c.$previous.on(&#x27;click&#x27;,c.previousClick)
-			c.$next.on(&#x27;click&#x27;,c.nextClick)
-			c.$end.on(&#x27;click&#x27;,c.endClick)
+			c.$start.on(&#x27;click&#x27;,c.startClick);
+			c.$previous.on(&#x27;click&#x27;,c.previousClick);
+			c.$next.on(&#x27;click&#x27;,c.nextClick);
+			c.$end.on(&#x27;click&#x27;,c.endClick);
 			c.$itemsimple.on(&#x27;click&#x27;,c.itemSimpleClick);
 
-			c.$items.children().each(function(i){ 
+			c.$items.children().each(function(i) {
 				$(this).on(&#x27;click&#x27;,function(e){
 					e.preventDefault();
 					_change(c, i);
 				});
 			});
 
-			c.$play.on(&#x27;click&#x27;,c.playClick)
+			c.$play.on(&#x27;click&#x27;,c.playClick);
 			c.$pause.on(&#x27;click&#x27;,c.pauseClick);
 
 			c.$MainItems.on({
@@ -625,13 +616,13 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 
 			switch (c.transition) {
 				// fade
-				case &#x27;fade&#x27;: 
+				case &#x27;fade&#x27;:
 				break;
 
 
 				// move vertical
-				case &#x27;slideUp&#x27;: 
-				case &#x27;slideDown&#x27;: 
+				case &#x27;slideUp&#x27;:
+				case &#x27;slideDown&#x27;:
 					c.$MainItems.css({
 						left: &#x27;0px&#x27;
 					});
@@ -639,8 +630,8 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 				break;
 
 				// move horizontal
-				case &#x27;slideLeft&#x27;: 
-				case &#x27;slideRight&#x27;: 
+				//case &#x27;slideLeft&#x27;:
+				//case &#x27;slideRight&#x27;:
 				default:
 					c.$MainItems.css({
 						top: &#x27;0px&#x27;
@@ -651,42 +642,60 @@ kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K
 
 
 			// autostart	
-			if (c.autointerval != undefined) {
+			if (c.autointerval !== undefined) {
 				c.AutoRunning = true;
 				c.slideStartAuto();
 			}
 
 
 			// Ajouter à la liste
-			_all[c.id] = c;
-			
+			carousels[c.id] = c;
+
 		}
-		
+
 		// Init. Completed callback
 		if (!!c.initCompleteCallback) {
 			c.initCompleteCallback(c);
 		}
-		
-	}; 
-
-
-	// change (id, target_position)
-	// manual change
-	//-------------------------------------------
-	carousel.change = function(id, target) {
-		return _change(_all[id], (Number(target) == target) ? target-1 : target);
 	};
 
-	// debug only
-	if (_DEBUG) {
-		carousel.carousels = _all;
-	}
+
+	/**
+	* Manually call a slide change
+	*
+	* @method change
+	* @param {String} id Carousel &#x60;data-kafecarousel-id&#x60; id
+	* @param {String|Number} target Action or 1-based slide position
+	*
+	* @example
+	*	// Go to next slide
+	*	kafe.plugin.carousel.change(&#x27;home-news&#x27;, &#x27;next&#x27;);
+	* @example
+	*	// Go to first slide 
+	*	kafe.plugin.carousel.change(&#x27;home-news&#x27;, 1);
+	* @example
+	*	// The jQuery alternative...
+	*	$(&#x27;#home-slides&#x27;).kafeCarousel(&#x27;change&#x27;, 1);
+	*/
+	carousel.change = function(id, target) {
+		return _change(carousels[id], (Number(target) == target) ? target-1 : target);
+	};
 
 
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery(&#x27;Carousel&#x27;, {
+		init: function(self, parameters) {
+			carousel.init($.extend({}, parameters[0], {selector:self}));
+		},
+		change: function(self, parameters) {
+			carousel.change($(self).data(&#x27;kafecarousel-id&#x27;), parameters[0]);
+		}
+	});
 
 	return carousel;
 
-})(kafe)});
+})(window.kafe)});
     </pre>
 </div>
 

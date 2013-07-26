@@ -149,8 +149,8 @@
 
 <div class="box intro">
     <h3>Version 1.0</h3>
-<p>Methods to access geolocalization information about the client.</p>
 
+<p>Methods to access geolocalization information about the client.</p>
 </div>
 
 
@@ -254,7 +254,6 @@
 
     <div class="description">
         <p>Get the current geolocalization information of the client.</p>
-
     </div>
 
     
@@ -273,7 +272,6 @@
 
                     <div class="param-description">
                         <p>Parameters for the current request.</p>
-
                     </div>
 
                     
@@ -288,7 +286,6 @@
 
                                 <div class="param-description">
                                     <p>Element used to show status messages.</p>
-
                                 </div>
 
                                 
@@ -303,7 +300,6 @@
 
                                 <div class="param-description">
                                     <p>A two character language code.</p>
-
                                 </div>
 
                                 
@@ -318,7 +314,6 @@
 
                                 <div class="param-description">
                                     <p>Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.</p>
-
                                 </div>
 
                                 
@@ -333,7 +328,6 @@
 
                                 <div class="param-description">
                                     <p>Callback triggered on geolocalization errors. The error message is passed as the first argument.</p>
-
                                 </div>
 
                                 
@@ -355,16 +349,16 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.geolocation.locate({
-    msgContainer: &#39;#GeoLocStatus&#39;, lang: &#39;en&#39;,
+    msgContainer: '#GeoLocStatus', lang: 'en',
     success: function(coords) {
-        kafe.log(&#39;latitude: &#39; + coords.latitude);
-        kafe.log(&#39;longitude: &#39; + coords.longitude);
+        kafe.log('latitude: ' + coords.latitude);
+        kafe.log('longitude: ' + coords.longitude);
     }
     error: function(msg) {
-        kafe.log(&#39;Cannot geoloc: &#39; + msg);
+        kafe.log('Cannot geoloc: ' + msg);
     }
-});</code></pre>
-
+});
+</code></pre>
             </div>
         </div>
     

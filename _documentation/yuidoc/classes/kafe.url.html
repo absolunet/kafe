@@ -149,8 +149,8 @@
 
 <div class="box intro">
     <h3>Version 1.0</h3>
-<p>Manipulation tools for route-based urls.</p>
 
+<p>Manipulation tools for route-based urls.</p>
 </div>
 
 
@@ -293,7 +293,6 @@
 
     <div class="description">
         <p>Parses a hashbang (#!) as a key/value list and creates a javascript object.</p>
-
     </div>
 
     
@@ -331,8 +330,7 @@
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object represention of the hashbang.</p>
-
+                    An object represention of the hashbang.
                 
             </div>
         </div>
@@ -343,9 +341,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.url.parseAjaxParams(&#39;#!color=blue&amp;size=large&amp;extras=false&#39;);
-// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.url.parseAjaxParams('#!color=blue&amp;size=large&amp;extras=false');
+// returns Object {color: "blue", size: "large", extras: "false"}
+</code></pre>
             </div>
         </div>
     
@@ -410,7 +408,6 @@
 
     <div class="description">
         <p>Parses a hashbang (#!) as a path and creates an ordered array.</p>
-
     </div>
 
     
@@ -448,8 +445,7 @@
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>An array represention of the hashbang path.</p>
-
+                    An array represention of the hashbang path.
                 
             </div>
         </div>
@@ -460,9 +456,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.url.parseAjaxPath(&#39;#!/clothing/man/shirts&#39;);
-// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.url.parseAjaxPath('#!/clothing/man/shirts');
+// returns ["clothing", "man", "shirts"]
+</code></pre>
             </div>
         </div>
     
@@ -527,7 +523,6 @@
 
     <div class="description">
         <p>Parses a hash string as a key/value list and creates a javascript object.</p>
-
     </div>
 
     
@@ -565,8 +560,7 @@
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object represention of the hash string.</p>
-
+                    An object represention of the hash string.
                 
             </div>
         </div>
@@ -577,9 +571,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.url.parseHashParams(&#39;#color=blue&amp;size=large&amp;extras=false&#39;);
-// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.url.parseHashParams('#color=blue&amp;size=large&amp;extras=false');
+// returns Object {color: "blue", size: "large", extras: "false"}
+</code></pre>
             </div>
         </div>
     
@@ -644,7 +638,6 @@
 
     <div class="description">
         <p>Parses a hash string as a path and creates an ordered array.</p>
-
     </div>
 
     
@@ -682,8 +675,7 @@
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>An array represention of the hash path.</p>
-
+                    An array represention of the hash path.
                 
             </div>
         </div>
@@ -694,9 +686,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.url.parseHashPath(&#39;#/clothing/man/shirts&#39;);
-// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.url.parseHashPath('#/clothing/man/shirts');
+// returns ["clothing", "man", "shirts"]
+</code></pre>
             </div>
         </div>
     
@@ -761,7 +753,6 @@
 
     <div class="description">
         <p>Parses a querystring as a key/value list and creates a javascript object.</p>
-
     </div>
 
     
@@ -799,8 +790,7 @@
                     
                         <span class="type">Object</span>:
                     
-                    <p>An object represention of the querystring.</p>
-
+                    An object represention of the querystring.
                 
             </div>
         </div>
@@ -811,9 +801,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.url.parseSearchParams(&#39;?group=players&amp;team=blue&amp;ranking=3&#39;);
-// returns Object {group: &quot;players&quot;, team: &quot;blue&quot;, ranking: &quot;3&quot;}</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.url.parseSearchParams('?group=players&amp;team=blue&amp;ranking=3');
+// returns Object {group: "players", team: "blue", ranking: "3"}
+</code></pre>
             </div>
         </div>
     
@@ -878,7 +868,6 @@
 
     <div class="description">
         <p>Parses a querystring as a path and creates an ordered array.</p>
-
     </div>
 
     
@@ -916,8 +905,7 @@
                     
                         <span class="type">ArrayString</span>:
                     
-                    <p>An array represention of the querystring path.</p>
-
+                    An array represention of the querystring path.
                 
             </div>
         </div>
@@ -928,9 +916,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.url.parseSearchPath(&#39;?/Players/Teams/Blue&#39;);
-// returns [&quot;Players&quot;, &quot;Teams&quot;, &quot;Blue&quot;]</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.url.parseSearchPath('?/Players/Teams/Blue');
+// returns ["Players", "Teams", "Blue"]
+</code></pre>
             </div>
         </div>
     

@@ -149,8 +149,8 @@
 
 <div class="box intro">
     <h3>Version 1.2</h3>
-<p>Additionnal methods for string manipulation and generation.</p>
 
+<p>Additionnal methods for string manipulation and generation.</p>
 </div>
 
 
@@ -262,7 +262,6 @@
 
     <div class="description">
         <p>Generates a random GUID/UUID. (Version 4, random)</p>
-
     </div>
 
     
@@ -276,8 +275,7 @@
                     
                         <span class="type">String</span>:
                     
-                    <p>A random valid GUID/UUID.</p>
-
+                    A random valid GUID/UUID.
                 
             </div>
         </div>
@@ -289,8 +287,8 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.string.generateGuid();
-// returns &quot;c573f4f3-982a-4046-818a-083757f98804&quot;</code></pre>
-
+// returns "c573f4f3-982a-4046-818a-083757f98804"
+</code></pre>
             </div>
         </div>
     
@@ -355,7 +353,6 @@
 
     <div class="description">
         <p>Removes accented charaters from a string.</p>
-
     </div>
 
     
@@ -392,8 +389,7 @@
                     
                         <span class="type">String</span>:
                     
-                    <p>The unaccented string.</p>
-
+                    The unaccented string.
                 
             </div>
         </div>
@@ -404,9 +400,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.removeAccent(&#39;Kafe signifie café en créole.&#39;);
-// returns &quot;Kafe signifie cafe en creole.&quot;</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.removeAccent('Kafe signifie café en créole.');
+// returns "Kafe signifie cafe en creole."
+</code></pre>
             </div>
         </div>
     
@@ -471,7 +467,6 @@
 
     <div class="description">
         <p>Transforms a JSON string into a javascript object.</p>
-
     </div>
 
     
@@ -490,7 +485,6 @@
 
                     <div class="param-description">
                         <p>A JSON string.</p>
-
                     </div>
 
                     
@@ -509,8 +503,7 @@
                     
                         <span class="type">Object</span>:
                     
-                    <p>A valid javascript object.</p>
-
+                    A valid javascript object.
                 
             </div>
         </div>
@@ -521,9 +514,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.toObject(&#39;{&quot;UserId&quot;:&quot;456&quot;,&quot;Items&quot;:[&quot;first&quot;, &quot;second&quot;, &quot;last&quot;],&quot;State&quot;:true,&quot;TotalAmount&quot;:52,&quot;Taxes&quot;:[]}&#39;);
-// returns Object {UserId: &quot;456&quot;, Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
+// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
+</code></pre>
             </div>
         </div>
     

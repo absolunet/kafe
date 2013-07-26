@@ -132,7 +132,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_plugin_carousel.js.html#l280"><code>kafe&#x2F;plugin&#x2F;carousel.js:280</code></a>
+            Defined in: <a href="../files/kafe_plugin_carousel.js.html#l270"><code>kafe&#x2F;plugin&#x2F;carousel.js:270</code></a>
         </div>
     
 
@@ -149,10 +149,11 @@
 
 <div class="box intro">
     <h3>Version 1.0.2</h3>
+
 <p>Carousel, image scroller, ticker, whatever you wanna call it...</p>
+
 <p>They can also be interacted with remotely by first, linking to the carousel using the <code>data-kafecarousel-id</code> attribute and then choosing a specific action with the <code>data-kafecarousel-action</code> attribute.
 Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <code>next</code>, <code>end</code>, <code>items</code>, <code>item</code>, <code>play</code>, <code>pause</code>, <code>position</code>, <code>total</code>, <code>status</code> and <code>status-num</code>.</p>
-
 </div>
 
 
@@ -180,6 +181,13 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
+                                <a href="#method_change">change</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_init">init</a>
 
                                 
@@ -202,8 +210,8 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_init" class="method item">
-    <h3 class="name"><code>init</code></h3>
+                    <div id="method_change" class="method item">
+    <h3 class="name"><code>change</code></h3>
 
     
         <div class="args">
@@ -211,7 +219,13 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>id</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>target</code>
                     
                 </li>
             
@@ -244,7 +258,129 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
             
         
         
-        <a href="../files/kafe_plugin_carousel.js.html#l292"><code>kafe&#x2F;plugin&#x2F;carousel.js:292</code></a>
+        <a href="../files/kafe_plugin_carousel.js.html#l533"><code>kafe&#x2F;plugin&#x2F;carousel.js:533</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Manually call a slide change</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">id</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Carousel <code>data-kafecarousel-id</code> id</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">target</code>
+                        <span class="type">String | Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Action or 1-based slide position</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>// Go to next slide
+kafe.plugin.carousel.change('home-news', 'next');
+</code></pre><pre class="code prettyprint"><code>// Go to first slide 
+kafe.plugin.carousel.change('home-news', 1);
+</code></pre><pre class="code prettyprint"><code>// The jQuery alternative...
+$('#home-slides').kafeCarousel('change', 1);
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>selector</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_plugin_carousel.js.html#l282"><code>kafe&#x2F;plugin&#x2F;carousel.js:282</code></a>
         
         </p>
 
@@ -256,7 +392,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
     <div class="description">
         <p>Attach behaviors to the carousel structure.</p>
-
     </div>
 
     
@@ -275,25 +410,10 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                     <div class="param-description">
                         <p>Initial configurations</p>
-
                     </div>
 
                     
                         <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">id</code>
-                                    <span class="type">String</span>
-                                
-
-                                <div class="param-description">
-                                    <p><code>id</code> of the slide container.</p>
-
-                                </div>
-
-                                
-                            </li>
                             
                             <li class="param">
                                 
@@ -304,7 +424,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.</p>
-
                                 </div>
 
                                 
@@ -319,7 +438,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Animation used during a transition. Possible values are <code>slideLeft</code>, <code>slideRight</code>, <code>slideUp</code>, <code>slideDown</code> and <code>fade</code>.</p>
-
                                 </div>
 
                                 
@@ -334,7 +452,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Duration (in milliseconds) of the transition.</p>
-
                                 </div>
 
                                 
@@ -349,7 +466,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Index of the starting slide, starting at 1.</p>
-
                                 </div>
 
                                 
@@ -364,7 +480,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Allows slides to change without a user interaction after a chosen delay.</p>
-
                                 </div>
 
                                 
@@ -395,7 +510,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:</p>
-
                                 </div>
 
                                 
@@ -502,7 +616,6 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the <code>preSwitchCallback</code>.</p>
-
                                 </div>
 
                                 
@@ -516,8 +629,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                 
 
                                 <div class="param-description">
-                                    <p>If true, will generate navigation links in elements linked to the carousel via <code>data-kafecarousel-id</code> and the <code>data-kafecarousel-action=&quot;status&quot;</code> attribute.</p>
-
+                                    <p>If true, will generate navigation links in elements linked to the carousel via <code>data-kafecarousel-id</code> and the <code>data-kafecarousel-action="status"</code> attribute.</p>
                                 </div>
 
                                 
@@ -532,13 +644,27 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
                                 <div class="param-description">
                                     <p>Text used as the content of generated link in a <code>statusLink</code> navigation.</p>
-
                                 </div>
 
                                 
                             </li>
                             
                         </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">selector</code>
+                        <span class="type">String | JQueryObject | DOMElement</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The slide container.</p>
+                    </div>
+
                     
                 </li>
             
@@ -554,21 +680,23 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>// Sample carousel structure
-&lt;section class=&quot;home-carousel&quot;&gt;
-    &lt;ul id=&quot;home-slides&quot;&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;section class="home-carousel"&gt;
+    &lt;ul id="home-slides" data-kafecarousel-id="home-news"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;&lt;img src="/images/slide-01.jpg" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;&lt;img src="/images/slide-01.jpg" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;&lt;img src="/images/slide-01.jpg" /&gt;&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-    &lt;a href=&quot;&quot; data-kafecarousel-id=&quot;home-slides&quot; data-kafecarousel-action=&quot;prev&quot;&gt;Back&lt;/a&gt;
-    &lt;a href=&quot;&quot; data-kafecarousel-id=&quot;home-slides&quot; data-kafecarousel-action=&quot;next&quot;&gt;Next&lt;/a&gt;
-    &lt;div data-kafecarousel-id=&quot;home-slides&quot; data-kafecarousel-action=&quot;status&quot;&gt;&lt;/div&gt;
-&lt;/section&gt;</code></pre>
-<pre class="code prettyprint"><code>// Attach behaviors using...
-kafe.plugin.carousel.init({ id: &#39;home-slides&#39; });</code></pre>
-<pre class="code prettyprint"><code>// Carousels can be remotely interacted with using custom data attributes...
-kafe.plugin.carousel.init({ id: &#39;home-slides&#39; });</code></pre>
-
+    &lt;a href="" data-kafecarousel-id="home-news" data-kafecarousel-action="prev"&gt;Back&lt;/a&gt;
+    &lt;a href="" data-kafecarousel-id="home-news" data-kafecarousel-action="next"&gt;Next&lt;/a&gt;
+    &lt;div data-kafecarousel-id="home-news" data-kafecarousel-action="status"&gt;&lt;/div&gt;
+&lt;/section&gt;
+</code></pre><pre class="code prettyprint"><code>// Attach behaviors using...
+kafe.plugin.carousel.init({ selector: '#home-slides' });
+</code></pre><pre class="code prettyprint"><code>// Carousels can be remotely interacted with using custom data attributes...
+kafe.plugin.carousel.init({ selector: '#home-slides' });
+</code></pre><pre class="code prettyprint"><code>// The jQuery alternative...
+$('#home-slides').kafeCarousel('init', {});
+</code></pre>
             </div>
         </div>
     

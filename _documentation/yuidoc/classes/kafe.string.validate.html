@@ -149,8 +149,8 @@
 
 <div class="box intro">
     <h3>Version 1.0</h3>
-<p>String validation tools.</p>
 
+<p>String validation tools.</p>
 </div>
 
 
@@ -292,8 +292,8 @@
 
     <div class="description">
         <p>Checks if a string is a valid credit card number and fits a specific brand pattern.</p>
-<p>Source: <a href="http://davidwalsh.name/validate-credit-cards"><a href="http://davidwalsh.name/validate-credit-cards">http://davidwalsh.name/validate-credit-cards</a></a></p>
 
+<p>Source: <a href="http://davidwalsh.name/validate-credit-cards">http://davidwalsh.name/validate-credit-cards</a></p>
     </div>
 
     
@@ -327,8 +327,7 @@
                     
 
                     <div class="param-description">
-                        <p>A credit card brand abbreviation. Possible values are <strong>mc</strong> (Master Card), <strong>ec</strong> (Electronic Cash), <strong>vi</strong> (Visa), <strong>ax</strong> (American Express), <strong>dc</strong> (DC), <strong>bl</strong> (BL), <strong>di</strong> (Diner&#39;s Club), <strong>jcb</strong> (JCB) or <strong>er</strong> (ER).</p>
-
+                        <p>A credit card brand abbreviation. Possible values are <strong>mc</strong> (Master Card), <strong>ec</strong> (Electronic Cash), <strong>vi</strong> (Visa), <strong>ax</strong> (American Express), <strong>dc</strong> (DC), <strong>bl</strong> (BL), <strong>di</strong> (Diner's Club), <strong>jcb</strong> (JCB) or <strong>er</strong> (ER).</p>
                     </div>
 
                     
@@ -347,8 +346,7 @@
                     
                         <span class="type">Boolean</span>:
                     
-                    <p>If true, the string is a valid credit card number.</p>
-
+                    If true, the string is a valid credit card number.
                 
             </div>
         </div>
@@ -359,11 +357,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;k789 kafe 3789&#39;, &#39;mc&#39;);
-// returns false</code></pre>
-<pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
-// returns true</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');
+// returns false
+</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');
+// returns true
+</code></pre>
             </div>
         </div>
     
@@ -428,7 +426,6 @@
 
     <div class="description">
         <p>Checks if a string is a valid email address.</p>
-
     </div>
 
     
@@ -465,8 +462,7 @@
                     
                         <span class="type">Boolean</span>:
                     
-                    <p>If true, the string is a valid email address.</p>
-
+                    If true, the string is a valid email address.
                 
             </div>
         </div>
@@ -477,11 +473,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;mailbox@mailaddress&#39;);
-// returns false</code></pre>
-<pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
-// returns true</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.validate.isEmail('mailbox@mailaddress');
+// returns false
+</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isEmail('kafe.feedback@absolunet.com');
+// returns true
+</code></pre>
             </div>
         </div>
     
@@ -546,7 +542,6 @@
 
     <div class="description">
         <p>Checks if a string is empty or contains only whitespaces.</p>
-
     </div>
 
     
@@ -583,8 +578,7 @@
                     
                         <span class="type">Boolean</span>:
                     
-                    <p>If true, the string is empty or contains only whitespaces.</p>
-
+                    If true, the string is empty or contains only whitespaces.
                 
             </div>
         </div>
@@ -595,11 +589,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isEmpty(&#39;kafe is awesome.&#39;);
-// returns false</code></pre>
-<pre class="code prettyprint"><code>kafe.string.validate.isEmpty(&#39; &#39;);
-// returns true</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.validate.isEmpty('kafe is awesome.');
+// returns false
+</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isEmpty(' ');
+// returns true
+</code></pre>
             </div>
         </div>
     
@@ -664,7 +658,6 @@
 
     <div class="description">
         <p>Checks if a string is numeric.</p>
-
     </div>
 
     
@@ -701,8 +694,7 @@
                     
                         <span class="type">Boolean</span>:
                     
-                    <p>If true, the string could be converted to a number.</p>
-
+                    If true, the string could be converted to a number.
                 
             </div>
         </div>
@@ -713,11 +705,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;k4f3&#39;);
-// returns false</code></pre>
-<pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;43&#39;);
-// returns true</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.validate.isNum('k4f3');
+// returns false
+</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isNum('43');
+// returns true
+</code></pre>
             </div>
         </div>
     
@@ -788,7 +780,6 @@
 
     <div class="description">
         <p>Checks if a string is a valid or part of a valid Canadian postal code.</p>
-
     </div>
 
     
@@ -823,7 +814,6 @@
 
                     <div class="param-description">
                         <p>Validation pattern (Regular expression). Default pattern is <em>([a-z][0-9]){3}</em>. Can also be set to <em>A1A 1A1</em> for a single precise value or as <em>A1A</em> and <em>1A1</em> when divided into two values.</p>
-
                     </div>
 
                     
@@ -842,8 +832,7 @@
                     
                         <span class="type">Boolean</span>:
                     
-                    <p>If true, the string matches the validation format.</p>
-
+                    If true, the string matches the validation format.
                 
             </div>
         </div>
@@ -854,11 +843,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;KAF123&#39;);
-// returns false</code></pre>
-<pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;K4F 3F3&#39;, &#39;A1A 1A1&#39;);
-// returns true</code></pre>
-
+                <pre class="code prettyprint"><code>kafe.string.validate.isPostalCode('KAF123');
+// returns false
+</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');
+// returns true
+</code></pre>
             </div>
         </div>
     
