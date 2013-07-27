@@ -32,7 +32,6 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*/
 	var url = {};
 
-
 	/**
 	* Parses a querystring as a key/value list and creates a javascript object.
 	*
@@ -40,13 +39,14 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Object} An object represention of the querystring.
 	* @example
-	* 	kafe.url.parseSearchParams('?group=players&team=blue&ranking=3');
-	* 	// returns Object {group: "players", team: "blue", ranking: "3"}
+	*	kafe.url.parseSearchParams('?group=players&team=blue&ranking=3');
+	*	// returns Object {group: "players", team: "blue", ranking: "3"}
 	*/
 	url.parseSearchParams = function(s) {
 		s = (s) ? s : window.location.search;
 		return _parseIt(s.toString().substring(1), 'params');
 	};
+
 
 	/**
 	* Parses a querystring as a path and creates an ordered array.
@@ -55,8 +55,8 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Array[String]} An array represention of the querystring path.
 	* @example
-	* 	kafe.url.parseSearchPath('?/Players/Teams/Blue');
-	* 	// returns ["Players", "Teams", "Blue"]
+	*	kafe.url.parseSearchPath('?/Players/Teams/Blue');
+	*	// returns ["Players", "Teams", "Blue"]
 	*/
 	url.parseSearchPath = function(s) {
 		s = (s) ? s : window.location.search;
@@ -71,13 +71,14 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hash string.
 	* @example
-	* 	kafe.url.parseHashParams('#color=blue&size=large&extras=false');
-	* 	// returns Object {color: "blue", size: "large", extras: "false"}
+	*	kafe.url.parseHashParams('#color=blue&size=large&extras=false');
+	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseHashParams = function(s) {
 		s = (s) ? s : window.location.hash;
 		return _parseIt(s.toString().substring(1), 'params');
 	};
+
 
 	/**
 	* Parses a hash string as a path and creates an ordered array.
@@ -86,8 +87,8 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Array[String]} An array represention of the hash path.
 	* @example
-	* 	kafe.url.parseHashPath('#/clothing/man/shirts');
-	* 	// returns ["clothing", "man", "shirts"]
+	*	kafe.url.parseHashPath('#/clothing/man/shirts');
+	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseHashPath = function(s) {
 		s = (s) ? s : window.location.hash;
@@ -102,13 +103,14 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hashbang.
 	* @example
-	* 	kafe.url.parseAjaxParams('#!color=blue&size=large&extras=false');
-	* 	// returns Object {color: "blue", size: "large", extras: "false"}
+	*	kafe.url.parseAjaxParams('#!color=blue&size=large&extras=false');
+	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseAjaxParams = function(s) {
 		s = (s) ? s : window.location.hash;
 		return (s.toString().substring(1,2) == '!') ? _parseIt(s.toString().substring(2), 'params') : {};
 	};
+
 
 	/**
 	* Parses a hashbang (#!) as a path and creates an ordered array.
@@ -117,14 +119,13 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Array[String]} An array represention of the hashbang path.
 	* @example
-	* 	kafe.url.parseAjaxPath('#!/clothing/man/shirts');
-	* 	// returns ["clothing", "man", "shirts"]
+	*	kafe.url.parseAjaxPath('#!/clothing/man/shirts');
+	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseAjaxPath = function(s) {
 		s = (s) ? s : window.location.hash;
 		return (s.toString().substring(1,3) == '!/') ? _parseIt(s.toString().substring(3), 'path') : [];
 	};
-
 
 
 	return url;

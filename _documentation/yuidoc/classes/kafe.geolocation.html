@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -279,7 +281,7 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[msgContainer=undefined]</code>
+                                    <code class="param-name optional">[selector]</code>
                                     <span class="type">String | JQueryObject | DOMElement</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -307,7 +309,7 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[success=undefined]</code>
+                                    <code class="param-name optional">[success]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -321,7 +323,7 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[error=undefined]</code>
+                                    <code class="param-name optional">[error]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -349,7 +351,7 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.geolocation.locate({
-    msgContainer: '#GeoLocStatus', lang: 'en',
+    selector: '#GeoLocStatus', lang: 'en',
     success: function(coords) {
         kafe.log('latitude: ' + coords.latitude);
         kafe.log('longitude: ' + coords.longitude);
@@ -358,6 +360,7 @@
         kafe.log('Cannot geoloc: ' + msg);
     }
 });
+</code></pre><pre class="code prettyprint"><code>$('#GeoLocStatus').kafe('geolocation.locate', {});
 </code></pre>
             </div>
         </div>

@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -253,7 +255,7 @@
     </div>
 
     <div class="description">
-        <p>Initialize sticky</p>
+        <p>Initialize sticky (has to be <code>position:absolute</code> with defined <code>top</code> <code>left|right</code> by default).</p>
     </div>
 
     
@@ -271,7 +273,7 @@
                     
 
                     <div class="param-description">
-                        <p>Options</p>
+                        <p>Additional options.</p>
                     </div>
 
                     
@@ -280,11 +282,11 @@
                             <li class="param">
                                 
                                     <code class="param-name">selector</code>
-                                    <span class="type">JQuerySelector</span>
+                                    <span class="type">String | JQueryObject | DOMElement</span>
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>Element to stick.</p>
                                 </div>
 
                                 
@@ -298,7 +300,7 @@
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>Specify <code>right</code> if your horizontal absolute positioning uses right instead of left.</p>
                                 </div>
 
                                 
@@ -312,7 +314,7 @@
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>If true, the sticky will become scrollable when it reaches the bottom edge of its container.</p>
                                 </div>
 
                                 
@@ -321,12 +323,12 @@
                             <li class="param">
                                 
                                     <code class="param-name optional">[container=PARENT]</code>
-                                    <span class="type">JQuerySelector</span>
+                                    <span class="type">String | JQueryObject | DOMElement</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>TODO</p>
+                                    <p>Container in which to constrain the sticky.</p>
                                 </div>
 
                                 
@@ -347,7 +349,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>$('#id').kafeSticky(options)
+                <pre class="code prettyprint"><code>kafe.plugin.sticky.init({ selector: '#post-it' })
+</code></pre><pre class="code prettyprint"><code>$('#post-it').kafeSticky('init', {})
 </code></pre>
             </div>
         </div>

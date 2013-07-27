@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe - kafe</title>
+    <title>kafe/plugin/qrcode.js - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,111 +126,80 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: kafe/plugin/qrcode.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+//&gt;&gt;excludeStart(&#x27;excludeRequire&#x27;, pragmas.excludeRequire);
+require([
+	&#x27;libs/external/qrcode&#x27;
+]);
+//&gt;&gt;excludeEnd(&#x27;excludeRequire&#x27;);
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/kafe_url.js.html#l26"><code>kafe&#x2F;url.js:26</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <h3>Version 2-alpha</h3>
-
-<p>kafe RULZ</p>
-</div>
+window.kafe.plug({name:&#x27;qrcode&#x27;, version:&#x27;0.1.1&#x27;, obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery
+	;
 
 
+	/**
+	* ### Version 1.0
+	* Returns a HTML table for displaying a QR code, encoded from the sent string.
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.qrcode
+	*/
+	var qrcodeK = {};
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+	/**
+	* Generate the HTML table of the QR code.
+	*
+	* @method generate
+	* @param {String} text The text to convert to a QR code.
+	* @param {Object} [options] Additional options.
+	*	@param {Number} [options.version=4] QR code version (&#x60;1-40&#x60;) [Explanation on [Wikipedia](http://en.wikipedia.org/wiki/QR_code#Storage)].
+	*	@param {String} [options.correctLevel=&#x27;H&#x27;] QR code correction level (&#x60;L&#x60;,&#x60;M&#x60;,&#x60;Q&#x60;,&#x60;H&#x60;) [Explanation on [Wikipedia](http://en.wikipedia.org/wiki/QR_code#Error_correction)].
+	* @return {String} The HTML table representing the QR code.
+	*
+	* @example
+	*	kafe.plugin.qrcode.generate(&#x27;Scan me beautiful&#x27;);
+	*	// returns &quot;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;X&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td class=&quot;X&quot;&gt;&lt;/td&gt;&lt;/tr&gt;[...]&lt;/tbody&gt;&lt;/table&gt;&quot;
+	*/
+	qrcodeK.generate = function(text, options) {
+		options = (options) ? options : {};
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.html">
-                        kafe
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.date.html">
-                        kafe.date
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.form.html">
-                        kafe.form
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.geolocation.html">
-                        kafe.geolocation
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.number.html">
-                        kafe.number
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.storage.html">
-                        kafe.storage
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.string.html">
-                        kafe.string
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.string.encrypt.html">
-                        kafe.string.encrypt
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.string.validate.html">
-                        kafe.string.validate
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.style.html">
-                        kafe.style
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/kafe.url.html">
-                        kafe.url
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+		var
+			version      = options.version || 4,
+			correctLevel = options.correctLevel || &#x27;H&#x27;,
+			table        = document.createElement(&#x27;table&#x27;),
+			code         = new qrcode(version, correctLevel)
+		;
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+		// create the qrcode itself
+		code.addData(text);
+		code.make();
+
+		// build table
+		for( var row = 0; row &lt; code.getModuleCount(); row++ ){
+			var tr = document.createElement(&#x27;tr&#x27;);
+			for( var col = 0; col &lt; code.getModuleCount(); col++ ){
+				var td = document.createElement(&#x27;td&#x27;);
+				if (code.isDark(row, col)) {
+					td.className = &#x27;X&#x27;;
+				}
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+		}
+
+		return $( $(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;).html($(table).clone()) ).html();
+	};
+
+
+	return qrcodeK;
+
+})(window.kafe)});
+    </pre>
 </div>
 
                     </div>

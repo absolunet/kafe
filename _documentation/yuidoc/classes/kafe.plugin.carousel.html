@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -345,12 +347,6 @@ $('#home-slides').kafeCarousel('change', 1);
                     
                 </li>
             
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
             </ul><span class="paren">)</span>
         </div>
     
@@ -417,6 +413,19 @@ $('#home-slides').kafeCarousel('change', 1);
                             
                             <li class="param">
                                 
+                                    <code class="param-name">selector</code>
+                                    <span class="type">String | JQueryObject | DOMElement</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The slide container.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
                                     <code class="param-name optional">[wrap=false]</code>
                                     <span class="type">Boolean</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
@@ -473,7 +482,7 @@ $('#home-slides').kafeCarousel('change', 1);
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[autostart=undefined]</code>
+                                    <code class="param-name optional">[autostart]</code>
                                     <span class="type">Object</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -503,7 +512,7 @@ $('#home-slides').kafeCarousel('change', 1);
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[preSwitchCallback=undefined]</code>
+                                    <code class="param-name optional">[preSwitchCallback]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -562,7 +571,7 @@ $('#home-slides').kafeCarousel('change', 1);
                                         <li class="param">
                                             
                                                 <code class="param-name">data.source.obj</code>
-                                                <span class="type">JQueryObject</span>
+                                                <span class="type">DOMElement</span>
                                             
 
                                             <div class="param-description">
@@ -595,7 +604,7 @@ $('#home-slides').kafeCarousel('change', 1);
                                         <li class="param">
                                             
                                                 <code class="param-name">data.target.obj</code>
-                                                <span class="type">JQueryObject</span>
+                                                <span class="type">DOMElement</span>
                                             
 
                                             <div class="param-description">
@@ -609,7 +618,7 @@ $('#home-slides').kafeCarousel('change', 1);
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[postSwitchCallback=undefined]</code>
+                                    <code class="param-name optional">[postSwitchCallback]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -650,21 +659,6 @@ $('#home-slides').kafeCarousel('change', 1);
                             </li>
                             
                         </ul>
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The slide container.</p>
-                    </div>
-
                     
                 </li>
             

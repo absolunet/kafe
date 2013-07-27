@@ -1,43 +1,53 @@
-//-------------------------------------------
-// kafe.plugin.qrcode
-//-------------------------------------------
-kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'libs/external/qrcode'
+]);
+//>>excludeEnd('excludeRequire');
 
-	K.required('qrcode');
-	
-	var _params = {
-		width		 : 256,
-		height		 : 256,
-		typeNumber	 : 4,
-		correctLevel : 'H'  // high
-	};
+window.kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery
+	;
 
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
-	var qrcodeX = {};
-	
 
-	// setParams (options)
-	// set default params
-	//-------------------------------------------
-	qrcodeX.setParams = function() {
-		$.extend(_params, arguments[0]);
-	};
+	/**
+	* ### Version 1.0
+	* Returns a HTML table for displaying a QR code, encoded from the sent string.
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.qrcode
+	*/
+	var qrcodeK = {};
 
-	// generate (text)
-	// get html for qrcode
-	//-------------------------------------------
-	qrcodeX.generate = function(text) {
-		
+	/**
+	* Generate the HTML table of the QR code.
+	*
+	* @method generate
+	* @param {String} text The text to convert to a QR code.
+	* @param {Object} [options] Additional options.
+	*	@param {Number} [options.version=4] QR code version (`1-40`) [Explanation on [Wikipedia](http://en.wikipedia.org/wiki/QR_code#Storage)].
+	*	@param {String} [options.correctLevel='H'] QR code correction level (`L`,`M`,`Q`,`H`) [Explanation on [Wikipedia](http://en.wikipedia.org/wiki/QR_code#Error_correction)].
+	* @return {String} The HTML table representing the QR code.
+	*
+	* @example
+	*	kafe.plugin.qrcode.generate('Scan me beautiful');
+	*	// returns "<table><tbody><tr><td class="X"></td><td></td><td class="X"></td></tr>[...]</tbody></table>"
+	*/
+	qrcodeK.generate = function(text, options) {
+		options = (options) ? options : {};
+
+		var
+			version      = options.version || 4,
+			correctLevel = options.correctLevel || 'H',
+			table        = document.createElement('table'),
+			code         = new qrcode(version, correctLevel)
+		;
+
 		// create the qrcode itself
-		var code = new qrcode(_params.typeNumber, _params.correctLevel);
 		code.addData(text);
 		code.make();
 
-		var table = document.createElement('table');
-		
+		// build table
 		for( var row = 0; row < code.getModuleCount(); row++ ){
 			var tr = document.createElement('tr');
 			for( var col = 0; col < code.getModuleCount(); col++ ){
@@ -46,15 +56,14 @@ kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(K,undefined){
 					td.className = 'X';
 				}
 				tr.appendChild(td);
-			}	
+			}
 			table.appendChild(tr);
-		}			
+		}
 
 		return $( $('<div></div>').html($(table).clone()) ).html();
-		
 	};
-	
 
-	return qrcodeX;
 
-})(kafe)});
+	return qrcodeK;
+
+})(window.kafe)});

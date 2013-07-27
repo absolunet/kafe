@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -128,7 +130,7 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-﻿kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K,undefined){
+﻿window.kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K,undefined){
 	var
 		$         = kafe.dependencies.jQuery,
 		carousels = {},
@@ -143,23 +145,23 @@
 				// précédent
 				if (c.curr === 0) {
 					c.$start
-						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.startClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 					c.$previous
-						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.previousClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 				} else {
 					c.$start
-						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.startClick)
 						.on(&#x27;click&#x27;,  c.startClick)
 					;
 					c.$previous
-						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.previousClick)
 						.on(&#x27;click&#x27;,  c.previousClick)
 					;
@@ -168,23 +170,23 @@
 				// next
 				if (c.curr == (c.total-1)) {
 					c.$next
-						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.nextClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 					c.$end
-						.addClass(&#x27;kafecarousel-Inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.endClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 				} else {
 					c.$next
-						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.nextClick)
 						.on(&#x27;click&#x27;,  c.nextClick)
 					;
 					c.$end
-						.removeClass(&#x27;kafecarousel-Inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, c.endClick)
 						.on(&#x27;click&#x27;,  c.endClick)
 					;
@@ -414,23 +416,23 @@
 	*
 	* @method init
 	* @param {Object} options Initial configurations
-	*	@param {String|jQueryObject|DOMElement} selector The slide container.
+	*	@param {String|jQueryObject|DOMElement} options.selector The slide container.
 	*	@param {Boolean} [options.wrap=false] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
 	*	@param {String} [options.transition=&#x27;slideLeft&#x27;] Animation used during a transition. Possible values are &#x60;slideLeft&#x60;, &#x60;slideRight&#x60;, &#x60;slideUp&#x60;, &#x60;slideDown&#x60; and &#x60;fade&#x60;.
 	*	@param {Number} [options.speed=500] Duration (in milliseconds) of the transition.
 	*	@param {Number} [options.startId=1] Index of the starting slide, starting at 1.
-	*	@param {Object} [options.autostart=undefined] Allows slides to change without a user interaction after a chosen delay.
+	*	@param {Object} [options.autostart] Allows slides to change without a user interaction after a chosen delay.
 	*		@param {Number} [options.autostart.interval=3000] Delay (in milliseconds) before starting a transition to the next slide. The transition duration is included in the delay. As an example, an &#x60;interval&#x60; of 3000 combined with a &#x60;speed&#x60; of 500 will hold a slide still for 2500 milliseconds before starting the transition.
-	*	@param {Function} [options.preSwitchCallback=undefined] Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:
+	*	@param {Function} [options.preSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:
 	*		@param {Object} options.preSwitchCallback.data An object containing information relative to the transition in progress.
 	*			@param {String} options.preSwitchCallback.data.action Current action being performed. Possible values are &#x60;prev&#x60;, &#x60;next&#x60; or &#x60;item&#x60; when using a specific index.
 	*			@param {Object} options.preSwitchCallback.data.source Information about the slide being changed.
 	*				@param {Number} options.preSwitchCallback.data.source.position Index of the source slide.
-	*				@param {jQueryObject} options.preSwitchCallback.data.source.obj Reference to the source slide.
+	*				@param {DOMElement} options.preSwitchCallback.data.source.obj Reference to the source slide.
 	*			@param {Object} options.preSwitchCallback.data.target Information about the destination slide.
 	*				@param {Number} options.preSwitchCallback.data.target.position Index of the target slide.
-	*				@param {jQueryObject} options.preSwitchCallback.data.target.obj Reference to the target slide.
-	*	@param {Function} [options.postSwitchCallback=undefined] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the &#x60;preSwitchCallback&#x60;.
+	*				@param {DOMElement} options.preSwitchCallback.data.target.obj Reference to the target slide.
+	*	@param {Function} [options.postSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the &#x60;preSwitchCallback&#x60;.
 	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via &#x60;data-kafecarousel-id&#x60; and the &#x60;data-kafecarousel-action=&quot;status&quot;&#x60; attribute.
 	*	@param {String} [options.statusBullet=&#x27;&amp;bull;&#x27;] Text used as the content of generated link in a &#x60;statusLink&#x60; navigation.
 	*
@@ -513,15 +515,15 @@
 
 		// désactiver tout si un seul item
 		if (c.total == 1) {
-			c.$nav.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$previous.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$next.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$items.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$itemsimple.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$position.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$total.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$status.addClass(&#x27;kafecarousel-None&#x27;);
-			c.$statusNum.addClass(&#x27;kafecarousel-None&#x27;);
+			c.$nav.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$previous.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$next.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$items.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$itemsimple.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$position.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$total.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$status.addClass(&#x27;kafecarousel-none&#x27;);
+			c.$statusNum.addClass(&#x27;kafecarousel-none&#x27;);
 
 		// sinon préparer carousel
 		} else {

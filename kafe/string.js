@@ -17,7 +17,6 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	*/
 	var string = {};
 
-
 	/**
 	* Removes accented charaters from a string.
 	*
@@ -25,8 +24,8 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	* @param {String} string
 	* @return {String} The unaccented string.
 	* @example
-	* 	kafe.string.removeAccent('Kafe signifie café en créole.');
-	* 	// returns "Kafe signifie cafe en creole."
+	*	kafe.string.removeAccent('Kafe signifie café en créole.');
+	*	// returns "Kafe signifie cafe en creole."
 	*/
 	string.removeAccent = function() {
 		return arguments[0]
@@ -51,8 +50,8 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	* @param {String} string A JSON string.
 	* @return {Object} A valid javascript object.
 	* @example
-	* 	kafe.string.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
-	* 	// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
+	*	kafe.string.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
+	*	// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
 	*/
 	string.toObject = function(s) {
 
@@ -75,13 +74,13 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
-	* Generates a random GUID/UUID. (Version 4, random)
+	* Generates a .NET random GUID/UUID. (Version 4, random)
 	*
 	* @method generateGuid
 	* @return {String} A random valid GUID/UUID.
 	* @example
-	* 	kafe.string.generateGuid();
-	* 	// returns "c573f4f3-982a-4046-818a-083757f98804"
+	*	kafe.string.generateGuid();
+	*	// returns "c573f4f3-982a-4046-818a-083757f98804"
 	*/
 	string.generateGuid = function() {
 		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

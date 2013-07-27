@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -148,17 +150,19 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 
 	/**
-	* Initialize sticky
+	* Initialize sticky (has to be &#x60;position:absolute&#x60; with defined &#x60;top&#x60; &#x60;left|right&#x60; by default).
 	*
 	* @method init
-	* @param {Object} options Options
-	*	@param {jQuerySelector} options.selector TODO
-	*	@param {String} [options.align=&#x27;left&#x27;] TODO
-	*	@param {Boolean} [options.contains=false] TODO
-	*	@param {jQuerySelector} [options.container=PARENT] TODO
+	* @param {Object} options Additional options.
+	*	@param {String|jQueryObject|DOMElement} options.selector Element to stick.
+	*	@param {String} [options.align=&#x27;left&#x27;] Specify &#x60;right&#x60; if your horizontal absolute positioning uses right instead of left.
+	*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
+	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
 	*
 	* @example
-	*	$(&#x27;#id&#x27;).kafeSticky(options)
+	*	kafe.plugin.sticky.init({ selector: &#x27;#post-it&#x27; })
+	* @example
+	*	$(&#x27;#post-it&#x27;).kafeSticky(&#x27;init&#x27;, {})
 	*/
 	sticky.init = function(options) {
 		options = options || {};
@@ -243,7 +247,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 						// apply
 						$e.css(attr);
-						$container.addClass(&#x27;kafesticky-Sticking&#x27;);
+						$container.addClass(&#x27;kafesticky-sticking&#x27;);
 						sticking = true;
 						fromBottom = false;
 
@@ -261,7 +265,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 						// apply
 						$e.css(attr);
-						$container.removeClass(&#x27;kafesticky-Sticking&#x27;);
+						$container.removeClass(&#x27;kafesticky-sticking&#x27;);
 						sticking   = false;
 						fromBottom = false;
 
@@ -279,7 +283,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 						// apply
 						$e.css(attr);
-						$container.removeClass(&#x27;kafesticky-Sticking&#x27;);
+						$container.removeClass(&#x27;kafesticky-sticking&#x27;);
 						sticking   = false;
 						fromBottom = true;
 					}
@@ -302,7 +306,7 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 	return sticky;
 
-})(kafe)});
+})(window.kafe)});
     </pre>
 </div>
 

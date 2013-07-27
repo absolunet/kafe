@@ -34,7 +34,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a "Placeholder" class will also be present when the placeholder text is shown.
 	*
 	* @method placeholder
-	* @param {String|jQueryObject|DOMElement} [selector] Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.
+	* @param {String} [selector] Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.
 	* @example
 	*	kafe.form.placeholder('.search-field');
 	* @example
@@ -76,7 +76,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Detects the RETURN key, then triggers a callback.
 	*
 	* @method onEnter
-	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
+	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Function} callback Function to be fired by the keypress.
 	* @example
 	*	kafe.form.onEnter('.search-field', function(input) {
@@ -87,8 +87,8 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	*		$(input).parents('form').submit();
 	*	});
 	*/
-	form.onEnter = function(elements,callback) {
-		$(elements).on('keypress', function(e) {
+	form.onEnter = function(selector,callback) {
+		$(selector).on('keypress', function(e) {
 			if (((!!e.which) ? e.which : e.keyCode) == 13) {
 				e.preventDefault();
 				callback(this);
@@ -101,14 +101,14 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Automaticaly jump the focus to the next field once the maxlength has been reached.
 	*
 	* @method autofocusOnNext
-	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
+	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @example
 	*	kafe.form.autofocusOnNext('.first-name, .last-name, .email');
 	* @example
 	*	$('.first-name, .last-name, .email').kafe('form.autofocusOnNext');
 	*/
-	form.autofocusOnNext = function(elements) {
-		$(elements).on('keyup',function(e) {
+	form.autofocusOnNext = function(selector) {
+		$(selector).on('keyup',function(e) {
 			var
 				$this = $(this),
 				key   = (!!e.which) ? e.which : e.keyCode
@@ -127,7 +127,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Adds a simulated maxlength support for textarea elements.
 	*
 	* @method maxLength
-	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
+	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Integer} max Maximum number of characters.
 	* @param {Boolean} [block=false] Prevent further character entry once the limit is reached.
 	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
@@ -140,8 +140,8 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	*		kafe.log(count);
 	*	});
 	*/
-	form.maxLength = function(elements, max, block, callback) {
-		$(elements)
+	form.maxLength = function(selector, max, block, callback) {
+		$(selector)
 			.on('input paste cut keyup',function(e) {
 
 				var
@@ -175,7 +175,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Calculates the password strength value of given fields.
 	*
 	* @method passwordStrength
-	* @param {String|jQueryObject|DOMElement} elements Selector of text-based form elements.
+	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
 	* @example
 	*	kafe.form.passwordStrength('.password', function(strengh) {
@@ -186,7 +186,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	*		kafe.log(strengh);
 	*	});
 	*/
-	form.passwordStrength = function(elements, callback) {
+	form.passwordStrength = function(selector, callback) {
 
 		var
 			_countRegexp = function (val, rex) {
@@ -247,7 +247,7 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 			min_length = 6
 		;
 
-		$(elements)
+		$(selector)
 			.on('input paste cut keyup',function(e) {
 
 				var
@@ -274,15 +274,15 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Sanitize form text entry for .NET validator.
 	*
 	* @method sanitizeFormData
-	* @param {String|jQueryObject|DOMElement} elements Reference to the current .NET form.
+	* @param {String|jQueryObject|DOMElement} selector Reference to the current .NET form.
 	* @example
 	*	kafe.form.sanitizeFormData('#Form1');
 	* @example
 	*	$('#Form1').kafe('form.sanitizeFormData');
 	*/
-	form.sanitizeFormData = function(form) {
+	form.sanitizeFormData = function(selector) {
 		var
-			$form = $(form),
+			$form = $(selector),
 			data  = $this.serializeArray()
 		;
 
@@ -300,22 +300,21 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* Replace elements with a submit button
 	*
 	* @method replaceSubmit
-	* @param {String|jQueryObject|DOMElement} [elements='input:submit'] Elements to replace
+	* @param {String|jQueryObject|DOMElement} [selector='input:submit'] Elements to replace
 	* @example
 	*	kafe.form.replaceSubmit();
 	* @example
 	*	$('.Search input:submit').kafe('form.replaceSubmit');
 	*/
-	form.replaceSubmit = function(elements) {
-		( (elements) ? $(elements) : $('input:submit') ).each(function() {
+	form.replaceSubmit = function(selector) {
+		( (selector) ? $(selector) : $('input:submit') ).each(function() {
 				var $this = $(this);
 				$this
 					.hide()
-					.after( $('<button type="submit" data-kafe-processed="true" class="'+ $this.attr('class') +'">'+ $this.val() +'</button>').on('click', function(e) { e.preventDefault(); $this.trigger('click'); }) )
+					.after( $('<button type="submit" data-kafereplacesubmit-processed="true" class="'+ $this.attr('class') +'">'+ $this.val() +'</button>').on('click', function(e) { e.preventDefault(); $this.trigger('click'); }) )
 				;
 		});
 	};
-
 
 
 	// Add as jQuery plugin

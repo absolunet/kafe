@@ -4,25 +4,23 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 	;
 
 
-
 	/**
 	* ### Version 1.0
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
 	* 
-	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafe-quickmenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
+	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
 	* @module kafe.plugin
 	* @class kafe.plugin.menu
 	*/
 	var menu = {};
 
-
 	/**
 	* Attach behaviors to the menu structure.
 	*
 	* @method init
 	* @param {Object} options Initial configurations.
-	*	@param {jQuerySelector} options.container Root element of the menu strusture.
+	*	@param {String|jQueryObject|DOMElement} options.selector Root element of the menu structure.
 	*	@param {String} [options.handle='li'] Children element of the container that will serve as a handle to open and close the submenu.
 	*	@param {String} [options.submenus='ul'] Children element of the handle that will serve as a submenu, opening and closing when the handle is used.
 	*	@param {String} [options.animation='slide'] Animation used when opening and closing the submenus.
@@ -56,7 +54,7 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	kafe.plugin.menu.init({ container: '#main-menu > ul' });
+	*	kafe.plugin.menu.init({ selector: '#main-menu > ul' });
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
@@ -66,7 +64,7 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 		var
 			options = (arguments) ? arguments[0] : {},
 			c = {
-				$menu:         $(options.container),
+				$menu:         $(options.selector),
 				handle:        (options.handle) ? options.handle : 'li',
 				submenus:      (options.submenus) ? options.submenus : 'ul',
 				animation:     (options.animation) ? options.animation : 'slide',
@@ -90,12 +88,12 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data('kafe-quickmenu-timer') !== undefined) {
-					clearTimeout($sub.data('kafe-quickmenu-timer'));
+				if ($sub.data('kafemenu-timer') !== undefined) {
+					clearTimeout($sub.data('kafemenu-timer'));
 				}
 
-				$parent.addClass('kafe-quickmenu-open');
-				$sub.data('kafe-quickmenu-timer', setTimeout(function() {
+				$parent.addClass('kafemenu-open');
+				$sub.data('kafemenu-timer', setTimeout(function() {
 					if (!!c.enterCallback) {
 						c.enterCallback($sub);
 					}
@@ -117,13 +115,13 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data('kafe-quickmenu-timer') !== undefined) {
-					clearTimeout($sub.data('kafe-quickmenu-timer'));
+				if ($sub.data('kafemenu-timer') !== undefined) {
+					clearTimeout($sub.data('kafemenu-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('kafe-quickmenu-timer', setTimeout(function() {
-						$parent.removeClass('kafe-quickmenu-open');
+					$sub.data('kafemenu-timer', setTimeout(function() {
+						$parent.removeClass('kafemenu-open');
 						if (!!c.leaveCallback) {
 							c.leaveCallback($sub);
 						}
@@ -139,7 +137,7 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 						}
 					}, c.closeDelay));
 				} else {
-					$parent.removeClass('kafe-quickmenu-open');
+					$parent.removeClass('kafemenu-open');
 					if (!!c.leaveCallback) {
 						c.leaveCallback($sub);
 					}
@@ -152,7 +150,7 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('Menu', {
 		init: function(self, parameters) {
-			menu.init($.extend({}, parameters[0], {container:self}));
+			menu.init($.extend({}, parameters[0], {selector:self}));
 		}
 	});
 

@@ -1,13 +1,10 @@
-//-------------------------------------------
-// kafe.plugin.carousel
-//-------------------------------------------
-kafe.plug({name:'carousel', version:'2.0', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.plug({name:'carousel', version:'2.0', obj:(function(kafe,undefined){
+	var $ = kafe.dependencies.jQuery;
 
 	var 
 		_privateData = [],
 		_idIndex     = {},
-		_prefix      = K.idantite.non + 'carousel'
+		_prefix      = 'kafecarousel'
 	;
 
 	function _getPrivate() {
@@ -342,7 +339,7 @@ kafe.plug({name:'carousel', version:'2.0', obj:(function(K,undefined){
 	//-------------------------------------------
 	// PUBLIC
 	//-------------------------------------------
-	var carousel = K.fn.createInstantiableObject();
+	var carousel = kafe.fn.createInstantiableObject();
 	
 	// init ([options])
 	// initialize a new carousel
@@ -462,4 +459,4 @@ kafe.plug({name:'carousel', version:'2.0', obj:(function(K,undefined){
 	
 	return carousel;
 
-})(kafe)});
+})(window.kafe)});

@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -132,7 +134,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_plugin_menu.js.html#l8"><code>kafe&#x2F;plugin&#x2F;menu.js:8</code></a>
+            Defined in: <a href="../files/kafe_plugin_menu.js.html#l7"><code>kafe&#x2F;plugin&#x2F;menu.js:7</code></a>
         </div>
     
 
@@ -152,7 +154,7 @@
 
 <p>Attaches javascript behaviors to an HTML menu structure to create a <em>dropdown</em> style navigation.</p>
 
-<p>To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (<code>kafe-quickmenu-open</code>) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.</p>
+<p>To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (<code>kafemenu-open</code>) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.</p>
 </div>
 
 
@@ -244,7 +246,7 @@
             
         
         
-        <a href="../files/kafe_plugin_menu.js.html#l20"><code>kafe&#x2F;plugin&#x2F;menu.js:20</code></a>
+        <a href="../files/kafe_plugin_menu.js.html#l18"><code>kafe&#x2F;plugin&#x2F;menu.js:18</code></a>
         
         </p>
 
@@ -281,12 +283,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name">container</code>
-                                    <span class="type">JQuerySelector</span>
+                                    <code class="param-name">selector</code>
+                                    <span class="type">String | JQueryObject | DOMElement</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Root element of the menu strusture.</p>
+                                    <p>Root element of the menu structure.</p>
                                 </div>
 
                                 
@@ -453,7 +455,7 @@
     &lt;/ul&gt;
 &lt;/nav&gt;
 </code></pre><pre class="code prettyprint"><code>// Attach behaviors using...
-kafe.plugin.menu.init({ container: '#main-menu &gt; ul' });
+kafe.plugin.menu.init({ selector: '#main-menu &gt; ul' });
 </code></pre><pre class="code prettyprint"><code>// Or use the jQuery alternative...
 $('#main-menu &gt; ul').kafeMenu();
 </code></pre>

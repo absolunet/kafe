@@ -88,6 +88,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "kafe/plugin/qrcode.js": {
+            "name": "kafe/plugin/qrcode.js",
+            "modules": {},
+            "classes": {
+                "kafe.plugin.qrcode": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "kafe/plugin/sticky.js": {
             "name": "kafe/plugin/sticky.js",
             "modules": {},
@@ -236,6 +245,7 @@
             "classes": {
                 "kafe.plugin.carousel": 1,
                 "kafe.plugin.menu": 1,
+                "kafe.plugin.qrcode": 1,
                 "kafe.plugin.sticky": 1
             },
             "fors": {},
@@ -353,8 +363,22 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "kafe/plugin/menu.js",
-            "line": 8,
-            "description": "### Version 1.0\nAttaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.\n\nTo preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafe-quickmenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css."
+            "line": 7,
+            "description": "### Version 1.0\nAttaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.\n\nTo preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css."
+        },
+        "kafe.plugin.qrcode": {
+            "name": "kafe.plugin.qrcode",
+            "shortname": "kafe.plugin.qrcode",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.plugin",
+            "namespace": "",
+            "file": "kafe/plugin/qrcode.js",
+            "line": 13,
+            "description": "### Version 1.0\nReturns a HTML table for displaying a QR code, encoded from the sent string."
         },
         "kafe.plugin.sticky": {
             "name": "kafe.plugin.sticky",
@@ -571,6 +595,11 @@
                     "type": "Object",
                     "props": [
                         {
+                            "name": "selector",
+                            "description": "The slide container.",
+                            "type": "String|jQueryObject|DOMElement"
+                        },
+                        {
                             "name": "wrap",
                             "description": "If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.",
                             "type": "Boolean",
@@ -603,7 +632,6 @@
                             "description": "Allows slides to change without a user interaction after a chosen delay.",
                             "type": "Object",
                             "optional": true,
-                            "optdefault": "undefined",
                             "props": [
                                 {
                                     "name": "interval",
@@ -619,7 +647,6 @@
                             "description": "Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:",
                             "type": "Function",
                             "optional": true,
-                            "optdefault": "undefined",
                             "props": [
                                 {
                                     "name": "data",
@@ -644,7 +671,7 @@
                                 {
                                     "name": "data.source.obj",
                                     "description": "Reference to the source slide.",
-                                    "type": "JQueryObject"
+                                    "type": "DOMElement"
                                 },
                                 {
                                     "name": "data.target",
@@ -659,7 +686,7 @@
                                 {
                                     "name": "data.target.obj",
                                     "description": "Reference to the target slide.",
-                                    "type": "JQueryObject"
+                                    "type": "DOMElement"
                                 }
                             ]
                         },
@@ -667,8 +694,7 @@
                             "name": "postSwitchCallback",
                             "description": "Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the `preSwitchCallback`.",
                             "type": "Function",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "statusLink",
@@ -685,11 +711,6 @@
                             "optdefault": "'&bull;'"
                         }
                     ]
-                },
-                {
-                    "name": "selector",
-                    "description": "The slide container.",
-                    "type": "String|jQueryObject|DOMElement"
                 }
             ],
             "example": [
@@ -729,7 +750,7 @@
         },
         {
             "file": "kafe/plugin/menu.js",
-            "line": 20,
+            "line": 18,
             "description": "Attach behaviors to the menu structure.",
             "itemtype": "method",
             "name": "init",
@@ -740,9 +761,9 @@
                     "type": "Object",
                     "props": [
                         {
-                            "name": "container",
-                            "description": "Root element of the menu strusture.",
-                            "type": "JQuerySelector"
+                            "name": "selector",
+                            "description": "Root element of the menu structure.",
+                            "type": "String|jQueryObject|DOMElement"
                         },
                         {
                             "name": "handle",
@@ -810,47 +831,92 @@
             ],
             "example": [
                 "\n\t// Sample menu structure\n\t<nav id=\"main-menu\">\n\t\t<ul>\n\t\t\t<li><a href=\"#\">Menu 1</a>\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=\"#\">Submenu 1.1</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 1.2</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 1.3</a></li>\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li><a href=\"#\">Menu 2</a>\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=\"#\">Submenu 2.1</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 2.2</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 2.3</a></li>\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t</ul>\n\t</nav>",
-                "\n\t// Attach behaviors using...\n\tkafe.plugin.menu.init({ container: '#main-menu > ul' });",
+                "\n\t// Attach behaviors using...\n\tkafe.plugin.menu.init({ selector: '#main-menu > ul' });",
                 "\n\t// Or use the jQuery alternative...\n\t$('#main-menu > ul').kafeMenu();"
             ],
             "class": "kafe.plugin.menu",
             "module": "kafe.plugin"
         },
         {
+            "file": "kafe/plugin/qrcode.js",
+            "line": 22,
+            "description": "Generate the HTML table of the QR code.",
+            "itemtype": "method",
+            "name": "generate",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "The text to convert to a QR code.",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "Additional options.",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "version",
+                            "description": "QR code version (`1-40`) [Explanation on [Wikipedia](http://en.wikipedia.org/wiki/QR_code#Storage)].",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "4"
+                        },
+                        {
+                            "name": "correctLevel",
+                            "description": "QR code correction level (`L`,`M`,`Q`,`H`) [Explanation on [Wikipedia](http://en.wikipedia.org/wiki/QR_code#Error_correction)].",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'H'"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "The HTML table representing the QR code.",
+                "type": "String"
+            },
+            "example": [
+                "\n\tkafe.plugin.qrcode.generate('Scan me beautiful');\n\t// returns \"<table><tbody><tr><td class=\"X\"></td><td></td><td class=\"X\"></td></tr>[...]</tbody></table>\""
+            ],
+            "class": "kafe.plugin.qrcode",
+            "module": "kafe.plugin"
+        },
+        {
             "file": "kafe/plugin/sticky.js",
             "line": 20,
-            "description": "Initialize sticky",
+            "description": "Initialize sticky (has to be `position:absolute` with defined `top` `left|right` by default).",
             "itemtype": "method",
             "name": "init",
             "params": [
                 {
                     "name": "options",
-                    "description": "Options",
+                    "description": "Additional options.",
                     "type": "Object",
                     "props": [
                         {
                             "name": "selector",
-                            "description": "TODO",
-                            "type": "JQuerySelector"
+                            "description": "Element to stick.",
+                            "type": "String|jQueryObject|DOMElement"
                         },
                         {
                             "name": "align",
-                            "description": "TODO",
+                            "description": "Specify `right` if your horizontal absolute positioning uses right instead of left.",
                             "type": "String",
                             "optional": true,
                             "optdefault": "'left'"
                         },
                         {
                             "name": "contains",
-                            "description": "TODO",
+                            "description": "If true, the sticky will become scrollable when it reaches the bottom edge of its container.",
                             "type": "Boolean",
                             "optional": true,
                             "optdefault": "false"
                         },
                         {
                             "name": "container",
-                            "description": "TODO",
-                            "type": "JQuerySelector",
+                            "description": "Container in which to constrain the sticky.",
+                            "type": "String|jQueryObject|DOMElement",
                             "optional": true,
                             "optdefault": "PARENT"
                         }
@@ -858,7 +924,8 @@
                 }
             ],
             "example": [
-                "\n\t$('#id').kafeSticky(options)"
+                "\n\tkafe.plugin.sticky.init({ selector: '#post-it' })",
+                "\n\t$('#post-it').kafeSticky('init', {})"
             ],
             "class": "kafe.plugin.sticky",
             "module": "kafe.plugin"
@@ -1481,13 +1548,13 @@
                 {
                     "name": "selector",
                     "description": "Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.",
-                    "type": "String|jQueryObject|DOMElement",
+                    "type": "String",
                     "optional": true
                 }
             ],
             "example": [
                 "\n\tkafe.form.placeholder('.search-field');",
-                "\n\t$('.search-field').kafe('placeholder');"
+                "\n\t$('.search-field').kafe('form.placeholder');"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1500,7 +1567,7 @@
             "name": "onEnter",
             "params": [
                 {
-                    "name": "elements",
+                    "name": "selector",
                     "description": "Selector of text-based form elements.",
                     "type": "String|jQueryObject|DOMElement"
                 },
@@ -1512,7 +1579,7 @@
             ],
             "example": [
                 "\n\tkafe.form.onEnter('.search-field', function(input) {\n\t\t$(input).parents('form').submit();\n\t});",
-                "\n\t$('.search-field').kafe('onEnter', function(input) {\n\t\t$(input).parents('form').submit();\n\t});"
+                "\n\t$('.search-field').kafe('form.onEnter', function(input) {\n\t\t$(input).parents('form').submit();\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1525,14 +1592,14 @@
             "name": "autofocusOnNext",
             "params": [
                 {
-                    "name": "elements",
+                    "name": "selector",
                     "description": "Selector of text-based form elements.",
                     "type": "String|jQueryObject|DOMElement"
                 }
             ],
             "example": [
                 "\n\tkafe.form.autofocusOnNext('.first-name, .last-name, .email');",
-                "\n\t$('.first-name, .last-name, .email').kafe('autofocusOnNext');"
+                "\n\t$('.first-name, .last-name, .email').kafe('form.autofocusOnNext');"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1545,7 +1612,7 @@
             "name": "maxLength",
             "params": [
                 {
-                    "name": "elements",
+                    "name": "selector",
                     "description": "Selector of text-based form elements.",
                     "type": "String|jQueryObject|DOMElement"
                 },
@@ -1570,7 +1637,7 @@
             ],
             "example": [
                 "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});",
-                "\n\t$('.twitter-post').kafe('maxLength', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});"
+                "\n\t$('.twitter-post').kafe('form.maxLength', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1583,7 +1650,7 @@
             "name": "passwordStrength",
             "params": [
                 {
-                    "name": "elements",
+                    "name": "selector",
                     "description": "Selector of text-based form elements.",
                     "type": "String|jQueryObject|DOMElement"
                 },
@@ -1596,7 +1663,7 @@
             ],
             "example": [
                 "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tkafe.log(strengh);\n\t});",
-                "\n\t$('.password').kafe('passwordStrength', function(strengh) {\n\t\tkafe.log(strengh);\n\t});"
+                "\n\t$('.password').kafe('form.passwordStrength', function(strengh) {\n\t\tkafe.log(strengh);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1609,14 +1676,36 @@
             "name": "sanitizeFormData",
             "params": [
                 {
-                    "name": "elements",
+                    "name": "selector",
                     "description": "Reference to the current .NET form.",
                     "type": "String|jQueryObject|DOMElement"
                 }
             ],
             "example": [
                 "\n\tkafe.form.sanitizeFormData('#Form1');",
-                "\n\t$('#Form1').kafe('sanitizeFormData');"
+                "\n\t$('#Form1').kafe('form.sanitizeFormData');"
+            ],
+            "class": "kafe.form",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/form.js",
+            "line": 299,
+            "description": "Replace elements with a submit button",
+            "itemtype": "method",
+            "name": "replaceSubmit",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "Elements to replace",
+                    "type": "String|jQueryObject|DOMElement",
+                    "optional": true,
+                    "optdefault": "'input:submit'"
+                }
+            ],
+            "example": [
+                "\n\tkafe.form.replaceSubmit();",
+                "\n\t$('.Search input:submit').kafe('form.replaceSubmit');"
             ],
             "class": "kafe.form",
             "module": "kafe"
@@ -1634,11 +1723,10 @@
                     "type": "Object",
                     "props": [
                         {
-                            "name": "msgContainer",
+                            "name": "selector",
                             "description": "Element used to show status messages.",
                             "type": "String|jQueryObject|DOMElement",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "lang",
@@ -1651,21 +1739,20 @@
                             "name": "success",
                             "description": "Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.",
                             "type": "Function",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "error",
                             "description": "Callback triggered on geolocalization errors. The error message is passed as the first argument.",
                             "type": "Function",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         }
                     ]
                 }
             ],
             "example": [
-                "\n\tkafe.geolocation.locate({\n\t\tmsgContainer: '#GeoLocStatus', lang: 'en',\n\t\tsuccess: function(coords) {\n\t\t\tkafe.log('latitude: ' + coords.latitude);\n\t\t\tkafe.log('longitude: ' + coords.longitude);\n\t\t}\n\t\terror: function(msg) {\n\t\t\tkafe.log('Cannot geoloc: ' + msg);\n\t\t}\n\t});"
+                "\n\tkafe.geolocation.locate({\n\t\tselector: '#GeoLocStatus', lang: 'en',\n\t\tsuccess: function(coords) {\n\t\t\tkafe.log('latitude: ' + coords.latitude);\n\t\t\tkafe.log('longitude: ' + coords.longitude);\n\t\t}\n\t\terror: function(msg) {\n\t\t\tkafe.log('Cannot geoloc: ' + msg);\n\t\t}\n\t});",
+                "\n\t$('#GeoLocStatus').kafe('geolocation.locate', {});"
             ],
             "class": "kafe.geolocation",
             "module": "kafe"
@@ -1985,7 +2072,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 242,
+            "line": 243,
             "description": "Returns the session value for a specific key.",
             "itemtype": "method",
             "name": "getSessionItem",
@@ -2008,7 +2095,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 255,
+            "line": 257,
             "description": "Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the ':' character.",
             "itemtype": "method",
             "name": "setPersistentItem",
@@ -2028,21 +2115,18 @@
                     "description": "Expiration parameters",
                     "type": "Object",
                     "optional": true,
-                    "optdefault": "undefined",
                     "props": [
                         {
                             "name": "expires",
                             "description": "Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will flag the local storage value for the provided key as expired.",
                             "type": "String",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "expires",
                             "description": "Sets a time based expiration flag in *seconds*. After that time period, the local storage value for the provided key will be flagged as expired.",
                             "type": "Number",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         }
                     ]
                 }
@@ -2056,7 +2140,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 275,
+            "line": 278,
             "description": "Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the ':' character.",
             "itemtype": "method",
             "name": "setSessionItem",
@@ -2076,21 +2160,18 @@
                     "description": "Expiration parameters",
                     "type": "Object",
                     "optional": true,
-                    "optdefault": "undefined",
                     "props": [
                         {
                             "name": "expires",
                             "description": "Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will flag the session storage value for the provided key as expired.",
                             "type": "String",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "expires",
                             "description": "Sets a time based expiration flag in *seconds*. After that time period, the session storage value for the provided key will be flagged as expired.",
                             "type": "Number",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         }
                     ]
                 }
@@ -2104,7 +2185,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 295,
+            "line": 299,
             "description": "Removes the local storage value for a specific key.",
             "itemtype": "method",
             "name": "removePersistentItem",
@@ -2123,7 +2204,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 307,
+            "line": 312,
             "description": "Removes the session storage value for a specific key.",
             "itemtype": "method",
             "name": "removeSessionItem",
@@ -2142,7 +2223,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 321,
+            "line": 325,
             "description": "Returns an array of local storage keys for a specific namespace.",
             "itemtype": "method",
             "name": "getPersistentNamespaceKeys",
@@ -2165,7 +2246,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 338,
+            "line": 343,
             "description": "Returns an array of session storage keys for a specific namespace.",
             "itemtype": "method",
             "name": "getSessionNamespaceKeys",
@@ -2188,7 +2269,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 355,
+            "line": 361,
             "description": "Returns all local storage key values for a specific namespace.",
             "itemtype": "method",
             "name": "getPersistentNamespaceItems",
@@ -2211,7 +2292,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 372,
+            "line": 379,
             "description": "Returns all session storage key values for a specific namespace.",
             "itemtype": "method",
             "name": "getSessionNamespaceItems",
@@ -2234,7 +2315,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 389,
+            "line": 397,
             "description": "Removes all local storage keys of a specific namespace.",
             "itemtype": "method",
             "name": "removePersistentNamespace",
@@ -2253,7 +2334,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 401,
+            "line": 410,
             "description": "Removes all session storage keys of a specific namespace.",
             "itemtype": "method",
             "name": "removeSessionNamespace",
@@ -2272,7 +2353,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 415,
+            "line": 423,
             "description": "Returns an array of all local storage keys.",
             "itemtype": "method",
             "name": "getAllPersistentKeys",
@@ -2288,7 +2369,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 431,
+            "line": 440,
             "description": "Returns an array of all session storage keys.",
             "itemtype": "method",
             "name": "getAllSessionKeys",
@@ -2304,7 +2385,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 447,
+            "line": 457,
             "description": "Returns all local storage key values.",
             "itemtype": "method",
             "name": "getAllPersistentItems",
@@ -2320,7 +2401,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 463,
+            "line": 474,
             "description": "Returns all session storage key values.",
             "itemtype": "method",
             "name": "getAllSessionItems",
@@ -2336,7 +2417,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 479,
+            "line": 491,
             "description": "Removes all local storage keys.",
             "itemtype": "method",
             "name": "removeAllPersistent",
@@ -2348,7 +2429,7 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 490,
+            "line": 503,
             "description": "Removes all session storage keys.",
             "itemtype": "method",
             "name": "removeAllSession",
@@ -2360,8 +2441,8 @@
         },
         {
             "file": "kafe/storage.js",
-            "line": 504,
-            "description": "Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *kafe-storage-getJSON* namespace.",
+            "line": 515,
+            "description": "Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *kafestorage-getJSON* namespace.",
             "itemtype": "method",
             "name": "getJSON",
             "params": [
@@ -2380,22 +2461,19 @@
                             "name": "expires",
                             "description": "Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will force a new call to the webservice on the next use.",
                             "type": "String",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "expires",
                             "description": "Sets a time based expiration flag in *seconds*. After that time period, the next use will call the webservice instead of using the session storage.",
                             "type": "Number",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         },
                         {
                             "name": "callback",
                             "description": "Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.",
                             "type": "Function",
-                            "optional": true,
-                            "optdefault": "undefined"
+                            "optional": true
                         }
                     ]
                 }
@@ -2431,31 +2509,7 @@
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 22,
-            "description": "Checks if a string is empty or contains only whitespaces.",
-            "itemtype": "method",
-            "name": "isEmpty",
-            "params": [
-                {
-                    "name": "string",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "If true, the string is empty or contains only whitespaces.",
-                "type": "Boolean"
-            },
-            "example": [
-                "\n\tkafe.string.validate.isEmpty('kafe is awesome.');\n\t// returns false",
-                "\n\tkafe.string.validate.isEmpty(' ');\n\t// returns true"
-            ],
-            "class": "kafe.string.validate",
-            "module": "kafe"
-        },
-        {
-            "file": "kafe/string-validate.js",
-            "line": 39,
+            "line": 21,
             "description": "Checks if a string is numeric.",
             "itemtype": "method",
             "name": "isNum",
@@ -2479,7 +2533,7 @@
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 56,
+            "line": 39,
             "description": "Checks if a string is a valid email address.",
             "itemtype": "method",
             "name": "isEmail",
@@ -2503,7 +2557,7 @@
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 75,
+            "line": 59,
             "description": "Checks if a string is a valid or part of a valid Canadian postal code.",
             "itemtype": "method",
             "name": "isPostalCode",
@@ -2533,8 +2587,8 @@
         },
         {
             "file": "kafe/string-validate.js",
-            "line": 100,
-            "description": "Checks if a string is a valid credit card number and fits a specific brand pattern.\n\nSource: [http://davidwalsh.name/validate-credit-cards](http://davidwalsh.name/validate-credit-cards)",
+            "line": 84,
+            "description": "Checks if a string is a valid credit card number and fits a specific brand pattern.\n\nSource: [http://davidwalsh.name/validate-credit-cards](http://davidwalsh.name/validate-credit-cards)\nSource: [http://jsfiddle.net/silvinci/84bru/](http://jsfiddle.net/silvinci/84bru/)",
             "itemtype": "method",
             "name": "isCreditCard",
             "params": [
@@ -2563,7 +2617,7 @@
         },
         {
             "file": "kafe/string.js",
-            "line": 21,
+            "line": 20,
             "description": "Removes accented charaters from a string.",
             "itemtype": "method",
             "name": "removeAccent",
@@ -2586,7 +2640,7 @@
         },
         {
             "file": "kafe/string.js",
-            "line": 47,
+            "line": 46,
             "description": "Transforms a JSON string into a javascript object.",
             "itemtype": "method",
             "name": "toObject",
@@ -2609,8 +2663,8 @@
         },
         {
             "file": "kafe/string.js",
-            "line": 77,
-            "description": "Generates a random GUID/UUID. (Version 4, random)",
+            "line": 76,
+            "description": "Generates a .NET random GUID/UUID. (Version 4, random)",
             "itemtype": "method",
             "name": "generateGuid",
             "return": {
@@ -2625,7 +2679,7 @@
         },
         {
             "file": "kafe/style.js",
-            "line": 14,
+            "line": 13,
             "description": "Equalizes the height css property of every element in a selector. If no height is currently present, the method computes the height values before equalizing. Elements must be visible at the time or will be considered as having a height of 0.",
             "itemtype": "method",
             "name": "equalHeight",
@@ -2667,14 +2721,14 @@
             ],
             "example": [
                 "\n\tkafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });",
-                "\n\t$('.products').kafe('equalHeight', { nbPerRow: 3, resetHeight: true });"
+                "\n\t$('.products').kafe('style.equalHeight', { nbPerRow: 3, resetHeight: true });"
             ],
             "class": "kafe.style",
             "module": "kafe"
         },
         {
             "file": "kafe/style.js",
-            "line": 64,
+            "line": 63,
             "description": "Replaces &lt;hr&gt; tags into &lt;div class=\"hr\"&gt;&lt;/div&gt; tags to eliminate styling restrictions.",
             "itemtype": "method",
             "name": "replaceHr",
@@ -2689,14 +2743,14 @@
             ],
             "example": [
                 "\n\tkafe.style.replaceHr('.page-content');",
-                "\n\t$('.page-content').kafe('replaceHr');"
+                "\n\t$('.page-content').kafe('style.replaceHr');"
             ],
             "class": "kafe.style",
             "module": "kafe"
         },
         {
             "file": "kafe/style.js",
-            "line": 80,
+            "line": 79,
             "description": "Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.",
             "itemtype": "method",
             "name": "vAlign",
@@ -2716,14 +2770,14 @@
             ],
             "example": [
                 "\n\tkafe.style.vAlign('.menu-items > .label');",
-                "\n\t$('.menu-items > .label').kafe('vAlign');"
+                "\n\t$('.menu-items > .label').kafe('style.vAlign');"
             ],
             "class": "kafe.style",
             "module": "kafe"
         },
         {
             "file": "kafe/url.js",
-            "line": 36,
+            "line": 35,
             "description": "Parses a querystring as a key/value list and creates a javascript object.",
             "itemtype": "method",
             "name": "parseSearchParams",
@@ -2798,7 +2852,7 @@
         },
         {
             "file": "kafe/url.js",
-            "line": 82,
+            "line": 83,
             "description": "Parses a hash string as a path and creates an ordered array.",
             "itemtype": "method",
             "name": "parseHashPath",
@@ -2823,7 +2877,7 @@
         },
         {
             "file": "kafe/url.js",
-            "line": 98,
+            "line": 99,
             "description": "Parses a hashbang (#!) as a key/value list and creates a javascript object.",
             "itemtype": "method",
             "name": "parseAjaxParams",
@@ -2848,7 +2902,7 @@
         },
         {
             "file": "kafe/url.js",
-            "line": 113,
+            "line": 115,
             "description": "Parses a hashbang (#!) as a path and creates an ordered array.",
             "itemtype": "method",
             "name": "parseAjaxPath",

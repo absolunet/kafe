@@ -18,24 +18,6 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	*/
 	var validate = {};
 
-
-	/**
-	* Checks if a string is empty or contains only whitespaces.
-	*
-	* @method isEmpty
-	* @param {String} string
-	* @return {Boolean} If true, the string is empty or contains only whitespaces.
-	* @example
-	* 	kafe.string.validate.isEmpty('kafe is awesome.');
-	* 	// returns false
-	* @example
-	* 	kafe.string.validate.isEmpty(' ');
-	* 	// returns true
-	*/
-	validate.isEmpty = function () {
-		return (arguments[0].replace(/^\s*|\s*$/g, '').replace(/^\t*|\t*$/g, '') === '') ? true : false;
-	};
-
 	/**
 	* Checks if a string is numeric.
 	*
@@ -43,15 +25,16 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} string
 	* @return {Boolean} If true, the string could be converted to a number.
 	* @example
-	* 	kafe.string.validate.isNum('k4f3');
-	* 	// returns false
+	*	kafe.string.validate.isNum('k4f3');
+	*	// returns false
 	* @example
-	* 	kafe.string.validate.isNum('43');
-	* 	// returns true
+	*	kafe.string.validate.isNum('43');
+	*	// returns true
 	*/
 	validate.isNum = function(s) {
 		return (s === Number(s).toString());
 	};
+
 
 	/**
 	* Checks if a string is a valid email address.
@@ -60,17 +43,18 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} string
 	* @return {Boolean} If true, the string is a valid email address.
 	* @example
-	* 	kafe.string.validate.isEmail('mailbox@mailaddress');
-	* 	// returns false
+	*	kafe.string.validate.isEmail('mailbox@mailaddress');
+	*	// returns false
 	* @example
-	* 	kafe.string.validate.isEmail('kafe.feedback@absolunet.com');
-	* 	// returns true
+	*	kafe.string.validate.isEmail('kafe.feedback@absolunet.com');
+	*	// returns true
 	*/
 	validate.isEmail = function(s) {
 		s = s.replace(/^\s*|\s*$/g, '');
 		s = s.replace(/^\t*|\t*$/g, '');
 		return (/^\w+([\.\+-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(s) !== 0);
 	};
+
 
 	/**
 	* Checks if a string is a valid or part of a valid Canadian postal code.
@@ -80,11 +64,11 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} [format] Validation pattern (Regular expression). Default pattern is *([a-z][0-9]){3}*. Can also be set to *A1A 1A1* for a single precise value or as *A1A* and *1A1* when divided into two values.
 	* @return {Boolean} If true, the string matches the validation format.
 	* @example
-	* 	kafe.string.validate.isPostalCode('KAF123');
-	* 	// returns false
+	*	kafe.string.validate.isPostalCode('KAF123');
+	*	// returns false
 	* @example
-	* 	kafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');
-	* 	// returns true
+	*	kafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');
+	*	// returns true
 	*/
 	validate.isPostalCode = function(s,format) {
 		switch (format) {
@@ -96,27 +80,25 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 		return new RegExp('^'+format+'$','i').test(s);
 	};
 
-	// if string is a valid credit card
+
 	/**
 	* Checks if a string is a valid credit card number and fits a specific brand pattern.
 	* 
 	* Source: [http://davidwalsh.name/validate-credit-cards](http://davidwalsh.name/validate-credit-cards)
+	* Source: [http://jsfiddle.net/silvinci/84bru/](http://jsfiddle.net/silvinci/84bru/)
 	*
 	* @method isCreditCard
 	* @param {String} string
 	* @param {String} [cardtype] A credit card brand abbreviation. Possible values are **mc** (Master Card), **ec** (Electronic Cash), **vi** (Visa), **ax** (American Express), **dc** (DC), **bl** (BL), **di** (Diner's Club), **jcb** (JCB) or **er** (ER).
 	* @return {Boolean} If true, the string is a valid credit card number.
 	* @example
-	* 	kafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');
-	* 	// returns false
+	*	kafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');
+	*	// returns false
 	* @example
-	* 	kafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');
-	* 	// returns true
+	*	kafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');
+	*	// returns true
 	*/
 	validate.isCreditCard = function(s,type) {
-
-		// http://davidwalsh.name/validate-credit-cards
-		// http://jsfiddle.net/silvinci/84bru/
 		var
 			_pattern = {
 				mc:  '5[1-5][0-9]{14}',                          // Master Card

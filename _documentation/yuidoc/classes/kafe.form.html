@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -220,6 +222,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_replaceSubmit">replaceSubmit</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_sanitizeFormData">sanitizeFormData</a>
 
                                 
@@ -251,7 +260,7 @@
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code>selector</code>
                     
                 </li>
             
@@ -306,7 +315,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
+                        <code class="param-name">selector</code>
                         <span class="type">String | JQueryObject | DOMElement</span>
                     
 
@@ -331,7 +340,7 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.autofocusOnNext('.first-name, .last-name, .email');
-</code></pre><pre class="code prettyprint"><code>$('.first-name, .last-name, .email').kafe('autofocusOnNext');
+</code></pre><pre class="code prettyprint"><code>$('.first-name, .last-name, .email').kafe('form.autofocusOnNext');
 </code></pre>
             </div>
         </div>
@@ -411,7 +420,7 @@
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code>selector</code>
                     
                 </li>
             
@@ -484,7 +493,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
+                        <code class="param-name">selector</code>
                         <span class="type">String | JQueryObject | DOMElement</span>
                     
 
@@ -558,7 +567,7 @@
                 <pre class="code prettyprint"><code>kafe.form.maxLength('.twitter-post', 140, false, function(count) {
     kafe.log(count);
 });
-</code></pre><pre class="code prettyprint"><code>$('.twitter-post').kafe('maxLength', 140, false, function(count) {
+</code></pre><pre class="code prettyprint"><code>$('.twitter-post').kafe('form.maxLength', 140, false, function(count) {
     kafe.log(count);
 });
 </code></pre>
@@ -577,7 +586,7 @@
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code>selector</code>
                     
                 </li>
             
@@ -638,7 +647,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
+                        <code class="param-name">selector</code>
                         <span class="type">String | JQueryObject | DOMElement</span>
                     
 
@@ -680,7 +689,7 @@
                 <pre class="code prettyprint"><code>kafe.form.onEnter('.search-field', function(input) {
     $(input).parents('form').submit();
 });
-</code></pre><pre class="code prettyprint"><code>$('.search-field').kafe('onEnter', function(input) {
+</code></pre><pre class="code prettyprint"><code>$('.search-field').kafe('form.onEnter', function(input) {
     $(input).parents('form').submit();
 });
 </code></pre>
@@ -699,7 +708,7 @@
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code>selector</code>
                     
                 </li>
             
@@ -760,7 +769,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
+                        <code class="param-name">selector</code>
                         <span class="type">String | JQueryObject | DOMElement</span>
                     
 
@@ -803,7 +812,7 @@
                 <pre class="code prettyprint"><code>kafe.form.passwordStrength('.password', function(strengh) {
     kafe.log(strengh);
 });
-</code></pre><pre class="code prettyprint"><code>$('.password').kafe('passwordStrength', function(strengh) {
+</code></pre><pre class="code prettyprint"><code>$('.password').kafe('form.passwordStrength', function(strengh) {
     kafe.log(strengh);
 });
 </code></pre>
@@ -878,7 +887,7 @@
                 <li class="param">
                     
                         <code class="param-name optional">[selector]</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
+                        <span class="type">String</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
@@ -903,7 +912,105 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.placeholder('.search-field');
-</code></pre><pre class="code prettyprint"><code>$('.search-field').kafe('placeholder');
+</code></pre><pre class="code prettyprint"><code>$('.search-field').kafe('form.placeholder');
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_replaceSubmit" class="method item">
+    <h3 class="name"><code>replaceSubmit</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[selector=&#x27;input:submit&#x27;]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_form.js.html#l299"><code>kafe&#x2F;form.js:299</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Replace elements with a submit button</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[selector=&#x27;input:submit&#x27;]</code>
+                        <span class="type">String | JQueryObject | DOMElement</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Elements to replace</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>kafe.form.replaceSubmit();
+</code></pre><pre class="code prettyprint"><code>$('.Search input:submit').kafe('form.replaceSubmit');
 </code></pre>
             </div>
         </div>
@@ -920,7 +1027,7 @@
             
                 <li class="arg">
                     
-                        <code>elements</code>
+                        <code>selector</code>
                     
                 </li>
             
@@ -975,7 +1082,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">elements</code>
+                        <code class="param-name">selector</code>
                         <span class="type">String | JQueryObject | DOMElement</span>
                     
 
@@ -1000,7 +1107,7 @@
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>kafe.form.sanitizeFormData('#Form1');
-</code></pre><pre class="code prettyprint"><code>$('#Form1').kafe('sanitizeFormData');
+</code></pre><pre class="code prettyprint"><code>$('#Form1').kafe('form.sanitizeFormData');
 </code></pre>
             </div>
         </div>

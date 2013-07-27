@@ -10,7 +10,6 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	*/
 	var style = {};
 
-
 	/**
 	* Equalizes the height css property of every element in a selector. If no height is currently present, the method computes the height values before equalizing. Elements must be visible at the time or will be considered as having a height of 0.
 	*
@@ -23,7 +22,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @example
 	*	kafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
 	* @example
-	*	$('.products').kafe('equalHeight', { nbPerRow: 3, resetHeight: true });
+	*	$('.products').kafe('style.equalHeight', { nbPerRow: 3, resetHeight: true });
 	*/
 	style.equalHeight = function() {
 		var
@@ -69,7 +68,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @example
 	*	kafe.style.replaceHr('.page-content');
 	* @example
-	*	$('.page-content').kafe('replaceHr');
+	*	$('.page-content').kafe('style.replaceHr');
 	*/
 	style.replaceHr = function() {
 		var $e = (arguments[0]) ? $('hr:not(.kafe-replacehr-processed)', $(arguments[0])) : $('hr');
@@ -86,7 +85,7 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @example
 	*	kafe.style.vAlign('.menu-items > .label');
 	* @example
-	*	$('.menu-items > .label').kafe('vAlign');
+	*	$('.menu-items > .label').kafe('style.vAlign');
 	*/
 	style.vAlign = function(e, parent) {
 		$(e).each(function(){

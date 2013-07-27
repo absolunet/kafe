@@ -1,4 +1,4 @@
-kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefined) {
+window.kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefined) {
 	var
 		$       = kafe.dependencies.jQuery,
 		$Drupal = window.jQuery,

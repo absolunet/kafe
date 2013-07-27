@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -162,7 +164,6 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	*/
 	var url = {};
 
-
 	/**
 	* Parses a querystring as a key/value list and creates a javascript object.
 	*
@@ -170,13 +171,14 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Object} An object represention of the querystring.
 	* @example
-	* 	kafe.url.parseSearchParams(&#x27;?group=players&amp;team=blue&amp;ranking=3&#x27;);
-	* 	// returns Object {group: &quot;players&quot;, team: &quot;blue&quot;, ranking: &quot;3&quot;}
+	*	kafe.url.parseSearchParams(&#x27;?group=players&amp;team=blue&amp;ranking=3&#x27;);
+	*	// returns Object {group: &quot;players&quot;, team: &quot;blue&quot;, ranking: &quot;3&quot;}
 	*/
 	url.parseSearchParams = function(s) {
 		s = (s) ? s : window.location.search;
 		return _parseIt(s.toString().substring(1), &#x27;params&#x27;);
 	};
+
 
 	/**
 	* Parses a querystring as a path and creates an ordered array.
@@ -185,8 +187,8 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Array[String]} An array represention of the querystring path.
 	* @example
-	* 	kafe.url.parseSearchPath(&#x27;?/Players/Teams/Blue&#x27;);
-	* 	// returns [&quot;Players&quot;, &quot;Teams&quot;, &quot;Blue&quot;]
+	*	kafe.url.parseSearchPath(&#x27;?/Players/Teams/Blue&#x27;);
+	*	// returns [&quot;Players&quot;, &quot;Teams&quot;, &quot;Blue&quot;]
 	*/
 	url.parseSearchPath = function(s) {
 		s = (s) ? s : window.location.search;
@@ -201,13 +203,14 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hash string.
 	* @example
-	* 	kafe.url.parseHashParams(&#x27;#color=blue&amp;size=large&amp;extras=false&#x27;);
-	* 	// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}
+	*	kafe.url.parseHashParams(&#x27;#color=blue&amp;size=large&amp;extras=false&#x27;);
+	*	// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}
 	*/
 	url.parseHashParams = function(s) {
 		s = (s) ? s : window.location.hash;
 		return _parseIt(s.toString().substring(1), &#x27;params&#x27;);
 	};
+
 
 	/**
 	* Parses a hash string as a path and creates an ordered array.
@@ -216,8 +219,8 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Array[String]} An array represention of the hash path.
 	* @example
-	* 	kafe.url.parseHashPath(&#x27;#/clothing/man/shirts&#x27;);
-	* 	// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]
+	*	kafe.url.parseHashPath(&#x27;#/clothing/man/shirts&#x27;);
+	*	// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]
 	*/
 	url.parseHashPath = function(s) {
 		s = (s) ? s : window.location.hash;
@@ -232,13 +235,14 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hashbang.
 	* @example
-	* 	kafe.url.parseAjaxParams(&#x27;#!color=blue&amp;size=large&amp;extras=false&#x27;);
-	* 	// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}
+	*	kafe.url.parseAjaxParams(&#x27;#!color=blue&amp;size=large&amp;extras=false&#x27;);
+	*	// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}
 	*/
 	url.parseAjaxParams = function(s) {
 		s = (s) ? s : window.location.hash;
 		return (s.toString().substring(1,2) == &#x27;!&#x27;) ? _parseIt(s.toString().substring(2), &#x27;params&#x27;) : {};
 	};
+
 
 	/**
 	* Parses a hashbang (#!) as a path and creates an ordered array.
@@ -247,14 +251,13 @@ window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Array[String]} An array represention of the hashbang path.
 	* @example
-	* 	kafe.url.parseAjaxPath(&#x27;#!/clothing/man/shirts&#x27;);
-	* 	// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]
+	*	kafe.url.parseAjaxPath(&#x27;#!/clothing/man/shirts&#x27;);
+	*	// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]
 	*/
 	url.parseAjaxPath = function(s) {
 		s = (s) ? s : window.location.hash;
 		return (s.toString().substring(1,3) == &#x27;!/&#x27;) ? _parseIt(s.toString().substring(3), &#x27;path&#x27;) : [];
 	};
-
 
 
 	return url;

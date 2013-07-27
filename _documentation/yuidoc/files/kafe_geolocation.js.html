@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -177,26 +179,28 @@ window.kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0&#x27;, obj:(
 	*
 	* @method locate
 	* @param {Object} parameters Parameters for the current request.
-	* 	@param {String|jQueryObject|DOMElement} [parameters.msgContainer=undefined] Element used to show status messages.
-	* 	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
-	* 	@param {Function} [parameters.success=undefined] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
-	* 	@param {Function} [parameters.error=undefined] Callback triggered on geolocalization errors. The error message is passed as the first argument.
+	*	@param {String|jQueryObject|DOMElement} [parameters.selector] Element used to show status messages.
+	*	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
+	*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
+	*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
 	* @example
-	* 	kafe.geolocation.locate({
-	* 		msgContainer: &#x27;#GeoLocStatus&#x27;, lang: &#x27;en&#x27;,
-	* 		success: function(coords) {
-	* 			kafe.log(&#x27;latitude: &#x27; + coords.latitude);
-	* 			kafe.log(&#x27;longitude: &#x27; + coords.longitude);
-	* 		}
-	* 		error: function(msg) {
-	* 			kafe.log(&#x27;Cannot geoloc: &#x27; + msg);
-	* 		}
-	* 	});
+	*	kafe.geolocation.locate({
+	*		selector: &#x27;#GeoLocStatus&#x27;, lang: &#x27;en&#x27;,
+	*		success: function(coords) {
+	*			kafe.log(&#x27;latitude: &#x27; + coords.latitude);
+	*			kafe.log(&#x27;longitude: &#x27; + coords.longitude);
+	*		}
+	*		error: function(msg) {
+	*			kafe.log(&#x27;Cannot geoloc: &#x27; + msg);
+	*		}
+	*	});
+	* @example
+	*	$(&#x27;#GeoLocStatus&#x27;).kafe(&#x27;geolocation.locate&#x27;, {});
 	*/
 	geolocation.locate = function(options) {
 		var
 			d               = _dict[_lang(options.lang)],
-			$msg            = $(options.msgContainer),
+			$msg            = $(options.selector),
 			errorCallback   = options.error,
 			successCallback = options.success
 		;
@@ -241,6 +245,15 @@ window.kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0&#x27;, obj:(
 			}
 		}
 	};
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
+		&#x27;geolocation.locate&#x27;: function(self, parameters) {
+			geolocation.locate($.extend({}, parameters[0], {selector:self}));
+		}
+	});
+
 
 	return geolocation;
 

@@ -47,26 +47,28 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 	*
 	* @method locate
 	* @param {Object} parameters Parameters for the current request.
-	* 	@param {String|jQueryObject|DOMElement} [parameters.msgContainer=undefined] Element used to show status messages.
-	* 	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
-	* 	@param {Function} [parameters.success=undefined] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
-	* 	@param {Function} [parameters.error=undefined] Callback triggered on geolocalization errors. The error message is passed as the first argument.
+	*	@param {String|jQueryObject|DOMElement} [parameters.selector] Element used to show status messages.
+	*	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
+	*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
+	*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
 	* @example
-	* 	kafe.geolocation.locate({
-	* 		msgContainer: '#GeoLocStatus', lang: 'en',
-	* 		success: function(coords) {
-	* 			kafe.log('latitude: ' + coords.latitude);
-	* 			kafe.log('longitude: ' + coords.longitude);
-	* 		}
-	* 		error: function(msg) {
-	* 			kafe.log('Cannot geoloc: ' + msg);
-	* 		}
-	* 	});
+	*	kafe.geolocation.locate({
+	*		selector: '#GeoLocStatus', lang: 'en',
+	*		success: function(coords) {
+	*			kafe.log('latitude: ' + coords.latitude);
+	*			kafe.log('longitude: ' + coords.longitude);
+	*		}
+	*		error: function(msg) {
+	*			kafe.log('Cannot geoloc: ' + msg);
+	*		}
+	*	});
+	* @example
+	*	$('#GeoLocStatus').kafe('geolocation.locate', {});
 	*/
 	geolocation.locate = function(options) {
 		var
 			d               = _dict[_lang(options.lang)],
-			$msg            = $(options.msgContainer),
+			$msg            = $(options.selector),
 			errorCallback   = options.error,
 			successCallback = options.success
 		;
@@ -111,6 +113,15 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 			}
 		}
 	};
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery('', {
+		'geolocation.locate': function(self, parameters) {
+			geolocation.locate($.extend({}, parameters[0], {selector:self}));
+		}
+	});
+
 
 	return geolocation;
 

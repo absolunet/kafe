@@ -12,6 +12,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "kafe.number",
         "kafe.plugin.carousel",
         "kafe.plugin.menu",
+        "kafe.plugin.qrcode",
         "kafe.plugin.sticky",
         "kafe.storage",
         "kafe.string",

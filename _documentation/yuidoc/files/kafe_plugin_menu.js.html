@@ -63,6 +63,8 @@
             
                 <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
             
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
                 <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
             
                 <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
@@ -134,25 +136,23 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 	;
 
 
-
 	/**
 	* ### Version 1.0
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
 	* 
-	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (&#x60;kafe-quickmenu-open&#x60;) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
+	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (&#x60;kafemenu-open&#x60;) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
 	* @module kafe.plugin
 	* @class kafe.plugin.menu
 	*/
 	var menu = {};
 
-
 	/**
 	* Attach behaviors to the menu structure.
 	*
 	* @method init
 	* @param {Object} options Initial configurations.
-	*	@param {jQuerySelector} options.container Root element of the menu strusture.
+	*	@param {String|jQueryObject|DOMElement} options.selector Root element of the menu structure.
 	*	@param {String} [options.handle=&#x27;li&#x27;] Children element of the container that will serve as a handle to open and close the submenu.
 	*	@param {String} [options.submenus=&#x27;ul&#x27;] Children element of the handle that will serve as a submenu, opening and closing when the handle is used.
 	*	@param {String} [options.animation=&#x27;slide&#x27;] Animation used when opening and closing the submenus.
@@ -186,7 +186,7 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	kafe.plugin.menu.init({ container: &#x27;#main-menu &gt; ul&#x27; });
+	*	kafe.plugin.menu.init({ selector: &#x27;#main-menu &gt; ul&#x27; });
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
@@ -196,7 +196,7 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 		var
 			options = (arguments) ? arguments[0] : {},
 			c = {
-				$menu:         $(options.container),
+				$menu:         $(options.selector),
 				handle:        (options.handle) ? options.handle : &#x27;li&#x27;,
 				submenus:      (options.submenus) ? options.submenus : &#x27;ul&#x27;,
 				animation:     (options.animation) ? options.animation : &#x27;slide&#x27;,
@@ -220,12 +220,12 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data(&#x27;kafe-quickmenu-timer&#x27;) !== undefined) {
-					clearTimeout($sub.data(&#x27;kafe-quickmenu-timer&#x27;));
+				if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
+					clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
 				}
 
-				$parent.addClass(&#x27;kafe-quickmenu-open&#x27;);
-				$sub.data(&#x27;kafe-quickmenu-timer&#x27;, setTimeout(function() {
+				$parent.addClass(&#x27;kafemenu-open&#x27;);
+				$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
 					if (!!c.enterCallback) {
 						c.enterCallback($sub);
 					}
@@ -247,13 +247,13 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data(&#x27;kafe-quickmenu-timer&#x27;) !== undefined) {
-					clearTimeout($sub.data(&#x27;kafe-quickmenu-timer&#x27;));
+				if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
+					clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
 				}
 
 				if ($sub.size() &gt; 0) {
-					$sub.data(&#x27;kafe-quickmenu-timer&#x27;, setTimeout(function() {
-						$parent.removeClass(&#x27;kafe-quickmenu-open&#x27;);
+					$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
+						$parent.removeClass(&#x27;kafemenu-open&#x27;);
 						if (!!c.leaveCallback) {
 							c.leaveCallback($sub);
 						}
@@ -269,7 +269,7 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 						}
 					}, c.closeDelay));
 				} else {
-					$parent.removeClass(&#x27;kafe-quickmenu-open&#x27;);
+					$parent.removeClass(&#x27;kafemenu-open&#x27;);
 					if (!!c.leaveCallback) {
 						c.leaveCallback($sub);
 					}
@@ -282,7 +282,7 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;Menu&#x27;, {
 		init: function(self, parameters) {
-			menu.init($.extend({}, parameters[0], {container:self}));
+			menu.init($.extend({}, parameters[0], {selector:self}));
 		}
 	});
 
