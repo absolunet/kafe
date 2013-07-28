@@ -281,8 +281,8 @@ window.kafe.plug({name:&#x27;menu&#x27;, version:&#x27;1.0&#x27;, obj:(function(
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;Menu&#x27;, {
-		init: function(self, parameters) {
-			menu.init($.extend({}, parameters[0], {selector:self}));
+		init: function(obj, parameters) {
+			menu.init($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
 

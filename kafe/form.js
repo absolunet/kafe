@@ -319,26 +319,26 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'form.placeholder': function(self, parameters) {
-			form.placeholder(self);
+		'form.placeholder': function(obj, parameters) {
+			form.placeholder(obj);
 		},
-		'form.onEnter': function(self, parameters) {
-			form.onEnter(self, parameters[0]);
+		'form.onEnter': function(obj, parameters) {
+			form.onEnter(obj, parameters[0]);
 		},
-		'form.autofocusOnNext': function(self, parameters) {
-			form.autofocusOnNext(self);
+		'form.autofocusOnNext': function(obj, parameters) {
+			form.autofocusOnNext(obj);
 		},
-		'form.maxLength': function(self, parameters) {
-			form.maxLength(self, parameters[0]);
+		'form.maxLength': function(obj, parameters) {
+			form.maxLength(obj, parameters[0]);
 		},
-		'form.passwordStrength': function(self, parameters) {
-			form.passwordStrength(self, parameters[0]);
+		'form.passwordStrength': function(obj, parameters) {
+			form.passwordStrength(obj, parameters[0]);
 		},
-		'form.sanitizeFormData': function(self, parameters) {
-			form.sanitizeFormData(self);
+		'form.sanitizeFormData': function(obj, parameters) {
+			form.sanitizeFormData(obj);
 		},
-		'form.replaceSubmit': function(self, parameters) {
-			form.replaceSubmit(self);
+		'form.replaceSubmit': function(obj, parameters) {
+			form.replaceSubmit(obj);
 		}
 	});
 

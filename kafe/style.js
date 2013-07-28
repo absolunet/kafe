@@ -100,14 +100,14 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'style.equalHeight': function(self, parameters) {
-			style.equalHeight(self, parameters[0]);
+		'style.equalHeight': function(obj, parameters) {
+			style.equalHeight(obj, parameters[0]);
 		},
-		'style.replaceHr': function(self, parameters) {
-			style.replaceHr(self);
+		'style.replaceHr': function(obj, parameters) {
+			style.replaceHr(obj);
 		},
-		'style.vAlign': function(self, parameters) {
-			style.replaceHr(self, parameters[0]);
+		'style.vAlign': function(obj, parameters) {
+			style.replaceHr(obj, parameters[0]);
 		}
 	});
 

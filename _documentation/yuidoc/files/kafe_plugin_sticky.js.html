@@ -299,8 +299,8 @@ window.kafe.plug({name:&#x27;sticky&#x27;, version:&#x27;0.1&#x27;, obj:(functio
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;Sticky&#x27;, {
-		init: function(self, parameters) {
-			sticky.init($.extend({}, parameters[0], {selector:self}));
+		init: function(obj, parameters) {
+			sticky.init($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
 

@@ -132,97 +132,98 @@
     <pre class="code prettyprint linenums">
 ﻿window.kafe.plug({name:&#x27;carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(K,undefined){
 	var
-		$         = kafe.dependencies.jQuery,
-		carousels = {},
+		$ = kafe.dependencies.jQuery,
 
 		// refresh active/inactive controls, and statuses
-		_refresh = function(c) {
+		refresh = function(self) {
+			var
+				__ = self.__,
+				none = function(e) { e.preventDefault(); }
+			;
 
-			var none = function(e) { e.preventDefault(); };
-
-			if (!c.wrap) {
+			if (!__.wrap) {
 
 				// précédent
-				if (c.curr === 0) {
-					c.$start
+				if (__.curr === 0) {
+					__.$start
 						.addClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.startClick)
+						.off(&#x27;click&#x27;, __.startClick)
 						.on(&#x27;click&#x27;,  none)
 					;
-					c.$previous
+					__.$previous
 						.addClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.previousClick)
+						.off(&#x27;click&#x27;, __.previousClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 				} else {
-					c.$start
+					__.$start
 						.removeClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.startClick)
-						.on(&#x27;click&#x27;,  c.startClick)
+						.off(&#x27;click&#x27;, __.startClick)
+						.on(&#x27;click&#x27;,  __.startClick)
 					;
-					c.$previous
+					__.$previous
 						.removeClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.previousClick)
-						.on(&#x27;click&#x27;,  c.previousClick)
+						.off(&#x27;click&#x27;, __.previousClick)
+						.on(&#x27;click&#x27;,  __.previousClick)
 					;
 				}
 
 				// next
-				if (c.curr == (c.total-1)) {
-					c.$next
+				if (__.curr == (__.total-1)) {
+					__.$next
 						.addClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.nextClick)
+						.off(&#x27;click&#x27;, __.nextClick)
 						.on(&#x27;click&#x27;,  none)
 					;
-					c.$end
+					__.$end
 						.addClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.endClick)
+						.off(&#x27;click&#x27;, __.endClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 				} else {
-					c.$next
+					__.$next
 						.removeClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.nextClick)
-						.on(&#x27;click&#x27;,  c.nextClick)
+						.off(&#x27;click&#x27;, __.nextClick)
+						.on(&#x27;click&#x27;,  __.nextClick)
 					;
-					c.$end
+					__.$end
 						.removeClass(&#x27;kafecarousel-inactive&#x27;)
-						.off(&#x27;click&#x27;, c.endClick)
-						.on(&#x27;click&#x27;,  c.endClick)
+						.off(&#x27;click&#x27;, __.endClick)
+						.on(&#x27;click&#x27;,  __.endClick)
 					;
 				}
 			}
 
 
 			// position
-			c.$position.html(c.curr+1);
+			__.$position.html(__.curr+1);
 
 			// status
-			c.$status.html(&#x27;&#x27;);
-			c.$statusNum.html(&#x27;&#x27;);
-			for (var i=0; i&lt;c.total; ++i) {
-				if (i == c.curr) {
-					c.$status.append(&#x27;&lt;strong&gt;&#x27;+c.statusBullet+&#x27;&lt;/strong&gt;&#x27;);
-					c.$statusNum.append(&#x27;&lt;strong&gt;&#x27;+(i+1)+&#x27;&lt;/strong&gt;&#x27;);
+			__.$status.html(&#x27;&#x27;);
+			__.$statusNum.html(&#x27;&#x27;);
+			for (var i=0; i&lt;__.total; ++i) {
+				if (i == __.curr) {
+					__.$status.append(&#x27;&lt;strong&gt;&#x27;+__.statusBullet+&#x27;&lt;/strong&gt;&#x27;);
+					__.$statusNum.append(&#x27;&lt;strong&gt;&#x27;+(i+1)+&#x27;&lt;/strong&gt;&#x27;);
 				} else {
-					if(!!c.statusLink) {
-						c.$status.append(
+					if(!!__.statusLink) {
+						__.$status.append(
 							$(&#x27;&lt;a&gt;&#x27;)
 								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
 								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
-								.on(&#x27;click&#x27;,c.itemSimpleClick)
-								.html(c.statusBullet)
+								.on(&#x27;click&#x27;,__.itemSimpleClick)
+								.html(__.statusBullet)
 						);
-						c.$statusNum.append(
+						__.$statusNum.append(
 							$(&#x27;&lt;a&gt;&#x27;)
 								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
 								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
-								.on(&#x27;click&#x27;,c.itemSimpleClick)
+								.on(&#x27;click&#x27;,__.itemSimpleClick)
 								.html(i+1)
 						);
 					} else {
-						c.$status.append(c.statusBullet);
-						c.$statusNum.append(i+1);
+						__.$status.append(__.statusBullet);
+						__.$statusNum.append(i+1);
 					}
 				}
 			}
@@ -230,21 +231,22 @@
 
 
 		// change the slide
-		_change = function(c, target) {
+		change = function(self, target) {
+			var __ = self.__;
 
-			if (!!c.changing) {
+			if (!!__.changing) {
 				return false;
 			}
-			if (target == c.curr) {
+			if (target == __.curr) {
 				return false;
 			}
-			c.changing = true;
-			c.slideStopAuto();
+			__.changing = true;
+			__.slideStopAuto();
 
 			var callbackData = {
 				action: (Number(target) == target) ? &#x27;item&#x27; : target,
 				source: {
-					position: c.curr+1
+					position: __.curr+1
 				},
 				target: {}
 			};
@@ -252,46 +254,46 @@
 			var way;
 
 			// current li
-			var $liCurr = c.$Main.children(&#x27;:nth-child(&#x27;+(c.curr+1)+&#x27;)&#x27;);
+			var $liCurr = __.$MainItems.eq(__.curr);
 
 			// prev/next
 			if (target == &#x27;prev&#x27; || target == &#x27;next&#x27;) {
 
 				way = (target == &#x27;prev&#x27;) ? -1 : 1;
 
-				c.curr =
-					(c.wrap) ?
-						(c.curr === 0 &amp;&amp; way == -1) ?
-							(c.total-1)
-							: ((c.curr + way) % c.total)
-						: (c.curr + way)
+				__.curr =
+					(__.wrap) ?
+						(__.curr === 0 &amp;&amp; way == -1) ?
+							(__.total-1)
+							: ((__.curr + way) % __.total)
+						: (__.curr + way)
 				;
 
 			// item
 			} else {
 				target = Number(target);
 
-				way = (target &lt; c.curr) ? -1 : 1;
-				c.curr = target;
+				way = (target &lt; __.curr) ? -1 : 1;
+				__.curr = target;
 			}
 
 			// new li
-			var $liNew = c.$Main.children(&#x27;:nth-child(&#x27;+(c.curr+1)+&#x27;)&#x27;);
+			var $liNew = __.$MainItems.eq(__.curr);
 
 
 			// add callback data
 			callbackData.source.obj      = $liCurr.get(0);
-			callbackData.target.position = c.curr+1;
+			callbackData.target.position = __.curr+1;
 			callbackData.target.obj      = $liNew.get(0);
 
-			if (!!c.preSwitchCallback) {
-				c.preSwitchCallback(callbackData);
+			if (!!__.preSwitchCallback) {
+				__.preSwitchCallback(callbackData);
 			}
 
 
 
 			// transitions
-			switch (c.transition) {
+			switch (__.transition) {
 
 				// fade
 				case &#x27;fade&#x27;:
@@ -299,9 +301,9 @@
 
 					$liNew
 						.css(&#x27;z-index&#x27;,2)
-						.fadeIn(c.speed, function(){
+						.fadeIn(__.speed, function(){
 							$liCurr.hide();
-							c.changing = false;
+							__.changing = false;
 						})
 					;
 				break;
@@ -310,8 +312,8 @@
 				// move right-bottom &gt; top-left
 				/*
 				case &#x27;slideTopLeft&#x27;: 
-					var height = c.$Main.height() + &#x27;px&#x27;;
-					var width = c.$Main.width() + &#x27;px&#x27;;
+					var height = __.$Main.height() + &#x27;px&#x27;;
+					var width = __.$Main.width() + &#x27;px&#x27;;
 
 					$liCurr.animate({
 						top:  (way == 1) ? &#x27;-&#x27;+height : height,
@@ -332,14 +334,14 @@
 				// slide horizontal
 				case &#x27;slideUp&#x27;:
 				case &#x27;slideDown&#x27;:
-					way = (c.transition == &#x27;slideDown&#x27;) ? -way : way;
+					way = (__.transition == &#x27;slideDown&#x27;) ? -way : way;
 
-					var height = c.$Main.height() + &#x27;px&#x27;;
+					var height = __.$Main.height() + &#x27;px&#x27;;
 
 					$liCurr.animate(
 						{ top: (way == 1) ? &#x27;-&#x27;+height : height},
-						c.speed,
-						function() { $(this).hide(); c.changing = false; }
+						__.speed,
+						function() { $(this).hide(); __.changing = false; }
 					);
 
 					$liNew
@@ -349,7 +351,7 @@
 						})
 						.animate({
 							top: &#x27;0px&#x27;
-						},c.speed)
+						},__.speed)
 					;
 				break;
 
@@ -357,14 +359,14 @@
 				//case &#x27;slideLeft&#x27;:
 				//case &#x27;slideRight&#x27;:
 				default:
-					way = (c.transition == &#x27;slideRight&#x27;) ? -way : way;
+					way = (__.transition == &#x27;slideRight&#x27;) ? -way : way;
 
-					var width = c.$Main.width() + &#x27;px&#x27;;
+					var width = __.$Main.width() + &#x27;px&#x27;;
 
 					$liCurr.animate(
 						{ left: (way == 1) ? &#x27;-&#x27;+width : width },
-						c.speed,
-						function() { $(this).hide(); c.changing = false; }
+						__.speed,
+						function() { $(this).hide(); __.changing = false; }
 					);
 
 					$liNew
@@ -374,27 +376,21 @@
 						})
 						.animate({
 							left: &#x27;0px&#x27;
-						},c.speed)
+						},__.speed)
 					;
 				break;
 			}
 
-			_refresh(c);
+			refresh(self);
 
 			// éventuellement positionner dans le animate callback
-			if (!!c.postSwitchCallback) {
-				c.postSwitchCallback(callbackData);
+			if (!!__.postSwitchCallback) {
+				__.postSwitchCallback(callbackData);
 			}
 
-			c.slideStartAuto();
+			__.slideStartAuto();
 		}
 	;
-
-
-
-
-
-
 
 
 
@@ -409,15 +405,15 @@
 	* @module kafe.plugin
 	* @class kafe.plugin.carousel
 	*/
-	var carousel = {};
+	var carousel = kafe.fn.createInstantiableObject();
 
 	/**
 	* Attach behaviors to the carousel structure.
 	*
-	* @method init
+	* @method __constructor
 	* @param {Object} options Initial configurations
 	*	@param {String|jQueryObject|DOMElement} options.selector The slide container.
-	*	@param {Boolean} [options.wrap=false] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
+	*	@param {Boolean} [options.wrap=true] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
 	*	@param {String} [options.transition=&#x27;slideLeft&#x27;] Animation used during a transition. Possible values are &#x60;slideLeft&#x60;, &#x60;slideRight&#x60;, &#x60;slideUp&#x60;, &#x60;slideDown&#x60; and &#x60;fade&#x60;.
 	*	@param {Number} [options.speed=500] Duration (in milliseconds) of the transition.
 	*	@param {Number} [options.startId=1] Index of the starting slide, starting at 1.
@@ -451,172 +447,167 @@
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	kafe.plugin.carousel.init({ selector: &#x27;#home-slides&#x27; });
+	*	var myCarousel = kafe.plugin.carousel({ selector: &#x27;#home-slides&#x27; });
 	* @example
 	*	// Carousels can be remotely interacted with using custom data attributes...
-	*	kafe.plugin.carousel.init({ selector: &#x27;#home-slides&#x27; });
+	*	var myCarousel = kafe.plugin.carousel({ selector: &#x27;#home-slides&#x27; });
 	* @example
 	*	// The jQuery alternative...
 	*	$(&#x27;#home-slides&#x27;).kafeCarousel(&#x27;init&#x27;, {});
 	*/
-	carousel.init = function() {
-		var
-			options = (arguments) ? arguments[0] : {},
+	carousel.prototype.__constructor = function(options) {
+		options = (options) ? options : {};
 
-			c = {
-				$Main:        $(options.selector),
-				wrap:         !!options.wrap,
-				transition:   (options.transition)      ? options.transition : &#x27;slideLeft&#x27;,
-				speed:        (Number(options.speed))   ? Number(options.speed)   : 500,
-				startId:      (Number(options.startId)) ? Number(options.startId) : 1,
-				autointerval: (
-					(options.autostart) ? (
-						(Number(options.autostart.interval)) ?
-							Number(options.autostart.interval)
-							: 3000)
-						: undefined
-				),
-				preSwitchCallback:    (typeof(options.preSwitchCallback)  == &#x27;function&#x27;) ? options.preSwitchCallback  : undefined,
-				postSwitchCallback:   (typeof(options.postSwitchCallback) == &#x27;function&#x27;) ? options.postSwitchCallback : undefined,
-				initCompleteCallback: (typeof(options.initCompleteCallback)  == &#x27;function&#x27;) ? options.initCompleteCallback  : undefined,
-				statusLink:           !!options.statusLink,
-				statusBullet:         (options.statusBullet) ? options.statusBullet : &#x27;&amp;bull&#x27;
-			}
-		;
+		var self = this, __ = self.__;
 
-		// Liste
-		if (!c.$Main.length) {
-			return false;
-		} else {
-			c.id = c.$Main.data(&#x27;kafecarousel-id&#x27;);
-		}
+		__.$Main        = $(options.selector).data(&#x27;kafecarousel-self&#x27;, self);
+		__.wrap         = (options.wrap === false) ? false : true;
+		__.transition   = (options.transition)      ? options.transition      : &#x27;slideLeft&#x27;;
+		__.speed        = (Number(options.speed))   ? Number(options.speed)   : 500;
+		__.startId      = (Number(options.startId)) ? Number(options.startId) : 1;
+		__.autointerval = (
+			(options.autostart) ? (
+				(Number(options.autostart.interval)) ?
+					Number(options.autostart.interval)
+					: 3000)
+				: undefined
+		);
+		__.preSwitchCallback    = (typeof(options.preSwitchCallback)  == &#x27;function&#x27;)    ? options.preSwitchCallback    : undefined;
+		__.postSwitchCallback   = (typeof(options.postSwitchCallback) == &#x27;function&#x27;)    ? options.postSwitchCallback   : undefined;
+		__.initCompleteCallback = (typeof(options.initCompleteCallback)  == &#x27;function&#x27;) ? options.initCompleteCallback : undefined;
+		__.statusLink           = !!options.statusLink;
+		__.statusBullet         = (options.statusBullet) ? options.statusBullet : &#x27;&amp;bull&#x27;;
 
-		c.$MainItems     = c.$Main.children();
-		c.$MainFirstItem = c.$MainItems.eq(0);
-		c.total          = c.$MainItems.length;
+
+		// elements
+		__.id             = __.$Main.data(&#x27;kafecarousel-id&#x27;);
+		__.$MainItems     = __.$Main.children();
+		__.$MainFirstItem = __.$MainItems.eq(0);
+		__.total          = __.$MainItems.length;
 
 		// nav
-		c.$all        = $(&#x27;[data-kafecarousel-id=&quot;&#x27;+c.id+&#x27;&quot;]&#x27;);
-		c.$nav        = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;nav&quot;]&#x27;);
-		c.$start      = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;start&quot;]&#x27;);
-		c.$previous   = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;prev&quot;]&#x27;);
-		c.$next       = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;next&quot;]&#x27;);
-		c.$end        = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;end&quot;]&#x27;);
-		c.$items      = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;items&quot;]&#x27;);
-		c.$itemsimple = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;item&quot;]&#x27;);
-		c.$play       = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;play&quot;]&#x27;);
-		c.$pause      = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;pause&quot;]&#x27;);
+		__.$all        = $(&#x27;[data-kafecarousel-id=&quot;&#x27;+__.id+&#x27;&quot;]&#x27;);
+		__.$nav        = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;nav&quot;]&#x27;);
+		__.$start      = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;start&quot;]&#x27;);
+		__.$previous   = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;prev&quot;]&#x27;);
+		__.$next       = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;next&quot;]&#x27;);
+		__.$end        = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;end&quot;]&#x27;);
+		__.$items      = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;items&quot;]&#x27;);
+		__.$itemsimple = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;item&quot;]&#x27;);
+		__.$play       = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;play&quot;]&#x27;);
+		__.$pause      = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;pause&quot;]&#x27;);
 
 		// position
-		c.$position  = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;position&quot;]&#x27;);
-		c.$total     = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;total&quot;]&#x27;);
-		c.$status    = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;status&quot;]&#x27;);
-		c.$statusNum = c.$all.filter(&#x27;[data-kafecarousel-action=&quot;status-num&quot;]&#x27;);
+		__.$position  = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;position&quot;]&#x27;);
+		__.$total     = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;total&quot;]&#x27;);
+		__.$status    = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;status&quot;]&#x27;);
+		__.$statusNum = __.$all.filter(&#x27;[data-kafecarousel-action=&quot;status-num&quot;]&#x27;);
 
 		// désactiver tout si un seul item
-		if (c.total == 1) {
-			c.$nav.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$previous.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$next.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$items.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$itemsimple.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$position.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$total.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$status.addClass(&#x27;kafecarousel-none&#x27;);
-			c.$statusNum.addClass(&#x27;kafecarousel-none&#x27;);
+		if (__.total == 1) {
+			__.$nav.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$previous.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$next.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$items.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$itemsimple.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$position.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$total.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$status.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$statusNum.addClass(&#x27;kafecarousel-none&#x27;);
 
 		// sinon préparer carousel
 		} else {
 
 			// initial
-			c.curr     = c.startId-1;
-			c.changing = false;
+			__.curr     = __.startId-1;
+			__.changing = false;
 
 			// general events				
-			c.startClick = function(e) {
+			__.startClick = function(e) {
 				e.preventDefault();
-				_change(c, 0);
+				change(self, 0);
 			};
 
-			c.previousClick = function(e) {
+			__.previousClick = function(e) {
 				e.preventDefault();
-				_change(c, &#x27;prev&#x27;);
+				change(self, &#x27;prev&#x27;);
 			};
 
-			c.nextClick = function(e) {
+			__.nextClick = function(e) {
 				e.preventDefault();
-				_change(c, &#x27;next&#x27;);
+				change(self, &#x27;next&#x27;);
 			};
 
-			c.endClick = function(e) {
+			__.endClick = function(e) {
 				e.preventDefault();
-				_change(c, c.total-1);
+				change(self, __.total-1);
 			};
 
-			c.itemSimpleClick = function(e) {
+			__.itemSimpleClick = function(e) {
 				e.preventDefault();
-				_change(c, $(this).data(&#x27;kafecarousel-itemid&#x27;) - 1);
+				change(self, $(this).data(&#x27;kafecarousel-itemid&#x27;) - 1);
 			};
 
-			c.playClick = function(e) {
+			__.playClick = function(e) {
 				e.preventDefault();
-				c.AutoRunning = true;
-				c.slideStartAuto();
+				__.AutoRunning = true;
+				__.slideStartAuto();
 			};
 
-			c.pauseClick = function(e) {
+			__.pauseClick = function(e) {
 				e.preventDefault();
-				c.AutoRunning = false;
-				c.slideStopAuto();
+				__.AutoRunning = false;
+				__.slideStopAuto();
 			};
 
-			c.slideStartAuto = function() {
-				if (c.AutoRunning) {
-					c.Timeout = setTimeout(function(){ _change(c, &#x27;next&#x27;, true); }, c.autointerval);
+			__.slideStartAuto = function() {
+				if (__.AutoRunning) {
+					__.Timeout = setTimeout(function(){ change(self, &#x27;next&#x27;, true); }, __.autointerval);
 				}
 			};
 
-			c.slideStopAuto = function() {
-				clearTimeout(c.Timeout);
-				c.Timeout = undefined;
+			__.slideStopAuto = function() {
+				clearTimeout(__.Timeout);
+				__.Timeout = undefined;
 			};
 
 
 
 
 			// on events
-			c.$start.on(&#x27;click&#x27;,c.startClick);
-			c.$previous.on(&#x27;click&#x27;,c.previousClick);
-			c.$next.on(&#x27;click&#x27;,c.nextClick);
-			c.$end.on(&#x27;click&#x27;,c.endClick);
-			c.$itemsimple.on(&#x27;click&#x27;,c.itemSimpleClick);
+			__.$start.on(&#x27;click&#x27;,__.startClick);
+			__.$previous.on(&#x27;click&#x27;,__.previousClick);
+			__.$next.on(&#x27;click&#x27;,__.nextClick);
+			__.$end.on(&#x27;click&#x27;,__.endClick);
+			__.$itemsimple.on(&#x27;click&#x27;,__.itemSimpleClick);
 
-			c.$items.children().each(function(i) {
+			__.$items.children().each(function(i) {
 				$(this).on(&#x27;click&#x27;,function(e){
 					e.preventDefault();
-					_change(c, i);
+					change(self, i);
 				});
 			});
 
-			c.$play.on(&#x27;click&#x27;,c.playClick);
-			c.$pause.on(&#x27;click&#x27;,c.pauseClick);
+			__.$play.on(&#x27;click&#x27;,__.playClick);
+			__.$pause.on(&#x27;click&#x27;,__.pauseClick);
 
-			c.$MainItems.on({
-				mouseenter: c.slideStopAuto,
-				mouseleave: c.slideStartAuto
+			__.$MainItems.on({
+				mouseenter: __.slideStopAuto,
+				mouseleave: __.slideStartAuto
 			});
 
 
 
 
 			// intialiser look
-			c.$total.html(c.total);
-			_refresh(c);
+			__.$total.html(__.total);
+			refresh(self);
 
-			c.$MainItems.hide();
-			c.$Main.children(&#x27;:nth-child(&#x27;+c.startId+&#x27;)&#x27;).show();
+			__.$MainItems.hide()
+				.eq(__.startId-1).show()
+			;
 
-			switch (c.transition) {
+			switch (__.transition) {
 				// fade
 				case &#x27;fade&#x27;:
 				break;
@@ -625,39 +616,34 @@
 				// move vertical
 				case &#x27;slideUp&#x27;:
 				case &#x27;slideDown&#x27;:
-					c.$MainItems.css({
+					__.$MainItems.css({
 						left: &#x27;0px&#x27;
 					});
-					c.$MainFirstItem.css(&#x27;top&#x27;,&#x27;0px&#x27;);
+					__.$MainFirstItem.css(&#x27;top&#x27;,&#x27;0px&#x27;);
 				break;
 
 				// move horizontal
 				//case &#x27;slideLeft&#x27;:
 				//case &#x27;slideRight&#x27;:
 				default:
-					c.$MainItems.css({
+					__.$MainItems.css({
 						top: &#x27;0px&#x27;
 					});
-					c.$MainFirstItem.css(&#x27;left&#x27;,&#x27;0px&#x27;);
+					__.$MainFirstItem.css(&#x27;left&#x27;,&#x27;0px&#x27;);
 				break;
 			}
 
 
 			// autostart	
-			if (c.autointerval !== undefined) {
-				c.AutoRunning = true;
-				c.slideStartAuto();
+			if (__.autointerval !== undefined) {
+				__.AutoRunning = true;
+				__.slideStartAuto();
 			}
-
-
-			// Ajouter à la liste
-			carousels[c.id] = c;
-
 		}
 
 		// Init. Completed callback
-		if (!!c.initCompleteCallback) {
-			c.initCompleteCallback(c);
+		if (!!__.initCompleteCallback) {
+			__.initCompleteCallback(self);
 		}
 	};
 
@@ -666,32 +652,32 @@
 	* Manually call a slide change
 	*
 	* @method change
-	* @param {String} id Carousel &#x60;data-kafecarousel-id&#x60; id
 	* @param {String|Number} target Action or 1-based slide position
 	*
 	* @example
 	*	// Go to next slide
-	*	kafe.plugin.carousel.change(&#x27;home-news&#x27;, &#x27;next&#x27;);
+	*	myCarousel.change(&#x27;next&#x27;);
 	* @example
 	*	// Go to first slide 
-	*	kafe.plugin.carousel.change(&#x27;home-news&#x27;, 1);
+	*	myCarousel.change(1);
 	* @example
 	*	// The jQuery alternative...
 	*	$(&#x27;#home-slides&#x27;).kafeCarousel(&#x27;change&#x27;, 1);
 	*/
-	carousel.change = function(id, target) {
-		return _change(carousels[id], (Number(target) == target) ? target-1 : target);
+	carousel.prototype.change = function(target) {
+		var self = this, __ = self.__;
+		return change(self, (Number(target) == target) ? target-1 : target);
 	};
 
 
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;Carousel&#x27;, {
-		init: function(self, parameters) {
-			carousel.init($.extend({}, parameters[0], {selector:self}));
+		init: function(obj, parameters) {
+			carousel($.extend({}, parameters[0], {selector:obj}));
 		},
-		change: function(self, parameters) {
-			carousel.change($(self).data(&#x27;kafecarousel-id&#x27;), parameters[0]);
+		change: function(obj, parameters) {
+			$(obj).data(&#x27;kafecarousel-self&#x27;).change(parameters[0]);
 		}
 	});
 

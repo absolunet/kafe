@@ -199,10 +199,13 @@ window.kafe = (function(undefined){
 		createInstantiableObject: function() {
 			return function(args){
 				if (this instanceof arguments.callee) {
-					if (typeof this.init == 'function')
-						this.init.apply(this, (args.callee) ? args : arguments);
-				} else
+					if (typeof this.__constructor == 'function') {
+						this.__ = {};
+						this.__constructor.apply(this, (args.callee) ? args : arguments);
+					}
+				} else {
 					return new arguments.callee(arguments);
+				}
 			};
 		},
 

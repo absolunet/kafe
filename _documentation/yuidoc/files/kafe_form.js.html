@@ -451,26 +451,26 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
-		&#x27;form.placeholder&#x27;: function(self, parameters) {
-			form.placeholder(self);
+		&#x27;form.placeholder&#x27;: function(obj, parameters) {
+			form.placeholder(obj);
 		},
-		&#x27;form.onEnter&#x27;: function(self, parameters) {
-			form.onEnter(self, parameters[0]);
+		&#x27;form.onEnter&#x27;: function(obj, parameters) {
+			form.onEnter(obj, parameters[0]);
 		},
-		&#x27;form.autofocusOnNext&#x27;: function(self, parameters) {
-			form.autofocusOnNext(self);
+		&#x27;form.autofocusOnNext&#x27;: function(obj, parameters) {
+			form.autofocusOnNext(obj);
 		},
-		&#x27;form.maxLength&#x27;: function(self, parameters) {
-			form.maxLength(self, parameters[0]);
+		&#x27;form.maxLength&#x27;: function(obj, parameters) {
+			form.maxLength(obj, parameters[0]);
 		},
-		&#x27;form.passwordStrength&#x27;: function(self, parameters) {
-			form.passwordStrength(self, parameters[0]);
+		&#x27;form.passwordStrength&#x27;: function(obj, parameters) {
+			form.passwordStrength(obj, parameters[0]);
 		},
-		&#x27;form.sanitizeFormData&#x27;: function(self, parameters) {
-			form.sanitizeFormData(self);
+		&#x27;form.sanitizeFormData&#x27;: function(obj, parameters) {
+			form.sanitizeFormData(obj);
 		},
-		&#x27;form.replaceSubmit&#x27;: function(self, parameters) {
-			form.replaceSubmit(self);
+		&#x27;form.replaceSubmit&#x27;: function(obj, parameters) {
+			form.replaceSubmit(obj);
 		}
 	});
 

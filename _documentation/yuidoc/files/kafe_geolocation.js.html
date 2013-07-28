@@ -249,8 +249,8 @@ window.kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0&#x27;, obj:(
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
-		&#x27;geolocation.locate&#x27;: function(self, parameters) {
-			geolocation.locate($.extend({}, parameters[0], {selector:self}));
+		&#x27;geolocation.locate&#x27;: function(obj, parameters) {
+			geolocation.locate($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
 

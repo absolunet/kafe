@@ -232,14 +232,14 @@ window.kafe.bonify({name:&#x27;style&#x27;, version:&#x27;1.3&#x27;, obj:(functi
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
-		&#x27;style.equalHeight&#x27;: function(self, parameters) {
-			style.equalHeight(self, parameters[0]);
+		&#x27;style.equalHeight&#x27;: function(obj, parameters) {
+			style.equalHeight(obj, parameters[0]);
 		},
-		&#x27;style.replaceHr&#x27;: function(self, parameters) {
-			style.replaceHr(self);
+		&#x27;style.replaceHr&#x27;: function(obj, parameters) {
+			style.replaceHr(obj);
 		},
-		&#x27;style.vAlign&#x27;: function(self, parameters) {
-			style.replaceHr(self, parameters[0]);
+		&#x27;style.vAlign&#x27;: function(obj, parameters) {
+			style.replaceHr(obj, parameters[0]);
 		}
 	});
 

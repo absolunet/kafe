@@ -149,8 +149,8 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('Menu', {
-		init: function(self, parameters) {
-			menu.init($.extend({}, parameters[0], {selector:self}));
+		init: function(obj, parameters) {
+			menu.init($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
 

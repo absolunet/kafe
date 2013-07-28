@@ -1,4 +1,4 @@
-kafe.extend({name:'addthis', version:'0.1', obj:(function(kafe,undefined) {
+window.kafe.extend({name:'addthis', version:'0.1', obj:(function(kafe,undefined) {
 	var $ = kafe.dependencies.jQuery;
 
 	/**

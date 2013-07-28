@@ -331,10 +331,13 @@ window.kafe = (function(undefined){
 		createInstantiableObject: function() {
 			return function(args){
 				if (this instanceof arguments.callee) {
-					if (typeof this.init == &#x27;function&#x27;)
-						this.init.apply(this, (args.callee) ? args : arguments);
-				} else
+					if (typeof this.__constructor == &#x27;function&#x27;) {
+						this.__ = {};
+						this.__constructor.apply(this, (args.callee) ? args : arguments);
+					}
+				} else {
 					return new arguments.callee(arguments);
+				}
 			};
 		},
 

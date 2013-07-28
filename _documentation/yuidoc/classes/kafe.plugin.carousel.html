@@ -134,7 +134,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_plugin_carousel.js.html#l270"><code>kafe&#x2F;plugin&#x2F;carousel.js:270</code></a>
+            Defined in: <a href="../files/kafe_plugin_carousel.js.html#l266"><code>kafe&#x2F;plugin&#x2F;carousel.js:266</code></a>
         </div>
     
 
@@ -183,14 +183,14 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_change">change</a>
+                                <a href="#method___constructor">__constructor</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_init">init</a>
+                                <a href="#method_change">change</a>
 
                                 
                                 
@@ -212,130 +212,8 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_change" class="method item">
-    <h3 class="name"><code>change</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>target</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_plugin_carousel.js.html#l533"><code>kafe&#x2F;plugin&#x2F;carousel.js:533</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Manually call a slide change</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Carousel <code>data-kafecarousel-id</code> id</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">target</code>
-                        <span class="type">String | Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Action or 1-based slide position</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// Go to next slide
-kafe.plugin.carousel.change('home-news', 'next');
-</code></pre><pre class="code prettyprint"><code>// Go to first slide 
-kafe.plugin.carousel.change('home-news', 1);
-</code></pre><pre class="code prettyprint"><code>// The jQuery alternative...
-$('#home-slides').kafeCarousel('change', 1);
-</code></pre>
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_init" class="method item">
-    <h3 class="name"><code>init</code></h3>
+                    <div id="method___constructor" class="method item">
+    <h3 class="name"><code>__constructor</code></h3>
 
     
         <div class="args">
@@ -376,7 +254,7 @@ $('#home-slides').kafeCarousel('change', 1);
             
         
         
-        <a href="../files/kafe_plugin_carousel.js.html#l282"><code>kafe&#x2F;plugin&#x2F;carousel.js:282</code></a>
+        <a href="../files/kafe_plugin_carousel.js.html#l278"><code>kafe&#x2F;plugin&#x2F;carousel.js:278</code></a>
         
         </p>
 
@@ -426,7 +304,7 @@ $('#home-slides').kafeCarousel('change', 1);
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[wrap=false]</code>
+                                    <code class="param-name optional">[wrap=true]</code>
                                     <span class="type">Boolean</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
@@ -685,11 +563,112 @@ $('#home-slides').kafeCarousel('change', 1);
     &lt;div data-kafecarousel-id="home-news" data-kafecarousel-action="status"&gt;&lt;/div&gt;
 &lt;/section&gt;
 </code></pre><pre class="code prettyprint"><code>// Attach behaviors using...
-kafe.plugin.carousel.init({ selector: '#home-slides' });
+var myCarousel = kafe.plugin.carousel({ selector: '#home-slides' });
 </code></pre><pre class="code prettyprint"><code>// Carousels can be remotely interacted with using custom data attributes...
-kafe.plugin.carousel.init({ selector: '#home-slides' });
+var myCarousel = kafe.plugin.carousel({ selector: '#home-slides' });
 </code></pre><pre class="code prettyprint"><code>// The jQuery alternative...
 $('#home-slides').kafeCarousel('init', {});
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_change" class="method item">
+    <h3 class="name"><code>change</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>target</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_plugin_carousel.js.html#l519"><code>kafe&#x2F;plugin&#x2F;carousel.js:519</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Manually call a slide change</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">target</code>
+                        <span class="type">String | Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Action or 1-based slide position</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>// Go to next slide
+myCarousel.change('next');
+</code></pre><pre class="code prettyprint"><code>// Go to first slide 
+myCarousel.change(1);
+</code></pre><pre class="code prettyprint"><code>// The jQuery alternative...
+$('#home-slides').kafeCarousel('change', 1);
 </code></pre>
             </div>
         </div>
