@@ -213,11 +213,20 @@ window.kafe = (function(undefined){
 
 	var
 		// check if module imported
-		_exists = function _exists(name) {
+		_exists = function(name) {
 			try {
 				return eval(&quot;(&quot;+name+&quot; != undefined)&quot;);
 			} catch(e) {
 				return false;
+			}
+		},
+
+		// delete var (try/catch for ie8)
+		_delete = function(name) {
+			try {
+				eval(&quot;delete &quot;+name+&quot;;&quot;);
+			} catch(e) {
+				eval(name+&quot; = undefined;&quot;);
 			}
 		},
 
@@ -313,7 +322,7 @@ window.kafe = (function(undefined){
 			plugin: {}
 		}
 	;
-	delete window.Modernizr;
+	_delete(&#x27;window.Modernizr&#x27;);
 
 
 
@@ -353,6 +362,17 @@ window.kafe = (function(undefined){
 		lang: function(dict, lang) {
 			lang = (!!lang) ? lang : core.env(&#x27;lang&#x27;);
 			return (!!dict[lang]) ? lang : &#x27;en&#x27;;
+		},
+
+
+		/**
+		* Delete the variable (patch for ie8)
+		*
+		* @method fn.deleteVar
+		* @param {String} name Name of the variable to delete
+		*/
+		deleteVar: function(name) {
+			_delete(name);
 		},
 
 

@@ -349,7 +349,7 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "kafe/plugin/carousel.js",
-            "line": 266,
+            "line": 278,
             "description": "### Version 1.0.2\nCarousel, image scroller, ticker, whatever you wanna call it...\n\nThey can also be interacted with remotely by first, linking to the carousel using the `data-kafecarousel-id` attribute and then choosing a specific action with the `data-kafecarousel-action` attribute.\nPossible actions are `nav`, `start`, `prev`, `next`, `end`, `items`, `item`, `play`, `pause`, `position`, `total`, `status` and `status-num`."
         },
         "kafe.plugin.menu": {
@@ -447,7 +447,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "kafe/kafe.js",
-            "line": 112,
+            "line": 121,
             "description": "kafe core"
         },
         "kafe.number": {
@@ -584,7 +584,7 @@
         },
         {
             "file": "kafe/plugin/carousel.js",
-            "line": 278,
+            "line": 290,
             "description": "Attach behaviors to the carousel structure.",
             "itemtype": "method",
             "name": "__constructor",
@@ -596,8 +596,99 @@
                     "props": [
                         {
                             "name": "selector",
-                            "description": "The slide container.",
-                            "type": "String|jQueryObject|DOMElement"
+                            "description": "The carousel elements",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "container",
+                                    "description": "The carousel container.",
+                                    "type": "String|jQueryObject|DOMElement"
+                                },
+                                {
+                                    "name": "slides",
+                                    "description": "The carousel slides.",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "nav",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "start",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "prev",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "next",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "end",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "items",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "item",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "play",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "pause",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "position",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "total",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "status",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "statusNum",
+                                    "description": "TODO",
+                                    "type": "String|jQueryObject|DOMElement",
+                                    "optional": true
+                                }
+                            ]
                         },
                         {
                             "name": "wrap",
@@ -714,17 +805,17 @@
                 }
             ],
             "example": [
-                "\n\t// Sample carousel structure\n\t<section class=\"home-carousel\">\n\t\t<ul id=\"home-slides\" data-kafecarousel-id=\"home-news\">\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t</ul>\n\t\t<a href=\"\" data-kafecarousel-id=\"home-news\" data-kafecarousel-action=\"prev\">Back</a>\n\t\t<a href=\"\" data-kafecarousel-id=\"home-news\" data-kafecarousel-action=\"next\">Next</a>\n\t\t<div data-kafecarousel-id=\"home-news\" data-kafecarousel-action=\"status\"></div>\n\t</section>",
-                "\n\t// Attach behaviors using...\n\tvar myCarousel = kafe.plugin.carousel({ selector: '#home-slides' });",
-                "\n\t// Carousels can be remotely interacted with using custom data attributes...\n\tvar myCarousel = kafe.plugin.carousel({ selector: '#home-slides' });",
-                "\n\t// The jQuery alternative...\n\t$('#home-slides').kafeCarousel('init', {});"
+                "\n\t// Sample carousel structure\n\t<section class=\"home-carousel\">\n\t\t<ul class=\"home-slides\">\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t</ul>\n\t\t<span class=\"home-prev\">Back</span>\n\t\t<span class=\"home-next\">Next</span>\n\t\t<div class=\"home-status\"></div>\n\t</section>",
+                "\n\t// Attach behaviors using...\n\tvar myCarousel = kafe.plugin.carousel({ selector: { container: '.home-slides' } });",
+                "\n\t// Carousels can be remotely interacted with using custom data attributes...\n\tvar myCarousel = kafe.plugin.carousel({ selector: { container: '.home-slides' } });",
+                "\n\t// The jQuery alternative...\n\t$('.home-slides').kafeCarousel('init', {});"
             ],
             "class": "kafe.plugin.carousel",
             "module": "kafe.plugin"
         },
         {
             "file": "kafe/plugin/carousel.js",
-            "line": 519,
+            "line": 543,
             "description": "Manually call a slide change",
             "itemtype": "method",
             "name": "change",
@@ -1754,7 +1845,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 120,
+            "line": 129,
             "description": "kafe version",
             "itemtype": "property",
             "name": "_vesyon",
@@ -1764,7 +1855,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 128,
+            "line": 137,
             "description": "kafe author",
             "itemtype": "property",
             "name": "_griyaj",
@@ -1774,7 +1865,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 136,
+            "line": 145,
             "description": "Versions of dependencies / kafe modules",
             "itemtype": "property",
             "name": "_chaje",
@@ -1784,7 +1875,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 151,
+            "line": 160,
             "description": "jQuery defined under window.kafejQuery  \nref: [http://jquery.com/](http://jquery.com/)",
             "itemtype": "property",
             "name": "dependencies.jQuery",
@@ -1794,7 +1885,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 160,
+            "line": 169,
             "description": "underscore.js defined under window._  \nref: [http://underscorejs.org/](http://underscorejs.org/)",
             "itemtype": "property",
             "name": "dependencies.underscore",
@@ -1804,7 +1895,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 169,
+            "line": 178,
             "description": "Modernizr defined under window.Modernizr  \nref: [http://modernizr.com/](http://modernizr.com/)",
             "itemtype": "property",
             "name": "dependencies.Modernizr",
@@ -1814,7 +1905,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 191,
+            "line": 200,
             "description": "Create a instantiable object  \nBy John Resig (MIT Licensed)  \nref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)",
             "itemtype": "method",
             "name": "fn.createInstantiableObject",
@@ -1827,7 +1918,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 213,
+            "line": 222,
             "description": "Return the language if available or else 'en'",
             "itemtype": "method",
             "name": "fn.lang",
@@ -1852,7 +1943,23 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 227,
+            "line": 236,
+            "description": "Delete the variable (patch for ie8)",
+            "itemtype": "method",
+            "name": "fn.deleteVar",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the variable to delete",
+                    "type": "String"
+                }
+            ],
+            "class": "kafe",
+            "module": "kafe"
+        },
+        {
+            "file": "kafe/kafe.js",
+            "line": 247,
             "description": "Add method as jQuery plugin",
             "itemtype": "method",
             "name": "fn.plugIntojQuery",
@@ -1873,7 +1980,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 258,
+            "line": 278,
             "description": "Environment constants",
             "itemtype": "method",
             "name": "env",
@@ -1899,7 +2006,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 314,
+            "line": 334,
             "description": "Add module to core",
             "itemtype": "method",
             "name": "bonify",
@@ -1932,7 +2039,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 338,
+            "line": 358,
             "description": "Add a homebrewed plugin",
             "itemtype": "method",
             "name": "plug",
@@ -1965,7 +2072,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 353,
+            "line": 373,
             "description": "Add an external plugin extension",
             "itemtype": "method",
             "name": "extend",
@@ -1998,7 +2105,7 @@
         },
         {
             "file": "kafe/kafe.js",
-            "line": 368,
+            "line": 388,
             "description": "Throw kafe errors",
             "itemtype": "method",
             "name": "error",
