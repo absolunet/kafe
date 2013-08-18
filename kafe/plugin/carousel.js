@@ -279,9 +279,6 @@
 	* ### Version 1.0.2
 	* Carousel, image scroller, ticker, whatever you wanna call it...
 	*
-	* They can also be interacted with remotely by first, linking to the carousel using the `data-kafecarousel-id` attribute and then choosing a specific action with the `data-kafecarousel-action` attribute.
-	* Possible actions are `nav`, `start`, `prev`, `next`, `end`, `items`, `item`, `play`, `pause`, `position`, `total`, `status` and `status-num`.
-	*
 	* @module kafe.plugin
 	* @class kafe.plugin.carousel
 	*/
@@ -295,19 +292,18 @@
 	*	@param {Object} options.selector The carousel elements
 	*		@param {String|jQueryObject|DOMElement} options.selector.container The carousel container.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.slides] The carousel slides.
-	*		@param {String|jQueryObject|DOMElement} [options.selector.nav] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.start] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.prev] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.next] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.end] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.items] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.item] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.play] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.pause] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.position] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.total] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.status] TODO
-	*		@param {String|jQueryObject|DOMElement} [options.selector.statusNum] TODO
+	*		@param {String|jQueryObject|DOMElement} [options.selector.start] Clickable elements that will switch the carousel to the first slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.prev] Clickable elements that will switch the carousel to the previous slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.next] Clickable elements that will switch the carousel to the next slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.end] Clickable elements that will switch the carousel to the last slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.items] Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the `data-kafecarousel-target` attribute.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.play] Clickable elements that will switch the carousel to autoplay.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.pause] Clickable elements that will stop the autoplay of the carousel.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.position] Elements that will contain the current position.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.total] Elements that will contain the total number of slides.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.status] Elements that will contain a list of bullets indicating the status of the carousel.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.statusNum] Elements that will contain a list of numbers indicating the status of the carousel.
 	*	@param {Boolean} [options.wrap=true] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
 	*	@param {String} [options.transition='slideLeft'] Animation used during a transition. Possible values are `slideLeft`, `slideRight`, `slideUp`, `slideDown` and `fade`.
 	*	@param {Number} [options.speed=500] Duration (in milliseconds) of the transition.
@@ -356,7 +352,6 @@
 		// elements
 		__.$container  = $(options.selector.container).data('kafecarousel-self', self);
 		__.$slides     = (options.selector.slides) ? $(options.selector.slides) : __.$container.children();
-		__.$nav        = $(options.selector.nav);
 		__.$start      = $(options.selector.start);
 		__.$previous   = $(options.selector.prev);
 		__.$next       = $(options.selector.next);
@@ -395,7 +390,6 @@
 
 		// désactiver tout si un seul item
 		if (__.total == 1) {
-			__.$nav.addClass('kafecarousel-none');
 			__.$previous.addClass('kafecarousel-none');
 			__.$next.addClass('kafecarousel-none');
 			__.$items.addClass('kafecarousel-none');

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.plugin.menu - kafe</title>
+    <title>kafe.ext.disqus - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -130,7 +130,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.plugin.menu Class</h1>
+                        <h1>kafe.ext.disqus Class</h1>
 <div class="box meta">
     
 
@@ -138,13 +138,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_plugin_menu.js.html#l7"><code>kafe&#x2F;plugin&#x2F;menu.js:7</code></a>
+            Defined in: <a href="../files/kafe_ext_disqus.js.html#l28"><code>kafe&#x2F;ext&#x2F;disqus.js:28</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/kafe.plugin.html">kafe.plugin</a>
+            Module: <a href="../modules/kafe.ext.html">kafe.ext</a>
         
     
 
@@ -154,11 +154,9 @@
 
 
 <div class="box intro">
-    <h3>Version 1.0</h3>
+    <h3>Version 0.1</h3>
 
-<p>Attaches javascript behaviors to an HTML menu structure to create a <em>dropdown</em> style navigation.</p>
-
-<p>To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (<code>kafemenu-open</code>) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.</p>
+<p>Extra methods for the Disqus API.</p>
 </div>
 
 
@@ -187,6 +185,13 @@
                         
                             <li class="index-item method">
                                 <a href="#method_init">init</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_reset">reset</a>
 
                                 
                                 
@@ -250,7 +255,7 @@
             
         
         
-        <a href="../files/kafe_plugin_menu.js.html#l18"><code>kafe&#x2F;plugin&#x2F;menu.js:18</code></a>
+        <a href="../files/kafe_ext_disqus.js.html#l38"><code>kafe&#x2F;ext&#x2F;disqus.js:38</code></a>
         
         </p>
 
@@ -261,7 +266,7 @@
     </div>
 
     <div class="description">
-        <p>Attach behaviors to the menu structure.</p>
+        <p>Init Disqus async.</p>
     </div>
 
     
@@ -279,7 +284,7 @@
                     
 
                     <div class="param-description">
-                        <p>Initial configurations.</p>
+                        <p>Options.</p>
                     </div>
 
                     
@@ -287,26 +292,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name">selector</code>
-                                    <span class="type">String | JQueryObject | DOMElement</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Root element of the menu structure.</p>
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[handle=&#x27;li&#x27;]</code>
+                                    <code class="param-name">title</code>
                                     <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Children element of the container that will serve as a handle to open and close the submenu.</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -314,13 +305,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[submenus=&#x27;ul&#x27;]</code>
+                                    <code class="param-name">shortname</code>
                                     <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Children element of the handle that will serve as a submenu, opening and closing when the handle is used.</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -328,13 +318,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[animation=&#x27;slide&#x27;]</code>
+                                    <code class="param-name">url</code>
                                     <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Animation used when opening and closing the submenus.</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -342,13 +331,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[openSpeed=200]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                    <code class="param-name">identifier</code>
+                                    <span class="type">String</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Duration (in milliseconds) of the opening animation.</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -356,13 +344,12 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[openDelay=500]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                    <code class="param-name">language</code>
+                                    <span class="type">String</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Delay (in milliseconds) used when entering the handle before starting the opening animation.</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -370,55 +357,13 @@
                             
                             <li class="param">
                                 
-                                    <code class="param-name optional">[closeSpeed=150]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Duration (in milliseconds) of the closing animation.</p>
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[closeDelay=400]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Delay (in milliseconds) used when exiting the handle before starting the closing animation.</p>
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[enterCallback]</code>
+                                    <code class="param-name optional">[callback]</code>
                                     <span class="type">Function</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
-                                    <p>Upon entering a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.</p>
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[leaveCallback]</code>
-                                    <span class="type">Function</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Upon exiting a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.</p>
+                                    <p>TODO</p>
                                 </div>
 
                                 
@@ -435,36 +380,113 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
+</div>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>// Sample menu structure
-&lt;nav id="main-menu"&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Menu 1&lt;/a&gt;
-            &lt;ul&gt;
-                &lt;li&gt;&lt;a href="#"&gt;Submenu 1.1&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;Submenu 1.2&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;Submenu 1.3&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Menu 2&lt;/a&gt;
-            &lt;ul&gt;
-                &lt;li&gt;&lt;a href="#"&gt;Submenu 2.1&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;Submenu 2.2&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;Submenu 2.3&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-</code></pre><pre class="code prettyprint"><code>// Attach behaviors using...
-kafe.plugin.menu.init({ selector: '#main-menu &gt; ul' });
-</code></pre><pre class="code prettyprint"><code>// Or use the jQuery alternative...
-$('#main-menu &gt; ul').kafeMenu();
-</code></pre>
-            </div>
+                
+                    <div id="method_reset" class="method item">
+    <h3 class="name"><code>reset</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>pageId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>url</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
         </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_ext_disqus.js.html#l80"><code>kafe&#x2F;ext&#x2F;disqus.js:80</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reset Disqus.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">pageId</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">url</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
     
 </div>
 

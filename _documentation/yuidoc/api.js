@@ -7,6 +7,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "kafe.cms.sitecore",
         "kafe.date",
         "kafe.ext.addthis",
+        "kafe.ext.bbq",
+        "kafe.ext.disqus",
         "kafe.form",
         "kafe.geolocation",
         "kafe.number",

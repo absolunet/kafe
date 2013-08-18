@@ -1,67 +1,93 @@
-//-------------------------------------------
-// kafe.ext.bbq
-//-------------------------------------------
-kafe.extend({name:'bbq', version:'0.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'libs/external/jquery/bbq'
+]);
+//>>excludeEnd('excludeRequire');
 
-	//default params
-	var _params = {
-		symbol: '#!',
-		delimiter: '&'
-	};
-	
-	//-------------------------------------------
-	// PRIVATE
-	//-------------------------------------------
-	function _unHashbangUrl() {
-		return (window.location.href).replace(new RegExp( _params.symbol ), '#');
-	}
-	function _reHashbangUrl(url) {
-		return url.replace( /#/, _params.symbol );
-	}
-	
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+window.kafe.extend({name:'bbq', version:'0.1', obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery,
+
+		_params = {
+			symbol: '#!',
+			delimiter: '&'
+		},
+
+		_unHashbangUrl = function() {
+			return (window.location.href).replace(new RegExp( _params.symbol ), '#');
+		},
+		_reHashbangUrl = function(url) {
+			return url.replace( /#/, _params.symbol );
+		}
+	;
+
+
+	/**
+	* ### Version 0.1
+	* Extra methods for the jQuery BBQ plugin.
+	*
+	* @module kafe.ext
+	* @class kafe.ext.bbq
+	*/
 	var bbq = {};
-	
-	// getParams
-	// return default params
-	//-------------------------------------------
+
+
+	/**
+	* Get the default params.
+	*
+	* @method getParams
+	* @return {Object} The default bbq params.
+	*/
 	bbq.getParams = function() {
 		return _params;
 	};
-	
-	// setParams (options)
-	// set default params
-	//-------------------------------------------
+
+
+	/**
+	* Set the default params.
+	*
+	* @method setParams
+	* @param {Object} options Bbq params.
+	*/
 	bbq.setParams = function() {
 		_params = arguments[0];
 	};
 
-	// getHashbang
-	// get hashbang url parameters as string
-	//-------------------------------------------
+
+	/**
+	* Get the hashbang url parameters.
+	*
+	* @method getHashbang
+	* @return {String} The hashbang url parameters.
+	*/
 	bbq.getHashbang = function() {
 		return $.param.fragment( _unHashbangUrl() );
 	};
 
-	// getHashbangParams
-	// get hashbang url parameters as object
-	//-------------------------------------------
+
+	/**
+	* Get the hashbang url parameters.
+	*
+	* @method getHashbangParams
+	* @return {Object} The hashbang url parameters.
+	*/
 	bbq.getHashbangParams = function() {
 		return $.deparam.fragment( _unHashbangUrl(), true );
 	};
 
-	// setHashbang (params, mergemode)
-	// set hashbang url parameters according to object or string specified
-	//-------------------------------------------
+
+	/**
+	* Set hashbang url parameters.
+	*
+	* @method setHashbang
+	* @param {Object|String} params Parameters to apply.
+	* @param {Number} [mergemode] Bbq merge mode `0-2`.
+	*/
 	bbq.setHashbang = function(params, mergemode) {
 		window.location = _reHashbangUrl( $.param.fragment( _unHashbangUrl(), params, mergemode ) );
 	};
 
 
-
 	return bbq;
 
-})(kafe)});
+})(window.kafe)});

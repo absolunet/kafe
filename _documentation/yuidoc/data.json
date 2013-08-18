@@ -61,6 +61,24 @@
             "fors": {},
             "namespaces": {}
         },
+        "kafe/ext/bbq.js": {
+            "name": "kafe/ext/bbq.js",
+            "modules": {},
+            "classes": {
+                "kafe.ext.bbq": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "kafe/ext/disqus.js": {
+            "name": "kafe/ext/disqus.js",
+            "modules": {},
+            "classes": {
+                "kafe.ext.disqus": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "kafe/plugin/_plugin.js": {
             "name": "kafe/plugin/_plugin.js",
             "modules": {
@@ -229,13 +247,15 @@
             "name": "kafe.ext",
             "submodules": {},
             "classes": {
-                "kafe.ext.addthis": 1
+                "kafe.ext.addthis": 1,
+                "kafe.ext.bbq": 1,
+                "kafe.ext.disqus": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "kafe/ext/addthis.js",
-            "line": 4,
+            "file": "kafe/ext/disqus.js",
+            "line": 28,
             "description": "extensions for external plugins",
             "itemtype": "main"
         },
@@ -338,6 +358,34 @@
             "line": 4,
             "description": "### Version 0.1\nAdditionnal methods for AddThis"
         },
+        "kafe.ext.bbq": {
+            "name": "kafe.ext.bbq",
+            "shortname": "kafe.ext.bbq",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.ext",
+            "namespace": "",
+            "file": "kafe/ext/bbq.js",
+            "line": 25,
+            "description": "### Version 0.1\nExtra methods for the jQuery BBQ plugin."
+        },
+        "kafe.ext.disqus": {
+            "name": "kafe.ext.disqus",
+            "shortname": "kafe.ext.disqus",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "kafe.ext",
+            "namespace": "",
+            "file": "kafe/ext/disqus.js",
+            "line": 28,
+            "description": "### Version 0.1\nExtra methods for the Disqus API."
+        },
         "kafe.plugin.carousel": {
             "name": "kafe.plugin.carousel",
             "shortname": "kafe.plugin.carousel",
@@ -350,7 +398,7 @@
             "namespace": "",
             "file": "kafe/plugin/carousel.js",
             "line": 278,
-            "description": "### Version 1.0.2\nCarousel, image scroller, ticker, whatever you wanna call it...\n\nThey can also be interacted with remotely by first, linking to the carousel using the `data-kafecarousel-id` attribute and then choosing a specific action with the `data-kafecarousel-action` attribute.\nPossible actions are `nav`, `start`, `prev`, `next`, `end`, `items`, `item`, `play`, `pause`, `position`, `total`, `status` and `status-num`."
+            "description": "### Version 1.0.2\nCarousel, image scroller, ticker, whatever you wanna call it..."
         },
         "kafe.plugin.menu": {
             "name": "kafe.plugin.menu",
@@ -583,8 +631,155 @@
             "module": "kafe.ext"
         },
         {
+            "file": "kafe/ext/bbq.js",
+            "line": 35,
+            "description": "Get the default params.",
+            "itemtype": "method",
+            "name": "getParams",
+            "return": {
+                "description": "The default bbq params.",
+                "type": "Object"
+            },
+            "class": "kafe.ext.bbq",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/ext/bbq.js",
+            "line": 46,
+            "description": "Set the default params.",
+            "itemtype": "method",
+            "name": "setParams",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Bbq params.",
+                    "type": "Object"
+                }
+            ],
+            "class": "kafe.ext.bbq",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/ext/bbq.js",
+            "line": 57,
+            "description": "Get the hashbang url parameters.",
+            "itemtype": "method",
+            "name": "getHashbang",
+            "return": {
+                "description": "The hashbang url parameters.",
+                "type": "String"
+            },
+            "class": "kafe.ext.bbq",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/ext/bbq.js",
+            "line": 68,
+            "description": "Get the hashbang url parameters.",
+            "itemtype": "method",
+            "name": "getHashbangParams",
+            "return": {
+                "description": "The hashbang url parameters.",
+                "type": "Object"
+            },
+            "class": "kafe.ext.bbq",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/ext/bbq.js",
+            "line": 79,
+            "description": "Set hashbang url parameters.",
+            "itemtype": "method",
+            "name": "setHashbang",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Parameters to apply.",
+                    "type": "Object|String"
+                },
+                {
+                    "name": "mergemode",
+                    "description": "Bbq merge mode `0-2`.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "class": "kafe.ext.bbq",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/ext/disqus.js",
+            "line": 38,
+            "description": "Init Disqus async.",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "title",
+                            "description": "TODO",
+                            "type": "String"
+                        },
+                        {
+                            "name": "shortname",
+                            "description": "TODO",
+                            "type": "String"
+                        },
+                        {
+                            "name": "url",
+                            "description": "TODO",
+                            "type": "String"
+                        },
+                        {
+                            "name": "identifier",
+                            "description": "TODO",
+                            "type": "String"
+                        },
+                        {
+                            "name": "language",
+                            "description": "TODO",
+                            "type": "String"
+                        },
+                        {
+                            "name": "callback",
+                            "description": "TODO",
+                            "type": "Function",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "class": "kafe.ext.disqus",
+            "module": "kafe.ext"
+        },
+        {
+            "file": "kafe/ext/disqus.js",
+            "line": 80,
+            "description": "Reset Disqus.",
+            "itemtype": "method",
+            "name": "reset",
+            "params": [
+                {
+                    "name": "pageId",
+                    "description": "TODO",
+                    "type": "String"
+                },
+                {
+                    "name": "url",
+                    "description": "TODO",
+                    "type": "String"
+                }
+            ],
+            "class": "kafe.ext.disqus",
+            "module": "kafe.ext"
+        },
+        {
             "file": "kafe/plugin/carousel.js",
-            "line": 290,
+            "line": 287,
             "description": "Attach behaviors to the carousel structure.",
             "itemtype": "method",
             "name": "__constructor",
@@ -611,80 +806,74 @@
                                     "optional": true
                                 },
                                 {
-                                    "name": "nav",
-                                    "description": "TODO",
-                                    "type": "String|jQueryObject|DOMElement",
-                                    "optional": true
-                                },
-                                {
                                     "name": "start",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will switch the carousel to the first slide.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "prev",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will switch the carousel to the previous slide.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "next",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will switch the carousel to the next slide.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "end",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will switch the carousel to the last slide.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "items",
-                                    "description": "TODO",
+                                    "description": "Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "item",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will switch the carousel to a specific slide via the `data-kafecarousel-target` attribute.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "play",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will switch the carousel to autoplay.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "pause",
-                                    "description": "TODO",
+                                    "description": "Clickable elements that will stop the autoplay of the carousel.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "position",
-                                    "description": "TODO",
+                                    "description": "Elements that will contain the current position.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "total",
-                                    "description": "TODO",
+                                    "description": "Elements that will contain the total number of slides.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "status",
-                                    "description": "TODO",
+                                    "description": "Elements that will contain a list of bullets indicating the status of the carousel.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
                                 {
                                     "name": "statusNum",
-                                    "description": "TODO",
+                                    "description": "Elements that will contain a list of numbers indicating the status of the carousel.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 }
@@ -815,7 +1004,7 @@
         },
         {
             "file": "kafe/plugin/carousel.js",
-            "line": 543,
+            "line": 537,
             "description": "Manually call a slide change",
             "itemtype": "method",
             "name": "change",

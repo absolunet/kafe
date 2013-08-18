@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe.string.validate - kafe</title>
+    <title>kafe.ext.bbq - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -130,7 +130,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>kafe.string.validate Class</h1>
+                        <h1>kafe.ext.bbq Class</h1>
 <div class="box meta">
     
 
@@ -138,13 +138,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/kafe_string-validate.js.html#l11"><code>kafe&#x2F;string-validate.js:11</code></a>
+            Defined in: <a href="../files/kafe_ext_bbq.js.html#l25"><code>kafe&#x2F;ext&#x2F;bbq.js:25</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/kafe.html">kafe</a>
+            Module: <a href="../modules/kafe.ext.html">kafe.ext</a>
         
     
 
@@ -154,9 +154,9 @@
 
 
 <div class="box intro">
-    <h3>Version 1.0</h3>
+    <h3>Version 0.1</h3>
 
-<p>String validation tools.</p>
+<p>Extra methods for the jQuery BBQ plugin.</p>
 </div>
 
 
@@ -184,28 +184,35 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_isCreditCard">isCreditCard</a>
+                                <a href="#method_getHashbang">getHashbang</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_isEmail">isEmail</a>
+                                <a href="#method_getHashbangParams">getHashbangParams</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_isNum">isNum</a>
+                                <a href="#method_getParams">getParams</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_isPostalCode">isPostalCode</a>
+                                <a href="#method_setHashbang">setHashbang</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setParams">setParams</a>
 
                                 
                                 
@@ -227,32 +234,16 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_isCreditCard" class="method item">
-    <h3 class="name"><code>isCreditCard</code></h3>
+                    <div id="method_getHashbang" class="method item">
+    <h3 class="name"><code>getHashbang</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>string</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[cardtype]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
     
         <span class="returns-inline">
-            <span class="type">Boolean</span>
+            <span class="type">String</span>
         </span>
     
 
@@ -279,7 +270,7 @@
             
         
         
-        <a href="../files/kafe_string-validate.js.html#l84"><code>kafe&#x2F;string-validate.js:84</code></a>
+        <a href="../files/kafe_ext_bbq.js.html#l57"><code>kafe&#x2F;ext&#x2F;bbq.js:57</code></a>
         
         </p>
 
@@ -290,10 +281,232 @@
     </div>
 
     <div class="description">
-        <p>Checks if a string is a valid credit card number and fits a specific brand pattern.</p>
+        <p>Get the hashbang url parameters.</p>
+    </div>
 
-<p>Source: <a href="http://davidwalsh.name/validate-credit-cards">http://davidwalsh.name/validate-credit-cards</a>
-Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvinci/84bru/</a></p>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String</span>:
+                    
+                    The hashbang url parameters.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getHashbangParams" class="method item">
+    <h3 class="name"><code>getHashbangParams</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_ext_bbq.js.html#l68"><code>kafe&#x2F;ext&#x2F;bbq.js:68</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get the hashbang url parameters.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    The hashbang url parameters.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getParams" class="method item">
+    <h3 class="name"><code>getParams</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_ext_bbq.js.html#l35"><code>kafe&#x2F;ext&#x2F;bbq.js:35</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get the default params.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    The default bbq params.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setHashbang" class="method item">
+    <h3 class="name"><code>setHashbang</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>params</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[mergemode]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/kafe_ext_bbq.js.html#l79"><code>kafe&#x2F;ext&#x2F;bbq.js:79</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set hashbang url parameters.</p>
     </div>
 
     
@@ -304,14 +517,14 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
             
                 <li class="param">
                     
-                        <code class="param-name">string</code>
-                        <span class="type">String</span>
+                        <code class="param-name">params</code>
+                        <span class="type">Object | String</span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>Parameters to apply.</p>
                     </div>
 
                     
@@ -319,15 +532,15 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
             
                 <li class="param">
                     
-                        <code class="param-name optional">[cardtype]</code>
-                        <span class="type">String</span>
+                        <code class="param-name optional">[mergemode]</code>
+                        <span class="type">Number</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>A credit card brand abbreviation. Possible values are <strong>mc</strong> (Master Card), <strong>ec</strong> (Electronic Cash), <strong>vi</strong> (Visa), <strong>ax</strong> (American Express), <strong>dc</strong> (DC), <strong>bl</strong> (BL), <strong>di</strong> (Diner's Club), <strong>jcb</strong> (JCB) or <strong>er</strong> (ER).</p>
+                        <p>Bbq merge mode <code>0-2</code>.</p>
                     </div>
 
                     
@@ -338,38 +551,13 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolean</span>:
-                    
-                    If true, the string is a valid credit card number.
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');
-// returns false
-</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');
-// returns true
-</code></pre>
-            </div>
-        </div>
     
 </div>
 
                 
-                    <div id="method_isEmail" class="method item">
-    <h3 class="name"><code>isEmail</code></h3>
+                    <div id="method_setParams" class="method item">
+    <h3 class="name"><code>setParams</code></h3>
 
     
         <div class="args">
@@ -377,7 +565,7 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
             
                 <li class="arg">
                     
-                        <code>string</code>
+                        <code>options</code>
                     
                 </li>
             
@@ -385,10 +573,6 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type">Boolean</span>
-        </span>
     
 
     
@@ -414,7 +598,7 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
             
         
         
-        <a href="../files/kafe_string-validate.js.html#l39"><code>kafe&#x2F;string-validate.js:39</code></a>
+        <a href="../files/kafe_ext_bbq.js.html#l46"><code>kafe&#x2F;ext&#x2F;bbq.js:46</code></a>
         
         </p>
 
@@ -425,7 +609,7 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
     </div>
 
     <div class="description">
-        <p>Checks if a string is a valid email address.</p>
+        <p>Set the default params.</p>
     </div>
 
     
@@ -436,14 +620,14 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
             
                 <li class="param">
                     
-                        <code class="param-name">string</code>
-                        <span class="type">String</span>
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>Bbq params.</p>
                     </div>
 
                     
@@ -454,286 +638,7 @@ Source: <a href="http://jsfiddle.net/silvinci/84bru/">http://jsfiddle.net/silvin
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolean</span>:
-                    
-                    If true, the string is a valid email address.
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isEmail('mailbox@mailaddress');
-// returns false
-</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isEmail('kafe.feedback@absolunet.com');
-// returns true
-</code></pre>
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_isNum" class="method item">
-    <h3 class="name"><code>isNum</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>string</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Boolean</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_string-validate.js.html#l21"><code>kafe&#x2F;string-validate.js:21</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Checks if a string is numeric.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">string</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolean</span>:
-                    
-                    If true, the string could be converted to a number.
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isNum('k4f3');
-// returns false
-</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isNum('43');
-// returns true
-</code></pre>
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_isPostalCode" class="method item">
-    <h3 class="name"><code>isPostalCode</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>string</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[format]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Boolean</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/kafe_string-validate.js.html#l59"><code>kafe&#x2F;string-validate.js:59</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Checks if a string is a valid or part of a valid Canadian postal code.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">string</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[format]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Validation pattern (Regular expression). Default pattern is <em>([a-z][0-9]){3}</em>. Can also be set to <em>A1A 1A1</em> for a single precise value or as <em>A1A</em> and <em>1A1</em> when divided into two values.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolean</span>:
-                    
-                    If true, the string matches the validation format.
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.string.validate.isPostalCode('KAF123');
-// returns false
-</code></pre><pre class="code prettyprint"><code>kafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');
-// returns true
-</code></pre>
-            </div>
-        </div>
     
 </div>
 

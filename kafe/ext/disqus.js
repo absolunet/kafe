@@ -1,41 +1,52 @@
-﻿//-------------------------------------------
-// kafe.ext.disqus
-//-------------------------------------------
-kafe.extend({name:'disqus', version:'0.1', obj:(function (K,undefined) {
-	var $ = K.jQuery;
+﻿window.kafe.extend({name:'disqus', version:'0.1', obj:(function (kafe,undefined) {
+	var
+		$ = kafe.dependencies.jQuery,
+
+		_params = {
+			shortname: '',
+			language: ''
+		},
+
+		_interval = null,
+		_callback = null,
+
+		_isDisqusLoaded = function() {
+			if ($('#dsq-content #dsq-reply').length) {
+				window.clearInterval(disqus.interval);
+				disqus.loaded = true;
+				disqus.callback();
+			}
+		}
+	;
 
 	window.disqus_title      = null;
 	window.disqus_shortname  = null;
 	window.disqus_url        = null;
 	window.disqus_identifier = null;
 
-	// default params
-	var _params = {
-		shortname: '',
-		language: ''
-	};
 
-	function __isDisqusLoaded() {
-		if ($('#dsq-content #dsq-reply').length) {
-			window.clearInterval(disqus.interval);
-			disqus.loaded = true;
-			disqus.callback();
-		}
-	}
-
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
-	var disqus = {
-		loaded: false,
-		interval: null,
-		callback: null
-	};
+	/**
+	* ### Version 0.1
+	* Extra methods for the Disqus API.
+	*
+	* @module kafe.ext
+	* @class kafe.ext.disqus
+	*/
+	var disqus = {};
 
 
-	// initialize (options)
-	// init Disqus async.
-	//-------------------------------------------
+	/**
+	* Init Disqus async.
+	*
+	* @method init
+	* @param {Object} options Options.
+	*	@param {String} options.title TODO
+	*	@param {String} options.shortname TODO
+	*	@param {String} options.url TODO
+	*	@param {String} options.identifier TODO
+	*	@param {String} options.language TODO
+	*	@param {Function} [options.callback] TODO
+	*/
 	disqus.init = function (options) {
 		var p = $.extend({}, _params, options);
 
@@ -56,18 +67,23 @@ kafe.extend({name:'disqus', version:'0.1', obj:(function (K,undefined) {
 		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
 		if (p.callback && typeof (p.callback) == 'function') {
-			if ($('#dsq-content #dsq-reply').length == 0) {
-				disqus.callback = p.callback;
-				disqus.interval = window.setInterval(__isDisqusLoaded, 200);
+			if ($('#dsq-content #dsq-reply').length === 0) {
+				_callback = p.callback;
+				_interval = window.setInterval(_isDisqusLoaded, 200);
 			} else {
 				p.callback();
 			}
 		}
 	};
 
-	// reset (pageId, url)
-	// reset data
-	//-------------------------------------------
+
+	/**
+	* Reset Disqus.
+	*
+	* @method reset
+	* @param {String} pageId TODO
+	* @param {String} url TODO
+	*/
 	disqus.reset = function (pageId, url) {
 		DISQUS.reset({
 			reload: true,
@@ -78,6 +94,7 @@ kafe.extend({name:'disqus', version:'0.1', obj:(function (K,undefined) {
 		});
 	};
 
+
 	return disqus;
 
-})(kafe)});
+})(window.kafe)});

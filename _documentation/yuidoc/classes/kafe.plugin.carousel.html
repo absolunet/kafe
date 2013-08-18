@@ -53,6 +53,10 @@
             
                 <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
             
+                <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+            
+                <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+            
                 <li><a href="../classes/kafe.form.html">kafe.form</a></li>
             
                 <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
@@ -153,9 +157,6 @@
     <h3>Version 1.0.2</h3>
 
 <p>Carousel, image scroller, ticker, whatever you wanna call it...</p>
-
-<p>They can also be interacted with remotely by first, linking to the carousel using the <code>data-kafecarousel-id</code> attribute and then choosing a specific action with the <code>data-kafecarousel-action</code> attribute.
-Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <code>next</code>, <code>end</code>, <code>items</code>, <code>item</code>, <code>play</code>, <code>pause</code>, <code>position</code>, <code>total</code>, <code>status</code> and <code>status-num</code>.</p>
 </div>
 
 
@@ -254,7 +255,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
             
         
         
-        <a href="../files/kafe_plugin_carousel.js.html#l290"><code>kafe&#x2F;plugin&#x2F;carousel.js:290</code></a>
+        <a href="../files/kafe_plugin_carousel.js.html#l287"><code>kafe&#x2F;plugin&#x2F;carousel.js:287</code></a>
         
         </p>
 
@@ -327,25 +328,13 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                         
                                         <li class="param">
                                             
-                                                <code class="param-name optional">[nav]</code>
-                                                <span class="type">String | JQueryObject | DOMElement</span>
-                                                <span class="flag optional" title="This parameter is optional.">optional</span>
-                                            
-
-                                            <div class="param-description">
-                                                TODO
-                                            </div>
-                                        </li>
-                                        
-                                        <li class="param">
-                                            
                                                 <code class="param-name optional">[start]</code>
                                                 <span class="type">String | JQueryObject | DOMElement</span>
                                                 <span class="flag optional" title="This parameter is optional.">optional</span>
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will switch the carousel to the first slide.
                                             </div>
                                         </li>
                                         
@@ -357,7 +346,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will switch the carousel to the previous slide.
                                             </div>
                                         </li>
                                         
@@ -369,7 +358,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will switch the carousel to the next slide.
                                             </div>
                                         </li>
                                         
@@ -381,7 +370,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will switch the carousel to the last slide.
                                             </div>
                                         </li>
                                         
@@ -393,7 +382,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
                                             </div>
                                         </li>
                                         
@@ -405,7 +394,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will switch the carousel to a specific slide via the <code>data-kafecarousel-target</code> attribute.
                                             </div>
                                         </li>
                                         
@@ -417,7 +406,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will switch the carousel to autoplay.
                                             </div>
                                         </li>
                                         
@@ -429,7 +418,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Clickable elements that will stop the autoplay of the carousel.
                                             </div>
                                         </li>
                                         
@@ -441,7 +430,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Elements that will contain the current position.
                                             </div>
                                         </li>
                                         
@@ -453,7 +442,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Elements that will contain the total number of slides.
                                             </div>
                                         </li>
                                         
@@ -465,7 +454,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Elements that will contain a list of bullets indicating the status of the carousel.
                                             </div>
                                         </li>
                                         
@@ -477,7 +466,7 @@ Possible actions are <code>nav</code>, <code>start</code>, <code>prev</code>, <c
                                             
 
                                             <div class="param-description">
-                                                TODO
+                                                Elements that will contain a list of numbers indicating the status of the carousel.
                                             </div>
                                         </li>
                                         
@@ -800,7 +789,7 @@ $('.home-slides').kafeCarousel('init', {});
             
         
         
-        <a href="../files/kafe_plugin_carousel.js.html#l543"><code>kafe&#x2F;plugin&#x2F;carousel.js:543</code></a>
+        <a href="../files/kafe_plugin_carousel.js.html#l537"><code>kafe&#x2F;plugin&#x2F;carousel.js:537</code></a>
         
         </p>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>kafe/cms/magento.js - kafe</title>
+    <title>kafe/ext/disqus.js - kafe</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -130,38 +130,111 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: kafe/cms/magento.js</h1>
+                        <h1 class="file-heading">File: kafe/ext/disqus.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-window.kafe.bonify({name:&#x27;cms.magento&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined) {
+﻿window.kafe.extend({name:&#x27;disqus&#x27;, version:&#x27;0.1&#x27;, obj:(function (kafe,undefined) {
 	var
 		$ = kafe.dependencies.jQuery,
 
-		_privateFunction = function () {
+		_params = {
+			shortname: &#x27;&#x27;,
+			language: &#x27;&#x27;
+		},
 
+		_interval = null,
+		_callback = null,
+
+		_isDisqusLoaded = function() {
+			if ($(&#x27;#dsq-content #dsq-reply&#x27;).length) {
+				window.clearInterval(disqus.interval);
+				disqus.loaded = true;
+				disqus.callback();
+			}
 		}
 	;
+
+	window.disqus_title      = null;
+	window.disqus_shortname  = null;
+	window.disqus_url        = null;
+	window.disqus_identifier = null;
 
 
 	/**
 	* ### Version 0.1
-	* Additionnal methods for Magento
+	* Extra methods for the Disqus API.
 	*
-	* @module kafe.cms
-	* @class kafe.cms.magento
+	* @module kafe.ext
+	* @class kafe.ext.disqus
 	*/
-	var magento = {};
+	var disqus = {};
 
 
+	/**
+	* Init Disqus async.
+	*
+	* @method init
+	* @param {Object} options Options.
+	*	@param {String} options.title TODO
+	*	@param {String} options.shortname TODO
+	*	@param {String} options.url TODO
+	*	@param {String} options.identifier TODO
+	*	@param {String} options.language TODO
+	*	@param {Function} [options.callback] TODO
+	*/
+	disqus.init = function (options) {
+		var p = $.extend({}, _params, options);
 
-	magento.publicFunction = function() {
+		window.disqus_title = p.title;
+		window.disqus_shortname = p.shortname;
+		window.disqus_url = p.url;
+		window.disqus_identifier = p.identifier;
 
+		window.disqus_config = function () {
+			this.language = p.language;
+		};
+
+		var dsq = document.createElement(&#x27;script&#x27;);
+		dsq.type = &#x27;text/javascript&#x27;;
+		dsq.async = true;
+
+		dsq.src = &#x27;//&#x27; + p.shortname + &#x27;.disqus.com/embed.js&#x27;;
+		(document.getElementsByTagName(&#x27;head&#x27;)[0] || document.getElementsByTagName(&#x27;body&#x27;)[0]).appendChild(dsq);
+
+		if (p.callback &amp;&amp; typeof (p.callback) == &#x27;function&#x27;) {
+			if ($(&#x27;#dsq-content #dsq-reply&#x27;).length === 0) {
+				_callback = p.callback;
+				_interval = window.setInterval(_isDisqusLoaded, 200);
+			} else {
+				p.callback();
+			}
+		}
 	};
 
-	return magento;
+
+	/**
+	* Reset Disqus.
+	*
+	* @method reset
+	* @param {String} pageId TODO
+	* @param {String} url TODO
+	*/
+	disqus.reset = function (pageId, url) {
+		DISQUS.reset({
+			reload: true,
+			config: function () {
+				this.page.identifier = pageId;
+				this.page.url = url;
+			}
+		});
+	};
+
+
+	return disqus;
 
 })(window.kafe)});
+
     </pre>
 </div>
 
