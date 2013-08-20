@@ -161,7 +161,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	* Returns whether the date is within a leap year or not.
 	*
 	* @method isLeapYear
-	* @param {Number} year
+	* @param {Number} year The year.
 	* @return {Boolean} If it is a leap year or not.
 	* @example
 	*	kafe.date.isLeapYear(2013);
@@ -176,10 +176,29 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 
 	/**
+	* Returns whether the date is within a weekend.
+	*
+	* @method isWeekend
+	* @param {Date} d The date
+	* @return {Boolen} If it is within a weekend or not.
+	* @example
+	*	kafe.date.isWeekend(new Date('2013-07-17'));
+	*	// returns false
+	* @example
+	*	kafe.date.isWeekend(new Date('2013-07-20'));
+	*	// returns true
+	*/
+	date.isWeekend = function(date) {
+		var weekday = date.getDay();
+		return (weekday === 0 || weekday === 6);
+	};
+
+
+	/**
 	* Get the number of days for all the months of a given year.
 	*
 	* @method getMaxMonth
-	* @param {Number} year
+	* @param {Number} year The year.
 	* @return {Array[Number]} An ordered array of day counts for each months of the given year.
 	* @example
 	*	kafe.date.getMaxMonth(2013);
@@ -519,6 +538,9 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
 	*/
 	date.parse = function(dtstring) {
+		if (/^([0-9]{2,4})\\-([0-9]{2})\\-([0-9]{2})$/gi.test(dtstring)) {
+			dtstring += ' 00:00:00';
+		}
 
 		var ts = Date.parse(dtstring);
 
