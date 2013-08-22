@@ -50,22 +50,33 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 				selector  = 'input[placeholder], textarea[placeholder]'
 			;
 
-			$('body').on({
-				focus: function() {
-					var $this = $(this);
-					if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
-						$this.one('keydown', function() {
-							$this.removeClass('Placeholder').val('');
+			$('body')
+				.on({
+					focus: function() {
+						var $this = $(this);
+						if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
+							$this.one('keydown', function() {
+								$this.removeClass('Placeholder').val('');
+							});
+						}
+					},
+					blur: function() {
+						var $this = $(this);
+						if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
+							$this.addClass('Placeholder').val($this.attr('placeholder'));
+						}
+					}
+				}, selector)
+				.on({
+					submit: function() {
+						$(selector).each(function() {
+							var $this = $(this);
+							if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
+								$this.val('');
+							}
 						});
 					}
-				},
-				blur: function() {
-					var $this = $(this);
-					if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
-						$this.addClass('Placeholder').val($this.attr('placeholder'));
-					}
-				}
-			}, selector);
+				}, 'form');
 
 			$(selector).trigger('blur');
 		}
