@@ -41,7 +41,10 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	*	$('.search-field').kafe('form.placeholder');
 	*/
 	form.placeholder = function() {
-		if (kafe.env('ie') && kafe.env('ie') < 10) {
+		var test = document.createElement('input'), placeholderSupport = false;
+		if ('placeholder' in test) placeholderSupport = true;
+
+		if (!placeholderSupport) {
 
 			var
 				_isEmpty = function () {
@@ -69,11 +72,8 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 				}, selector)
 				.on({
 					submit: function() {
-						$(selector).each(function() {
-							var $this = $(this);
-							if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
-								$this.val('');
-							}
+						$(selector).filter('.Placeholder').each(function() {
+							$(this).val('');
 						});
 					}
 				}, 'form');
