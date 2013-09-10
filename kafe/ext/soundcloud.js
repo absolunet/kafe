@@ -1,18 +1,21 @@
-﻿//-------------------------------------------
-// kafe.ext.soundcloud
-//-------------------------------------------
-kafe.extend({name:'soundcloud', version:'0.1', obj:(function (K,undefined) {
-	var $ = K.jQuery;
+﻿window.kafe.extend({name:'soundcloud', version:'0.1', obj:(function (kafe,undefined) {
+	var
+		$ = kafe.dependencies.jQuery,
 
-	// default params
-	var _params = {
-		cliendId: ''
-	};
+		// default params
+		_params = {
+			cliendId: ''
+		}
+	;
 	
 	
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+	/**
+	* ### Version 0.1
+	* Extra methods for the Soundcloud API.
+	*
+	* @module kafe.ext
+	* @class kafe.ext.soundcloud
+	*/
 	var soundcloud = {};
 
 	// initialize (options)
@@ -20,7 +23,7 @@ kafe.extend({name:'soundcloud', version:'0.1', obj:(function (K,undefined) {
 	//-------------------------------------------
 	soundcloud.init = function (options) {
 		// K.required('//connect.soundcloud.com/sdk.js'); // required but async
-		var p = $.extend({}, _params, (options) ? options : {}); 
+		var p = $.extend({}, _params, (options) ? options : {});
 
 		if (window.SC) {
 			SC.initialize({ client_id: p.clientId });
@@ -55,4 +58,4 @@ kafe.extend({name:'soundcloud', version:'0.1', obj:(function (K,undefined) {
 
 	return soundcloud;
 
-})(kafe)});
+})(window.kafe)});

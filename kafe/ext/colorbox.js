@@ -1,6 +1,6 @@
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/jquery/colorbox'
+	'libs/vendor/jquery/colorbox'
 ]);
 //>>excludeEnd('excludeRequire');
 

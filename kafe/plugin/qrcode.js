@@ -1,6 +1,6 @@
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/qrcode'
+	'libs/vendor/qrcode'
 ]);
 //>>excludeEnd('excludeRequire');
 

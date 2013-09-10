@@ -1,7 +1,7 @@
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/jquery/cookie',
-	'libs/external/jquery/json',
+	'libs/vendor/jquery/cookie',
+	'libs/vendor/jquery/json',
 	'libs/kafe/string'
 ]);
 //>>excludeEnd('excludeRequire');

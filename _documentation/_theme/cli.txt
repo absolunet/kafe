@@ -1,2 +1,0 @@
-cd ./
-yuidoc . -t _documentation/_theme

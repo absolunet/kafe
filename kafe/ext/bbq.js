@@ -1,6 +1,6 @@
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/jquery/bbq'
+	'libs/vendor/jquery/bbq'
 ]);
 //>>excludeEnd('excludeRequire');
 

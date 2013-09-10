@@ -65,8 +65,8 @@
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/dependencies/underscore',
-	'libs/external/dependencies/modernizr'
+	'libs/vendor/underscore',
+	'libs/vendor/modernizr'
 ]);
 //>>excludeEnd('excludeRequire');
 

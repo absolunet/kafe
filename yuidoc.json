@@ -5,8 +5,8 @@
     "url": "http://github.com/absolunet/kafe",
     "logo": "http://www.absolunet.com/images/Logo_Absolunet.gif",
     "options": {
-        "outdir": "_documentation/yuidoc",
-        "exclude": "external",
+        "outdir": "../kafe-doc/doc",
+        "exclude": "vendor",
         "tabtospace": "3"
     }
 }

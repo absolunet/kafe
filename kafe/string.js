@@ -1,6 +1,6 @@
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/external/jquery/json'
+	'libs/vendor/jquery/json'
 ]);
 //>>excludeEnd('excludeRequire');
 
