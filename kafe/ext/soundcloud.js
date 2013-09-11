@@ -12,17 +12,22 @@
 	/**
 	* ### Version 0.1
 	* Extra methods for the Soundcloud API.
+	* Requires `//connect.soundcloud.com/sdk.js` to be included
 	*
 	* @module kafe.ext
 	* @class kafe.ext.soundcloud
 	*/
 	var soundcloud = {};
 
-	// initialize (options)
-	// init SoundCloud API
-	//-------------------------------------------
+
+	/**
+	* Initialize the SoundCloud API.
+	*
+	* @method init
+	* @param {Object} options Options
+	*	@param {String} options.cliendId SoundCloud id
+	*/
 	soundcloud.init = function (options) {
-		// K.required('//connect.soundcloud.com/sdk.js'); // required but async
 		var p = $.extend({}, _params, (options) ? options : {});
 
 		if (window.SC) {
@@ -30,9 +35,15 @@
 		}
 	};
 
-	// getPlaylistTracks (playlistId, [options], [callback])
-	// get Playlist Tracks
-	//-------------------------------------------
+
+	/**
+	* Get playlist tracks.
+	*
+	* @method getPlaylistTracks
+	* @param {String} playlistId The playlist id
+	* @param {Object} [options] Options
+	* @param {Function} [callback] The callback
+	*/
 	soundcloud.getPlaylistTracks = function (playlistId, options, callback) {
 		options = (!!options) ? options : {};
 
@@ -43,9 +54,14 @@
 		}
 	};
 
-	// getTracks ([options], [callback])
-	// get tracks
-	//-------------------------------------------
+
+	/**
+	* Get all tracks.
+	*
+	* @method getTracks
+	* @param {Object} [options] Options
+	* @param {Function} [callback] The callback
+	*/
 	soundcloud.getTracks = function (options, callback) {
 		options = (!!options) ? options : {};
 
@@ -55,6 +71,7 @@
 			callback();
 		}
 	};
+
 
 	return soundcloud;
 

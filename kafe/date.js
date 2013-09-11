@@ -65,8 +65,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property SECOND 
 		* @type Number
-		* @static
-		* @final
 		**/
 		SECOND:1000,
 
@@ -75,8 +73,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property MINUTE 
 		* @type Number
-		* @static
-		* @final
 		**/
 		MINUTE:60000,
 
@@ -85,8 +81,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property HOUR 
 		* @type Number
-		* @static
-		* @final
 		**/
 		HOUR:3600000,
 
@@ -95,8 +89,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property DAY 
 		* @type Number
-		* @static
-		* @final
 		**/
 		DAY:86400000,
 
@@ -105,8 +97,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property WEEK 
 		* @type Number
-		* @static
-		* @final
 		**/
 		WEEK:604800000,
 
@@ -115,8 +105,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property MONTH 
 		* @type Number
-		* @static
-		* @final
 		**/
 		MONTH:2629743840,
 
@@ -125,8 +113,6 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 		*
 		* @property YEAR 
 		* @type Number
-		* @static
-		* @final
 		**/
 		YEAR:31556926080
 	};
@@ -199,7 +185,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getMaxMonth
 	* @param {Number} year The year.
-	* @return {Array[Number]} An ordered array of day counts for each months of the given year.
+	* @return {Array(Number)} An ordered array of day counts for each months of the given year.
 	* @example
 	*	kafe.date.getMaxMonth(2013);
 	*	// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -217,7 +203,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getMonthNames
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of month names.
+	* @return {Array(String)} An ordered array of month names.
 	* @example
 	*	kafe.date.getMonthNames('en');
 	*	// returns ["January", "February", "March", "April", "May", "June", ... ]
@@ -235,7 +221,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getMonth1Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of 1-char month abbreviations.
+	* @return {Array(String)} An ordered array of 1-char month abbreviations.
 	* @example
 	*	kafe.date.getMonth1Names('en');
 	*	// returns ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
@@ -253,7 +239,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getMonth2Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of 2-char month abbreviations.
+	* @return {Array(String)} An ordered array of 2-char month abbreviations.
 	* @example
 	*	kafe.date.getMonth2Names('en');
 	*	// returns ["Ja", "Fe", "Mr", "Al", "Ma", "Jn", "Jl", "Au", "Se", "Oc", "No", "De"]
@@ -272,7 +258,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getMonth3Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of 3-char month abbreviations.
+	* @return {Array(String)} An ordered array of 3-char month abbreviations.
 	* @example
 	*	kafe.date.getMonth3Names('en');
 	*	// returns ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -294,7 +280,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getWeekdayNames
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of weekday names.
+	* @return {Array(String)} An ordered array of weekday names.
 	* @example
 	*	kafe.date.getWeekdayNames('en');
 	*	// returns ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -312,7 +298,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getWeekday1Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of 1-char weekday abbreviations.
+	* @return {Array(String)} An ordered array of 1-char weekday abbreviations.
 	* @example
 	*	kafe.date.getWeekday1Names('en');
 	*	// returns ["S", "M", "T", "W", "T", "F", "S"]
@@ -330,7 +316,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getWeekday2Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of 2-char weekday abbreviations.
+	* @return {Array(String)} An ordered array of 2-char weekday abbreviations.
 	* @example
 	*	kafe.date.getWeekday2Names('en');
 	*	// returns ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
@@ -348,7 +334,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getWeekday3Names
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of 3-char weekday abbreviations.
+	* @return {Array(String)} An ordered array of 3-char weekday abbreviations.
 	* @example
 	*	kafe.date.getWeekday3Names('en');
 	*	// returns ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -370,7 +356,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method getDayNames
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array[String]} An ordered array of clean representations for all possible days of a month.
+	* @return {Array(String)} An ordered array of clean representations for all possible days of a month.
 	* @example
 	*	kafe.date.getDayNames('en');
 	*	// returns ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", ... ]

@@ -185,9 +185,15 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 	};
 
 
-	// dialog ( content, [commands] )
-	// opens a message window with custom buttons
-	//-------------------------------------------
+	/**
+	* Opens a message window with custom buttons.
+	*
+	* @method dialog
+	* @param {String} content Message
+	* @param {Array(Object)} [commands] The buttons
+	*	@param {String} commands.label The button label
+	*	@param {Function} [commands.callback] The callback called on button click, closes the colorbox if not specified
+	*/
 	colorbox.dialog = function( content, commands  ) {
 
 		var html = '<div id="kafecolorbox-dialog">' + content;
@@ -216,18 +222,23 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 		colorbox.open({html:content});
 	};
 
-	// confirm ( selector, message, OKLabel, CancelLabel )
-	// simulate a confirm() behavior using colorbox.dialog
-	//-------------------------------------------
+
+	/**
+	* Simulate a confirm() behavior on a &lt;a&gt; link, using colorbox.dialog().
+	*
+	* @method confirm
+	* @param {String|jQueryObject|DOMElement} selector Link
+	* @param {String} message Message
+	* @param {String} OKLabel The label for the OK button
+	* @param {String} CancelLabel The label for the Cancel button
+	*/
 	colorbox.confirm = function( selector, message, OKLabel, CancelLabel ) {
-		var kDialog = this;
 		$(function(){
 			$(selector).on('click', function(e) {
 				e.preventDefault();
-				var $this = $(this);
-				kDialog.dialog( message, [
+				colorbox.dialog( message, [
 					{ label:OKLabel , callback: function() {
-						eval($this.attr('href'));
+						eval($(this).attr('href'));
 						$.colorbox.close();
 					}},
 					{ label:CancelLabel }
@@ -241,12 +252,12 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 	kafe.fn.plugIntojQuery('Colorbox', {
 
 		/**
-		* Calls $(selector).colorbox() with the default params including theme.
+		* Binds $(selector).colorbox() with the default params including theme.
 		*
 		* @method $.kafeCarousel('init')
 		* @param {Object} [options] The colorbox params.
 		* @example
-		*	$('.picture').kafeColorbox('init')
+		*	$('.picture').kafeColorbox('init', { theme:'Alternate' })
 		*/
 		'init': function(obj, parameters) {
 			return _open(parameters[0], obj);

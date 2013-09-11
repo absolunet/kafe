@@ -18,9 +18,14 @@ window.kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(kafe,undefi
 	var magento = {};
 
 
-
-	magento.publicFunction = function() {
-
+	/**
+	* Bind listener on Magento's Prototype ajax complete.
+	*
+	* @method onAjaxComplete
+	* @param {Function} callback Callback
+	*/
+	magento.onAjaxComplete = function(func) {
+		Ajax.Responders.register({ onComplete: func });
 	};
 
 	return magento;

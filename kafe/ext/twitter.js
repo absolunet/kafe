@@ -1,68 +1,46 @@
-//-------------------------------------------
-// kafe.ext.twitter
-//-------------------------------------------
-kafe.extend({name:'twitter', version:'1.1.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+window.kafe.extend({name:'twitter', version:'1.1.1', obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery
+	;
 
-	// default params
-	var _params = {
-		href:        '', 
-		text:        '',
-		via:         '',
-		related:     '',
-		relatedText: '',
-		type:        'none',
-		lang:        K.env('lang')
-	};
-
-	
-	// _mergeParams (options)
-	// return merged params
-	//-------------------------------------------
-	function _mergeParams(options,defaults) {
-		return $.extend({}, defaults, options);
-	}
-
-
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+	/**
+	* ### Version 1.1.1
+	* Extra methods for Twitter.
+	*
+	* @module kafe.ext
+	* @class kafe.ext.twitter
+	*/
 	var twitter = {};
 	
-	// button (selector,options)
-	// output tweet button in selector
-	//-------------------------------------------
-	twitter.button = function(selector,options) {
-		K.required('//platform.twitter.com/widgets.js');
-		var p = _mergeParams(options,_params);
-		$(selector).html('<a href="//twitter.com/share" class="twitter-share-button" data-url="'+p.href+'" data-text="'+p.text+'" data-via="'+p.via+'" data-related="'+((p.related) ? p.related+((p.relatedText) ? ':'+p.relatedText : '') : '')+'" data-count="'+p.type+'" data-lang="'+p.lang+'">tweet</a>');
-	};
 
-	// setButtonParams (options)
-	// set default tweet button params
-	//-------------------------------------------
-	twitter.setButtonParams = function() {
-		_params = _mergeParams(arguments[0],_params);
-	};
-
-	// linkifyTweet (tweet, [options])
-	// output tweet with links
-	//-------------------------------------------
+	/**
+	* Outputs tweet with links.
+	*
+	* @method linkifyTweet
+	* @param {String} tweet Plain text tweet
+	* @param {Object} [options] Options
+	*	@param {String} [options.link] Normal link template
+	*	@param {String} [options.user] User link template
+	*	@param {String} [options.hash] Hash link template
+	* @return {String} The tweet with links
+	*
+	* @example
+	*	kafe.twitter.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');
+	*	// returns "I really dig this #<a href="//search.twitter.com/search?q=%23twitter" data-external="true">twitter</a> function by @<a href="//twitter.com/absolunet" data-external="true">absolunet</a> : <a href="http://www.absolunet.com/" data-external="true">http://www.absolunet.com/</a>"
+	*/
 	twitter.linkifyTweet = function(tweet,options) {
+		options   = (!!options) ? options : {};
 
-		function _link($tmpl,data,link) {
-			var $a = 
-				$tmpl.clone()
-					.attr('href', link+data)
-					.text(data)
-			;
-			return $('<div>').append($a).html();
-		}
+		var
+			$link = (!!options.link) ? $(options.link) : $('<a data-external="true">'),
+			$user = (!!options.user) ? $(options.user) : $('<a data-external="true">'),
+			$hash = (!!options.hash) ? $(options.hash) : $('<a data-external="true">'),
+
+			_link = function($tmpl,data,link) {
+				return $('<div>').append( $tmpl.clone().attr('href', link+data).text(data) ).html();
+			}
+		;
 		
-		options   = (!!options) ? options : {}
-		var $link = (!!options.link) ? $(options.link) : $('<a rel="external">');
-		var $user = (!!options.user) ? $(options.user) : $('<a rel="external">');
-		var $hash = (!!options.hash) ? $(options.hash) : $('<a rel="external">');
 
 		tweet = tweet.replace(/[a-z]+:\/\/[a-z0-9-_]+\.[a-z0-9-_:~%&#\?\/.=]+[^:\.,\)\s*$]/ig, function (link) {
 			return _link($link,link,'');
@@ -77,6 +55,7 @@ kafe.extend({name:'twitter', version:'1.1.1', obj:(function(K,undefined){
 		return tweet;
 	};
 
+
 	return twitter;
 
-})(kafe)});
+})(window.kafe)});

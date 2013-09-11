@@ -132,7 +132,7 @@ window.kafe = (function(undefined){
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '2-beta',
+			_vesyon: '2-alpha',
 
 			/**
 			* kafe author

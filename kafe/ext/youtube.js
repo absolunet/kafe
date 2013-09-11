@@ -1,124 +1,134 @@
-//-------------------------------------------
-// kafe.ext.youtube
-//-------------------------------------------
-kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
-	var $ = K.jQuery;
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'libs/kafe/url'
+]);
+//>>excludeEnd('excludeRequire');
 
-	// dictionary
-	var _locale = {
-		fr: 'fr_FR',
-		en: 'en_US'
-	};
+window.kafe.extend({name:'youtube', version:'1.1', obj:(function(kafe,undefined){
+	var
+		$ = kafe.dependencies.jQuery,
 
-	// default params
-	var 
-		_defaultLocale = _locale[K.fn.lang(_locale)],
+		// default params
 		_params = {
-			locale: _defaultLocale,
-			search: {
-				maxResults:   10,
-				startIndex:   1,
-				orderBy:      'relevance'
+			maxResults: 10,
+			startIndex: 1,
+			orderBy:    'relevance',
+			q:          '',
+			author:     '',
+			category:   ''
+		},
+
+		// return query string
+		_queryString = function(data) {
+			var q = '';
+			for (var i in data) {
+				q += i+'='+data[i].toString()+'&amp;';
 			}
+			return q.toString().substr(0,q.length-5);
+		},
+
+		// parses search results into clean and simple result objects.
+		_simpleSearchResults = function(results) {
+			
+			var simpleResults = [];
+			if (results !== undefined) {
+				$.each(results, function(i, val) {
+					
+					var entry = {};
+
+					entry.id = (val.id.$t).toString().split('/').pop();
+					entry.title = val.title.$t;
+					entry.author = val.author[0].name.$t;
+					entry.publishedDate = new Date(val.published.$t);
+					
+					entry.thumbnail = {};
+					entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
+					entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
+						
+					entry.categories = [];
+					$.each(val.category, function(ci, cval) {
+						if (ci > 0)
+							entry.categories.push(cval.term);
+					});
+					
+					simpleResults.push(entry);
+					
+				});
+			}
+				
+			return simpleResults;
 		}
 	;
-	
-	// _mergeParams (options)
-	// return merged params
-	//-------------------------------------------
-	function _mergeParams(options,defaults) {
-		options = options || {};
-		if (options.lang != undefined) {
-			if (options.locale == undefined) {
-				options.locale = _locale[K.fn.lang(_locale,options.lang)];
-			}
-			delete options.lang;
-		}
-		
-		return $.extend({}, defaults, options);
-	}
 
-	// _queryString (data)
-	// return query string
-	//-------------------------------------------
-	function _queryString(data) {
-		var q = '';
-		for (var i in data) {
-			q += i+'='+data[i].toString()+'&amp;';
-		}
-		return q.toString().substr(0,q.length-5);
-	}
 
-	// _simpleSearchResults (options)
-	// Parses search results into clean and simple result objects.
-	//-------------------------------------------
-	function _simpleSearchResults(results) {
-		
-		var simpleResults = [];
-		if (results != undefined) {
-			$.each(results, function(i, val) {
-				
-				var entry = {};
-
-				entry.id = (val.id.$t).toString().split('/').pop();
-				entry.title = val.title.$t;
-				entry.author = val.author[0].name.$t;
-				entry.publishedDate = new Date(val.published.$t);
-				
-				entry.thumbnail = {};
-				entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
-				entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
-					
-				entry.categories = [];
-				$.each(val.category, function(ci, cval) {
-					if (ci > 0)
-						entry.categories.push(cval.term);
-				});
-				
-				simpleResults.push(entry);
-				
-			});
-		}
-		
-		//console.log(results);
-		
-		return simpleResults;
-		
-	}
-
-	//-------------------------------------------
-	// PUBLIC
-	//-------------------------------------------
+	/**
+	* ### Version 1.1
+	* Extra methods for Youtube.
+	*
+	* @module kafe.ext
+	* @class kafe.ext.youtube
+	*/
 	var youtube = {};
 	
-	// setInitParams (options)
-	// set default init params
-	//-------------------------------------------
+
+	/**
+	* Set default Youtube params.
+	*
+	* @method setParams
+	* @param {Object} options Options
+	*	@param {Number} [options.maxResults=10] Number of results
+	*	@param {Number} [options.startIndex=1] Start index (page)
+	*	@param {String} [options.orderBy='relevance'] Order by choice
+	*	@param {String} [options.q] Query string of search
+	*	@param {String} [options.author] Author of videos
+	*	@param {Array(String)} [options.category] Categories
+	*/
 	youtube.setParams = function() {
-		_params = _mergeParams(arguments[0],_params);
+		$.extend(_params, arguments[0]);
 	};
 
-	// search (params, callback)
-	// Builds a youtube search url then returns the results as the first argument of the specified callback
-	//-------------------------------------------
-	youtube.search = function(params, callback) {
-		var s = _params.search;
+
+	/**
+	* Get the default params with optional extra params.
+	*
+	* @method getParams
+	* @param {Object} [options] Options
+	* @return {Object} The default Youtube params.
+	*/
+	youtube.getParams = function() {
+		return $.extend({}, _params, arguments[0]);
+	};
+
+
+	/**
+	* Builds a youtube search url then returns the results as the first argument of the specified callback.
+	*
+	* @method search
+	* @param {Object} [options] Options
+	* @param {Function} callback Callback
+	*/
+	youtube.search = function(options, callback) {
+		options = youtube.getParams(options);
 		
-		var path = 'https://gdata.youtube.com/feeds/api/videos?';
-		var query = 'alt=json-in-script&callback=?';
-		
-		query += '&max-results=' + s.maxResults;
-		query += '&start-index=' + s.startIndex;
-		query += '&orderby=' + s.orderBy;
-		
-		if ( !!params.query )
-			query += '&q=' + encodeURIComponent(params.query);
+		var
+			path = 'https://gdata.youtube.com/feeds/api/videos?',
+			query = 'alt=json-in-script&callback=?' +
+					'&max-results=' + options.maxResults +
+					'&start-index=' + options.startIndex +
+					'&orderby=' + options.orderBy
+		;
+
+		if (options.query) {
+			query += '&q=' + encodeURIComponent(options.query);
+		}
 			
-		if ( !!params.author )
-			query += '&author=' + encodeURIComponent(params.author);
+		if (options.author) {
+			query += '&author=' + encodeURIComponent(options.author);
+		}
 			
-		if ( !!params.category )
-			query += '&category=' + encodeURIComponent(params.category.join('|'));
+		if (options.category) {
+			query += '&category=' + encodeURIComponent(options.category.join('|'));
+		}
 			
 		$.ajax({
 			url: path + query,
@@ -128,17 +138,21 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
 				callback(simpleResults);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				throw K.error(new Error(errorThrown));
+				throw kafe.error(new Error(errorThrown));
 			}
 		});
 		
 	};
 
-	// getPlaylistVideos (params, callback)
-	// ---
-	//-------------------------------------------
+
+	/**
+	* Builds a youtube search url then returns the results as the first argument of the specified callback.
+	*
+	* @method getPlaylistVideos
+	* @param {String} playlistId Playlist id
+	* @param {Function} callback Callback
+	*/
 	youtube.getPlaylistVideos = function (playlistId, callback) {
-		K.required('kafe.url');
 
 		if (!playlistId) {
 			if (callback) callback(null);
@@ -149,9 +163,12 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
 			playlistId = playlistId.toString().substr(2, playlistId.length);
 		}
 		
-		var playListURL = '//gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?';
-		var videoURL = '//www.youtube.com/watch?v=';
-		var imageURL = '//img.youtube.com/vi/';
+		var
+			playListURL = '//gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?',
+			videoURL = '//www.youtube.com/watch?v=',
+			imageURL = '//img.youtube.com/vi/'
+		;
+		
 		$.ajax({
 			url: playListURL,
 			dataType: 'json',
@@ -160,15 +177,17 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
 				$.each(data.feed.entry, function (i, item) {
 					$.each(item.link, function (y, subitem) {
 						if (subitem.rel == 'alternate') {
-							var qs = K.url.parseSearchParams('?' + subitem.href.toString().split('?')[1])
-							var videoId = qs.v;
-							var video = {
-								title: item.title.$t,
-								id: videoId,
-								url: videoURL + videoId,
-								img_thumb: imageURL + videoId + '/default.jpg',
-								img_large: imageURL + videoId + '/hqdefault.jpg'
-							};
+							var
+								qs      = kafe.url.parseSearchParams('?' + subitem.href.toString().split('?')[1]),
+								videoId = qs.v,
+								video   = {
+									title: item.title.$t,
+									id: videoId,
+									url: videoURL + videoId,
+									img_thumb: imageURL + videoId + '/default.jpg',
+									img_large: imageURL + videoId + '/hqdefault.jpg'
+								}
+							;
 							videos.push(video);
 						}
 					});
@@ -183,4 +202,4 @@ kafe.extend({name:'youtube', version:'1.1', obj:(function(K,undefined){
 
 	return youtube;
 
-})(kafe)});
+})(window.kafe)});
