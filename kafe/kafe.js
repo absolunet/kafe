@@ -193,6 +193,18 @@ window.kafe = (function(undefined){
 	_delete('window.Modernizr');
 
 
+	// add flags for ie9 and less
+	if (_ie && _ie < 10) {
+		var classes = ['is-ie'+_ie];
+
+		for (var i=6; i<10; ++i) {
+			if (_ie < i) { classes.push('lt-ie'+_ie); }
+			if (_ie > i) { classes.push('gt-ie'+_ie); }
+		}
+
+		$(function() { $('html').addClass(classes.join(' ')); });
+	}
+
 
 	// miscellaneous core functions
 	core.fn = {
@@ -322,15 +334,6 @@ window.kafe = (function(undefined){
 	})();
 
 
-	// 
-	// 
-	// 
-	// TODO -- ADD IE CLASSES 
-	// 
-	// 
-	// 
-
-
 	/**
 	* Add module to core
 	*
@@ -400,11 +403,6 @@ window.kafe = (function(undefined){
 		return (_ie && _ie == 8) ? new Error(e) : e;
 	};
 
-
-
-
-	// TO REPLACE WITH REQUIRE.JS DEPENDENCIES
-	core.required = function(name) { console.log(name); };
 
 	return core;
 

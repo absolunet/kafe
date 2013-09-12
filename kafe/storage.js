@@ -33,7 +33,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 			if (_isAvailable(type)) {
 				var
 					sData = _getStorageObj(type).getItem(key),
-					data = (sData) ? K.string.toObject(sData) : undefined
+					data = (sData) ? kafe.string.toObject(sData) : undefined
 				;
 				if (!!data) {
 
