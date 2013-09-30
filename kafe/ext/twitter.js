@@ -13,6 +13,25 @@ window.kafe.extend({name:'twitter', version:'1.1.1', obj:(function(kafe,undefine
 	var twitter = {};
 	
 
+
+	/**
+	* Loads the api javascript used for twitter widgets
+	*
+	* @method loadWidgetAPI
+	*/
+	twitter.loadWidgetAPI = function() {
+		(function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){
+				js=d.createElement(s);
+				js.id=id;
+				js.src=p+'://platform.twitter.com/widgets.js';
+				fjs.parentNode.insertBefore(js,fjs);
+			}
+		})(document,'script','twitter-wjs');
+	};
+
+
 	/**
 	* Outputs tweet with links.
 	*
