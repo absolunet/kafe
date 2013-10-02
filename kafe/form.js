@@ -68,6 +68,14 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 						if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
 							$this.addClass('Placeholder').val($this.attr('placeholder'));
 						}
+					},
+					change: function() {
+						var $this = $(this);
+						if (_isEmpty($this.val()) || $this.val() == $this.attr('placeholder')) {
+							$this.addClass('Placeholder').val($this.attr('placeholder'));
+						} else {
+							$this.removeClass('Placeholder');
+						}
 					}
 				}, selector)
 				.on({
