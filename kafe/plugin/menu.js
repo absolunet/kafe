@@ -92,27 +92,32 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 					clearTimeout($sub.data('kafemenu-timer'));
 				}
 
-				$parent.addClass('kafemenu-open');
-				$sub.data('kafemenu-timer', setTimeout(function() {
-					if (!!c.enterCallback) {
-						c.enterCallback($sub);
-					}
-					switch (c.animation) {
-						case 'fade' :
-							$sub.fadeIn(c.openSpeed);
-						break;
+				if ($sub.size() > 0) {
+					$sub.data('kafemenu-timer', setTimeout(function() {
+						$parent.addClass('kafemenu-open');
+						if (!!c.enterCallback) {
+							c.enterCallback($sub);
+						}
+						switch (c.animation) {
+							case 'fade' :
+								$sub.fadeIn(c.openSpeed);
+							break;
 
-						//case 'slide' :
-						default :
-							$sub.slideDown(c.openSpeed);
-						break;
-					}
-				}, c.openDelay));
+							//case 'slide' :
+							default :
+								$sub.slideDown(c.openSpeed);
+							break;
+						}
+					}, c.openDelay));
+				}
 			})
 			.bind('mouseleave', function(){
 				var
 					$parent = $(this),
-					$sub = $parent.children(c.submenus)
+					$sub = $parent.children(c.submenus),
+					_clearclass = function() {
+						$parent.removeClass('kafemenu-open');
+					}
 				;
 
 				if ($sub.data('kafemenu-timer') !== undefined) {
@@ -121,26 +126,20 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 
 				if ($sub.size() > 0) {
 					$sub.data('kafemenu-timer', setTimeout(function() {
-						$parent.removeClass('kafemenu-open');
 						if (!!c.leaveCallback) {
 							c.leaveCallback($sub);
 						}
 						switch (c.animation) {
 							case 'fade' :
-								$sub.fadeOut(c.closeSpeed);
+								$sub.fadeOut(c.closeSpeed, _clearclass);
 							break;
 
 							//case 'slide' :
 							default :
-								$sub.slideUp(c.closeSpeed);
+								$sub.slideUp(c.closeSpeed, _clearclass);
 							break;
 						}
 					}, c.closeDelay));
-				} else {
-					$parent.removeClass('kafemenu-open');
-					if (!!c.leaveCallback) {
-						c.leaveCallback($sub);
-					}
 				}
 			})
 		;
