@@ -1,14 +1,14 @@
 /*!
- * jScrollPane - v2.0.0beta12 - 2012-09-27
+ * jScrollPane - v2.0.17 - 2013-08-17
  * http://jscrollpane.kelvinluck.com/
  *
- * Copyright (c) 2010 Kelvin Luck
+ * Copyright (c) 2013 Kelvin Luck
  * Dual licensed under the MIT or GPL licenses.
  */
 
 // Script: jScrollPane - cross browser customisable scrollbars
 //
-// *Version: 2.0.0beta12, Last updated: 2012-09-27*
+// *Version: 2.0.17, Last updated: 2013-08-17*
 //
 // Project Home - http://jscrollpane.kelvinluck.com/
 // GitHub       - http://github.com/vitch/jScrollPane
@@ -17,7 +17,7 @@
 //
 // About: License
 //
-// Copyright (c) 2012 Kelvin Luck
+// Copyright (c) 2013 Kelvin Luck
 // Dual licensed under the MIT or GPL Version 2 licenses.
 // http://jscrollpane.kelvinluck.com/MIT-LICENSE.txt
 // http://jscrollpane.kelvinluck.com/GPL-LICENSE.txt
@@ -39,6 +39,11 @@
 //
 // About: Release History
 //
+// 2.0.17 - (2013-08-17) Working correctly when box-sizing is set to border-box (thanks @pieht)
+// 2.0.16 - (2013-07-30) Resetting left position when scroll is removed. Fixes #189
+// 2.0.15 - (2013-07-29) Fixed issue with scrollToElement where the destX and destY are undefined.
+// 2.0.14 - (2013-05-01) Updated to most recent mouse wheel plugin (see #106) and related changes for sensible scroll speed
+// 2.0.13 - (2013-05-01) Switched to semver compatible version name
 // 2.0.0beta12 - (2012-09-27) fix for jQuery 1.8+
 // 2.0.0beta11 - (2012-05-14)
 // 2.0.0beta10 - (2011-04-17) cleaner required size calculation, improved keyboard support, stickToBottom/Left, other small fixes
@@ -71,12 +76,17 @@
 				originalElement = elem.clone(false, false).empty(),
 				mwEvent = $.fn.mwheelIntent ? 'mwheelIntent.jsp' : 'mousewheel.jsp';
 
-			originalPadding = elem.css('paddingTop') + ' ' +
-								elem.css('paddingRight') + ' ' +
-								elem.css('paddingBottom') + ' ' +
-								elem.css('paddingLeft');
-			originalPaddingTotalWidth = (parseInt(elem.css('paddingLeft'), 10) || 0) +
-										(parseInt(elem.css('paddingRight'), 10) || 0);
+			if (elem.css('box-sizing') === 'border-box') {
+				originalPadding = 0;
+				originalPaddingTotalWidth = 0;
+			} else {
+				originalPadding = elem.css('paddingTop') + ' ' +
+									elem.css('paddingRight') + ' ' +
+									elem.css('paddingBottom') + ' ' +
+									elem.css('paddingLeft');	
+				originalPaddingTotalWidth = (parseInt(elem.css('paddingLeft'), 10) || 0) +
+											(parseInt(elem.css('paddingRight'), 10) || 0);
+			}
 
 			function initialise(s)
 			{
@@ -176,7 +186,8 @@
 				if (!(isScrollableH || isScrollableV)) {
 					elem.removeClass('jspScrollable');
 					pane.css({
-						top: 0,
+            top: 0,
+            left: 0,
 						width: container.width() - originalPaddingTotalWidth
 					});
 					removeMousewheel();
@@ -822,7 +833,7 @@
 				} else if (eleTop + eleHeight > maxVisibleEleTop) { // element is below viewport
 					destY = eleTop - paneHeight + eleHeight + settings.verticalGutter;
 				}
-				if (destY) {
+				if (!isNaN(destY)) {
 					scrollToY(destY, animate);
 				}
 				
@@ -833,7 +844,7 @@
 	            } else if (eleLeft + eleWidth > maxVisibleEleLeft) { // element is to the right viewport
 	                destX = eleLeft - paneWidth + eleWidth + settings.horizontalGutter;
 	            }
-	            if (destX) {
+	            if (!isNaN(destX)) {
 	                scrollToX(destX, animate);
 	            }
 
@@ -1378,7 +1389,7 @@
 		settings = $.extend({}, $.fn.jScrollPane.defaults, settings);
 		
 		// Apply default speed
-		$.each(['mouseWheelSpeed', 'arrowButtonSpeed', 'trackClickSpeed', 'keyboardSpeed'], function() {
+		$.each(['arrowButtonSpeed', 'trackClickSpeed', 'keyboardSpeed'], function() {
 			settings[this] = settings[this] || settings.speed;
 		});
 
@@ -1416,7 +1427,7 @@
 		hijackInternalLinks			: false,
 		verticalGutter				: 4,
 		horizontalGutter			: 4,
-		mouseWheelSpeed				: 0,
+		mouseWheelSpeed				: 3,
 		arrowButtonSpeed			: 0,
 		arrowRepeatFreq				: 50,
 		arrowScrollOnHover			: false,
@@ -1432,4 +1443,4 @@
 		scrollPagePercent			: .8		// Percent of visible area scrolled when pageUp/Down or track area pressed
 	};
 
-})(kafe.dependencies.jQuery,this);
+})(window.kafe.dependencies.jQuery,this);

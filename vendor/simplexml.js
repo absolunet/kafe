@@ -1,7 +1,7 @@
 /*
  * Author: Vivek Jishtu
  *
- * Copyright (c) 2006-2011 Viamatic Softwares. All Rights Reserved.
+ * Copyright (c) 2006 Viamatic Softwares. All Rights Reserved.
  * 
  * This software is provided "AS IS," without a warranty of any kind. 
  *

@@ -1,12 +1,19 @@
+// ==ClosureCompiler==
+// @compilation_level ADVANCED_OPTIMIZATIONS
+// @externs_url http://closure-compiler.googlecode.com/svn/trunk/contrib/externs/maps/google_maps_api_v3_3.js
+// ==/ClosureCompiler==
+
 /**
  * @name MarkerClusterer for Google Maps v3
- * @version version 1.0
+ * @version version 1.0.1
  * @author Luke Mahe
  * @fileoverview
  * The library creates and manages per-zoom-level clusters for large amounts of
  * markers.
  * <br/>
- * REF: http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/docs/reference.html
+ * This is a v3 implementation of the
+ * <a href="http://gmaps-utility-library-dev.googlecode.com/svn/tags/markerclusterer/"
+ * >v2 MarkerClusterer</a>.
  */
 
 /**
@@ -76,7 +83,6 @@ function MarkerClusterer(map, opt_markers, opt_options) {
 
   /**
    * @private
-   * Exemple: http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/examples/advanced_example.html
    */
   this.styles_ = [];
 
@@ -155,7 +161,12 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   // Add the map event listeners
   var that = this;
   google.maps.event.addListener(this.map_, 'zoom_changed', function() {
+    // Determines map type and prevent illegal zoom levels
     var zoom = that.map_.getZoom();
+    var minZoom = that.map_.minZoom || 0;
+    var maxZoom = Math.min(that.map_.maxZoom || 100,
+                         that.map_.mapTypes[that.map_.getMapTypeId()].maxZoom);
+    zoom = Math.min(Math.max(zoom,minZoom),maxZoom);
 
     if (that.prevZoom_ != zoom) {
       that.prevZoom_ = zoom;
@@ -168,7 +179,7 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   });
 
   // Finally, add the markers
-  if (opt_markers && opt_markers.length) {
+  if (opt_markers && (opt_markers.length || Object.keys(opt_markers).length)) {
     this.addMarkers(opt_markers, false);
   }
 }
@@ -181,7 +192,8 @@ function MarkerClusterer(map, opt_markers, opt_options) {
  * @private
  */
 MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
-    '/images/gmaps_clusters/m';
+    'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
+    'images/m';
 
 
 /**
@@ -392,8 +404,14 @@ MarkerClusterer.prototype.getCalculator = function() {
  * @param {boolean=} opt_nodraw Whether to redraw the clusters.
  */
 MarkerClusterer.prototype.addMarkers = function(markers, opt_nodraw) {
-  for (var i = 0, marker; marker = markers[i]; i++) {
-    this.pushMarkerTo_(marker);
+  if (markers.length) {
+    for (var i = 0, marker; marker = markers[i]; i++) {
+      this.pushMarkerTo_(marker);
+    }
+  } else if (Object.keys(markers).length) {
+    for (var marker in markers) {
+      this.pushMarkerTo_(markers[marker]);
+    }
   }
   if (!opt_nodraw) {
     this.redraw();
@@ -1281,3 +1299,12 @@ Cluster.prototype['getMarkers'] = Cluster.prototype.getMarkers;
 ClusterIcon.prototype['onAdd'] = ClusterIcon.prototype.onAdd;
 ClusterIcon.prototype['draw'] = ClusterIcon.prototype.draw;
 ClusterIcon.prototype['onRemove'] = ClusterIcon.prototype.onRemove;
+
+Object.keys = Object.keys || function(o) {  
+    var result = [];  
+    for(var name in o) {  
+        if (o.hasOwnProperty(name))  
+          result.push(name);  
+    }  
+    return result;  
+};

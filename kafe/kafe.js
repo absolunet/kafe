@@ -1,67 +1,48 @@
-﻿/*                                                             
-                  `-:::::::/:::::::::::///::::::::::::::/::::::.          
-          `:::::/:-`                                          `.:///      
-          o.                                                       /:     
-         /-                                                         o`    
-        `o`                                                         /-    
-      -:/.                                                           .:/- 
-     `s`                                                               .s 
-     :/    ```...-------:///+++++++++++yyyyyyyyyyyysyyssso++++++/:----.-s`
-    /mhhddsoo++++++///::---........``````````````````````````....-:+dmdhho
-    .-::om`                                                         d+.`` 
-        .d`                                                        `m-    
-         ss                                                        /y`    
-         -h`                                                       y+     
-          d/                                                      -d`     
-          so  `````......----::::://///oooooooo+/////////////::--./m      
-          ydooooooooooooo+/////////////.........-------:::://///+ohN`     
-          hy.```                                                  /N      
-          /m`                                                     +d      
-          .h/                                                     yo      
-           oh`                                                   `N:      
-           `m/                                                   .N-      
-            ys                                                   /h.      
-            :N`                                                  sy       
-            .d/                                                  ho       
-             sh                                                 .d:       
-             -d-                                                :m`       
-              m+                                                +m        
-              oy`                                               ss        
-              -N`                                              `m/        
-              `h/                                              .N-        
-               sh                                              +h`        
-               :d.                                             hs         
-                m+                                            .d:         
-                sh-.`                                    `..-:yd          
-                -sdoossso+++/:--....````....--:://+++oossooohy:.          
-                 `d-````.--:://+oooooooooooo++//::--..```` `y/            
-                  d/                  `                    `d:            
-                  y+                                       `m-            
-                  -d`                                      /y             
-                  `h-                                      h+             
-                   +h                                     -d`             
-                   `d-                                    +h              
-                    so                                   `h:              
-                    -d`                                  .d.              
-                    `y:                                  os               
-                     +h                                  h/               
-                     `d-                                :d                
-                      so                                os                
-                      /y`                            `-/h/                
-                      `+ssoosso//:-         //+ssosso/:.                 
-                              `.-://+ossso+//:-`                          
+﻿/*                                                    
+                +-`-:::::::::::::::::/::::::.          
+          `::::/:-`                       `.:///      
+          o.                                   /:     
+        `o`                                     /-    
+      -:/.                                       .:/- 
+     :/    ``...-------:///+yyysyyssso++++++/:----.-s`
+    /mhhddsoo+++++///::---..`````````````....-:+dmdhho
+    .-::om`                                     d+.`` 
+        .d`                                    `m-    
+         -h`                                   y+     
+          so `````......---://///////////::--./m      
+          ydoooooooooooo+///-------:::://///+ohN`     
+          hy.``                               /N      
+           m`                                 +d      
+           `m                                .N-      
+            :`                               sy       
+             d-                             :m`       
+             m+                             +m        
+             `h/                           .N-        
+              :d.                          hs         
+               m+                         .d:         
+               -sdoossso+++-//+++oossooohy:.          
+                `d-````.--:/::--..```` `y/            
+                 d/                    `d:            
+                 -d`                   /y             
+                 `d-                  +h              
+                  `y:                 os               
+                   +h                h/               
+                    so               os                
+                    `+ssooossosososs/:.                 
 */
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
 	'libs/vendor/underscore',
+	'libs/vendor/underscore-string',
 	'libs/vendor/modernizr'
 ]);
 //>>excludeEnd('excludeRequire');
 
 /**
-* ### Version 2-alpha
-* kafe RULZ
+* ### Version 2.0.0
+* kafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
+* https://github.com/absolunet/kafe
 *
 * @module kafe
 * @main kafe
@@ -121,7 +102,7 @@ window.kafe = (function(undefined){
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '2-alpha',
+			_vesyon: '2.0.0',
 
 			/**
 			* kafe author
