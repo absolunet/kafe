@@ -322,6 +322,7 @@
 	*	@param {Function} [options.postSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the `preSwitchCallback`.
 	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via `data-kafecarousel-id` and the `data-kafecarousel-action="status"` attribute.
 	*	@param {String} [options.statusBullet='&bull;'] Text used as the content of generated link in a `statusLink` navigation.
+	*	@param {Boolean} [options.pauseOnHover=true] If true, autoswitch will be paused while the mouse hovers a slide.
 	*
 	* @example
 	*	// Sample carousel structure
@@ -381,6 +382,7 @@
 		__.initCompleteCallback = (typeof(options.initCompleteCallback) == 'function') ? options.initCompleteCallback : undefined;
 		__.statusLink           = !!options.statusLink;
 		__.statusBullet         = (options.statusBullet) ? options.statusBullet : '&bull';
+		__.pauseOnHover         = (options.pauseOnHover === false) ? false : true;
 
 
 		// cache
@@ -477,10 +479,13 @@
 			__.$play.on('click',__.playClick);
 			__.$pause.on('click',__.pauseClick);
 
-			__.$slides.on({
-				mouseenter: __.slideStopAuto,
-				mouseleave: __.slideStartAuto
-			});
+			if (__.pauseOnHover) {
+				__.$slides.on({
+					mouseenter: __.slideStopAuto,
+					mouseleave: __.slideStartAuto
+				});
+			}
+
 
 
 
