@@ -71,7 +71,6 @@ window.kafe = (function(undefined){
 		// ie version
 		_ie = (function(){
 			var
-				undef,
 				v = 3,
 				div = document.createElement('div'),
 				all = div.getElementsByTagName('i')
@@ -81,7 +80,7 @@ window.kafe = (function(undefined){
 				all[0]
 			));
 
-			return v > 4 ? v : undef;
+			return v > 4 ? v : undefined;
 		}),
 
 		// jquery methods

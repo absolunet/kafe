@@ -25,9 +25,10 @@ module.exports = function(grunt) {
 	config.requirejs.core = {
 		options: {
 			baseUrl:  './',
-			name:     'files/test',
+			name:     'files/test-core',
+			include:  ['files/test-base'],
 			out:      'files/build.js',
-			optimize: 'uglify', // 'none'
+			optimize: 'none',
 			preserveLicenseComments: false,
 			skipModuleInsertion:     true,
 			findNestedDependencies:  true,
@@ -47,7 +48,7 @@ module.exports = function(grunt) {
 
 	// tasks
 	tasks.default = ['jshint:core', 'requirejs:core' ];
-	config.watch.test = { files: ['libs/**/*.js', 'files/test.js'], tasks: 'default' };
+	config.watch.test = { files: ['libs/**/*.js', 'files/tests.js', 'files/test-*.js'], tasks: 'default' };
 
 
 

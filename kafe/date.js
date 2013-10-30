@@ -126,13 +126,13 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	* @return {Number} The day of the year
 	* @example
 	*	kafe.date.getDayYear(new Date('2013-07-17'));
-	*	// returns 196
+	*	// returns 198
 	*/
 	date.getDayYear = function(d) {
 		var
 			max = this.getMaxMonth(d.getFullYear()),
 			m   = d.getMonth(),
-			total = -1
+			total = 0
 		;
 
 		for (var i=0; i<m; ++i) {
@@ -524,7 +524,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
 	*/
 	date.parse = function(dtstring) {
-		if (/^([0-9]{2,4})\\-([0-9]{2})\\-([0-9]{2})$/gi.test(dtstring)) {
+		if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2})$/gi.test(dtstring)) {
 			dtstring += ' 00:00:00';
 		}
 
@@ -547,7 +547,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 			;
 
 			// 2011-03-08 09:25:15
-			if ((e = new RegExp('^([0-9]{2,4})\\-([0-9]{2})\\-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(s))) {
+			if ((e = new RegExp('^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(s))) {
 				year   = y2y4(e[1]);
 				month  = e[2];
 				day    = e[3];
@@ -556,7 +556,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				second = e[6];
 
 			// Sat, 30 Oct 10 13:51:32 +0000
-			} else if ((e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\\+\\-][0-9]{4})$','gi').exec(s))) {
+			} else if ((e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4})$','gi').exec(s))) {
 				year   = y2y4(e[4]);
 				month  = $.inArray(e[3], m)+1;
 				day    = e[2];
@@ -566,7 +566,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				delta  = e[8]/100;
 
 			// Mon Nov 01 01:49:22 +0000 2010
-			} else if ((e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([\\+\\-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s))) {
+			} else if ((e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s))) {
 				year   = y2y4(e[8]);
 				month  = $.inArray(e[2], m)+1;
 				day    = e[3];
@@ -576,7 +576,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				delta  = e[7]/100;
 
 			// 2012-08-08T12:18:00.000-04:00
-			} else if ((e = new RegExp('^([0-9]{2,4})\\-([0-9]{2})\\-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([\\+\\-])([0-9]{2})\\:([0-9]{2})$','gi').exec(s))) {
+			} else if ((e = new RegExp('^([0-9]{2,4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([+-])([0-9]{2}):([0-9]{2})$','gi').exec(s))) {
 				year   = y2y4(e[1]);
 				month  = e[2];
 				day    = e[3];
