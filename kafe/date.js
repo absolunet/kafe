@@ -370,7 +370,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 			l = d.length
 		;
 		for (var i=l; i<31; ++i) {
-			d[i] = i+1;
+			d[i] = (i+1).toString();
 		}
 		return d;
 	};
@@ -546,8 +546,8 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				year, month, day, hour, minute, second, delta, e, d
 			;
 
-			// 2011-03-08 09:25:15
-			if ((e = new RegExp('^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(s))) {
+			// ISO 8601 / 2011-03-08 09:25:15 (useless for chrome)
+			if ((e = new RegExp('^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$','gi').exec(dtstring))) {
 				year   = y2y4(e[1]);
 				month  = e[2];
 				day    = e[3];
@@ -555,8 +555,8 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				minute = e[5];
 				second = e[6];
 
-			// Sat, 30 Oct 10 13:51:32 +0000
-			} else if ((e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4})$','gi').exec(s))) {
+			// RFC 822 (rss) / Sat, 30 Oct 10 13:51:32 +0000
+			} else if ((e = new RegExp('^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4})$','gi').exec(dtstring))) {
 				year   = y2y4(e[4]);
 				month  = $.inArray(e[3], m)+1;
 				day    = e[2];
@@ -565,8 +565,8 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				second = e[7];
 				delta  = e[8]/100;
 
-			// Mon Nov 01 01:49:22 +0000 2010
-			} else if ((e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4}) ([0-9]{2,4})$','gi').exec(s))) {
+			// (twitter) / Mon Nov 01 01:49:22 +0000 2010
+			} else if ((e = new RegExp('^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4}) ([0-9]{2,4})$','gi').exec(dtstring))) {
 				year   = y2y4(e[8]);
 				month  = $.inArray(e[2], m)+1;
 				day    = e[3];
@@ -575,8 +575,8 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				second = e[6];
 				delta  = e[7]/100;
 
-			// 2012-08-08T12:18:00.000-04:00
-			} else if ((e = new RegExp('^([0-9]{2,4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([+-])([0-9]{2}):([0-9]{2})$','gi').exec(s))) {
+			// ISO 8601 / 2012-08-08T12:18:00.000-04:00 (useless for chrome/safari)
+			} else if ((e = new RegExp('^([0-9]{2,4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([+-])([0-9]{2}):([0-9]{2})$','gi').exec(dtstring))) {
 				year   = y2y4(e[1]);
 				month  = e[2];
 				day    = e[3];

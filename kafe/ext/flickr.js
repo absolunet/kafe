@@ -149,7 +149,7 @@ window.kafe.extend({name:'flickr', version:'1.1', obj:(function (kafe,undefined)
 				maxPhotoH     = options.maxHeight ? options.maxHeight : null,
 				asBgImg       = options.asBgImg   ? options.asBgImg   : false,
 				doResize      = options.doResize  ? options.doResize  : false,
-				optimizedSize = photo.sizes['original']
+				optimizedSize = photo.sizes.original
 			;
 
 			if (maxPhotoW || maxPhotoH) {

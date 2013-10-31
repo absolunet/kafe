@@ -19,14 +19,19 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 	// js hint
-	config.jshint.core = { src: ['libsXYZ/**/*.js'] };
+	config.jshint.core = {
+		src: ['libs/kafe/**/*.js'],
+		options: {
+			'-W061': true   // eval can be harmful
+		}
+	};
 
 	// requirejs
 	config.requirejs.core = {
 		options: {
 			baseUrl:  './',
 			name:     'files/test-core',
-			include:  ['files/test-base'],
+			include:  ['files/test-date'],
 			out:      'files/build.js',
 			optimize: 'none',
 			preserveLicenseComments: false,

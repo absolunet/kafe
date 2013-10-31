@@ -1,2 +1,2 @@
-_tests/node_modules
-_tests/files/build.js
+tests/node_modules
+tests/files/build.js
