@@ -12,25 +12,6 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 
 
 	/**
-	* Add a class on focus to all input/textarea/select controls and the label placed immediatly before it.
-	*
-	* @method focus
-	* @example
-	*	kafe.form.focus();
-	*/
-	form.focus = function() {
-		$('body').on({
-			focus: function() {
-				$(this).prev('label').andSelf().addClass('Focus');
-			},
-			blur: function() {
-				$(this).prev('label').andSelf().removeClass('Focus');
-			}
-		}, 'input, textarea, select');
-	};
-
-
-	/**
 	* Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a "Placeholder" class will also be present when the placeholder text is shown.
 	*
 	* @method placeholder

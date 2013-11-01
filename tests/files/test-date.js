@@ -17,7 +17,7 @@ require([
 
 	test('getDayYear()', function() {
 		var getDayYear = function(date,expected,comment) {
-			strictEqual( kafe.date.getDayYear(new Date(date+' 00:00:00')), expected, comment );
+			strictEqual( kafe.date.getDayYear( kafe.date.parse(date) ), expected, comment );
 		};
 		getDayYear('2013-01-01', 1,   'First day');
 		getDayYear('2013-07-17', 198, 'Random day');
@@ -40,7 +40,7 @@ require([
 
 	test('isWeekend()', function() {
 		var isWeekend = function(date,expected,comment) {
-			strictEqual( kafe.date.isWeekend( new Date(date+' 00:00:00') ), expected, comment );
+			strictEqual( kafe.date.isWeekend( kafe.date.parse(date) ), expected, comment );
 		};
 		isWeekend('2013-07-17', false, 'Wednesday');
 		isWeekend('2013-07-20', true,  'Saturday');
@@ -142,7 +142,7 @@ require([
 
 	test('format()', function() {
 		var format = function(format,date,lang,expected,comment) {
-			strictEqual( kafe.date.format(format, new Date('2013-'+date), ((lang) ? lang : undefined)), expected, comment);
+			strictEqual( kafe.date.format(format, kafe.date.parse('2013-'+date), ((lang) ? lang : undefined)), expected, comment);
 		};
 		format('%Y | %y',                               '01-01 00:00:00', '',   '2013 | 13',                                         'Years');
 		format('%M | %m | %A | %a | %B | %b | %C | %c', '04-01 00:00:00', '',   '04 | 4 | Avril | avril | Avr | avr | AL | Al',      'Months / Default lang / 1 digit');
@@ -162,8 +162,8 @@ require([
 
 	test('formatRelative()', function() {
 		var formatRelative = function(date,expected,comment) {
-			strictEqual( kafe.date.formatRelative(new Date('2013-01-01 00:00:00'), new Date('2013-'+date)),       expected[0], comment+' / Default lang');
-			strictEqual( kafe.date.formatRelative(new Date('2013-01-01 00:00:00'), new Date('2013-'+date), 'en'), expected[1], comment+' / Specified lang');
+			strictEqual( kafe.date.formatRelative(kafe.date.parse('2013-01-01 00:00:00'), kafe.date.parse('2013-'+date)),       expected[0], comment+' / Default lang');
+			strictEqual( kafe.date.formatRelative(kafe.date.parse('2013-01-01 00:00:00'), kafe.date.parse('2013-'+date), 'en'), expected[1], comment+' / Specified lang');
 		};
 		formatRelative('01-01 00:00:00', ['en ce moment',              'now'                   ], 'now');
 		formatRelative('01-01 00:00:30', ["il y a moins d'une minute", 'less than a minute ago'], '1 second');
