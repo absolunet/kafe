@@ -96,14 +96,14 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	*/
 	validate.isLuhnAlgorithm = function(str) {
 		var
-			len     = luhn.length,
+			len     = str.length,
 			mul     = 0,
 			prodArr = [[0,1,2,3,4,5,6,7,8,9],[0,2,4,6,8,1,3,5,7,9]],
 			sum     = 0
 		;
 
 		while (len--) {
-			sum += prodArr[mul][parseInt(luhn.charAt(len), 10)];
+			sum += prodArr[mul][parseInt(str.charAt(len), 10)];
 			mul ^= 1;
 		}
 
@@ -128,15 +128,14 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	*	// returns true
 	*/
 	validate.isCreditCard = function(str,cc) {
-		str = str.replace(/[\s\-]$/g, '');
+		str = str.replace(/[\s\-]/g, '');
 
 		var pattern = {
-			visa:            '4[0-9]{12}(?:[0-9]{3})',
+			visa:            '4[0-9]{12}([0-9]{3})?',
 			mastercard:      '5[1-5][0-9]{14}',
 			americanexpress: '3[47][0-9]{13}',
 			dinersclub:      '3(?:0[0-5]|[68][0-9])[0-9]{11}',
-			discover:        '6(?:011|5[0-9]{2})[0-9]{12}',
-			jcb:             '(?:2131|1800|35\\d{3})\\d{11}'
+			discover:        '6(?:011|5[0-9]{2})[0-9]{12}'
 		};
 
 		return validate.isLuhnAlgorithm(str) && new RegExp('^'+pattern[cc]+'$','i').test(str);

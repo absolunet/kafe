@@ -43,10 +43,10 @@ require([
 
 
 	test('environment', function() {
-		strictEqual( kafe.env('culture'), 'fr-ca',          'kafe.env(\'culture\')');
-		strictEqual( kafe.env('lang'),    'fr',             'kafe.env(\'lang\')');
-		strictEqual( kafe.env('page'),    'SpecialContent', 'kafe.env(\'page\')');
-		deepEqual(   kafe.env('tmpl'),    ['Content'],      'kafe.env(\'tmpl\')');
+		strictEqual( kafe.env('culture'), 'fr-ca',          'culture');
+		strictEqual( kafe.env('lang'),    'fr',             'lang');
+		strictEqual( kafe.env('page'),    'SpecialContent', 'page');
+		deepEqual(   kafe.env('tmpl'),    ['Content'],      'tmpl');
 	});
 
 
