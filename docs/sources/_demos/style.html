@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html id="fr-CA" lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>kafe.style</title>
+	<link rel="stylesheet" href="css/kafe.css" type="text/css" media="all" />
+	
+	<script type="text/javascript" src="/plugins/cssua.custom.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/kafe/kafe.js"></script>
+	<script type="text/javascript" src="/kafe/style.js"></script>
+	
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			kafe.style.quickMenu({
+				selector: '.quickMenuDemo ul',
+				animation: 'fade',
+				openSpeed: 200, openDelay: 400,
+				closeSpeed: 150, closeDelay: 300
+			});
+			
+		});
+		
+	</script>
+	<style type="text/css" media="screen">
+		
+		.quickMenuDemo > ul {
+			margin:0 0 10px;
+			
+		}
+		.quickMenuDemo > ul > li {
+			list-style:none;
+			position:relative;
+			float:left;
+			margin:0 5px 0 0;
+		}
+		.quickMenuDemo > ul > li > a {
+			display:block;
+			background:#3637a6;
+			padding:10px;
+		}
+		.quickMenuDemo > ul > li > ul {
+			display:none;
+			position:absolute; top:100%; left:0;
+			padding:0; margin:0;
+		}
+		.quickMenuDemo > ul > li > ul li {
+			position:relative;
+			list-style:none; white-space:nowrap;
+			padding:0; margin:5px 0 0;
+		}
+		.quickMenuDemo > ul > li > ul a {
+			display:block;
+			background:#4748b7;
+			padding:10px;
+		}
+		.quickMenuDemo > ul > li > ul ul {
+			display:none;
+			position:absolute; top:0; left:100%;
+			padding:0; margin:-5px 0 0 5px;
+		}
+		
+	</style>
+	
+</head>
+<body>
+
+	<h1>kafe.style</h1>
+	
+	<div>
+		<a id="quickMenu" name="quickMenu"></a>
+		<h3>kafe.style.<em>quickMenu</em>( [params] )</h3>
+		<p>Adds a hover behavior to an html list to show/hide sub-items with custom speeds and delays.</p>
+		<ul>
+			<li>Parameters :
+				<ul>
+					<li><em>selector</em> ( string ) : The container element. The behavior will be attached to the children elements.</li>
+					<li><em>animation</em> ( string ) : Animation style. Possible values are 'fade' and 'slide'. Default value is <em>'slide'</em>.</li>
+					<li><em>openSpeed</em> ( number ) : Speed of the opening animation in milliseconds. Default value is <em>200</em>.</li>
+					<li><em>openDelay</em> ( number ) : Delay before the opening animation in milliseconds after entering. Default value is <em>500</em>.</li>
+					<li><em>closeSpeed</em> ( number ) : Speed of the closing animation in milliseconds. Default value is <em>150</em>.</li>
+					<li><em>closeDelay</em> ( number ) : Delay before the closing animation in milliseconds after leaving. Default value is <em>400</em>.</li>
+				</ul>
+			</li>
+		</ul>
+		<blockquote class="quickMenuDemo">
+			<ul>
+				<li><a href="#">Menu Item A</a>
+					<ul>
+						<li><a href="#">Submenu Item 1</a></li>
+						<li><a href="#">Submenu Item 2...</a>
+							<ul>
+								<li><a href="#">Submenu Item 1</a></li>
+								<li><a href="#">Submenu Item 2</a></li>
+								<li><a href="#">Submenu Item 3</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Submenu Item 3</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Menu Item B</a>
+					<ul>
+						<li><a href="#">Submenu Item 1...</a>
+							<ul>
+								<li><a href="#">Submenu Item 1...</a>
+									<ul>
+										<li><a href="#">Submenu Item 1</a></li>
+										<li><a href="#">Submenu Item 2</a></li>
+										<li><a href="#">Submenu Item 3</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Submenu Item 2</a></li>
+								<li><a href="#">Submenu Item 3</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#">Menu Item C</a>
+					<ul>
+						<li><a href="#">Submenu Item 1...</a>
+							<ul>
+								<li><a href="#">Submenu Item 1</a></li>
+								<li><a href="#">Submenu Item 2</a></li>
+								<li><a href="#">Submenu Item 3</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Submenu Item 2...</a>
+							<ul>
+								<li><a href="#">Submenu Item 1</a></li>
+								<li><a href="#">Submenu Item 2</a></li>
+								<li><a href="#">Submenu Item 3</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#">Menu Item D</a></li>
+				<li><a href="#">Menu Item E</a></li>
+			</ul>
+			<div class="clearer"></div>
+		</blockquote>
+		<pre>kafe.style.quickMenu({
+    selector: '.quickMenuDemo ul', animation: 'fade',
+    openSpeed: 200, openDelay: 400,
+    closeSpeed: 150, closeDelay: 300
+});</pre>
+	</div>
+		
+</body>
+</html>

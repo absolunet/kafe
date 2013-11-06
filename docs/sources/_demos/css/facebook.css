@@ -1,0 +1,13 @@
+@import url(kafe.css);
+
+/* kafe.ext.facebook */
+.NotConnected, .Connected {
+	display:none;
+	position:fixed; top:30px; right:30px;
+	border:2px dashed white;
+	padding:0px 20px 5px;
+}
+
+pre span {
+	white-space:normal;
+}
