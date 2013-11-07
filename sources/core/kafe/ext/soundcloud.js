@@ -1,7 +1,6 @@
-﻿window.kafe.extend({name:'soundcloud', version:'0.1', obj:(function (kafe,undefined) {
-	var
-		$ = kafe.dependencies.jQuery,
+﻿/* {%= HEADER %} */
 
+	var
 		// default params
 		_params = {
 			cliendId: ''
@@ -10,12 +9,12 @@
 	
 	
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Extra methods for the Soundcloud API.
 	* Requires `//connect.soundcloud.com/sdk.js` to be included
 	*
-	* @module kafe.ext
-	* @class kafe.ext.soundcloud
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var soundcloud = {};
 
@@ -75,4 +74,4 @@
 
 	return soundcloud;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

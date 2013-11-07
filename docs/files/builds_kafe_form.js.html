@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: builds/kafe/form.js</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -143,6 +143,7 @@
 
 <pre class="code prettyprint linenums">
 window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(function(kafe,undefined){
+
 	var $ = kafe.dependencies.jQuery;
 
 	/**
@@ -277,11 +278,11 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
 	* @example
 	*	kafe.form.maxLength(&#x27;.twitter-post&#x27;, 140, false, function(count) {
-	*		kafe.log(count);
+	*		console.log(count);
 	*	});
 	* @example
 	*	$(&#x27;.twitter-post&#x27;).kafe(&#x27;form.maxLength&#x27;, 140, false, function(count) {
-	*		kafe.log(count);
+	*		console.log(count);
 	*	});
 	*/
 	form.maxLength = function(selector, max, block, callback) {
@@ -323,11 +324,11 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
 	* @example
 	*	kafe.form.passwordStrength(&#x27;.password&#x27;, function(strengh) {
-	*		kafe.log(strengh);
+	*		console.log(strengh);
 	*	});
 	* @example
 	*	$(&#x27;.password&#x27;).kafe(&#x27;form.passwordStrength&#x27;, function(strengh) {
-	*		kafe.log(strengh);
+	*		console.log(strengh);
 	*	});
 	*/
 	form.passwordStrength = function(selector, callback) {
@@ -422,7 +423,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	* @example
 	*	kafe.form.sanitizeFormData(&#x27;#Form1&#x27;);
 	* @example
-	*	$(&#x27;#Form1&#x27;).kafe(&#x27;form.sanitizeFormData&#x27;);
+	*	$(&#x27;#Form1&#x27;).form(&#x27;form.sanitizeFormData&#x27;);
 	*/
 	form.sanitizeFormData = function(selector) {
 		var
@@ -455,7 +456,7 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 				var $this = $(this);
 				$this
 					.hide()
-					.after( $(&#x27;&lt;button type=&quot;submit&quot; data-kafereplacesubmit-processed=&quot;true&quot; class=&quot;&#x27;+ $this.attr(&#x27;class&#x27;) +&#x27;&quot;&gt;&#x27;+ $this.val() +&#x27;&lt;/button&gt;&#x27;).on(&#x27;click&#x27;, function(e) { e.preventDefault(); $this.trigger(&#x27;click&#x27;); }) )
+					.after( $(&#x27;&lt;button type=&quot;submit&quot; data-kafe-replacesubmit-processed=&quot;true&quot; class=&quot;&#x27;+ $this.attr(&#x27;class&#x27;) +&#x27;&quot;&gt;&#x27;+ $this.val() +&#x27;&lt;/button&gt;&#x27;).on(&#x27;click&#x27;, function(e) { e.preventDefault(); $this.trigger(&#x27;click&#x27;); }) )
 				;
 		});
 	};

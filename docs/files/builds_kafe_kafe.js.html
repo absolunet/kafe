@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: builds/kafe/kafe.js</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -142,7 +142,7 @@
             <div class="content"><h4>builds/kafe/kafe.js</h4>
 
 <pre class="code prettyprint linenums">
-﻿/*                                                    
+/*                                                    
                 +-&#x60;-:::::::::::::::::/::::::.          
           &#x60;::::/:-&#x60;                       &#x60;.:///      
           o.                                   /:     
@@ -184,7 +184,7 @@ require([
 //&gt;&gt;excludeEnd(&#x27;excludeRequire&#x27;);
 
 /**
-* ### Version 2.0.0
+* ### Version 2.0.0a
 * kafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * https://github.com/absolunet/kafe
 *
@@ -245,7 +245,7 @@ window.kafe = (function(undefined){
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: &#x27;2.0.0&#x27;,
+			_vesyon: &#x27;2.0.0a&#x27;,
 
 			/**
 			* kafe author
@@ -468,36 +468,6 @@ window.kafe = (function(undefined){
 		} else {
 			throw core.error(&#x27;kafe.&#x27;+options.name+&#x27; already exists&#x27;);
 		}
-	};
-
-
-	/**
-	* Add a homebrewed plugin
-	*
-	* @method plug
-	* @param {Object} options The options
-	*	@param {String} options.name The plugin name
-	*	@param {String} options.version The plugin version
-	*	@param {Object} options.obj The plugin itself
-	*/
-	core.plug = function(options) {
-		options.name = &#x27;plugin.&#x27;+options.name;
-		this.bonify(options);
-	};
-
-
-	/**
-	* Add an external plugin extension
-	*
-	* @method extend
-	* @param {Object} options The options
-	*	@param {String} options.name The plugin extension name
-	*	@param {String} options.version The plugin extension version
-	*	@param {Object} options.obj The plugin extension itself
-	*/
-	core.extend = function(options) {
-		options.name = &#x27;ext.&#x27;+options.name;
-		this.bonify(options);
 	};
 
 

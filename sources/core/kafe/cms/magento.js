@@ -1,7 +1,6 @@
-window.kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(kafe,undefined) {
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		_privateFunction = function () {
 
 		}
@@ -9,11 +8,11 @@ window.kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(kafe,undefi
 
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Additionnal methods for Magento
 	*
-	* @module kafe.cms
-	* @class kafe.cms.magento
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var magento = {};
 
@@ -30,4 +29,4 @@ window.kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(kafe,undefi
 
 	return magento;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

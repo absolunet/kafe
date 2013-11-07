@@ -1,12 +1,11 @@
-window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* Additionnal manipulation methods for numbers.
 	*
-	* @module kafe
-	* @class kafe.number 
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %> 
 	*/
 	var number = {};
 
@@ -17,7 +16,7 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 	* @param {Number} number
 	* @return {String} The roman numeral value.
 	* @example
-	*	kafe.number.toRoman(1954);
+	*	<%= NAME_FULL %>.toRoman(1954);
 	*	// returns "MCMLIV"
 	*/
 	number.toRoman = function(n) {
@@ -49,4 +48,4 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 
 	return number;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

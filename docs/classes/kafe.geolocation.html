@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: kafe.geolocation</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -156,7 +156,7 @@
 
 
 
-<span class="foundat">Class defined in: <a href="../files/builds_kafe_geolocation.js.html#l36"><code>builds&#x2F;kafe&#x2F;geolocation.js:36</code></a></span>
+<span class="foundat">Class defined in: <a href="../files/builds_kafe_geolocation.js.html#l38"><code>builds&#x2F;kafe&#x2F;geolocation.js:38</code></a></span>
 <div class="intro"><h3 id="version-1-0">Version 1.0</h3>
 <p>Methods to access geolocalization information about the client.</p>
 </div>
@@ -184,7 +184,7 @@
     
         
     
-        <a href="../files/builds_kafe_geolocation.js.html#l45"><code>builds&#x2F;kafe&#x2F;geolocation.js:45</code></a>
+        <a href="../files/builds_kafe_geolocation.js.html#l47"><code>builds&#x2F;kafe&#x2F;geolocation.js:47</code></a>
     </span><br>
     <p>Get the current geolocalization information of the client.</p>
 
@@ -234,11 +234,11 @@
         <pre class="code prettyprint"><code>kafe.geolocation.locate({
     selector: &#39;#GeoLocStatus&#39;, lang: &#39;en&#39;,
     success: function(coords) {
-        kafe.log(&#39;latitude: &#39; + coords.latitude);
-        kafe.log(&#39;longitude: &#39; + coords.longitude);
+        console.log(&#39;latitude: &#39; + coords.latitude);
+        console.log(&#39;longitude: &#39; + coords.longitude);
     }
     error: function(msg) {
-        kafe.log(&#39;Cannot geoloc: &#39; + msg);
+        console.log(&#39;Cannot geoloc: &#39; + msg);
     }
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;#GeoLocStatus&#39;).kafe(&#39;geolocation.locate&#39;, {});</code></pre>

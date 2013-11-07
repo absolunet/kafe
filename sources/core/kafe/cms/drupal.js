@@ -1,6 +1,6 @@
-window.kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefined) {
+/* {%= HEADER %} */
+
 	var
-		$       = kafe.dependencies.jQuery,
 		$Drupal = window.jQuery,
 
 		_privateFunction = function () {
@@ -10,11 +10,11 @@ window.kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefin
 
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Additionnal methods for Drupal
 	*
-	* @module kafe.cms
-	* @class kafe.cms.drupal
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var drupal = {};
 
@@ -26,4 +26,4 @@ window.kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefin
 
 	return drupal;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

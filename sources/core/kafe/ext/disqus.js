@@ -1,7 +1,6 @@
-﻿window.kafe.extend({name:'disqus', version:'0.1', obj:(function (kafe,undefined) {
-	var
-		$ = kafe.dependencies.jQuery,
+﻿/* {%= HEADER %} */
 
+	var
 		_params = {
 			shortname: '',
 			language: ''
@@ -26,11 +25,11 @@
 
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Extra methods for the Disqus API.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.disqus
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var disqus = {};
 
@@ -97,4 +96,4 @@
 
 	return disqus;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

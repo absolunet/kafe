@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: kafe.form</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -168,7 +168,7 @@
 
 
 
-<span class="foundat">Class defined in: <a href="../files/builds_kafe_form.js.html#l4"><code>builds&#x2F;kafe&#x2F;form.js:4</code></a></span>
+<span class="foundat">Class defined in: <a href="../files/builds_kafe_form.js.html#l5"><code>builds&#x2F;kafe&#x2F;form.js:5</code></a></span>
 <div class="intro"><h3 id="version-1-4-1">Version 1.4.1</h3>
 <p>Utilitary methods for html forms and related interactions.</p>
 </div>
@@ -196,7 +196,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l100"><code>builds&#x2F;kafe&#x2F;form.js:100</code></a>
+        <a href="../files/builds_kafe_form.js.html#l101"><code>builds&#x2F;kafe&#x2F;form.js:101</code></a>
     </span><br>
     <p>Automaticaly jump the focus to the next field once the maxlength has been reached.</p>
 
@@ -234,7 +234,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l126"><code>builds&#x2F;kafe&#x2F;form.js:126</code></a>
+        <a href="../files/builds_kafe_form.js.html#l127"><code>builds&#x2F;kafe&#x2F;form.js:127</code></a>
     </span><br>
     <p>Adds a simulated maxlength support for textarea elements.</p>
 
@@ -288,10 +288,10 @@
     
         <h5>Example</h5>
         <pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
-    kafe.log(count);
+    console.log(count);
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.twitter-post&#39;).kafe(&#39;form.maxLength&#39;, 140, false, function(count) {
-    kafe.log(count);
+    console.log(count);
 });</code></pre>
 
     
@@ -306,7 +306,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l75"><code>builds&#x2F;kafe&#x2F;form.js:75</code></a>
+        <a href="../files/builds_kafe_form.js.html#l76"><code>builds&#x2F;kafe&#x2F;form.js:76</code></a>
     </span><br>
     <p>Detects the RETURN key, then triggers a callback.</p>
 
@@ -358,7 +358,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l174"><code>builds&#x2F;kafe&#x2F;form.js:174</code></a>
+        <a href="../files/builds_kafe_form.js.html#l175"><code>builds&#x2F;kafe&#x2F;form.js:175</code></a>
     </span><br>
     <p>Calculates the password strength value of given fields.</p>
 
@@ -392,10 +392,10 @@
     
         <h5>Example</h5>
         <pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
-    kafe.log(strengh);
+    console.log(strengh);
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.password&#39;).kafe(&#39;form.passwordStrength&#39;, function(strengh) {
-    kafe.log(strengh);
+    console.log(strengh);
 });</code></pre>
 
     
@@ -410,7 +410,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l14"><code>builds&#x2F;kafe&#x2F;form.js:14</code></a>
+        <a href="../files/builds_kafe_form.js.html#l15"><code>builds&#x2F;kafe&#x2F;form.js:15</code></a>
     </span><br>
     <p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.</p>
 
@@ -448,7 +448,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l299"><code>builds&#x2F;kafe&#x2F;form.js:299</code></a>
+        <a href="../files/builds_kafe_form.js.html#l300"><code>builds&#x2F;kafe&#x2F;form.js:300</code></a>
     </span><br>
     <p>Replace elements with a submit button</p>
 
@@ -486,7 +486,7 @@
     
         
     
-        <a href="../files/builds_kafe_form.js.html#l273"><code>builds&#x2F;kafe&#x2F;form.js:273</code></a>
+        <a href="../files/builds_kafe_form.js.html#l274"><code>builds&#x2F;kafe&#x2F;form.js:274</code></a>
     </span><br>
     <p>Sanitize form text entry for .NET validator.</p>
 
@@ -510,7 +510,7 @@
     
         <h5>Example</h5>
         <pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
-<pre class="code prettyprint"><code>$(&#39;#Form1&#39;).kafe(&#39;form.sanitizeFormData&#39;);</code></pre>
+<pre class="code prettyprint"><code>$(&#39;#Form1&#39;).form(&#39;form.sanitizeFormData&#39;);</code></pre>
 
     
 </div>

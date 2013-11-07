@@ -1,13 +1,12 @@
-window.kafe.extend({name:'googlemaps', version:'1.1', obj:(function (kafe,undefined) {
-	var $ = kafe.dependencies.jQuery;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.1
+	* ### Version <%= VERSION %>
 	* Extra methods for the GoogleMaps API.
 	* Requires `//maps.google.com/maps/api/js` to be included
 	*
-	* @module kafe.ext
-	* @class kafe.ext.googlemaps
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var googlemaps = {};
 
@@ -19,7 +18,7 @@ window.kafe.extend({name:'googlemaps', version:'1.1', obj:(function (kafe,undefi
 	* @param {Array(Array)} coords List of lat/lon coords
 	*
 	* @example
-	*   myMap.fitBounds( kafe.ext.googlemaps.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
+	*   myMap.fitBounds( <%= NAME_FULL %>.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
 	*/
 	googlemaps.getCoordsBounds = function (coords) {
 		var
@@ -42,4 +41,4 @@ window.kafe.extend({name:'googlemaps', version:'1.1', obj:(function (kafe,undefi
 
 	return googlemaps;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

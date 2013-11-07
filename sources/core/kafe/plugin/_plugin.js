@@ -1,6 +1,6 @@
 /**
 * homebrewed plugins
 *
-* @module kafe.plugin
-* @main kafe.plugin
+* @module <%= MODULE %>
+* @main <%= MODULE %>
 */

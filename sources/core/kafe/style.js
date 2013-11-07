@@ -1,12 +1,11 @@
-window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.3
+	* ### Version <%= VERSION %>
 	* Common adjustment and manipulation methods for html layouts.
 	*
-	* @module kafe
-	* @class kafe.style 
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %> 
 	*/
 	var style = {};
 
@@ -20,9 +19,9 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	*	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to 'auto' before comparing.
 	*	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
 	* @example
-	*	kafe.style.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
+	*	<%= NAME_FULL %>.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
 	* @example
-	*	$('.products').kafe('style.equalHeight', { nbPerRow: 3, resetHeight: true });
+	*	$('.products').<%= PACKAGE %>('<%= NAME %>.equalHeight', { nbPerRow: 3, resetHeight: true });
 	*/
 	style.equalHeight = function() {
 		var
@@ -66,13 +65,13 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @method replaceHr
 	* @param {String|jQueryObject|DOMElement} [selector='hr'] Restricts the process to a specific context.
 	* @example
-	*	kafe.style.replaceHr('.page-content');
+	*	<%= NAME_FULL %>.replaceHr('.page-content');
 	* @example
-	*	$('.page-content').kafe('style.replaceHr');
+	*	$('.page-content').<%= PACKAGE %>('<%= NAME %>.replaceHr');
 	*/
 	style.replaceHr = function() {
-		var $e = (arguments[0]) ? $('hr:not(.kafe-replacehr-processed)', $(arguments[0])) : $('hr');
-		$e.addClass('kafe-replacehr-processed').hide().wrap('<div class="hr"></div>');
+		var $e = (arguments[0]) ? $('hr:not(.<%= PACKAGE %>-replacehr-processed)', $(arguments[0])) : $('hr');
+		$e.addClass('<%= PACKAGE %>-replacehr-processed').hide().wrap('<div class="hr"></div>');
 	};
 
 
@@ -83,9 +82,9 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} selector Affected elements.
 	* @param {String|jQueryObject|DOMElement} [parent=DIRECT_PARENT] Container in which we want to be centered.
 	* @example
-	*	kafe.style.vAlign('.menu-items > .label');
+	*	<%= NAME_FULL %>.vAlign('.menu-items > .label');
 	* @example
-	*	$('.menu-items > .label').kafe('style.vAlign');
+	*	$('.menu-items > .label').<%= PACKAGE %>('<%= NAME %>.vAlign');
 	*/
 	style.vAlign = function(e, parent) {
 		$(e).each(function(){
@@ -100,13 +99,13 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'style.equalHeight': function(obj, parameters) {
+		'<%= NAME %>.equalHeight': function(obj, parameters) {
 			style.equalHeight(obj, parameters[0]);
 		},
-		'style.replaceHr': function(obj, parameters) {
+		'<%= NAME %>.replaceHr': function(obj, parameters) {
 			style.replaceHr(obj);
 		},
-		'style.vAlign': function(obj, parameters) {
+		'<%= NAME %>.vAlign': function(obj, parameters) {
 			style.replaceHr(obj, parameters[0]);
 		}
 	});
@@ -114,4 +113,4 @@ window.kafe.bonify({name:'style', version:'1.3', obj:(function(kafe,undefined){
 
 	return style;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

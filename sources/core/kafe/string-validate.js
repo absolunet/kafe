@@ -4,17 +4,15 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
-
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* String validation tools.
 	*
-	* @module kafe
-	* @class kafe.string.validate 
-	* @extensionfor kafe.string
+	* @module <%= PACKAGE %>
+	* @class <%= NAME_FULL %>
+	* @extensionfor <%= MODULE %>
 	*/
 	var validate = {};
 
@@ -25,10 +23,10 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} string
 	* @return {Boolean} If true, the string could be converted to a number.
 	* @example
-	*	kafe.string.validate.isNum('k4f3');
+	*	<%= NAME_FULL %>.isNum('k4f3');
 	*	// returns false
 	* @example
-	*	kafe.string.validate.isNum('43');
+	*	<%= NAME_FULL %>.isNum('43');
 	*	// returns true
 	*/
 	validate.isNum = function(str) {
@@ -43,10 +41,10 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} string
 	* @return {Boolean} If true, the string is a valid email address.
 	* @example
-	*	kafe.string.validate.isEmail('mailbox@mailaddress');
+	*	<%= NAME_FULL %>.isEmail('mailbox@mailaddress');
 	*	// returns false
 	* @example
-	*	kafe.string.validate.isEmail('kafe.feedback@absolunet.com');
+	*	<%= NAME_FULL %>.isEmail('kafe.feedback@absolunet.com');
 	*	// returns true
 	*/
 	validate.isEmail = function(str) {
@@ -64,10 +62,10 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} [format] Validation pattern (Regular expression). Default pattern is *([a-z][0-9]){3}*. Can also be set to *A1A 1A1* for a single precise value or as *A1A* and *1A1* when divided into two values.
 	* @return {Boolean} If true, the string matches the validation format.
 	* @example
-	*	kafe.string.validate.isPostalCode('KAF123');
+	*	<%= NAME_FULL %>.isPostalCode('KAF123');
 	*	// returns false
 	* @example
-	*	kafe.string.validate.isPostalCode('K4F 3F3', 'A1A 1A1');
+	*	<%= NAME_FULL %>.isPostalCode('K4F 3F3', 'A1A 1A1');
 	*	// returns true
 	*/
 	validate.isPostalCode = function(str,format) {
@@ -91,7 +89,7 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} string
 	* @return {Boolean} If true, the string passes the Luhn algorithm.
 	* @example
-	*	kafe.string.validate.isLuhn('79927398713');
+	*	<%= NAME_FULL %>.isLuhn('79927398713');
 	*	// returns true
 	*/
 	validate.isLuhnAlgorithm = function(str) {
@@ -121,10 +119,10 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 	* @param {String} creditcard A credit card brand abbreviation. Possible values are **visa**, **mastercard**, **americanexpress**, **dinersclub**, **discover**, **jcb**.
 	* @return {Boolean} If true, the string is a valid credit card number.
 	* @example
-	*	kafe.string.validate.isCreditCard('k789 kafe 3789', 'mc');
+	*	<%= NAME_FULL %>.isCreditCard('k789 kafe 3789', 'mc');
 	*	// returns false
 	* @example
-	*	kafe.string.validate.isCreditCard('1234 5678 1234 5678', 'vi');
+	*	<%= NAME_FULL %>.isCreditCard('1234 5678 1234 5678', 'vi');
 	*	// returns true
 	*/
 	validate.isCreditCard = function(str,cc) {
@@ -143,4 +141,5 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 
 
 	return validate;
-})(window.kafe)});
+
+/* {%= FOOTER %} */

@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: builds/kafe/geolocation.js</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -143,8 +143,10 @@
 
 <pre class="code prettyprint linenums">
 window.kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0&#x27;, obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
+
 	var
-		$         = kafe.dependencies.jQuery,
 		Modernizr = kafe.dependencies.Modernizr,
 
 		// dictonary
@@ -199,11 +201,11 @@ window.kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0&#x27;, obj:(
 	*	kafe.geolocation.locate({
 	*		selector: &#x27;#GeoLocStatus&#x27;, lang: &#x27;en&#x27;,
 	*		success: function(coords) {
-	*			kafe.log(&#x27;latitude: &#x27; + coords.latitude);
-	*			kafe.log(&#x27;longitude: &#x27; + coords.longitude);
+	*			console.log(&#x27;latitude: &#x27; + coords.latitude);
+	*			console.log(&#x27;longitude: &#x27; + coords.longitude);
 	*		}
 	*		error: function(msg) {
-	*			kafe.log(&#x27;Cannot geoloc: &#x27; + msg);
+	*			console.log(&#x27;Cannot geoloc: &#x27; + msg);
 	*		}
 	*	});
 	* @example
@@ -270,7 +272,6 @@ window.kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0&#x27;, obj:(
 	return geolocation;
 
 })(window.kafe)});
-
 </pre>
 
 </div>

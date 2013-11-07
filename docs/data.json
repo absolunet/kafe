@@ -2,7 +2,7 @@
     "project": {
         "name": "kafe",
         "description": "kafe RULZ",
-        "version": "kafe v.2.0.0",
+        "version": "kafe v.",
         "url": "http://github.com/absolunet/kafe"
     },
     "files": {
@@ -301,7 +301,7 @@
             "namespaces": {},
             "tag": "main",
             "file": "builds/kafe/cms/sitecore.js",
-            "line": 11,
+            "line": 12,
             "description": "methods for CMS",
             "itemtype": "main"
         },
@@ -324,7 +324,7 @@
             "namespaces": {},
             "tag": "main",
             "file": "builds/kafe/ext/youtube.js",
-            "line": 64,
+            "line": 65,
             "description": "extensions for external plugins",
             "itemtype": "main"
         },
@@ -341,7 +341,7 @@
             "namespaces": {},
             "tag": "main",
             "file": "builds/kafe/plugin/sticky.js",
-            "line": 10,
+            "line": 12,
             "description": "homebrewed plugins",
             "itemtype": "main"
         },
@@ -365,8 +365,8 @@
             "namespaces": {},
             "tag": "main",
             "file": "builds/kafe/url.js",
-            "line": 26,
-            "description": "### Version 2.0.0\nkafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.\nhttps://github.com/absolunet/kafe",
+            "line": 27,
+            "description": "### Version 2.0.0a\nkafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.\nhttps://github.com/absolunet/kafe",
             "itemtype": "main"
         }
     },
@@ -382,7 +382,7 @@
             "module": "kafe.cms",
             "namespace": "",
             "file": "builds/kafe/cms/drupal.js",
-            "line": 12,
+            "line": 14,
             "description": "### Version 0.1\nAdditionnal methods for Drupal"
         },
         "kafe.cms.magento": {
@@ -396,7 +396,7 @@
             "module": "kafe.cms",
             "namespace": "",
             "file": "builds/kafe/cms/magento.js",
-            "line": 11,
+            "line": 12,
             "description": "### Version 0.1\nAdditionnal methods for Magento"
         },
         "kafe.cms.sitecore": {
@@ -410,7 +410,7 @@
             "module": "kafe.cms",
             "namespace": "",
             "file": "builds/kafe/cms/sitecore.js",
-            "line": 11,
+            "line": 12,
             "description": "### Version 0.1\nAdditionnal methods for Sitecore"
         },
         "kafe.ext.addthis": {
@@ -424,7 +424,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/addthis.js",
-            "line": 4,
+            "line": 5,
             "description": "### Version 0.1\nAdditionnal methods for AddThis"
         },
         "kafe.ext.bbq": {
@@ -438,7 +438,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/bbq.js",
-            "line": 25,
+            "line": 26,
             "description": "### Version 0.1\nExtra methods for the jQuery BBQ plugin."
         },
         "kafe.ext.colorbox": {
@@ -452,7 +452,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 65,
+            "line": 66,
             "description": "### Version 1.2.1\nExtra methods for the colorbox jQuery plugin."
         },
         "kafe.ext.disqus": {
@@ -466,7 +466,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/disqus.js",
-            "line": 28,
+            "line": 29,
             "description": "### Version 0.1\nExtra methods for the Disqus API."
         },
         "kafe.ext.facebook": {
@@ -480,7 +480,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/facebook.js",
-            "line": 73,
+            "line": 74,
             "description": "### Version 1.4\nExtra methods for the Facebook API."
         },
         "kafe.ext.flickr": {
@@ -494,7 +494,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/flickr.js",
-            "line": 238,
+            "line": 239,
             "description": "### Version 1.1\nExtra methods for the Flickr API."
         },
         "kafe.ext.googlemaps": {
@@ -508,7 +508,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/googlemaps.js",
-            "line": 4,
+            "line": 5,
             "description": "### Version 1.1\nExtra methods for the GoogleMaps API.\nRequires `//maps.google.com/maps/api/js` to be included"
         },
         "kafe.ext.soundcloud": {
@@ -522,7 +522,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/soundcloud.js",
-            "line": 12,
+            "line": 13,
             "description": "### Version 0.1\nExtra methods for the Soundcloud API.\nRequires `//connect.soundcloud.com/sdk.js` to be included"
         },
         "kafe.ext.twitter": {
@@ -536,7 +536,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/twitter.js",
-            "line": 6,
+            "line": 5,
             "description": "### Version 1.1.1\nExtra methods for Twitter."
         },
         "kafe.ext.youtube": {
@@ -550,7 +550,7 @@
             "module": "kafe.ext",
             "namespace": "",
             "file": "builds/kafe/ext/youtube.js",
-            "line": 64,
+            "line": 65,
             "description": "### Version 1.1\nExtra methods for Youtube."
         },
         "kafe.plugin.carousel": {
@@ -564,7 +564,7 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "builds/kafe/plugin/carousel.js",
-            "line": 278,
+            "line": 279,
             "description": "### Version 1.0.2\nCarousel, image scroller, ticker, whatever you wanna call it..."
         },
         "kafe.plugin.menu": {
@@ -578,7 +578,7 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "builds/kafe/plugin/menu.js",
-            "line": 7,
+            "line": 5,
             "description": "### Version 1.0\nAttaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.\n\nTo preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css."
         },
         "kafe.plugin.qrcode": {
@@ -592,8 +592,8 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "builds/kafe/plugin/qrcode.js",
-            "line": 13,
-            "description": "### Version 1.0\nReturns a HTML table for displaying a QR code, encoded from the sent string."
+            "line": 11,
+            "description": "### Version 0.1.1\nReturns a HTML table for displaying a QR code, encoded from the sent string."
         },
         "kafe.plugin.sticky": {
             "name": "kafe.plugin.sticky",
@@ -606,7 +606,7 @@
             "module": "kafe.plugin",
             "namespace": "",
             "file": "builds/kafe/plugin/sticky.js",
-            "line": 10,
+            "line": 12,
             "description": "### Version 0.1\nSticky box"
         },
         "kafe.date": {
@@ -620,7 +620,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/date.js",
-            "line": 54,
+            "line": 55,
             "description": "### Version 1.2\nAdditionnal methods for date manipulation"
         },
         "kafe.form": {
@@ -634,7 +634,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/form.js",
-            "line": 4,
+            "line": 5,
             "description": "### Version 1.4.1\nUtilitary methods for html forms and related interactions."
         },
         "kafe.geolocation": {
@@ -648,7 +648,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/geolocation.js",
-            "line": 36,
+            "line": 38,
             "description": "### Version 1.0\nMethods to access geolocalization information about the client."
         },
         "kafe": {
@@ -676,7 +676,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/number.js",
-            "line": 4,
+            "line": 5,
             "description": "### Version 1.0\nAdditionnal manipulation methods for numbers."
         },
         "kafe.storage": {
@@ -690,7 +690,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/storage.js",
-            "line": 220,
+            "line": 222,
             "description": "### Version 1.1\nEasily access, sort and manipulate local and session storage values."
         },
         "kafe.string.encrypt": {
@@ -706,7 +706,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/string-encrypt.js",
-            "line": 10,
+            "line": 11,
             "description": "### Version 1.0\nString encryption tools."
         },
         "kafe.string.validate": {
@@ -750,7 +750,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/style.js",
-            "line": 4,
+            "line": 5,
             "description": "### Version 1.3\nCommon adjustment and manipulation methods for html layouts."
         },
         "kafe.url": {
@@ -764,14 +764,14 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/url.js",
-            "line": 26,
+            "line": 27,
             "description": "### Version 1.0\nManipulation tools for route-based urls."
         }
     },
     "classitems": [
         {
             "file": "builds/kafe/cms/magento.js",
-            "line": 21,
+            "line": 22,
             "description": "Bind listener on Magento's Prototype ajax complete.",
             "itemtype": "method",
             "name": "onAjaxComplete",
@@ -787,7 +787,7 @@
         },
         {
             "file": "builds/kafe/ext/addthis.js",
-            "line": 13,
+            "line": 14,
             "description": "Refresh addthis share data",
             "itemtype": "method",
             "name": "refreshData",
@@ -815,7 +815,7 @@
         },
         {
             "file": "builds/kafe/ext/bbq.js",
-            "line": 35,
+            "line": 36,
             "description": "Get the default params.",
             "itemtype": "method",
             "name": "getParams",
@@ -828,7 +828,7 @@
         },
         {
             "file": "builds/kafe/ext/bbq.js",
-            "line": 46,
+            "line": 47,
             "description": "Set the default params.",
             "itemtype": "method",
             "name": "setParams",
@@ -844,7 +844,7 @@
         },
         {
             "file": "builds/kafe/ext/bbq.js",
-            "line": 57,
+            "line": 58,
             "description": "Get the hashbang url parameters.",
             "itemtype": "method",
             "name": "getHashbang",
@@ -857,7 +857,7 @@
         },
         {
             "file": "builds/kafe/ext/bbq.js",
-            "line": 68,
+            "line": 69,
             "description": "Get the hashbang url parameters.",
             "itemtype": "method",
             "name": "getHashbangParams",
@@ -870,7 +870,7 @@
         },
         {
             "file": "builds/kafe/ext/bbq.js",
-            "line": 79,
+            "line": 80,
             "description": "Set hashbang url parameters.",
             "itemtype": "method",
             "name": "setHashbang",
@@ -892,7 +892,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 75,
+            "line": 76,
             "description": "Move the colorbox markup into .NET Webform",
             "itemtype": "method",
             "name": "moveInForm",
@@ -901,7 +901,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 85,
+            "line": 86,
             "description": "Get the default params with optional extra params.",
             "itemtype": "method",
             "name": "getParams",
@@ -922,7 +922,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 97,
+            "line": 98,
             "description": "Set the default params.",
             "itemtype": "method",
             "name": "setParams",
@@ -938,7 +938,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 108,
+            "line": 109,
             "description": "Change the default theme, which is a class on the body with the name `kafecolorbox-theme-THEME`.",
             "itemtype": "method",
             "name": "changeTheme",
@@ -954,7 +954,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 134,
+            "line": 135,
             "description": "Calls $.colorbox() with the default params including theme.",
             "itemtype": "method",
             "name": "open",
@@ -970,7 +970,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 145,
+            "line": 146,
             "description": "Calls $.colorbox() with as content a rendered jsrender tmpl.",
             "itemtype": "method",
             "name": "tmpl",
@@ -998,7 +998,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 160,
+            "line": 161,
             "description": "Calls $.colorbox() with an inline content.",
             "itemtype": "method",
             "name": "inline",
@@ -1020,7 +1020,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 174,
+            "line": 175,
             "description": "Calls $.colorbox() with an ajax content.",
             "itemtype": "method",
             "name": "ajax",
@@ -1042,7 +1042,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 188,
+            "line": 189,
             "description": "Opens a message window with custom buttons.",
             "itemtype": "method",
             "name": "dialog",
@@ -1077,7 +1077,7 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 226,
+            "line": 227,
             "description": "Simulate a confirm() behavior on a &lt;a&gt; link, using colorbox.dialog().",
             "itemtype": "method",
             "name": "confirm",
@@ -1108,10 +1108,10 @@
         },
         {
             "file": "builds/kafe/ext/colorbox.js",
-            "line": 254,
+            "line": 255,
             "description": "Binds $(selector).colorbox() with the default params including theme.",
             "itemtype": "method",
-            "name": "$.kafeCarousel('init')",
+            "name": "$.kafeColorbox('init')",
             "params": [
                 {
                     "name": "options",
@@ -1128,7 +1128,7 @@
         },
         {
             "file": "builds/kafe/ext/disqus.js",
-            "line": 38,
+            "line": 39,
             "description": "Init Disqus async.",
             "itemtype": "method",
             "name": "init",
@@ -1177,7 +1177,7 @@
         },
         {
             "file": "builds/kafe/ext/disqus.js",
-            "line": 80,
+            "line": 81,
             "description": "Reset Disqus.",
             "itemtype": "method",
             "name": "reset",
@@ -1198,7 +1198,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 83,
+            "line": 84,
             "description": "Set default facebook params.",
             "itemtype": "method",
             "name": "setParams",
@@ -1261,7 +1261,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 101,
+            "line": 102,
             "description": "Get the default params with optional extra params.",
             "itemtype": "method",
             "name": "getParams",
@@ -1282,7 +1282,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 113,
+            "line": 114,
             "description": "Initialize the Facebook API.",
             "itemtype": "method",
             "name": "init",
@@ -1299,7 +1299,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 148,
+            "line": 149,
             "description": "Open the login dialog.",
             "itemtype": "method",
             "name": "login",
@@ -1322,7 +1322,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 168,
+            "line": 169,
             "description": "Logs the user out.",
             "itemtype": "method",
             "name": "logout",
@@ -1339,7 +1339,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 179,
+            "line": 180,
             "description": "Get the session.",
             "itemtype": "method",
             "name": "getSession",
@@ -1352,7 +1352,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 190,
+            "line": 191,
             "description": "Get the user details.",
             "itemtype": "method",
             "name": "getUser",
@@ -1365,7 +1365,7 @@
         },
         {
             "file": "builds/kafe/ext/facebook.js",
-            "line": 201,
+            "line": 202,
             "description": "Get if user likes an item.",
             "itemtype": "method",
             "name": "checkUserLike",
@@ -1385,7 +1385,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 247,
+            "line": 248,
             "description": "Public photos",
             "itemtype": "property",
             "name": "PRIVACY_PUBLIC",
@@ -1395,7 +1395,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 255,
+            "line": 256,
             "description": "Private photos visible to friends",
             "itemtype": "property",
             "name": "PRIVACY_FRIENDS",
@@ -1405,7 +1405,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 263,
+            "line": 264,
             "description": "Private photos visible to family",
             "itemtype": "property",
             "name": "PRIVACY_FAMILY",
@@ -1415,7 +1415,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 271,
+            "line": 272,
             "description": "Private photos visible to friends & family",
             "itemtype": "property",
             "name": "PRIVACY_FRIENDS_FAMILY",
@@ -1425,7 +1425,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 279,
+            "line": 280,
             "description": "Completely private photos",
             "itemtype": "property",
             "name": "PRIVACY_PRIVATE",
@@ -1435,7 +1435,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 289,
+            "line": 290,
             "description": "Set default Flickr params.",
             "itemtype": "method",
             "name": "setParams",
@@ -1500,7 +1500,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 307,
+            "line": 308,
             "description": "Get photosets for specific user.",
             "itemtype": "method",
             "name": "getPhotosets",
@@ -1526,7 +1526,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 320,
+            "line": 321,
             "description": "Get a photoset cover.",
             "itemtype": "method",
             "name": "getPhotosetCover",
@@ -1563,7 +1563,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 344,
+            "line": 345,
             "description": "Get photos.",
             "itemtype": "method",
             "name": "getPhotos",
@@ -1589,7 +1589,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 357,
+            "line": 358,
             "description": "Get photostream.",
             "itemtype": "method",
             "name": "getPhotostream",
@@ -1615,7 +1615,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 370,
+            "line": 371,
             "description": "Get optimized size (optSize) for a photo.",
             "itemtype": "method",
             "name": "getOptimizedSize",
@@ -1669,7 +1669,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 387,
+            "line": 388,
             "description": "Get a optimized <img> tag for a photo",
             "itemtype": "method",
             "name": "getImgElement",
@@ -1728,7 +1728,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 463,
+            "line": 464,
             "description": "Get a optimized background styles for a photo",
             "itemtype": "method",
             "name": "getBgImageStyles",
@@ -1768,7 +1768,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 491,
+            "line": 492,
             "description": "Get the photosets (direct call to API method flickr.photosets.getList)",
             "itemtype": "method",
             "name": "api.photosets_getList",
@@ -1790,7 +1790,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 511,
+            "line": 512,
             "description": "Get the list of photos in a set (direct call to API method flickr.photosets.getPhotos)",
             "itemtype": "method",
             "name": "api.photosets_getPhotos",
@@ -1812,7 +1812,7 @@
         },
         {
             "file": "builds/kafe/ext/flickr.js",
-            "line": 531,
+            "line": 532,
             "description": "Search photos (direct call to API method flickr.photos.search)",
             "itemtype": "method",
             "name": "api.photos_search",
@@ -1834,7 +1834,7 @@
         },
         {
             "file": "builds/kafe/ext/googlemaps.js",
-            "line": 15,
+            "line": 16,
             "description": "Get bound box of array of coords.",
             "itemtype": "method",
             "name": "getCoordsBounds",
@@ -1853,7 +1853,7 @@
         },
         {
             "file": "builds/kafe/ext/soundcloud.js",
-            "line": 23,
+            "line": 24,
             "description": "Initialize the SoundCloud API.",
             "itemtype": "method",
             "name": "init",
@@ -1876,7 +1876,7 @@
         },
         {
             "file": "builds/kafe/ext/soundcloud.js",
-            "line": 39,
+            "line": 40,
             "description": "Get playlist tracks.",
             "itemtype": "method",
             "name": "getPlaylistTracks",
@@ -1904,7 +1904,7 @@
         },
         {
             "file": "builds/kafe/ext/soundcloud.js",
-            "line": 58,
+            "line": 59,
             "description": "Get all tracks.",
             "itemtype": "method",
             "name": "getTracks",
@@ -1927,7 +1927,7 @@
         },
         {
             "file": "builds/kafe/ext/twitter.js",
-            "line": 17,
+            "line": 16,
             "description": "Loads the api javascript used for twitter widgets",
             "itemtype": "method",
             "name": "loadWidgetAPI",
@@ -1936,7 +1936,7 @@
         },
         {
             "file": "builds/kafe/ext/twitter.js",
-            "line": 35,
+            "line": 34,
             "description": "Outputs tweet with links.",
             "itemtype": "method",
             "name": "linkifyTweet",
@@ -1978,14 +1978,14 @@
                 "type": "String"
             },
             "example": [
-                "\n\tkafe.twitter.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');\n\t// returns \"I really dig this #<a href=\"//search.twitter.com/search?q=%23twitter\" data-external=\"true\">twitter</a> function by @<a href=\"//twitter.com/absolunet\" data-external=\"true\">absolunet</a> : <a href=\"http://www.absolunet.com/\" data-external=\"true\">http://www.absolunet.com/</a>\""
+                "\n\tkafe.ext.twitter.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');\n\t// returns \"I really dig this #<a href=\"//search.twitter.com/search?q=%23twitter\" data-external=\"true\">twitter</a> function by @<a href=\"//twitter.com/absolunet\" data-external=\"true\">absolunet</a> : <a href=\"http://www.absolunet.com/\" data-external=\"true\">http://www.absolunet.com/</a>\""
             ],
             "class": "kafe.ext.twitter",
             "module": "kafe.ext"
         },
         {
             "file": "builds/kafe/ext/youtube.js",
-            "line": 74,
+            "line": 75,
             "description": "Set default Youtube params.",
             "itemtype": "method",
             "name": "setParams",
@@ -2042,7 +2042,7 @@
         },
         {
             "file": "builds/kafe/ext/youtube.js",
-            "line": 91,
+            "line": 92,
             "description": "Get the default params with optional extra params.",
             "itemtype": "method",
             "name": "getParams",
@@ -2063,7 +2063,7 @@
         },
         {
             "file": "builds/kafe/ext/youtube.js",
-            "line": 103,
+            "line": 104,
             "description": "Builds a youtube search url then returns the results as the first argument of the specified callback.",
             "itemtype": "method",
             "name": "search",
@@ -2085,7 +2085,7 @@
         },
         {
             "file": "builds/kafe/ext/youtube.js",
-            "line": 148,
+            "line": 149,
             "description": "Builds a youtube search url then returns the results as the first argument of the specified callback.",
             "itemtype": "method",
             "name": "getPlaylistVideos",
@@ -2106,7 +2106,7 @@
         },
         {
             "file": "builds/kafe/plugin/carousel.js",
-            "line": 287,
+            "line": 288,
             "description": "Attach behaviors to the carousel structure.",
             "itemtype": "method",
             "name": "__constructor",
@@ -2338,7 +2338,7 @@
         },
         {
             "file": "builds/kafe/plugin/carousel.js",
-            "line": 542,
+            "line": 543,
             "description": "Manually call a slide change",
             "itemtype": "method",
             "name": "change",
@@ -2359,7 +2359,7 @@
         },
         {
             "file": "builds/kafe/plugin/menu.js",
-            "line": 18,
+            "line": 16,
             "description": "Attach behaviors to the menu structure.",
             "itemtype": "method",
             "name": "init",
@@ -2448,7 +2448,7 @@
         },
         {
             "file": "builds/kafe/plugin/qrcode.js",
-            "line": 22,
+            "line": 20,
             "description": "Generate the HTML table of the QR code.",
             "itemtype": "method",
             "name": "generate",
@@ -2493,7 +2493,7 @@
         },
         {
             "file": "builds/kafe/plugin/sticky.js",
-            "line": 20,
+            "line": 22,
             "description": "Initialize sticky (has to be `position:absolute` with defined `top` `left|right` by default).",
             "itemtype": "method",
             "name": "init",
@@ -2541,7 +2541,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 63,
+            "line": 64,
             "description": "Number of milliseconds in a second (1000 ms per second)",
             "itemtype": "property",
             "name": "SECOND",
@@ -2551,7 +2551,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 71,
+            "line": 72,
             "description": "Number of milliseconds in a minute (60 seconds per minute)",
             "itemtype": "property",
             "name": "MINUTE",
@@ -2561,7 +2561,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 79,
+            "line": 80,
             "description": "Number of milliseconds in an hour (60 minutes per hour)",
             "itemtype": "property",
             "name": "HOUR",
@@ -2571,7 +2571,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 87,
+            "line": 88,
             "description": "Number of milliseconds in a day (24 hours per day)",
             "itemtype": "property",
             "name": "DAY",
@@ -2581,7 +2581,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 95,
+            "line": 96,
             "description": "Number of milliseconds in a week (7 days per week)",
             "itemtype": "property",
             "name": "WEEK",
@@ -2591,7 +2591,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 103,
+            "line": 104,
             "description": "Number of milliseconds in a month (4.348121428571429 weeks per month)",
             "itemtype": "property",
             "name": "MONTH",
@@ -2601,7 +2601,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 111,
+            "line": 112,
             "description": "Number of milliseconds in a year (365.2422 days per year)",
             "itemtype": "property",
             "name": "YEAR",
@@ -2611,7 +2611,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 121,
+            "line": 122,
             "description": "Get the day number out of the full year (365 days).",
             "itemtype": "method",
             "name": "getDayYear",
@@ -2634,7 +2634,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 146,
+            "line": 147,
             "description": "Returns whether the date is within a leap year or not.",
             "itemtype": "method",
             "name": "isLeapYear",
@@ -2658,7 +2658,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 164,
+            "line": 165,
             "description": "Get the number of days for all the months of a given year.",
             "itemtype": "method",
             "name": "getMaxMonth",
@@ -2682,7 +2682,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 182,
+            "line": 183,
             "description": "Get the full name of the months of the year.",
             "itemtype": "method",
             "name": "getMonthNames",
@@ -2708,7 +2708,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 200,
+            "line": 201,
             "description": "Get the 1-char abbreviations of the months of the year.",
             "itemtype": "method",
             "name": "getMonth1Names",
@@ -2734,7 +2734,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 218,
+            "line": 219,
             "description": "Get the 2-char abbreviations of the months of the year.",
             "itemtype": "method",
             "name": "getMonth2Names",
@@ -2760,7 +2760,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 237,
+            "line": 238,
             "description": "Get the 3-char abbreviations of the months of the year.",
             "itemtype": "method",
             "name": "getMonth3Names",
@@ -2786,7 +2786,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 259,
+            "line": 260,
             "description": "Returns whether the date is within a weekend.",
             "itemtype": "method",
             "name": "isWeekend",
@@ -2810,7 +2810,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 278,
+            "line": 279,
             "description": "Get the full name of the days of the week.",
             "itemtype": "method",
             "name": "getWeekdayNames",
@@ -2836,7 +2836,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 296,
+            "line": 297,
             "description": "Get the 1-char abbreviations of the days of the week.",
             "itemtype": "method",
             "name": "getWeekday1Names",
@@ -2862,7 +2862,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 314,
+            "line": 315,
             "description": "Get the 2-char abbreviations of the days of the week.",
             "itemtype": "method",
             "name": "getWeekday2Names",
@@ -2888,7 +2888,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 332,
+            "line": 333,
             "description": "Get the 3-char abbreviations of the days of the week.",
             "itemtype": "method",
             "name": "getWeekday3Names",
@@ -2914,7 +2914,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 354,
+            "line": 355,
             "description": "Get a clean representation for all possible days of a month.",
             "itemtype": "method",
             "name": "getDayNames",
@@ -2940,7 +2940,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 379,
+            "line": 380,
             "description": "Flexible formatting a given date object.",
             "itemtype": "method",
             "name": "format",
@@ -3015,7 +3015,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 460,
+            "line": 461,
             "description": "Get a relative time expression from a specific datetime.",
             "itemtype": "method",
             "name": "formatRelative",
@@ -3053,7 +3053,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 513,
+            "line": 514,
             "description": "Parses a given datetime string into a standard datetime object.",
             "itemtype": "method",
             "name": "parse",
@@ -3077,7 +3077,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 598,
+            "line": 599,
             "description": "Refreshes a dropdown containing the days of a given year/month combination.",
             "itemtype": "method",
             "name": "refreshSelectDays",
@@ -3106,7 +3106,7 @@
         },
         {
             "file": "builds/kafe/date.js",
-            "line": 643,
+            "line": 644,
             "description": "Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.",
             "itemtype": "method",
             "name": "makeMonthCalendar",
@@ -3147,7 +3147,7 @@
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 14,
+            "line": 15,
             "description": "Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a \"Placeholder\" class will also be present when the placeholder text is shown.",
             "itemtype": "method",
             "name": "placeholder",
@@ -3168,7 +3168,7 @@
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 75,
+            "line": 76,
             "description": "Detects the RETURN key, then triggers a callback.",
             "itemtype": "method",
             "name": "onEnter",
@@ -3193,7 +3193,7 @@
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 100,
+            "line": 101,
             "description": "Automaticaly jump the focus to the next field once the maxlength has been reached.",
             "itemtype": "method",
             "name": "autofocusOnNext",
@@ -3213,7 +3213,7 @@
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 126,
+            "line": 127,
             "description": "Adds a simulated maxlength support for textarea elements.",
             "itemtype": "method",
             "name": "maxLength",
@@ -3243,15 +3243,15 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});",
-                "\n\t$('.twitter-post').kafe('form.maxLength', 140, false, function(count) {\n\t\tkafe.log(count);\n\t});"
+                "\n\tkafe.form.maxLength('.twitter-post', 140, false, function(count) {\n\t\tconsole.log(count);\n\t});",
+                "\n\t$('.twitter-post').kafe('form.maxLength', 140, false, function(count) {\n\t\tconsole.log(count);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 174,
+            "line": 175,
             "description": "Calculates the password strength value of given fields.",
             "itemtype": "method",
             "name": "passwordStrength",
@@ -3269,15 +3269,15 @@
                 }
             ],
             "example": [
-                "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tkafe.log(strengh);\n\t});",
-                "\n\t$('.password').kafe('form.passwordStrength', function(strengh) {\n\t\tkafe.log(strengh);\n\t});"
+                "\n\tkafe.form.passwordStrength('.password', function(strengh) {\n\t\tconsole.log(strengh);\n\t});",
+                "\n\t$('.password').kafe('form.passwordStrength', function(strengh) {\n\t\tconsole.log(strengh);\n\t});"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 273,
+            "line": 274,
             "description": "Sanitize form text entry for .NET validator.",
             "itemtype": "method",
             "name": "sanitizeFormData",
@@ -3290,14 +3290,14 @@
             ],
             "example": [
                 "\n\tkafe.form.sanitizeFormData('#Form1');",
-                "\n\t$('#Form1').kafe('form.sanitizeFormData');"
+                "\n\t$('#Form1').form('form.sanitizeFormData');"
             ],
             "class": "kafe.form",
             "module": "kafe"
         },
         {
             "file": "builds/kafe/form.js",
-            "line": 299,
+            "line": 300,
             "description": "Replace elements with a submit button",
             "itemtype": "method",
             "name": "replaceSubmit",
@@ -3319,7 +3319,7 @@
         },
         {
             "file": "builds/kafe/geolocation.js",
-            "line": 45,
+            "line": 47,
             "description": "Get the current geolocalization information of the client.",
             "itemtype": "method",
             "name": "locate",
@@ -3358,7 +3358,7 @@
                 }
             ],
             "example": [
-                "\n\tkafe.geolocation.locate({\n\t\tselector: '#GeoLocStatus', lang: 'en',\n\t\tsuccess: function(coords) {\n\t\t\tkafe.log('latitude: ' + coords.latitude);\n\t\t\tkafe.log('longitude: ' + coords.longitude);\n\t\t}\n\t\terror: function(msg) {\n\t\t\tkafe.log('Cannot geoloc: ' + msg);\n\t\t}\n\t});",
+                "\n\tkafe.geolocation.locate({\n\t\tselector: '#GeoLocStatus', lang: 'en',\n\t\tsuccess: function(coords) {\n\t\t\tconsole.log('latitude: ' + coords.latitude);\n\t\t\tconsole.log('longitude: ' + coords.longitude);\n\t\t}\n\t\terror: function(msg) {\n\t\t\tconsole.log('Cannot geoloc: ' + msg);\n\t\t}\n\t});",
                 "\n\t$('#GeoLocStatus').kafe('geolocation.locate', {});"
             ],
             "class": "kafe.geolocation",
@@ -3561,72 +3561,6 @@
         {
             "file": "builds/kafe/kafe.js",
             "line": 330,
-            "description": "Add a homebrewed plugin",
-            "itemtype": "method",
-            "name": "plug",
-            "params": [
-                {
-                    "name": "options",
-                    "description": "The options",
-                    "type": "Object",
-                    "props": [
-                        {
-                            "name": "name",
-                            "description": "The plugin name",
-                            "type": "String"
-                        },
-                        {
-                            "name": "version",
-                            "description": "The plugin version",
-                            "type": "String"
-                        },
-                        {
-                            "name": "obj",
-                            "description": "The plugin itself",
-                            "type": "Object"
-                        }
-                    ]
-                }
-            ],
-            "class": "kafe",
-            "module": "kafe"
-        },
-        {
-            "file": "builds/kafe/kafe.js",
-            "line": 345,
-            "description": "Add an external plugin extension",
-            "itemtype": "method",
-            "name": "extend",
-            "params": [
-                {
-                    "name": "options",
-                    "description": "The options",
-                    "type": "Object",
-                    "props": [
-                        {
-                            "name": "name",
-                            "description": "The plugin extension name",
-                            "type": "String"
-                        },
-                        {
-                            "name": "version",
-                            "description": "The plugin extension version",
-                            "type": "String"
-                        },
-                        {
-                            "name": "obj",
-                            "description": "The plugin extension itself",
-                            "type": "Object"
-                        }
-                    ]
-                }
-            ],
-            "class": "kafe",
-            "module": "kafe"
-        },
-        {
-            "file": "builds/kafe/kafe.js",
-            "line": 360,
             "description": "Throw kafe errors",
             "itemtype": "method",
             "name": "error",
@@ -3649,7 +3583,7 @@
         },
         {
             "file": "builds/kafe/number.js",
-            "line": 13,
+            "line": 14,
             "description": "Converts a number to its roman numeral value.",
             "itemtype": "method",
             "name": "toRoman",
@@ -3672,7 +3606,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 229,
+            "line": 231,
             "description": "Returns the local value for a specific key.",
             "itemtype": "method",
             "name": "getPersistentItem",
@@ -3695,7 +3629,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 243,
+            "line": 245,
             "description": "Returns the session value for a specific key.",
             "itemtype": "method",
             "name": "getSessionItem",
@@ -3718,7 +3652,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 257,
+            "line": 259,
             "description": "Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the ':' character.",
             "itemtype": "method",
             "name": "setPersistentItem",
@@ -3763,7 +3697,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 278,
+            "line": 280,
             "description": "Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the ':' character.",
             "itemtype": "method",
             "name": "setSessionItem",
@@ -3808,7 +3742,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 299,
+            "line": 301,
             "description": "Removes the local storage value for a specific key.",
             "itemtype": "method",
             "name": "removePersistentItem",
@@ -3827,7 +3761,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 312,
+            "line": 314,
             "description": "Removes the session storage value for a specific key.",
             "itemtype": "method",
             "name": "removeSessionItem",
@@ -3846,7 +3780,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 325,
+            "line": 327,
             "description": "Returns an array of local storage keys for a specific namespace.",
             "itemtype": "method",
             "name": "getPersistentNamespaceKeys",
@@ -3869,7 +3803,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 343,
+            "line": 345,
             "description": "Returns an array of session storage keys for a specific namespace.",
             "itemtype": "method",
             "name": "getSessionNamespaceKeys",
@@ -3892,7 +3826,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 361,
+            "line": 363,
             "description": "Returns all local storage key values for a specific namespace.",
             "itemtype": "method",
             "name": "getPersistentNamespaceItems",
@@ -3915,7 +3849,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 379,
+            "line": 381,
             "description": "Returns all session storage key values for a specific namespace.",
             "itemtype": "method",
             "name": "getSessionNamespaceItems",
@@ -3938,7 +3872,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 397,
+            "line": 399,
             "description": "Removes all local storage keys of a specific namespace.",
             "itemtype": "method",
             "name": "removePersistentNamespace",
@@ -3957,7 +3891,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 410,
+            "line": 412,
             "description": "Removes all session storage keys of a specific namespace.",
             "itemtype": "method",
             "name": "removeSessionNamespace",
@@ -3976,7 +3910,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 423,
+            "line": 425,
             "description": "Returns an array of all local storage keys.",
             "itemtype": "method",
             "name": "getAllPersistentKeys",
@@ -3992,7 +3926,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 440,
+            "line": 442,
             "description": "Returns an array of all session storage keys.",
             "itemtype": "method",
             "name": "getAllSessionKeys",
@@ -4008,7 +3942,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 457,
+            "line": 459,
             "description": "Returns all local storage key values.",
             "itemtype": "method",
             "name": "getAllPersistentItems",
@@ -4024,7 +3958,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 474,
+            "line": 476,
             "description": "Returns all session storage key values.",
             "itemtype": "method",
             "name": "getAllSessionItems",
@@ -4040,7 +3974,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 491,
+            "line": 493,
             "description": "Removes all local storage keys.",
             "itemtype": "method",
             "name": "removeAllPersistent",
@@ -4052,7 +3986,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 503,
+            "line": 505,
             "description": "Removes all session storage keys.",
             "itemtype": "method",
             "name": "removeAllSession",
@@ -4064,7 +3998,7 @@
         },
         {
             "file": "builds/kafe/storage.js",
-            "line": 515,
+            "line": 517,
             "description": "Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *kafestorage-getJSON* namespace.",
             "itemtype": "method",
             "name": "getJSON",
@@ -4109,7 +4043,7 @@
         },
         {
             "file": "builds/kafe/string-encrypt.js",
-            "line": 20,
+            "line": 21,
             "description": "Encrypts a given string to md5.",
             "itemtype": "method",
             "name": "md5",
@@ -4324,7 +4258,7 @@
         },
         {
             "file": "builds/kafe/style.js",
-            "line": 13,
+            "line": 14,
             "description": "Equalizes the height css property of every element in a selector. If no height is currently present, the method computes the height values before equalizing. Elements must be visible at the time or will be considered as having a height of 0.",
             "itemtype": "method",
             "name": "equalHeight",
@@ -4373,7 +4307,7 @@
         },
         {
             "file": "builds/kafe/style.js",
-            "line": 63,
+            "line": 64,
             "description": "Replaces &lt;hr&gt; tags into &lt;div class=\"hr\"&gt;&lt;/div&gt; tags to eliminate styling restrictions.",
             "itemtype": "method",
             "name": "replaceHr",
@@ -4395,7 +4329,7 @@
         },
         {
             "file": "builds/kafe/style.js",
-            "line": 79,
+            "line": 80,
             "description": "Vertically align an element inside its parent. Elements must be visible at the time or positioning calculations will fail.",
             "itemtype": "method",
             "name": "vAlign",
@@ -4422,7 +4356,7 @@
         },
         {
             "file": "builds/kafe/url.js",
-            "line": 35,
+            "line": 36,
             "description": "Parses a querystring as a key/value list and creates a javascript object.",
             "itemtype": "method",
             "name": "parseSearchParams",
@@ -4447,7 +4381,7 @@
         },
         {
             "file": "builds/kafe/url.js",
-            "line": 51,
+            "line": 52,
             "description": "Parses a querystring as a path and creates an ordered array.",
             "itemtype": "method",
             "name": "parseSearchPath",
@@ -4472,7 +4406,7 @@
         },
         {
             "file": "builds/kafe/url.js",
-            "line": 67,
+            "line": 68,
             "description": "Parses a hash string as a key/value list and creates a javascript object.",
             "itemtype": "method",
             "name": "parseHashParams",
@@ -4497,7 +4431,7 @@
         },
         {
             "file": "builds/kafe/url.js",
-            "line": 83,
+            "line": 84,
             "description": "Parses a hash string as a path and creates an ordered array.",
             "itemtype": "method",
             "name": "parseHashPath",
@@ -4522,7 +4456,7 @@
         },
         {
             "file": "builds/kafe/url.js",
-            "line": 99,
+            "line": 100,
             "description": "Parses a hashbang (#!) as a key/value list and creates a javascript object.",
             "itemtype": "method",
             "name": "parseAjaxParams",
@@ -4547,7 +4481,7 @@
         },
         {
             "file": "builds/kafe/url.js",
-            "line": 115,
+            "line": 116,
             "description": "Parses a hashbang (#!) as a path and creates an ordered array.",
             "itemtype": "method",
             "name": "parseAjaxPath",

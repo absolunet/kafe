@@ -4,16 +4,15 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* String encryption tools.
 	*
-	* @module kafe
-	* @class kafe.string.encrypt 
-	* @extensionfor kafe.string
+	* @module <%= PACKAGE %>
+	* @class <%= NAME_FULL %>
+	* @extensionfor <%= MODULE %>
 	*/
 	var encrypt = {};
 
@@ -24,7 +23,7 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 	* @param {String} string
 	* @return {String} The encrypted value.
 	* @example
-	*	kafe.string.encrypt.md5('kafe is awesome.');
+	*	<%= NAME_FULL %>.md5('kafe is awesome.');
 	*	// returns "1fc5f96ff478b0c37baaf27506063603"
 	*/
 	encrypt.md5 = function (string) {
@@ -232,4 +231,4 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 
 	return encrypt;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

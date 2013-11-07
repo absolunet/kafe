@@ -1,12 +1,11 @@
-window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.4.1
+	* ### Version <%= VERSION %>
 	* Utilitary methods for html forms and related interactions.
 	*
-	* @module kafe
-	* @class kafe.form
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var form = {};
 
@@ -17,9 +16,9 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @method placeholder
 	* @param {String} [selector] Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.
 	* @example
-	*	kafe.form.placeholder('.search-field');
+	*	<%= NAME_FULL %>.placeholder('.search-field');
 	* @example
-	*	$('.search-field').kafe('form.placeholder');
+	*	$('.search-field').<%= PACKAGE %>('<%= NAME %>.placeholder');
 	*/
 	form.placeholder = function() {
 		var test = document.createElement('input'), placeholderSupport = false;
@@ -79,11 +78,11 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Function} callback Function to be fired by the keypress.
 	* @example
-	*	kafe.form.onEnter('.search-field', function(input) {
+	*	<%= NAME_FULL %>.onEnter('.search-field', function(input) {
 	*		$(input).parents('form').submit();
 	*	});
 	* @example
-	*	$('.search-field').kafe('form.onEnter', function(input) {
+	*	$('.search-field').<%= PACKAGE %>('<%= NAME %>.onEnter', function(input) {
 	*		$(input).parents('form').submit();
 	*	});
 	*/
@@ -103,9 +102,9 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @method autofocusOnNext
 	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @example
-	*	kafe.form.autofocusOnNext('.first-name, .last-name, .email');
+	*	<%= NAME_FULL %>.autofocusOnNext('.first-name, .last-name, .email');
 	* @example
-	*	$('.first-name, .last-name, .email').kafe('form.autofocusOnNext');
+	*	$('.first-name, .last-name, .email').<%= PACKAGE %>('<%= NAME %>.autofocusOnNext');
 	*/
 	form.autofocusOnNext = function(selector) {
 		$(selector).on('keyup',function(e) {
@@ -132,12 +131,12 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {Boolean} [block=false] Prevent further character entry once the limit is reached.
 	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
 	* @example
-	*	kafe.form.maxLength('.twitter-post', 140, false, function(count) {
-	*		kafe.log(count);
+	*	<%= NAME_FULL %>.maxLength('.twitter-post', 140, false, function(count) {
+	*		console.log(count);
 	*	});
 	* @example
-	*	$('.twitter-post').kafe('form.maxLength', 140, false, function(count) {
-	*		kafe.log(count);
+	*	$('.twitter-post').<%= PACKAGE %>('<%= NAME %>.maxLength', 140, false, function(count) {
+	*		console.log(count);
 	*	});
 	*/
 	form.maxLength = function(selector, max, block, callback) {
@@ -178,12 +177,12 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
 	* @example
-	*	kafe.form.passwordStrength('.password', function(strengh) {
-	*		kafe.log(strengh);
+	*	<%= NAME_FULL %>.passwordStrength('.password', function(strengh) {
+	*		console.log(strengh);
 	*	});
 	* @example
-	*	$('.password').kafe('form.passwordStrength', function(strengh) {
-	*		kafe.log(strengh);
+	*	$('.password').<%= PACKAGE %>('<%= NAME %>.passwordStrength', function(strengh) {
+	*		console.log(strengh);
 	*	});
 	*/
 	form.passwordStrength = function(selector, callback) {
@@ -276,9 +275,9 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @method sanitizeFormData
 	* @param {String|jQueryObject|DOMElement} selector Reference to the current .NET form.
 	* @example
-	*	kafe.form.sanitizeFormData('#Form1');
+	*	<%= NAME_FULL %>.sanitizeFormData('#Form1');
 	* @example
-	*	$('#Form1').kafe('form.sanitizeFormData');
+	*	$('#Form1').<%= NAME %>('<%= NAME %>.sanitizeFormData');
 	*/
 	form.sanitizeFormData = function(selector) {
 		var
@@ -302,16 +301,16 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	* @method replaceSubmit
 	* @param {String|jQueryObject|DOMElement} [selector='input:submit'] Elements to replace
 	* @example
-	*	kafe.form.replaceSubmit();
+	*	<%= NAME_FULL %>.replaceSubmit();
 	* @example
-	*	$('.Search input:submit').kafe('form.replaceSubmit');
+	*	$('.Search input:submit').<%= PACKAGE %>('<%= NAME %>.replaceSubmit');
 	*/
 	form.replaceSubmit = function(selector) {
 		( (selector) ? $(selector) : $('input:submit') ).each(function() {
 				var $this = $(this);
 				$this
 					.hide()
-					.after( $('<button type="submit" data-kafereplacesubmit-processed="true" class="'+ $this.attr('class') +'">'+ $this.val() +'</button>').on('click', function(e) { e.preventDefault(); $this.trigger('click'); }) )
+					.after( $('<button type="submit" data-<%= PACKAGE %>-replacesubmit-processed="true" class="'+ $this.attr('class') +'">'+ $this.val() +'</button>').on('click', function(e) { e.preventDefault(); $this.trigger('click'); }) )
 				;
 		});
 	};
@@ -319,25 +318,25 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'form.placeholder': function(obj, parameters) {
+		'<%= NAME %>.placeholder': function(obj, parameters) {
 			form.placeholder(obj);
 		},
-		'form.onEnter': function(obj, parameters) {
+		'<%= NAME %>.onEnter': function(obj, parameters) {
 			form.onEnter(obj, parameters[0]);
 		},
-		'form.autofocusOnNext': function(obj, parameters) {
+		'<%= NAME %>.autofocusOnNext': function(obj, parameters) {
 			form.autofocusOnNext(obj);
 		},
-		'form.maxLength': function(obj, parameters) {
+		'<%= NAME %>.maxLength': function(obj, parameters) {
 			form.maxLength(obj, parameters[0]);
 		},
-		'form.passwordStrength': function(obj, parameters) {
+		'<%= NAME %>.passwordStrength': function(obj, parameters) {
 			form.passwordStrength(obj, parameters[0]);
 		},
-		'form.sanitizeFormData': function(obj, parameters) {
+		'<%= NAME %>.sanitizeFormData': function(obj, parameters) {
 			form.sanitizeFormData(obj);
 		},
-		'form.replaceSubmit': function(obj, parameters) {
+		'<%= NAME %>.replaceSubmit': function(obj, parameters) {
 			form.replaceSubmit(obj);
 		}
 	});
@@ -345,4 +344,4 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 
 	return form;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

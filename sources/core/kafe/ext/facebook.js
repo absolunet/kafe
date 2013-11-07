@@ -1,7 +1,6 @@
-window.kafe.extend({name:'facebook', version:'1.4', obj:(function (kafe,undefined) {
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		// dictionary
 		_locale = {
 			fr: 'fr_FR',
@@ -71,11 +70,11 @@ window.kafe.extend({name:'facebook', version:'1.4', obj:(function (kafe,undefine
 
 
 	/**
-	* ### Version 1.4
+	* ### Version <%= VERSION %>
 	* Extra methods for the Facebook API.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.facebook
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var facebook = {};
 
@@ -230,4 +229,4 @@ window.kafe.extend({name:'facebook', version:'1.4', obj:(function (kafe,undefine
 
 	return facebook;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

@@ -4,10 +4,9 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		_params = {
 			theme:        '',
 			opacity:      0.5,
@@ -41,7 +40,7 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 		;
 		classes = classes.toString().split(' ');
 		for (var i in classes) {
-			if (/^kafecolorbox-theme-/.test(classes[i])) {
+			if (/^<%= NAME_ATTR %>-theme-/.test(classes[i])) {
 				$body.removeClass(classes[i]);
 			}
 		}
@@ -63,11 +62,11 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 
 
 	/**
-	* ### Version 1.2.1
+	* ### Version <%= VERSION %>
 	* Extra methods for the colorbox jQuery plugin.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.colorbox
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var colorbox = {};
 
@@ -106,7 +105,7 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 
 
 	/**
-	* Change the default theme, which is a class on the body with the name `kafecolorbox-theme-THEME`.
+	* Change the default theme, which is a class on the body with the name `<%= NAME_ATTR %>-theme-THEME`.
 	*
 	* @method changeTheme
 	* @param {String} theme Theme name.
@@ -114,17 +113,17 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 	colorbox.changeTheme = function(theme) {
 		var $body = $('body');
 
-		if (!$body.hasClass('kafecolorbox-theme-'+theme)) {
+		if (!$body.hasClass('<%= NAME_ATTR %>-theme-'+theme)) {
 
 			var classes = $body.attr('class') || '';
 			classes = classes.toString().split(' ');
 			for (var i in classes) {
-				if (/^kafecolorbox-theme-/.test(classes[i])) {
+				if (/^<%= NAME_ATTR %>-theme-/.test(classes[i])) {
 					$body.removeClass(classes[i]);
 				}
 			}
 
-			$body.addClass('kafecolorbox-theme-'+theme);
+			$body.addClass('<%= NAME_ATTR %>-theme-'+theme);
 			$.colorbox.remove();
 			$.colorbox.init();
 		}
@@ -196,7 +195,7 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 	*/
 	colorbox.dialog = function( content, commands  ) {
 
-		var html = '<div id="kafecolorbox-dialog">' + content;
+		var html = '<div id="<%= NAME_ATTR %>-dialog">' + content;
 
 		if (commands === undefined || commands.length === 0) {
 			commands = [{ label:'OK', callback:function(){ $.colorbox.close(); } }];
@@ -249,15 +248,15 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('Colorbox', {
+	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
 
 		/**
 		* Binds $(selector).colorbox() with the default params including theme.
 		*
-		* @method $.kafeCarousel('init')
+		* @method $.<%= NAME_JQUERY %>('init')
 		* @param {Object} [options] The colorbox params.
 		* @example
-		*	$('.picture').kafeColorbox('init', { theme:'Alternate' })
+		*	$('.picture').<%= NAME_JQUERY %>('init', { theme:'Alternate' })
 		*/
 		'init': function(obj, parameters) {
 			return _open(parameters[0], obj);
@@ -266,4 +265,4 @@ window.kafe.extend({name:'colorbox', version:'1.2.1', obj:(function(kafe,undefin
 
 	return colorbox;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

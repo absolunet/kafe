@@ -40,12 +40,12 @@ require([
 //>>excludeEnd('excludeRequire');
 
 /**
-* ### Version 2.0.0
-* kafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
-* https://github.com/absolunet/kafe
+* ### Version <%= VERSION %>
+* <%= PACKAGE %> /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
+* https://github.com/absolunet/<%= PACKAGE %>
 *
-* @module kafe
-* @main kafe
+* @module <%= PACKAGE %>
+* @main <%= PACKAGE %>
 */
 window.kafe = (function(undefined){
 
@@ -88,23 +88,23 @@ window.kafe = (function(undefined){
 
 
 		/**
-		* kafe core
+		* <%= PACKAGE %> core
 		*
-		* @module kafe
-		* @class kafe
+		* @module <%= PACKAGE %>
+		* @class <%= PACKAGE %>
 		*/
 		core = {
 
 			/**
-			* kafe version
+			* <%= PACKAGE %> version
 			*
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '2.0.0',
+			_vesyon: '<%= VERSION %>',
 
 			/**
-			* kafe author
+			* <%= PACKAGE %> author
 			*
 			* @property _griyaj 
 			* @type String
@@ -112,7 +112,7 @@ window.kafe = (function(undefined){
 			_griyaj: 'absolunet.com',
 
 			/**
-			* Versions of dependencies / kafe modules
+			* Versions of dependencies / <%= PACKAGE %> modules
 			*
 			* @property _chaje 
 			* @type Object
@@ -235,7 +235,7 @@ window.kafe = (function(undefined){
 		plugIntojQuery: function(name, methods) {
 			var
 				$  = core.dependencies.jQuery,
-				id = 'kafe'+name
+				id = '<%= PACKAGE %>'+name
 			;
 			name = name || 'CORE';
 
@@ -275,11 +275,11 @@ window.kafe = (function(undefined){
 			ie:      _ie
 		};
 
-		// grab kafe env
+		// grab <%= PACKAGE %> env
 		_data.culture = document.documentElement.id.toLowerCase()   || '';
 		_data.lang    = document.documentElement.lang.toLowerCase() || '';
-		_data.page    = document.documentElement.getAttribute('data-kafe-page') || '';
-		_data.tmpl    = document.documentElement.getAttribute('data-kafe-tmpl') || '';
+		_data.page    = document.documentElement.getAttribute('data-<%= PACKAGE %>-page') || '';
+		_data.tmpl    = document.documentElement.getAttribute('data-<%= PACKAGE %>-tmpl') || '';
 		_data.tmpl    = _data.tmpl.split(' ');
 
 		// public method
@@ -294,7 +294,7 @@ window.kafe = (function(undefined){
 
 				// throw error
 				} else {
-					throw core.error(new Error("kafe.env > property '"+name+"' already defined"));
+					throw core.error(new Error("<%= PACKAGE %>.env > property '"+name+"' already defined"));
 				}
 			}
 
@@ -322,53 +322,23 @@ window.kafe = (function(undefined){
 
 		// throw error
 		} else {
-			throw core.error('kafe.'+options.name+' already exists');
+			throw core.error('<%= PACKAGE %>.'+options.name+' already exists');
 		}
 	};
 
 
 	/**
-	* Add a homebrewed plugin
-	*
-	* @method plug
-	* @param {Object} options The options
-	*	@param {String} options.name The plugin name
-	*	@param {String} options.version The plugin version
-	*	@param {Object} options.obj The plugin itself
-	*/
-	core.plug = function(options) {
-		options.name = 'plugin.'+options.name;
-		this.bonify(options);
-	};
-
-
-	/**
-	* Add an external plugin extension
-	*
-	* @method extend
-	* @param {Object} options The options
-	*	@param {String} options.name The plugin extension name
-	*	@param {String} options.version The plugin extension version
-	*	@param {Object} options.obj The plugin extension itself
-	*/
-	core.extend = function(options) {
-		options.name = 'ext.'+options.name;
-		this.bonify(options);
-	};
-
-
-	/**
-	* Throw kafe errors
+	* Throw <%= PACKAGE %> errors
 	*
 	* @method error
 	* @param {Error} error The error with description
 	* @return {Error} error The error
 	* @example
-	*	kafe.error(new Error('barf'));
+	*	<%= PACKAGE %>.error(new Error('barf'));
 	*/
 	core.error = function(e) {
 		var msg = ((!!e.description) ? e.description : e.message);
-		e.description = e.message = '<kafe:erè> : '+ ((!!msg) ? msg : 'anonim');
+		e.description = e.message = '<<%= PACKAGE %>:erè> : '+ ((!!msg) ? msg : 'anonim');
 		return (_ie && _ie == 8) ? new Error(e) : e;
 	};
 

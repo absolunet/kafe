@@ -1,12 +1,14 @@
 {
 	"name": "kafe",
-	"version": "2.0.0",
+	"description": "kafe RULZ",
+	"repository" : { "type" : "git", "url" : "http://github.com/absolunet/kafe.git" },
 	"devDependencies": {
 		"grunt": "~0.4.1",
 		"grunt-contrib-requirejs": "~0.4.1",
 		"grunt-contrib-jshint": "~0.6.4",
 		"grunt-contrib-yuidoc": "~0.5.0",
-		"grunt-contrib-watch": "~0.5.3"
-
+		"grunt-contrib-copy": "~0.4.1",
+		"grunt-contrib-watch": "~0.5.3",
+		"grunt-contrib-clean": "~0.5.0"
 	}
 }

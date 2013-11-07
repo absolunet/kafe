@@ -4,10 +4,9 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.extend({name:'youtube', version:'1.1', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		// default params
 		_params = {
 			maxResults: 10,
@@ -62,11 +61,11 @@ window.kafe.extend({name:'youtube', version:'1.1', obj:(function(kafe,undefined)
 
 
 	/**
-	* ### Version 1.1
+	* ### Version <%= VERSION %>
 	* Extra methods for Youtube.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.youtube
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var youtube = {};
 	
@@ -202,4 +201,4 @@ window.kafe.extend({name:'youtube', version:'1.1', obj:(function(kafe,undefined)
 
 	return youtube;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

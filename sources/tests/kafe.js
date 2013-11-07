@@ -53,12 +53,6 @@ require([
 	test('modules', function() {
 		kafe.bonify({name:'TEST', version:'X', obj:{test:true}});
 		strictEqual( kafe.TEST.test, true, 'bonify() - Bonified kafe');
-
-		kafe.plug({name:'TEST', version:'X', obj:{test:true}});
-		strictEqual( kafe.plugin.TEST.test, true, 'plug() - Plugged into kafe');
-
-		kafe.extend({name:'TEST', version:'X', obj:{test:true}});
-		strictEqual( kafe.ext.TEST.test, true, 'extend() - Extended kafe');
 	});
 
 

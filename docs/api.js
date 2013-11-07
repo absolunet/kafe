@@ -40,7 +40,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "kafe",
             "name": "kafe",
-            "description": "### Version 2.0.0\nkafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.\nhttps://github.com/absolunet/kafe"
+            "description": "### Version 2.0.0a\nkafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.\nhttps://github.com/absolunet/kafe"
         },
         {
             "displayName": "kafe.cms",

@@ -1,6 +1,6 @@
-window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
+/* {%= HEADER %} */
+
 	var
-		$ = kafe.dependencies.jQuery,
 		$window   = $(window),
 		$document = $(document)
 	;
@@ -8,11 +8,11 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Sticky box
 	*
-	* @module kafe.plugin
-	* @class kafe.plugin.sticky
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var sticky = {};
 
@@ -28,9 +28,9 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
 	*
 	* @example
-	*	kafe.plugin.sticky.init({ selector: '#post-it' })
+	*	<%= NAME_FULL %>.init({ selector: '#post-it' })
 	* @example
-	*	$('#post-it').kafeSticky('init', {})
+	*	$('#post-it').<%= NAME_JQUERY %>('init', {})
 	*/
 	sticky.init = function(options) {
 		options = options || {};
@@ -115,7 +115,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 						// apply
 						$e.css(attr);
-						$container.addClass('kafesticky-sticking');
+						$container.addClass('<%= NAME_ATTR %>-sticking');
 						sticking = true;
 						fromBottom = false;
 
@@ -133,7 +133,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 						// apply
 						$e.css(attr);
-						$container.removeClass('kafesticky-sticking');
+						$container.removeClass('<%= NAME_ATTR %>-sticking');
 						sticking   = false;
 						fromBottom = false;
 
@@ -151,7 +151,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 						// apply
 						$e.css(attr);
-						$container.removeClass('kafesticky-sticking');
+						$container.removeClass('<%= NAME_ATTR %>-sticking');
 						sticking   = false;
 						fromBottom = true;
 					}
@@ -166,7 +166,7 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('Sticky', {
+	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
 		init: function(obj, parameters) {
 			sticky.init($.extend({}, parameters[0], {selector:obj}));
 		}
@@ -174,4 +174,4 @@ window.kafe.plug({name:'sticky', version:'0.1', obj:(function(kafe,undefined){
 
 	return sticky;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

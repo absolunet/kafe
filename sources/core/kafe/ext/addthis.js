@@ -1,12 +1,11 @@
-window.kafe.extend({name:'addthis', version:'0.1', obj:(function(kafe,undefined) {
-	var $ = kafe.dependencies.jQuery;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Additionnal methods for AddThis
 	*
-	* @module kafe.ext
-	* @class kafe.ext.addthis 
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var addthis = {};
 
@@ -29,4 +28,4 @@ window.kafe.extend({name:'addthis', version:'0.1', obj:(function(kafe,undefined)
 
 	return addthis;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

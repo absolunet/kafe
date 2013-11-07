@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: builds/kafe/ext/bbq.js</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -148,10 +148,11 @@ require([
 ]);
 //&gt;&gt;excludeEnd(&#x27;excludeRequire&#x27;);
 
-window.kafe.extend({name:&#x27;bbq&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
+window.kafe.bonify({name:&#x27;ext.bbq&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
 
+	var $ = kafe.dependencies.jQuery;
+
+	var
 		_params = {
 			symbol: &#x27;#!&#x27;,
 			delimiter: &#x27;&amp;&#x27;

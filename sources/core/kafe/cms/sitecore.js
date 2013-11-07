@@ -1,7 +1,6 @@
-window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undefined) {
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		_privateFunction = function () {
 
 		}
@@ -9,11 +8,11 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Additionnal methods for Sitecore
 	*
-	* @module kafe.cms
-	* @class kafe.cms.sitecore
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var sitecore = {};
 
@@ -25,4 +24,4 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 
 	return sitecore;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

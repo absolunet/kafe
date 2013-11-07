@@ -4,16 +4,14 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
-
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.2
+	* ### Version <%= VERSION %>
 	* Additionnal methods for string manipulation and generation.
 	*
-	* @module kafe
-	* @class kafe.string
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var string = {};
 
@@ -24,7 +22,7 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	* @param {String} string
 	* @return {String} The unaccented string.
 	* @example
-	*	kafe.string.removeAccent('Kafe signifie café en créole.');
+	*	<%= NAME_FULL %>.removeAccent('Kafe signifie café en créole.');
 	*	// returns "Kafe signifie cafe en creole."
 	*/
 	string.removeAccent = function() {
@@ -50,7 +48,7 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	* @param {String} string A JSON string.
 	* @return {Object} A valid javascript object.
 	* @example
-	*	kafe.string.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
+	*	<%= NAME_FULL %>.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
 	*	// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
 	*/
 	string.toObject = function(s) {
@@ -79,7 +77,7 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 	* @method generateGuid
 	* @return {String} A random valid GUID/UUID.
 	* @example
-	*	kafe.string.generateGuid();
+	*	<%= NAME_FULL %>.generateGuid();
 	*	// returns "c573f4f3-982a-4046-818a-083757f98804"
 	*/
 	string.generateGuid = function() {
@@ -92,4 +90,4 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 
 	return string;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

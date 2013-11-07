@@ -1,14 +1,11 @@
-window.kafe.extend({name:'twitter', version:'1.1.1', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery
-	;
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.1.1
+	* ### Version <%= VERSION %>
 	* Extra methods for Twitter.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.twitter
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var twitter = {};
 	
@@ -44,7 +41,7 @@ window.kafe.extend({name:'twitter', version:'1.1.1', obj:(function(kafe,undefine
 	* @return {String} The tweet with links
 	*
 	* @example
-	*	kafe.twitter.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');
+	*	<%= NAME_FULL %>.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');
 	*	// returns "I really dig this #<a href="//search.twitter.com/search?q=%23twitter" data-external="true">twitter</a> function by @<a href="//twitter.com/absolunet" data-external="true">absolunet</a> : <a href="http://www.absolunet.com/" data-external="true">http://www.absolunet.com/</a>"
 	*/
 	twitter.linkifyTweet = function(tweet,options) {
@@ -77,4 +74,4 @@ window.kafe.extend({name:'twitter', version:'1.1.1', obj:(function(kafe,undefine
 
 	return twitter;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

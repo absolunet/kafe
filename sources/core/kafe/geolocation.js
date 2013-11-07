@@ -1,6 +1,6 @@
-window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefined){
+/* {%= HEADER %} */
+
 	var
-		$         = kafe.dependencies.jQuery,
 		Modernizr = kafe.dependencies.Modernizr,
 
 		// dictonary
@@ -34,11 +34,11 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* Methods to access geolocalization information about the client.
 	*
-	* @module kafe
-	* @class kafe.geolocation 
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %> 
 	*/
 	var geolocation = {};
 
@@ -52,18 +52,18 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 	*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
 	*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
 	* @example
-	*	kafe.geolocation.locate({
+	*	<%= NAME_FULL %>.locate({
 	*		selector: '#GeoLocStatus', lang: 'en',
 	*		success: function(coords) {
-	*			kafe.log('latitude: ' + coords.latitude);
-	*			kafe.log('longitude: ' + coords.longitude);
+	*			console.log('latitude: ' + coords.latitude);
+	*			console.log('longitude: ' + coords.longitude);
 	*		}
 	*		error: function(msg) {
-	*			kafe.log('Cannot geoloc: ' + msg);
+	*			console.log('Cannot geoloc: ' + msg);
 	*		}
 	*	});
 	* @example
-	*	$('#GeoLocStatus').kafe('geolocation.locate', {});
+	*	$('#GeoLocStatus').<%= PACKAGE %>('<%= NAME %>.locate', {});
 	*/
 	geolocation.locate = function(options) {
 		var
@@ -117,7 +117,7 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'geolocation.locate': function(obj, parameters) {
+		'<%= NAME %>.locate': function(obj, parameters) {
 			geolocation.locate($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
@@ -125,4 +125,4 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 
 	return geolocation;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

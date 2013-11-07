@@ -4,10 +4,9 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.extend({name:'bbq', version:'0.1', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		_params = {
 			symbol: '#!',
 			delimiter: '&'
@@ -23,11 +22,11 @@ window.kafe.extend({name:'bbq', version:'0.1', obj:(function(kafe,undefined){
 
 
 	/**
-	* ### Version 0.1
+	* ### Version <%= VERSION %>
 	* Extra methods for the jQuery BBQ plugin.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.bbq
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var bbq = {};
 
@@ -90,4 +89,4 @@ window.kafe.extend({name:'bbq', version:'0.1', obj:(function(kafe,undefined){
 
 	return bbq;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

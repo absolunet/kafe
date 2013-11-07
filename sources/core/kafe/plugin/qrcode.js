@@ -4,18 +4,14 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery
-	;
-
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* Returns a HTML table for displaying a QR code, encoded from the sent string.
 	*
-	* @module kafe.plugin
-	* @class kafe.plugin.qrcode
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var qrcodeK = {};
 
@@ -30,7 +26,7 @@ window.kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(kafe,undefined){
 	* @return {String} The HTML table representing the QR code.
 	*
 	* @example
-	*	kafe.plugin.qrcode.generate('Scan me beautiful');
+	*	<%= NAME_FULL %>.generate('Scan me beautiful');
 	*	// returns "<table><tbody><tr><td class="X"></td><td></td><td class="X"></td></tr>[...]</tbody></table>"
 	*/
 	qrcodeK.generate = function(text, options) {
@@ -66,4 +62,4 @@ window.kafe.plug({name:'qrcode', version:'0.1.1', obj:(function(kafe,undefined){
 
 	return qrcodeK;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

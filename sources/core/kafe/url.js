@@ -1,7 +1,6 @@
-window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		// parse url
 		_parseIt = function(str,type) {
 			switch (type) {
@@ -24,11 +23,11 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* Manipulation tools for route-based urls.
 	*
-	* @module kafe
-	* @class kafe.url
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var url = {};
 
@@ -39,7 +38,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Object} An object represention of the querystring.
 	* @example
-	*	kafe.url.parseSearchParams('?group=players&team=blue&ranking=3');
+	*	<%= NAME_FULL %>.parseSearchParams('?group=players&team=blue&ranking=3');
 	*	// returns Object {group: "players", team: "blue", ranking: "3"}
 	*/
 	url.parseSearchParams = function(s) {
@@ -55,7 +54,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Array(String)} An array represention of the querystring path.
 	* @example
-	*	kafe.url.parseSearchPath('?/Players/Teams/Blue');
+	*	<%= NAME_FULL %>.parseSearchPath('?/Players/Teams/Blue');
 	*	// returns ["Players", "Teams", "Blue"]
 	*/
 	url.parseSearchPath = function(s) {
@@ -71,7 +70,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hash string.
 	* @example
-	*	kafe.url.parseHashParams('#color=blue&size=large&extras=false');
+	*	<%= NAME_FULL %>.parseHashParams('#color=blue&size=large&extras=false');
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseHashParams = function(s) {
@@ -87,7 +86,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Array(String)} An array represention of the hash path.
 	* @example
-	*	kafe.url.parseHashPath('#/clothing/man/shirts');
+	*	<%= NAME_FULL %>.parseHashPath('#/clothing/man/shirts');
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseHashPath = function(s) {
@@ -103,7 +102,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hashbang.
 	* @example
-	*	kafe.url.parseAjaxParams('#!color=blue&size=large&extras=false');
+	*	<%= NAME_FULL %>.parseAjaxParams('#!color=blue&size=large&extras=false');
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseAjaxParams = function(s) {
@@ -119,7 +118,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Array(String)} An array represention of the hashbang path.
 	* @example
-	*	kafe.url.parseAjaxPath('#!/clothing/man/shirts');
+	*	<%= NAME_FULL %>.parseAjaxPath('#!/clothing/man/shirts');
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseAjaxPath = function(s) {
@@ -130,4 +129,4 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 
 	return url;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

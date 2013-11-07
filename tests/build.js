@@ -2769,7 +2769,7 @@ Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0));};
 
 
 /**
-* ### Version 2.0.0
+* ### Version 2.0.0a
 * kafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * https://github.com/absolunet/kafe
 *
@@ -2830,7 +2830,7 @@ window.kafe = (function(undefined){
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '2.0.0',
+			_vesyon: '2.0.0a',
 
 			/**
 			* kafe author
@@ -3057,36 +3057,6 @@ window.kafe = (function(undefined){
 
 
 	/**
-	* Add a homebrewed plugin
-	*
-	* @method plug
-	* @param {Object} options The options
-	*	@param {String} options.name The plugin name
-	*	@param {String} options.version The plugin version
-	*	@param {Object} options.obj The plugin itself
-	*/
-	core.plug = function(options) {
-		options.name = 'plugin.'+options.name;
-		this.bonify(options);
-	};
-
-
-	/**
-	* Add an external plugin extension
-	*
-	* @method extend
-	* @param {Object} options The options
-	*	@param {String} options.name The plugin extension name
-	*	@param {String} options.version The plugin extension version
-	*	@param {Object} options.obj The plugin extension itself
-	*/
-	core.extend = function(options) {
-		options.name = 'ext.'+options.name;
-		this.bonify(options);
-	};
-
-
-	/**
 	* Throw kafe errors
 	*
 	* @method error
@@ -3183,20 +3153,15 @@ window.kafe = (function(undefined){
 	test('modules', function() {
 		kafe.bonify({name:'TEST', version:'X', obj:{test:true}});
 		strictEqual( kafe.TEST.test, true, 'bonify() - Bonified kafe');
-
-		kafe.plug({name:'TEST', version:'X', obj:{test:true}});
-		strictEqual( kafe.plugin.TEST.test, true, 'plug() - Plugged into kafe');
-
-		kafe.extend({name:'TEST', version:'X', obj:{test:true}});
-		strictEqual( kafe.ext.TEST.test, true, 'extend() - Extended kafe');
 	});
 
 
 })(window.kafe);
 window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
 
+	var $ = kafe.dependencies.jQuery;
+
+	var
 		// dictionary
 		_dict = {
 			fr: {
@@ -4113,6 +4078,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 })(window.kafe);
 window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
+
 	var $ = kafe.dependencies.jQuery;
 
 	/**
@@ -4215,7 +4181,7 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
  * Released under the MIT license
  */
 (function (factory) {
-	if (false) { var x=false;} else {
+	/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
 		// Browser globals.
 		factory(window.kafe.dependencies.jQuery);
 	}
@@ -4523,8 +4489,8 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 }(window.kafe.dependencies.jQuery));
 
 window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
 
+	var $ = kafe.dependencies.jQuery;
 
 	/**
 	* ### Version 1.2
@@ -4613,8 +4579,10 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 })(window.kafe)});
 
 window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
+
 	var
-		$         = kafe.dependencies.jQuery,
 		Modernizr = kafe.dependencies.Modernizr,
 
 		LOCAL   = 1,
@@ -5167,7 +5135,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 */
 
 (function ( root, doc, factory ) {
-	if (false) { var x=false;} else {
+	/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
 		// Browser globals
 		factory( window.kafe.dependencies.jQuery, root, doc );
 	}
@@ -7337,6 +7305,7 @@ if ( eventCaptureSupported ) {
 })(window.kafe);
 
 window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,undefined){
+
 	var $ = kafe.dependencies.jQuery;
 
 	/**
@@ -7344,7 +7313,7 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 	* String encryption tools.
 	*
 	* @module kafe
-	* @class kafe.string.encrypt 
+	* @class kafe.string.encrypt
 	* @extensionfor kafe.string
 	*/
 	var encrypt = {};
@@ -7591,15 +7560,15 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 })(window.kafe);
 
 window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,undefined){
-	var $ = kafe.dependencies.jQuery;
 
+	var $ = kafe.dependencies.jQuery;
 
 	/**
 	* ### Version 1.0
 	* String validation tools.
 	*
 	* @module kafe
-	* @class kafe.string.validate 
+	* @class kafe.string.validate
 	* @extensionfor kafe.string
 	*/
 	var validate = {};
@@ -7729,6 +7698,7 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 
 
 	return validate;
+
 })(window.kafe)});
 
 (function(kafe,undefined){
@@ -7853,9 +7823,10 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 
 })(window.kafe);
 window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
 
+	var $ = kafe.dependencies.jQuery;
+
+	var
 		// parse url
 		_parseIt = function(str,type) {
 			switch (type) {

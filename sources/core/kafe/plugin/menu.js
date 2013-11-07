@@ -1,17 +1,13 @@
-window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery
-	;
-
+/* {%= HEADER %} */
 
 	/**
-	* ### Version 1.0
+	* ### Version <%= VERSION %>
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
 	* 
-	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
+	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`<%= NAME_ATTR %>-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
-	* @module kafe.plugin
-	* @class kafe.plugin.menu
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var menu = {};
 
@@ -54,11 +50,11 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	kafe.plugin.menu.init({ selector: '#main-menu > ul' });
+	*	<%= NAME_FULL %>.init({ selector: '#main-menu > ul' });
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
-	*	$('#main-menu > ul').kafeMenu();
+	*	$('#main-menu > ul').<%= NAME_JQUERY %>();
 	*/
 	menu.init = function() {
 		var
@@ -88,13 +84,13 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data('kafemenu-timer') !== undefined) {
-					clearTimeout($sub.data('kafemenu-timer'));
+				if ($sub.data('<%= NAME_ATTR %>-timer') !== undefined) {
+					clearTimeout($sub.data('<%= NAME_ATTR %>-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('kafemenu-timer', setTimeout(function() {
-						$parent.addClass('kafemenu-open');
+					$sub.data('<%= NAME_ATTR %>-timer', setTimeout(function() {
+						$parent.addClass('<%= NAME_ATTR %>-open');
 						if (!!c.enterCallback) {
 							c.enterCallback($sub);
 						}
@@ -116,16 +112,16 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 					$parent = $(this),
 					$sub = $parent.children(c.submenus),
 					_clearclass = function() {
-						$parent.removeClass('kafemenu-open');
+						$parent.removeClass('<%= NAME_ATTR %>-open');
 					}
 				;
 
-				if ($sub.data('kafemenu-timer') !== undefined) {
-					clearTimeout($sub.data('kafemenu-timer'));
+				if ($sub.data('<%= NAME_ATTR %>-timer') !== undefined) {
+					clearTimeout($sub.data('<%= NAME_ATTR %>-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('kafemenu-timer', setTimeout(function() {
+					$sub.data('<%= NAME_ATTR %>-timer', setTimeout(function() {
 						if (!!c.leaveCallback) {
 							c.leaveCallback($sub);
 						}
@@ -147,10 +143,10 @@ window.kafe.plug({name:'menu', version:'1.0', obj:(function(kafe,undefined){
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('Menu', {
+	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
 		init: function(obj, parameters) {
 			menu.init($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
 
-})(window.kafe)});
+/* {%= FOOTER %} */

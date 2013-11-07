@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: builds/kafe/ext/twitter.js</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -142,10 +142,9 @@
             <div class="content"><h4>builds/kafe/ext/twitter.js</h4>
 
 <pre class="code prettyprint linenums">
-window.kafe.extend({name:&#x27;twitter&#x27;, version:&#x27;1.1.1&#x27;, obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery
-	;
+window.kafe.bonify({name:&#x27;ext.twitter&#x27;, version:&#x27;1.1.1&#x27;, obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
 
 	/**
 	* ### Version 1.1.1
@@ -188,7 +187,7 @@ window.kafe.extend({name:&#x27;twitter&#x27;, version:&#x27;1.1.1&#x27;, obj:(fu
 	* @return {String} The tweet with links
 	*
 	* @example
-	*	kafe.twitter.linkifyTweet(&#x27;I really dig this #twitter function by @absolunet : http://www.absolunet.com/&#x27;);
+	*	kafe.ext.twitter.linkifyTweet(&#x27;I really dig this #twitter function by @absolunet : http://www.absolunet.com/&#x27;);
 	*	// returns &quot;I really dig this #&lt;a href=&quot;//search.twitter.com/search?q=%23twitter&quot; data-external=&quot;true&quot;&gt;twitter&lt;/a&gt; function by @&lt;a href=&quot;//twitter.com/absolunet&quot; data-external=&quot;true&quot;&gt;absolunet&lt;/a&gt; : &lt;a href=&quot;http://www.absolunet.com/&quot; data-external=&quot;true&quot;&gt;http://www.absolunet.com/&lt;/a&gt;&quot;
 	*/
 	twitter.linkifyTweet = function(tweet,options) {

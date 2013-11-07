@@ -1,7 +1,6 @@
-window.kafe.extend({name:'flickr', version:'1.1', obj:(function (kafe,undefined) {
-	var
-		$ = kafe.dependencies.jQuery,
+/* {%= HEADER %} */
 
+	var
 		// default params
 		_params = {
 			api_key:        '',
@@ -236,11 +235,11 @@ window.kafe.extend({name:'flickr', version:'1.1', obj:(function (kafe,undefined)
 
 
 	/**
-	* ### Version 1.1
+	* ### Version <%= VERSION %>
 	* Extra methods for the Flickr API.
 	*
-	* @module kafe.ext
-	* @class kafe.ext.flickr
+	* @module <%= MODULE %>
+	* @class <%= NAME_FULL %>
 	*/
 	var flickr = {
 
@@ -552,4 +551,4 @@ window.kafe.extend({name:'flickr', version:'1.1', obj:(function (kafe,undefined)
 
 	return flickr;
 
-})(window.kafe)});
+/* {%= FOOTER %} */

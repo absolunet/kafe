@@ -16,7 +16,7 @@
             <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: builds/kafe/url.js</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.2.0.0</em>
+            <em>API Docs for: kafe v.</em>
         </div>
     </div>
     <div class="yui3-g">
@@ -143,9 +143,10 @@
 
 <pre class="code prettyprint linenums">
 window.kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.0&#x27;, obj:(function(kafe,undefined){
-	var
-		$ = kafe.dependencies.jQuery,
 
+	var $ = kafe.dependencies.jQuery;
+
+	var
 		// parse url
 		_parseIt = function(str,type) {
 			switch (type) {
