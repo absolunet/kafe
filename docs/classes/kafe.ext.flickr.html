@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>kafe.ext.flickr - kafe</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: kafe.ext.flickr</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: kafe v.2.0.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/kafe.html">kafe</a>
+                
+                </li>
+            
+                <li><a href="../modules/kafe.cms.html">kafe.cms</a>
+                
+                </li>
+            
+                <li><a href="../modules/kafe.ext.html">kafe.ext</a>
+                
+                </li>
+            
+                <li><a href="../modules/kafe.plugin.html">kafe.plugin</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/kafe.html">kafe</a></li>
+            
+                <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+            
+                <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+            
+                <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+            
+                <li><a href="../classes/kafe.date.html">kafe.date</a></li>
+            
+                <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+            
+                <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+            
+                <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+            
+                <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+            
+                <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+            
+                <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+            
+                <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+            
+                <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+            
+                <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+            
+                <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+            
+                <li><a href="../classes/kafe.form.html">kafe.form</a></li>
+            
+                <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
+            
+                <li><a href="../classes/kafe.number.html">kafe.number</a></li>
+            
+                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+            
+                <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+            
+                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+            
+                <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+            
+                <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
+            
+                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+            
+                <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+            
+                <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
+            
+                <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+            
+                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="methods-on-page" class="sidebox on-page">
+    <div class="hd">
+        <h2 class="no-toc">Methods</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="#methods_api.photos_search">api.photos_search</a></li>
+            
+                <li><a href="#methods_api.photosets_getList">api.photosets_getList</a></li>
+            
+                <li><a href="#methods_api.photosets_getPhotos">api.photosets_getPhotos</a></li>
+            
+                <li><a href="#methods_getBgImageStyles">getBgImageStyles</a></li>
+            
+                <li><a href="#methods_getImgElement">getImgElement</a></li>
+            
+                <li><a href="#methods_getOptimizedSize">getOptimizedSize</a></li>
+            
+                <li><a href="#methods_getPhotos">getPhotos</a></li>
+            
+                <li><a href="#methods_getPhotosetCover">getPhotosetCover</a></li>
+            
+                <li><a href="#methods_getPhotosets">getPhotosets</a></li>
+            
+                <li><a href="#methods_getPhotostream">getPhotostream</a></li>
+            
+                <li><a href="#methods_setParams">setParams</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+<div id="props-on-page" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Properties</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="#props_PRIVACY_FAMILY">PRIVACY_FAMILY</a></li>
+            
+                <li><a href="#props_PRIVACY_FRIENDS">PRIVACY_FRIENDS</a></li>
+            
+                <li><a href="#props_PRIVACY_FRIENDS_FAMILY">PRIVACY_FRIENDS_FAMILY</a></li>
+            
+                <li><a href="#props_PRIVACY_PRIVATE">PRIVACY_PRIVATE</a></li>
+            
+                <li><a href="#props_PRIVACY_PUBLIC">PRIVACY_PUBLIC</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>builds/<ul><li>kafe/<ul><li>cms/<ul><li><a href="../files/builds_kafe_cms__cms.js.html">_cms.js</a></li><li><a href="../files/builds_kafe_cms_drupal.js.html">drupal.js</a></li><li><a href="../files/builds_kafe_cms_magento.js.html">magento.js</a></li><li><a href="../files/builds_kafe_cms_sitecore.js.html">sitecore.js</a></li></ul></li><li><a href="../files/builds_kafe_date.js.html">date.js</a></li><li>ext/<ul><li><a href="../files/builds_kafe_ext__ext.js.html">_ext.js</a></li><li><a href="../files/builds_kafe_ext_addthis.js.html">addthis.js</a></li><li><a href="../files/builds_kafe_ext_bbq.js.html">bbq.js</a></li><li><a href="../files/builds_kafe_ext_colorbox.js.html">colorbox.js</a></li><li><a href="../files/builds_kafe_ext_disqus.js.html">disqus.js</a></li><li><a href="../files/builds_kafe_ext_facebook.js.html">facebook.js</a></li><li><a href="../files/builds_kafe_ext_flickr.js.html">flickr.js</a></li><li><a href="../files/builds_kafe_ext_googlemaps.js.html">googlemaps.js</a></li><li><a href="../files/builds_kafe_ext_soundcloud.js.html">soundcloud.js</a></li><li><a href="../files/builds_kafe_ext_twitter.js.html">twitter.js</a></li><li><a href="../files/builds_kafe_ext_youtube.js.html">youtube.js</a></li></ul></li><li><a href="../files/builds_kafe_form.js.html">form.js</a></li><li><a href="../files/builds_kafe_geolocation.js.html">geolocation.js</a></li><li><a href="../files/builds_kafe_kafe.js.html">kafe.js</a></li><li><a href="../files/builds_kafe_number.js.html">number.js</a></li><li>plugin/<ul><li><a href="../files/builds_kafe_plugin__plugin.js.html">_plugin.js</a></li><li><a href="../files/builds_kafe_plugin_carousel.js.html">carousel.js</a></li><li><a href="../files/builds_kafe_plugin_menu.js.html">menu.js</a></li><li><a href="../files/builds_kafe_plugin_qrcode.js.html">qrcode.js</a></li><li><a href="../files/builds_kafe_plugin_sticky.js.html">sticky.js</a></li></ul></li><li><a href="../files/builds_kafe_storage.js.html">storage.js</a></li><li><a href="../files/builds_kafe_string-encrypt.js.html">string-encrypt.js</a></li><li><a href="../files/builds_kafe_string-validate.js.html">string-validate.js</a></li><li><a href="../files/builds_kafe_string.js.html">string.js</a></li><li><a href="../files/builds_kafe_style.js.html">style.js</a></li><li><a href="../files/builds_kafe_url.js.html">url.js</a></li></ul></li></ul></li></ul>
+    </div>
+</div>
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>Class kafe.ext.flickr</h4>
+
+
+
+<span class="foundat">Class defined in: <a href="../files/builds_kafe_ext_flickr.js.html#l238"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:238</code></a></span>
+<div class="intro"><h3 id="version-1-1">Version 1.1</h3>
+<p>Extra methods for the Flickr API.</p>
+</div>
+
+
+
+<div id="classdocs">
+    <ul>
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        <li><a href="#props">Properties</a></li>
+        
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            
+                <a name="methods_api.photos_search"></a>
+<div class="method item">
+     <strong class="name"><code>api.photos_search</code></strong>( <code>[options], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l531"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:531</code></a>
+    </span><br>
+    <p>Search photos (direct call to API method flickr.photos.search)</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_api.photosets_getList"></a>
+<div class="method item">
+     <strong class="name"><code>api.photosets_getList</code></strong>( <code>[options], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l491"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:491</code></a>
+    </span><br>
+    <p>Get the photosets (direct call to API method flickr.photosets.getList)</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_api.photosets_getPhotos"></a>
+<div class="method item">
+     <strong class="name"><code>api.photosets_getPhotos</code></strong>( <code>[options], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l511"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:511</code></a>
+    </span><br>
+    <p>Get the list of photos in a set (direct call to API method flickr.photosets.getPhotos)</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getBgImageStyles"></a>
+<div class="method item">
+    Object <strong class="name"><code>getBgImageStyles</code></strong>( <code>photo, [options] </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l463"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:463</code></a>
+    </span><br>
+    <p>Get a optimized background styles for a photo</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>photo</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Photo object from Flickr API</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+            <ul>
+            
+                <li><code>maxWidth</code> <strong>&lt;Number&gt;</strong> <p>Maximum width</p>
+
+                
+                </li>
+            
+                <li><code>maxHeight</code> <strong>&lt;Number&gt;</strong> <p>Maximum height</p>
+
+                
+                </li>
+            
+            </ul>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>CSS attributes to apply</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getImgElement"></a>
+<div class="method item">
+    String <strong class="name"><code>getImgElement</code></strong>( <code>photo, [options], [attributes] </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l387"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:387</code></a>
+    </span><br>
+    <p>Get a optimized <img> tag for a photo</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>photo</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Photo object from Flickr API</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+            <ul>
+            
+                <li><code>maxWidth</code> <strong>&lt;Number&gt;</strong> <p>Maximum width</p>
+
+                
+                </li>
+            
+                <li><code>maxHeight</code> <strong>&lt;Number&gt;</strong> <p>Maximum height</p>
+
+                
+                </li>
+            
+                <li><code>centered</code> <strong>&lt;Boolean&gt;</strong> <p>Center image</p>
+
+                
+                </li>
+            
+                <li><code>link</code> <strong>&lt;Object&gt;</strong> <p>Link HTML attributes</p>
+
+                
+                </li>
+            
+            </ul>
+            
+        </li>
+    
+        <li>
+        
+            <code>[attributes]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>HTML attributes to apply to &lt;img&gt; tag</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;String&gt; <p>HTML markup for image</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getOptimizedSize"></a>
+<div class="method item">
+    Object <strong class="name"><code>getOptimizedSize</code></strong>( <code>photo, [options] </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l370"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:370</code></a>
+    </span><br>
+    <p>Get optimized size (optSize) for a photo.</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>photo</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Photo object from Flickr API</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+            <ul>
+            
+                <li><code>maxWidth</code> <strong>&lt;Number&gt;</strong> <p>Maximum width</p>
+
+                
+                </li>
+            
+                <li><code>maxHeight</code> <strong>&lt;Number&gt;</strong> <p>Maximum height</p>
+
+                
+                </li>
+            
+                <li><code>doResize</code> <strong>&lt;Boolean&gt;</strong> <p>Resize to fit</p>
+
+                
+                </li>
+            
+                <li><code>asBgImg</code> <strong>&lt;Boolean&gt;</strong> <p>Is it to be used as a background style</p>
+
+                
+                </li>
+            
+            </ul>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo object</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getPhotos"></a>
+<div class="method item">
+    Object <strong class="name"><code>getPhotos</code></strong>( <code>[options], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l344"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:344</code></a>
+    </span><br>
+    <p>Get photos.</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo collection</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getPhotosetCover"></a>
+<div class="method item">
+    Object <strong class="name"><code>getPhotosetCover</code></strong>( <code>photoset, callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l320"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:320</code></a>
+    </span><br>
+    <p>Get a photoset cover.</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>photoset</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Photoset</p>
+
+            
+            <ul>
+            
+                <li><code>id</code> <strong>&lt;Object&gt;</strong> <p>Photoset id</p>
+
+                
+                </li>
+            
+                <li><code>primary</code> <strong>&lt;Object&gt;</strong> <p>Primary photo id</p>
+
+                
+                </li>
+            
+            </ul>
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo object</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getPhotosets"></a>
+<div class="method item">
+    Object <strong class="name"><code>getPhotosets</code></strong>( <code>[options], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l307"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:307</code></a>
+    </span><br>
+    <p>Get photosets for specific user.</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo collection</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_getPhotostream"></a>
+<div class="method item">
+    Object <strong class="name"><code>getPhotostream</code></strong>( <code>[options], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l357"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:357</code></a>
+    </span><br>
+    <p>Get photostream.</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[options]</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Callback</p>
+
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo collection</p>
+</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_setParams"></a>
+<div class="method item">
+     <strong class="name"><code>setParams</code></strong>( <code>options </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/builds_kafe_ext_flickr.js.html#l289"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:289</code></a>
+    </span><br>
+    <p>Set default Flickr params.</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>options</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>Options</p>
+
+            
+            <ul>
+            
+                <li><code>api_key</code> <strong>&lt;String&gt;</strong> <p>API key</p>
+
+                
+                </li>
+            
+                <li><code>media</code> <strong>&lt;Boolean&gt;</strong> <p>Media type. Possible values are <code>all</code>, <code>photos</code>, <code>videos</code></p>
+
+                
+                </li>
+            
+                <li><code>privacy_filter</code> <strong>&lt;Boolean&gt;</strong> <p>Privacy supported. Possible values are <code>flickr.PRIVACY_*</code></p>
+
+                
+                </li>
+            
+                <li><code>sort</code> <strong>&lt;Boolean&gt;</strong> <p>Sort order. Possible values are <code>date-posted-asc</code>, <code>date-posted-desc</code>, <code>date-taken-asc</code>, <code>date-taken-desc</code>, <code>interestingness-desc</code>, <code>interestingness-asc</code>, <code>relevance</code></p>
+
+                
+                </li>
+            
+                <li><code>page</code> <strong>&lt;String&gt;</strong> <p>Page number start</p>
+
+                
+                </li>
+            
+                <li><code>per_page</code> <strong>&lt;Function&gt;</strong> <p>Number of element per page</p>
+
+                
+                </li>
+            
+                <li><code>extras</code> <strong>&lt;Array(String)&gt;</strong> <p>Extra fields to fetch. More on the <a href="http://www.flickr.com/services/api/">Flickr API</a></p>
+
+                
+                </li>
+            
+            </ul>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+</div>
+
+            
+            </div>
+        
+        
+            <div id="props">
+            
+                <a name="props_PRIVACY_FAMILY"></a>
+<div class="props item">
+    <code>PRIVACY_FAMILY</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l263"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:263</code></a></span>
+    <p>Private photos visible to family</p>
+
+    
+</div>
+
+            
+                <a name="props_PRIVACY_FRIENDS"></a>
+<div class="props item">
+    <code>PRIVACY_FRIENDS</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l255"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:255</code></a></span>
+    <p>Private photos visible to friends</p>
+
+    
+</div>
+
+            
+                <a name="props_PRIVACY_FRIENDS_FAMILY"></a>
+<div class="props item">
+    <code>PRIVACY_FRIENDS_FAMILY</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l271"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:271</code></a></span>
+    <p>Private photos visible to friends &amp; family</p>
+
+    
+</div>
+
+            
+                <a name="props_PRIVACY_PRIVATE"></a>
+<div class="props item">
+    <code>PRIVACY_PRIVATE</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l279"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:279</code></a></span>
+    <p>Completely private photos</p>
+
+    
+</div>
+
+            
+                <a name="props_PRIVACY_PUBLIC"></a>
+<div class="props item">
+    <code>PRIVACY_PUBLIC</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l247"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:247</code></a></span>
+    <p>Public photos</p>
+
+    
+</div>
+
+            
+            </div>
+        
+        
+        
+    </div>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>
