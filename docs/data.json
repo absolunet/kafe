@@ -3605,6 +3605,89 @@
             "module": "kafe"
         },
         {
+            "file": "builds/kafe/number.js",
+            "line": 50,
+            "description": "Gets the float precision of a given number.",
+            "itemtype": "method",
+            "name": "getPrecision",
+            "params": [
+                {
+                    "name": "number",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "Amount of numbers after the radix point.",
+                "type": "Number"
+            },
+            "example": [
+                "\n\tkafe.number.getPrecision(5.458);\n\t// returns 3",
+                "\n\tkafe.number.getPrecision(11);\n\t// returns 0"
+            ],
+            "class": "kafe.number",
+            "module": "kafe"
+        },
+        {
+            "file": "builds/kafe/number.js",
+            "line": 68,
+            "description": "Modifies, if needed, a number to only allow a miximum float precision.",
+            "itemtype": "method",
+            "name": "trimPrecision",
+            "params": [
+                {
+                    "name": "number",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "precision",
+                    "description": "Maximum amount of numbers after the radix point.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The modified number",
+                "type": "Number"
+            },
+            "example": [
+                "\n\tkafe.number.trimPrecision(5.458, 2);\n\t// returns 5.45",
+                "\n\tkafe.number.trimPrecision(5.458, 0);\n\t// returns 5",
+                "\n\tkafe.number.trimPrecision(5.458, 6);\n\t// returns 5.458"
+            ],
+            "class": "kafe.number",
+            "module": "kafe"
+        },
+        {
+            "file": "builds/kafe/number.js",
+            "line": 89,
+            "description": "Multiply two numbers while avoiding the javascript multiplication irregularities.",
+            "itemtype": "method",
+            "name": "product",
+            "params": [
+                {
+                    "name": "number",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "factor",
+                    "description": "The factor causing the javascript calculation irregularity.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "Product of the equation.",
+                "type": "Number"
+            },
+            "example": [
+                "\n\t3 * 5.3\n\t// returns 15.8999999",
+                "\n\tkafe.number.product(3, 5.3);\n\t// returns 15.9"
+            ],
+            "class": "kafe.number",
+            "module": "kafe"
+        },
+        {
             "file": "builds/kafe/storage.js",
             "line": 231,
             "description": "Returns the local value for a specific key.",

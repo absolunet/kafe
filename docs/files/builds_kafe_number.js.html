@@ -209,6 +209,64 @@ window.kafe.bonify({name:&#x27;number&#x27;, version:&#x27;1.0&#x27;, obj:(funct
 		return result;
 	};
 
+	/**
+	* Gets the float precision of a given number.
+	*
+	* @method getPrecision
+	* @param {Number} number
+	* @return {Number} Amount of numbers after the radix point.
+	* @example
+	*	kafe.number.getPrecision(5.458);
+	*	// returns 3
+	* @example
+	*	kafe.number.getPrecision(11);
+	*	// returns 0
+	*/
+	number.getPrecision = function(n) {
+		var _precision = (n + &#x27;&#x27;).split(&#x27;.&#x27;)[1];
+		return !!_precision ? _precision.length : 0;
+	};
+
+	/**
+	* Modifies, if needed, a number to only allow a miximum float precision.
+	*
+	* @method trimPrecision
+	* @param {Number} number
+	* @param {Number} precision Maximum amount of numbers after the radix point.
+	* @return {Number} The modified number
+	* @example
+	*	kafe.number.trimPrecision(5.458, 2);
+	*	// returns 5.45
+	* @example
+	*	kafe.number.trimPrecision(5.458, 0);
+	*	// returns 5
+	* @example
+	*	kafe.number.trimPrecision(5.458, 6);
+	*	// returns 5.458
+	*/
+	number.trimPrecision = function(n, precision) {
+		return Math.floor(n * Math.pow(10, precision)) / Math.pow(10, precision);
+	};
+
+	/**
+	* Multiply two numbers while avoiding the javascript multiplication irregularities.
+	*
+	* @method product
+	* @param {Number} number
+	* @param {Number} factor The factor causing the javascript calculation irregularity.
+	* @return {Number} Product of the equation.
+	* @example
+	*	3 * 5.3
+	*	// returns 15.8999999
+	* @example
+	*	kafe.number.product(3, 5.3);
+	*	// returns 15.9
+	*/
+	number.product = function(n, factor) {
+		var _power = Math.pow(10, number.getPrecision(factor));
+		return (n * (factor * _power)) / _power;
+	};
+
 
 	return number;
 

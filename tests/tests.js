@@ -4127,6 +4127,64 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 		return result;
 	};
 
+	/**
+	* Gets the float precision of a given number.
+	*
+	* @method getPrecision
+	* @param {Number} number
+	* @return {Number} Amount of numbers after the radix point.
+	* @example
+	*	kafe.number.getPrecision(5.458);
+	*	// returns 3
+	* @example
+	*	kafe.number.getPrecision(11);
+	*	// returns 0
+	*/
+	number.getPrecision = function(n) {
+		var _precision = (n + '').split('.')[1];
+		return !!_precision ? _precision.length : 0;
+	};
+
+	/**
+	* Modifies, if needed, a number to only allow a miximum float precision.
+	*
+	* @method trimPrecision
+	* @param {Number} number
+	* @param {Number} precision Maximum amount of numbers after the radix point.
+	* @return {Number} The modified number
+	* @example
+	*	kafe.number.trimPrecision(5.458, 2);
+	*	// returns 5.45
+	* @example
+	*	kafe.number.trimPrecision(5.458, 0);
+	*	// returns 5
+	* @example
+	*	kafe.number.trimPrecision(5.458, 6);
+	*	// returns 5.458
+	*/
+	number.trimPrecision = function(n, precision) {
+		return Math.floor(n * Math.pow(10, precision)) / Math.pow(10, precision);
+	};
+
+	/**
+	* Multiply two numbers while avoiding the javascript multiplication irregularities.
+	*
+	* @method product
+	* @param {Number} number
+	* @param {Number} factor The factor causing the javascript calculation irregularity.
+	* @return {Number} Product of the equation.
+	* @example
+	*	3 * 5.3
+	*	// returns 15.8999999
+	* @example
+	*	kafe.number.product(3, 5.3);
+	*	// returns 15.9
+	*/
+	number.product = function(n, factor) {
+		var _power = Math.pow(10, number.getPrecision(factor));
+		return (n * (factor * _power)) / _power;
+	};
+
 
 	return number;
 
@@ -4172,6 +4230,33 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 		toRoman(1999, 'MCMXCIX');
 		toRoman(2013, 'MMXIII');
 	});
+
+	test('getPrecision()', function() {
+		var getPrecision = function(number,expected) {
+			strictEqual( kafe.number.getPrecision( number ), expected, number + ' = ' + expected );
+		};
+		getPrecision(5.458,	3);
+		getPrecision(2,     0);
+	});
+
+	test('trimPrecision()', function() {
+		var trimPrecision = function(number,precision,expected) {
+			strictEqual( kafe.number.trimPrecision( number, precision ), expected, number + ' trimed to ' + precision + ' = ' + expected );
+		};
+		trimPrecision(5.458, 2, 5.45);
+		trimPrecision(5.458, 0, 5);
+		trimPrecision(5.458, 6, 5.458);
+	});
+
+	test('product()', function() {
+		var product = function(number,factor,expected) {
+			strictEqual( kafe.number.product( number, factor ), expected, number + ' * ' + factor + ' = ' + expected );
+		};
+		product(3, 5.3, 15.9);
+	});
+
+
+
 
 })(window.kafe);
 /*!

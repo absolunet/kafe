@@ -45,4 +45,31 @@ require([
 		toRoman(2013, 'MMXIII');
 	});
 
+	test('getPrecision()', function() {
+		var getPrecision = function(number,expected) {
+			strictEqual( kafe.number.getPrecision( number ), expected, number + ' = ' + expected );
+		};
+		getPrecision(5.458,	3);
+		getPrecision(2,     0);
+	});
+
+	test('trimPrecision()', function() {
+		var trimPrecision = function(number,precision,expected) {
+			strictEqual( kafe.number.trimPrecision( number, precision ), expected, number + ' trimed to ' + precision + ' = ' + expected );
+		};
+		trimPrecision(5.458, 2, 5.45);
+		trimPrecision(5.458, 0, 5);
+		trimPrecision(5.458, 6, 5.458);
+	});
+
+	test('product()', function() {
+		var product = function(number,factor,expected) {
+			strictEqual( kafe.number.product( number, factor ), expected, number + ' * ' + factor + ' = ' + expected );
+		};
+		product(3, 5.3, 15.9);
+	});
+
+
+
+
 })(window.kafe);
