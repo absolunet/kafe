@@ -42,7 +42,7 @@ window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,und
 		;
 		classes = classes.toString().split(' ');
 		for (var i in classes) {
-			if (/^kafecolorbox-theme-/.test(classes[i])) {
+			if (/^undefinedcolorbox-theme-/.test(classes[i])) {
 				$body.removeClass(classes[i]);
 			}
 		}
@@ -107,7 +107,7 @@ window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,und
 
 
 	/**
-	* Change the default theme, which is a class on the body with the name `kafecolorbox-theme-THEME`.
+	* Change the default theme, which is a class on the body with the name `undefinedcolorbox-theme-THEME`.
 	*
 	* @method changeTheme
 	* @param {String} theme Theme name.
@@ -115,17 +115,17 @@ window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,und
 	colorbox.changeTheme = function(theme) {
 		var $body = $('body');
 
-		if (!$body.hasClass('kafecolorbox-theme-'+theme)) {
+		if (!$body.hasClass('undefinedcolorbox-theme-'+theme)) {
 
 			var classes = $body.attr('class') || '';
 			classes = classes.toString().split(' ');
 			for (var i in classes) {
-				if (/^kafecolorbox-theme-/.test(classes[i])) {
+				if (/^undefinedcolorbox-theme-/.test(classes[i])) {
 					$body.removeClass(classes[i]);
 				}
 			}
 
-			$body.addClass('kafecolorbox-theme-'+theme);
+			$body.addClass('undefinedcolorbox-theme-'+theme);
 			$.colorbox.remove();
 			$.colorbox.init();
 		}
@@ -197,7 +197,7 @@ window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,und
 	*/
 	colorbox.dialog = function( content, commands  ) {
 
-		var html = '<div id="kafecolorbox-dialog">' + content;
+		var html = '<div id="undefinedcolorbox-dialog">' + content;
 
 		if (commands === undefined || commands.length === 0) {
 			commands = [{ label:'OK', callback:function(){ $.colorbox.close(); } }];
@@ -255,10 +255,10 @@ window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,und
 		/**
 		* Binds $(selector).colorbox() with the default params including theme.
 		*
-		* @method $.kafeColorbox('init')
+		* @method $.undefinedColorbox('init')
 		* @param {Object} [options] The colorbox params.
 		* @example
-		*	$('.picture').kafeColorbox('init', { theme:'Alternate' })
+		*	$('.picture').undefinedColorbox('init', { theme:'Alternate' })
 		*/
 		'init': function(obj, parameters) {
 			return _open(parameters[0], obj);

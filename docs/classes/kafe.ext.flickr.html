@@ -3,913 +3,2262 @@
 <head>
     <meta charset="utf-8">
     <title>kafe.ext.flickr - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" href="../assets/favicon.ico">
 </head>
 <body class="yui3-skin-sam">
-
-<div id="doc">
-    <div id="hd" class="yui3-g header">
-        <div class="yui3-u-3-4">
-            <h1><a href="../index.html"><img src="../assets/css/logo.png" height="100">kafe: kafe.ext.flickr</a></h1>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
+        
+            kafe
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>kafe v2.0.0a</b>
+                </p>
+            </li>
         </div>
-        <div class="yui3-u-1-4 version">
-            <em>API Docs for: kafe v.</em>
-        </div>
     </div>
-    <div class="yui3-g">
-
-        <div id="sidebar" class="yui3-u">
-            <div id="modules" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Modules</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="../modules/kafe.html">kafe</a>
-                
-                </li>
-            
-                <li><a href="../modules/kafe.cms.html">kafe.cms</a>
-                
-                </li>
-            
-                <li><a href="../modules/kafe.ext.html">kafe.ext</a>
-                
-                </li>
-            
-                <li><a href="../modules/kafe.plugin.html">kafe.plugin</a>
-                
-                </li>
-            
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
         </ul>
-    </div>
-</div>
 
-<div id="classes" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Classes</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="../classes/kafe.html">kafe</a></li>
-            
-                <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-            
-                <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-            
-                <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-            
-                <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-            
-                <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-            
-                <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-            
-                <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-            
-                <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-            
-                <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-            
-                <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-            
-                <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-            
-                <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-            
-                <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-            
-                <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-            
-                <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-            
-                <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-            
-                <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-            
-                <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-            
-                <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-            
-                <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-            
-                <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-            
-                <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-            
-                <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-            
-                <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-            
-                <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-            
-                <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-            
-                <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-            
-        </ul>
-    </div>
-</div>
-
-
-<div id="methods-on-page" class="sidebox on-page">
-    <div class="hd">
-        <h2 class="no-toc">Methods</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="#methods_api.photos_search">api.photos_search</a></li>
-            
-                <li><a href="#methods_api.photosets_getList">api.photosets_getList</a></li>
-            
-                <li><a href="#methods_api.photosets_getPhotos">api.photosets_getPhotos</a></li>
-            
-                <li><a href="#methods_getBgImageStyles">getBgImageStyles</a></li>
-            
-                <li><a href="#methods_getImgElement">getImgElement</a></li>
-            
-                <li><a href="#methods_getOptimizedSize">getOptimizedSize</a></li>
-            
-                <li><a href="#methods_getPhotos">getPhotos</a></li>
-            
-                <li><a href="#methods_getPhotosetCover">getPhotosetCover</a></li>
-            
-                <li><a href="#methods_getPhotosets">getPhotosets</a></li>
-            
-                <li><a href="#methods_getPhotostream">getPhotostream</a></li>
-            
-                <li><a href="#methods_setParams">setParams</a></li>
-            
-        </ul>
-    </div>
-</div>
-
-
-
-
-
-<div id="props-on-page" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Properties</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="#props_PRIVACY_FAMILY">PRIVACY_FAMILY</a></li>
-            
-                <li><a href="#props_PRIVACY_FRIENDS">PRIVACY_FRIENDS</a></li>
-            
-                <li><a href="#props_PRIVACY_FRIENDS_FAMILY">PRIVACY_FRIENDS_FAMILY</a></li>
-            
-                <li><a href="#props_PRIVACY_PRIVATE">PRIVACY_PRIVATE</a></li>
-            
-                <li><a href="#props_PRIVACY_PUBLIC">PRIVACY_PUBLIC</a></li>
-            
-        </ul>
-    </div>
-</div>
-
-
-
-
-
-<div id="fileTree" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Files</h2>
-    </div>
-    <div class="bd">
-        <ul><li>builds/<ul><li>kafe/<ul><li>cms/<ul><li><a href="../files/builds_kafe_cms__cms.js.html">_cms.js</a></li><li><a href="../files/builds_kafe_cms_drupal.js.html">drupal.js</a></li><li><a href="../files/builds_kafe_cms_magento.js.html">magento.js</a></li><li><a href="../files/builds_kafe_cms_sitecore.js.html">sitecore.js</a></li></ul></li><li><a href="../files/builds_kafe_date.js.html">date.js</a></li><li>ext/<ul><li><a href="../files/builds_kafe_ext__ext.js.html">_ext.js</a></li><li><a href="../files/builds_kafe_ext_addthis.js.html">addthis.js</a></li><li><a href="../files/builds_kafe_ext_bbq.js.html">bbq.js</a></li><li><a href="../files/builds_kafe_ext_colorbox.js.html">colorbox.js</a></li><li><a href="../files/builds_kafe_ext_disqus.js.html">disqus.js</a></li><li><a href="../files/builds_kafe_ext_facebook.js.html">facebook.js</a></li><li><a href="../files/builds_kafe_ext_flickr.js.html">flickr.js</a></li><li><a href="../files/builds_kafe_ext_googlemaps.js.html">googlemaps.js</a></li><li><a href="../files/builds_kafe_ext_soundcloud.js.html">soundcloud.js</a></li><li><a href="../files/builds_kafe_ext_twitter.js.html">twitter.js</a></li><li><a href="../files/builds_kafe_ext_youtube.js.html">youtube.js</a></li></ul></li><li><a href="../files/builds_kafe_form.js.html">form.js</a></li><li><a href="../files/builds_kafe_geolocation.js.html">geolocation.js</a></li><li><a href="../files/builds_kafe_kafe.js.html">kafe.js</a></li><li><a href="../files/builds_kafe_number.js.html">number.js</a></li><li>plugin/<ul><li><a href="../files/builds_kafe_plugin__plugin.js.html">_plugin.js</a></li><li><a href="../files/builds_kafe_plugin_carousel.js.html">carousel.js</a></li><li><a href="../files/builds_kafe_plugin_menu.js.html">menu.js</a></li><li><a href="../files/builds_kafe_plugin_qrcode.js.html">qrcode.js</a></li><li><a href="../files/builds_kafe_plugin_sticky.js.html">sticky.js</a></li></ul></li><li><a href="../files/builds_kafe_storage.js.html">storage.js</a></li><li><a href="../files/builds_kafe_string-encrypt.js.html">string-encrypt.js</a></li><li><a href="../files/builds_kafe_string-validate.js.html">string-validate.js</a></li><li><a href="../files/builds_kafe_string.js.html">string.js</a></li><li><a href="../files/builds_kafe_style.js.html">style.js</a></li><li><a href="../files/builds_kafe_url.js.html">url.js</a></li></ul></li></ul></li></ul>
-    </div>
-</div>
-
-
-
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
         </div>
 
-        <div id="main" class="yui3-u">
-            <div class="content"><h4>Class kafe.ext.flickr</h4>
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/kafe.html">kafe</a></li>
+                    
+                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+                    
+                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+                    
+                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+                    
+                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+                    
+                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+                    
+                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
+                    
+                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
+                    
+                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
+                    
+                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+                    
+                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+                    
+                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+                    
+                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+                    
+                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
+                    
+                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
+                    
+                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+                    
+                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
+                    
+                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
+                    
+                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/kafe.html">kafe</a></li>
+                    
+                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
+                    
+                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
+                    
+                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>kafe.ext.flickr <small>Class</small></h1>
+</div>
+
+<div class="well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/builds_kafe_ext_flickr.js.html#l239"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:239</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/kafe.ext.html">kafe.ext</a>
+        
+    
+
+    
+</div>
 
 
 
-<span class="foundat">Class defined in: <a href="../files/builds_kafe_ext_flickr.js.html#l239"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:239</code></a></span>
-<div class="intro"><h3 id="version-1-1">Version 1.1</h3>
+<div class="well well-small">
+    <h3 id="version-1-1">Version 1.1</h3>
 <p>Extra methods for the Flickr API.</p>
+
 </div>
 
 
 
-<div id="classdocs">
-    <ul>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+
         
-        <li><a href="#methods">Methods</a></li>
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
         
         
-        <li><a href="#props">Properties</a></li>
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
         
         
         
     </ul>
-    <div>
-        
-            <div id="methods">
+
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
+
             
-                <a name="methods_api.photos_search"></a>
-<div class="method item">
-     <strong class="name"><code>api.photos_search</code></strong>( <code>[options], callback </code> ) 
-    <br>
-    <span class="foundat">
-    
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_api.photos_search" data-tablink="api.photos_search">api.photos_search</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_api.photosets_getList" data-tablink="api.photosets_getList">api.photosets_getList</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_api.photosets_getPhotos" data-tablink="api.photosets_getPhotos">api.photosets_getPhotos</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getBgImageStyles" data-tablink="getBgImageStyles">getBgImageStyles</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getImgElement" data-tablink="getImgElement">getImgElement</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getOptimizedSize" data-tablink="getOptimizedSize">getOptimizedSize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getPhotos" data-tablink="getPhotos">getPhotos</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getPhotosetCover" data-tablink="getPhotosetCover">getPhotosetCover</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getPhotosets" data-tablink="getPhotosets">getPhotosets</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getPhotostream" data-tablink="getPhotostream">getPhotostream</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setParams" data-tablink="setParams">setParams</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_PRIVACY_FAMILY" data-tablink="PRIVACY_FAMILY">PRIVACY_FAMILY</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_PRIVACY_FRIENDS" data-tablink="PRIVACY_FRIENDS">PRIVACY_FRIENDS</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_PRIVACY_FRIENDS_FAMILY" data-tablink="PRIVACY_FRIENDS_FAMILY">PRIVACY_FRIENDS_FAMILY</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_PRIVACY_PRIVATE" data-tablink="PRIVACY_PRIVATE">PRIVACY_PRIVATE</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_PRIVACY_PUBLIC" data-tablink="PRIVACY_PUBLIC">PRIVACY_PUBLIC</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
         
+            <div id="methods" class="tab-pane">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_api.photos_search" class="method item">
+    <h3 class="name"><code>api.photos_search</code></h3>
+
     
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l532"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:532</code></a>
-    </span><br>
-    <p>Search photos (direct call to API method flickr.photos.search)</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Search photos (direct call to API method flickr.photos.search)</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                </li>
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
-    
+
     
 </div>
 
+                
+                    <div id="method_api.photosets_getList" class="method item">
+    <h3 class="name"><code>api.photosets_getList</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_api.photosets_getList"></a>
-<div class="method item">
-     <strong class="name"><code>api.photosets_getList</code></strong>( <code>[options], callback </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l492"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:492</code></a>
-    </span><br>
-    <p>Get the photosets (direct call to API method flickr.photosets.getList)</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get the photosets (direct call to API method flickr.photosets.getList)</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                </li>
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
-    
+
     
 </div>
 
+                
+                    <div id="method_api.photosets_getPhotos" class="method item">
+    <h3 class="name"><code>api.photosets_getPhotos</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_api.photosets_getPhotos"></a>
-<div class="method item">
-     <strong class="name"><code>api.photosets_getPhotos</code></strong>( <code>[options], callback </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l512"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:512</code></a>
-    </span><br>
-    <p>Get the list of photos in a set (direct call to API method flickr.photosets.getPhotos)</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get the list of photos in a set (direct call to API method flickr.photosets.getPhotos)</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                </li>
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
-    
+
     
 </div>
 
+                
+                    <div id="method_getBgImageStyles" class="method item">
+    <h3 class="name"><code>getBgImageStyles</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_getBgImageStyles"></a>
-<div class="method item">
-    Object <strong class="name"><code>getBgImageStyles</code></strong>( <code>photo, [options] </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>photo</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l464"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:464</code></a>
-    </span><br>
-    <p>Get a optimized background styles for a photo</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get a optimized background styles for a photo</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>photo</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Photo object from Flickr API</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+                <li class="param">
+                    
+                        <code class="param-name">photo</code>
+                        <span class="type">Object</span>
+                    
 
-            
-            <ul>
-            
-                <li><code>maxWidth</code> <strong>&lt;Number&gt;</strong> <p>Maximum width</p>
+                    
 
-                
+                    <div class="param-description">
+                        <p>Photo object from Flickr API</p>
+
+                    </div>
+
+                    
                 </li>
             
-                <li><code>maxHeight</code> <strong>&lt;Number&gt;</strong> <p>Maximum height</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
-                
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[maxWidth]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum width</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[maxHeight]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum height</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
                 </li>
             
             </ul>
-            
-        </li>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>CSS attributes to apply</p>
+
+                
+            </div>
+        </div>
     
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>CSS attributes to apply</p>
-</div>
-    
-    
+
     
 </div>
 
+                
+                    <div id="method_getImgElement" class="method item">
+    <h3 class="name"><code>getImgElement</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_getImgElement"></a>
-<div class="method item">
-    String <strong class="name"><code>getImgElement</code></strong>( <code>photo, [options], [attributes] </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>photo</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[attributes]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l388"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:388</code></a>
-    </span><br>
-    <p>Get a optimized <img> tag for a photo</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get a optimized <img> tag for a photo</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>photo</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Photo object from Flickr API</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+                <li class="param">
+                    
+                        <code class="param-name">photo</code>
+                        <span class="type">Object</span>
+                    
 
-            
-            <ul>
-            
-                <li><code>maxWidth</code> <strong>&lt;Number&gt;</strong> <p>Maximum width</p>
+                    
 
-                
+                    <div class="param-description">
+                        <p>Photo object from Flickr API</p>
+
+                    </div>
+
+                    
                 </li>
             
-                <li><code>maxHeight</code> <strong>&lt;Number&gt;</strong> <p>Maximum height</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
-                
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[maxWidth]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum width</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[maxHeight]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum height</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[centered=false]</code>
+                                    <span class="type">Boolean</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Center image</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[link]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Link HTML attributes</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
                 </li>
             
-                <li><code>centered</code> <strong>&lt;Boolean&gt;</strong> <p>Center image</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[attributes]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
-                
-                </li>
-            
-                <li><code>link</code> <strong>&lt;Object&gt;</strong> <p>Link HTML attributes</p>
+                    
 
-                
+                    <div class="param-description">
+                        <p>HTML attributes to apply to &lt;img&gt; tag</p>
+
+                    </div>
+
+                    
                 </li>
             
             </ul>
-            
-        </li>
+        </div>
     
-        <li>
-        
-            <code>[attributes]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>HTML attributes to apply to &lt;img&gt; tag</p>
 
-            
-        </li>
     
-    </ul>
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String</span>:
+                    
+                    <p>HTML markup for image</p>
+
+                
+            </div>
+        </div>
     
-    
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;String&gt; <p>HTML markup for image</p>
-</div>
-    
-    
+
     
 </div>
 
+                
+                    <div id="method_getOptimizedSize" class="method item">
+    <h3 class="name"><code>getOptimizedSize</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_getOptimizedSize"></a>
-<div class="method item">
-    Object <strong class="name"><code>getOptimizedSize</code></strong>( <code>photo, [options] </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>photo</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l371"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:371</code></a>
-    </span><br>
-    <p>Get optimized size (optSize) for a photo.</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get optimized size (optSize) for a photo.</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>photo</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Photo object from Flickr API</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+                <li class="param">
+                    
+                        <code class="param-name">photo</code>
+                        <span class="type">Object</span>
+                    
 
-            
-            <ul>
-            
-                <li><code>maxWidth</code> <strong>&lt;Number&gt;</strong> <p>Maximum width</p>
+                    
 
-                
+                    <div class="param-description">
+                        <p>Photo object from Flickr API</p>
+
+                    </div>
+
+                    
                 </li>
             
-                <li><code>maxHeight</code> <strong>&lt;Number&gt;</strong> <p>Maximum height</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
-                
-                </li>
-            
-                <li><code>doResize</code> <strong>&lt;Boolean&gt;</strong> <p>Resize to fit</p>
+                    
 
-                
-                </li>
-            
-                <li><code>asBgImg</code> <strong>&lt;Boolean&gt;</strong> <p>Is it to be used as a background style</p>
+                    <div class="param-description">
+                        <p>Options</p>
 
-                
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[maxWidth]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum width</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[maxHeight]</code>
+                                    <span class="type">Number</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Maximum height</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[doResize=false]</code>
+                                    <span class="type">Boolean</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Resize to fit</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[asBgImg=false]</code>
+                                    <span class="type">Boolean</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Is it to be used as a background style</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
                 </li>
             
             </ul>
-            
-        </li>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>A Flickr API photo object</p>
+
+                
+            </div>
+        </div>
     
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo object</p>
-</div>
-    
-    
+
     
 </div>
 
+                
+                    <div id="method_getPhotos" class="method item">
+    <h3 class="name"><code>getPhotos</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_getPhotos"></a>
-<div class="method item">
-    Object <strong class="name"><code>getPhotos</code></strong>( <code>[options], callback </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l345"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:345</code></a>
-    </span><br>
-    <p>Get photos.</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get photos.</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                </li>
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>A Flickr API photo collection</p>
+
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo collection</p>
 </div>
-    
-    
-    
-</div>
 
+                
+                    <div id="method_getPhotosetCover" class="method item">
+    <h3 class="name"><code>getPhotosetCover</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_getPhotosetCover"></a>
-<div class="method item">
-    Object <strong class="name"><code>getPhotosetCover</code></strong>( <code>photoset, callback </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>photoset</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l321"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:321</code></a>
-    </span><br>
-    <p>Get a photoset cover.</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get a photoset cover.</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>photoset</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Photoset</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-            <ul>
-            
-                <li><code>id</code> <strong>&lt;Object&gt;</strong> <p>Photoset id</p>
+                <li class="param">
+                    
+                        <code class="param-name">photoset</code>
+                        <span class="type">Object</span>
+                    
 
-                
+                    
+
+                    <div class="param-description">
+                        <p>Photoset</p>
+
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">id</code>
+                                    <span class="type">Object</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Photoset id</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">primary</code>
+                                    <span class="type">Object</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Primary photo id</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
                 </li>
             
-                <li><code>primary</code> <strong>&lt;Object&gt;</strong> <p>Primary photo id</p>
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
 
-                
+                    
+
+                    <div class="param-description">
+                        <p>Callback</p>
+
+                    </div>
+
+                    
                 </li>
             
             </ul>
-            
-        </li>
+        </div>
     
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
 
-            
-        </li>
     
-    </ul>
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>A Flickr API photo object</p>
+
+                
+            </div>
+        </div>
     
-    
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo object</p>
-</div>
-    
-    
+
     
 </div>
 
+                
+                    <div id="method_getPhotosets" class="method item">
+    <h3 class="name"><code>getPhotosets</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_getPhotosets"></a>
-<div class="method item">
-    Object <strong class="name"><code>getPhotosets</code></strong>( <code>[options], callback </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
         <a href="../files/builds_kafe_ext_flickr.js.html#l308"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:308</code></a>
-    </span><br>
-    <p>Get photosets for specific user.</p>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get photosets for specific user.</p>
+
+    </div>
 
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
             
-        </li>
-    
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
 
-            
-        </li>
-    
-    </ul>
-    
-    
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo collection</p>
-</div>
-    
-    
-    
-</div>
+                    
 
-            
-                <a name="methods_getPhotostream"></a>
-<div class="method item">
-    Object <strong class="name"><code>getPhotostream</code></strong>( <code>[options], callback </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/builds_kafe_ext_flickr.js.html#l358"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:358</code></a>
-    </span><br>
-    <p>Get photostream.</p>
+                    <div class="param-description">
+                        <p>Options</p>
 
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>[options]</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
+                    </div>
 
-            
-        </li>
-    
-        <li>
-        
-            <code>callback</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Callback</p>
-
-            
-        </li>
-    
-    </ul>
-    
-    
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;Object&gt; <p>A Flickr API photo collection</p>
-</div>
-    
-    
-    
-</div>
-
-            
-                <a name="methods_setParams"></a>
-<div class="method item">
-     <strong class="name"><code>setParams</code></strong>( <code>options </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/builds_kafe_ext_flickr.js.html#l290"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:290</code></a>
-    </span><br>
-    <p>Set default Flickr params.</p>
-
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>options</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>Options</p>
-
-            
-            <ul>
-            
-                <li><code>api_key</code> <strong>&lt;String&gt;</strong> <p>API key</p>
-
-                
+                    
                 </li>
             
-                <li><code>media</code> <strong>&lt;Boolean&gt;</strong> <p>Media type. Possible values are <code>all</code>, <code>photos</code>, <code>videos</code></p>
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
 
-                
-                </li>
-            
-                <li><code>privacy_filter</code> <strong>&lt;Boolean&gt;</strong> <p>Privacy supported. Possible values are <code>flickr.PRIVACY_*</code></p>
+                    
 
-                
-                </li>
-            
-                <li><code>sort</code> <strong>&lt;Boolean&gt;</strong> <p>Sort order. Possible values are <code>date-posted-asc</code>, <code>date-posted-desc</code>, <code>date-taken-asc</code>, <code>date-taken-desc</code>, <code>interestingness-desc</code>, <code>interestingness-asc</code>, <code>relevance</code></p>
+                    <div class="param-description">
+                        <p>Callback</p>
 
-                
-                </li>
-            
-                <li><code>page</code> <strong>&lt;String&gt;</strong> <p>Page number start</p>
+                    </div>
 
-                
-                </li>
-            
-                <li><code>per_page</code> <strong>&lt;Function&gt;</strong> <p>Number of element per page</p>
-
-                
-                </li>
-            
-                <li><code>extras</code> <strong>&lt;Array(String)&gt;</strong> <p>Extra fields to fetch. More on the <a href="http://www.flickr.com/services/api/">Flickr API</a></p>
-
-                
+                    
                 </li>
             
             </ul>
-            
-        </li>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>A Flickr API photo collection</p>
+
+                
+            </div>
+        </div>
     
+
     
 </div>
 
+                
+                    <div id="method_getPhotostream" class="method item">
+    <h3 class="name"><code>getPhotostream</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l358"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:358</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get photostream.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>A Flickr API photo collection</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setParams" class="method item">
+    <h3 class="name"><code>setParams</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l290"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:290</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set default Flickr params.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Options</p>
+
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">api_key</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>API key</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[media=&#x27;photos&#x27;]</code>
+                                    <span class="type">Boolean</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Media type. Possible values are <code>all</code>, <code>photos</code>, <code>videos</code></p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[privacy_filter=PRIVACY_PUBLIC]</code>
+                                    <span class="type">Boolean</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Privacy supported. Possible values are <code>flickr.PRIVACY_*</code></p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[sort=&#x27;date-posted-desc&#x27;]</code>
+                                    <span class="type">Boolean</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Sort order. Possible values are <code>date-posted-asc</code>, <code>date-posted-desc</code>, <code>date-taken-asc</code>, <code>date-taken-desc</code>, <code>interestingness-desc</code>, <code>interestingness-asc</code>, <code>relevance</code></p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[page=1]</code>
+                                    <span class="type">String</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Page number start</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[per_page=10]</code>
+                                    <span class="type">Function</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Number of element per page</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[extras=BASIC_FIELDS]</code>
+                                    <span class="type">Array(String)</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Extra fields to fetch. More on the <a href="http://www.flickr.com/services/api/">Flickr API</a></p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
             </div>
         
+
         
-            <div id="props">
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_PRIVACY_FAMILY" class="property item">
+    <h3 class="name"><code>PRIVACY_FAMILY</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <a name="props_PRIVACY_FAMILY"></a>
-<div class="props item">
-    <code>PRIVACY_FAMILY</code> &lt;<strong>Number</strong>&gt;<br>
-    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l264"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:264</code></a></span>
-    <p>Private photos visible to family</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l264"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:264</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Private photos visible to family</p>
+
+    </div>
+
+    
+
+    
 
     
 </div>
 
+                
+                    <div id="property_PRIVACY_FRIENDS" class="property item">
+    <h3 class="name"><code>PRIVACY_FRIENDS</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <a name="props_PRIVACY_FRIENDS"></a>
-<div class="props item">
-    <code>PRIVACY_FRIENDS</code> &lt;<strong>Number</strong>&gt;<br>
-    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l256"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:256</code></a></span>
-    <p>Private photos visible to friends</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l256"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:256</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Private photos visible to friends</p>
+
+    </div>
+
+    
+
+    
 
     
 </div>
 
+                
+                    <div id="property_PRIVACY_FRIENDS_FAMILY" class="property item">
+    <h3 class="name"><code>PRIVACY_FRIENDS_FAMILY</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <a name="props_PRIVACY_FRIENDS_FAMILY"></a>
-<div class="props item">
-    <code>PRIVACY_FRIENDS_FAMILY</code> &lt;<strong>Number</strong>&gt;<br>
-    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l272"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:272</code></a></span>
-    <p>Private photos visible to friends &amp; family</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l272"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:272</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Private photos visible to friends &amp; family</p>
+
+    </div>
+
+    
+
+    
 
     
 </div>
 
+                
+                    <div id="property_PRIVACY_PRIVATE" class="property item">
+    <h3 class="name"><code>PRIVACY_PRIVATE</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <a name="props_PRIVACY_PRIVATE"></a>
-<div class="props item">
-    <code>PRIVACY_PRIVATE</code> &lt;<strong>Number</strong>&gt;<br>
-    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l280"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:280</code></a></span>
-    <p>Completely private photos</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l280"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:280</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Completely private photos</p>
+
+    </div>
+
+    
+
+    
 
     
 </div>
 
+                
+                    <div id="property_PRIVACY_PUBLIC" class="property item">
+    <h3 class="name"><code>PRIVACY_PUBLIC</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <a name="props_PRIVACY_PUBLIC"></a>
-<div class="props item">
-    <code>PRIVACY_PUBLIC</code> &lt;<strong>Number</strong>&gt;<br>
-    <span class="foundat"><a href="../files/builds_kafe_ext_flickr.js.html#l248"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:248</code></a></span>
-    <p>Public photos</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/builds_kafe_ext_flickr.js.html#l248"><code>builds&#x2F;kafe&#x2F;ext&#x2F;flickr.js:248</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Public photos</p>
+
+    </div>
+
+    
+
+    
 
     
 </div>
 
-            
+                
             </div>
         
+
         
+
         
     </div>
 </div>
-</div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
-<script src="../assets/js/yui-prettify.js"></script>
-<script src="../assets/js/tabs.js"></script>
 </body>
 </html>

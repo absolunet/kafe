@@ -41,8 +41,9 @@ require([
 
 /**
 * ### Version 2.0.0a
-* kafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
-* https://github.com/absolunet/kafe
+* Mixing javascript crops for a perfect flavour.
+* /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
+* http://github.io/absolunet/kafe
 *
 * @module kafe
 * @main kafe

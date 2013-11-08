@@ -41,8 +41,9 @@ require([
 
 /**
 * ### Version <%= VERSION %>
-* <%= PACKAGE %> /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
-* https://github.com/absolunet/<%= PACKAGE %>
+* <%= DESCRIPTION %>
+* <%= DEFINITION %>
+* <%= HOMEPAGE %>
 *
 * @module <%= PACKAGE %>
 * @main <%= PACKAGE %>

@@ -32,7 +32,7 @@ window.kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(kafe,unde
 	* @example
 	*	kafe.plugin.sticky.init({ selector: '#post-it' })
 	* @example
-	*	$('#post-it').kafeSticky('init', {})
+	*	$('#post-it').undefinedSticky('init', {})
 	*/
 	sticky.init = function(options) {
 		options = options || {};
@@ -117,7 +117,7 @@ window.kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(kafe,unde
 
 						// apply
 						$e.css(attr);
-						$container.addClass('kafesticky-sticking');
+						$container.addClass('undefinedsticky-sticking');
 						sticking = true;
 						fromBottom = false;
 
@@ -135,7 +135,7 @@ window.kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(kafe,unde
 
 						// apply
 						$e.css(attr);
-						$container.removeClass('kafesticky-sticking');
+						$container.removeClass('undefinedsticky-sticking');
 						sticking   = false;
 						fromBottom = false;
 
@@ -153,7 +153,7 @@ window.kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(kafe,unde
 
 						// apply
 						$e.css(attr);
-						$container.removeClass('kafesticky-sticking');
+						$container.removeClass('undefinedsticky-sticking');
 						sticking   = false;
 						fromBottom = true;
 					}

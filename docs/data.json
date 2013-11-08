@@ -1,9 +1,9 @@
 {
     "project": {
         "name": "kafe",
-        "description": "kafe RULZ",
-        "version": "kafe v.",
-        "url": "http://github.com/absolunet/kafe"
+        "description": "Mixing javascript crops for a perfect flavour.",
+        "version": "kafe v2.0.0a",
+        "url": ""
     },
     "files": {
         "builds/kafe/cms/_cms.js": {
@@ -366,7 +366,7 @@
             "tag": "main",
             "file": "builds/kafe/url.js",
             "line": 27,
-            "description": "### Version 2.0.0a\nkafe /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.\nhttps://github.com/absolunet/kafe",
+            "description": "### Version 2.0.0a\nMixing javascript crops for a perfect flavour.\n/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.\nhttp://github.io/absolunet/kafe",
             "itemtype": "main"
         }
     },
@@ -579,7 +579,7 @@
             "namespace": "",
             "file": "builds/kafe/plugin/menu.js",
             "line": 5,
-            "description": "### Version 1.0\nAttaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.\n\nTo preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css."
+            "description": "### Version 1.0\nAttaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.\n\nTo preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`undefinedmenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css."
         },
         "kafe.plugin.qrcode": {
             "name": "kafe.plugin.qrcode",
@@ -662,7 +662,7 @@
             "module": "kafe",
             "namespace": "",
             "file": "builds/kafe/kafe.js",
-            "line": 90,
+            "line": 91,
             "description": "kafe core"
         },
         "kafe.number": {
@@ -939,7 +939,7 @@
         {
             "file": "builds/kafe/ext/colorbox.js",
             "line": 109,
-            "description": "Change the default theme, which is a class on the body with the name `kafecolorbox-theme-THEME`.",
+            "description": "Change the default theme, which is a class on the body with the name `undefinedcolorbox-theme-THEME`.",
             "itemtype": "method",
             "name": "changeTheme",
             "params": [
@@ -1111,7 +1111,7 @@
             "line": 255,
             "description": "Binds $(selector).colorbox() with the default params including theme.",
             "itemtype": "method",
-            "name": "$.kafeColorbox('init')",
+            "name": "$.undefinedColorbox('init')",
             "params": [
                 {
                     "name": "options",
@@ -1121,7 +1121,7 @@
                 }
             ],
             "example": [
-                "\n\t$('.picture').kafeColorbox('init', { theme:'Alternate' })"
+                "\n\t$('.picture').undefinedColorbox('init', { theme:'Alternate' })"
             ],
             "class": "kafe.ext.colorbox",
             "module": "kafe.ext"
@@ -2164,7 +2164,7 @@
                                 },
                                 {
                                     "name": "item",
-                                    "description": "Clickable elements that will switch the carousel to a specific slide via the `data-kafecarousel-target` attribute.",
+                                    "description": "Clickable elements that will switch the carousel to a specific slide via the `data-undefinedcarousel-target` attribute.",
                                     "type": "String|jQueryObject|DOMElement",
                                     "optional": true
                                 },
@@ -2305,7 +2305,7 @@
                         },
                         {
                             "name": "statusLink",
-                            "description": "If true, will generate navigation links in elements linked to the carousel via `data-kafecarousel-id` and the `data-kafecarousel-action=\"status\"` attribute.",
+                            "description": "If true, will generate navigation links in elements linked to the carousel via `data-undefinedcarousel-id` and the `data-undefinedcarousel-action=\"status\"` attribute.",
                             "type": "Boolean",
                             "optional": true,
                             "optdefault": "false"
@@ -2331,7 +2331,7 @@
                 "\n\t// Sample carousel structure\n\t<section class=\"home-carousel\">\n\t\t<ul class=\"home-slides\">\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t\t<li><a href=\"#\"><img src=\"/images/slide-01.jpg\" /></a></li>\n\t\t</ul>\n\t\t<span class=\"home-prev\">Back</span>\n\t\t<span class=\"home-next\">Next</span>\n\t\t<div class=\"home-status\"></div>\n\t</section>",
                 "\n\t// Attach behaviors using...\n\tvar myCarousel = kafe.plugin.carousel({ selector: { container: '.home-slides' } });",
                 "\n\t// Carousels can be remotely interacted with using custom data attributes...\n\tvar myCarousel = kafe.plugin.carousel({ selector: { container: '.home-slides' } });",
-                "\n\t// The jQuery alternative...\n\t$('.home-slides').kafeCarousel('init', {});"
+                "\n\t// The jQuery alternative...\n\t$('.home-slides').undefinedCarousel('init', {});"
             ],
             "class": "kafe.plugin.carousel",
             "module": "kafe.plugin"
@@ -2352,7 +2352,7 @@
             "example": [
                 "\n\t// Go to next slide\n\tmyCarousel.change('next');",
                 "\n\t// Go to first slide \n\tmyCarousel.change(1);",
-                "\n\t// The jQuery alternative...\n\t$('#home-slides').kafeCarousel('change', 1);"
+                "\n\t// The jQuery alternative...\n\t$('#home-slides').undefinedCarousel('change', 1);"
             ],
             "class": "kafe.plugin.carousel",
             "module": "kafe.plugin"
@@ -2441,7 +2441,7 @@
             "example": [
                 "\n\t// Sample menu structure\n\t<nav id=\"main-menu\">\n\t\t<ul>\n\t\t\t<li><a href=\"#\">Menu 1</a>\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=\"#\">Submenu 1.1</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 1.2</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 1.3</a></li>\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li><a href=\"#\">Menu 2</a>\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=\"#\">Submenu 2.1</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 2.2</a></li>\n\t\t\t\t\t<li><a href=\"#\">Submenu 2.3</a></li>\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t</ul>\n\t</nav>",
                 "\n\t// Attach behaviors using...\n\tkafe.plugin.menu.init({ selector: '#main-menu > ul' });",
-                "\n\t// Or use the jQuery alternative...\n\t$('#main-menu > ul').kafeMenu();"
+                "\n\t// Or use the jQuery alternative...\n\t$('#main-menu > ul').undefinedMenu();"
             ],
             "class": "kafe.plugin.menu",
             "module": "kafe.plugin"
@@ -2534,7 +2534,7 @@
             ],
             "example": [
                 "\n\tkafe.plugin.sticky.init({ selector: '#post-it' })",
-                "\n\t$('#post-it').kafeSticky('init', {})"
+                "\n\t$('#post-it').undefinedSticky('init', {})"
             ],
             "class": "kafe.plugin.sticky",
             "module": "kafe.plugin"
@@ -3366,7 +3366,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 98,
+            "line": 99,
             "description": "kafe version",
             "itemtype": "property",
             "name": "_vesyon",
@@ -3376,7 +3376,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 106,
+            "line": 107,
             "description": "kafe author",
             "itemtype": "property",
             "name": "_griyaj",
@@ -3386,7 +3386,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 114,
+            "line": 115,
             "description": "Versions of dependencies / kafe modules",
             "itemtype": "property",
             "name": "_chaje",
@@ -3396,7 +3396,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 129,
+            "line": 130,
             "description": "jQuery defined under window.kafejQuery  \nref: [http://jquery.com/](http://jquery.com/)",
             "itemtype": "property",
             "name": "dependencies.jQuery",
@@ -3406,7 +3406,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 138,
+            "line": 139,
             "description": "underscore.js defined under window._  \nref: [http://underscorejs.org/](http://underscorejs.org/)",
             "itemtype": "property",
             "name": "dependencies.underscore",
@@ -3416,7 +3416,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 147,
+            "line": 148,
             "description": "Modernizr defined under window.Modernizr  \nref: [http://modernizr.com/](http://modernizr.com/)",
             "itemtype": "property",
             "name": "dependencies.Modernizr",
@@ -3426,7 +3426,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 181,
+            "line": 182,
             "description": "Create a instantiable object  \nBy John Resig (MIT Licensed)  \nref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)",
             "itemtype": "method",
             "name": "fn.createInstantiableObject",
@@ -3439,7 +3439,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 203,
+            "line": 204,
             "description": "Return the language if available or else 'en'",
             "itemtype": "method",
             "name": "fn.lang",
@@ -3464,7 +3464,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 217,
+            "line": 218,
             "description": "Delete the variable (patch for ie8)",
             "itemtype": "method",
             "name": "fn.deleteVar",
@@ -3480,7 +3480,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 228,
+            "line": 229,
             "description": "Add method as jQuery plugin",
             "itemtype": "method",
             "name": "fn.plugIntojQuery",
@@ -3501,7 +3501,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 259,
+            "line": 260,
             "description": "Environment constants",
             "itemtype": "method",
             "name": "env",
@@ -3527,7 +3527,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 306,
+            "line": 307,
             "description": "Add module to core",
             "itemtype": "method",
             "name": "bonify",
@@ -3560,7 +3560,7 @@
         },
         {
             "file": "builds/kafe/kafe.js",
-            "line": 330,
+            "line": 331,
             "description": "Throw kafe errors",
             "itemtype": "method",
             "name": "error",
@@ -3999,7 +3999,7 @@
         {
             "file": "builds/kafe/storage.js",
             "line": 517,
-            "description": "Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *kafestorage-getJSON* namespace.",
+            "description": "Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *undefinedstorage-getJSON* namespace.",
             "itemtype": "method",
             "name": "getJSON",
             "params": [

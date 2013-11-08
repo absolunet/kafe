@@ -10,9 +10,12 @@ module.exports = function(grunt) {
 			yuidoc:    {},
 			copy:      {},
 			clean:     { placeholders:{src: ['builds/**/_*.js'],  options: { force:true }} },
-			watch:     { all: { files: ['gruntfile.js', 'package.json', 'sources/core/**'], tasks: 'default' } }
+			watch:     { all: { files: ['gruntfile.js', 'package.json', 'sources/kafe/**', 'sources/vendor/**'], tasks: 'default' } }
 		}
 	;
+
+	grunt.template.addDelimiters('jscomment', '/* {%', '%} */');
+
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -21,7 +24,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 
-	grunt.template.addDelimiters('jscomment', '/* {%', '%} */');
+
+
+
+
 
 
 
@@ -35,34 +41,40 @@ module.exports = function(grunt) {
 
 	grunt.task.registerTask('kafe_versioning', '', function() {
 		var
-			versions = grunt.file.readJSON('sources/core/versions.json'),
-			files    = grunt.file.expand('sources/core/kafe/**/*.js')
+			versions = grunt.file.readJSON('sources/kafe/versions.json'),
+			files    = grunt.file.expand('sources/kafe/**/*.js')
 		;
 
 		for (var i in files) {
 			var
-				parts     = files[i].split('sources/core/kafe/'),
-				filename  = parts[parts.length-1],
-				name      = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3),
-				module    = name.split('.'),
-				finalName = (name.substring(0,1) !== '_') ? module.pop() : '',
-				contents  = grunt.file.read(files[i])
+				parts        = files[i].split('sources/kafe/'),
+				filename     = parts[parts.length-1],
+				name         = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3),
+				module       = name.split('.'),
+				package      = config.pkg.name,
+				finalName    = (name.substring(0,1) !== '_') ? module.pop() : '',
+				finalNameCap = finalName.charAt(0).toUpperCase() + finalName.slice(1),
+				contents     = grunt.file.read(files[i]),
+				version      = (name === config.pkg.name) ? config.pkg.version : versions[name]
 			;
 
 			contents = grunt.template.process(contents,{ data:{
-				PACKAGE:     config.pkg.name,
+				PACKAGE:     package,
+				DESCRIPTION: config.pkg.description,
+				DEFINITION:  config.pkg.definition,
+				HOMEPAGE:    config.pkg.homepage,
 				NAME:        name,
-				NAME_FULL:   config.pkg.name+'.'+name,
-				NAME_FINAL:  finalName.charAt(0).toUpperCase() + finalName.slice(1),
-				NAME_ATTR:   config.pkg.name+finalName,
-				NAME_JQUERY: config.pkg.name+(finalName.charAt(0).toUpperCase() + finalName.slice(1)),
-				MODULE:      config.pkg.name+((module.length) ? '.'+module.join('.') : ''),
-				VERSION:     versions[name]
+				NAME_FULL:   package+'.'+name,
+				NAME_FINAL:  finalNameCap,
+				NAME_ATTR:   package.name+finalName,
+				NAME_JQUERY: package.name+finalNameCap,
+				MODULE:      package+((module.length) ? '.'+module.join('.') : ''),
+				VERSION:     version
 			}});
 
 			contents = grunt.template.process(contents,{ delimiters:'jscomment', data:{
-				HEADER: "window."+config.pkg.name+".bonify({name:'"+name+"', version:'"+versions[name]+"', obj:(function("+config.pkg.name+",undefined){\n\n\tvar $ = "+config.pkg.name+".dependencies.jQuery;",
-				FOOTER: "})(window.kafe)});",
+				HEADER: "window."+package+".bonify({name:'"+name+"', version:'"+version+"', obj:(function("+package+",undefined){\n\n\tvar $ = "+package+".dependencies.jQuery;",
+				FOOTER: "})(window."+package+")});",
 			}});
 
 			grunt.file.write('builds/kafe/'+filename, contents);
@@ -71,11 +83,11 @@ module.exports = function(grunt) {
 
 
 	grunt.task.registerTask('kafe_vendor', '', function() {
-		var files = grunt.file.expand('sources/core/vendor/**/*.js');
+		var files = grunt.file.expand('sources/vendor/**/*.js');
 
 		for (var i in files) {
 			var
-				parts    = files[i].split('sources/core/vendor/'),
+				parts    = files[i].split('sources/vendor/'),
 				filename = parts[parts.length-1],
 				contents = grunt.file.read(files[i]),
 				pieces   = contents.split(/\}\s*else\s*{/)
@@ -94,7 +106,7 @@ module.exports = function(grunt) {
 
 	config.copy.resources = {
 		expand: true,
-		cwd:    'sources/core/resources/',
+		cwd:    'sources/vendor/resources/',
 		src:    '**',
 		dest:   'builds/vendor-resources/',
 		filter: 'isFile'
@@ -159,7 +171,7 @@ module.exports = function(grunt) {
 //				'plugin/qrcode',
 //				'plugin/sticky',
 			],
-			out:      'tests/build.js',
+			out:      'tests/tests.js',
 			optimize: 'none',
 			preserveLicenseComments: true,
 			skipModuleInsertion:     true,
@@ -167,8 +179,19 @@ module.exports = function(grunt) {
 			pragmasOnSave:           { excludeRequire: true }
 		}
 	};
-	tasks.tests        = ['requirejs:test'];
+	
+	config.copy.tests = {
+		expand: true,
+		cwd:    'sources/tests/',
+		src:    '*.html',
+		dest:   'tests/',
+		filter: 'isFile'
+	};
+
+	tasks.tests        = ['requirejs:test', 'copy:tests'];
 	config.watch.tests = { files: ['sources/tests/**/*.js', '!sources/tests/libs/*'], tasks:'tests' };
+
+
 
 
 
@@ -181,16 +204,27 @@ module.exports = function(grunt) {
 	config.yuidoc.compile = {
 		name:        '<%= pkg.name %>',
 		description: '<%= pkg.description %>',
-		version:     '<%= pkg.name %> v.<%= pkg.version %>',
-		url:         'http://github.com/absolunet/<%= pkg.name %>',
+		version:     '<%= pkg.name %> v<%= pkg.version %>',
+		url:         '<%= pkg.repository_url %>',
 		options: {
 			paths:    'builds/kafe/',
 			themedir: 'sources/docs/',
 			outdir:   'docs/'
 		}
 	};
-	tasks.docs = ['core_docs','yuidoc:compile','clean:placeholders'];
-	config.watch.docs = { files: ['sources/docs/*'], tasks: 'docs' };
+
+	grunt.task.registerTask('kafe_readme', '', function() {
+		grunt.file.write('README.md', grunt.template.process( grunt.file.read('sources/README.md'), { data:{
+			PACKAGE:     config.pkg.name,
+			VERSION:     config.pkg.version,
+			DESCRIPTION: config.pkg.description,
+			DEFINITION:  config.pkg.definition,
+			HOMEPAGE:    config.pkg.homepage
+		}}));
+	});
+
+	tasks.docs = ['kafe_readme','core_docs','yuidoc:compile','clean:placeholders'];
+	config.watch.docs = { files: ['sources/docs/*', 'sources/README.md'], tasks: 'docs' };
 
 
 

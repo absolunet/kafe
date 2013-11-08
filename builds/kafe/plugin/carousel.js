@@ -15,23 +15,23 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 				// précédent
 				if (__.curr === 0) {
 					__.$start
-						.addClass('kafecarousel-inactive')
+						.addClass('undefinedcarousel-inactive')
 						.off('click', __.startClick)
 						.on('click',  none)
 					;
 					__.$previous
-						.addClass('kafecarousel-inactive')
+						.addClass('undefinedcarousel-inactive')
 						.off('click', __.previousClick)
 						.on('click',  none)
 					;
 				} else {
 					__.$start
-						.removeClass('kafecarousel-inactive')
+						.removeClass('undefinedcarousel-inactive')
 						.off('click', __.startClick)
 						.on('click',  __.startClick)
 					;
 					__.$previous
-						.removeClass('kafecarousel-inactive')
+						.removeClass('undefinedcarousel-inactive')
 						.off('click', __.previousClick)
 						.on('click',  __.previousClick)
 					;
@@ -40,23 +40,23 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 				// next
 				if (__.curr == (__.total-1)) {
 					__.$next
-						.addClass('kafecarousel-inactive')
+						.addClass('undefinedcarousel-inactive')
 						.off('click', __.nextClick)
 						.on('click',  none)
 					;
 					__.$end
-						.addClass('kafecarousel-inactive')
+						.addClass('undefinedcarousel-inactive')
 						.off('click', __.endClick)
 						.on('click',  none)
 					;
 				} else {
 					__.$next
-						.removeClass('kafecarousel-inactive')
+						.removeClass('undefinedcarousel-inactive')
 						.off('click', __.nextClick)
 						.on('click',  __.nextClick)
 					;
 					__.$end
-						.removeClass('kafecarousel-inactive')
+						.removeClass('undefinedcarousel-inactive')
 						.off('click', __.endClick)
 						.on('click',  __.endClick)
 					;
@@ -72,21 +72,21 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 			__.$statusNum.html('');
 			for (var i=0; i<__.total; ++i) {
 				if (i == __.curr) {
-					__.$status.append('<span class="kafecarousel-highlight">'+__.statusBullet+'</span>');
-					__.$statusNum.append('<span class="kafecarousel-highlight">'+(i+1)+'</span>');
+					__.$status.append('<span class="undefinedcarousel-highlight">'+__.statusBullet+'</span>');
+					__.$statusNum.append('<span class="undefinedcarousel-highlight">'+(i+1)+'</span>');
 				} else {
 					if(!!__.statusLink) {
 						__.$status.append(
 							$('<a>')
 								.attr('href','#')
-								.data('kafecarousel-itemid', i+1)
+								.data('undefinedcarousel-itemid', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+__.statusBullet+'</span>')
 						);
 						__.$statusNum.append(
 							$('<a>')
 								.attr('href','#')
-								.data('kafecarousel-itemid', i+1)
+								.data('undefinedcarousel-itemid', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+(i+1)+'</span>')
 						);
@@ -98,13 +98,13 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 			}
 
 			// items highlight
-			__.$itemsimple.removeClass('kafecarousel-highlight')
-				.filter('[data-kafecarousel-target="'+(__.curr+1)+'"]').addClass('kafecarousel-highlight')
+			__.$itemsimple.removeClass('undefinedcarousel-highlight')
+				.filter('[data-undefinedcarousel-target="'+(__.curr+1)+'"]').addClass('undefinedcarousel-highlight')
 			;
 
 			__.$items.each(function() {
-				$(this).children().removeClass('kafecarousel-highlight')
-					.eq(__.curr).addClass('kafecarousel-highlight')
+				$(this).children().removeClass('undefinedcarousel-highlight')
+					.eq(__.curr).addClass('undefinedcarousel-highlight')
 				;
 			});
 		},
@@ -298,7 +298,7 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 	*		@param {String|jQueryObject|DOMElement} [options.selector.next] Clickable elements that will switch the carousel to the next slide.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.end] Clickable elements that will switch the carousel to the last slide.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.items] Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
-	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the `data-kafecarousel-target` attribute.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the `data-undefinedcarousel-target` attribute.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.play] Clickable elements that will switch the carousel to autoplay.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.pause] Clickable elements that will stop the autoplay of the carousel.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.position] Elements that will contain the current position.
@@ -321,7 +321,7 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 	*				@param {Number} options.preSwitchCallback.data.target.position Index of the target slide.
 	*				@param {DOMElement} options.preSwitchCallback.data.target.obj Reference to the target slide.
 	*	@param {Function} [options.postSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the `preSwitchCallback`.
-	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via `data-kafecarousel-id` and the `data-kafecarousel-action="status"` attribute.
+	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via `data-undefinedcarousel-id` and the `data-undefinedcarousel-action="status"` attribute.
 	*	@param {String} [options.statusBullet='&bull;'] Text used as the content of generated link in a `statusLink` navigation.
 	*	@param {Boolean} [options.pauseOnHover=true] If true, autoswitch will be paused while the mouse hovers a slide.
 	*
@@ -346,13 +346,13 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 	*	var myCarousel = kafe.plugin.carousel({ selector: { container: '.home-slides' } });
 	* @example
 	*	// The jQuery alternative...
-	*	$('.home-slides').kafeCarousel('init', {});
+	*	$('.home-slides').undefinedCarousel('init', {});
 	*/
 	carousel.prototype.__constructor = function(options) {
 		var self = this, __ = self.__;
 
 		// elements
-		__.$container  = $(options.selector.container).data('kafecarousel-self', self);
+		__.$container  = $(options.selector.container).data('undefinedcarousel-self', self);
 		__.$slides     = (options.selector.slides) ? $(options.selector.slides) : __.$container.children();
 		__.$start      = $(options.selector.start);
 		__.$previous   = $(options.selector.prev);
@@ -393,14 +393,14 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 
 		// désactiver tout si un seul item
 		if (__.total == 1) {
-			__.$previous.addClass('kafecarousel-none');
-			__.$next.addClass('kafecarousel-none');
-			__.$items.addClass('kafecarousel-none');
-			__.$itemsimple.addClass('kafecarousel-none');
-			__.$position.addClass('kafecarousel-none');
-			__.$total.addClass('kafecarousel-none');
-			__.$status.addClass('kafecarousel-none');
-			__.$statusNum.addClass('kafecarousel-none');
+			__.$previous.addClass('undefinedcarousel-none');
+			__.$next.addClass('undefinedcarousel-none');
+			__.$items.addClass('undefinedcarousel-none');
+			__.$itemsimple.addClass('undefinedcarousel-none');
+			__.$position.addClass('undefinedcarousel-none');
+			__.$total.addClass('undefinedcarousel-none');
+			__.$status.addClass('undefinedcarousel-none');
+			__.$statusNum.addClass('undefinedcarousel-none');
 
 		// sinon préparer carousel
 		} else {
@@ -432,7 +432,7 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 
 			__.itemSimpleClick = function(e) {
 				e.preventDefault();
-				change(self, $(this).data('kafecarousel-target') - 1);
+				change(self, $(this).data('undefinedcarousel-target') - 1);
 			};
 
 			__.playClick = function(e) {
@@ -554,7 +554,7 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 	*	myCarousel.change(1);
 	* @example
 	*	// The jQuery alternative...
-	*	$('#home-slides').kafeCarousel('change', 1);
+	*	$('#home-slides').undefinedCarousel('change', 1);
 	*/
 	carousel.prototype.change = function(target) {
 		var self = this, __ = self.__;
@@ -569,7 +569,7 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 			carousel($.extend(true, {}, parameters[0], {selector:{container:obj}}));
 		},
 		change: function(obj, parameters) {
-			$(obj).data('kafecarousel-self').change(parameters[0]);
+			$(obj).data('undefinedcarousel-self').change(parameters[0]);
 		}
 	});
 
