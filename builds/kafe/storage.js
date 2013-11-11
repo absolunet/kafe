@@ -515,7 +515,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 
 
 	/**
-	* Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *undefinedstorage-getJSON* namespace.
+	* Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *kafestorage-getJSON* namespace.
 	*
 	* @method getJSON
 	* @param {String} url URL address of the webservice.
@@ -533,7 +533,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 				url      = arguments[0],
 				options  = (typeof(arguments[1]) != 'function') ? arguments[1] : {expires:600},
 				callback = (typeof(arguments[1]) != 'function') ? arguments[2] : arguments[1],
-				key      = 'undefinedstorage-getJSON:'+url.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+				key      = 'kafestorage-getJSON:'+url.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
 				cache    = storage.getSessionItem(key)
 			;
 

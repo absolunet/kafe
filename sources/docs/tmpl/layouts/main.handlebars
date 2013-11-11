@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>{{htmlTitle}}</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />{{projectVersion}}</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="Content">
+		<nav>
+			{{>sidebar}}
+		</nav>
+
+		<section>
+			{{>layout_content}}
+		</section>
+	</div>
+
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
+</body>
+</html>

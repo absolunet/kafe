@@ -1,165 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>builds/kafe/plugin/qrcode.js - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>builds/kafe/plugin/qrcode.js - kafe</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
-        
-            kafe
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>kafe v2.0.0a</b>
-                </p>
-            </li>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-    <h3>APIs</h3>
-    <div id="sidebar">
-        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-            <li><a href="#modules" data-toggle="tab">Modules</a></li>
-        </ul>
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
 
-        <div id="api-tabview-filter">
-            <input type="search" placeholder="Type to filter APIs">
-        </div>
+	<div id="Content">
+		<nav>
+			<ul>
+    
+        <li><a href="/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
 
-        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-            <div class="tab-pane active" id="classes">
-                <ul id="api-classes" class="nav nav-list">
-                    
-                        <li><a href="../classes/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-                    
-                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-                    
-                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-                    
-                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-                    
-                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-                    
-                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-                    
-                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-                    
-                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-                    
-                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-                    
-                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-                    
-                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-                    
-                </ul>
-            </div>
+		</nav>
 
-            <div class="tab-pane" id="modules">
-                <ul id="api-modules" class="nav nav-list">
-                    
-                        <li><a href="../modules/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
-                    
-                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
-                    
-                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+		<section>
+			<header class="file">
+	<h1>builds/kafe/plugin/qrcode.js</h1>
+	<h2>File</h2>
+</header>
 
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-    <h1>builds/kafe/plugin/qrcode.js <small>File</small></h1>
-</div>
-
-<div class="file">
-    <pre class="prettyprint linenums">
+<pre>
 //&gt;&gt;excludeStart(&#x27;excludeRequire&#x27;, pragmas.excludeRequire);
 require([
 	&#x27;libs/vendor/qrcode&#x27;
@@ -227,19 +178,11 @@ window.kafe.bonify({name:&#x27;plugin.qrcode&#x27;, version:&#x27;0.1.1&#x27;, o
 	return qrcodeK;
 
 })(window.kafe)});
-    </pre>
-</div>
+</pre>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+		</section>
+	</div>
+
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
 </body>
 </html>

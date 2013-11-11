@@ -1,1121 +1,754 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>kafe.form - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.form - kafe</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
-        
-            kafe
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>kafe v2.0.0a</b>
-                </p>
-            </li>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-    <h3>APIs</h3>
-    <div id="sidebar">
-        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-            <li><a href="#modules" data-toggle="tab">Modules</a></li>
-        </ul>
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
 
-        <div id="api-tabview-filter">
-            <input type="search" placeholder="Type to filter APIs">
-        </div>
-
-        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-            <div class="tab-pane active" id="classes">
-                <ul id="api-classes" class="nav nav-list">
-                    
-                        <li><a href="../classes/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-                    
-                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-                    
-                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-                    
-                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-                    
-                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-                    
-                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-                    
-                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-                    
-                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-                    
-                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-                    
-                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-                    
-                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-                    
-                </ul>
-            </div>
-
-            <div class="tab-pane" id="modules">
-                <ul id="api-modules" class="nav nav-list">
-                    
-                        <li><a href="../modules/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
-                    
-                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
-                    
-                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-    <h1>kafe.form <small>Class</small></h1>
-</div>
-
-<div class="well well-small">
+	<div id="Content">
+		<nav>
+			<ul>
     
-
+        <li><a href="/classes/kafe.html">kafe</a></li>
     
-
+        <li><a href="/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
     
-        <div class="foundat">
-            Defined in: <a href="../files/builds_kafe_form.js.html#l5"><code>builds&#x2F;kafe&#x2F;form.js:5</code></a>
-        </div>
+        <li><a href="/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
     
-
+        <li><a href="/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
     
-        
-            Module: <a href="../modules/kafe.html">kafe</a>
-        
+        <li><a href="/classes/kafe.date.html">kafe.date</a></li>
     
-
+        <li><a href="/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
     
-</div>
+        <li><a href="/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
 
+		</nav>
 
-
-<div class="well well-small">
-    <h3 id="version-1-4-1">Version 1.4.1</h3>
+		<section>
+			<header class="class">
+	<h1>kafe.form</h1>
+	<h2>class</h2>
+	<h3 id="version-1-4-1">Version 1.4.1</h3>
 <p>Utilitary methods for html forms and related interactions.</p>
 
-</div>
+	<footer>Source: <a href="../files/builds_kafe_form.js.html#l5">builds/kafe/form.js</a></footer>
+</header>
 
 
 
-<div>
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
 
-        
-            <li><a data-toggle="tab" href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>autofocusOnNext</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l101">@101</a></footer>
 
-    <div class="tab-content">
-        <div id="index" class="tab-pane active">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_autofocusOnNext" data-tablink="autofocusOnNext">autofocusOnNext</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_maxLength" data-tablink="maxLength">maxLength</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_onEnter" data-tablink="onEnter">onEnter</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_passwordStrength" data-tablink="passwordStrength">passwordStrength</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_placeholder" data-tablink="placeholder">placeholder</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_replaceSubmit" data-tablink="replaceSubmit">replaceSubmit</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_sanitizeFormData" data-tablink="sanitizeFormData">sanitizeFormData</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="tab-pane">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_autofocusOnNext" class="method item">
-    <h3 class="name"><code>autofocusOnNext</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l101"><code>builds&#x2F;kafe&#x2F;form.js:101</code></a>
-        
-        </p>
+	<p>Automaticaly jump the focus to the next field once the maxlength has been reached.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>selector</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Automaticaly jump the focus to the next field once the maxlength has been reached.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">selector</code>
+						<span class="type">String | JQueryObject | DOMElement</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Selector of text-based form elements.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);</code></pre>
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;form.autofocusOnNext&#39;);</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_maxLength" class="method item">
-    <h3 class="name"><code>maxLength</code></h3>
+	
+		<section>
+	<h1>maxLength</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l127">@127</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>max</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[block=false]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[callback]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l127"><code>builds&#x2F;kafe&#x2F;form.js:127</code></a>
-        
-        </p>
+	<p>Adds a simulated maxlength support for textarea elements.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>selector</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>max</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[block=false]</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[callback]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Adds a simulated maxlength support for textarea elements.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">max</code>
-                        <span class="type">Integer</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">selector</code>
+						<span class="type">String | JQueryObject | DOMElement</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Maximum number of characters.</p>
+					<div class="param-description">
+						<p>Selector of text-based form elements.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[block=false]</code>
-                        <span class="type">Boolean</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">max</code>
+						<span class="type">Integer</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Prevent further character entry once the limit is reached.</p>
+					<div class="param-description">
+						<p>Maximum number of characters.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[callback]</code>
-                        <span class="type">Function</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[block=false]</code>
+						<span class="type">Boolean</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.</p>
+					<div class="param-description">
+						<p>Prevent further character entry once the limit is reached.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
     console.log(count);
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.twitter-post&#39;).kafe(&#39;form.maxLength&#39;, 140, false, function(count) {
     console.log(count);
 });</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_onEnter" class="method item">
-    <h3 class="name"><code>onEnter</code></h3>
+	
+		<section>
+	<h1>onEnter</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l76">@76</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l76"><code>builds&#x2F;kafe&#x2F;form.js:76</code></a>
-        
-        </p>
+	<p>Detects the RETURN key, then triggers a callback.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>selector</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>callback</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Detects the RETURN key, then triggers a callback.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type">Function</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">selector</code>
+						<span class="type">String | JQueryObject | DOMElement</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Function to be fired by the keypress.</p>
+					<div class="param-description">
+						<p>Selector of text-based form elements.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">callback</code>
+						<span class="type">Function</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Function to be fired by the keypress.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
     $(input).parents(&#39;form&#39;).submit();
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;form.onEnter&#39;, function(input) {
     $(input).parents(&#39;form&#39;).submit();
 });</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_passwordStrength" class="method item">
-    <h3 class="name"><code>passwordStrength</code></h3>
+	
+		<section>
+	<h1>passwordStrength</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l175">@175</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[callback]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l175"><code>builds&#x2F;kafe&#x2F;form.js:175</code></a>
-        
-        </p>
+	<p>Calculates the password strength value of given fields.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>selector</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[callback]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Calculates the password strength value of given fields.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Selector of text-based form elements.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[callback]</code>
-                        <span class="type">Function</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">selector</code>
+						<span class="type">String | JQueryObject | DOMElement</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.</p>
+					<div class="param-description">
+						<p>Selector of text-based form elements.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[callback]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
     console.log(strengh);
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.password&#39;).kafe(&#39;form.passwordStrength&#39;, function(strengh) {
     console.log(strengh);
 });</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_placeholder" class="method item">
-    <h3 class="name"><code>placeholder</code></h3>
+	
+		<section>
+	<h1>placeholder</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l15">@15</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[selector]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l15"><code>builds&#x2F;kafe&#x2F;form.js:15</code></a>
-        
-        </p>
+	<p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[selector]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[selector]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Selector of text-based form elements. Defaults to &#39;input&#91;placeholder&#93;, textarea&#91;placeholder&#93;&#39; when left undefined.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[selector]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Selector of text-based form elements. Defaults to &#39;input&#91;placeholder&#93;, textarea&#91;placeholder&#93;&#39; when left undefined.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);</code></pre>
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;form.placeholder&#39;);</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_replaceSubmit" class="method item">
-    <h3 class="name"><code>replaceSubmit</code></h3>
+	
+		<section>
+	<h1>replaceSubmit</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l300">@300</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[selector=&#x27;input:submit&#x27;]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l300"><code>builds&#x2F;kafe&#x2F;form.js:300</code></a>
-        
-        </p>
+	<p>Replace elements with a submit button</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[selector=&#x27;input:submit&#x27;]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Replace elements with a submit button</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[selector=&#x27;input:submit&#x27;]</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Elements to replace</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[selector=&#x27;input:submit&#x27;]</code>
+						<span class="type">String | JQueryObject | DOMElement</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Elements to replace</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.replaceSubmit();</code></pre>
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.replaceSubmit();</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.Search input:submit&#39;).kafe(&#39;form.replaceSubmit&#39;);</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_sanitizeFormData" class="method item">
-    <h3 class="name"><code>sanitizeFormData</code></h3>
+	
+		<section>
+	<h1>sanitizeFormData</h1>
+	<footer><a href="../files/builds_kafe_form.js.html#l274">@274</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selector</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_form.js.html#l274"><code>builds&#x2F;kafe&#x2F;form.js:274</code></a>
-        
-        </p>
+	<p>Sanitize form text entry for .NET validator.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>selector</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Sanitize form text entry for .NET validator.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selector</code>
-                        <span class="type">String | JQueryObject | DOMElement</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Reference to the current .NET form.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">selector</code>
+						<span class="type">String | JQueryObject | DOMElement</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>Reference to the current .NET form.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
 <pre class="code prettyprint"><code>$(&#39;#Form1&#39;).form(&#39;form.sanitizeFormData&#39;);</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-            </div>
-        
+	
+</section>
 
-        
+		</section>
+	</div>
 
-        
-
-        
-    </div>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
 </body>
 </html>

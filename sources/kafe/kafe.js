@@ -89,6 +89,7 @@ window.kafe = (function(undefined){
 
 
 		/**
+		* ### Version <%= VERSION %>
 		* <%= PACKAGE %> core
 		*
 		* @module <%= PACKAGE %>

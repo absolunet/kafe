@@ -1,165 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>builds/kafe/plugin/carousel.js - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>builds/kafe/plugin/carousel.js - kafe</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
-        
-            kafe
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>kafe v2.0.0a</b>
-                </p>
-            </li>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-    <h3>APIs</h3>
-    <div id="sidebar">
-        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-            <li><a href="#modules" data-toggle="tab">Modules</a></li>
-        </ul>
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
 
-        <div id="api-tabview-filter">
-            <input type="search" placeholder="Type to filter APIs">
-        </div>
+	<div id="Content">
+		<nav>
+			<ul>
+    
+        <li><a href="/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
 
-        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-            <div class="tab-pane active" id="classes">
-                <ul id="api-classes" class="nav nav-list">
-                    
-                        <li><a href="../classes/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-                    
-                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-                    
-                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-                    
-                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-                    
-                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-                    
-                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-                    
-                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-                    
-                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-                    
-                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-                    
-                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-                    
-                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-                    
-                </ul>
-            </div>
+		</nav>
 
-            <div class="tab-pane" id="modules">
-                <ul id="api-modules" class="nav nav-list">
-                    
-                        <li><a href="../modules/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
-                    
-                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
-                    
-                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+		<section>
+			<header class="file">
+	<h1>builds/kafe/plugin/carousel.js</h1>
+	<h2>File</h2>
+</header>
 
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-    <h1>builds/kafe/plugin/carousel.js <small>File</small></h1>
-</div>
-
-<div class="file">
-    <pre class="prettyprint linenums">
+<pre>
 window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(kafe,undefined){
 
 	var $ = kafe.dependencies.jQuery;
@@ -177,23 +128,23 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 				// précédent
 				if (__.curr === 0) {
 					__.$start
-						.addClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.startClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 					__.$previous
-						.addClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.previousClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 				} else {
 					__.$start
-						.removeClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.startClick)
 						.on(&#x27;click&#x27;,  __.startClick)
 					;
 					__.$previous
-						.removeClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.previousClick)
 						.on(&#x27;click&#x27;,  __.previousClick)
 					;
@@ -202,23 +153,23 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 				// next
 				if (__.curr == (__.total-1)) {
 					__.$next
-						.addClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.nextClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 					__.$end
-						.addClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.endClick)
 						.on(&#x27;click&#x27;,  none)
 					;
 				} else {
 					__.$next
-						.removeClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.nextClick)
 						.on(&#x27;click&#x27;,  __.nextClick)
 					;
 					__.$end
-						.removeClass(&#x27;undefinedcarousel-inactive&#x27;)
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
 						.off(&#x27;click&#x27;, __.endClick)
 						.on(&#x27;click&#x27;,  __.endClick)
 					;
@@ -234,21 +185,21 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 			__.$statusNum.html(&#x27;&#x27;);
 			for (var i=0; i&lt;__.total; ++i) {
 				if (i == __.curr) {
-					__.$status.append(&#x27;&lt;span class=&quot;undefinedcarousel-highlight&quot;&gt;&#x27;+__.statusBullet+&#x27;&lt;/span&gt;&#x27;);
-					__.$statusNum.append(&#x27;&lt;span class=&quot;undefinedcarousel-highlight&quot;&gt;&#x27;+(i+1)+&#x27;&lt;/span&gt;&#x27;);
+					__.$status.append(&#x27;&lt;span class=&quot;kafecarousel-highlight&quot;&gt;&#x27;+__.statusBullet+&#x27;&lt;/span&gt;&#x27;);
+					__.$statusNum.append(&#x27;&lt;span class=&quot;kafecarousel-highlight&quot;&gt;&#x27;+(i+1)+&#x27;&lt;/span&gt;&#x27;);
 				} else {
 					if(!!__.statusLink) {
 						__.$status.append(
 							$(&#x27;&lt;a&gt;&#x27;)
 								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
-								.data(&#x27;undefinedcarousel-itemid&#x27;, i+1)
+								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
 								.on(&#x27;click&#x27;,__.itemSimpleClick)
 								.html(&#x27;&lt;span&gt;&#x27;+__.statusBullet+&#x27;&lt;/span&gt;&#x27;)
 						);
 						__.$statusNum.append(
 							$(&#x27;&lt;a&gt;&#x27;)
 								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
-								.data(&#x27;undefinedcarousel-itemid&#x27;, i+1)
+								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
 								.on(&#x27;click&#x27;,__.itemSimpleClick)
 								.html(&#x27;&lt;span&gt;&#x27;+(i+1)+&#x27;&lt;/span&gt;&#x27;)
 						);
@@ -260,13 +211,13 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 			}
 
 			// items highlight
-			__.$itemsimple.removeClass(&#x27;undefinedcarousel-highlight&#x27;)
-				.filter(&#x27;[data-undefinedcarousel-target=&quot;&#x27;+(__.curr+1)+&#x27;&quot;]&#x27;).addClass(&#x27;undefinedcarousel-highlight&#x27;)
+			__.$itemsimple.removeClass(&#x27;kafecarousel-highlight&#x27;)
+				.filter(&#x27;[data-kafecarousel-target=&quot;&#x27;+(__.curr+1)+&#x27;&quot;]&#x27;).addClass(&#x27;kafecarousel-highlight&#x27;)
 			;
 
 			__.$items.each(function() {
-				$(this).children().removeClass(&#x27;undefinedcarousel-highlight&#x27;)
-					.eq(__.curr).addClass(&#x27;undefinedcarousel-highlight&#x27;)
+				$(this).children().removeClass(&#x27;kafecarousel-highlight&#x27;)
+					.eq(__.curr).addClass(&#x27;kafecarousel-highlight&#x27;)
 				;
 			});
 		},
@@ -460,7 +411,7 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 	*		@param {String|jQueryObject|DOMElement} [options.selector.next] Clickable elements that will switch the carousel to the next slide.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.end] Clickable elements that will switch the carousel to the last slide.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.items] Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
-	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the &#x60;data-undefinedcarousel-target&#x60; attribute.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the &#x60;data-kafecarousel-target&#x60; attribute.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.play] Clickable elements that will switch the carousel to autoplay.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.pause] Clickable elements that will stop the autoplay of the carousel.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.position] Elements that will contain the current position.
@@ -483,7 +434,7 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 	*				@param {Number} options.preSwitchCallback.data.target.position Index of the target slide.
 	*				@param {DOMElement} options.preSwitchCallback.data.target.obj Reference to the target slide.
 	*	@param {Function} [options.postSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the &#x60;preSwitchCallback&#x60;.
-	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via &#x60;data-undefinedcarousel-id&#x60; and the &#x60;data-undefinedcarousel-action=&quot;status&quot;&#x60; attribute.
+	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via &#x60;data-kafecarousel-id&#x60; and the &#x60;data-kafecarousel-action=&quot;status&quot;&#x60; attribute.
 	*	@param {String} [options.statusBullet=&#x27;&amp;bull;&#x27;] Text used as the content of generated link in a &#x60;statusLink&#x60; navigation.
 	*	@param {Boolean} [options.pauseOnHover=true] If true, autoswitch will be paused while the mouse hovers a slide.
 	*
@@ -508,13 +459,13 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 	*	var myCarousel = kafe.plugin.carousel({ selector: { container: &#x27;.home-slides&#x27; } });
 	* @example
 	*	// The jQuery alternative...
-	*	$(&#x27;.home-slides&#x27;).undefinedCarousel(&#x27;init&#x27;, {});
+	*	$(&#x27;.home-slides&#x27;).kafeCarousel(&#x27;init&#x27;, {});
 	*/
 	carousel.prototype.__constructor = function(options) {
 		var self = this, __ = self.__;
 
 		// elements
-		__.$container  = $(options.selector.container).data(&#x27;undefinedcarousel-self&#x27;, self);
+		__.$container  = $(options.selector.container).data(&#x27;kafecarousel-self&#x27;, self);
 		__.$slides     = (options.selector.slides) ? $(options.selector.slides) : __.$container.children();
 		__.$start      = $(options.selector.start);
 		__.$previous   = $(options.selector.prev);
@@ -555,14 +506,14 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 
 		// désactiver tout si un seul item
 		if (__.total == 1) {
-			__.$previous.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$next.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$items.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$itemsimple.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$position.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$total.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$status.addClass(&#x27;undefinedcarousel-none&#x27;);
-			__.$statusNum.addClass(&#x27;undefinedcarousel-none&#x27;);
+			__.$previous.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$next.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$items.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$itemsimple.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$position.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$total.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$status.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$statusNum.addClass(&#x27;kafecarousel-none&#x27;);
 
 		// sinon préparer carousel
 		} else {
@@ -594,7 +545,7 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 
 			__.itemSimpleClick = function(e) {
 				e.preventDefault();
-				change(self, $(this).data(&#x27;undefinedcarousel-target&#x27;) - 1);
+				change(self, $(this).data(&#x27;kafecarousel-target&#x27;) - 1);
 			};
 
 			__.playClick = function(e) {
@@ -716,7 +667,7 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 	*	myCarousel.change(1);
 	* @example
 	*	// The jQuery alternative...
-	*	$(&#x27;#home-slides&#x27;).undefinedCarousel(&#x27;change&#x27;, 1);
+	*	$(&#x27;#home-slides&#x27;).kafeCarousel(&#x27;change&#x27;, 1);
 	*/
 	carousel.prototype.change = function(target) {
 		var self = this, __ = self.__;
@@ -731,26 +682,18 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 			carousel($.extend(true, {}, parameters[0], {selector:{container:obj}}));
 		},
 		change: function(obj, parameters) {
-			$(obj).data(&#x27;undefinedcarousel-self&#x27;).change(parameters[0]);
+			$(obj).data(&#x27;kafecarousel-self&#x27;).change(parameters[0]);
 		}
 	});
 
 	return carousel;
 
 })(window.kafe)});
-    </pre>
-</div>
+</pre>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+		</section>
+	</div>
+
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
 </body>
 </html>

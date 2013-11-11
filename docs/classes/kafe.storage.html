@@ -1,2478 +1,1691 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>kafe.storage - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.storage - kafe</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
-        
-            kafe
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>kafe v2.0.0a</b>
-                </p>
-            </li>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-    <h3>APIs</h3>
-    <div id="sidebar">
-        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-            <li><a href="#modules" data-toggle="tab">Modules</a></li>
-        </ul>
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
 
-        <div id="api-tabview-filter">
-            <input type="search" placeholder="Type to filter APIs">
-        </div>
-
-        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-            <div class="tab-pane active" id="classes">
-                <ul id="api-classes" class="nav nav-list">
-                    
-                        <li><a href="../classes/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-                    
-                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-                    
-                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-                    
-                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-                    
-                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-                    
-                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-                    
-                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-                    
-                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-                    
-                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-                    
-                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-                    
-                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-                    
-                </ul>
-            </div>
-
-            <div class="tab-pane" id="modules">
-                <ul id="api-modules" class="nav nav-list">
-                    
-                        <li><a href="../modules/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
-                    
-                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
-                    
-                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-    <h1>kafe.storage <small>Class</small></h1>
-</div>
-
-<div class="well well-small">
+	<div id="Content">
+		<nav>
+			<ul>
     
-
+        <li><a href="/classes/kafe.html">kafe</a></li>
     
-
+        <li><a href="/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
     
-        <div class="foundat">
-            Defined in: <a href="../files/builds_kafe_storage.js.html#l222"><code>builds&#x2F;kafe&#x2F;storage.js:222</code></a>
-        </div>
+        <li><a href="/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
     
-
+        <li><a href="/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
     
-        
-            Module: <a href="../modules/kafe.html">kafe</a>
-        
+        <li><a href="/classes/kafe.date.html">kafe.date</a></li>
     
-
+        <li><a href="/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
     
-</div>
+        <li><a href="/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
 
+		</nav>
 
-
-<div class="well well-small">
-    <h3 id="version-1-1">Version 1.1</h3>
+		<section>
+			<header class="class">
+	<h1>kafe.storage</h1>
+	<h2>class</h2>
+	<h3 id="version-1-1">Version 1.1</h3>
 <p>Easily access, sort and manipulate local and session storage values.</p>
 
-</div>
+	<footer>Source: <a href="../files/builds_kafe_storage.js.html#l222">builds/kafe/storage.js</a></footer>
+</header>
 
 
 
-<div>
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
 
-        
-            <li><a data-toggle="tab" href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>getAllPersistentItems</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l459">@459</a></footer>
 
-    <div class="tab-content">
-        <div id="index" class="tab-pane active">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getAllPersistentItems" data-tablink="getAllPersistentItems">getAllPersistentItems</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getAllPersistentKeys" data-tablink="getAllPersistentKeys">getAllPersistentKeys</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getAllSessionItems" data-tablink="getAllSessionItems">getAllSessionItems</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getAllSessionKeys" data-tablink="getAllSessionKeys">getAllSessionKeys</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getJSON" data-tablink="getJSON">getJSON</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getPersistentItem" data-tablink="getPersistentItem">getPersistentItem</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getPersistentNamespaceItems" data-tablink="getPersistentNamespaceItems">getPersistentNamespaceItems</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getPersistentNamespaceKeys" data-tablink="getPersistentNamespaceKeys">getPersistentNamespaceKeys</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getSessionItem" data-tablink="getSessionItem">getSessionItem</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getSessionNamespaceItems" data-tablink="getSessionNamespaceItems">getSessionNamespaceItems</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getSessionNamespaceKeys" data-tablink="getSessionNamespaceKeys">getSessionNamespaceKeys</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removeAllPersistent" data-tablink="removeAllPersistent">removeAllPersistent</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removeAllSession" data-tablink="removeAllSession">removeAllSession</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removePersistentItem" data-tablink="removePersistentItem">removePersistentItem</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removePersistentNamespace" data-tablink="removePersistentNamespace">removePersistentNamespace</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removeSessionItem" data-tablink="removeSessionItem">removeSessionItem</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removeSessionNamespace" data-tablink="removeSessionNamespace">removeSessionNamespace</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_setPersistentItem" data-tablink="setPersistentItem">setPersistentItem</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_setSessionItem" data-tablink="setSessionItem">setSessionItem</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="tab-pane">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_getAllPersistentItems" class="method item">
-    <h3 class="name"><code>getAllPersistentItems</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l459"><code>builds&#x2F;kafe&#x2F;storage.js:459</code></a>
-        
-        </p>
+	<p>Returns all local storage key values.</p>
 
 
-        
+	
+		<span class="paren">()</span>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Object</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns all local storage key values.</p>
 
-    </div>
 
-    
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Object</span>:
-                    
-                    <p>An object containing all local key/value combinations.</p>
 
-                
-            </div>
-        </div>
-    
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Object</span>:
+					
+					<p>An object containing all local key/value combinations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
 kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
 
 kafe.storage.getAllPersistentItems();
 // returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getAllPersistentKeys" class="method item">
-    <h3 class="name"><code>getAllPersistentKeys</code></h3>
+	
+		<section>
+	<h1>getAllPersistentKeys</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l425">@425</a></footer>
 
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l425"><code>builds&#x2F;kafe&#x2F;storage.js:425</code></a>
-        
-        </p>
+	<p>Returns an array of all local storage keys.</p>
 
 
-        
+	
+		<span class="paren">()</span>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns an array of all local storage keys.</p>
 
-    </div>
 
-    
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>A list of keys.</p>
 
-                
-            </div>
-        </div>
-    
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>A list of keys.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
 kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
 
 kafe.storage.getAllPersistentKeys();
 // returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getAllSessionItems" class="method item">
-    <h3 class="name"><code>getAllSessionItems</code></h3>
+	
+		<section>
+	<h1>getAllSessionItems</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l476">@476</a></footer>
 
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l476"><code>builds&#x2F;kafe&#x2F;storage.js:476</code></a>
-        
-        </p>
+	<p>Returns all session storage key values.</p>
 
 
-        
+	
+		<span class="paren">()</span>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Object</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns all session storage key values.</p>
 
-    </div>
 
-    
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Object</span>:
-                    
-                    <p>An object containing all session key/value combinations.</p>
 
-                
-            </div>
-        </div>
-    
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Object</span>:
+					
+					<p>An object containing all session key/value combinations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
 kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
 
 kafe.storage.getAllSessionItems();
 // returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getAllSessionKeys" class="method item">
-    <h3 class="name"><code>getAllSessionKeys</code></h3>
+	
+		<section>
+	<h1>getAllSessionKeys</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l442">@442</a></footer>
 
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l442"><code>builds&#x2F;kafe&#x2F;storage.js:442</code></a>
-        
-        </p>
+	<p>Returns an array of all session storage keys.</p>
 
 
-        
+	
+		<span class="paren">()</span>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns an array of all session storage keys.</p>
 
-    </div>
 
-    
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>A list of keys.</p>
 
-                
-            </div>
-        </div>
-    
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>A list of keys.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
 kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
 
 kafe.storage.getAllSessionKeys();
 // returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getJSON" class="method item">
-    <h3 class="name"><code>getJSON</code></h3>
+	
+		<section>
+	<h1>getJSON</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l517">@517</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>url</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[options]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l517"><code>builds&#x2F;kafe&#x2F;storage.js:517</code></a>
-        
-        </p>
+	<p>Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the <em>kafestorage-getJSON</em> namespace.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>url</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[options]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the <em>undefinedstorage-getJSON</em> namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">url</code>
-                        <span class="type">String</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>URL address of the webservice.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[options]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">url</code>
+						<span class="type">String</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Other parameters</p>
+					<div class="param-description">
+						<p>URL address of the webservice.</p>
 
-                    </div>
+					</div>
 
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[expires]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[options]</code>
+						<span class="type">Object</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-                                <div class="param-description">
-                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will force a new call to the webservice on the next use.</p>
+					
 
-                                </div>
+					<div class="param-description">
+						<p>Other parameters</p>
 
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[expires]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
+					</div>
 
-                                <div class="param-description">
-                                    <p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the next use will call the webservice instead of using the session storage.</p>
+					
+						<ul class="params-list">
+							
+							<li class="param">
+								
+									<code class="param-name optional">[expires]</code>
+									<span class="type">String</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
 
-                                </div>
+								<div class="param-description">
+									<p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will force a new call to the webservice on the next use.</p>
 
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[callback]</code>
-                                    <span class="type">Function</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
+								</div>
 
-                                <div class="param-description">
-                                    <p>Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.</p>
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name optional">[expires]</code>
+									<span class="type">Number</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
 
-                                </div>
+								<div class="param-description">
+									<p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the next use will call the webservice instead of using the session storage.</p>
 
-                                
-                            </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+								</div>
 
-    
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name optional">[callback]</code>
+									<span class="type">Function</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+								<div class="param-description">
+									<p>Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.getJSON(&#39;/UserServices/GetUserInfos?username=john_doe&#39;, { expires: 3600 });
+								</div>
+
+								
+							</li>
+							
+						</ul>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.getJSON(&#39;/UserServices/GetUserInfos?username=john_doe&#39;, { expires: 3600 });
 // Using this same line will use the session stored value instead of calling the service unless one hour has passed.</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getPersistentItem" class="method item">
-    <h3 class="name"><code>getPersistentItem</code></h3>
+	
+		<section>
+	<h1>getPersistentItem</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l231">@231</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>key</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l231"><code>builds&#x2F;kafe&#x2F;storage.js:231</code></a>
-        
-        </p>
+	<p>Returns the local value for a specific key.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>key</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
-
-    <div class="description">
-        <p>Returns the local value for a specific key.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">key</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns <em>undefined</em>.</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.getPersistentItem(&#39;history:last-visit&#39;);</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_getPersistentNamespaceItems" class="method item">
-    <h3 class="name"><code>getPersistentNamespaceItems</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>namespace</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l363"><code>builds&#x2F;kafe&#x2F;storage.js:363</code></a>
-        
-        </p>
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
 
 
-        
 
-        
-    </div>
 
-    <div class="description">
-        <p>Returns all local storage key values for a specific namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">namespace</code>
-                        <span class="type">String</span>
-                    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">key</code>
+						<span class="type">String</span>
+					
 
-                    <div class="param-description">
-                         
-                    </div>
+					
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					<div class="param-description">
+						 
+					</div>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Object</span>:
-                    
-                    <p>An object containing all local key/value combinations for the namespace.</p>
+	
+		<div class="returns">
+			<h4>Returns:</h4>
 
-                
-            </div>
-        </div>
-    
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns <em>undefined</em>.</p>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+				
+			</div>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.getPersistentItem(&#39;history:last-visit&#39;);</code></pre>
+
+			</div>
+		</div>
+	
+</section>
+
+	
+		<section>
+	<h1>getPersistentNamespaceItems</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l363">@363</a></footer>
+
+	<p>Returns all local storage key values for a specific namespace.</p>
+
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>namespace</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+
+	
+		<span class="returns-inline">
+			<span class="type">Object</span>
+		</span>
+	
+
+
+
+
+
+
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">namespace</code>
+						<span class="type">String</span>
+					
+
+					
+
+					<div class="param-description">
+						 
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Object</span>:
+					
+					<p>An object containing all local key/value combinations for the namespace.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
 kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
 
 kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
 // returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getPersistentNamespaceKeys" class="method item">
-    <h3 class="name"><code>getPersistentNamespaceKeys</code></h3>
+	
+		<section>
+	<h1>getPersistentNamespaceKeys</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l327">@327</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>namespace</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l327"><code>builds&#x2F;kafe&#x2F;storage.js:327</code></a>
-        
-        </p>
+	<p>Returns an array of local storage keys for a specific namespace.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>namespace</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns an array of local storage keys for a specific namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">namespace</code>
-                        <span class="type">String</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                         
-                    </div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">namespace</code>
+						<span class="type">String</span>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>A list of keys.</p>
+					
 
-                
-            </div>
-        </div>
-    
+					<div class="param-description">
+						 
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>A list of keys.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
 kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
 
 kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
 // returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getSessionItem" class="method item">
-    <h3 class="name"><code>getSessionItem</code></h3>
+	
+		<section>
+	<h1>getSessionItem</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l245">@245</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>key</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l245"><code>builds&#x2F;kafe&#x2F;storage.js:245</code></a>
-        
-        </p>
+	<p>Returns the session value for a specific key.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>key</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
-
-    <div class="description">
-        <p>Returns the session value for a specific key.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">key</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns <em>undefined</em>.</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.getSessionItem(&#39;user:first-name&#39;);</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_getSessionNamespaceItems" class="method item">
-    <h3 class="name"><code>getSessionNamespaceItems</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>namespace</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l381"><code>builds&#x2F;kafe&#x2F;storage.js:381</code></a>
-        
-        </p>
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
 
 
-        
 
-        
-    </div>
 
-    <div class="description">
-        <p>Returns all session storage key values for a specific namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">namespace</code>
-                        <span class="type">String</span>
-                    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">key</code>
+						<span class="type">String</span>
+					
 
-                    <div class="param-description">
-                         
-                    </div>
+					
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					<div class="param-description">
+						 
+					</div>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Object</span>:
-                    
-                    <p>An object containing all session key/value combinations for the namespace.</p>
+	
+		<div class="returns">
+			<h4>Returns:</h4>
 
-                
-            </div>
-        </div>
-    
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns <em>undefined</em>.</p>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+				
+			</div>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.getSessionItem(&#39;user:first-name&#39;);</code></pre>
+
+			</div>
+		</div>
+	
+</section>
+
+	
+		<section>
+	<h1>getSessionNamespaceItems</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l381">@381</a></footer>
+
+	<p>Returns all session storage key values for a specific namespace.</p>
+
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>namespace</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+
+	
+		<span class="returns-inline">
+			<span class="type">Object</span>
+		</span>
+	
+
+
+
+
+
+
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">namespace</code>
+						<span class="type">String</span>
+					
+
+					
+
+					<div class="param-description">
+						 
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Object</span>:
+					
+					<p>An object containing all session key/value combinations for the namespace.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
 kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
 
 kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
 // returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getSessionNamespaceKeys" class="method item">
-    <h3 class="name"><code>getSessionNamespaceKeys</code></h3>
+	
+		<section>
+	<h1>getSessionNamespaceKeys</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l345">@345</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>namespace</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l345"><code>builds&#x2F;kafe&#x2F;storage.js:345</code></a>
-        
-        </p>
+	<p>Returns an array of session storage keys for a specific namespace.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>namespace</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns an array of session storage keys for a specific namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">namespace</code>
-                        <span class="type">String</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                         
-                    </div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">namespace</code>
+						<span class="type">String</span>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>A list of keys.</p>
+					
 
-                
-            </div>
-        </div>
-    
+					<div class="param-description">
+						 
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>A list of keys.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
 kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
 
 kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
 // returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_removeAllPersistent" class="method item">
-    <h3 class="name"><code>removeAllPersistent</code></h3>
+	
+		<section>
+	<h1>removeAllPersistent</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l493">@493</a></footer>
 
-    
-        <span class="paren">()</span>
-    
+	<p>Removes all local storage keys.</p>
 
-    
 
-    
+	
+		<span class="paren">()</span>
+	
 
-    
+	
 
-    
 
-    
 
-    
 
-    
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l493"><code>builds&#x2F;kafe&#x2F;storage.js:493</code></a>
-        
-        </p>
 
 
-        
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Removes all local storage keys.</p>
+	
+		<div class="example">
+			<h4>Example:</h4>
 
-    </div>
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.removeAllPersistent();</code></pre>
 
-    
+			</div>
+		</div>
+	
+</section>
 
-    
+	
+		<section>
+	<h1>removeAllSession</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l505">@505</a></footer>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+	<p>Removes all session storage keys.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeAllPersistent();</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+	
+		<span class="paren">()</span>
+	
 
-                
-                    <div id="method_removeAllSession" class="method item">
-    <h3 class="name"><code>removeAllSession</code></h3>
+	
 
-    
-        <span class="paren">()</span>
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+	
 
-    
+	
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l505"><code>builds&#x2F;kafe&#x2F;storage.js:505</code></a>
-        
-        </p>
+	
+		<div class="example">
+			<h4>Example:</h4>
 
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.removeAllSession();</code></pre>
 
-        
+			</div>
+		</div>
+	
+</section>
 
-        
-    </div>
+	
+		<section>
+	<h1>removePersistentItem</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l301">@301</a></footer>
 
-    <div class="description">
-        <p>Removes all session storage keys.</p>
+	<p>Removes the local storage value for a specific key.</p>
 
-    </div>
 
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>key</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    
+	
 
-    
-        <div class="example">
-            <h4>Example:</h4>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeAllSession();</code></pre>
 
-            </div>
-        </div>
-    
-</div>
 
-                
-                    <div id="method_removePersistentItem" class="method item">
-    <h3 class="name"><code>removePersistentItem</code></h3>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>key</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
 
-    
 
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">key</code>
+						<span class="type">String</span>
+					
 
-    
+					
 
-    
+					<div class="param-description">
+						 
+					</div>
 
-    
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l301"><code>builds&#x2F;kafe&#x2F;storage.js:301</code></a>
-        
-        </p>
+	
+		<div class="example">
+			<h4>Example:</h4>
 
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.removePersistentItem(&#39;history:last-visit&#39;);</code></pre>
 
-        
+			</div>
+		</div>
+	
+</section>
 
-        
-    </div>
+	
+		<section>
+	<h1>removePersistentNamespace</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l399">@399</a></footer>
 
-    <div class="description">
-        <p>Removes the local storage value for a specific key.</p>
+	<p>Removes all local storage keys of a specific namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>namespace</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">key</code>
-                        <span class="type">String</span>
-                    
+	
 
-                    
 
-                    <div class="param-description">
-                         
-                    </div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
 
-    
 
-    
-        <div class="example">
-            <h4>Example:</h4>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removePersistentItem(&#39;history:last-visit&#39;);</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                
-                    <div id="method_removePersistentNamespace" class="method item">
-    <h3 class="name"><code>removePersistentNamespace</code></h3>
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">namespace</code>
+						<span class="type">String</span>
+					
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>namespace</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+					
 
-    
+					<div class="param-description">
+						 
+					</div>
 
-    
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
 
-    
+	
+		<div class="example">
+			<h4>Example:</h4>
 
-    
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.removePersistentNamespace(&#39;history&#39;);</code></pre>
 
-    
+			</div>
+		</div>
+	
+</section>
 
-    
+	
+		<section>
+	<h1>removeSessionItem</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l314">@314</a></footer>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l399"><code>builds&#x2F;kafe&#x2F;storage.js:399</code></a>
-        
-        </p>
+	<p>Removes the session storage value for a specific key.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>key</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Removes all local storage keys of a specific namespace.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">namespace</code>
-                        <span class="type">String</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                         
-                    </div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">key</code>
+						<span class="type">String</span>
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removePersistentNamespace(&#39;history&#39;);</code></pre>
+					<div class="param-description">
+						 
+					</div>
 
-            </div>
-        </div>
-    
-</div>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-                
-                    <div id="method_removeSessionItem" class="method item">
-    <h3 class="name"><code>removeSessionItem</code></h3>
+	
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>key</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+	
+		<div class="example">
+			<h4>Example:</h4>
 
-    
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.removeSessionItem(&#39;user:first-name&#39;);</code></pre>
 
-    
+			</div>
+		</div>
+	
+</section>
 
-    
+	
+		<section>
+	<h1>removeSessionNamespace</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l412">@412</a></footer>
 
-    
+	<p>Removes all session storage keys of a specific namespace.</p>
 
-    
 
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>namespace</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    
+	
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l314"><code>builds&#x2F;kafe&#x2F;storage.js:314</code></a>
-        
-        </p>
 
 
-        
 
-        
-    </div>
 
-    <div class="description">
-        <p>Removes the session storage value for a specific key.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">key</code>
-                        <span class="type">String</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">namespace</code>
+						<span class="type">String</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                         
-                    </div>
+					<div class="param-description">
+						 
+					</div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+	
+		<div class="example">
+			<h4>Example:</h4>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeSessionItem(&#39;user:first-name&#39;);</code></pre>
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.removeSessionNamespace(&#39;user&#39;);</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_removeSessionNamespace" class="method item">
-    <h3 class="name"><code>removeSessionNamespace</code></h3>
+	
+		<section>
+	<h1>setPersistentItem</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l259">@259</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>namespace</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l412"><code>builds&#x2F;kafe&#x2F;storage.js:412</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Removes all session storage keys of a specific namespace.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">namespace</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.removeSessionNamespace(&#39;user&#39;);</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_setPersistentItem" class="method item">
-    <h3 class="name"><code>setPersistentItem</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>key</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>value</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[options]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l259"><code>builds&#x2F;kafe&#x2F;storage.js:259</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">key</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">value</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[options]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Expiration parameters</p>
-
-                    </div>
-
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[expires]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the local storage value for the provided key as expired.</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[expires]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the local storage value for the provided key will be flagged as expired.</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: 3600 });
+	<p>Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
+
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>key</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>value</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[options]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+
+	
+
+
+
+
+
+
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">key</code>
+						<span class="type">String</span>
+					
+
+					
+
+					<div class="param-description">
+						 
+					</div>
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">value</code>
+						<span class="type">String</span>
+					
+
+					
+
+					<div class="param-description">
+						 
+					</div>
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[options]</code>
+						<span class="type">Object</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					<div class="param-description">
+						<p>Expiration parameters</p>
+
+					</div>
+
+					
+						<ul class="params-list">
+							
+							<li class="param">
+								
+									<code class="param-name optional">[expires]</code>
+									<span class="type">String</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
+
+								<div class="param-description">
+									<p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the local storage value for the provided key as expired.</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name optional">[expires]</code>
+									<span class="type">Number</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
+
+								<div class="param-description">
+									<p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the local storage value for the provided key will be flagged as expired.</p>
+
+								</div>
+
+								
+							</li>
+							
+						</ul>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: 3600 });
 // The local storage value will return undefined in one hour.</code></pre>
 <pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: &#39;last-visit-cookie&#39; });
 // The local storage value will return undefined if the value of the cookie &#39;last-visit-cookie&#39; is changed.</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_setSessionItem" class="method item">
-    <h3 class="name"><code>setSessionItem</code></h3>
+	
+		<section>
+	<h1>setSessionItem</h1>
+	<footer><a href="../files/builds_kafe_storage.js.html#l280">@280</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>key</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>value</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[options]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_storage.js.html#l280"><code>builds&#x2F;kafe&#x2F;storage.js:280</code></a>
-        
-        </p>
+	<p>Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>key</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>value</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[options]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">key</code>
-                        <span class="type">String</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                         
-                    </div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">value</code>
-                        <span class="type">String</span>
-                    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">key</code>
+						<span class="type">String</span>
+					
 
-                    <div class="param-description">
-                         
-                    </div>
+					
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[options]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+					<div class="param-description">
+						 
+					</div>
 
-                    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">value</code>
+						<span class="type">String</span>
+					
 
-                    <div class="param-description">
-                        <p>Expiration parameters</p>
+					
 
-                    </div>
+					<div class="param-description">
+						 
+					</div>
 
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[expires]</code>
-                                    <span class="type">String</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[options]</code>
+						<span class="type">Object</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-                                <div class="param-description">
-                                    <p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the session storage value for the provided key as expired.</p>
+					
 
-                                </div>
+					<div class="param-description">
+						<p>Expiration parameters</p>
 
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name optional">[expires]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-                                
+					</div>
 
-                                <div class="param-description">
-                                    <p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the session storage value for the provided key will be flagged as expired.</p>
+					
+						<ul class="params-list">
+							
+							<li class="param">
+								
+									<code class="param-name optional">[expires]</code>
+									<span class="type">String</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
 
-                                </div>
+								<div class="param-description">
+									<p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the session storage value for the provided key as expired.</p>
 
-                                
-                            </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+								</div>
 
-    
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name optional">[expires]</code>
+									<span class="type">Number</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+								
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+								<div class="param-description">
+									<p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the session storage value for the provided key will be flagged as expired.</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: 3600 });
+								</div>
+
+								
+							</li>
+							
+						</ul>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: 3600 });
 // The session storage value will return undefined in one hour.</code></pre>
 <pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: &#39;logged-user&#39; });
 // The session storage value will return undefined if the value of the cookie &#39;logged-user&#39; is changed.</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-            </div>
-        
+	
+</section>
 
-        
+		</section>
+	</div>
 
-        
-
-        
-    </div>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
 </body>
 </html>

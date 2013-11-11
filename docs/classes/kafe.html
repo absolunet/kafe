@@ -1,1411 +1,776 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>kafe - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe - kafe</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
-        
-            kafe
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>kafe v2.0.0a</b>
-                </p>
-            </li>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-    <h3>APIs</h3>
-    <div id="sidebar">
-        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-            <li><a href="#modules" data-toggle="tab">Modules</a></li>
-        </ul>
-
-        <div id="api-tabview-filter">
-            <input type="search" placeholder="Type to filter APIs">
-        </div>
-
-        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-            <div class="tab-pane active" id="classes">
-                <ul id="api-classes" class="nav nav-list">
-                    
-                        <li><a href="../classes/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-                    
-                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-                    
-                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-                    
-                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-                    
-                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-                    
-                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-                    
-                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-                    
-                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-                    
-                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-                    
-                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-                    
-                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-                    
-                </ul>
-            </div>
-
-            <div class="tab-pane" id="modules">
-                <ul id="api-modules" class="nav nav-list">
-                    
-                        <li><a href="../modules/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
-                    
-                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
-                    
-                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-    <h1>kafe <small>Class</small></h1>
-</div>
-
-<div class="well well-small">
-    
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
 
+	<div id="Content">
+		<nav>
+			<ul>
     
-
+        <li><a href="/classes/kafe.html">kafe</a></li>
     
-        <div class="foundat">
-            Defined in: <a href="../files/builds_kafe_kafe.js.html#l91"><code>builds&#x2F;kafe&#x2F;kafe.js:91</code></a>
-        </div>
+        <li><a href="/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
     
-
+        <li><a href="/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
     
-        
-            Module: <a href="../modules/kafe.html">kafe</a>
-        
+        <li><a href="/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
     
-
+        <li><a href="/classes/kafe.date.html">kafe.date</a></li>
     
-</div>
-
-
-
-<div class="well well-small">
-    <p>kafe core</p>
-
-</div>
-
-
-
-<div>
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
-
-        
-            <li><a data-toggle="tab" href="#methods">Methods</a></li>
-        
-        
-            <li><a data-toggle="tab" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="tab-content">
-        <div id="index" class="tab-pane active">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_bonify" data-tablink="bonify">bonify</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_env" data-tablink="env">env</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_error" data-tablink="error">error</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_fn.createInstantiableObject" data-tablink="fn.createInstantiableObject">fn.createInstantiableObject</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_fn.deleteVar" data-tablink="fn.deleteVar">fn.deleteVar</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_fn.lang" data-tablink="fn.lang">fn.lang</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_fn.plugIntojQuery" data-tablink="fn.plugIntojQuery">fn.plugIntojQuery</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property__chaje" data-tablink="_chaje">_chaje</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property__griyaj" data-tablink="_griyaj">_griyaj</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property__vesyon" data-tablink="_vesyon">_vesyon</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_dependencies.jQuery" data-tablink="dependencies.jQuery">dependencies.jQuery</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_dependencies.Modernizr" data-tablink="dependencies.Modernizr">dependencies.Modernizr</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_dependencies.underscore" data-tablink="dependencies.underscore">dependencies.underscore</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="tab-pane">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_bonify" class="method item">
-    <h3 class="name"><code>bonify</code></h3>
-
+        <li><a href="/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <li><a href="/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
     
-
+        <li><a href="/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
     
-
+        <li><a href="/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
     
-
+        <li><a href="/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
     
-
+        <li><a href="/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
     
-
+        <li><a href="/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
     
-
+        <li><a href="/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
     
-
+        <li><a href="/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
     
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l307"><code>builds&#x2F;kafe&#x2F;kafe.js:307</code></a>
-        
-        </p>
-
+        <li><a href="/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
 
-        
+		</nav>
 
-        
-    </div>
+		<section>
+			<header class="class">
+	<h1>kafe</h1>
+	<h2>class</h2>
+	<h3 id="version-2-0-0a">Version 2.0.0a</h3>
+<p>kafe core</p>
 
-    <div class="description">
-        <p>Add module to core</p>
+	<footer>Source: <a href="../files/builds_kafe_kafe.js.html#l91">builds/kafe/kafe.js</a></footer>
+</header>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The options</p>
-
-                    </div>
-
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">name</code>
-                                    <span class="type">String</span>
-                                
-
-                                <div class="param-description">
-                                    <p>The module name</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">version</code>
-                                    <span class="type">String</span>
-                                
-
-                                <div class="param-description">
-                                    <p>The module version</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">obj</code>
-                                    <span class="type">Object</span>
-                                
-
-                                <div class="param-description">
-                                    <p>The module itself</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+<section>
+	<h1>Properties</h1>
+	
+		<section>
+	<h1>_chaje</h1>
+	<h2>Object</h2>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l116">@116</a></footer>
+	<p>Versions of dependencies / kafe modules</p>
 
-    
+</section>
 
-    
-</div>
+	
+		<section>
+	<h1>_griyaj</h1>
+	<h2>String</h2>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l108">@108</a></footer>
+	<p>kafe author</p>
 
-                
-                    <div id="method_env" class="method item">
-    <h3 class="name"><code>env</code></h3>
+</section>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>name</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[value]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+	
+		<section>
+	<h1>_vesyon</h1>
+	<h2>String</h2>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l100">@100</a></footer>
+	<p>kafe version</p>
 
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
+</section>
 
-    
+	
+		<section>
+	<h1>dependencies.jQuery</h1>
+	<h2>Object</h2>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l131">@131</a></footer>
+	<p>jQuery defined under window.kafejQuery<br>ref: <a href="http://jquery.com/"><a href="http://jquery.com/">http://jquery.com/</a></a></p>
 
-    
+</section>
 
-    
+	
+		<section>
+	<h1>dependencies.Modernizr</h1>
+	<h2>Object</h2>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l149">@149</a></footer>
+	<p>Modernizr defined under window.Modernizr<br>ref: <a href="http://modernizr.com/"><a href="http://modernizr.com/">http://modernizr.com/</a></a></p>
 
-    
+</section>
 
-    
+	
+		<section>
+	<h1>dependencies.underscore</h1>
+	<h2>Object</h2>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l140">@140</a></footer>
+	<p>underscore.js defined under window._<br>ref: <a href="http://underscorejs.org/"><a href="http://underscorejs.org/">http://underscorejs.org/</a></a></p>
 
-    
+</section>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l260"><code>builds&#x2F;kafe&#x2F;kafe.js:260</code></a>
-        
-        </p>
+	
+</section>
 
 
-        
 
-        
-    </div>
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>bonify</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l308">@308</a></footer>
 
-    <div class="description">
-        <p>Environment constants</p>
+	<p>Add module to core</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">name</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The constant to get/set</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[value]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The value to set</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>options</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>The value of the environment constant</p>
-
-                
-            </div>
-        </div>
-    
+	
 
-    
-</div>
 
-                
-                    <div id="method_error" class="method item">
-    <h3 class="name"><code>error</code></h3>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>error</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+
+
+
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">options</code>
+						<span class="type">Object</span>
+					
+
+					
+
+					<div class="param-description">
+						<p>The options</p>
 
-    
-        <span class="returns-inline">
-            <span class="type">Error</span>
-        </span>
-    
+					</div>
 
-    
+					
+						<ul class="params-list">
+							
+							<li class="param">
+								
+									<code class="param-name">name</code>
+									<span class="type">String</span>
+								
 
-    
+								<div class="param-description">
+									<p>The module name</p>
 
-    
+								</div>
 
-    
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">version</code>
+									<span class="type">String</span>
+								
 
-    
+								<div class="param-description">
+									<p>The module version</p>
 
-    
+								</div>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l331"><code>builds&#x2F;kafe&#x2F;kafe.js:331</code></a>
-        
-        </p>
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">obj</code>
+									<span class="type">Object</span>
+								
 
+								<div class="param-description">
+									<p>The module itself</p>
 
-        
+								</div>
 
-        
-    </div>
+								
+							</li>
+							
+						</ul>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    <div class="description">
-        <p>Throw kafe errors</p>
+	
 
-    </div>
+	
+</section>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">error</code>
-                        <span class="type">Error</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The error with description</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+	
+		<section>
+	<h1>env</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l261">@261</a></footer>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Error</span>:
-                    
-                    <p>error The error</p>
-
-                
-            </div>
-        </div>
-    
+	<p>Environment constants</p>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.error(new Error(&#39;barf&#39;));</code></pre>
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>name</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[value]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
 
-            </div>
-        </div>
-    
-</div>
 
-                
-                    <div id="method_fn.createInstantiableObject" class="method item">
-    <h3 class="name"><code>fn.createInstantiableObject</code></h3>
 
-    
-        <span class="paren">()</span>
-    
 
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
-    
 
-    
 
-    
 
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">name</code>
+						<span class="type">String</span>
+					
 
-    
+					
 
-    
+					<div class="param-description">
+						<p>The constant to get/set</p>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l182"><code>builds&#x2F;kafe&#x2F;kafe.js:182</code></a>
-        
-        </p>
+					</div>
 
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[value]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-        
+					
 
-        
-    </div>
+					<div class="param-description">
+						<p>The value to set</p>
 
-    <div class="description">
-        <p>Create a instantiable object<br>By John Resig (MIT Licensed)<br>ref: <a href="http://ejohn.org/blog/simple-class-instantiation/"><a href="http://ejohn.org/blog/simple-class-instantiation/">http://ejohn.org/blog/simple-class-instantiation/</a></a></p>
+					</div>
 
-    </div>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
+		<div class="returns">
+			<h4>Returns:</h4>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Object</span>:
-                    
-                    <p>The instantiable object</p>
-
-                
-            </div>
-        </div>
-    
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>The value of the environment constant</p>
 
-    
-</div>
+				
+			</div>
+		</div>
+	
 
-                
-                    <div id="method_fn.deleteVar" class="method item">
-    <h3 class="name"><code>fn.deleteVar</code></h3>
+	
+</section>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>name</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+	
+		<section>
+	<h1>error</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l332">@332</a></footer>
 
-    
+	<p>Throw kafe errors</p>
 
-    
 
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>error</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    
+	
+		<span class="returns-inline">
+			<span class="type">Error</span>
+		</span>
+	
 
-    
 
-    
 
-    
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l218"><code>builds&#x2F;kafe&#x2F;kafe.js:218</code></a>
-        
-        </p>
 
 
-        
 
-        
-    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    <div class="description">
-        <p>Delete the variable (patch for ie8)</p>
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">error</code>
+						<span class="type">Error</span>
+					
 
-    </div>
+					
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">name</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Name of the variable to delete</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					<div class="param-description">
+						<p>The error with description</p>
 
-    
+					</div>
 
-    
-</div>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-                
-                    <div id="method_fn.lang" class="method item">
-    <h3 class="name"><code>fn.lang</code></h3>
+	
+		<div class="returns">
+			<h4>Returns:</h4>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>dict</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>lang</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+			<div class="returns-description">
+				
+					
+						<span class="type">Error</span>:
+					
+					<p>error The error</p>
 
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
+				
+			</div>
+		</div>
+	
 
-    
+	
+		<div class="example">
+			<h4>Example:</h4>
 
-    
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.error(new Error(&#39;barf&#39;));</code></pre>
 
-    
+			</div>
+		</div>
+	
+</section>
 
-    
+	
+		<section>
+	<h1>fn.createInstantiableObject</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l183">@183</a></footer>
 
-    
+	<p>Create a instantiable object<br>By John Resig (MIT Licensed)<br>ref: <a href="http://ejohn.org/blog/simple-class-instantiation/"><a href="http://ejohn.org/blog/simple-class-instantiation/">http://ejohn.org/blog/simple-class-instantiation/</a></a></p>
 
-    
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l204"><code>builds&#x2F;kafe&#x2F;kafe.js:204</code></a>
-        
-        </p>
+	
+		<span class="paren">()</span>
+	
 
+	
+		<span class="returns-inline">
+			<span class="type">Object</span>
+		</span>
+	
 
-        
 
-        
-    </div>
 
-    <div class="description">
-        <p>Return the language if available or else &#39;en&#39;</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">dict</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The dictionary to check against</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">lang</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The language to check</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>The available language</p>
-
-                
-            </div>
-        </div>
-    
 
-    
-</div>
+	
 
-                
-                    <div id="method_fn.plugIntojQuery" class="method item">
-    <h3 class="name"><code>fn.plugIntojQuery</code></h3>
+	
+		<div class="returns">
+			<h4>Returns:</h4>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>name</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>methods</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
+			<div class="returns-description">
+				
+					
+						<span class="type">Object</span>:
+					
+					<p>The instantiable object</p>
 
-    
+				
+			</div>
+		</div>
+	
 
-    
+	
+</section>
 
-    
+	
+		<section>
+	<h1>fn.deleteVar</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l219">@219</a></footer>
 
-    
+	<p>Delete the variable (patch for ie8)</p>
 
-    
 
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>name</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    
+	
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l229"><code>builds&#x2F;kafe&#x2F;kafe.js:229</code></a>
-        
-        </p>
 
 
-        
 
-        
-    </div>
 
-    <div class="description">
-        <p>Add method as jQuery plugin</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">name</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The jQuery plugin name</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">methods</code>
-                        <span class="type">ObjectFunction</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Action:Method hash</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">name</code>
+						<span class="type">String</span>
+					
 
-    
-</div>
+					
 
-                
-            </div>
-        
+					<div class="param-description">
+						<p>Name of the variable to delete</p>
 
-        
-            <div id="properties" class="tab-pane">
-                <h2 class="off-left">Properties</h2>
+					</div>
 
-                
-                    <div id="property__chaje" class="property item">
-    <h3 class="name"><code>_chaje</code></h3>
-    <span class="type">Object</span>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
 
-    
+	
+</section>
 
-    
+	
+		<section>
+	<h1>fn.lang</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l205">@205</a></footer>
 
-    
+	<p>Return the language if available or else &#39;en&#39;</p>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l115"><code>builds&#x2F;kafe&#x2F;kafe.js:115</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Versions of dependencies / kafe modules</p>
-
-    </div>
 
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>dict</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>lang</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
 
-    
-</div>
 
-                
-                    <div id="property__griyaj" class="property item">
-    <h3 class="name"><code>_griyaj</code></h3>
-    <span class="type">String</span>
 
-    
 
-    
 
-    
 
-    
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l107"><code>builds&#x2F;kafe&#x2F;kafe.js:107</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>kafe author</p>
-
-    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">dict</code>
+						<span class="type">Object</span>
+					
 
-    
+					
 
-    
-</div>
+					<div class="param-description">
+						<p>The dictionary to check against</p>
 
-                
-                    <div id="property__vesyon" class="property item">
-    <h3 class="name"><code>_vesyon</code></h3>
-    <span class="type">String</span>
+					</div>
 
-    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">lang</code>
+						<span class="type">String</span>
+					
 
-    
+					
 
-    
+					<div class="param-description">
+						<p>The language to check</p>
 
-    
+					</div>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l99"><code>builds&#x2F;kafe&#x2F;kafe.js:99</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>kafe version</p>
-
-    </div>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
+		<div class="returns">
+			<h4>Returns:</h4>
 
-    
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>The available language</p>
 
-    
-</div>
+				
+			</div>
+		</div>
+	
 
-                
-                    <div id="property_dependencies.jQuery" class="property item">
-    <h3 class="name"><code>dependencies.jQuery</code></h3>
-    <span class="type">Object</span>
+	
+</section>
 
-    
+	
+		<section>
+	<h1>fn.plugIntojQuery</h1>
+	<footer><a href="../files/builds_kafe_kafe.js.html#l230">@230</a></footer>
 
-    
+	<p>Add method as jQuery plugin</p>
 
-    
 
-    
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>name</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>methods</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l130"><code>builds&#x2F;kafe&#x2F;kafe.js:130</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>jQuery defined under window.kafejQuery<br>ref: <a href="http://jquery.com/"><a href="http://jquery.com/">http://jquery.com/</a></a></p>
-
-    </div>
+	
 
-    
 
-    
 
-    
-</div>
 
-                
-                    <div id="property_dependencies.Modernizr" class="property item">
-    <h3 class="name"><code>dependencies.Modernizr</code></h3>
-    <span class="type">Object</span>
 
-    
 
-    
 
-    
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">name</code>
+						<span class="type">String</span>
+					
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l148"><code>builds&#x2F;kafe&#x2F;kafe.js:148</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Modernizr defined under window.Modernizr<br>ref: <a href="http://modernizr.com/"><a href="http://modernizr.com/">http://modernizr.com/</a></a></p>
-
-    </div>
+					
 
-    
+					<div class="param-description">
+						<p>The jQuery plugin name</p>
 
-    
+					</div>
 
-    
-</div>
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">methods</code>
+						<span class="type">ObjectFunction</span>
+					
 
-                
-                    <div id="property_dependencies.underscore" class="property item">
-    <h3 class="name"><code>dependencies.underscore</code></h3>
-    <span class="type">Object</span>
+					
 
-    
+					<div class="param-description">
+						<p>Action:Method hash</p>
 
-    
+					</div>
 
-    
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-    
+	
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_kafe.js.html#l139"><code>builds&#x2F;kafe&#x2F;kafe.js:139</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>underscore.js defined under window._<br>ref: <a href="http://underscorejs.org/"><a href="http://underscorejs.org/">http://underscorejs.org/</a></a></p>
-
-    </div>
+	
+</section>
 
-    
+	
+</section>
 
-    
+		</section>
+	</div>
 
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
 </body>
 </html>

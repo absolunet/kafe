@@ -6,7 +6,7 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 	* ### Version 1.0
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
 	* 
-	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`undefinedmenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
+	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
 	* @module kafe.plugin
 	* @class kafe.plugin.menu
@@ -56,7 +56,7 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
-	*	$('#main-menu > ul').undefinedMenu();
+	*	$('#main-menu > ul').kafeMenu();
 	*/
 	menu.init = function() {
 		var
@@ -86,13 +86,13 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data('undefinedmenu-timer') !== undefined) {
-					clearTimeout($sub.data('undefinedmenu-timer'));
+				if ($sub.data('kafemenu-timer') !== undefined) {
+					clearTimeout($sub.data('kafemenu-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('undefinedmenu-timer', setTimeout(function() {
-						$parent.addClass('undefinedmenu-open');
+					$sub.data('kafemenu-timer', setTimeout(function() {
+						$parent.addClass('kafemenu-open');
 						if (!!c.enterCallback) {
 							c.enterCallback($sub);
 						}
@@ -114,16 +114,16 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 					$parent = $(this),
 					$sub = $parent.children(c.submenus),
 					_clearclass = function() {
-						$parent.removeClass('undefinedmenu-open');
+						$parent.removeClass('kafemenu-open');
 					}
 				;
 
-				if ($sub.data('undefinedmenu-timer') !== undefined) {
-					clearTimeout($sub.data('undefinedmenu-timer'));
+				if ($sub.data('kafemenu-timer') !== undefined) {
+					clearTimeout($sub.data('kafemenu-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('undefinedmenu-timer', setTimeout(function() {
+					$sub.data('kafemenu-timer', setTimeout(function() {
 						if (!!c.leaveCallback) {
 							c.leaveCallback($sub);
 						}

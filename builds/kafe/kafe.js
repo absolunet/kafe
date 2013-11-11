@@ -89,6 +89,7 @@ window.kafe = (function(undefined){
 
 
 		/**
+		* ### Version 2.0.0a
 		* kafe core
 		*
 		* @module kafe

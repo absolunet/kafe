@@ -8,6 +8,8 @@ module.exports = function(grunt) {
 			requirejs: {},
 			jshint:    {},
 			yuidoc:    {},
+			less:      {},
+			cssmin:    {},
 			copy:      {},
 			clean:     { placeholders:{src: ['builds/**/_*.js'],  options: { force:true }} },
 			watch:     { all: { files: ['gruntfile.js', 'package.json', 'sources/kafe/**', 'sources/vendor/**'], tasks: 'default' } }
@@ -23,6 +25,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 
 
@@ -66,8 +70,8 @@ module.exports = function(grunt) {
 				NAME:        name,
 				NAME_FULL:   package+'.'+name,
 				NAME_FINAL:  finalNameCap,
-				NAME_ATTR:   package.name+finalName,
-				NAME_JQUERY: package.name+finalNameCap,
+				NAME_ATTR:   package+finalName,
+				NAME_JQUERY: package+finalNameCap,
 				MODULE:      package+((module.length) ? '.'+module.join('.') : ''),
 				VERSION:     version
 			}});
@@ -208,7 +212,7 @@ module.exports = function(grunt) {
 		url:         '<%= pkg.repository_url %>',
 		options: {
 			paths:    'builds/kafe/',
-			themedir: 'sources/docs/',
+			themedir: 'sources/docs/tmpl/',
 			outdir:   'docs/'
 		}
 	};
@@ -223,8 +227,41 @@ module.exports = function(grunt) {
 		}}));
 	});
 
-	tasks.docs = ['kafe_readme','core_docs','yuidoc:compile','clean:placeholders'];
-	config.watch.docs = { files: ['sources/docs/*', 'sources/README.md'], tasks: 'docs' };
+
+	config.clean.docs     = {src: ['docs/assets','docs/api.js','docs/data.json'],  options: { force:true }};
+	config.clean.docsless = {src: ['sources/docs/core-less.css'],  options: { force:true }};
+
+	config.copy.docsassets = {
+		expand: true,
+		cwd:    'sources/docs/assets/',
+		src:    '**',
+		dest:   'docs/assets/',
+		filter: 'isFile'
+	};
+
+	config.less.docs = { files: [
+		{ src:'sources/docs/css/core.less', dest:'sources/docs/core-less.css' }
+	]};
+
+	config.cssmin.docs = { files: [ { src: [
+		'sources/docs/css/libs/reset.css',
+		'sources/docs/css/libs/normalize.css',
+		'sources/docs/css/libs/html5boilerplate.css',
+		'sources/docs/core-less.css'
+	], dest: 'docs/assets/core.css'
+	}]};
+
+	config.requirejs.docs = { options: {
+		name:                'sources/docs/js/core',
+		out:                 'docs/assets/core.js',
+		optimize:            'uglify',
+		skipModuleInsertion: true
+	}};
+
+
+
+	tasks.docs = ['kafe_readme','core_docs','yuidoc:compile','clean:docs','copy:docsassets','less:docs','cssmin:docs','requirejs:docs','clean:docsless','clean:placeholders'];
+	config.watch.docs = { files: ['sources/docs/**/*', 'sources/README.md'], tasks: 'docs' };
 
 
 

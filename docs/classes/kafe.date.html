@@ -1,3187 +1,2123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>kafe.date - kafe</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/assets/favicon.ico">
+	<link rel="image_src"        href="/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.date - kafe</title>
+	<link rel="stylesheet" href="/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-	    <img alt="kafe" src="../assets/css/logo.png" style="max-height: 65%;" title="kafe">
-        
-            kafe
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>kafe v2.0.0a</b>
-                </p>
-            </li>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-    <h3>APIs</h3>
-    <div id="sidebar">
-        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-            <li><a href="#modules" data-toggle="tab">Modules</a></li>
-        </ul>
+<body>
+	<header id="Header">
+		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<nav>
+			<ul>
+				<li><a href="/modules/kafe.html">core</a></li>
+				<li><a href="/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+	</header>
 
-        <div id="api-tabview-filter">
-            <input type="search" placeholder="Type to filter APIs">
-        </div>
-
-        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-            <div class="tab-pane active" id="classes">
-                <ul id="api-classes" class="nav nav-list">
-                    
-                        <li><a href="../classes/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-                    
-                        <li><a href="../classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-                    
-                        <li><a href="../classes/kafe.date.html">kafe.date</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-                    
-                        <li><a href="../classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-                    
-                        <li><a href="../classes/kafe.form.html">kafe.form</a></li>
-                    
-                        <li><a href="../classes/kafe.geolocation.html">kafe.geolocation</a></li>
-                    
-                        <li><a href="../classes/kafe.number.html">kafe.number</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
-                    
-                        <li><a href="../classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-                    
-                        <li><a href="../classes/kafe.storage.html">kafe.storage</a></li>
-                    
-                        <li><a href="../classes/kafe.string.html">kafe.string</a></li>
-                    
-                        <li><a href="../classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-                    
-                        <li><a href="../classes/kafe.string.validate.html">kafe.string.validate</a></li>
-                    
-                        <li><a href="../classes/kafe.style.html">kafe.style</a></li>
-                    
-                        <li><a href="../classes/kafe.url.html">kafe.url</a></li>
-                    
-                </ul>
-            </div>
-
-            <div class="tab-pane" id="modules">
-                <ul id="api-modules" class="nav nav-list">
-                    
-                        <li><a href="../modules/kafe.html">kafe</a></li>
-                    
-                        <li><a href="../modules/kafe.cms.html">kafe.cms</a></li>
-                    
-                        <li><a href="../modules/kafe.ext.html">kafe.ext</a></li>
-                    
-                        <li><a href="../modules/kafe.plugin.html">kafe.plugin</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-    <h1>kafe.date <small>Class</small></h1>
-</div>
-
-<div class="well well-small">
+	<div id="Content">
+		<nav>
+			<ul>
     
-
+        <li><a href="/classes/kafe.html">kafe</a></li>
     
-
+        <li><a href="/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
     
-        <div class="foundat">
-            Defined in: <a href="../files/builds_kafe_date.js.html#l55"><code>builds&#x2F;kafe&#x2F;date.js:55</code></a>
-        </div>
+        <li><a href="/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
     
-
+        <li><a href="/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
     
-        
-            Module: <a href="../modules/kafe.html">kafe</a>
-        
+        <li><a href="/classes/kafe.date.html">kafe.date</a></li>
     
-
+        <li><a href="/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
     
-</div>
+        <li><a href="/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
 
+		</nav>
 
-
-<div class="well well-small">
-    <h3 id="version-1-2">Version 1.2</h3>
+		<section>
+			<header class="class">
+	<h1>kafe.date</h1>
+	<h2>class</h2>
+	<h3 id="version-1-2">Version 1.2</h3>
 <p>Additionnal methods for date manipulation</p>
 
-</div>
-
-
-
-<div>
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
-
-        
-            <li><a data-toggle="tab" href="#methods">Methods</a></li>
-        
-        
-            <li><a data-toggle="tab" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="tab-content">
-        <div id="index" class="tab-pane active">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_format" data-tablink="format">format</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_formatRelative" data-tablink="formatRelative">formatRelative</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getDayNames" data-tablink="getDayNames">getDayNames</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getDayYear" data-tablink="getDayYear">getDayYear</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getMaxMonth" data-tablink="getMaxMonth">getMaxMonth</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getMonth1Names" data-tablink="getMonth1Names">getMonth1Names</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getMonth2Names" data-tablink="getMonth2Names">getMonth2Names</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getMonth3Names" data-tablink="getMonth3Names">getMonth3Names</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getMonthNames" data-tablink="getMonthNames">getMonthNames</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getWeekday1Names" data-tablink="getWeekday1Names">getWeekday1Names</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getWeekday2Names" data-tablink="getWeekday2Names">getWeekday2Names</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getWeekday3Names" data-tablink="getWeekday3Names">getWeekday3Names</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_getWeekdayNames" data-tablink="getWeekdayNames">getWeekdayNames</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_isLeapYear" data-tablink="isLeapYear">isLeapYear</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_isWeekend" data-tablink="isWeekend">isWeekend</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_makeMonthCalendar" data-tablink="makeMonthCalendar">makeMonthCalendar</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_parse" data-tablink="parse">parse</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_refreshSelectDays" data-tablink="refreshSelectDays">refreshSelectDays</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_DAY" data-tablink="DAY">DAY</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_HOUR" data-tablink="HOUR">HOUR</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_MINUTE" data-tablink="MINUTE">MINUTE</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_MONTH" data-tablink="MONTH">MONTH</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_SECOND" data-tablink="SECOND">SECOND</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_WEEK" data-tablink="WEEK">WEEK</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_YEAR" data-tablink="YEAR">YEAR</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="tab-pane">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_format" class="method item">
-    <h3 class="name"><code>format</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>format</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[date=NOW]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l380"><code>builds&#x2F;kafe&#x2F;date.js:380</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Flexible formatting a given date object.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">format</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.</p>
-
-                    </div>
-
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%Y,%y</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Year variants: [2011, 11]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%M,%m,%A,%a,%B,%b,%C,%c</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Month variants: [01, 1, January, january, Jan, jan, JA, Ja]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%D,%d,%e</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Day variants: [02, 2, 2nd]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%W,%w,%X,%x,%Z,%z</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Weekday variants: [Sunday, sunday, Sun, sun, Su, su]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%H,%h,%K,%k,%p</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Hour variants [15, 15, 03, 3, pm]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%I,%i</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Minute variants [04, 4]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">%S,%s</code>
-                                    <span class="type">Token</span>
-                                
-
-                                <div class="param-description">
-                                    <p>Second variants [05, 5]</p>
-
-                                </div>
-
-                                
-                            </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[date=NOW]</code>
-                        <span class="type">Date</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>A date to be formatted.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>A two character language code.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>The formatted date.</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %A %e, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;en&#39;);
+	<footer>Source: <a href="../files/builds_kafe_date.js.html#l55">builds/kafe/date.js</a></footer>
+</header>
+
+
+<section>
+	<h1>Properties</h1>
+	
+		<section>
+	<h1>DAY</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l88">@88</a></footer>
+	<p>Number of milliseconds in a day (24 hours per day)</p>
+
+</section>
+
+	
+		<section>
+	<h1>HOUR</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l80">@80</a></footer>
+	<p>Number of milliseconds in an hour (60 minutes per hour)</p>
+
+</section>
+
+	
+		<section>
+	<h1>MINUTE</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l72">@72</a></footer>
+	<p>Number of milliseconds in a minute (60 seconds per minute)</p>
+
+</section>
+
+	
+		<section>
+	<h1>MONTH</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l104">@104</a></footer>
+	<p>Number of milliseconds in a month (4.348121428571429 weeks per month)</p>
+
+</section>
+
+	
+		<section>
+	<h1>SECOND</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l64">@64</a></footer>
+	<p>Number of milliseconds in a second (1000 ms per second)</p>
+
+</section>
+
+	
+		<section>
+	<h1>WEEK</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l96">@96</a></footer>
+	<p>Number of milliseconds in a week (7 days per week)</p>
+
+</section>
+
+	
+		<section>
+	<h1>YEAR</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/builds_kafe_date.js.html#l112">@112</a></footer>
+	<p>Number of milliseconds in a year (365.2422 days per year)</p>
+
+</section>
+
+	
+</section>
+
+
+
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>format</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l380">@380</a></footer>
+
+	<p>Flexible formatting a given date object.</p>
+
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>format</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[date=NOW]</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
+
+
+
+
+
+
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">format</code>
+						<span class="type">String</span>
+					
+
+					
+
+					<div class="param-description">
+						<p>A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.</p>
+
+					</div>
+
+					
+						<ul class="params-list">
+							
+							<li class="param">
+								
+									<code class="param-name">%Y,%y</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Year variants: [2011, 11]</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">%M,%m,%A,%a,%B,%b,%C,%c</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Month variants: [01, 1, January, january, Jan, jan, JA, Ja]</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">%D,%d,%e</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Day variants: [02, 2, 2nd]</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">%W,%w,%X,%x,%Z,%z</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Weekday variants: [Sunday, sunday, Sun, sun, Su, su]</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">%H,%h,%K,%k,%p</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Hour variants [15, 15, 03, 3, pm]</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">%I,%i</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Minute variants [04, 4]</p>
+
+								</div>
+
+								
+							</li>
+							
+							<li class="param">
+								
+									<code class="param-name">%S,%s</code>
+									<span class="type">Token</span>
+								
+
+								<div class="param-description">
+									<p>Second variants [05, 5]</p>
+
+								</div>
+
+								
+							</li>
+							
+						</ul>
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[date=NOW]</code>
+						<span class="type">Date</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					<div class="param-description">
+						<p>A date to be formatted.</p>
+
+					</div>
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					<div class="param-description">
+						<p>A two character language code.</p>
+
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>The formatted date.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %A %e, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;en&#39;);
 // returns &quot;Tuesday, July 16th, 2013&quot;</code></pre>
 <pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;fr&#39;);
 // returns &quot;Mardi, 16 juillet, 2013&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_formatRelative" class="method item">
-    <h3 class="name"><code>formatRelative</code></h3>
+	
+		<section>
+	<h1>formatRelative</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l461">@461</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>time</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[now=NOW]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l461"><code>builds&#x2F;kafe&#x2F;date.js:461</code></a>
-        
-        </p>
+	<p>Get a relative time expression from a specific datetime.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>time</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[now=NOW]</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get a relative time expression from a specific datetime.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">time</code>
-                        <span class="type">Date</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Specific datetime object.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[now=NOW]</code>
-                        <span class="type">Date</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">time</code>
+						<span class="type">Date</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>Comparative datetime object to calculate the time difference.</p>
+					<div class="param-description">
+						<p>Specific datetime object.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[now=NOW]</code>
+						<span class="type">Date</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
+					<div class="param-description">
+						<p>Comparative datetime object to calculate the time difference.</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>The relative time expression</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-07-19 6:00:00&#39;), new Date(&#39;2013-07-19 20:00:00&#39;), &#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>The relative time expression</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-07-19 6:00:00&#39;), new Date(&#39;2013-07-19 20:00:00&#39;), &#39;en&#39;);
 // returns &quot;14 hours ago&quot;</code></pre>
 <pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-19&#39;), &#39;en&#39;);
 // returns &quot;2 months ago&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getDayNames" class="method item">
-    <h3 class="name"><code>getDayNames</code></h3>
+	
+		<section>
+	<h1>getDayNames</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l355">@355</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l355"><code>builds&#x2F;kafe&#x2F;date.js:355</code></a>
-        
-        </p>
+	<p>Get a clean representation for all possible days of a month.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get a clean representation for all possible days of a month.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of clean representations for all possible days of a month.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of clean representations for all possible days of a month.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;);
 // returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;)[3];
 // returns &quot;4th&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getDayYear" class="method item">
-    <h3 class="name"><code>getDayYear</code></h3>
+	
+		<section>
+	<h1>getDayYear</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l122">@122</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Number</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l122"><code>builds&#x2F;kafe&#x2F;date.js:122</code></a>
-        
-        </p>
+	<p>Get the day number out of the full year (365 days).</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>d</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Number</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the day number out of the full year (365 days).</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type">Date</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>The date</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">d</code>
+						<span class="type">Date</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Number</span>:
-                    
-                    <p>The day of the year</p>
+					<div class="param-description">
+						<p>The date</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getDayYear(new Date(&#39;2013-07-17&#39;));
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Number</span>:
+					
+					<p>The day of the year</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getDayYear(new Date(&#39;2013-07-17&#39;));
 // returns 198</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getMaxMonth" class="method item">
-    <h3 class="name"><code>getMaxMonth</code></h3>
+	
+		<section>
+	<h1>getMaxMonth</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l165">@165</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>year</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(Number)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l165"><code>builds&#x2F;kafe&#x2F;date.js:165</code></a>
-        
-        </p>
+	<p>Get the number of days for all the months of a given year.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>year</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(Number)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the number of days for all the months of a given year.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">year</code>
-                        <span class="type">Number</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>The year.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">year</code>
+						<span class="type">Number</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(Number)</span>:
-                    
-                    <p>An ordered array of day counts for each months of the given year.</p>
+					<div class="param-description">
+						<p>The year.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(Number)</span>:
+					
+					<p>An ordered array of day counts for each months of the given year.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013);
 // returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013)[3];
 // returns 30</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getMonth1Names" class="method item">
-    <h3 class="name"><code>getMonth1Names</code></h3>
+	
+		<section>
+	<h1>getMonth1Names</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l201">@201</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l201"><code>builds&#x2F;kafe&#x2F;date.js:201</code></a>
-        
-        </p>
+	<p>Get the 1-char abbreviations of the months of the year.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the 1-char abbreviations of the months of the year.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of 1-char month abbreviations.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of 1-char month abbreviations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;);
 // returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;)[3];
 // returns &quot;A&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getMonth2Names" class="method item">
-    <h3 class="name"><code>getMonth2Names</code></h3>
+	
+		<section>
+	<h1>getMonth2Names</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l219">@219</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l219"><code>builds&#x2F;kafe&#x2F;date.js:219</code></a>
-        
-        </p>
+	<p>Get the 2-char abbreviations of the months of the year.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the 2-char abbreviations of the months of the year.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of 2-char month abbreviations.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of 2-char month abbreviations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;);
 // returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;)[3];
 // returns &quot;Al&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getMonth3Names" class="method item">
-    <h3 class="name"><code>getMonth3Names</code></h3>
+	
+		<section>
+	<h1>getMonth3Names</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l238">@238</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l238"><code>builds&#x2F;kafe&#x2F;date.js:238</code></a>
-        
-        </p>
+	<p>Get the 3-char abbreviations of the months of the year.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the 3-char abbreviations of the months of the year.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of 3-char month abbreviations.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of 3-char month abbreviations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;);
 // returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;)[3];
 // returns &quot;Apr&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getMonthNames" class="method item">
-    <h3 class="name"><code>getMonthNames</code></h3>
+	
+		<section>
+	<h1>getMonthNames</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l183">@183</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l183"><code>builds&#x2F;kafe&#x2F;date.js:183</code></a>
-        
-        </p>
+	<p>Get the full name of the months of the year.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the full name of the months of the year.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of month names.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of month names.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;);
 // returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;)[3];
 // returns &quot;April&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getWeekday1Names" class="method item">
-    <h3 class="name"><code>getWeekday1Names</code></h3>
+	
+		<section>
+	<h1>getWeekday1Names</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l297">@297</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l297"><code>builds&#x2F;kafe&#x2F;date.js:297</code></a>
-        
-        </p>
+	<p>Get the 1-char abbreviations of the days of the week.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the 1-char abbreviations of the days of the week.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of 1-char weekday abbreviations.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of 1-char weekday abbreviations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;);
 // returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;)[3];
 // returns &quot;W&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getWeekday2Names" class="method item">
-    <h3 class="name"><code>getWeekday2Names</code></h3>
+	
+		<section>
+	<h1>getWeekday2Names</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l315">@315</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l315"><code>builds&#x2F;kafe&#x2F;date.js:315</code></a>
-        
-        </p>
+	<p>Get the 2-char abbreviations of the days of the week.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the 2-char abbreviations of the days of the week.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of 2-char weekday abbreviations.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of 2-char weekday abbreviations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;);
 // returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;)[3];
 // returns &quot;We&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getWeekday3Names" class="method item">
-    <h3 class="name"><code>getWeekday3Names</code></h3>
+	
+		<section>
+	<h1>getWeekday3Names</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l333">@333</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l333"><code>builds&#x2F;kafe&#x2F;date.js:333</code></a>
-        
-        </p>
+	<p>Get the 3-char abbreviations of the days of the week.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the 3-char abbreviations of the days of the week.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of 3-char weekday abbreviations.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of 3-char weekday abbreviations.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;);
 // returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;)[3];
 // returns &quot;Wed&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_getWeekdayNames" class="method item">
-    <h3 class="name"><code>getWeekdayNames</code></h3>
+	
+		<section>
+	<h1>getWeekdayNames</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l279">@279</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[lang=CURRENT_ENV_LANG]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Array(String)</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l279"><code>builds&#x2F;kafe&#x2F;date.js:279</code></a>
-        
-        </p>
+	<p>Get the full name of the days of the week.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">[lang=CURRENT_ENV_LANG]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Array(String)</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Get the full name of the days of the week.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-                        <span class="type">String</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>A two character language code.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Array(String)</span>:
-                    
-                    <p>An ordered array of weekday names.</p>
+					<div class="param-description">
+						<p>A two character language code.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Array(String)</span>:
+					
+					<p>An ordered array of weekday names.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;);
 // returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]</code></pre>
 <pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;)[3];
 // returns &quot;Wednesday&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_isLeapYear" class="method item">
-    <h3 class="name"><code>isLeapYear</code></h3>
+	
+		<section>
+	<h1>isLeapYear</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l147">@147</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>year</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Boolean</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l147"><code>builds&#x2F;kafe&#x2F;date.js:147</code></a>
-        
-        </p>
+	<p>Returns whether the date is within a leap year or not.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>year</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Boolean</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns whether the date is within a leap year or not.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">year</code>
-                        <span class="type">Number</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>The year.</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">year</code>
+						<span class="type">Number</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolean</span>:
-                    
-                    <p>If it is a leap year or not.</p>
+					<div class="param-description">
+						<p>The year.</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.isLeapYear(2013);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Boolean</span>:
+					
+					<p>If it is a leap year or not.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.isLeapYear(2013);
 // returns false</code></pre>
 <pre class="code prettyprint"><code>kafe.date.isLeapYear(2004);
 // returns true</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_isWeekend" class="method item">
-    <h3 class="name"><code>isWeekend</code></h3>
+	
+		<section>
+	<h1>isWeekend</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l260">@260</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Boolen</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l260"><code>builds&#x2F;kafe&#x2F;date.js:260</code></a>
-        
-        </p>
+	<p>Returns whether the date is within a weekend.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>d</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Boolen</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Returns whether the date is within a weekend.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type">Date</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>The date</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">d</code>
+						<span class="type">Date</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Boolen</span>:
-                    
-                    <p>If it is within a weekend or not.</p>
+					<div class="param-description">
+						<p>The date</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.isWeekend(new Date(&#39;2013-07-17&#39;));
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Boolen</span>:
+					
+					<p>If it is within a weekend or not.</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.isWeekend(new Date(&#39;2013-07-17&#39;));
 // returns false</code></pre>
 <pre class="code prettyprint"><code>kafe.date.isWeekend(new Date(&#39;2013-07-20&#39;));
 // returns true</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_makeMonthCalendar" class="method item">
-    <h3 class="name"><code>makeMonthCalendar</code></h3>
+	
+		<section>
+	<h1>makeMonthCalendar</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l644">@644</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>year</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>month</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[links]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l644"><code>builds&#x2F;kafe&#x2F;date.js:644</code></a>
-        
-        </p>
+	<p>Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>year</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>month</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">[links]</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">String</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">year</code>
-                        <span class="type">Number</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>The year</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">month</code>
-                        <span class="type">Number</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">year</code>
+						<span class="type">Number</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>The month</p>
+					<div class="param-description">
+						<p>The year</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[links]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">month</code>
+						<span class="type">Number</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>The links by date</p>
+					<div class="param-description">
+						<p>The month</p>
 
-                    </div>
+					</div>
 
-                    
-                        <ul class="params-list">
-                            
-                            <li class="param">
-                                
-                                    <code class="param-name">YYYY-MM-DD</code>
-                                    <span class="type">Array</span>
-                                
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[links]</code>
+						<span class="type">Object</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
 
-                                <div class="param-description">
-                                    <p>The links</p>
+					
 
-                                </div>
+					<div class="param-description">
+						<p>The links by date</p>
 
-                                
-                            </li>
-                            
-                        </ul>
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					</div>
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
+						<ul class="params-list">
+							
+							<li class="param">
+								
+									<code class="param-name">YYYY-MM-DD</code>
+									<span class="type">Array</span>
+								
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">String</span>:
-                    
-                    <p>The rendered HTML</p>
+								<div class="param-description">
+									<p>The links</p>
 
-                
-            </div>
-        </div>
-    
+								</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+								
+							</li>
+							
+						</ul>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.makeMonthCalendar(2013, 4, {&#39;2013-04-03&#39;:&#39;http://mybirthday.com/&#39;});
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">String</span>:
+					
+					<p>The rendered HTML</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.makeMonthCalendar(2013, 4, {&#39;2013-04-03&#39;:&#39;http://mybirthday.com/&#39;});
 // returns &quot;&lt;table data-month=&quot;2013-04&quot;&gt;&lt;caption&gt;Avril 2013&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dim&lt;/th&gt;&lt;th&gt;Lun&lt;/th&gt;&lt;th&gt;Mar&lt;/th&gt;&lt;th&gt;Mer&lt;/th&gt;&lt;th&gt;Jeu&lt;/th&gt;&lt;th&gt;Ven&lt;/th&gt;&lt;th&gt;Sam&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td data-date=&quot;2013-04-01&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-02&quot;&gt;&lt;span&gt;2&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-03&quot;&gt;&lt;a href=&quot;http://mybirthday.com/&quot;&gt;3&lt;/a&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-04&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-05&quot;&gt;&lt;span&gt;5&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-06&quot;&gt;&lt;span&gt;6&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-07&quot;&gt;&lt;span&gt;7&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-08&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-09&quot;&gt;&lt;span&gt;9&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-10&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-11&quot;&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-12&quot;&gt;&lt;span&gt;12&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-13&quot;&gt;&lt;span&gt;13&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-14&quot;&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-15&quot;&gt;&lt;span&gt;15&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-16&quot;&gt;&lt;span&gt;16&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-17&quot;&gt;&lt;span&gt;17&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-18&quot;&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-19&quot;&gt;&lt;span&gt;19&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-20&quot;&gt;&lt;span&gt;20&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-21&quot;&gt;&lt;span&gt;21&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-22&quot;&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-23&quot;&gt;&lt;span&gt;23&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-24&quot;&gt;&lt;span&gt;24&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-25&quot;&gt;&lt;span&gt;25&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-26&quot;&gt;&lt;span&gt;26&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-27&quot;&gt;&lt;span&gt;27&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-28&quot;&gt;&lt;span&gt;28&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-29&quot;&gt;&lt;span&gt;29&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-30&quot;&gt;&lt;span&gt;30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot;</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
+	
+		<section>
+	<h1>parse</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l514">@514</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>dtstring</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Date</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l514"><code>builds&#x2F;kafe&#x2F;date.js:514</code></a>
-        
-        </p>
+	<p>Parses a given datetime string into a standard datetime object.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>dtstring</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
+		<span class="returns-inline">
+			<span class="type">Date</span>
+		</span>
+	
 
-    <div class="description">
-        <p>Parses a given datetime string into a standard datetime object.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">dtstring</code>
-                        <span class="type">String</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>Custom datetime string</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">dtstring</code>
+						<span class="type">String</span>
+					
 
-    
-        <div class="returns">
-            <h4>Returns:</h4>
+					
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Date</span>:
-                    
-                    <p>The date object</p>
+					<div class="param-description">
+						<p>Custom datetime string</p>
 
-                
-            </div>
-        </div>
-    
+					</div>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					
+				</li>
+			
+			</ul>
+		</div>
+	
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>kafe.date.parse(&#39;2012-08-08T12:18:00.000-04:00&#39;);
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Date</span>:
+					
+					<p>The date object</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>kafe.date.parse(&#39;2012-08-08T12:18:00.000-04:00&#39;);
 // returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)</code></pre>
 <pre class="code prettyprint"><code>kafe.date.parse(&#39;June 3, 2013&#39;);
 // returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-                    <div id="method_refreshSelectDays" class="method item">
-    <h3 class="name"><code>refreshSelectDays</code></h3>
+	
+		<section>
+	<h1>refreshSelectDays</h1>
+	<footer><a href="../files/builds_kafe_date.js.html#l599">@599</a></footer>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>obj</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>month</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>year</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l599"><code>builds&#x2F;kafe&#x2F;date.js:599</code></a>
-        
-        </p>
+	<p>Refreshes a dropdown containing the days of a given year/month combination.</p>
 
 
-        
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>obj</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>month</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>year</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
 
-        
-    </div>
+	
 
-    <div class="description">
-        <p>Refreshes a dropdown containing the days of a given year/month combination.</p>
 
-    </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">obj</code>
-                        <span class="type">DOMElement</span>
-                    
 
-                    
 
-                    <div class="param-description">
-                        <p>The &lt;select&gt; element</p>
 
-                    </div>
+	
+		<div class="params">
+			<h4>Parameters:</h4>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">month</code>
-                        <span class="type">Number</span>
-                    
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">obj</code>
+						<span class="type">DOMElement</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>The month</p>
+					<div class="param-description">
+						<p>The &lt;select&gt; element</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">year</code>
-                        <span class="type">Number</span>
-                    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">month</code>
+						<span class="type">Number</span>
+					
 
-                    
+					
 
-                    <div class="param-description">
-                        <p>The year</p>
+					<div class="param-description">
+						<p>The month</p>
 
-                    </div>
+					</div>
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">year</code>
+						<span class="type">Number</span>
+					
 
-    
+					
 
-    
-        <div class="example">
-            <h4>Example:</h4>
+					<div class="param-description">
+						<p>The year</p>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>$(&#39;.select-month&#39;).on(&#39;change&#39;, function(e) {
+					</div>
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+		<div class="example">
+			<h4>Example:</h4>
+
+			<div class="example-content">
+				<pre class="code prettyprint"><code>$(&#39;.select-month&#39;).on(&#39;change&#39;, function(e) {
     kafe.date.refreshSelectDays(&#39;.select-day&#39;, $(this).val(), $(&#39;.select-year&#39;).val());
 })</code></pre>
 
-            </div>
-        </div>
-    
-</div>
+			</div>
+		</div>
+	
+</section>
 
-                
-            </div>
-        
+	
+</section>
 
-        
-            <div id="properties" class="tab-pane">
-                <h2 class="off-left">Properties</h2>
+		</section>
+	</div>
 
-                
-                    <div id="property_DAY" class="property item">
-    <h3 class="name"><code>DAY</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l88"><code>builds&#x2F;kafe&#x2F;date.js:88</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in a day (24 hours per day)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_HOUR" class="property item">
-    <h3 class="name"><code>HOUR</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l80"><code>builds&#x2F;kafe&#x2F;date.js:80</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in an hour (60 minutes per hour)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_MINUTE" class="property item">
-    <h3 class="name"><code>MINUTE</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l72"><code>builds&#x2F;kafe&#x2F;date.js:72</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in a minute (60 seconds per minute)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_MONTH" class="property item">
-    <h3 class="name"><code>MONTH</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l104"><code>builds&#x2F;kafe&#x2F;date.js:104</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in a month (4.348121428571429 weeks per month)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_SECOND" class="property item">
-    <h3 class="name"><code>SECOND</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l64"><code>builds&#x2F;kafe&#x2F;date.js:64</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in a second (1000 ms per second)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_WEEK" class="property item">
-    <h3 class="name"><code>WEEK</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l96"><code>builds&#x2F;kafe&#x2F;date.js:96</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in a week (7 days per week)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_YEAR" class="property item">
-    <h3 class="name"><code>YEAR</code></h3>
-    <span class="type">Number</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/builds_kafe_date.js.html#l112"><code>builds&#x2F;kafe&#x2F;date.js:112</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of milliseconds in a year (365.2422 days per year)</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
 </body>
 </html>
