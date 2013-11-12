@@ -4,133 +4,108 @@
 
 	{{{methodDescription}}}
 
-	{{#if params}}
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>{{name}}</strong>
+		{{#if params}}
+			<ul>
 			{{#params}}
-				<li class="arg">
+
+				{{#if optional}}
+					<li class="Optional"><code>{{name}}{{#if optdefault}} = {{optdefault}}{{/if}}</code></li>
+				{{else}}
+					<li><code class="Simple">{{name}}</code></li>
+				{{/if}}
+				
+			{{/params}}
+			</ul>
+		{{else}}
+			(&nbsp;&nbsp;)
+		{{/if}}
+
+		{{#if return}}
+			<span>{{returnType}}</span>
+		{{/if}}
+	</header>
+
+
+
+
+
+
+
+	{{#if params}}
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			{{#params}}
+				<li>
 					{{#if optional}}
-						<code class="optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
+						<code>[{{name}}{{#if optdefault}} = {{optdefault}}{{/if}}]</code>
+						<strong>{{type}}</strong>
+						<span>Optional</span>
 					{{else}}
 						<code>{{name}}</code>
+						<strong>{{type}}</strong>
 					{{/if}}
-				</li>
-			{{/params}}
-			</ul><span class="paren">)</span>
-		</div>
-	{{else}}
-		<span class="paren">()</span>
-	{{/if}}
+					{{{description}}}
 
-	{{#if return}}
-		<span class="returns-inline">
-			<span class="type">{{#crossLink returnType}}{{/crossLink}}</span>
-		</span>
-	{{/if}}
-
-
-
-
-
-
-
-	{{#if params}}
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			{{#params}}
-				<li class="param">
-					{{#if optional}}
-						<code class="param-name optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
-						<span class="type">{{#crossLink type}}{{/crossLink}}</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					{{else}}
-						<code class="param-name">{{name}}</code>
-						<span class="type">{{#crossLink type}}{{/crossLink}}</span>
-					{{/if}}
-
-					{{#if multiple}}
-						<span class="flag multiple" title="This argument may occur one or more times.">multiple</span>
-					{{/if}}
-
-					<div class="param-description">
-						{{{description}}}
-					</div>
 
 					{{#if props}}
-						<ul class="params-list">
-							{{#props}}
-							<li class="param">
+						<ul>
+						{{#props}}
+							<li>
 								{{#if optional}}
-									<code class="param-name optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
-									<span class="type">{{#crossLink type}}{{/crossLink}}</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[{{name}}{{#if optdefault}} = {{optdefault}}{{/if}}]</code>
+									<strong>{{type}}</strong>
+									<span>Optional</span>
 								{{else}}
-									<code class="param-name">{{name}}</code>
-									<span class="type">{{#crossLink type}}{{/crossLink}}</span>
+									<code>{{name}}</code>
+									<strong>{{type}}</strong>
 								{{/if}}
-
-								<div class="param-description">
-									{{{description}}}
-								</div>
+								{{{description}}}
 
 								{{#if props}}
-									<ul class="params-list">
-										{{#props}}
-										<li class="param">
+									<ul>
+									{{#props}}
+										<li>
 											{{#if optional}}
-												<code class="param-name optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
-												<span class="type">{{#crossLink type}}{{/crossLink}}</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[{{name}}{{#if optdefault}} = {{optdefault}}{{/if}}]</code>
+												<strong>{{type}}</strong>
+												<span>Optional</span>
 											{{else}}
-												<code class="param-name">{{name}}</code>
-												<span class="type">{{#crossLink type}}{{/crossLink}}</span>
+												<code>{{name}}</code>
+												<strong>{{type}}</strong>
 											{{/if}}
-
-											<div class="param-description">
-												{{{description}}}
-											</div>
+											<p>{{{description}}}</p>
 										</li>
-										{{/props}}
+									{{/props}}
 									</ul>
 								{{/if}}
+
 							</li>
-							{{/props}}
+						{{/props}}
 						</ul>
 					{{/if}}
+
 				</li>
 			{{/params}}
 			</ul>
-		</div>
+		</section>
 	{{/if}}
 
 	{{#return}}
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				{{#if description}}
-					{{#if type}}
-						<span class="type">{{#crossLink type}}{{/crossLink}}</span>:
-					{{/if}}
-					{{{description}}}
-				{{else}}
-					{{#if type}}
-						<span class="type">{{#crossLink type}}{{/crossLink}}</span>:
-					{{/if}}
-				{{/if}}
-			</div>
-		</div>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>{{type}}</strong>
+			{{{description}}}
+		</section>
 	{{/return}}
 
 	{{#example}}
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				{{{.}}}
-			</div>
-		</div>
+		<section>
+			<h1>Example:</h1>
+			{{{.}}}
+		</section>
 	{{/example}}
 </section>

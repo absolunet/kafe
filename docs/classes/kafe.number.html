@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.number</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-0">Version 1.0</h3>
 <p>Additionnal manipulation methods for numbers.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_number.js.html#l5">builds/kafe/number.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_number.js.html#l5">builds/kafe/number.js</a> | Tests: <a href="/tests/?module=kafe.number">QUnit</a></footer>
 </header>
 
 
@@ -127,85 +127,71 @@
 	<p>Gets the float precision of a given number.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPrecision</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">number</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Number</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>number</code>
+						<strong>Number</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
+					 
 
-	
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
-	
-
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">number</code>
-						<span class="type">Number</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Number</strong>
+			<p>Amount of numbers after the radix point.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Number</span>:
-					
-					<p>Amount of numbers after the radix point.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.number.getPrecision(5.458);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.number.getPrecision(5.458);
 // returns 3</code></pre>
 <pre class="code prettyprint"><code>kafe.number.getPrecision(11);
 // returns 0</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -217,107 +203,90 @@
 	<p>Multiply two numbers while avoiding the javascript multiplication irregularities.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>product</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">number</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">factor</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Number</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>number</code>
+						<strong>Number</strong>
 					
+					 
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>factor</code>
+						<strong>Number</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
-	
+					<p>The factor causing the javascript calculation irregularity.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">number</code>
-						<span class="type">Number</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">factor</code>
-						<span class="type">Number</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The factor causing the javascript calculation irregularity.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Number</strong>
+			<p>Product of the equation.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Number</span>:
-					
-					<p>Product of the equation.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>3 * 5.3
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>3 * 5.3
 // returns 15.8999999</code></pre>
 <pre class="code prettyprint"><code>kafe.number.product(3, 5.3);
 // returns 15.9</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -329,83 +298,69 @@
 	<p>Converts a number to its roman numeral value.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>toRoman</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">number</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>number</code>
+						<strong>Number</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
+					 
 
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
-
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">number</code>
-						<span class="type">Number</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The roman numeral value.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The roman numeral value.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.number.toRoman(1954);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.number.toRoman(1954);
 // returns &quot;MCMLIV&quot;</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -417,109 +372,92 @@
 	<p>Modifies, if needed, a number to only allow a miximum float precision.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>trimPrecision</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">number</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">precision</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Number</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>number</code>
+						<strong>Number</strong>
 					
+					 
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>precision</code>
+						<strong>Number</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Number</span>
-		</span>
-	
+					<p>Maximum amount of numbers after the radix point.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">number</code>
-						<span class="type">Number</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">precision</code>
-						<span class="type">Number</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Maximum amount of numbers after the radix point.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Number</strong>
+			<p>The modified number</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Number</span>:
-					
-					<p>The modified number</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 2);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 2);
 // returns 5.45</code></pre>
 <pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 0);
 // returns 5</code></pre>
 <pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 6);
 // returns 5.458</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

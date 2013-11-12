@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.youtube</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-1">Version 1.1</h3>
 <p>Extra methods for Youtube.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_youtube.js.html#l65">builds/kafe/ext/youtube.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_youtube.js.html#l65">builds/kafe/ext/youtube.js</a> | Tests: <a href="/tests/?module=kafe.ext.youtube">QUnit</a></footer>
 </header>
 
 
@@ -127,25 +127,24 @@
 	<p>Get the default params with optional extra params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[options]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+		
+			<span>Object</span>
+		
+	</header>
 
 
 
@@ -154,46 +153,36 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>The default Youtube params.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>The default Youtube params.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -207,74 +196,69 @@
 	<p>Builds a youtube search url then returns the results as the first argument of the specified callback.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPlaylistVideos</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">playlistId</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>playlistId</code>
+						<strong>String</strong>
 					
+					<p>Playlist id</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">playlistId</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Playlist id</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -290,75 +274,70 @@
 	<p>Builds a youtube search url then returns the results as the first argument of the specified callback.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>search</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -374,146 +353,132 @@
 	<p>Set default Youtube params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>setParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[maxResults=10]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxResults = 10]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Number of results</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Number of results</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[startIndex=1]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[startIndex = 1]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
 								
+								<p>Start index (page)</p>
 
-								<div class="param-description">
-									<p>Start index (page)</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[orderBy=&#x27;relevance&#x27;]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[orderBy = &#x27;relevance&#x27;]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Order by choice</p>
 
-								<div class="param-description">
-									<p>Order by choice</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[q]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[q]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Query string of search</p>
 
-								<div class="param-description">
-									<p>Query string of search</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[author]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[author]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Author of videos</p>
 
-								<div class="param-description">
-									<p>Author of videos</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[category]</code>
-									<span class="type">Array(String)</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[category]</code>
+									<strong>Array(String)</strong>
+									<span>Optional</span>
 								
+								<p>Categories</p>
 
-								<div class="param-description">
-									<p>Categories</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

@@ -247,15 +247,18 @@ module.exports = function(grunt) {
 		'sources/docs/css/libs/reset.css',
 		'sources/docs/css/libs/normalize.css',
 		'sources/docs/css/libs/html5boilerplate.css',
+		'sources/docs/css/shCore.css',
 		'sources/docs/core-less.css'
 	], dest: 'docs/assets/core.css'
 	}]};
 
 	config.requirejs.docs = { options: {
-		name:                'sources/docs/js/core',
+		baseUrl:             'sources/docs/js/',
+		name:                'core',
 		out:                 'docs/assets/core.js',
 		optimize:            'uglify',
-		skipModuleInsertion: true
+		skipModuleInsertion: true,
+		pragmasOnSave:       { excludeRequire: true }
 	}};
 
 

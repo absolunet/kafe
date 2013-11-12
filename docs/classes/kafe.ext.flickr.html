@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.flickr</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-1">Version 1.1</h3>
 <p>Extra methods for the Flickr API.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_flickr.js.html#l239">builds/kafe/ext/flickr.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_flickr.js.html#l239">builds/kafe/ext/flickr.js</a> | Tests: <a href="/tests/?module=kafe.ext.flickr">QUnit</a></footer>
 </header>
 
 
@@ -177,75 +177,70 @@
 	<p>Search photos (direct call to API method flickr.photos.search)</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>api.photos_search</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -261,75 +256,70 @@
 	<p>Get the photosets (direct call to API method flickr.photosets.getList)</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>api.photosets_getList</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -345,75 +335,70 @@
 	<p>Get the list of photos in a set (direct call to API method flickr.photosets.getPhotos)</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>api.photosets_getPhotos</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -429,129 +414,111 @@
 	<p>Get a optimized background styles for a photo</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getBgImageStyles</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">photo</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>photo</code>
+						<strong>Object</strong>
 					
+					<p>Photo object from Flickr API</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">photo</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Photo object from Flickr API</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[maxWidth]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxWidth]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Maximum width</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Maximum width</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[maxHeight]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxHeight]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
 								
+								<p>Maximum height</p>
 
-								<div class="param-description">
-									<p>Maximum height</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>CSS attributes to apply</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>CSS attributes to apply</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -565,182 +532,157 @@
 	<p>Get a optimized <img> tag for a photo</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getImgElement</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">photo</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>attributes</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>photo</code>
+						<strong>Object</strong>
 					
+					<p>Photo object from Flickr API</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-				<li class="arg">
-					
-						<code class="optional">[attributes]</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">photo</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Photo object from Flickr API</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[maxWidth]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxWidth]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Maximum width</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Maximum width</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[maxHeight]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxHeight]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
 								
+								<p>Maximum height</p>
 
-								<div class="param-description">
-									<p>Maximum height</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[centered=false]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[centered = false]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Center image</p>
 
-								<div class="param-description">
-									<p>Center image</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[link]</code>
-									<span class="type">Object</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[link]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
 								
+								<p>Link HTML attributes</p>
 
-								<div class="param-description">
-									<p>Link HTML attributes</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[attributes]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[attributes]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>HTML attributes to apply to &lt;img&gt; tag</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>HTML attributes to apply to &lt;img&gt; tag</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>HTML markup for image</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>HTML markup for image</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -754,159 +696,137 @@
 	<p>Get optimized size (optSize) for a photo.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getOptimizedSize</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">photo</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>photo</code>
+						<strong>Object</strong>
 					
+					<p>Photo object from Flickr API</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">photo</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Photo object from Flickr API</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[maxWidth]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxWidth]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Maximum width</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Maximum width</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[maxHeight]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[maxHeight]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
 								
+								<p>Maximum height</p>
 
-								<div class="param-description">
-									<p>Maximum height</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[doResize=false]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[doResize = false]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Resize to fit</p>
 
-								<div class="param-description">
-									<p>Resize to fit</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[asBgImg=false]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[asBgImg = false]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Is it to be used as a background style</p>
 
-								<div class="param-description">
-									<p>Is it to be used as a background style</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>A Flickr API photo object</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>A Flickr API photo object</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -920,95 +840,81 @@
 	<p>Get photos.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPhotos</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>A Flickr API photo collection</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>A Flickr API photo collection</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -1022,126 +928,108 @@
 	<p>Get a photoset cover.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPhotosetCover</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">photoset</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>photoset</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-				<li class="arg">
-					
-						<code>callback</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>Photoset</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">photoset</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Photoset</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name">id</code>
-									<span class="type">Object</span>
+									<code>id</code>
+									<strong>Object</strong>
+								
+								<p>Photoset id</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Photoset id</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name">primary</code>
-									<span class="type">Object</span>
+									<code>primary</code>
+									<strong>Object</strong>
 								
+								<p>Primary photo id</p>
 
-								<div class="param-description">
-									<p>Primary photo id</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
+						<code>callback</code>
+						<strong>Function</strong>
 					
+					<p>Callback</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>A Flickr API photo object</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>A Flickr API photo object</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -1155,95 +1043,81 @@
 	<p>Get photosets for specific user.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPhotosets</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>A Flickr API photo collection</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>A Flickr API photo collection</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -1257,95 +1131,81 @@
 	<p>Get photostream.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPhotostream</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>Callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>A Flickr API photo collection</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>A Flickr API photo collection</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -1359,160 +1219,144 @@
 	<p>Set default Flickr params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>setParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name">api_key</code>
-									<span class="type">String</span>
+									<code>api_key</code>
+									<strong>String</strong>
+								
+								<p>API key</p>
+
+
 								
 
-								<div class="param-description">
-									<p>API key</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[media=&#x27;photos&#x27;]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[media = &#x27;photos&#x27;]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Media type. Possible values are <code>all</code>, <code>photos</code>, <code>videos</code></p>
 
-								<div class="param-description">
-									<p>Media type. Possible values are <code>all</code>, <code>photos</code>, <code>videos</code></p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[privacy_filter=PRIVACY_PUBLIC]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[privacy_filter = PRIVACY_PUBLIC]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Privacy supported. Possible values are <code>flickr.PRIVACY_*</code></p>
 
-								<div class="param-description">
-									<p>Privacy supported. Possible values are <code>flickr.PRIVACY_*</code></p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[sort=&#x27;date-posted-desc&#x27;]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[sort = &#x27;date-posted-desc&#x27;]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Sort order. Possible values are <code>date-posted-asc</code>, <code>date-posted-desc</code>, <code>date-taken-asc</code>, <code>date-taken-desc</code>, <code>interestingness-desc</code>, <code>interestingness-asc</code>, <code>relevance</code></p>
 
-								<div class="param-description">
-									<p>Sort order. Possible values are <code>date-posted-asc</code>, <code>date-posted-desc</code>, <code>date-taken-asc</code>, <code>date-taken-desc</code>, <code>interestingness-desc</code>, <code>interestingness-asc</code>, <code>relevance</code></p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[page=1]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[page = 1]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Page number start</p>
 
-								<div class="param-description">
-									<p>Page number start</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[per_page=10]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[per_page = 10]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Number of element per page</p>
 
-								<div class="param-description">
-									<p>Number of element per page</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[extras=BASIC_FIELDS]</code>
-									<span class="type">Array(String)</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[extras = BASIC_FIELDS]</code>
+									<strong>Array(String)</strong>
+									<span>Optional</span>
 								
+								<p>Extra fields to fetch. More on the <a href="http://www.flickr.com/services/api/">Flickr API</a></p>
 
-								<div class="param-description">
-									<p>Extra fields to fetch. More on the <a href="http://www.flickr.com/services/api/">Flickr API</a></p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

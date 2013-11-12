@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-2-0-0a">Version 2.0.0a</h3>
 <p>kafe core</p>
 
-	<footer>Source: <a href="../files/builds_kafe_kafe.js.html#l91">builds/kafe/kafe.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_kafe.js.html#l91">builds/kafe/kafe.js</a> | Tests: <a href="/tests/?module=kafe">QUnit</a></footer>
 </header>
 
 
@@ -186,98 +186,90 @@
 	<p>Add module to core</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>bonify</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>The options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name">name</code>
-									<span class="type">String</span>
+									<code>name</code>
+									<strong>String</strong>
+								
+								<p>The module name</p>
+
+
 								
 
-								<div class="param-description">
-									<p>The module name</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name">version</code>
-									<span class="type">String</span>
+									<code>version</code>
+									<strong>String</strong>
 								
+								<p>The module version</p>
 
-								<div class="param-description">
-									<p>The module version</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name">obj</code>
-									<span class="type">Object</span>
+									<code>obj</code>
+									<strong>Object</strong>
 								
+								<p>The module itself</p>
 
-								<div class="param-description">
-									<p>The module itself</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -293,95 +285,81 @@
 	<p>Environment constants</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>env</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">name</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>value</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>name</code>
+						<strong>String</strong>
 					
+					<p>The constant to get/set</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[value]</code>
+						<code>[value]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
+					<p>The value to set</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">name</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The constant to get/set</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[value]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The value to set</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The value of the environment constant</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The value of the environment constant</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -395,83 +373,69 @@
 	<p>Throw kafe errors</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>error</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">error</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Error</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>error</code>
+						<strong>Error</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Error</span>
-		</span>
-	
+					<p>The error with description</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">error</code>
-						<span class="type">Error</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The error with description</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Error</strong>
+			<p>error The error</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Error</span>:
-					
-					<p>error The error</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.error(new Error(&#39;barf&#39;));</code></pre>
 
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.error(new Error(&#39;barf&#39;));</code></pre>
-
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -483,38 +447,32 @@
 	<p>Create a instantiable object<br>By John Resig (MIT Licensed)<br>ref: <a href="http://ejohn.org/blog/simple-class-instantiation/"><a href="http://ejohn.org/blog/simple-class-instantiation/">http://ejohn.org/blog/simple-class-instantiation/</a></a></p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>fn.createInstantiableObject</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
 
 	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
-
-
-
-
-
-
 
 	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>The instantiable object</p>
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>The instantiable object</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -528,52 +486,50 @@
 	<p>Delete the variable (patch for ie8)</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>fn.deleteVar</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">name</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>name</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Name of the variable to delete</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">name</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Name of the variable to delete</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -589,94 +545,80 @@
 	<p>Return the language if available or else &#39;en&#39;</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>fn.lang</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">dict</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">lang</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>dict</code>
+						<strong>Object</strong>
 					
+					<p>The dictionary to check against</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>lang</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
+					<p>The language to check</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">dict</code>
-						<span class="type">Object</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The dictionary to check against</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">lang</code>
-						<span class="type">String</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The language to check</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The available language</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The available language</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -690,74 +632,69 @@
 	<p>Add method as jQuery plugin</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>fn.plugIntojQuery</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">name</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">methods</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>name</code>
+						<strong>String</strong>
 					
+					<p>The jQuery plugin name</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>methods</code>
+						<strong>Object[Function]</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Action:Method hash</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">name</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The jQuery plugin name</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">methods</code>
-						<span class="type">ObjectFunction</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Action:Method hash</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

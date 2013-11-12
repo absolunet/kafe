@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.url</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-0">Version 1.0</h3>
 <p>Manipulation tools for route-based urls.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_url.js.html#l27">builds/kafe/url.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_url.js.html#l27">builds/kafe/url.js</a> | Tests: <a href="/tests/?module=kafe.url">QUnit</a></footer>
 </header>
 
 
@@ -127,25 +127,24 @@
 	<p>Parses a hashbang (#!) as a key/value list and creates a javascript object.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>parseAjaxParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[hashbang=CURRENT_LOCATION_HASH]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>hashbang = CURRENT_LOCATION_HASH</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+		
+			<span>Object</span>
+		
+	</header>
 
 
 
@@ -154,57 +153,44 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[hashbang=CURRENT_LOCATION_HASH]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[hashbang = CURRENT_LOCATION_HASH]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					 
+
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object represention of the hashbang.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>An object represention of the hashbang.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.url.parseAjaxParams(&#39;#!color=blue&amp;size=large&amp;extras=false&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.url.parseAjaxParams(&#39;#!color=blue&amp;size=large&amp;extras=false&#39;);
 // returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -216,25 +202,24 @@
 	<p>Parses a hashbang (#!) as a path and creates an ordered array.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>parseAjaxPath</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[hashbang=CURRENT_LOCATION_HASH]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>hashbang = CURRENT_LOCATION_HASH</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Array(String)</span>
-		</span>
-	
+		
+			<span>Array(String)</span>
+		
+	</header>
 
 
 
@@ -243,57 +228,44 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[hashbang=CURRENT_LOCATION_HASH]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[hashbang = CURRENT_LOCATION_HASH]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					 
+
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An array represention of the hashbang path.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Array(String)</span>:
-					
-					<p>An array represention of the hashbang path.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.url.parseAjaxPath(&#39;#!/clothing/man/shirts&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.url.parseAjaxPath(&#39;#!/clothing/man/shirts&#39;);
 // returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -305,25 +277,24 @@
 	<p>Parses a hash string as a key/value list and creates a javascript object.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>parseHashParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[hash=CURRENT_LOCATION_HASH]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>hash = CURRENT_LOCATION_HASH</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+		
+			<span>Object</span>
+		
+	</header>
 
 
 
@@ -332,57 +303,44 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[hash=CURRENT_LOCATION_HASH]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[hash = CURRENT_LOCATION_HASH]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					 
+
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object represention of the hash string.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>An object represention of the hash string.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.url.parseHashParams(&#39;#color=blue&amp;size=large&amp;extras=false&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.url.parseHashParams(&#39;#color=blue&amp;size=large&amp;extras=false&#39;);
 // returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -394,25 +352,24 @@
 	<p>Parses a hash string as a path and creates an ordered array.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>parseHashPath</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[hash=CURRENT_LOCATION_HASH]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>hash = CURRENT_LOCATION_HASH</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Array(String)</span>
-		</span>
-	
+		
+			<span>Array(String)</span>
+		
+	</header>
 
 
 
@@ -421,57 +378,44 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[hash=CURRENT_LOCATION_HASH]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[hash = CURRENT_LOCATION_HASH]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					 
+
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An array represention of the hash path.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Array(String)</span>:
-					
-					<p>An array represention of the hash path.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.url.parseHashPath(&#39;#/clothing/man/shirts&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.url.parseHashPath(&#39;#/clothing/man/shirts&#39;);
 // returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -483,25 +427,24 @@
 	<p>Parses a querystring as a key/value list and creates a javascript object.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>parseSearchParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>querystring = CURRENT_LOCATION_SEARCH</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+		
+			<span>Object</span>
+		
+	</header>
 
 
 
@@ -510,57 +453,44 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[querystring = CURRENT_LOCATION_SEARCH]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					 
+
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object represention of the querystring.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>An object represention of the querystring.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.url.parseSearchParams(&#39;?group=players&amp;team=blue&amp;ranking=3&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.url.parseSearchParams(&#39;?group=players&amp;team=blue&amp;ranking=3&#39;);
 // returns Object {group: &quot;players&quot;, team: &quot;blue&quot;, ranking: &quot;3&quot;}</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -572,25 +502,24 @@
 	<p>Parses a querystring as a path and creates an ordered array.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>parseSearchPath</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>querystring = CURRENT_LOCATION_SEARCH</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Array(String)</span>
-		</span>
-	
+		
+			<span>Array(String)</span>
+		
+	</header>
 
 
 
@@ -599,57 +528,44 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[querystring=CURRENT_LOCATION_SEARCH]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[querystring = CURRENT_LOCATION_SEARCH]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					 
+
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An array represention of the querystring path.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Array(String)</span>:
-					
-					<p>An array represention of the querystring path.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.url.parseSearchPath(&#39;?/Players/Teams/Blue&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.url.parseSearchPath(&#39;?/Players/Teams/Blue&#39;);
 // returns [&quot;Players&quot;, &quot;Teams&quot;, &quot;Blue&quot;]</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

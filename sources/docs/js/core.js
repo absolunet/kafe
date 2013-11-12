@@ -1,3 +1,11 @@
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'shCore',
+	'shBrushJScript',
+	'jquery-scrollto'
+]);
+//>>excludeEnd('excludeRequire');
+
 (function($) {
 	$(function(){
 
@@ -26,6 +34,23 @@
 
 		if (isClass || isFile) {
 			$('#Content > nav a[href$="'+current+'"], #Content > nav a[href*="'+parts.join('_')+'"]').parent().addClass('On');
+		}
+
+
+		// syntax highlight
+		if (isClass) {
+			$('pre.prettyprint').addClass('brush:js; gutter:false; toolbar:false;').children('code').contents().unwrap();
+		}
+		if (isFile) {
+			$('pre').addClass('brush:js; toolbar:false;');
+		}
+		SyntaxHighlighter.all();
+		
+		var line = window.location.hash.substring(2);
+		if (isFile && line) {
+			setTimeout(function() {
+				$.scrollTo('.number'+line, 500, {offset:{top:-15}});
+			});
 		}
 	});
 })(window.jQuery);

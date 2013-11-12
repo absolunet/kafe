@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.geolocation</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-0">Version 1.0</h3>
 <p>Methods to access geolocalization information about the client.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_geolocation.js.html#l38">builds/kafe/geolocation.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_geolocation.js.html#l38">builds/kafe/geolocation.js</a> | Tests: <a href="/tests/?module=kafe.geolocation">QUnit</a></footer>
 </header>
 
 
@@ -127,126 +127,114 @@
 	<p>Get the current geolocalization information of the client.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>locate</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">parameters</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>parameters</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Parameters for the current request.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">parameters</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Parameters for the current request.</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[selector]</code>
-									<span class="type">String | JQueryObject | DOMElement</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[selector]</code>
+									<strong>String|jQueryObject|DOMElement</strong>
+									<span>Optional</span>
+								
+								<p>Element used to show status messages.</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Element used to show status messages.</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[lang=CURRENT_ENV_LANG]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[lang = CURRENT_ENV_LANG]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>A two character language code.</p>
 
-								<div class="param-description">
-									<p>A two character language code.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[success]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[success]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.</p>
 
-								<div class="param-description">
-									<p>Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[error]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[error]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Callback triggered on geolocalization errors. The error message is passed as the first argument.</p>
 
-								<div class="param-description">
-									<p>Callback triggered on geolocalization errors. The error message is passed as the first argument.</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.geolocation.locate({
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.geolocation.locate({
     selector: &#39;#GeoLocStatus&#39;, lang: &#39;en&#39;,
     success: function(coords) {
         console.log(&#39;latitude: &#39; + coords.latitude);
@@ -258,8 +246,7 @@
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;#GeoLocStatus&#39;).kafe(&#39;geolocation.locate&#39;, {});</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

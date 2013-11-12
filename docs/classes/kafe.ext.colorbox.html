@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.colorbox</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-2-1">Version 1.2.1</h3>
 <p>Extra methods for the colorbox jQuery plugin.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_colorbox.js.html#l66">builds/kafe/ext/colorbox.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_colorbox.js.html#l66">builds/kafe/ext/colorbox.js</a> | Tests: <a href="/tests/?module=kafe.ext.colorbox">QUnit</a></footer>
 </header>
 
 
@@ -127,66 +127,61 @@
 	<p>Binds $(selector).colorbox() with the default params including theme.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>$.kafeColorbox(&#x27;init&#x27;)</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[options]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
 
 	
+		<section>
+			<h1>Parameters:</h1>
 
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>The colorbox params.</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>The colorbox params.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>$(&#39;.picture&#39;).kafeColorbox(&#39;init&#39;, { theme:&#39;Alternate&#39; })</code></pre>
 
-			<div class="example-content">
-				<pre class="code prettyprint"><code>$(&#39;.picture&#39;).kafeColorbox(&#39;init&#39;, { theme:&#39;Alternate&#39; })</code></pre>
-
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -198,75 +193,70 @@
 	<p>Calls $.colorbox() with an ajax content.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>ajax</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">url</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>url</code>
+						<strong>String</strong>
 					
+					<p>The content url.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The colorbox params.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">url</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The content url.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The colorbox params.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -282,52 +272,50 @@
 	<p>Change the default theme, which is a class on the body with the name <code>kafecolorbox-theme-THEME</code>.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>changeTheme</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">theme</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>theme</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Theme name.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">theme</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Theme name.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -343,118 +331,107 @@
 	<p>Simulate a confirm() behavior on a &lt;a&gt; link, using colorbox.dialog().</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>confirm</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">message</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">OKLabel</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">CancelLabel</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String|jQueryObject|DOMElement</strong>
 					
+					<p>Link</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>message</code>
+						<strong>String</strong>
 					
+					<p>Message</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>OKLabel</code>
+						<strong>String</strong>
 					
+					<p>The label for the OK button</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>CancelLabel</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The label for the Cancel button</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Link</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">message</code>
-						<span class="type">String</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Message</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">OKLabel</code>
-						<span class="type">String</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The label for the OK button</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">CancelLabel</code>
-						<span class="type">String</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The label for the Cancel button</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -470,108 +447,99 @@
 	<p>Opens a message window with custom buttons.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>dialog</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">content</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>commands</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>content</code>
+						<strong>String</strong>
 					
+					<p>Message</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[commands]</code>
+						<code>[commands]</code>
+						<strong>Array(Object)</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The buttons</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">content</code>
-						<span class="type">String</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Message</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[commands]</code>
-						<span class="type">Array(Object)</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The buttons</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name">label</code>
-									<span class="type">String</span>
+									<code>label</code>
+									<strong>String</strong>
+								
+								<p>The button label</p>
+
+
 								
 
-								<div class="param-description">
-									<p>The button label</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[callback]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[callback]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>The callback called on button click, closes the colorbox if not specified</p>
 
-								<div class="param-description">
-									<p>The callback called on button click, closes the colorbox if not specified</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -587,25 +555,24 @@
 	<p>Get the default params with optional extra params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[options]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+		
+			<span>Object</span>
+		
+	</header>
 
 
 
@@ -614,46 +581,36 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>The default colorbox params.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>The default colorbox params.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -667,75 +624,70 @@
 	<p>Calls $.colorbox() with an inline content.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>inline</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String</strong>
 					
+					<p>The content selector.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The colorbox params.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The content selector.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The colorbox params.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -751,11 +703,14 @@
 	<p>Move the colorbox markup into .NET Webform</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>moveInForm</strong>
+		
+			(&nbsp;&nbsp;)
+		
 
-	
+		
+	</header>
 
 
 
@@ -778,52 +733,50 @@
 	<p>Calls $.colorbox() with the default params including theme.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>open</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The colorbox params.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The colorbox params.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -839,52 +792,50 @@
 	<p>Set the default params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>setParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -900,98 +851,90 @@
 	<p>Calls $.colorbox() with as content a rendered jsrender tmpl.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>tmpl</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">tmpl</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>data</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>tmpl</code>
+						<strong>JSRenderTemplate</strong>
 					
+					<p>The cached JSRender template.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[data]</code>
+						<code>[data]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>The JSRender template data.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The colorbox params.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">tmpl</code>
-						<span class="type">JSRenderTemplate</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The cached JSRender template.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[data]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The JSRender template data.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The colorbox params.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

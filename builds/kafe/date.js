@@ -10,7 +10,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 				m3: [0,0,0,0,0,'Jun','Jul'],
 				w:  ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
 				d:  ['1er'],
-				r:  ['en ce moment',"il y a moins d'une minute",'il y a environ une minute','il y a %n minutes','il y a environ une heure','il y a %n heures','hier','avant-hier','il y a %n jours','la semaine passée','il y a %n semaines','le mois passé','il y a %n mois']
+				r:  ['en ce moment','il y a moins d\'une minute','il y a environ une minute','il y a %n minutes','il y a environ une heure','il y a %n heures','hier','avant-hier','il y a %n jours','la semaine passée','il y a %n semaines','le mois passé','il y a %n mois']
 			},
 			en: {
 				m:  ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -262,7 +262,7 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	*
 	* @method isWeekend
 	* @param {Date} d The date
-	* @return {Boolen} If it is within a weekend or not.
+	* @return {Boolean} If it is within a weekend or not.
 	* @example
 	*	kafe.date.isWeekend(new Date('2013-07-17'));
 	*	// returns false

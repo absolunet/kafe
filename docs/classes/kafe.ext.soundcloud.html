@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,12 +107,12 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.soundcloud</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-0-1">Version 0.1</h3>
 <p>Extra methods for the Soundcloud API.
 Requires <code>//connect.soundcloud.com/sdk.js</code> to be included</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_soundcloud.js.html#l13">builds/kafe/ext/soundcloud.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_soundcloud.js.html#l13">builds/kafe/ext/soundcloud.js</a> | Tests: <a href="/tests/?module=kafe.ext.soundcloud">QUnit</a></footer>
 </header>
 
 
@@ -128,98 +128,90 @@ Requires <code>//connect.soundcloud.com/sdk.js</code> to be included</p>
 	<p>Get playlist tracks.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getPlaylistTracks</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">playlistId</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>playlistId</code>
+						<strong>String</strong>
 					
+					<p>The playlist id</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[callback]</code>
+						<code>[callback]</code>
+						<strong>Function</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">playlistId</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>The playlist id</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -235,76 +227,71 @@ Requires <code>//connect.soundcloud.com/sdk.js</code> to be included</p>
 	<p>Get all tracks.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getTracks</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[callback]</code>
+						<code>[callback]</code>
+						<strong>Function</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>The callback</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>The callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -320,70 +307,66 @@ Requires <code>//connect.soundcloud.com/sdk.js</code> to be included</p>
 	<p>Initialize the SoundCloud API.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>init</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name">cliendId</code>
-									<span class="type">String</span>
+									<code>cliendId</code>
+									<strong>String</strong>
+								
+								<p>SoundCloud id</p>
+
+
 								
 
-								<div class="param-description">
-									<p>SoundCloud id</p>
-
-								</div>
-
-								
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

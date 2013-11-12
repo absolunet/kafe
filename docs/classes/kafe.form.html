@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.form</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-4-1">Version 1.4.1</h3>
 <p>Utilitary methods for html forms and related interactions.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_form.js.html#l5">builds/kafe/form.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_form.js.html#l5">builds/kafe/form.js</a> | Tests: <a href="/tests/?module=kafe.form">QUnit</a></footer>
 </header>
 
 
@@ -127,66 +127,61 @@
 	<p>Automaticaly jump the focus to the next field once the maxlength has been reached.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>autofocusOnNext</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String|jQueryObject|DOMElement</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Selector of text-based form elements.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Selector of text-based form elements.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);</code></pre>
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.autofocusOnNext(&#39;.first-name, .last-name, .email&#39;);</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.first-name, .last-name, .email&#39;).kafe(&#39;form.autofocusOnNext&#39;);</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -198,138 +193,124 @@
 	<p>Adds a simulated maxlength support for textarea elements.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>maxLength</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">max</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>block = false</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String|jQueryObject|DOMElement</strong>
 					
+					<p>Selector of text-based form elements.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>max</code>
+						<strong>Integer</strong>
 					
+					<p>Maximum number of characters.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[block=false]</code>
+						<code>[block = false]</code>
+						<strong>Boolean</strong>
+						<span>Optional</span>
 					
+					<p>Prevent further character entry once the limit is reached.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[callback]</code>
+						<code>[callback]</code>
+						<strong>Function</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Selector of text-based form elements.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">max</code>
-						<span class="type">Integer</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Maximum number of characters.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[block=false]</code>
-						<span class="type">Boolean</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Prevent further character entry once the limit is reached.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.maxLength(&#39;.twitter-post&#39;, 140, false, function(count) {
     console.log(count);
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.twitter-post&#39;).kafe(&#39;form.maxLength&#39;, 140, false, function(count) {
     console.log(count);
 });</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -341,92 +322,84 @@
 	<p>Detects the RETURN key, then triggers a callback.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>onEnter</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String|jQueryObject|DOMElement</strong>
 					
+					<p>Selector of text-based form elements.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>callback</code>
+						<strong>Function</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Function to be fired by the keypress.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Selector of text-based form elements.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">callback</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Function to be fired by the keypress.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.onEnter(&#39;.search-field&#39;, function(input) {
     $(input).parents(&#39;form&#39;).submit();
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;form.onEnter&#39;, function(input) {
     $(input).parents(&#39;form&#39;).submit();
 });</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -438,93 +411,85 @@
 	<p>Calculates the password strength value of given fields.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>passwordStrength</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String|jQueryObject|DOMElement</strong>
 					
+					<p>Selector of text-based form elements.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[callback]</code>
+						<code>[callback]</code>
+						<strong>Function</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Selector of text-based form elements.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.passwordStrength(&#39;.password&#39;, function(strengh) {
     console.log(strengh);
 });</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.password&#39;).kafe(&#39;form.passwordStrength&#39;, function(strengh) {
     console.log(strengh);
 });</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -536,67 +501,62 @@
 	<p>Adds support for the placeholder attribute for older browsers (Older than IE10). If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>placeholder</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[selector]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>selector</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
 
 	
+		<section>
+			<h1>Parameters:</h1>
 
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[selector]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[selector]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
+					<p>Selector of text-based form elements. Defaults to &#39;input&#91;placeholder&#93;, textarea&#91;placeholder&#93;&#39; when left undefined.</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Selector of text-based form elements. Defaults to &#39;input&#91;placeholder&#93;, textarea&#91;placeholder&#93;&#39; when left undefined.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);</code></pre>
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.placeholder(&#39;.search-field&#39;);</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.search-field&#39;).kafe(&#39;form.placeholder&#39;);</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -608,67 +568,62 @@
 	<p>Replace elements with a submit button</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>replaceSubmit</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[selector=&#x27;input:submit&#x27;]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>selector = &#x27;input:submit&#x27;</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
 
 	
+		<section>
+			<h1>Parameters:</h1>
 
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[selector=&#x27;input:submit&#x27;]</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[selector = &#x27;input:submit&#x27;]</code>
+						<strong>String|jQueryObject|DOMElement</strong>
+						<span>Optional</span>
 					
+					<p>Elements to replace</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Elements to replace</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.replaceSubmit();</code></pre>
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.replaceSubmit();</code></pre>
 <pre class="code prettyprint"><code>$(&#39;.Search input:submit&#39;).kafe(&#39;form.replaceSubmit&#39;);</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -680,66 +635,61 @@
 	<p>Sanitize form text entry for .NET validator.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>sanitizeFormData</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">selector</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>selector</code>
+						<strong>String|jQueryObject|DOMElement</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Reference to the current .NET form.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">selector</code>
-						<span class="type">String | JQueryObject | DOMElement</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Reference to the current .NET form.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.form.sanitizeFormData(&#39;#Form1&#39;);</code></pre>
 <pre class="code prettyprint"><code>$(&#39;#Form1&#39;).form(&#39;form.sanitizeFormData&#39;);</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

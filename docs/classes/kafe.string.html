@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.string</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-2">Version 1.2</h3>
 <p>Additionnal methods for string manipulation and generation.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_string.js.html#l11">builds/kafe/string.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_string.js.html#l11">builds/kafe/string.js</a> | Tests: <a href="/tests/?module=kafe.string">QUnit</a></footer>
 </header>
 
 
@@ -127,50 +127,41 @@
 	<p>Generates a .NET random GUID/UUID. (Version 4, random)</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>generateGuid</strong>
+		
+			(&nbsp;&nbsp;)
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
-
-
-
+		
+			<span>String</span>
+		
+	</header>
 
 
 
 
-	
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>A random valid GUID/UUID.</p>
 
-				
-			</div>
-		</div>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>A random valid GUID/UUID.</p>
 
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.generateGuid();
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.generateGuid();
 // returns &quot;c573f4f3-982a-4046-818a-083757f98804&quot;</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -182,83 +173,69 @@
 	<p>Removes accented charaters from a string.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>removeAccent</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
+					 
 
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
-
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The unaccented string.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The unaccented string.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.removeAccent(&#39;Kafe signifie café en créole.&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.removeAccent(&#39;Kafe signifie café en créole.&#39;);
 // returns &quot;Kafe signifie cafe en creole.&quot;</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -270,84 +247,70 @@
 	<p>Transforms a JSON string into a javascript object.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>toObject</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+					<p>A JSON string.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>A JSON string.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>A valid javascript object.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>A valid javascript object.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.toObject(&#39;{&quot;UserId&quot;:&quot;456&quot;,&quot;Items&quot;:[&quot;first&quot;, &quot;second&quot;, &quot;last&quot;],&quot;State&quot;:true,&quot;TotalAmount&quot;:52,&quot;Taxes&quot;:[]}&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.toObject(&#39;{&quot;UserId&quot;:&quot;456&quot;,&quot;Items&quot;:[&quot;first&quot;, &quot;second&quot;, &quot;last&quot;],&quot;State&quot;:true,&quot;TotalAmount&quot;:52,&quot;Taxes&quot;:[]}&#39;);
 // returns Object {UserId: &quot;456&quot;, Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

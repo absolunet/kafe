@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.facebook</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-4">Version 1.4</h3>
 <p>Extra methods for the Facebook API.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_facebook.js.html#l74">builds/kafe/ext/facebook.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_facebook.js.html#l74">builds/kafe/ext/facebook.js</a> | Tests: <a href="/tests/?module=kafe.ext.facebook">QUnit</a></footer>
 </header>
 
 
@@ -127,72 +127,61 @@
 	<p>Get if user likes an item.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>checkUserLike</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">id</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>id</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	
+					<p>A likable facebook item id (page, application, etc.)</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">id</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>A likable facebook item id (page, application, etc.)</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If user likes the item</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Boolean</span>:
-					
-					<p>If user likes the item</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -206,25 +195,24 @@
 	<p>Get the default params with optional extra params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>getParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[options]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
 
-	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
+		
+			<span>Object</span>
+		
+	</header>
 
 
 
@@ -233,46 +221,36 @@
 
 
 	
-		<div class="params">
-			<h4>Parameters:</h4>
+		<section>
+			<h1>Parameters:</h1>
 
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>The default facebook params.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>The default facebook params.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -286,38 +264,32 @@
 	<p>Get the session.</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>getSession</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
 
 	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
-
-
-
-
-
-
 
 	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>Session object or null if not logged</p>
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>Session object or null if not logged</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -331,38 +303,32 @@
 	<p>Get the user details.</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>getUser</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
 
 	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
-
-
-
-
-
-
 
 	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>User details or null if not logged</p>
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>User details or null if not logged</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -376,53 +342,51 @@
 	<p>Initialize the Facebook API.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>init</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[options]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
 
 	
+		<section>
+			<h1>Parameters:</h1>
 
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -438,76 +402,71 @@
 	<p>Open the login dialog.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>login</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>callback</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
+					<p>Options</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[callback]</code>
+						<code>[callback]</code>
+						<strong>Function</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Callback on success</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Callback on success</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -523,53 +482,51 @@
 	<p>Logs the user out.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>logout</strong>
+		
+			<ul>
 			
-				<li class="arg">
-					
-						<code class="optional">[callback]</code>
-					
-				</li>
+
+				
+					<li class="Optional"><code>callback</code></li>
+				
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
-	
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
 
 	
+		<section>
+			<h1>Parameters:</h1>
 
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
+			<ul>
 			
-				<li class="param">
+				<li>
 					
-						<code class="param-name optional">[callback]</code>
-						<span class="type">Function</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
+						<code>[callback]</code>
+						<strong>Function</strong>
+						<span>Optional</span>
 					
+					<p>Callback</p>
+
+
 
 					
 
-					<div class="param-description">
-						<p>Callback</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -585,161 +542,145 @@
 	<p>Set default facebook params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>setParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[app_id]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[app_id]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>Application ID</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Application ID</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[status=true]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[status = true]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Fetch fresh status</p>
 
-								<div class="param-description">
-									<p>Fetch fresh status</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[cookie=true]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[cookie = true]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Enable cookie support</p>
 
-								<div class="param-description">
-									<p>Enable cookie support</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[xfbml=true]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[xfbml = true]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>Parse XFBML tags</p>
 
-								<div class="param-description">
-									<p>Parse XFBML tags</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[permissions]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[permissions]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Comma separated list of Extended permissions</p>
 
-								<div class="param-description">
-									<p>Comma separated list of Extended permissions</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[statusConnected]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[statusConnected]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Callback if user connected</p>
 
-								<div class="param-description">
-									<p>Callback if user connected</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[statusNotConnected]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[statusNotConnected]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Callback if user is not connected</p>
 
-								<div class="param-description">
-									<p>Callback if user is not connected</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

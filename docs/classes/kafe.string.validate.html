@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.string.validate</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-0">Version 1.0</h3>
 <p>String validation tools.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_string-validate.js.html#l11">builds/kafe/string-validate.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_string-validate.js.html#l11">builds/kafe/string-validate.js</a> | Tests: <a href="/tests/?module=kafe.string.validate">QUnit</a></footer>
 </header>
 
 
@@ -128,107 +128,90 @@
 <p>Source: <a href="http://www.regular-expressions.info/creditcard.html"><a href="http://www.regular-expressions.info/creditcard.html">http://www.regular-expressions.info/creditcard.html</a></a></p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>isCreditCard</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">creditcard</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
+					 
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
 						<code>creditcard</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	
+					<p>A credit card brand abbreviation. Possible values are <strong>visa</strong>, <strong>mastercard</strong>, <strong>americanexpress</strong>, <strong>dinersclub</strong>, <strong>discover</strong>, <strong>jcb</strong>.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">creditcard</code>
-						<span class="type">String</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>A credit card brand abbreviation. Possible values are <strong>visa</strong>, <strong>mastercard</strong>, <strong>americanexpress</strong>, <strong>dinersclub</strong>, <strong>discover</strong>, <strong>jcb</strong>.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string is a valid credit card number.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Boolean</span>:
-					
-					<p>If true, the string is a valid credit card number.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;k789 kafe 3789&#39;, &#39;mc&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;k789 kafe 3789&#39;, &#39;mc&#39;);
 // returns false</code></pre>
 <pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
 // returns true</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -240,85 +223,71 @@
 	<p>Checks if a string is a valid email address.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>isEmail</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
+					 
 
-	
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	
-
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string is a valid email address.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Boolean</span>:
-					
-					<p>If true, the string is a valid email address.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;mailbox@mailaddress&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;mailbox@mailaddress&#39;);
 // returns false</code></pre>
 <pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
 // returns true</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -332,83 +301,69 @@
 Source: <a href="http://jsperf.com/credit-card-validator/7"><a href="http://jsperf.com/credit-card-validator/7">http://jsperf.com/credit-card-validator/7</a></a></p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>isLuhnAlgorithm</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
+					 
 
-	
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	
-
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string passes the Luhn algorithm.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Boolean</span>:
-					
-					<p>If true, the string passes the Luhn algorithm.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.validate.isLuhn(&#39;79927398713&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isLuhn(&#39;79927398713&#39;);
 // returns true</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -420,85 +375,71 @@ Source: <a href="http://jsperf.com/credit-card-validator/7"><a href="http://jspe
 	<p>Checks if a string is numeric.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>isNum</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
+					 
 
-	
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	
-
-
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string could be converted to a number.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Boolean</span>:
-					
-					<p>If true, the string could be converted to a number.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;k4f3&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;k4f3&#39;);
 // returns false</code></pre>
 <pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;43&#39;);
 // returns true</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -510,108 +451,91 @@ Source: <a href="http://jsperf.com/credit-card-validator/7"><a href="http://jspe
 	<p>Checks if a string is a valid or part of a valid Canadian postal code.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>isPostalCode</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>format</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>string</code>
+						<strong>String</strong>
 					
+					 
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[format]</code>
+						<code>[format]</code>
+						<strong>String</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">Boolean</span>
-		</span>
-	
+					<p>Validation pattern (Regular expression). Default pattern is <em>([a-z][0-9]){3}</em>. Can also be set to <em>A1A 1A1</em> for a single precise value or as <em>A1A</em> and <em>1A1</em> when divided into two values.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">string</code>
-						<span class="type">String</span>
-					
 
 					
 
-					<div class="param-description">
-						 
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[format]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Validation pattern (Regular expression). Default pattern is <em>([a-z][0-9]){3}</em>. Can also be set to <em>A1A 1A1</em> for a single precise value or as <em>A1A</em> and <em>1A1</em> when divided into two values.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string matches the validation format.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">Boolean</span>:
-					
-					<p>If true, the string matches the validation format.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;KAF123&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;KAF123&#39;);
 // returns false</code></pre>
 <pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;K4F 3F3&#39;, &#39;A1A 1A1&#39;);
 // returns true</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

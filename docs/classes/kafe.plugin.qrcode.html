@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.plugin.qrcode</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-0-1-1">Version 0.1.1</h3>
 <p>Returns a HTML table for displaying a QR code, encoded from the sent string.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_plugin_qrcode.js.html#l11">builds/kafe/plugin/qrcode.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_plugin_qrcode.js.html#l11">builds/kafe/plugin/qrcode.js</a> | Tests: <a href="/tests/?module=kafe.plugin.qrcode">QUnit</a></footer>
 </header>
 
 
@@ -127,141 +127,120 @@
 	<p>Generate the HTML table of the QR code.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>generate</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">text</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>text</code>
+						<strong>String</strong>
 					
+					<p>The text to convert to a QR code.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
+					<p>Additional options.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">text</code>
-						<span class="type">String</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>The text to convert to a QR code.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Additional options.</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[version=4]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[version = 4]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>QR code version (<code>1-40</code>) [Explanation on <a href="http://en.wikipedia.org/wiki/QR_code#Storage">Wikipedia</a>].</p>
+
+
 								
 
-								<div class="param-description">
-									<p>QR code version (<code>1-40</code>) [Explanation on <a href="http://en.wikipedia.org/wiki/QR_code#Storage">Wikipedia</a>].</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[correctLevel=&#x27;H&#x27;]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[correctLevel = &#x27;H&#x27;]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>QR code correction level (<code>L</code>,<code>M</code>,<code>Q</code>,<code>H</code>) [Explanation on <a href="http://en.wikipedia.org/wiki/QR_code#Error_correction">Wikipedia</a>].</p>
 
-								<div class="param-description">
-									<p>QR code correction level (<code>L</code>,<code>M</code>,<code>Q</code>,<code>H</code>) [Explanation on <a href="http://en.wikipedia.org/wiki/QR_code#Error_correction">Wikipedia</a>].</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The HTML table representing the QR code.</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The HTML table representing the QR code.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.plugin.qrcode.generate(&#39;Scan me beautiful&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.plugin.qrcode.generate(&#39;Scan me beautiful&#39;);
 // returns &quot;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;X&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td class=&quot;X&quot;&gt;&lt;/td&gt;&lt;/tr&gt;[...]&lt;/tbody&gt;&lt;/table&gt;&quot;</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 

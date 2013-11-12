@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.bbq</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-0-1">Version 0.1</h3>
 <p>Extra methods for the jQuery BBQ plugin.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_bbq.js.html#l26">builds/kafe/ext/bbq.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_bbq.js.html#l26">builds/kafe/ext/bbq.js</a> | Tests: <a href="/tests/?module=kafe.ext.bbq">QUnit</a></footer>
 </header>
 
 
@@ -127,38 +127,32 @@
 	<p>Get the hashbang url parameters.</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>getHashbang</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
 
 	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
-
-
-
-
-
-
 
 	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The hashbang url parameters.</p>
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The hashbang url parameters.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -172,38 +166,32 @@
 	<p>Get the hashbang url parameters.</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>getHashbangParams</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
 
 	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
-
-
-
-
-
-
 
 	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>The hashbang url parameters.</p>
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>The hashbang url parameters.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -217,38 +205,32 @@
 	<p>Get the default params.</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>getParams</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
 
 	
-		<span class="returns-inline">
-			<span class="type">Object</span>
-		</span>
-	
-
-
-
-
-
-
 
 	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>The default bbq params.</p>
 
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">Object</span>:
-					
-					<p>The default bbq params.</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
@@ -262,75 +244,70 @@
 	<p>Set hashbang url parameters.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>setHashbang</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">params</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>mergemode</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>params</code>
+						<strong>Object|String</strong>
 					
+					<p>Parameters to apply.</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[mergemode]</code>
+						<code>[mergemode]</code>
+						<strong>Number</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Bbq merge mode <code>0-2</code>.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">params</code>
-						<span class="type">Object | String</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Parameters to apply.</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[mergemode]</code>
-						<span class="type">Number</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Bbq merge mode <code>0-2</code>.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
@@ -346,52 +323,50 @@
 	<p>Set the default params.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>setParams</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Bbq params.</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Bbq params.</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	

@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -123,7 +123,7 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 				m3: [0,0,0,0,0,&#x27;Jun&#x27;,&#x27;Jul&#x27;],
 				w:  [&#x27;Dimanche&#x27;,&#x27;Lundi&#x27;,&#x27;Mardi&#x27;,&#x27;Mercredi&#x27;,&#x27;Jeudi&#x27;,&#x27;Vendredi&#x27;,&#x27;Samedi&#x27;],
 				d:  [&#x27;1er&#x27;],
-				r:  [&#x27;en ce moment&#x27;,&quot;il y a moins d&#x27;une minute&quot;,&#x27;il y a environ une minute&#x27;,&#x27;il y a %n minutes&#x27;,&#x27;il y a environ une heure&#x27;,&#x27;il y a %n heures&#x27;,&#x27;hier&#x27;,&#x27;avant-hier&#x27;,&#x27;il y a %n jours&#x27;,&#x27;la semaine passée&#x27;,&#x27;il y a %n semaines&#x27;,&#x27;le mois passé&#x27;,&#x27;il y a %n mois&#x27;]
+				r:  [&#x27;en ce moment&#x27;,&#x27;il y a moins d\&#x27;une minute&#x27;,&#x27;il y a environ une minute&#x27;,&#x27;il y a %n minutes&#x27;,&#x27;il y a environ une heure&#x27;,&#x27;il y a %n heures&#x27;,&#x27;hier&#x27;,&#x27;avant-hier&#x27;,&#x27;il y a %n jours&#x27;,&#x27;la semaine passée&#x27;,&#x27;il y a %n semaines&#x27;,&#x27;le mois passé&#x27;,&#x27;il y a %n mois&#x27;]
 			},
 			en: {
 				m:  [&#x27;January&#x27;,&#x27;February&#x27;,&#x27;March&#x27;,&#x27;April&#x27;,&#x27;May&#x27;,&#x27;June&#x27;,&#x27;July&#x27;,&#x27;August&#x27;,&#x27;September&#x27;,&#x27;October&#x27;,&#x27;November&#x27;,&#x27;December&#x27;],
@@ -375,7 +375,7 @@ window.kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2&#x27;, obj:(functio
 	*
 	* @method isWeekend
 	* @param {Date} d The date
-	* @return {Boolen} If it is within a weekend or not.
+	* @return {Boolean} If it is within a weekend or not.
 	* @example
 	*	kafe.date.isWeekend(new Date(&#x27;2013-07-17&#x27;));
 	*	// returns false

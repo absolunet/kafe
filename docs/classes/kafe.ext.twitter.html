@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.ext.twitter</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-1-1">Version 1.1.1</h3>
 <p>Extra methods for Twitter.</p>
 
-	<footer>Source: <a href="../files/builds_kafe_ext_twitter.js.html#l5">builds/kafe/ext/twitter.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_ext_twitter.js.html#l5">builds/kafe/ext/twitter.js</a> | Tests: <a href="/tests/?module=kafe.ext.twitter">QUnit</a></footer>
 </header>
 
 
@@ -127,156 +127,133 @@
 	<p>Outputs tweet with links.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>linkifyTweet</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">tweet</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>tweet</code>
+						<strong>String</strong>
 					
+					<p>Plain text tweet</p>
+
+
+
+					
+
 				</li>
 			
-				<li class="arg">
+				<li>
 					
-						<code class="optional">[options]</code>
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
+					<p>Options</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">tweet</code>
-						<span class="type">String</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Plain text tweet</p>
-
-					</div>
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[options]</code>
-						<span class="type">Object</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					<div class="param-description">
-						<p>Options</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name optional">[link]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[link]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>Normal link template</p>
+
+
 								
 
-								<div class="param-description">
-									<p>Normal link template</p>
-
-								</div>
-
-								
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[user]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[user]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>User link template</p>
 
-								<div class="param-description">
-									<p>User link template</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[hash]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[hash]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Hash link template</p>
 
-								<div class="param-description">
-									<p>Hash link template</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
-		<div class="returns">
-			<h4>Returns:</h4>
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The tweet with links</p>
 
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>:
-					
-					<p>The tweet with links</p>
-
-				
-			</div>
-		</div>
+		</section>
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>kafe.ext.twitter.linkifyTweet(&#39;I really dig this #twitter function by @absolunet : http://www.absolunet.com/&#39;);
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.ext.twitter.linkifyTweet(&#39;I really dig this #twitter function by @absolunet : http://www.absolunet.com/&#39;);
 // returns &quot;I really dig this #&lt;a href=&quot;//search.twitter.com/search?q=%23twitter&quot; data-external=&quot;true&quot;&gt;twitter&lt;/a&gt; function by @&lt;a href=&quot;//twitter.com/absolunet&quot; data-external=&quot;true&quot;&gt;absolunet&lt;/a&gt; : &lt;a href=&quot;http://www.absolunet.com/&quot; data-external=&quot;true&quot;&gt;http://www.absolunet.com/&lt;/a&gt;&quot;</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -288,11 +265,14 @@
 	<p>Loads the api javascript used for twitter widgets</p>
 
 
-	
-		<span class="paren">()</span>
-	
+	<header>
+		<strong>loadWidgetAPI</strong>
+		
+			(&nbsp;&nbsp;)
+		
 
-	
+		
+	</header>
 
 
 

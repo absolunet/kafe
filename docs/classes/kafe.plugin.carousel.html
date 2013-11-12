@@ -29,7 +29,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</h1>
+		<h1><a href="/"><img src="/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/modules/kafe.html">core</a></li>
@@ -107,11 +107,11 @@
 		<section>
 			<header class="class">
 	<h1>kafe.plugin.carousel</h1>
-	<h2>class</h2>
+	<h2>Class</h2>
 	<h3 id="version-1-0-2">Version 1.0.2</h3>
 <p>Carousel, image scroller, ticker, whatever you wanna call it...</p>
 
-	<footer>Source: <a href="../files/builds_kafe_plugin_carousel.js.html#l279">builds/kafe/plugin/carousel.js</a></footer>
+	<footer>Source: <a href="../files/builds_kafe_plugin_carousel.js.html#l279">builds/kafe/plugin/carousel.js</a> | Tests: <a href="/tests/?module=kafe.plugin.carousel">QUnit</a></footer>
 </header>
 
 
@@ -127,509 +127,414 @@
 	<p>Attach behaviors to the carousel structure.</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>__constructor</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>options</code>
+						<strong>Object</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Initial configurations</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">options</code>
-						<span class="type">Object</span>
-					
 
 					
-
-					<div class="param-description">
-						<p>Initial configurations</p>
-
-					</div>
-
-					
-						<ul class="params-list">
-							
-							<li class="param">
+						<ul>
+						
+							<li>
 								
-									<code class="param-name">selector</code>
-									<span class="type">Object</span>
+									<code>selector</code>
+									<strong>Object</strong>
 								
+								<p>The carousel elements</p>
 
-								<div class="param-description">
-									<p>The carousel elements</p>
-
-								</div>
 
 								
-									<ul class="params-list">
-										
-										<li class="param">
+									<ul>
+									
+										<li>
 											
-												<code class="param-name">container</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
+												<code>container</code>
+												<strong>String|jQueryObject|DOMElement</strong>
 											
-
-											<div class="param-description">
-												The carousel container.
-											</div>
+											<p>The carousel container.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[slides]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[slides]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												The carousel slides.
-											</div>
+											<p>The carousel slides.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[start]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[start]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will switch the carousel to the first slide.
-											</div>
+											<p>Clickable elements that will switch the carousel to the first slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[prev]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[prev]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will switch the carousel to the previous slide.
-											</div>
+											<p>Clickable elements that will switch the carousel to the previous slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[next]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[next]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will switch the carousel to the next slide.
-											</div>
+											<p>Clickable elements that will switch the carousel to the next slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[end]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[end]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will switch the carousel to the last slide.
-											</div>
+											<p>Clickable elements that will switch the carousel to the last slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[items]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[items]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
-											</div>
+											<p>Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[item]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[item]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will switch the carousel to a specific slide via the <code>data-kafecarousel-target</code> attribute.
-											</div>
+											<p>Clickable elements that will switch the carousel to a specific slide via the <code>data-kafecarousel-target</code> attribute.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[play]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[play]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will switch the carousel to autoplay.
-											</div>
+											<p>Clickable elements that will switch the carousel to autoplay.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[pause]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[pause]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Clickable elements that will stop the autoplay of the carousel.
-											</div>
+											<p>Clickable elements that will stop the autoplay of the carousel.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[position]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[position]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Elements that will contain the current position.
-											</div>
+											<p>Elements that will contain the current position.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[total]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[total]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Elements that will contain the total number of slides.
-											</div>
+											<p>Elements that will contain the total number of slides.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[status]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[status]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Elements that will contain a list of bullets indicating the status of the carousel.
-											</div>
+											<p>Elements that will contain a list of bullets indicating the status of the carousel.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name optional">[statusNum]</code>
-												<span class="type">String | JQueryObject | DOMElement</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[statusNum]</code>
+												<strong>String|jQueryObject|DOMElement</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Elements that will contain a list of numbers indicating the status of the carousel.
-											</div>
+											<p>Elements that will contain a list of numbers indicating the status of the carousel.</p>
 										</li>
-										
+									
 									</ul>
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[wrap=true]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[wrap = true]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.</p>
 
-								<div class="param-description">
-									<p>If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[transition=&#x27;slideLeft&#x27;]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[transition = &#x27;slideLeft&#x27;]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Animation used during a transition. Possible values are <code>slideLeft</code>, <code>slideRight</code>, <code>slideUp</code>, <code>slideDown</code> and <code>fade</code>.</p>
 
-								<div class="param-description">
-									<p>Animation used during a transition. Possible values are <code>slideLeft</code>, <code>slideRight</code>, <code>slideUp</code>, <code>slideDown</code> and <code>fade</code>.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[speed=500]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[speed = 500]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
 								
+								<p>Duration (in milliseconds) of the transition.</p>
 
-								<div class="param-description">
-									<p>Duration (in milliseconds) of the transition.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[startId=1]</code>
-									<span class="type">Number</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[startId = 1]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
 								
+								<p>Index of the starting slide, starting at 1.</p>
 
-								<div class="param-description">
-									<p>Index of the starting slide, starting at 1.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[autostart]</code>
-									<span class="type">Object</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[autostart]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
 								
+								<p>Allows slides to change without a user interaction after a chosen delay.</p>
 
-								<div class="param-description">
-									<p>Allows slides to change without a user interaction after a chosen delay.</p>
-
-								</div>
 
 								
-									<ul class="params-list">
-										
-										<li class="param">
+									<ul>
+									
+										<li>
 											
-												<code class="param-name optional">[interval=3000]</code>
-												<span class="type">Number</span>
-												<span class="flag optional" title="This parameter is optional.">optional</span>
+												<code>[interval = 3000]</code>
+												<strong>Number</strong>
+												<span>Optional</span>
 											
-
-											<div class="param-description">
-												Delay (in milliseconds) before starting a transition to the next slide. The transition duration is included in the delay. As an example, an <code>interval</code> of 3000 combined with a <code>speed</code> of 500 will hold a slide still for 2500 milliseconds before starting the transition.
-											</div>
+											<p>Delay (in milliseconds) before starting a transition to the next slide. The transition duration is included in the delay. As an example, an <code>interval</code> of 3000 combined with a <code>speed</code> of 500 will hold a slide still for 2500 milliseconds before starting the transition.</p>
 										</li>
-										
+									
 									</ul>
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[preSwitchCallback]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[preSwitchCallback]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:</p>
 
-								<div class="param-description">
-									<p>Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:</p>
-
-								</div>
 
 								
-									<ul class="params-list">
-										
-										<li class="param">
+									<ul>
+									
+										<li>
 											
-												<code class="param-name">data</code>
-												<span class="type">Object</span>
+												<code>data</code>
+												<strong>Object</strong>
 											
-
-											<div class="param-description">
-												An object containing information relative to the transition in progress.
-											</div>
+											<p>An object containing information relative to the transition in progress.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.action</code>
-												<span class="type">String</span>
+												<code>data.action</code>
+												<strong>String</strong>
 											
-
-											<div class="param-description">
-												Current action being performed. Possible values are <code>prev</code>, <code>next</code> or <code>item</code> when using a specific index.
-											</div>
+											<p>Current action being performed. Possible values are <code>prev</code>, <code>next</code> or <code>item</code> when using a specific index.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.source</code>
-												<span class="type">Object</span>
+												<code>data.source</code>
+												<strong>Object</strong>
 											
-
-											<div class="param-description">
-												Information about the slide being changed.
-											</div>
+											<p>Information about the slide being changed.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.source.position</code>
-												<span class="type">Number</span>
+												<code>data.source.position</code>
+												<strong>Number</strong>
 											
-
-											<div class="param-description">
-												Index of the source slide.
-											</div>
+											<p>Index of the source slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.source.obj</code>
-												<span class="type">DOMElement</span>
+												<code>data.source.obj</code>
+												<strong>DOMElement</strong>
 											
-
-											<div class="param-description">
-												Reference to the source slide.
-											</div>
+											<p>Reference to the source slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.target</code>
-												<span class="type">Object</span>
+												<code>data.target</code>
+												<strong>Object</strong>
 											
-
-											<div class="param-description">
-												Information about the destination slide.
-											</div>
+											<p>Information about the destination slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.target.position</code>
-												<span class="type">Number</span>
+												<code>data.target.position</code>
+												<strong>Number</strong>
 											
-
-											<div class="param-description">
-												Index of the target slide.
-											</div>
+											<p>Index of the target slide.</p>
 										</li>
-										
-										<li class="param">
+									
+										<li>
 											
-												<code class="param-name">data.target.obj</code>
-												<span class="type">DOMElement</span>
+												<code>data.target.obj</code>
+												<strong>DOMElement</strong>
 											
-
-											<div class="param-description">
-												Reference to the target slide.
-											</div>
+											<p>Reference to the target slide.</p>
 										</li>
-										
+									
 									</ul>
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[postSwitchCallback]</code>
-									<span class="type">Function</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[postSwitchCallback]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
 								
+								<p>Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the <code>preSwitchCallback</code>.</p>
 
-								<div class="param-description">
-									<p>Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the <code>preSwitchCallback</code>.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[statusLink=false]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[statusLink = false]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>If true, will generate navigation links in elements linked to the carousel via <code>data-kafecarousel-id</code> and the <code>data-kafecarousel-action=&quot;status&quot;</code> attribute.</p>
 
-								<div class="param-description">
-									<p>If true, will generate navigation links in elements linked to the carousel via <code>data-kafecarousel-id</code> and the <code>data-kafecarousel-action=&quot;status&quot;</code> attribute.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[statusBullet=&#x27;&amp;bull;&#x27;]</code>
-									<span class="type">String</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[statusBullet = &#x27;&amp;bull;&#x27;]</code>
+									<strong>String</strong>
+									<span>Optional</span>
 								
+								<p>Text used as the content of generated link in a <code>statusLink</code> navigation.</p>
 
-								<div class="param-description">
-									<p>Text used as the content of generated link in a <code>statusLink</code> navigation.</p>
-
-								</div>
 
 								
+
 							</li>
-							
-							<li class="param">
+						
+							<li>
 								
-									<code class="param-name optional">[pauseOnHover=true]</code>
-									<span class="type">Boolean</span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
+									<code>[pauseOnHover = true]</code>
+									<strong>Boolean</strong>
+									<span>Optional</span>
 								
+								<p>If true, autoswitch will be paused while the mouse hovers a slide.</p>
 
-								<div class="param-description">
-									<p>If true, autoswitch will be paused while the mouse hovers a slide.</p>
-
-								</div>
 
 								
+
 							</li>
-							
+						
 						</ul>
 					
+
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>// Sample carousel structure
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>// Sample carousel structure
 &lt;section class=&quot;home-carousel&quot;&gt;
     &lt;ul class=&quot;home-slides&quot;&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
@@ -647,8 +552,7 @@ var myCarousel = kafe.plugin.carousel({ selector: { container: &#39;.home-slides
 <pre class="code prettyprint"><code>// The jQuery alternative...
 $(&#39;.home-slides&#39;).kafeCarousel(&#39;init&#39;, {});</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
@@ -660,70 +564,65 @@ $(&#39;.home-slides&#39;).kafeCarousel(&#39;init&#39;, {});</code></pre>
 	<p>Manually call a slide change</p>
 
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+	<header>
+		<strong>change</strong>
+		
+			<ul>
 			
-				<li class="arg">
+
+				
+					<li><code class="Simple">target</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
 					
 						<code>target</code>
+						<strong>String|Number</strong>
 					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-
-	
+					<p>Action or 1-based slide position</p>
 
 
-
-
-
-
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">target</code>
-						<span class="type">String | Number</span>
-					
 
 					
 
-					<div class="param-description">
-						<p>Action or 1-based slide position</p>
-
-					</div>
-
-					
 				</li>
 			
 			</ul>
-		</div>
+		</section>
 	
 
 	
 
 	
-		<div class="example">
-			<h4>Example:</h4>
-
-			<div class="example-content">
-				<pre class="code prettyprint"><code>// Go to next slide
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>// Go to next slide
 myCarousel.change(&#39;next&#39;);</code></pre>
 <pre class="code prettyprint"><code>// Go to first slide 
 myCarousel.change(1);</code></pre>
 <pre class="code prettyprint"><code>// The jQuery alternative...
 $(&#39;#home-slides&#39;).kafeCarousel(&#39;change&#39;, 1);</code></pre>
 
-			</div>
-		</div>
+		</section>
 	
 </section>
 
