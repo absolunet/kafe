@@ -8,6 +8,7 @@ module.exports = function(grunt) {
 			requirejs: {},
 			jshint:    {},
 			yuidoc:    {},
+			markdown:  {},
 			less:      {},
 			cssmin:    {},
 			copy:      {},
@@ -23,6 +24,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
+	grunt.loadNpmTasks('grunt-markdown');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -218,18 +220,33 @@ module.exports = function(grunt) {
 	};
 
 	grunt.task.registerTask('kafe_readme', '', function() {
-		grunt.file.write('README.md', grunt.template.process( grunt.file.read('sources/README.md'), { data:{
+		var content = grunt.template.process( grunt.file.read('sources/README.md'), { data:{
 			PACKAGE:     config.pkg.name,
 			VERSION:     config.pkg.version,
 			DESCRIPTION: config.pkg.description,
 			DEFINITION:  config.pkg.definition,
+			REPO:        'https://github.com/absolunet/'+config.pkg.name+'/tree/master',
 			HOMEPAGE:    config.pkg.homepage
-		}}));
+		}});
+
+		grunt.file.write('README-DOC.md', content);
+		grunt.file.write('README.md', content.replace(/\{\{\/?EXCLUDE\}\}/gi,''));
 	});
 
+	config.markdown.docs = {
+		files:   [ { src: 'README-DOC.md', dest: 'sources/docs/tmpl/partials/index.handlebars'}],
+		options: {
+			preCompile: function(src, context) {
+				var parts = src.split(/\{\{\/?EXCLUDE\}\}/gi);
+				for (var i=1; i<parts.length; i=i+2) { parts[i] = ''; }
+				return parts.join('').replace('### '+config.pkg.name, '# '+config.pkg.name);
+			},
+			template: 'sources/docs/tmpl/index.jst'
+		}
+	};
 
 	config.clean.docs     = {src: ['docs/assets','docs/api.js','docs/data.json'],  options: { force:true }};
-	config.clean.docsless = {src: ['sources/docs/core-less.css'],  options: { force:true }};
+	config.clean.docsless = {src: ['sources/docs/core-less.css','sources/docs/tmpl/partials/index.handlebars', 'README-DOC.md'],  options: { force:true }};
 
 	config.copy.docsassets = {
 		expand: true,
@@ -263,7 +280,7 @@ module.exports = function(grunt) {
 
 
 
-	tasks.docs = ['kafe_readme','core_docs','yuidoc:compile','clean:docs','copy:docsassets','less:docs','cssmin:docs','requirejs:docs','clean:docsless','clean:placeholders'];
+	tasks.docs = ['kafe_readme','markdown:docs','core_docs','yuidoc:compile','clean:docs','copy:docsassets','less:docs','cssmin:docs','requirejs:docs','clean:docsless','clean:placeholders'];
 	config.watch.docs = { files: ['sources/docs/**/*', 'sources/README.md'], tasks: 'docs' };
 
 

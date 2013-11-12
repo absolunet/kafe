@@ -1,7 +1,7 @@
 @import 'libs/elements';
 @import 'libs/nwayo';
 
-@assets-path: '/assets';
+@assets-path: '/kafe/assets';
 @font-path:  '@{assets-path}/fonts';
 
 /*- Base -------------------------------------------------------------------*/
@@ -62,7 +62,7 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 #Header { position:relative; height:53px; .alt-font(); text-align:center; background-color:@white;
 	h1 { position:absolute; left:15px; top:7px; font-size:20px;
 		a { color:@text-color; text-decoration:none !important;
-			img { width:24px; height:39px; margin:0 15px 0 0; }
+			img { width:20px; height:32px; margin:0 15px 0 0; }
 		}
 	}
 	nav { display:inline-block; margin:16px auto;
@@ -168,6 +168,17 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 					}
 				}
 			}
+		}
+
+		.Home { padding:30px;
+			img { float:right; width:160px; height:256px; margin:0 0 30px 30px;  }
+			h1 { margin:0 0 10px 0; .alt-font(); font-size:36px; }
+			h2 { margin:60px 0 5px 0; .altBold-font(); font-size:30px;
+				+ h4 { margin-top:10px;}
+			}
+			h4 { margin:40px 0 5px 0; .alt-font(); font-size:24px; }
+			
+			#quick-start { clear:both; margin-top:0; }
 		}
 	}
 }

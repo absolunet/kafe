@@ -3,7 +3,7 @@
 	"version":     "2.0.0a",
 	"description": "Mixing javascript crops for a perfect flavour.",
 	"definition":  "/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.",
-	"homepage":    "http://github.io/absolunet/kafe",
+	"homepage":    "http://absolunet.github.io/kafe",
 	"author":      { "name": "Absolunet", "url": "http://absolunet.com/" },
 
 	"repository":  { "url":   "git://github.com/absolunet/kafe.git", "type":"git" },
@@ -15,6 +15,7 @@
 		"grunt-contrib-requirejs": "~0.4.1",
 		"grunt-contrib-jshint":    "~0.6.4",
 		"grunt-contrib-yuidoc":    "~0.5.0",
+		"grunt-markdown":          "~0.4.0",
 		"grunt-contrib-less":      "~0.7.0",
 		"grunt-contrib-cssmin":    "~0.6.2",
 		"grunt-contrib-copy":      "~0.4.1",

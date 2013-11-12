@@ -9,6 +9,7 @@ require([
 (function($) {
 	$(function(){
 
+		// navigation
 		var
 			isClass  = !!$('#Content header.class').length,
 			isFile   = !!$('#Content header.file').length,
@@ -28,13 +29,16 @@ require([
 
 
 		$('#Header > nav a[href*="'+parts[0]+'.'+parts[1]+'"]').parent().addClass('On');
-		if (!$('#Header > nav li.On').length) {
+		if (!$('#Header > nav li.On').length && current !== '') {
 			$('#Header > nav li:first').addClass('On');
 		}
 
 		if (isClass || isFile) {
 			$('#Content > nav a[href$="'+current+'"], #Content > nav a[href*="'+parts.join('_')+'"]').parent().addClass('On');
 		}
+
+
+
 
 
 		// syntax highlight
@@ -44,6 +48,10 @@ require([
 		if (isFile) {
 			$('pre').addClass('brush:js; toolbar:false;');
 		}
+		if ($('.Home').length) {
+			$('.Home pre').addClass('brush:js; gutter:false; toolbar:false;').children('code').contents().unwrap();
+		}
+
 		SyntaxHighlighter.all();
 		
 		var line = window.location.hash.substring(2);
@@ -52,5 +60,12 @@ require([
 				$.scrollTo('.number'+line, 500, {offset:{top:-15}});
 			});
 		}
+
+
+		// external links
+		$('body').on('click', 'a[href^="http"]', function() {
+			$(this).attr('target', '_blank');
+		});
+
 	});
 })(window.jQuery);

@@ -1,5 +1,5 @@
-<img align="right" src="kafe.png" width="256" height="256" />
-### [kafe](http://github.io/absolunet/kafe) v2.0.0a
+<img align="right" src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" />
+### kafe v2.0.0a
 #### Mixing javascript crops for a perfect flavour.
 > /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 
@@ -16,7 +16,7 @@ A jQuery instance that will be copied in kafe.
 ```
 
 #### With [Grunt](http://gruntjs.com/)
-- Take the files under [builds](builds) folder and put them in a `libs` folder next to your `gruntfile.js`.
+- Take the files under [builds](https://github.com/absolunet/kafe/tree/master/builds) folder and put them in a `libs` folder next to your `gruntfile.js`.
 - Use [grunt-contrib-requirejs](https://github.com/gruntjs/grunt-contrib-requirejs) with a setup looking like this:
 
 ```js
@@ -36,12 +36,14 @@ config.requirejs.core = {
 ```
 
 #### Standalone
-- Take the files under [builds](builds) folder and put them in your project.
+- Take the files under [builds](https://github.com/absolunet/kafe/tree/master/builds) folder and put them in your project.
 - Remove the `require()` in the files header and include them manually.
 
 
+
 ## Documentation
-Visit the [http://github.io/absolunet/kafe](http://github.io/absolunet/kafe) website for all the things.
+Visit the [http://absolunet.github.io/kafe](http://absolunet.github.io/kafe) website for all the things.
+
 
 ## Release history
-See the [CHANGELOG](CHANGELOG).
+See the [CHANGELOG](https://github.com/absolunet/kafe/tree/master/CHANGELOG).
