@@ -1,4 +1,4 @@
-<img align="right" src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" />
+<img align="right" src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" />
 ### kafe v2.0.0a
 #### Mixing javascript crops for a perfect flavour.
 > /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
@@ -12,7 +12,7 @@ A jQuery instance that will be copied in kafe.
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script>window.kafejQuery = window.jQuery.noConflict()</script>
+<script>window.kafejQuery = window.jQuery</script>
 ```
 
 #### With [Grunt](http://gruntjs.com/)
@@ -45,5 +45,10 @@ config.requirejs.core = {
 Visit the [http://absolunet.github.io/kafe](http://absolunet.github.io/kafe) website for all the things.
 
 
+
+
 ## Release history
 See the [CHANGELOG](https://github.com/absolunet/kafe/tree/master/CHANGELOG).
+
+## License 
+See the [MIT LICENSE](https://github.com/absolunet/kafe/tree/master/LICENSE).

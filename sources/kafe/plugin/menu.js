@@ -149,4 +149,6 @@
 		}
 	});
 
+	return menu;
+
 /* {%= FOOTER %} */

@@ -19,17 +19,17 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 
 	<title>kafe</title>
-	<link rel="stylesheet" href="/assets/core.css">
+	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
-	<script src="/assets/core.js"></script>
+	<script src="/kafe/assets/core.js"></script>
 
 	<!-- (c) 2013 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -106,7 +106,7 @@
 
 		<section>
 			<div class="Home">
-	<p><img align="right" src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" /></p>
+	<p><img  src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" /></p>
 <h1 id="kafe-v2-0-0a">kafe v2.0.0a</h1>
 <h4 id="mixing-javascript-crops-for-a-perfect-flavour-">Mixing javascript crops for a perfect flavour.</h4>
 <blockquote>
@@ -117,7 +117,7 @@
 <h4 id="requirements">Requirements</h4>
 <p>A jQuery instance that will be copied in kafe.</p>
 <pre><code class="lang-html">&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;window.kafejQuery = window.jQuery.noConflict()&lt;/script&gt;</code></pre>
+&lt;script&gt;window.kafejQuery = window.jQuery&lt;/script&gt;</code></pre>
 <h4 id="with-grunt-http-gruntjs-com-">With <a href="http://gruntjs.com/">Grunt</a></h4>
 <ul>
 <li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/builds">builds</a> folder and put them in a <code>libs</code> folder next to your <code>gruntfile.js</code>.</li>
@@ -141,13 +141,17 @@
 <li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/builds">builds</a> folder and put them in your project.</li>
 <li>Remove the <code>require()</code> in the files header and include them manually.</li>
 </ul>
+<h2 id="sources">Sources</h2>
+<p>Visit the <a href="https://github.com/absolunet/kafe">Github repository</a> for all the things.</p>
 <h2 id="release-history">Release history</h2>
 <p>See the <a href="https://github.com/absolunet/kafe/tree/master/CHANGELOG">CHANGELOG</a>.</p>
+<h2 id="license">License</h2>
+<p>See the <a href="https://github.com/absolunet/kafe/tree/master/LICENSE">MIT LICENSE</a>.</p>
 
 </div>
 		</section>
 	</div>
 
-	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
 </body>
 </html>

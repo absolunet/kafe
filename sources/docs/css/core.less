@@ -60,7 +60,7 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 
 
 #Header { position:relative; height:53px; .alt-font(); text-align:center; background-color:@white;
-	h1 { position:absolute; left:15px; top:7px; font-size:20px;
+	h1 { position:absolute; left:15px; top:10px; font-size:20px;
 		a { color:@text-color; text-decoration:none !important;
 			img { width:20px; height:32px; margin:0 15px 0 0; }
 		}
@@ -105,7 +105,7 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 			h2 { .Type(); top:-5px; }
 			h3 { display:block; .alt-font(); }
 			p { margin:15px 0 0 0; white-space:pre-wrap; }
-			footer { display:inline-block; margin:30px 0 0 0; .code-font(); font-size:14px;
+			div { display:inline-block; margin:30px 0 0 0; .code-font(); font-size:14px;
 				a { font-size:12px; }
 			}
 		}
@@ -177,13 +177,19 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 				+ h4 { margin-top:10px;}
 			}
 			h4 { margin:40px 0 5px 0; .alt-font(); font-size:24px; }
+
+			li { position:relative; padding:15px 0 0 10px;
+				&:before { content:'•'; position:absolute; left:0; top:15px; }
+			}
 			
 			#quick-start { clear:both; margin-top:0; }
 		}
 	}
 }
 
-#Footer { padding:30px; color:@nav-color; font-size:14px; }
+#Footer { padding:30px; color:@nav-color; font-size:14px;
+	.Site { float:right; font-size:12px; }
+}
 
 
 

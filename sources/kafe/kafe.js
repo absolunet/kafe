@@ -135,7 +135,7 @@ window.kafe = (function(undefined){
 				* @property dependencies.jQuery 
 				* @type Object
 				**/
-				jQuery: window.kafejQuery.noConflict(true),
+				jQuery: window.kafejQuery,
 
 				/**
 				* underscore.js defined under window._  
@@ -144,7 +144,7 @@ window.kafe = (function(undefined){
 				* @property dependencies.underscore 
 				* @type Object
 				**/
-				underscore: window._.noConflict(),
+				underscore: window._,
 
 				/**
 				* Modernizr defined under window.Modernizr  
@@ -161,7 +161,7 @@ window.kafe = (function(undefined){
 			plugin: {}
 		}
 	;
-	_delete('window.Modernizr');
+	_delete('window.kafejQuery');
 
 
 	// add flags for ie9 and less

@@ -151,4 +151,6 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 		}
 	});
 
+	return menu;
+
 })(window.kafe)});

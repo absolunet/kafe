@@ -14,6 +14,14 @@ module.exports = function(grunt) {
 			copy:      {},
 			clean:     { placeholders:{src: ['builds/**/_*.js'],  options: { force:true }} },
 			watch:     { all: { files: ['gruntfile.js', 'package.json', 'sources/kafe/**', 'sources/vendor/**'], tasks: 'default' } }
+		},
+
+		processReadme = function(src,keep,remove) {
+			var	parts = src.split(new RegExp("{{/?"+remove+"}}",'g'));
+			for (var i=1; i<parts.length; i=i+2) {
+				parts[i] = '';
+			}
+			return parts.join('').replace(new RegExp("{{/?"+keep+"}}",'g'),'');
 		}
 	;
 
@@ -225,21 +233,20 @@ module.exports = function(grunt) {
 			VERSION:     config.pkg.version,
 			DESCRIPTION: config.pkg.description,
 			DEFINITION:  config.pkg.definition,
-			REPO:        'https://github.com/absolunet/'+config.pkg.name+'/tree/master',
+			REPO:        'https://github.com/absolunet/'+config.pkg.name,
+			REPO_URL:    'https://github.com/absolunet/'+config.pkg.name+'/tree/master',
 			HOMEPAGE:    config.pkg.homepage
 		}});
 
-		grunt.file.write('README-DOC.md', content);
-		grunt.file.write('README.md', content.replace(/\{\{\/?EXCLUDE\}\}/gi,''));
+		grunt.file.write('README.md', processReadme(content,'MD','DOC'));
+		grunt.file.write('README-DOC.md', processReadme(content,'DOC','MD'));
 	});
 
 	config.markdown.docs = {
 		files:   [ { src: 'README-DOC.md', dest: 'sources/docs/tmpl/partials/index.handlebars'}],
 		options: {
 			preCompile: function(src, context) {
-				var parts = src.split(/\{\{\/?EXCLUDE\}\}/gi);
-				for (var i=1; i<parts.length; i=i+2) { parts[i] = ''; }
-				return parts.join('').replace('### '+config.pkg.name, '# '+config.pkg.name);
+				return src.replace('### '+config.pkg.name, '# '+config.pkg.name);
 			},
 			template: 'sources/docs/tmpl/index.jst'
 		}

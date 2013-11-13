@@ -19,17 +19,17 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 
 	<title>builds/kafe/kafe.js - kafe</title>
-	<link rel="stylesheet" href="/assets/core.css">
+	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
-	<script src="/assets/core.js"></script>
+	<script src="/kafe/assets/core.js"></script>
 
 	<!-- (c) 2013 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -248,7 +248,7 @@ window.kafe = (function(undefined){
 				* @property dependencies.jQuery 
 				* @type Object
 				**/
-				jQuery: window.kafejQuery.noConflict(true),
+				jQuery: window.kafejQuery,
 
 				/**
 				* underscore.js defined under window._  
@@ -257,7 +257,7 @@ window.kafe = (function(undefined){
 				* @property dependencies.underscore 
 				* @type Object
 				**/
-				underscore: window._.noConflict(),
+				underscore: window._,
 
 				/**
 				* Modernizr defined under window.Modernizr  
@@ -274,7 +274,7 @@ window.kafe = (function(undefined){
 			plugin: {}
 		}
 	;
-	_delete(&#x27;window.Modernizr&#x27;);
+	_delete(&#x27;window.kafejQuery&#x27;);
 
 
 	// add flags for ie9 and less
@@ -494,6 +494,6 @@ window.kafe = (function(undefined){
 		</section>
 	</div>
 
-	<footer id="Footer">2013 &copy; Absolunet - All rights reserved.</footer>
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
 </body>
 </html>
