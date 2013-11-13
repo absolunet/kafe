@@ -21,12 +21,16 @@
 /*- Fonts ------------------------------------------------------------------*/
 .LoadFont('montserratregular', 'montserrat-regular-webfont');
 .LoadFont('montserratbold',    'montserrat-bold-webfont');
+.LoadFont('icomoon',           'icomoon');
 
 @text-font: helvetica, arial, sans-serif;
 .text-font()    { font-family:@text-font; }
 .alt-font()     { font-family:'montserratregular', @text-font;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 .altBold-font() { font-family:'montserratbold', @text-font;     font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 .code-font()    { font-family:Monaco, 'Lucida Console', Courier, 'Courier New', monospace; font-weight:normal !important; font-style:normal !important;  }
+
+.ico-font() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
+	.icoGithub-char() { content:'g'; .ico-font(); }
 
 
 
@@ -40,7 +44,7 @@
 /*- Base ---------------------------------------------------------------------*/
 html { background-color:@black; }
 body { .text-font(); font-size:16px; color:@text-color; line-height:1.3; }
-a { color:@link-color; text-decoration:none; .transition(0.05s);
+a { color:@link-color; text-decoration:none; .transition(0.1s);
 	&:hover { text-decoration:underline; }
 }
 
@@ -59,43 +63,57 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 
 
 
-#Header { position:relative; height:53px; .alt-font(); text-align:center; background-color:@white;
-	h1 { position:absolute; left:15px; top:10px; font-size:20px;
+#Header { position:relative; height:53px; .altBold-font(); text-align:center; background-color:@white;
+	h1 { position:absolute; left:2%; top:11px; font-size:20px;
 		a { color:@text-color; text-decoration:none !important;
 			img { width:20px; height:32px; margin:0 15px 0 0; }
 		}
 	}
 	nav { display:inline-block; margin:16px auto;
 		li { display:inline; position:relative; margin:0 10px;
-			a { .altBold-font(); font-size:14px; color:@nav-color; text-transform:uppercase; }
+			a { font-size:14px; color:@nav-color; text-transform:uppercase; }
 			&.On { 
 				&:after { content:''; position:absolute; bottom:-34px; left:50%; margin:0 0 0 -7px; .Arrow (down; 10px; @color:@white); }
 				a { color:@link-color; text-decoration:none; }
 			}
 		}
 	}
-}
-
-#Content { overflow:hidden; background-color:@bg-color; 
-	> nav { position:relative; float:left; box-sizing:border-box; width:25%; padding:15px;
-		@media @mobile-media { width:100%; }
-		&:before { content:''; position:absolute; top:0; left:0; width:100%; height:100000px; background-color:@text-color; }
-
-		ul { position:relative; z-index:2;
-			li { position:relative; 
-				a { .alt-font(); color:@white; }
-				&.On {
-					&:after { content:''; position:absolute; top:0; right:-31px; .Arrow (right; 10px; @color:@text-color); }
-					a { color:@title-color; text-decoration:none; }
-				}
-			}
+	h2 { position:absolute; top:16px; right:2.5%;
+		a { position:relative; display:inline-block; .alt-font(); font-size:14px; text-decoration:none !important;
+			&:before { position:absolute; top:-5px; left:-35px; .icoGithub-char(); font-size:28px; }
+			&:hover { color:@text-color; }
 		}
 	}
 
-	> section { float:left; width:75%; height:100%; 
-		@media @mobile-media { width:100%;  }
+	@media @mobile-media { height:auto; padding:10px 0 0 0;
+		h1 { position:static; }
+		h2 a { top:-7px; width:0; height:0; padding:32px 0 0 32px; overflow:hidden;
+			&:before { top:0; left:0; }
+		}
+		nav li { .alt-font(); margin:0 5px; }
+	}
+}
 
-		> header { padding:30px; 
+#Content { overflow:hidden; background-color:@bg-color; 
+	> nav { position:relative; float:right; box-sizing:border-box; width:25%; padding:30px 2%; background-color:@text-color;
+		&:before { content:''; position:absolute; top:0; left:0; width:100%; height:100000px; background-color:@text-color; }
+
+		ul { position:relative; z-index:2;
+			li { position:relative; margin:0 0 3px 0;
+				a { .alt-font(); font-size:16px; color:@white; }
+				&.On a { color:@title-color; text-decoration:none; }
+			}
+		}
+
+		@media @mobile-media { width:100%; padding:15px;
+			&:before { display:none; }
+		}
+	}
+
+	> section { float:right; width:75%; 
+		@media @mobile-media { width:100%; }
+
+		> header { padding:30px 2.5%; 
 			&.module { background-color:@link-color; }
 			&.class  { background-color:@title-color; }
 			&.file  { background-color:@header-color; }
@@ -108,23 +126,41 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 			div { display:inline-block; margin:30px 0 0 0; .code-font(); font-size:14px;
 				a { font-size:12px; }
 			}
+
+			@media @mobile-media { padding:15px;
+				h1 { display:block; margin-bottom:5px; font-size:24px; }
+				h2 { top:0; margin:0; }
+				h3 { display:inline-block; margin:0 0 0 10px; font-size:14px; }
+			}
 		}
 
 		// module methods list
-		> nav {	padding:30px; .alt-font();
+		> nav {	padding:30px 2.5%; .alt-font();
+			@media @mobile-media { padding:15px; }
 			li:before { content:'•  '; }
 		}
 
 		// method
 		> section { 
 
-			> h1 { padding:60px 30px 30px 30px; .alt-font(); font-size:36px; color:@title-color; background-color:@white; }
+			> h1 { padding:60px 2.5% 30px 2.5%; .alt-font(); font-size:36px; color:@title-color; background-color:@white;
+				@media @mobile-media { font-size:30px; }
+			}
 			> section {	padding:30px; 
 				&:nth-child(odd) { background-color:darken(@bg-color,7%); }
 				> h1 { display:inline-block; .altBold-font(); font-size:30px; }
 				> h2 { .Type(); top:-6px;}
 				> footer { display:inline-block; position:relative; top:-5px; margin:0 0 0 10px; .code-font(); font-size:12px; }
 				p { margin:15px 0 0 0; white-space:pre-wrap; }
+
+				@media @mobile-media { padding:15px;
+					> h1 { display:block; margin-bottom:5px; font-size:24px; }
+					> h2 { top:0; margin:0;
+						+ footer { display:inline-block; margin:0 0 0 10px; }
+					}
+					> footer { top:0; margin:0; }
+				}
+
 
 				// function call
 				header { margin:20px 0 0 0; padding:15px; color:@white; background-color:@title-color; .rounded(10px);
@@ -188,7 +224,12 @@ code { padding:2px 5px; .code-font(); font-size:80%; white-space:nowrap; backgro
 }
 
 #Footer { padding:30px; color:@nav-color; font-size:14px;
-	.Site { float:right; font-size:12px; }
+	a { color:@bg-color; }
+	.Site { float:right; .code-font(); font-size:11px; }
+
+	@media @mobile-media { padding:15px; text-align:center;
+		.Site { float:none; display:block; margin:10px 0 0 0;  }
+	}
 }
 
 

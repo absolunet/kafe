@@ -38,9 +38,54 @@
 				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
 			</ul>
 		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
 	</header>
 
 	<div id="Content">
+		<section>
+			<header class="file">
+	<h1>builds/kafe/cms/magento.js</h1>
+	<h2>File</h2>
+</header>
+
+<pre>
+window.kafe.bonify({name:&#x27;cms.magento&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
+
+	var
+		_privateFunction = function () {
+
+		}
+	;
+
+
+	/**
+	* ### Version 0.1
+	* Additionnal methods for Magento
+	*
+	* @module kafe.cms
+	* @class kafe.cms.magento
+	*/
+	var magento = {};
+
+
+	/**
+	* Bind listener on Magento&#x27;s Prototype ajax complete.
+	*
+	* @method onAjaxComplete
+	* @param {Function} callback Callback
+	*/
+	magento.onAjaxComplete = function(func) {
+		Ajax.Responders.register({ onComplete: func });
+	};
+
+	return magento;
+
+})(window.kafe)});
+</pre>
+
+		</section>
 		<nav>
 			<ul>
     
@@ -103,51 +148,6 @@
 </ul>
 
 		</nav>
-
-		<section>
-			<header class="file">
-	<h1>builds/kafe/cms/magento.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-window.kafe.bonify({name:&#x27;cms.magento&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
-
-	var
-		_privateFunction = function () {
-
-		}
-	;
-
-
-	/**
-	* ### Version 0.1
-	* Additionnal methods for Magento
-	*
-	* @module kafe.cms
-	* @class kafe.cms.magento
-	*/
-	var magento = {};
-
-
-	/**
-	* Bind listener on Magento&#x27;s Prototype ajax complete.
-	*
-	* @method onAjaxComplete
-	* @param {Function} callback Callback
-	*/
-	magento.onAjaxComplete = function(func) {
-		Ajax.Responders.register({ onComplete: func });
-	};
-
-	return magento;
-
-})(window.kafe)});
-</pre>
-
-		</section>
 	</div>
 
 	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>

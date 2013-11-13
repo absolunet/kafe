@@ -38,9 +38,53 @@
 				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
 			</ul>
 		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
 	</header>
 
 	<div id="Content">
+		<section>
+			<header class="file">
+	<h1>builds/kafe/ext/addthis.js</h1>
+	<h2>File</h2>
+</header>
+
+<pre>
+window.kafe.bonify({name:&#x27;ext.addthis&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
+
+	/**
+	* ### Version 0.1
+	* Additionnal methods for AddThis
+	*
+	* @module kafe.ext
+	* @class kafe.ext.addthis
+	*/
+	var addthis = {};
+
+	/**
+	* Refresh addthis share data
+	*
+	* @method refreshData
+	* @param {Object} options Options
+	*	@param {String} options.url The url
+	*	@param {String} options.title The page title
+	*/
+    addthis.refreshData = function (options) {
+		options = options || {};
+		window.addthis.ost = 0;
+		window.addthis.update(&#x27;share&#x27;, &#x27;url&#x27;,   (options.url)   ? options.url   : window.location.toString());
+		window.addthis.update(&#x27;share&#x27;, &#x27;title&#x27;, (options.title) ? options.title : document.title);
+		window.addthis.ready();
+		window.addthis.toolbox(&#x27;.addthis_toolbox&#x27;);
+    };
+
+	return addthis;
+
+})(window.kafe)});
+</pre>
+
+		</section>
 		<nav>
 			<ul>
     
@@ -103,50 +147,6 @@
 </ul>
 
 		</nav>
-
-		<section>
-			<header class="file">
-	<h1>builds/kafe/ext/addthis.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-window.kafe.bonify({name:&#x27;ext.addthis&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
-
-	/**
-	* ### Version 0.1
-	* Additionnal methods for AddThis
-	*
-	* @module kafe.ext
-	* @class kafe.ext.addthis
-	*/
-	var addthis = {};
-
-	/**
-	* Refresh addthis share data
-	*
-	* @method refreshData
-	* @param {Object} options Options
-	*	@param {String} options.url The url
-	*	@param {String} options.title The page title
-	*/
-    addthis.refreshData = function (options) {
-		options = options || {};
-		window.addthis.ost = 0;
-		window.addthis.update(&#x27;share&#x27;, &#x27;url&#x27;,   (options.url)   ? options.url   : window.location.toString());
-		window.addthis.update(&#x27;share&#x27;, &#x27;title&#x27;, (options.title) ? options.title : document.title);
-		window.addthis.ready();
-		window.addthis.toolbox(&#x27;.addthis_toolbox&#x27;);
-    };
-
-	return addthis;
-
-})(window.kafe)});
-</pre>
-
-		</section>
 	</div>
 
 	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>

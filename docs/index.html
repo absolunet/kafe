@@ -38,9 +38,56 @@
 				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
 			</ul>
 		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
 	</header>
 
 	<div id="Content">
+		<section>
+			<div class="Home">
+	<p><img  src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" /></p>
+<h1 id="kafe-v2-0-0a">kafe v2.0.0a</h1>
+<h4 id="mixing-javascript-crops-for-a-perfect-flavour-">Mixing javascript crops for a perfect flavour.</h4>
+<blockquote>
+<p>/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.</p>
+</blockquote>
+<p><br></p>
+<h2 id="quick-start">Quick start</h2>
+<h4 id="requirements">Requirements</h4>
+<p>A jQuery instance that will be copied in kafe.</p>
+<pre><code class="lang-html">&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;window.kafejQuery = window.jQuery&lt;/script&gt;</code></pre>
+<h4 id="with-grunt-http-gruntjs-com-">With <a href="http://gruntjs.com/">Grunt</a></h4>
+<ul>
+<li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/builds">builds</a> folder and put them in a <code>libs</code> folder next to your <code>gruntfile.js</code>.</li>
+<li>Use <a href="https://github.com/gruntjs/grunt-contrib-requirejs">grunt-contrib-requirejs</a> with a setup looking like this:</li>
+</ul>
+<pre><code class="lang-js">config.requirejs.core = {
+    options: {
+        baseUrl:                 &#39;./&#39;,
+        name:                    &#39;libs/kafe/kafe&#39;,
+        include:                 [&#39;libs/kafe/date&#39;,&#39;libs/kafe/string&#39;],
+        out:                     &#39;js/kafe-build.js&#39;,
+        optimize:                &#39;uglify&#39;,
+        preserveLicenseComments: false,
+        skipModuleInsertion:     true,
+        findNestedDependencies:  true,
+        pragmasOnSave:           { excludeRequire: true }
+    }
+};</code></pre>
+<h4 id="standalone">Standalone</h4>
+<ul>
+<li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/builds">builds</a> folder and put them in your project.</li>
+<li>Remove the <code>require()</code> in the files header and include them manually.</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>Visit the <a href="https://github.com/absolunet/kafe">Github repository</a> for all the things.</p>
+<h2 id="release-history">Release history</h2>
+<p>See the <a href="https://github.com/absolunet/kafe/tree/master/CHANGELOG">CHANGELOG</a>.</p>
+<h2 id="license">License</h2>
+<p>See the <a href="https://github.com/absolunet/kafe/tree/master/LICENSE">MIT LICENSE</a>.</p>
+
+</div>
+		</section>
 		<nav>
 			<ul>
     
@@ -103,53 +150,6 @@
 </ul>
 
 		</nav>
-
-		<section>
-			<div class="Home">
-	<p><img  src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" /></p>
-<h1 id="kafe-v2-0-0a">kafe v2.0.0a</h1>
-<h4 id="mixing-javascript-crops-for-a-perfect-flavour-">Mixing javascript crops for a perfect flavour.</h4>
-<blockquote>
-<p>/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.</p>
-</blockquote>
-<p><br></p>
-<h2 id="quick-start">Quick start</h2>
-<h4 id="requirements">Requirements</h4>
-<p>A jQuery instance that will be copied in kafe.</p>
-<pre><code class="lang-html">&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;window.kafejQuery = window.jQuery&lt;/script&gt;</code></pre>
-<h4 id="with-grunt-http-gruntjs-com-">With <a href="http://gruntjs.com/">Grunt</a></h4>
-<ul>
-<li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/builds">builds</a> folder and put them in a <code>libs</code> folder next to your <code>gruntfile.js</code>.</li>
-<li>Use <a href="https://github.com/gruntjs/grunt-contrib-requirejs">grunt-contrib-requirejs</a> with a setup looking like this:</li>
-</ul>
-<pre><code class="lang-js">config.requirejs.core = {
-    options: {
-        baseUrl:                 &#39;./&#39;,
-        name:                    &#39;libs/kafe/kafe&#39;,
-        include:                 [&#39;libs/kafe/date&#39;,&#39;libs/kafe/string&#39;],
-        out:                     &#39;js/kafe-build.js&#39;,
-        optimize:                &#39;uglify&#39;,
-        preserveLicenseComments: false,
-        skipModuleInsertion:     true,
-        findNestedDependencies:  true,
-        pragmasOnSave:           { excludeRequire: true }
-    }
-};</code></pre>
-<h4 id="standalone">Standalone</h4>
-<ul>
-<li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/builds">builds</a> folder and put them in your project.</li>
-<li>Remove the <code>require()</code> in the files header and include them manually.</li>
-</ul>
-<h2 id="sources">Sources</h2>
-<p>Visit the <a href="https://github.com/absolunet/kafe">Github repository</a> for all the things.</p>
-<h2 id="release-history">Release history</h2>
-<p>See the <a href="https://github.com/absolunet/kafe/tree/master/CHANGELOG">CHANGELOG</a>.</p>
-<h2 id="license">License</h2>
-<p>See the <a href="https://github.com/absolunet/kafe/tree/master/LICENSE">MIT LICENSE</a>.</p>
-
-</div>
-		</section>
 	</div>
 
 	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
