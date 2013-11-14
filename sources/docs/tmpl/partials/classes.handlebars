@@ -2,7 +2,10 @@
 	<h1>{{name}}</h1>
 	<h2>Class</h2>
 	{{{classDescription}}}
-	<div>Source: <a href="{{foundAt}}">{{{file}}}</a> | Tests: <a href="/kafe/tests/?module={{name}}">QUnit</a></div>
+	<div>
+		<span>Source: <a href="{{foundAt}}">{{{file}}}</a></span>
+		<span>Tests: <a href="/kafe/tests/?module={{name}}">QUnit</a></span>
+	</div>
 </header>
 
 {{#if properties}}

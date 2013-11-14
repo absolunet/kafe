@@ -2,7 +2,8 @@
 require([
 	'shCore',
 	'shBrushJScript',
-	'jquery-scrollto'
+	'jquery-scrollto',
+	'modernizr'
 ]);
 //>>excludeEnd('excludeRequire');
 
@@ -57,7 +58,7 @@ require([
 		var line = window.location.hash.substring(2);
 		if (isFile && line) {
 			setTimeout(function() {
-				$.scrollTo('.number'+line, 500, {offset:{top:-15}});
+				$.scrollTo('.number'+line, ((Modernizr.touch) ? 0 : 500), {offset:{top:-15}});
 			});
 		}
 
