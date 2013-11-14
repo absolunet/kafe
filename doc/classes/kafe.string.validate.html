@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.string.validate - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/kafe/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="class">
+	<h1>kafe.string.validate</h1>
+	<h2>Class</h2>
+	<h3 id="version-1-0">Version 1.0</h3>
+<p>String validation tools.</p>
+
+	<div>
+		<span>Source: <a href="../files/build_kafe_string-validate.js.html#l11">build/kafe/string-validate.js</a></span>
+		<span>Unit test: <a href="/kafe/test/?module=kafe.string.validate">Report</a></span>
+	</div>
+</header>
+
+
+
+
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>isCreditCard</h1>
+	<footer><a href="../files/build_kafe_string-validate.js.html#l114">@114</a></footer>
+
+	<p>Checks if a string is a valid credit card number and fits a specific brand pattern.</p>
+<p>Source: <a href="http://www.regular-expressions.info/creditcard.html"><a href="http://www.regular-expressions.info/creditcard.html">http://www.regular-expressions.info/creditcard.html</a></a></p>
+
+
+	<header>
+		<strong>isCreditCard</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">creditcard</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>string</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>creditcard</code>
+						<strong>String</strong>
+					
+					<p>A credit card brand abbreviation. Possible values are <strong>visa</strong>, <strong>mastercard</strong>, <strong>americanexpress</strong>, <strong>dinersclub</strong>, <strong>discover</strong>, <strong>jcb</strong>.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string is a valid credit card number.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;k789 kafe 3789&#39;, &#39;mc&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isCreditCard(&#39;1234 5678 1234 5678&#39;, &#39;vi&#39;);
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>isEmail</h1>
+	<footer><a href="../files/build_kafe_string-validate.js.html#l39">@39</a></footer>
+
+	<p>Checks if a string is a valid email address.</p>
+
+
+	<header>
+		<strong>isEmail</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>string</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string is a valid email address.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;mailbox@mailaddress&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isEmail(&#39;kafe.feedback@absolunet.com&#39;);
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>isLuhnAlgorithm</h1>
+	<footer><a href="../files/build_kafe_string-validate.js.html#l84">@84</a></footer>
+
+	<p>Checks if a string passes the Luhn algorithm.</p>
+<p>Source: <a href="https://gist.github.com/2134376"><a href="https://gist.github.com/2134376">https://gist.github.com/2134376</a></a>
+Source: <a href="http://jsperf.com/credit-card-validator/7"><a href="http://jsperf.com/credit-card-validator/7">http://jsperf.com/credit-card-validator/7</a></a></p>
+
+
+	<header>
+		<strong>isLuhnAlgorithm</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>string</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string passes the Luhn algorithm.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isLuhn(&#39;79927398713&#39;);
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>isNum</h1>
+	<footer><a href="../files/build_kafe_string-validate.js.html#l21">@21</a></footer>
+
+	<p>Checks if a string is numeric.</p>
+
+
+	<header>
+		<strong>isNum</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>string</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string could be converted to a number.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;k4f3&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isNum(&#39;43&#39;);
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>isPostalCode</h1>
+	<footer><a href="../files/build_kafe_string-validate.js.html#l59">@59</a></footer>
+
+	<p>Checks if a string is a valid or part of a valid Canadian postal code.</p>
+
+
+	<header>
+		<strong>isPostalCode</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">string</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>format</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>string</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[format]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>Validation pattern (Regular expression). Default pattern is <em>([a-z][0-9]){3}</em>. Can also be set to <em>A1A 1A1</em> for a single precise value or as <em>A1A</em> and <em>1A1</em> when divided into two values.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If true, the string matches the validation format.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;KAF123&#39;);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.string.validate.isPostalCode(&#39;K4F 3F3&#39;, &#39;A1A 1A1&#39;);
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+</section>
+
+		</section>
+		<nav>
+			<ul>
+    
+        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
+
+		</nav>
+	</div>
+
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+</body>
+</html>

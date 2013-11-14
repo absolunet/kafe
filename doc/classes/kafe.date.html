@@ -1,0 +1,1843 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.date - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/kafe/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="class">
+	<h1>kafe.date</h1>
+	<h2>Class</h2>
+	<h3 id="version-1-2">Version 1.2</h3>
+<p>Additionnal methods for date manipulation</p>
+
+	<div>
+		<span>Source: <a href="../files/build_kafe_date.js.html#l55">build/kafe/date.js</a></span>
+		<span>Unit test: <a href="/kafe/test/?module=kafe.date">Report</a></span>
+	</div>
+</header>
+
+
+<section>
+	<h1>Properties</h1>
+	
+		<section>
+	<h1>DAY</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l88">@88</a></footer>
+	<p>Number of milliseconds in a day (24 hours per day)</p>
+
+</section>
+
+	
+		<section>
+	<h1>HOUR</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l80">@80</a></footer>
+	<p>Number of milliseconds in an hour (60 minutes per hour)</p>
+
+</section>
+
+	
+		<section>
+	<h1>MINUTE</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l72">@72</a></footer>
+	<p>Number of milliseconds in a minute (60 seconds per minute)</p>
+
+</section>
+
+	
+		<section>
+	<h1>MONTH</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l104">@104</a></footer>
+	<p>Number of milliseconds in a month (4.348121428571429 weeks per month)</p>
+
+</section>
+
+	
+		<section>
+	<h1>SECOND</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l64">@64</a></footer>
+	<p>Number of milliseconds in a second (1000 ms per second)</p>
+
+</section>
+
+	
+		<section>
+	<h1>WEEK</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l96">@96</a></footer>
+	<p>Number of milliseconds in a week (7 days per week)</p>
+
+</section>
+
+	
+		<section>
+	<h1>YEAR</h1>
+	<h2>Number</h2>
+	<footer><a href="../files/build_kafe_date.js.html#l112">@112</a></footer>
+	<p>Number of milliseconds in a year (365.2422 days per year)</p>
+
+</section>
+
+	
+</section>
+
+
+
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>format</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l380">@380</a></footer>
+
+	<p>Flexible formatting a given date object.</p>
+
+
+	<header>
+		<strong>format</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">format</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>date = NOW</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>format</code>
+						<strong>String</strong>
+					
+					<p>A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.</p>
+
+
+
+					
+						<ul>
+						
+							<li>
+								
+									<code>%Y,%y</code>
+									<strong>Token</strong>
+								
+								<p>Year variants: [2011, 11]</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>%M,%m,%A,%a,%B,%b,%C,%c</code>
+									<strong>Token</strong>
+								
+								<p>Month variants: [01, 1, January, january, Jan, jan, JA, Ja]</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>%D,%d,%e</code>
+									<strong>Token</strong>
+								
+								<p>Day variants: [02, 2, 2nd]</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>%W,%w,%X,%x,%Z,%z</code>
+									<strong>Token</strong>
+								
+								<p>Weekday variants: [Sunday, sunday, Sun, sun, Su, su]</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>%H,%h,%K,%k,%p</code>
+									<strong>Token</strong>
+								
+								<p>Hour variants [15, 15, 03, 3, pm]</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>%I,%i</code>
+									<strong>Token</strong>
+								
+								<p>Minute variants [04, 4]</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>%S,%s</code>
+									<strong>Token</strong>
+								
+								<p>Second variants [05, 5]</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[date = NOW]</code>
+						<strong>Date</strong>
+						<span>Optional</span>
+					
+					<p>A date to be formatted.</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The formatted date.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %A %e, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;en&#39;);
+// returns &quot;Tuesday, July 16th, 2013&quot;</code></pre>
+<pre class="code prettyprint"><code>kafe.date.format(&#39;%W, %d %a, %Y&#39;, new Date(&#39;2013-07-17&#39;), &#39;fr&#39;);
+// returns &quot;Mardi, 16 juillet, 2013&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>formatRelative</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l461">@461</a></footer>
+
+	<p>Get a relative time expression from a specific datetime.</p>
+
+
+	<header>
+		<strong>formatRelative</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">time</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>now = NOW</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>time</code>
+						<strong>Date</strong>
+					
+					<p>Specific datetime object.</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[now = NOW]</code>
+						<strong>Date</strong>
+						<span>Optional</span>
+					
+					<p>Comparative datetime object to calculate the time difference.</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The relative time expression</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-07-19 6:00:00&#39;), new Date(&#39;2013-07-19 20:00:00&#39;), &#39;en&#39;);
+// returns &quot;14 hours ago&quot;</code></pre>
+<pre class="code prettyprint"><code>kafe.date.formatRelative(new Date(&#39;2013-05-19&#39;), new Date(&#39;2013-07-19&#39;), &#39;en&#39;);
+// returns &quot;2 months ago&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getDayNames</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l355">@355</a></footer>
+
+	<p>Get a clean representation for all possible days of a month.</p>
+
+
+	<header>
+		<strong>getDayNames</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of clean representations for all possible days of a month.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;);
+// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getDayNames(&#39;en&#39;)[3];
+// returns &quot;4th&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getDayYear</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l122">@122</a></footer>
+
+	<p>Get the day number out of the full year (365 days).</p>
+
+
+	<header>
+		<strong>getDayYear</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">d</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Number</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>d</code>
+						<strong>Date</strong>
+					
+					<p>The date</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Number</strong>
+			<p>The day of the year</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getDayYear(new Date(&#39;2013-07-17&#39;));
+// returns 198</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getMaxMonth</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l165">@165</a></footer>
+
+	<p>Get the number of days for all the months of a given year.</p>
+
+
+	<header>
+		<strong>getMaxMonth</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">year</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(Number)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>year</code>
+						<strong>Number</strong>
+					
+					<p>The year.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(Number)</strong>
+			<p>An ordered array of day counts for each months of the given year.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013);
+// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMaxMonth(2013)[3];
+// returns 30</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getMonth1Names</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l201">@201</a></footer>
+
+	<p>Get the 1-char abbreviations of the months of the year.</p>
+
+
+	<header>
+		<strong>getMonth1Names</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of 1-char month abbreviations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;);
+// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonth1Names(&#39;en&#39;)[3];
+// returns &quot;A&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getMonth2Names</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l219">@219</a></footer>
+
+	<p>Get the 2-char abbreviations of the months of the year.</p>
+
+
+	<header>
+		<strong>getMonth2Names</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of 2-char month abbreviations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;);
+// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonth2Names(&#39;en&#39;)[3];
+// returns &quot;Al&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getMonth3Names</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l238">@238</a></footer>
+
+	<p>Get the 3-char abbreviations of the months of the year.</p>
+
+
+	<header>
+		<strong>getMonth3Names</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of 3-char month abbreviations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;);
+// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonth3Names(&#39;en&#39;)[3];
+// returns &quot;Apr&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getMonthNames</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l183">@183</a></footer>
+
+	<p>Get the full name of the months of the year.</p>
+
+
+	<header>
+		<strong>getMonthNames</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of month names.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;);
+// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getMonthNames(&#39;en&#39;)[3];
+// returns &quot;April&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getWeekday1Names</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l297">@297</a></footer>
+
+	<p>Get the 1-char abbreviations of the days of the week.</p>
+
+
+	<header>
+		<strong>getWeekday1Names</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of 1-char weekday abbreviations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;);
+// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekday1Names(&#39;en&#39;)[3];
+// returns &quot;W&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getWeekday2Names</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l315">@315</a></footer>
+
+	<p>Get the 2-char abbreviations of the days of the week.</p>
+
+
+	<header>
+		<strong>getWeekday2Names</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of 2-char weekday abbreviations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;);
+// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekday2Names(&#39;en&#39;)[3];
+// returns &quot;We&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getWeekday3Names</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l333">@333</a></footer>
+
+	<p>Get the 3-char abbreviations of the days of the week.</p>
+
+
+	<header>
+		<strong>getWeekday3Names</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of 3-char weekday abbreviations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;);
+// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekday3Names(&#39;en&#39;)[3];
+// returns &quot;Wed&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getWeekdayNames</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l279">@279</a></footer>
+
+	<p>Get the full name of the days of the week.</p>
+
+
+	<header>
+		<strong>getWeekdayNames</strong>
+		
+			<ul>
+			
+
+				
+					<li class="Optional"><code>lang = CURRENT_ENV_LANG</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>[lang = CURRENT_ENV_LANG]</code>
+						<strong>String</strong>
+						<span>Optional</span>
+					
+					<p>A two character language code.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>An ordered array of weekday names.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;);
+// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]</code></pre>
+<pre class="code prettyprint"><code>kafe.date.getWeekdayNames(&#39;en&#39;)[3];
+// returns &quot;Wednesday&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>isLeapYear</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l147">@147</a></footer>
+
+	<p>Returns whether the date is within a leap year or not.</p>
+
+
+	<header>
+		<strong>isLeapYear</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">year</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>year</code>
+						<strong>Number</strong>
+					
+					<p>The year.</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If it is a leap year or not.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.isLeapYear(2013);
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.date.isLeapYear(2004);
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>isWeekend</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l260">@260</a></footer>
+
+	<p>Returns whether the date is within a weekend.</p>
+
+
+	<header>
+		<strong>isWeekend</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">d</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Boolean</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>d</code>
+						<strong>Date</strong>
+					
+					<p>The date</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Boolean</strong>
+			<p>If it is within a weekend or not.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.isWeekend(new Date(&#39;2013-07-17&#39;));
+// returns false</code></pre>
+<pre class="code prettyprint"><code>kafe.date.isWeekend(new Date(&#39;2013-07-20&#39;));
+// returns true</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>makeMonthCalendar</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l644">@644</a></footer>
+
+	<p>Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.</p>
+
+
+	<header>
+		<strong>makeMonthCalendar</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">year</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">month</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>links</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>year</code>
+						<strong>Number</strong>
+					
+					<p>The year</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>month</code>
+						<strong>Number</strong>
+					
+					<p>The month</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[links]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
+					
+					<p>The links by date</p>
+
+
+
+					
+						<ul>
+						
+							<li>
+								
+									<code>YYYY-MM-DD</code>
+									<strong>Array</strong>
+								
+								<p>The links</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>The rendered HTML</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.makeMonthCalendar(2013, 4, {&#39;2013-04-03&#39;:&#39;http://mybirthday.com/&#39;});
+// returns &quot;&lt;table data-month=&quot;2013-04&quot;&gt;&lt;caption&gt;Avril 2013&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dim&lt;/th&gt;&lt;th&gt;Lun&lt;/th&gt;&lt;th&gt;Mar&lt;/th&gt;&lt;th&gt;Mer&lt;/th&gt;&lt;th&gt;Jeu&lt;/th&gt;&lt;th&gt;Ven&lt;/th&gt;&lt;th&gt;Sam&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td data-date=&quot;2013-04-01&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-02&quot;&gt;&lt;span&gt;2&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-03&quot;&gt;&lt;a href=&quot;http://mybirthday.com/&quot;&gt;3&lt;/a&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-04&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-05&quot;&gt;&lt;span&gt;5&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-06&quot;&gt;&lt;span&gt;6&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-07&quot;&gt;&lt;span&gt;7&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-08&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-09&quot;&gt;&lt;span&gt;9&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-10&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-11&quot;&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-12&quot;&gt;&lt;span&gt;12&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-13&quot;&gt;&lt;span&gt;13&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-14&quot;&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-15&quot;&gt;&lt;span&gt;15&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-16&quot;&gt;&lt;span&gt;16&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-17&quot;&gt;&lt;span&gt;17&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-18&quot;&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-19&quot;&gt;&lt;span&gt;19&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-20&quot;&gt;&lt;span&gt;20&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-21&quot;&gt;&lt;span&gt;21&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-22&quot;&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-23&quot;&gt;&lt;span&gt;23&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-24&quot;&gt;&lt;span&gt;24&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-25&quot;&gt;&lt;span&gt;25&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-26&quot;&gt;&lt;span&gt;26&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-27&quot;&gt;&lt;span&gt;27&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-28&quot;&gt;&lt;span&gt;28&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-29&quot;&gt;&lt;span&gt;29&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-30&quot;&gt;&lt;span&gt;30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot;</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>parse</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l514">@514</a></footer>
+
+	<p>Parses a given datetime string into a standard datetime object.</p>
+
+
+	<header>
+		<strong>parse</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">dtstring</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Date</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>dtstring</code>
+						<strong>String</strong>
+					
+					<p>Custom datetime string</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Date</strong>
+			<p>The date object</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.date.parse(&#39;2012-08-08T12:18:00.000-04:00&#39;);
+// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)</code></pre>
+<pre class="code prettyprint"><code>kafe.date.parse(&#39;June 3, 2013&#39;);
+// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>refreshSelectDays</h1>
+	<footer><a href="../files/build_kafe_date.js.html#l599">@599</a></footer>
+
+	<p>Refreshes a dropdown containing the days of a given year/month combination.</p>
+
+
+	<header>
+		<strong>refreshSelectDays</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">obj</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">month</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">year</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>obj</code>
+						<strong>DOMElement</strong>
+					
+					<p>The &lt;select&gt; element</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>month</code>
+						<strong>Number</strong>
+					
+					<p>The month</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>year</code>
+						<strong>Number</strong>
+					
+					<p>The year</p>
+
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>$(&#39;.select-month&#39;).on(&#39;change&#39;, function(e) {
+    kafe.date.refreshSelectDays(&#39;.select-day&#39;, $(this).val(), $(&#39;.select-year&#39;).val());
+})</code></pre>
+
+		</section>
+	
+</section>
+
+	
+</section>
+
+		</section>
+		<nav>
+			<ul>
+    
+        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
+
+		</nav>
+	</div>
+
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+</body>
+</html>

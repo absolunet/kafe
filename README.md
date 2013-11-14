@@ -16,7 +16,7 @@ A jQuery instance that will be copied in kafe.
 ```
 
 #### With [Grunt](http://gruntjs.com/)
-- Take the files under [builds](https://github.com/absolunet/kafe/tree/master/builds) folder and put them in a `libs` folder next to your `gruntfile.js`.
+- Take the files under [build](https://github.com/absolunet/kafe/tree/master/build) folder and put them in a `libs` folder next to your `gruntfile.js`.
 - Use [grunt-contrib-requirejs](https://github.com/gruntjs/grunt-contrib-requirejs) with a setup looking like this:
 
 ```js
@@ -36,7 +36,7 @@ config.requirejs.core = {
 ```
 
 #### Standalone
-- Take the files under [builds](https://github.com/absolunet/kafe/tree/master/builds) folder and put them in your project.
+- Take the files under [build](https://github.com/absolunet/kafe/tree/master/build) folder and put them in your project.
 - Remove the `require()` in the files header and include them manually.
 
 

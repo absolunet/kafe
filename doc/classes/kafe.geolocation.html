@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.geolocation - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/kafe/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="class">
+	<h1>kafe.geolocation</h1>
+	<h2>Class</h2>
+	<h3 id="version-1-0">Version 1.0</h3>
+<p>Methods to access geolocalization information about the client.</p>
+
+	<div>
+		<span>Source: <a href="../files/build_kafe_geolocation.js.html#l38">build/kafe/geolocation.js</a></span>
+		<span>Unit test: <a href="/kafe/test/?module=kafe.geolocation">Report</a></span>
+	</div>
+</header>
+
+
+
+
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>locate</h1>
+	<footer><a href="../files/build_kafe_geolocation.js.html#l47">@47</a></footer>
+
+	<p>Get the current geolocalization information of the client.</p>
+
+
+	<header>
+		<strong>locate</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">parameters</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>parameters</code>
+						<strong>Object</strong>
+					
+					<p>Parameters for the current request.</p>
+
+
+
+					
+						<ul>
+						
+							<li>
+								
+									<code>[selector]</code>
+									<strong>String|jQueryObject|DOMElement</strong>
+									<span>Optional</span>
+								
+								<p>Element used to show status messages.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[lang = CURRENT_ENV_LANG]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>A two character language code.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[success]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
+								
+								<p>Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[error]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
+								
+								<p>Callback triggered on geolocalization errors. The error message is passed as the first argument.</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.geolocation.locate({
+    selector: &#39;#GeoLocStatus&#39;, lang: &#39;en&#39;,
+    success: function(coords) {
+        console.log(&#39;latitude: &#39; + coords.latitude);
+        console.log(&#39;longitude: &#39; + coords.longitude);
+    }
+    error: function(msg) {
+        console.log(&#39;Cannot geoloc: &#39; + msg);
+    }
+});</code></pre>
+<pre class="code prettyprint"><code>$(&#39;#GeoLocStatus&#39;).kafe(&#39;geolocation.locate&#39;, {});</code></pre>
+
+		</section>
+	
+</section>
+
+	
+</section>
+
+		</section>
+		<nav>
+			<ul>
+    
+        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
+
+		</nav>
+	</div>
+
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+</body>
+</html>

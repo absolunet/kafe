@@ -1,19 +1,19 @@
 module.exports = function(grunt) {
 	var
-		sources        = 'sources',
-		tmp            = sources+'/.tmp-kafe',
-		sources_tmpl   = sources+'/tmpl',
-		sources_kafe   = sources+'/kafe',
-		sources_vendor = sources+'/vendor',
-		sources_docs   = sources+'/docs',
-		sources_tests  = sources+'/tests',
-		out_root       = './',
-		out_builds     = 'builds',
-		out_docs       = 'docs',
-		out_tests      = 'tests',
+		src        = 'src',
+		tmp        = src+'/.tmp-kafe',
+		src_tmpl   = src+'/tmpl',
+		src_kafe   = src+'/kafe',
+		src_vendor = src+'/vendor',
+		src_yuidoc = src+'/yuidoc',
+		src_qunit  = src+'/qunit',
+		out_root   = './',
+		out_build  = 'build',
+		out_doc    = 'doc',
+		out_test   = 'test',
 
 
-		tasks = { default:['docs','tests'] },
+		tasks = { default:['doc','test'] },
 		
 		config = {
 			pkg: grunt.file.readJSON('package.json'),
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 			less:      {},
 			cssmin:    {},
 			copy:      {},
-			clean:     { placeholders:{src: [out_builds+'/**/_*.js'],  options: { force:true }} },
+			clean:     { placeholders:{src: [out_build+'/**/_*.js'],  options: { force:true }} },
 			watch:     { all: { files: ['gruntfile.js', 'package.json'], tasks: 'default' } }
 		},
 
@@ -62,19 +62,19 @@ module.exports = function(grunt) {
 
 	// Build kafe
 	config.clean.core = {
-		src: [out_builds+'/*'],  options: { force:true }
+		src: [out_build+'/*'],  options: { force:true }
 	};
 
 
-	grunt.task.registerTask('kafe_versioning', '', function() {
+	grunt.task.registerTask('kafe_core', '', function() {
 		var
-			versions = grunt.file.readJSON(sources_kafe+'/versions.json'),
-			files    = grunt.file.expand(sources_kafe+'/**/*.js')
+			versions = grunt.file.readJSON(src_kafe+'/versions.json'),
+			files    = grunt.file.expand(src_kafe+'/**/*.js')
 		;
 
 		for (var i in files) {
 			var
-				parts        = files[i].split(sources_kafe+'/'),
+				parts        = files[i].split(src_kafe+'/'),
 				filename     = parts[parts.length-1],
 				name         = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3),
 				module       = name.split('.'),
@@ -104,17 +104,17 @@ module.exports = function(grunt) {
 				FOOTER: "})(window."+package+")});",
 			}});
 
-			grunt.file.write(out_builds+'/kafe/'+filename, contents);
+			grunt.file.write(out_build+'/kafe/'+filename, contents);
 		}
 	});
 
 
 	grunt.task.registerTask('kafe_vendor', '', function() {
-		var files = grunt.file.expand(sources_vendor+'/**/*.js');
+		var files = grunt.file.expand(src_vendor+'/**/*.js');
 
 		for (var i in files) {
 			var
-				parts    = files[i].split(sources_vendor+'/'),
+				parts    = files[i].split(src_vendor+'/'),
 				filename = parts[parts.length-1],
 				contents = grunt.file.read(files[i]),
 				pieces   = contents.split(/\}\s*else\s*{/)
@@ -127,29 +127,29 @@ module.exports = function(grunt) {
 			}
 			contents = pieces.join('} else {');
 
-			grunt.file.write(out_builds+'/vendor/'+filename, contents);
+			grunt.file.write(out_build+'/vendor/'+filename, contents);
 		}
 	});
 
 	config.copy.resources = {
 		expand: true,
-		cwd:    sources_vendor+'/resources/',
+		cwd:    src_vendor+'/resources/',
 		src:    '**',
-		dest:   out_builds+'/vendor-resources/',
+		dest:   out_build+'/vendor-resources/',
 		filter: 'isFile'
 	};
 
 
 
 	config.jshint.core = {
-		src: [out_builds+'/kafe/**/*.js'],
+		src: [out_build+'/kafe/**/*.js'],
 		options: {
 			'-W061': true   // eval can be harmful
 		}
 	};
 
-	tasks.core_docs = ['clean:core','kafe_versioning','kafe_vendor','jshint:core','copy:resources'];
-	tasks.core = tasks.core_docs.slice(0);
+	tasks.core_doc = ['clean:core','kafe_core','kafe_vendor','jshint:core','copy:resources'];
+	tasks.core = tasks.core_doc.slice(0);
 	tasks.core.push('clean:placeholders');
 
 
@@ -161,10 +161,10 @@ module.exports = function(grunt) {
 
 
 
-	// Tests
+	// Test
 	config.requirejs.test = {
 		options: {
-			baseUrl:  sources_tests+'/',
+			baseUrl:  src_qunit+'/',
 			name:     'kafe',
 			include:  [
 				'date',               // 2 methods pending
@@ -198,7 +198,7 @@ module.exports = function(grunt) {
 //				'plugin/qrcode',
 //				'plugin/sticky',
 			],
-			out:      out_tests+'/tests.js',
+			out:      out_test+'/test.js',
 			optimize: 'none',
 			preserveLicenseComments: true,
 			skipModuleInsertion:     true,
@@ -207,16 +207,16 @@ module.exports = function(grunt) {
 		}
 	};
 	
-	config.copy.tests = {
+	config.copy.test = {
 		expand: true,
-		cwd:    sources_tests+'/',
+		cwd:    src_qunit+'/',
 		src:    '*.html',
-		dest:   out_tests+'/',
+		dest:   out_test+'/',
 		filter: 'isFile'
 	};
 
-	tasks.tests        = ['requirejs:test', 'copy:tests'];
-	config.watch.tests = { files: [sources_tests+'/**/*.js', '!'+sources_tests+'/libs/*'], tasks:'tests' };
+	tasks.test        = ['requirejs:test', 'copy:test'];
+	config.watch.test = { files: [src_qunit+'/**/*.js', '!'+src_qunit+'/libs/*'], tasks:'test' };
 
 
 
@@ -227,21 +227,21 @@ module.exports = function(grunt) {
 
 
 
-	// Docs
+	// Doc
 	config.yuidoc.compile = {
 		name:        '<%= pkg.name %>',
 		description: '<%= pkg.description %>',
 		version:     '<%= pkg.name %> v<%= pkg.version %>',
 		url:         '<%= pkg.repository_url %>',
 		options: {
-			paths:    out_builds+'/kafe/',
-			themedir: sources_docs+'/tmpl/',
-			outdir:   out_docs+'/'
+			paths:    out_build+'/kafe/',
+			themedir: src_yuidoc+'/tmpl/',
+			outdir:   out_doc+'/'
 		}
 	};
 
 	grunt.task.registerTask('kafe_readme', '', function() {
-		var content = grunt.template.process( grunt.file.read(sources_tmpl+'/readme.tmpl'), { data:{
+		var content = grunt.template.process( grunt.file.read(src_tmpl+'/readme.tmpl'), { data:{
 			PACKAGE:     config.pkg.name,
 			VERSION:     config.pkg.version,
 			DESCRIPTION: config.pkg.description,
@@ -252,46 +252,46 @@ module.exports = function(grunt) {
 		}});
 
 		grunt.file.write(out_root+'/README.md', processReadme(content,'MD','DOC'));
-		grunt.file.write(tmp+'/readme-docs.md', processReadme(content,'DOC','MD'));
+		grunt.file.write(tmp+'/readme-doc.md', processReadme(content,'DOC','MD'));
 	});
 
-	config.markdown.docs = {
-		files:   [ { src: tmp+'/readme-docs.md', dest: sources_docs+'/tmpl/partials/index.handlebars'}],
+	config.markdown.doc = {
+		files:   [ { src: tmp+'/readme-doc.md', dest: src_yuidoc+'/tmpl/partials/index.handlebars'}],
 		options: {
 			preCompile: function(src, context) {
 				return src.replace('### '+config.pkg.name, '# '+config.pkg.name);
 			},
-			template: sources_tmpl+'/doc-home.jst'
+			template: src_tmpl+'/doc-home.jst'
 		}
 	};
 
-	config.clean.docs     = {src: [out_docs+'/assets',out_docs+'/api.js',out_docs+'/data.json'],  options: { force:true }};
-	config.clean.docsless = {src: [tmp+'/docs-less.css', tmp+'/readme-docs.md', sources_docs+'/tmpl/partials/index.handlebars'],  options: { force:true }};
+	config.clean.doc     = {src: [out_doc+'/assets',out_doc+'/api.js',out_doc+'/data.json'],  options: { force:true }};
+	config.clean.docless = {src: [tmp+'/doc-less.css', tmp+'/readme-doc.md', src_yuidoc+'/tmpl/partials/index.handlebars'],  options: { force:true }};
 
-	config.copy.docsassets = {
+	config.copy.docassets = {
 		expand: true,
-		cwd:    sources_docs+'/assets/',
+		cwd:    src_yuidoc+'/assets/',
 		src:    '**',
-		dest:   out_docs+'/assets/',
+		dest:   out_doc+'/assets/',
 		filter: 'isFile'
 	};
 
-	config.less.docs = { files: [
-		{ src:sources_docs+'/css/core.less', dest:tmp+'/docs-less.css' }
+	config.less.doc = { files: [
+		{ src:src_yuidoc+'/css/core.less', dest:tmp+'/doc-less.css' }
 	]};
 
-	config.cssmin.docs = { files: [ { src: [
-		sources_docs+'/css/libs/reset.css',
-		sources_docs+'/css/libs/normalize.css',
-		sources_docs+'/css/libs/html5boilerplate.css',
-		tmp+'/docs-less.css'
-	], dest: out_docs+'/assets/core.css'
+	config.cssmin.doc = { files: [ { src: [
+		src_yuidoc+'/css/libs/reset.css',
+		src_yuidoc+'/css/libs/normalize.css',
+		src_yuidoc+'/css/libs/html5boilerplate.css',
+		tmp+'/doc-less.css'
+	], dest: out_doc+'/assets/core.css'
 	}]};
 
-	config.requirejs.docs = { options: {
-		baseUrl:             sources_docs+'/js/',
+	config.requirejs.doc = { options: {
+		baseUrl:             src_yuidoc+'/js/',
 		name:                'core',
-		out:                 out_docs+'/assets/core.js',
+		out:                 out_doc+'/assets/core.js',
 		optimize:            'uglify',
 		skipModuleInsertion: true,
 		pragmasOnSave:       { excludeRequire: true }
@@ -299,8 +299,8 @@ module.exports = function(grunt) {
 
 
 
-	tasks.docs = ['kafe_readme','markdown:docs','core_docs','yuidoc:compile','clean:docs','copy:docsassets','less:docs','cssmin:docs','requirejs:docs','clean:docsless','clean:placeholders'];
-	config.watch.docs = { files: [sources_docs+'/**/*', '!'+sources_docs+'/tmpl/partials/index.handlebars', sources_tmpl+'/readme.tmpl'], tasks: 'docs' };
+	tasks.doc = ['kafe_readme','markdown:doc','core_doc','yuidoc:compile','clean:doc','copy:docassets','less:doc','cssmin:doc','requirejs:doc','clean:docless','clean:placeholders'];
+	config.watch.doc = { files: [src_yuidoc+'/**/*', '!'+src_yuidoc+'/tmpl/partials/index.handlebars', src_tmpl+'/readme.tmpl'], tasks: 'doc' };
 
 
 

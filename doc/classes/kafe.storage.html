@@ -1,0 +1,1510 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>kafe.storage - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/kafe/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="class">
+	<h1>kafe.storage</h1>
+	<h2>Class</h2>
+	<h3 id="version-1-1">Version 1.1</h3>
+<p>Easily access, sort and manipulate local and session storage values.</p>
+
+	<div>
+		<span>Source: <a href="../files/build_kafe_storage.js.html#l222">build/kafe/storage.js</a></span>
+		<span>Unit test: <a href="/kafe/test/?module=kafe.storage">Report</a></span>
+	</div>
+</header>
+
+
+
+
+<section>
+	<h1>Methods</h1>
+	
+		<section>
+	<h1>getAllPersistentItems</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l459">@459</a></footer>
+
+	<p>Returns all local storage key values.</p>
+
+
+	<header>
+		<strong>getAllPersistentItems</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object containing all local key/value combinations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
+
+kafe.storage.getAllPersistentItems();
+// returns { &quot;history:last-visit&quot;: &quot;2013-07-21&quot;, &quot;settings:show-ads&quot;: &quot;true&quot; }</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getAllPersistentKeys</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l425">@425</a></footer>
+
+	<p>Returns an array of all local storage keys.</p>
+
+
+	<header>
+		<strong>getAllPersistentKeys</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>A list of keys.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+kafe.storage.setPersistentItem(&#39;website:show-ads&#39;, &#39;true&#39;);
+
+kafe.storage.getAllPersistentKeys();
+// returns [&quot;history:last-visit&quot;, &quot;website:show-ads&quot;]</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getAllSessionItems</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l476">@476</a></footer>
+
+	<p>Returns all session storage key values.</p>
+
+
+	<header>
+		<strong>getAllSessionItems</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object containing all session key/value combinations.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
+
+kafe.storage.getAllSessionItems();
+// returns { &quot;preferences:tutorials&quot;: &quot;false&quot;, &quot;user:first-name&quot;: &quot;John&quot; }</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getAllSessionKeys</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l442">@442</a></footer>
+
+	<p>Returns an array of all session storage keys.</p>
+
+
+	<header>
+		<strong>getAllSessionKeys</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>A list of keys.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+kafe.storage.setSessionItem(&#39;preferences:tutorials&#39;, &#39;false&#39;);
+
+kafe.storage.getAllSessionKeys();
+// returns [&quot;user:first-name&quot;, &quot;preferences:tutorials&quot;]</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getJSON</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l517">@517</a></footer>
+
+	<p>Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the <em>kafestorage-getJSON</em> namespace.</p>
+
+
+	<header>
+		<strong>getJSON</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">url</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>url</code>
+						<strong>String</strong>
+					
+					<p>URL address of the webservice.</p>
+
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
+					
+					<p>Other parameters</p>
+
+
+
+					
+						<ul>
+						
+							<li>
+								
+									<code>[expires]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will force a new call to the webservice on the next use.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[expires]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the next use will call the webservice instead of using the session storage.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[callback]</code>
+									<strong>Function</strong>
+									<span>Optional</span>
+								
+								<p>Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.getJSON(&#39;/UserServices/GetUserInfos?username=john_doe&#39;, { expires: 3600 });
+// Using this same line will use the session stored value instead of calling the service unless one hour has passed.</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getPersistentItem</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l231">@231</a></footer>
+
+	<p>Returns the local value for a specific key.</p>
+
+
+	<header>
+		<strong>getPersistentItem</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">key</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>key</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns <em>undefined</em>.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.getPersistentItem(&#39;history:last-visit&#39;);</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getPersistentNamespaceItems</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l363">@363</a></footer>
+
+	<p>Returns all local storage key values for a specific namespace.</p>
+
+
+	<header>
+		<strong>getPersistentNamespaceItems</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">namespace</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>namespace</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object containing all local key/value combinations for the namespace.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
+
+kafe.storage.getPersistentNamespaceItems(&#39;history&#39;);
+// returns { &quot;history:last-page&quot;: &quot;/about-us&quot;, &quot;history:last-visit&quot;: &quot;2013-07-21&quot; }</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getPersistentNamespaceKeys</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l327">@327</a></footer>
+
+	<p>Returns an array of local storage keys for a specific namespace.</p>
+
+
+	<header>
+		<strong>getPersistentNamespaceKeys</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">namespace</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>namespace</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>A list of keys.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;);
+kafe.storage.setPersistentItem(&#39;history:last-page&#39;, &#39;/about-us&#39;);
+
+kafe.storage.getPersistentNamespaceKeys(&#39;history&#39;);
+// returns [&quot;history:last-page&quot;, &quot;history:last-visit&quot;]</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getSessionItem</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l245">@245</a></footer>
+
+	<p>Returns the session value for a specific key.</p>
+
+
+	<header>
+		<strong>getSessionItem</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">key</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>String</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>key</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>String</strong>
+			<p>If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns <em>undefined</em>.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.getSessionItem(&#39;user:first-name&#39;);</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getSessionNamespaceItems</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l381">@381</a></footer>
+
+	<p>Returns all session storage key values for a specific namespace.</p>
+
+
+	<header>
+		<strong>getSessionNamespaceItems</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">namespace</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Object</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>namespace</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Object</strong>
+			<p>An object containing all session key/value combinations for the namespace.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
+
+kafe.storage.getSessionNamespaceItems(&#39;user&#39;);
+// returns { &quot;user:first-name&quot;: &quot;John&quot;, &quot;user:last-name&quot;: &quot;Doe&quot; }</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>getSessionNamespaceKeys</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l345">@345</a></footer>
+
+	<p>Returns an array of session storage keys for a specific namespace.</p>
+
+
+	<header>
+		<strong>getSessionNamespaceKeys</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">namespace</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+			<span>Array(String)</span>
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>namespace</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+		<section class="Return">
+			<h1>Returns:</h1>
+			<strong>Array(String)</strong>
+			<p>A list of keys.</p>
+
+		</section>
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;);
+kafe.storage.setSessionItem(&#39;user:last-name&#39;, &#39;Doe&#39;);
+
+kafe.storage.getSessionNamespaceKeys(&#39;user&#39;);
+// returns [&quot;user:first-name&quot;, &quot;user:last-name&quot;]</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>removeAllPersistent</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l493">@493</a></footer>
+
+	<p>Removes all local storage keys.</p>
+
+
+	<header>
+		<strong>removeAllPersistent</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.removeAllPersistent();</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>removeAllSession</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l505">@505</a></footer>
+
+	<p>Removes all session storage keys.</p>
+
+
+	<header>
+		<strong>removeAllSession</strong>
+		
+			(&nbsp;&nbsp;)
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.removeAllSession();</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>removePersistentItem</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l301">@301</a></footer>
+
+	<p>Removes the local storage value for a specific key.</p>
+
+
+	<header>
+		<strong>removePersistentItem</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">key</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>key</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.removePersistentItem(&#39;history:last-visit&#39;);</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>removePersistentNamespace</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l399">@399</a></footer>
+
+	<p>Removes all local storage keys of a specific namespace.</p>
+
+
+	<header>
+		<strong>removePersistentNamespace</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">namespace</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>namespace</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.removePersistentNamespace(&#39;history&#39;);</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>removeSessionItem</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l314">@314</a></footer>
+
+	<p>Removes the session storage value for a specific key.</p>
+
+
+	<header>
+		<strong>removeSessionItem</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">key</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>key</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.removeSessionItem(&#39;user:first-name&#39;);</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>removeSessionNamespace</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l412">@412</a></footer>
+
+	<p>Removes all session storage keys of a specific namespace.</p>
+
+
+	<header>
+		<strong>removeSessionNamespace</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">namespace</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>namespace</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.removeSessionNamespace(&#39;user&#39;);</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>setPersistentItem</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l259">@259</a></footer>
+
+	<p>Sets the local value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
+
+
+	<header>
+		<strong>setPersistentItem</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">key</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">value</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>key</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>value</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
+					
+					<p>Expiration parameters</p>
+
+
+
+					
+						<ul>
+						
+							<li>
+								
+									<code>[expires]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the local storage value for the provided key as expired.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[expires]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the local storage value for the provided key will be flagged as expired.</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: 3600 });
+// The local storage value will return undefined in one hour.</code></pre>
+<pre class="code prettyprint"><code>kafe.storage.setPersistentItem(&#39;history:last-visit&#39;, &#39;2013-07-21&#39;, { expires: &#39;last-visit-cookie&#39; });
+// The local storage value will return undefined if the value of the cookie &#39;last-visit-cookie&#39; is changed.</code></pre>
+
+		</section>
+	
+</section>
+
+	
+		<section>
+	<h1>setSessionItem</h1>
+	<footer><a href="../files/build_kafe_storage.js.html#l280">@280</a></footer>
+
+	<p>Sets the session value for a specific key with or without an expiration flag. Namespacing can be defined by using the &#39;:&#39; character.</p>
+
+
+	<header>
+		<strong>setSessionItem</strong>
+		
+			<ul>
+			
+
+				
+					<li><code class="Simple">key</code></li>
+				
+				
+			
+
+				
+					<li><code class="Simple">value</code></li>
+				
+				
+			
+
+				
+					<li class="Optional"><code>options</code></li>
+				
+				
+			
+			</ul>
+		
+
+		
+	</header>
+
+
+
+
+
+
+
+	
+		<section>
+			<h1>Parameters:</h1>
+
+			<ul>
+			
+				<li>
+					
+						<code>key</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>value</code>
+						<strong>String</strong>
+					
+					 
+
+
+					
+
+				</li>
+			
+				<li>
+					
+						<code>[options]</code>
+						<strong>Object</strong>
+						<span>Optional</span>
+					
+					<p>Expiration parameters</p>
+
+
+
+					
+						<ul>
+						
+							<li>
+								
+									<code>[expires]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>Sets a cookie of the specified key as the expiration flag. Changes to the cookie&#39;s value will flag the session storage value for the provided key as expired.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[expires]</code>
+									<strong>Number</strong>
+									<span>Optional</span>
+								
+								<p>Sets a time based expiration flag in <em>seconds</em>. After that time period, the session storage value for the provided key will be flagged as expired.</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
+
+				</li>
+			
+			</ul>
+		</section>
+	
+
+	
+
+	
+		<section>
+			<h1>Example:</h1>
+			<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: 3600 });
+// The session storage value will return undefined in one hour.</code></pre>
+<pre class="code prettyprint"><code>kafe.storage.setSessionItem(&#39;user:first-name&#39;, &#39;John&#39;, { expires: &#39;logged-user&#39; });
+// The session storage value will return undefined if the value of the cookie &#39;logged-user&#39; is changed.</code></pre>
+
+		</section>
+	
+</section>
+
+	
+</section>
+
+		</section>
+		<nav>
+			<ul>
+    
+        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
+
+		</nav>
+	</div>
+
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+</body>
+</html>
