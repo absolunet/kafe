@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/string-validate'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/string-validate'
 
 (function(kafe,undefined){
 

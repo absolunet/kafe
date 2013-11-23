@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/jquery/colorbox'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/jquery/colorbox'
 
 /* {%= HEADER %} */
 

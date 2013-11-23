@@ -1,10 +1,6 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/jquery/cookie',
-	'libs/vendor/jquery/json',
-	'libs/kafe/string'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/jquery/cookie'
+// @import 'libs/vendor/jquery/json'
+// @import 'libs/kafe/string'
 
 /* {%= HEADER %} */
 

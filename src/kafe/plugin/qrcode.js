@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/qrcode'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/qrcode'
 
 /* {%= HEADER %} */
 

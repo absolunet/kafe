@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/jquery/json'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/jquery/json'
 
 window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 

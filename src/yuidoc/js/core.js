@@ -1,11 +1,7 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'shCore',
-	'shBrushJScript',
-	'jquery-scrollto',
-	'modernizr'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'shCore'
+// @import 'shBrushJScript'
+// @import 'jquery.scrollto'
+// @import 'modernizr'
 
 (function($) {
 	$(function(){

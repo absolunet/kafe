@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/url'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/url'
 
 window.kafe.bonify({name:'ext.youtube', version:'1.1', obj:(function(kafe,undefined){
 

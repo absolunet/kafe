@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/date'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/date'
 
 (function(kafe,undefined){
 

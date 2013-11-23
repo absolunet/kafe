@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/string-encrypt'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/string-encrypt'
 
 (function(kafe,undefined){
 

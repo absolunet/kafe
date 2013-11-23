@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/jquery/json'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/jquery/json'
 
 /* {%= HEADER %} */
 

@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/qrcode'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/qrcode'
 
 window.kafe.bonify({name:'plugin.qrcode', version:'0.1.1', obj:(function(kafe,undefined){
 

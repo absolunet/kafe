@@ -1,9 +1,5 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/jquery/inputmask/core',
-	'libs/vendor/jquery/inputmask/date-extensions',
-	'libs/vendor/jquery/inputmask/extensions',
-	'libs/vendor/jquery/inputmask/numeric-extensions',
-	'libs/vendor/jquery/inputmask/regex-extensions'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/jquery/inputmask/core'
+// @import 'libs/vendor/jquery/inputmask/date-extensions'
+// @import 'libs/vendor/jquery/inputmask/extensions'
+// @import 'libs/vendor/jquery/inputmask/numeric-extensions'
+// @import 'libs/vendor/jquery/inputmask/regex-extensions'

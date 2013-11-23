@@ -1,9 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/storage',
-	'libs/vendor/jquery/mobile-events'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/storage',
 
 (function(kafe,undefined){
 

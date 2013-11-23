@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/string'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/string'
 
 window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,undefined){
 

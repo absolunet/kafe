@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/string'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/kafe/string'
 
 (function(kafe,undefined){
 

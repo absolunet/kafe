@@ -31,13 +31,9 @@
                     `+ssooossosososs/:.                 
 */
 
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/underscore',
-	'libs/vendor/underscore-string',
-	'libs/vendor/modernizr'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/underscore'
+// @import 'libs/vendor/underscore.string'
+// @import 'libs/vendor/modernizr'
 
 /**
 * ### Version 2.0.0a

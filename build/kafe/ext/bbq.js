@@ -1,8 +1,4 @@
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/vendor/jquery/bbq'
-]);
-//>>excludeEnd('excludeRequire');
+// @import 'libs/vendor/jquery/bbq'
 
 window.kafe.bonify({name:'ext.bbq', version:'0.1', obj:(function(kafe,undefined){
 
