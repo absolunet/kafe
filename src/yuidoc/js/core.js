@@ -1,5 +1,5 @@
-// @import 'shCore'
-// @import 'shBrushJScript'
+// **@import 'shCore'
+// **@import 'shBrushJScript'
 // @import 'jquery.scrollto'
 // @import 'modernizr'
 
@@ -49,7 +49,7 @@
 			$('.Home pre').addClass('brush:js; gutter:false; toolbar:false;').children('code').contents().unwrap();
 		}
 
-		SyntaxHighlighter.all();
+		//SyntaxHighlighter.all();
 		
 		var line = window.location.hash.substring(2);
 		if (isFile && line) {

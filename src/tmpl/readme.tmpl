@@ -1,57 +1,54 @@
-<img {{MD}}align="right"{{/MD}} src="<%= HOMEPAGE %>/assets/logo-<%= PACKAGE %>.png" width="160" height="256" alt="<%= PACKAGE %>" />
-### <%= PACKAGE %> v<%= VERSION %>
-#### <%= DESCRIPTION %>
-> <%= DEFINITION %>
+<img <!-- @if !doc -->align="right"<!-- @endif--> src="<!-- @echo homepage -->/assets/logo-<!-- @echo package -->.png" width="160" height="256" alt="<!-- @echo package -->" />
+### <!-- @echo package --> v<!-- @echo version -->
+#### <!-- @echo description -->
+> <!-- @echo definition -->
 
 <br>
 
 ## Quick start
 
 #### Requirements
-A jQuery instance that will be copied in <%= PACKAGE %>.
+A jQuery instance that will be copied in <!-- @echo package -->.
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script>window.<%= PACKAGE %>jQuery = window.jQuery</script>
+<script>window.<!-- @echo package -->jQuery = window.jQuery</script>
 ```
 
 #### With [Grunt](http://gruntjs.com/)
-- Take the files under [build](<%= REPO_URL %>/build) folder and put them in a `libs` folder next to your `gruntfile.js`.
-- Use [grunt-contrib-requirejs](https://github.com/gruntjs/grunt-contrib-requirejs) with a setup looking like this:
+- Take the files under [build](<!-- @echo repo_url -->/build) folder and put them in a `libs` folder next to your `gruntfile.js`.
+- Use [grunt-includes](https://github.com/vanetix/grunt-includes) with a setup looking like this:
 
 ```js
-config.requirejs.core = {
+config.includes.core = {
 	options: {
-		baseUrl:                 './',
-		name:                    'libs/<%= PACKAGE %>/<%= PACKAGE %>',
-		include:                 ['libs/<%= PACKAGE %>/date','libs/<%= PACKAGE %>/string'],
-		out:                     'js/<%= PACKAGE %>-build.js',
-		optimize:                'uglify',
-		preserveLicenseComments: false,
-		skipModuleInsertion:     true,
-		findNestedDependencies:  true,
-		pragmasOnSave:           { excludeRequire: true }
-	}
+		includeRegexp:  /^\s*\/\/\s@import\s'([^']+)'\s*$/,
+		duplicates:     false,
+		filenameSuffix: '.js',
+		includePath:    './'
+	},
+	src:  'libs/<!-- @echo package -->/<!-- @echo package -->',
+	dest: 'js/<!-- @echo package -->-build.js'
 };
 ```
 
 #### Standalone
-- Take the files under [build](<%= REPO_URL %>/build) folder and put them in your project.
-- Remove the `require()` in the files header and include them manually.
+- Take the files under [build](<!-- @echo repo_url -->/build) folder and put them in your project.
+- Use the `// @import 'FILENAME'` in the files header to know which files to include manually.
 
 
-{{MD}}
+<!-- @if !doc -->
 ## Documentation
-Visit the [<%= HOMEPAGE %>](<%= HOMEPAGE %>) website for all the things.
-{{/MD}}
+Visit the [<!-- @echo homepage -->](<!-- @echo homepage -->) website for all the things.
+<!-- @endif-->
 
-{{DOC}}
+<!-- @if doc -->
 ## Sources
-Visit the [Github repository](<%= REPO %>) for all the things.
-{{/DOC}}
+Visit the [Github repository](<!-- @echo repo -->) for all the things.
+<!-- @endif-->
 
 ## Release history
-See the [CHANGELOG](<%= REPO_URL %>/CHANGELOG).
+See the [CHANGELOG](<!-- @echo repo_url -->/CHANGELOG).
 
 ## License 
-See the [MIT LICENSE](<%= REPO_URL %>/LICENSE).
+See the [MIT LICENSE](<!-- @echo repo_url -->/LICENSE).

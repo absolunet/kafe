@@ -19,17 +19,19 @@ module.exports = function(grunt) {
 		config = {
 			pkg: grunt.file.readJSON('package.json'),
 
-			watch:     { all: { files: ['gruntfile.js'], tasks: 'default' } },
-			clean:     { placeholders:{src: [out_build+'/**/_*.js'],  options: { force:true }} },
-			copy:      {}
+			watch: { all: { files: ['gruntfile.js'], tasks: 'default' } },
+			clean: {
+				placeholders: {src: [out_build+'/**/_*.js'],  options: { force:true }},
+				tmp:          {src: [tmp],  options: { force:true }}
+			},
+			copy: {}
 		},
 
-		processReadme = function(src,keep,remove) {
-			var	parts = src.split(new RegExp("{{/?"+remove+"}}",'g'));
-			for (var i=1; i<parts.length; i=i+2) {
-				parts[i] = '';
-			}
-			return parts.join('').replace(new RegExp("{{/?"+keep+"}}",'g'),'');
+		merge = function (obj1,obj2) {
+			var out = {};
+			for (var i in obj1) { out[i] = obj1[i]; }
+			for (var j in obj2) { out[j] = obj2[j]; }
+			return out;
 		}
 	;
 
@@ -57,6 +59,12 @@ module.exports = function(grunt) {
 
 
 
+	(function(name){
+		for (var i in name) {
+			tasks[name[i]].unshift('clean:tmp');
+			tasks[name[i]].push('clean:tmp');
+		}
+	})(['doc','test']);
 
 
 

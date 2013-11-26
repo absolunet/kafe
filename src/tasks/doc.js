@@ -1,6 +1,9 @@
 grunt.task.loadNpmTasks('grunt-contrib-yuidoc');
 config.yuidoc = {};
 
+grunt.task.loadNpmTasks('grunt-preprocess');
+config.preprocess = {};
+
 grunt.task.loadNpmTasks('grunt-markdown');
 config.markdown = {};
 
@@ -15,6 +18,47 @@ config.uglify = { options: { preserveComments:'some', compress:{ global_defs: { 
 
 
 
+var readme_data = {
+	package:     config.pkg.name,
+	version:     config.pkg.version,
+	description: config.pkg.description,
+	definition:  config.pkg.definition,
+	repo:        'https://github.com/absolunet/'+config.pkg.name,
+	repo_url:    'https://github.com/absolunet/'+config.pkg.name+'/tree/master',
+	homepage:    config.pkg.homepage
+};
+
+config.preprocess['readme'] = {
+	options: { context:merge(readme_data,{doc:false}), inline:true },
+	src:     src_tmpl+'/readme.tmpl',
+	dest:    out_root+'/README.md'
+};
+
+config.preprocess['readme_doc'] = {
+	options: { context:merge(readme_data,{doc:true}), inline:true },
+	src:     src_tmpl+'/readme.tmpl',
+	dest:    tmp+'/readme-doc.md'
+};
+
+config.markdown.doc = {
+	files:   [ { src: tmp+'/readme-doc.md', dest: src_yuidoc+'/tmpl/partials/index.handlebars'}],
+	options: {
+		preCompile: function(src, context) {
+			return src.replace('### '+config.pkg.name, '# '+config.pkg.name);
+		},
+		template: src_tmpl+'/doc-home.jst'
+	}
+};
+
+
+
+
+
+
+config.clean.doc     = {src: [out_doc+'/assets',out_doc+'/api.js',out_doc+'/data.json'],  options: { force:true }};
+config.clean.docless = {src: [tmp+'/doc-less.css', tmp+'/readme-doc.md', src_yuidoc+'/tmpl/partials/index.handlebars'],  options: { force:true }};
+
+
 config.yuidoc.compile = {
 	name:        '<%= pkg.name %>',
 	description: '<%= pkg.description %>',
@@ -27,33 +71,8 @@ config.yuidoc.compile = {
 	}
 };
 
-grunt.task.registerTask(config.pkg.name+'_readme', '', function() {
-	var content = grunt.template.process( grunt.file.read(src_tmpl+'/readme.tmpl'), { data:{
-		PACKAGE:     config.pkg.name,
-		VERSION:     config.pkg.version,
-		DESCRIPTION: config.pkg.description,
-		DEFINITION:  config.pkg.definition,
-		REPO:        'https://github.com/absolunet/'+config.pkg.name,
-		REPO_URL:    'https://github.com/absolunet/'+config.pkg.name+'/tree/master',
-		HOMEPAGE:    config.pkg.homepage
-	}});
 
-	grunt.file.write(out_root+'/README.md', processReadme(content,'MD','DOC'));
-	grunt.file.write(tmp+'/readme-doc.md', processReadme(content,'DOC','MD'));
-});
 
-config.markdown.doc = {
-	files:   [ { src: tmp+'/readme-doc.md', dest: src_yuidoc+'/tmpl/partials/index.handlebars'}],
-	options: {
-		preCompile: function(src, context) {
-			return src.replace('### '+config.pkg.name, '# '+config.pkg.name);
-		},
-		template: src_tmpl+'/doc-home.jst'
-	}
-};
-
-config.clean.doc     = {src: [out_doc+'/assets',out_doc+'/api.js',out_doc+'/data.json'],  options: { force:true }};
-config.clean.docless = {src: [tmp+'/doc-less.css', tmp+'/readme-doc.md', src_yuidoc+'/tmpl/partials/index.handlebars'],  options: { force:true }};
 
 config.copy.docassets = {
 	expand: true,
@@ -89,5 +108,9 @@ config.uglify.doc = { files: [ {
 }]};
 
 
-tasks.doc = [config.pkg.name+'_readme','markdown:doc','core_doc','yuidoc:compile','clean:doc','copy:docassets','less:doc','cssmin:doc','includes:doc','uglify:doc','clean:docless','clean:placeholders'];
+
+
+
+
+tasks.doc = ['preprocess:readme','preprocess:readme_doc','markdown:doc','core_doc','yuidoc:compile','clean:doc','copy:docassets','less:doc','cssmin:doc','includes:doc','uglify:doc','clean:docless','clean:placeholders'];
 config.watch.doc = { files: [src_yuidoc+'/**/*', '!'+src_yuidoc+'/tmpl/partials/index.handlebars', src_tmpl+'/readme.tmpl'], tasks: 'doc' };

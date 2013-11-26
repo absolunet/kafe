@@ -44,7 +44,7 @@
 	<div id="Content">
 		<section>
 			<div class="Home">
-	<p><img  src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" /></p>
+	<p><img src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" /></p>
 <h1 id="kafe-v2-0-0a">kafe v2.0.0a</h1>
 <h4 id="mixing-javascript-crops-for-a-perfect-flavour-">Mixing javascript crops for a perfect flavour.</h4>
 <blockquote>
@@ -59,25 +59,22 @@
 <h4 id="with-grunt-http-gruntjs-com-">With <a href="http://gruntjs.com/">Grunt</a></h4>
 <ul>
 <li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/build">build</a> folder and put them in a <code>libs</code> folder next to your <code>gruntfile.js</code>.</li>
-<li>Use <a href="https://github.com/gruntjs/grunt-contrib-requirejs">grunt-contrib-requirejs</a> with a setup looking like this:</li>
+<li>Use <a href="https://github.com/vanetix/grunt-includes">grunt-includes</a> with a setup looking like this:</li>
 </ul>
-<pre><code class="lang-js">config.requirejs.core = {
+<pre><code class="lang-js">config.includes.core = {
     options: {
-        baseUrl:                 &#39;./&#39;,
-        name:                    &#39;libs/kafe/kafe&#39;,
-        include:                 [&#39;libs/kafe/date&#39;,&#39;libs/kafe/string&#39;],
-        out:                     &#39;js/kafe-build.js&#39;,
-        optimize:                &#39;uglify&#39;,
-        preserveLicenseComments: false,
-        skipModuleInsertion:     true,
-        findNestedDependencies:  true,
-        pragmasOnSave:           { excludeRequire: true }
-    }
+        includeRegexp:  /^\s*\/\/\s@import\s&#39;([^&#39;]+)&#39;\s*$/,
+        duplicates:     false,
+        filenameSuffix: &#39;.js&#39;,
+        includePath:    &#39;./&#39;
+    },
+    src:  &#39;libs/kafe/kafe&#39;,
+    dest: &#39;js/kafe-build.js&#39;
 };</code></pre>
 <h4 id="standalone">Standalone</h4>
 <ul>
 <li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/build">build</a> folder and put them in your project.</li>
-<li>Remove the <code>require()</code> in the files header and include them manually.</li>
+<li>Use the <code>// @import &#39;FILENAME&#39;</code> in the files header to know which files to include manually.</li>
 </ul>
 <h2 id="sources">Sources</h2>
 <p>Visit the <a href="https://github.com/absolunet/kafe">Github repository</a> for all the things.</p>
