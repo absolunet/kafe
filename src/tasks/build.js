@@ -1,11 +1,9 @@
 grunt.task.loadNpmTasks('grunt-contrib-jshint');
 config.jshint = {};
 
-
 config.clean.core = {
-	src: [out_build+'/*'],  options: { force:true }
+	src: [out_build+'/kafe'],  options: { force:true }
 };
-
 
 grunt.task.registerTask('kafe_core', '', function() {
 	var
@@ -49,31 +47,6 @@ grunt.task.registerTask('kafe_core', '', function() {
 	}
 });
 
-
-grunt.task.registerTask('kafe_vendor', '', function() {
-	var files = grunt.file.expand(src_vendor+'/**/*.js');
-
-	for (var i in files) {
-		var
-			parts    = files[i].split(src_vendor+'/'),
-			filename = parts[parts.length-1],
-			contents = grunt.file.read(files[i])
-		;
-
-		grunt.file.write(out_build+'/vendor/'+filename, contents.replace('window.jQuery','jQuery') );
-	}
-});
-
-config.copy.resources = {
-	expand: true,
-	cwd:    src_vendor+'/resources/',
-	src:    '**',
-	dest:   out_build+'/vendor-resources/',
-	filter: 'isFile'
-};
-
-
-
 config.jshint.core = {
 	src: [out_build+'/'+config.pkg.name+'/**/*.js'],
 	options: {
@@ -81,6 +54,4 @@ config.jshint.core = {
 	}
 };
 
-tasks.core_doc = ['clean:core','kafe_core','kafe_vendor','jshint:core','copy:resources'];
-tasks.core = tasks.core_doc.slice(0);
-tasks.core.push('clean:placeholders');
+tasks.build = ['clean:core','kafe_core','jshint:core','clean:placeholders'];

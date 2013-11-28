@@ -29,13 +29,13 @@ var readme_data = {
 };
 
 config.preprocess['readme'] = {
-	options: { context:merge(readme_data,{doc:false}), inline:true },
+	options: { context:_.merge({},readme_data,{doc:false}), inline:true },
 	src:     src_tmpl+'/readme.tmpl',
 	dest:    out_root+'/README.md'
 };
 
 config.preprocess['readme_doc'] = {
-	options: { context:merge(readme_data,{doc:true}), inline:true },
+	options: { context:_.merge({},readme_data,{doc:true}), inline:true },
 	src:     src_tmpl+'/readme.tmpl',
 	dest:    tmp+'/readme-doc.md'
 };
@@ -57,7 +57,6 @@ config.markdown.doc = {
 
 config.clean.doc     = {src: [out_doc+'/assets',out_doc+'/api.js',out_doc+'/data.json'],  options: { force:true }};
 config.clean.docless = {src: [tmp+'/doc-less.css', tmp+'/readme-doc.md', src_yuidoc+'/tmpl/partials/index.handlebars'],  options: { force:true }};
-
 
 config.yuidoc.compile = {
 	name:        '<%= pkg.name %>',
@@ -109,8 +108,10 @@ config.uglify.doc = { files: [ {
 
 
 
-
-
-
-tasks.doc = ['preprocess:readme','preprocess:readme_doc','markdown:doc','core_doc','yuidoc:compile','clean:doc','copy:docassets','less:doc','cssmin:doc','includes:doc','uglify:doc','clean:docless','clean:placeholders'];
+tasks.doc = _.without(tasks.build,'clean:placeholders');
+tasks.doc.push(
+	'preprocess:readme', 'preprocess:readme_doc',
+	'markdown:doc', 'yuidoc:compile', 'clean:placeholders',
+	'clean:doc','copy:docassets','less:doc','cssmin:doc','includes:doc','uglify:doc','clean:docless'
+);
 config.watch.doc = { files: [src_yuidoc+'/**/*', '!'+src_yuidoc+'/tmpl/partials/index.handlebars', src_tmpl+'/readme.tmpl'], tasks: 'doc' };

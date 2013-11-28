@@ -31,7 +31,7 @@
                     `+ssooossosososs/:.                 
 */
 
-// @import 'libs/vendor/underscore'
+// @import 'libs/vendor/lo-dash'
 // @import 'libs/vendor/underscore.string'
 // @import 'libs/vendor/modernizr'
 
@@ -116,9 +116,9 @@ window.kafe = (function(undefined){
 			* @type Object
 			**/
 			_chaje: {
-				'dependencies.jQuery':     window.kafejQuery().jquery,
-				'dependencies.underscore': window._.VERSION,
-				'dependencies.Modernizr':  window.Modernizr._version
+				'dependencies.jQuery':    window.kafejQuery().jquery,
+				'dependencies.LoDash':    window._.VERSION,
+				'dependencies.Modernizr': window.Modernizr._version
 			},
 
 			// isolate core dependencies
@@ -134,13 +134,13 @@ window.kafe = (function(undefined){
 				jQuery: window.kafejQuery,
 
 				/**
-				* underscore.js defined under window._  
-				* ref: [http://underscorejs.org/](http://underscorejs.org/)
+				* Lo-Dash defined under window._  
+				* ref: [http://lodash.com/](http://lodash.com/)
 				*
-				* @property dependencies.underscore 
+				* @property dependencies.lodash 
 				* @type Object
 				**/
-				underscore: window._,
+				LoDash: window._,
 
 				/**
 				* Modernizr defined under window.Modernizr  

@@ -1,12 +1,13 @@
 /*! JsRender v1.0.0-beta: http://github.com/BorisMoore/jsrender and http://jsviews.com/jsviews
-informal pre V1.0 commit counter: 44 */
+informal pre V1.0 commit counter: 46 */
 /*
-* Optimized version of jQuery Templates, for rendering to string.
-* Does not require jQuery, or HTML DOM
-* Integrates with JsViews (http://jsviews.com/jsviews)
-* Copyright 2013, Boris Moore
-* Released under the MIT License.
-*/
+ * Optimized version of jQuery Templates, for rendering to string.
+ * Does not require jQuery, or HTML DOM
+ * Integrates with JsViews (http://jsviews.com/jsviews)
+ *
+ * Copyright 2013, Boris Moore
+ * Released under the MIT License.
+ */
 
 (function(global, jQuery, undefined) {
 	// global is the this object, which is window when running in the usual browser environment.
@@ -23,10 +24,10 @@ informal pre V1.0 commit counter: 44 */
 //TODO	tmplFnsCache = {},
 		delimOpenChar0 = "{", delimOpenChar1 = "{", delimCloseChar0 = "}", delimCloseChar1 = "}", linkChar = "^",
 
-		rPath = /^(?:null|true|false|\d[\d.]*|(!*?)([\w$]+|\.|~([\w$]+)|#(view|([\w$]+))?)([\w$.^]*?)(?:[.[^]([\w$]+)\]?)?)$/g,
+		rPath = /^(!*?)(?:null|true|false|\d[\d.]*|([\w$]+|\.|~([\w$]+)|#(view|([\w$]+))?)([\w$.^]*?)(?:[.[^]([\w$]+)\]?)?)$/g,
 		//                                     none   object     helper    view  viewProperty pathTokens      leafToken
 
-		rParams = /(\()(?=\s*\()|(?:([([])\s*)?(?:(\^?)(!*?[#~]?[\w$.^]+)?\s*((\+\+|--)|\+|-|&&|\|\||===|!==|==|!=|<=|>=|[<>%*:?\/]|(=))\s*|(!*?[#~]?[\w$.^]+)([([])?)|(,\s*)|(\(?)\\?(?:(')|("))|(?:\s*(([)\]])(?=\s*\.|\s*\^)|[)\]])([([]?))|(\s+)/g,
+		rParams = /(\()(?=\s*\()|(?:([([])\s*)?(?:(\^?)(!*?[#~]?[\w$.^]+)?\s*((\+\+|--)|\+|-|&&|\|\||===|!==|==|!=|<=|>=|[<>%*:?\/]|(=))\s*|(!*?[#~]?[\w$.^]+)([([])?)|(,\s*)|(\(?)\\?(?:(')|("))|(?:\s*(([)\]])(?=\s*\.|\s*\^|\s*$)|[)\]])([([]?))|(\s+)/g,
 		//          lftPrn0        lftPrn        bound            path    operator err                                                eq             path2       prn    comma   lftPrn2   apos quot      rtPrn rtPrnDot                        prn2      space
 		// (left paren? followed by (path? followed by operator) or (path followed by left paren?)) or comma or apos or quot or right paren or space
 
@@ -194,35 +195,49 @@ informal pre V1.0 commit counter: 44 */
 		return found;
 	}
 
-	function getIndex() {
+	function getNestedIndex() {
 		var view = this.get("item");
 		return view ? view.index : undefined;
 	}
 
-	getIndex.depends = function() {
+	getNestedIndex.depends = function() {
 		return [this.get("item"), "index"];
+	};
+
+	function getIndex() {
+		return this.index;
+	}
+
+	getIndex.depends = function() {
+		return ["index"];
 	};
 
 	//==========
 	// View.hlp
 	//==========
 
-	function getHelper(helper, context) {
+	function getHelper(helper) {
 		// Helper method called as view.hlp(key) from compiled template, for helper functions or template parameters ~foo
 		var wrapped,
 			view = this,
-			res = context && context[helper] || (view.ctx || {})[helper];
+			ctx = view.linkCtx,
+			res = (view.ctx || {})[helper];
 
-		res = res === undefined ? view.getRsc("helpers", helper) : res;
+		if (res === undefined && ctx && ctx.ctx) {
+			res = ctx.ctx[helper];
+		}
+		if (res === undefined) {
+			res = $helpers[helper];
+		}
 
 		if (res) {
 			if (typeof res === "function") {
 				wrapped = function() {
-					// If it is of type function, we will wrap it so it gets called with view as 'this' context.
+					// If it is of type function, we will wrap it, so if called with no this pointer it will be called with the view as 'this' context.
 					// If the helper ~foo() was in a data-link expression, the view will have a 'temporary' linkCtx property too.
-					// However note that helper functions on deeper paths will not have access to view and tagCtx.
+					// Note that helper functions on deeper paths will have specific this pointers, from the preceding path.
 					// For example, ~util.foo() will have the ~util object as 'this' pointer
-					return res.apply(view, arguments);
+					return res.apply(this || view, arguments);
 				};
 				$extend(wrapped, res);
 			}
@@ -292,17 +307,14 @@ informal pre V1.0 commit counter: 44 */
 	//=============
 
 	function getResource(resourceType, itemName) {
-		var res,
-			view = this,
-			store = $views[resourceType];
-
-		res = store && store[itemName];
+		var res, store,
+			view = this;
 		while ((res === undefined) && view) {
 			store = view.tmpl[resourceType];
 			res = store && store[itemName];
 			view = view.parent;
 		}
-		return res;
+		return res || $views[resourceType][itemName];
 	}
 
 	function renderTag(tagName, parentView, tmpl, tagCtxs, isRefresh) {
@@ -476,7 +488,6 @@ informal pre V1.0 commit counter: 44 */
 				content: contentTmpl,
 				views: isArray ? [] : {},
 				parent: parentView,
-				ctx: context,
 				type: type,
 				// If the data is an array, this is an 'array view' with a views array for each child 'item view'
 				// If the data is not an array, this is an 'item view' with a views 'map' object for any child nested views
@@ -495,6 +506,8 @@ informal pre V1.0 commit counter: 44 */
 				// Parent is an 'item view'. Add this view to its views object
 				// self._key = is the key in the parent view map
 				views[self_.key = "_" + parentView_.useKey++] = self;
+				self.index = $viewsSettings.debugMode ? noIndex : "";
+				self.getIndex = getNestedIndex;
 				tag = parentView_.tag;
 				self_.bnd = isArray && (!tag || !!tag._.bnd && tag); // For array views that are data bound for collection change events, set the
 				// view._.bnd property to true for top-level link() or data-link="{for}", or to the tag instance for a data-bound tag, e.g. {^{for ...}}
@@ -502,15 +515,14 @@ informal pre V1.0 commit counter: 44 */
 				// Parent is an 'array view'. Add this view to its views array
 				views.splice(
 					// self._.key = self.index - the index in the parent view array
-					self_.key = self.index =
-						key !== undefined
-							? key
-							: views.length,
+					self_.key = self.index = key,
 				0, self);
 			}
 			// If no context was passed in, use parent context
 			// If context was passed in, it should have been merged already with parent context
 			self.ctx = context || parentView.ctx;
+		} else {
+			self.ctx = context;
 		}
 		return self;
 	}
@@ -546,6 +558,8 @@ informal pre V1.0 commit counter: 44 */
 				tagDef.template = "" + tmpl === tmpl ? ($templates[tmpl] || $templates(tmpl)) : tmpl;
 			}
 			if (tagDef.init !== false) {
+				// Set int: false on tagDef if you want to provide just a render method, or render and template, but no constuctor or prototype.
+				// so equivalent to setting tag to render function, except you can also provide a template.
 				init = tagDef._ctr = function(tagCtx) {};
 				(init.prototype = tagDef).constructor = init;
 			}
@@ -823,6 +837,9 @@ informal pre V1.0 commit counter: 44 */
 					outerOnRender = undefined;
 					onRender = parentView._.onRender;
 				}
+				context = tmpl.helpers
+					? extendCtx(tmpl.helpers, context)
+					: context;
 				if ($.isArray(data) && !isLayout) {
 					// Create a view for the array, whose child views correspond to each data item. (Note: if key and parentView are passed in
 					// along with parent view, treat as insert -e.g. from view.addViews - so parentView is already the view item for array)
@@ -859,7 +876,7 @@ informal pre V1.0 commit counter: 44 */
 	// (Compile AST then build template function)
 
 	function error(message) {
-		throw new $views.sub.Error(message);
+		throw new $viewsSub.Error(message);
 	}
 
 	function syntaxError(message) {
@@ -886,7 +903,7 @@ informal pre V1.0 commit counter: 44 */
 
 			//    bind         tag        converter colon html     comment            code      params            slash   closeBlock
 			// /{(\^)?{(?:(?:(\w+(?=[\/\s}]))|(?:(\w+)?(:)|(>)|!--((?:[^-]|-(?!-))*)--|(\*)))\s*((?:[^}]|}(?!}))*?)(\/)?|(?:\/(\w+)))}}/g
-			// Build abstract syntax tree (AST): [ tagName, converter, params, content, hash, bindings, contentMarkup ]
+			// Build abstract syntax tree (AST): [tagName, converter, params, content, hash, bindings, contentMarkup]
 			if (html) {
 				colon = ":";
 				converter = "html";
@@ -1022,7 +1039,7 @@ informal pre V1.0 commit counter: 44 */
 			nestedTmpls = tmpl.tmpls;
 		}
 		for (i = 0; i < l; i++) {
-			// AST nodes: [ tagName, converter, params, content, hash, noError, pathBindings, contentMarkup, link ]
+			// AST nodes: [tagName, converter, params, content, hash, noError, pathBindings, contentMarkup, link]
 			node = ast[i];
 
 			// Add newline for each callout to t() c() etc. and each markup string
@@ -1222,9 +1239,14 @@ informal pre V1.0 commit counter: 44 */
 					// We create a compiled function to get the object instance (which will be called when the dependent data of the subexpression changes, to return the new object, and trigger re-binding of the subsequent path)
 					if (!named || boundName || bindto) {
 						expr = pathStart[parenDepth];
-						if (full.length - 2 > index - expr) { // We need to compile a subexpression
+						if (full.length - 1 > index - expr) { // We need to compile a subexpression
 							expr = full.slice(expr, index + 1);
 							rtPrnDot = delimOpenChar1 + ":" + expr + delimCloseChar0; // The parameter or function subexpression
+							//TODO Optimize along the lines of:
+							//var paths = [];
+							//rtPrnDot = tmplLinks[rtPrnDot] = tmplLinks[rtPrnDot] || tmplFn(delimOpenChar0 + rtPrnDot + delimCloseChar1, tmpl, true, paths); // Compile the expression (or use cached copy already in tmpl.links)
+							//rtPrnDot.paths = rtPrnDot.paths || paths;
+
 							rtPrnDot = tmplLinks[rtPrnDot] = tmplLinks[rtPrnDot] || tmplFn(delimOpenChar0 + rtPrnDot + delimCloseChar1, tmpl, true); // Compile the expression (or use cached copy already in tmpl.links)
 							if (!rtPrnDot.paths) {
 								parseParams(expr, rtPrnDot.paths = [], tmpl);
@@ -1294,7 +1316,10 @@ informal pre V1.0 commit counter: 44 */
 
 		//pushBindings();
 
-		return (params + " ").replace(rParams, parseTokens);
+		return (params + " ")
+			.replace(/\)\^/g, ").") // Treat "...foo()^bar..." as equivalent to "...foo().bar..."
+								//since preceding computed observables in the path will always be updated if their dependencies change
+			.replace(rParams, parseTokens);
 	}
 
 	//==========
@@ -1304,7 +1329,7 @@ informal pre V1.0 commit counter: 44 */
 	// Merge objects, in particular contexts which inherit from parent contexts
 	function extendCtx(context, parentContext) {
 		// Return copy of parentContext, unless context is defined and is different, in which case return a new merged context
-		// If neither context nor parentContext are undefined, return undefined
+		// If neither context nor parentContext are defined, return undefined
 		return context && context !== parentContext
 			? (parentContext
 				? $extend($extend({}, parentContext), context)
@@ -1328,7 +1353,8 @@ informal pre V1.0 commit counter: 44 */
 		$helpers = $views.helpers,
 		$tags = $views.tags,
 		$viewsSub = $views.sub,
-		$viewsSettings = $views.settings;
+		$viewsSettings = $views.settings,
+		noIndex = "Error: #index in nested view: use #getIndex()"; // Error string if debugMode, else empty
 
 	if (jQuery) {
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1393,30 +1419,7 @@ informal pre V1.0 commit counter: 44 */
 			flow: true
 		},
 		"for": {
-			render: function(val) {
-				// This function is called once for {{for}} and once for each {{else}}.
-				// We will use the tag.rendering object for carrying rendering state across the calls.
-				var self = this,
-					tagCtx = self.tagCtx,
-					noArg = !arguments.length,
-					result = "",
-					done = noArg || 0;
-
-				if (!self.rendering.done) {
-					if (noArg) {
-						result = undefined;
-					} else if (val !== undefined) {
-						result += tagCtx.render(val);
-						// {{for}} (or {{else}}) with no argument will render the block content
-						done += $.isArray(val) ? val.length : 1;
-					}
-					if (self.rendering.done = done) {
-						self.selected = tagCtx.index;
-					}
-					// If nothing was rendered we will look at the next {{else}}. Otherwise, we are done.
-				}
-				return result;
-			},
+			render: renderForBlock,
 			//onUpdate: function(ev, eventArgs, tagCtxs) {
 				//Consider adding filtering for perf optimization. However the below prevents update on some scenarios which _should_ update - namely when there is another array on which for also depends.
 				//var i, l, tci, prevArg;
@@ -1432,7 +1435,7 @@ informal pre V1.0 commit counter: 44 */
 					self = this,
 					change = eventArgs.change;
 				if (this.tagCtxs[1] && ( // There is an {{else}}
-						   change === "insert" && ev.target.length === eventArgs.items.length // inserting, and new length is same as inserted length, so going from 0 to n
+							 change === "insert" && ev.target.length === eventArgs.items.length // inserting, and new length is same as inserted length, so going from 0 to n
 						|| change === "remove" && !ev.target.length // removing , and new length 0, so going from n to 0
 						|| change === "refresh" && !eventArgs.oldItems.length !== !ev.target.length // refreshing, and length is going from 0 to n or from n to 0
 					)) {
@@ -1449,6 +1452,18 @@ informal pre V1.0 commit counter: 44 */
 			},
 			flow: true
 		},
+		props: {
+			prep: function(object) {
+				var key,
+					arr = [];
+				for (key in object) {
+					arr.push({key: key, prop: object[key]});
+				}
+				return arr;
+			},
+			render: renderForBlock,
+			flow: true
+		},
 		include: {
 			flow: true
 		},
@@ -1461,6 +1476,30 @@ informal pre V1.0 commit counter: 44 */
 		}
 	});
 
+	function renderForBlock(val) {
+		// This function is called once for {{for}} and once for each {{else}}.
+		// We will use the tag.rendering object for carrying rendering state across the calls.
+		var self = this,
+			tagCtx = self.tagCtx,
+			noArg = !arguments.length,
+			result = "",
+			done = noArg || 0;
+
+		if (!self.rendering.done) {
+			if (noArg) {
+				result = undefined;
+			} else if (val !== undefined) {
+				val = self.prep ? self.prep(val) : val;
+				result += tagCtx.render(val);
+				done += $.isArray(val) ? val.length : 1;
+			}
+			if (self.rendering.done = done) {
+				self.selected = tagCtx.index;
+			}
+			// If nothing was rendered we will look at the next {{else}}. Otherwise, we are done.
+		}
+		return result;
+	}
 	//========================== Register converters ==========================
 
 	$converters({
@@ -1470,15 +1509,15 @@ informal pre V1.0 commit counter: 44 */
 		},
 		attr: function(text) {
 			// Attribute encode: Replace < > & ' and " by corresponding entities.
-			return text != undefined ? String(text).replace(rAttrEncode, getCharEntity) : text === null ? null : ""; // null returns null, e.g. to remove attribute. undefined returns ""
+			return text != undefined ? String(text).replace(rAttrEncode, getCharEntity) : text === null ? text : ""; // null returns null, e.g. to remove attribute. undefined returns ""
 		},
 		url: function(text) {
 			// URL encoding helper.
-			return text != undefined ? encodeURI(String(text)) : text === null ? null : ""; // null returns null, e.g. to remove attribute. undefined returns ""
+			return text != undefined ? encodeURI(String(text)) : text === null ? text : ""; // null returns null, e.g. to remove attribute. undefined returns ""
 		}
 	});
 
 	//========================== Define default delimiters ==========================
 	$viewsDelimiters();
 
-})(this, window.kafe.dependencies.jQuery);
+})(this, this.jQuery);

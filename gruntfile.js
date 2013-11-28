@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
 	var
+		_          = require('lodash'),
+		request    = require('request'),
+		async      = require('async'),
 		src        = 'src',
 		tmp        = src+'/.tmp-kafe',
 		src_tasks  = src+'/tasks',
@@ -9,12 +12,12 @@ module.exports = function(grunt) {
 		src_yuidoc = src+'/yuidoc',
 		src_qunit  = src+'/qunit',
 		out_root   = './',
-		out_build  = 'build',
+		out_build  = 'build', //dist
 		out_doc    = 'doc',
 		out_test   = 'test',
 
 
-		tasks = { default:['doc','test'] },
+		tasks = { default:['build', 'dependencies', 'doc', 'test'] },
 		
 		config = {
 			pkg: grunt.file.readJSON('package.json'),
@@ -25,13 +28,6 @@ module.exports = function(grunt) {
 				tmp:          {src: [tmp],  options: { force:true }}
 			},
 			copy: {}
-		},
-
-		merge = function (obj1,obj2) {
-			var out = {};
-			for (var i in obj1) { out[i] = obj1[i]; }
-			for (var j in obj2) { out[j] = obj2[j]; }
-			return out;
 		}
 	;
 
@@ -50,6 +46,7 @@ module.exports = function(grunt) {
 
 	eval(
 		grunt.file.read(src_tasks+'/build.js') + ' ' +
+		grunt.file.read(src_tasks+'/dependencies.js') + ' ' +
 		grunt.file.read(src_tasks+'/test.js') + ' ' +
 		grunt.file.read(src_tasks+'/doc.js') + ' '
 	);
