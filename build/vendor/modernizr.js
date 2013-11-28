@@ -132,7 +132,8 @@ window.Modernizr = (function( window, document, undefined ) {
       hasOwnProp = function (object, property) {
         return _hasOwnProperty.call(object, property);
       };
-    } else {
+    }
+    else {
       hasOwnProp = function (object, property) { 
         return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
       };

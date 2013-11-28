@@ -1403,7 +1403,8 @@
             }
           } else if (match[1]) { // positional argument (explicit)
             arg = argv[match[1]];
-          } else { // positional argument (implicit)
+          }
+          else { // positional argument (implicit)
             arg = argv[cursor++];
           }
 
@@ -1455,22 +1456,26 @@
                 }
                 else if ((field_match = /^\[(\d+)\]/.exec(replacement_field)) !== null) {
                   field_list.push(field_match[1]);
-                } else {
+                }
+                else {
                   throw new Error('[_.sprintf] huh?');
                 }
               }
-            } else {
+            }
+            else {
               throw new Error('[_.sprintf] huh?');
             }
             match[2] = field_list;
-          } else {
+          }
+          else {
             arg_names |= 2;
           }
           if (arg_names === 3) {
             throw new Error('[_.sprintf] mixing positional and named placeholders is not (yet) supported');
           }
           parse_tree.push(match);
-        } else {
+        }
+        else {
           throw new Error('[_.sprintf] huh?');
         }
         _fmt = _fmt.substring(match[0].length);
@@ -2086,7 +2091,8 @@ window.Modernizr = (function( window, document, undefined ) {
       hasOwnProp = function (object, property) {
         return _hasOwnProperty.call(object, property);
       };
-    } else {
+    }
+    else {
       hasOwnProp = function (object, property) { 
         return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
       };

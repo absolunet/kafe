@@ -57,18 +57,10 @@ grunt.task.registerTask('kafe_vendor', '', function() {
 		var
 			parts    = files[i].split(src_vendor+'/'),
 			filename = parts[parts.length-1],
-			contents = grunt.file.read(files[i]),
-			pieces   = contents.split(/\}\s*else\s*{/)
+			contents = grunt.file.read(files[i])
 		;
 
-		// remove AMD requirement
-		// if ( typeof define === "function" && define.amd ) {
-		for (var j in pieces) {
-			pieces[j] = pieces[j].replace(/if\s*\(\s*typeof\s+define\s*\=\=\=\s*['"]function['"]\s*\&\&\s*define\.amd\s*\)\s*\{[\s\S]*/gi, '/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */');
-		}
-		contents = pieces.join('} else {');
-
-		grunt.file.write(out_build+'/vendor/'+filename, contents);
+		grunt.file.write(out_build+'/vendor/'+filename, contents.replace('window.jQuery','jQuery') );
 	}
 });
 

@@ -45,7 +45,12 @@ function getStyleProperty( propName ) {
 }
 
 // transport
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( function() {
+    return getStyleProperty;
+  });
+} else {
   // browser global
   window.getStyleProperty = getStyleProperty;
 }
@@ -256,7 +261,10 @@ return getSize;
 }
 
 // transport
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [ 'get-style-property/get-style-property' ], defineGetSize );
+} else {
   // browser global
   window.getSize = defineGetSize( window.getStyleProperty );
 }
@@ -328,7 +336,10 @@ var eventie = {
 };
 
 // transport
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( eventie );
+} else {
   // browser global
   window.eventie = eventie;
 }
@@ -393,7 +404,12 @@ function defineDocReady( eventie ) {
 }
 
 // transport
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  // if RequireJS, then doc is already ready
+  docReady.isReady = typeof requirejs === 'function';
+  define( [ 'eventie/eventie' ], defineDocReady );
+} else {
   // browser global
   window.docReady = defineDocReady( window.eventie );
 }
@@ -478,7 +494,8 @@ function defineDocReady( eventie ) {
           response[key] = events[key];
         }
       }
-    } else {
+    }
+    else {
       response = events[evt] || (events[evt] = []);
     }
 
@@ -683,13 +700,15 @@ function defineDocReady( eventie ) {
           // Pass the single listener straight through to the singular method
           if (typeof value === 'function') {
             single.call(this, i, value);
-          } else {
+          }
+          else {
             // Otherwise pass back to the multiple function
             multiple.call(this, i, value);
           }
         }
       }
-    } else {
+    }
+    else {
       // So evt must be a string
       // And listeners must be an array of listeners
       // Loop over it and pass each one to the multiple method
@@ -728,7 +747,8 @@ function defineDocReady( eventie ) {
           delete events[key];
         }
       }
-    } else {
+    }
+    else {
       // Remove all listeners in all events
       delete this._events;
     }
@@ -829,7 +849,8 @@ function defineDocReady( eventie ) {
   proto._getOnceReturnValue = function _getOnceReturnValue() {
     if (this.hasOwnProperty('_onceReturnValue')) {
       return this._onceReturnValue;
-    } else {
+    }
+    else {
       return true;
     }
   };
@@ -845,7 +866,15 @@ function defineDocReady( eventie ) {
   };
 
   // Expose the class either via AMD, CommonJS or the global object
-  /* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+  if (typeof define === 'function' && define.amd) {
+    define(function () {
+      return EventEmitter;
+    });
+  }
+  else if (typeof module === 'object' && module.exports){
+    module.exports = EventEmitter;
+  }
+  else {
     this.EventEmitter = EventEmitter;
   }
 }.call(this));
@@ -976,7 +1005,10 @@ $.bridget = function( namespace, PluginClass ) {
 }
 
 // transport
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [ 'jquery' ], defineBridget );
+} else {
   // get jquery from browser global
   defineBridget( window.kafe.dependencies.jQuery );
 }
@@ -1074,7 +1106,12 @@ $.bridget = function( namespace, PluginClass ) {
   }
 
   // transport
-  /* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( function() {
+      return matchesSelector;
+    });
+  } else {
     // browser global
     window.matchesSelector = matchesSelector;
   }
@@ -1582,7 +1619,15 @@ return Item;
 
 // -------------------------- transport -------------------------- //
 
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [
+      'eventEmitter/EventEmitter',
+      'get-size/get-size',
+      'get-style-property/get-style-property'
+    ],
+    outlayerItemDefinition );
+} else {
   // browser global
   window.Outlayer = {};
   window.Outlayer.Item = outlayerItemDefinition(
@@ -2557,7 +2602,18 @@ return Outlayer;
 
 // -------------------------- transport -------------------------- //
 
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [
+      'eventie/eventie',
+      'doc-ready/doc-ready',
+      'eventEmitter/EventEmitter',
+      'get-size/get-size',
+      'matches-selector/matches-selector',
+      './item'
+    ],
+    outlayerDefinition );
+} else {
   // browser global
   window.Outlayer = outlayerDefinition(
     window.eventie,
@@ -2763,7 +2819,14 @@ function masonryDefinition( Outlayer, getSize ) {
 
 // -------------------------- transport -------------------------- //
 
-/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [
+      'outlayer/outlayer',
+      'get-size/get-size'
+    ],
+    masonryDefinition );
+} else {
   // browser global
   window.Masonry = masonryDefinition(
     window.Outlayer,

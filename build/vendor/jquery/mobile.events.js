@@ -9,7 +9,13 @@
 */
 
 (function ( root, doc, factory ) {
-	/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+	if ( typeof define === "function" && define.amd ) {
+		// AMD. Register as an anonymous module.
+		define( [ "jquery" ], function ( $ ) {
+			factory( $, root, doc );
+			return $.mobile;
+		});
+	} else {
 		// Browser globals
 		factory( window.kafe.dependencies.jQuery, root, doc );
 	}

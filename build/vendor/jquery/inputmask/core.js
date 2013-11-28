@@ -296,7 +296,8 @@
                     else if (element == opts.optionalmarker.end && !escaped) {
                         isOptional = false;
                         newBlockMarker = true;
-                    } else {
+                    }
+                    else {
                         var maskdef = opts.definitions[element];
                         if (maskdef && !escaped) {
                             var prevalidators = maskdef["prevalidator"], prevalidatorsL = prevalidators ? prevalidators.length : 0;
@@ -469,7 +470,8 @@
                             generateMask(maskPrefix + masks[0] + markOptional(masks[1]), maskParts[1], metadata);
                             generateMask(maskPrefix + masks[0], maskParts[1], metadata);
                         }
-                    } else {
+                    }
+                    else {
                         newMask = maskPrefix + maskParts;
                         if ($.inArray(newMask, genmasks) == -1) {
                             genmasks.push(newMask);

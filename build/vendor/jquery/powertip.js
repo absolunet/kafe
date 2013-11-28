@@ -6,7 +6,10 @@
  https://raw.github.com/stevenbenner/jquery-powertip/master/LICENSE.txt
 */
 (function(factory) {
-	/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery'], factory);
+	} else {
 		// Browser globals
 		factory(window.kafe.dependencies.jQuery);
 	}

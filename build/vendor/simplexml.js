@@ -89,7 +89,9 @@ function SimpleXMLElement() {
 					func_onload();
 				}
 			};
-		} else {
+		}
+		else
+		{
 			throw('Your browser can\'t handle this script');
 			return;
 		}
@@ -124,7 +126,9 @@ function SimpleXMLElement() {
 		  xmlDoc.async = "false";
 		  xmlDoc.loadXML(text);
 		  parseElements(xmlDoc.documentElement.childNodes, rootNode);
-	  	} else {
+	  	}
+		else
+	    {
 		  var parser=new DOMParser();
 	   	  xmlDoc = parser.parseFromString(text,"text/xml");
 		  parseElements(xmlDoc.documentElement.childNodes, rootNode);

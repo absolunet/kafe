@@ -6,7 +6,10 @@
  * Released under the MIT license
  */
 (function (factory) {
-	/* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as anonymous module.
+		define(['jquery'], factory);
+	} else {
 		// Browser globals.
 		factory(window.kafe.dependencies.jQuery);
 	}

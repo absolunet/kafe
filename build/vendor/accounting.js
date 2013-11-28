@@ -384,7 +384,12 @@
 			exports = module.exports = lib;
 		}
 		exports.accounting = lib;
-	} else /* <kafe replacement> */ if (false) { var x=false; /* </kafe replacement> */} else {
+	} else if (typeof define === 'function' && define.amd) {
+		// Return the library as an AMD module:
+		define([], function() {
+			return lib;
+		});
+	} else {
 		// Use accounting.noConflict to restore `accounting` back to its original value.
 		// Returns a reference to the library's `accounting` object;
 		// e.g. `var numbers = accounting.noConflict();`
