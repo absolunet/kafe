@@ -137,7 +137,7 @@ window.kafe = (function(undefined){
 				* Lo-Dash defined under window._  
 				* ref: [http://lodash.com/](http://lodash.com/)
 				*
-				* @property dependencies.lodash 
+				* @property dependencies.LoDash 
 				* @type Object
 				**/
 				LoDash: window._,

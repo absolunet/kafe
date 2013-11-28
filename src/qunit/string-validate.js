@@ -4,7 +4,7 @@
 
 	var
 		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.underscore,
+		_         = kafe.dependencies.LoDash,
 		Modernizr = kafe.dependencies.Modernizr
 	;
 

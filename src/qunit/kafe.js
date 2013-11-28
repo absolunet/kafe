@@ -4,7 +4,7 @@
 
 	var
 		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.underscore,
+		_         = kafe.dependencies.LoDash,
 		Modernizr = kafe.dependencies.Modernizr
 	;
 
@@ -12,10 +12,10 @@
 
 
 	test('dependencies', function() {
-		ok( !_.isUndefined(kafe.dependencies.jQuery),            'jQuery - Loaded');
-		ok( !_.isUndefined(kafe.dependencies.underscore),        'underscore - Loaded');
-		ok( !_.isUndefined(kafe.dependencies.underscore.string), 'underscore.string - Loaded');
-		ok( !_.isUndefined(kafe.dependencies.Modernizr),         'modernizr - Loaded');
+		ok( !_.isUndefined(kafe.dependencies.jQuery),        'jQuery - Loaded');
+		ok( !_.isUndefined(kafe.dependencies.LoDash),        'LoDash - Loaded');
+		ok( !_.isUndefined(kafe.dependencies.LoDash.string), 'underscore.string - Loaded');
+		ok( !_.isUndefined(kafe.dependencies.Modernizr),     'modernizr - Loaded');
 	});
 
 
