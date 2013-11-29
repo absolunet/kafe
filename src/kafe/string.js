@@ -1,4 +1,4 @@
-// @import 'libs/vendor/jquery/json'
+// @import 'libs/vendor/jquery.json'
 
 /* {%= HEADER %} */
 

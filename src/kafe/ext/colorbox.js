@@ -1,4 +1,4 @@
-// @import 'libs/vendor/jquery/colorbox'
+// @import 'libs/vendor/jquery.colorbox'
 
 /* {%= HEADER %} */
 

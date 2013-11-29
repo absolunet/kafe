@@ -16,7 +16,7 @@ A jQuery instance that will be copied in kafe.
 ```
 
 #### With [Grunt](http://gruntjs.com/)
-- Take the files under [build](https://github.com/absolunet/kafe/tree/master/build) folder and put them in a `libs` folder next to your `gruntfile.js`.
+- Take the files under [dist](https://github.com/absolunet/kafe/tree/master/dist) folder and put them in a `libs` folder next to your `gruntfile.js`.
 - Use [grunt-includes](https://github.com/vanetix/grunt-includes) with a setup looking like this:
 
 ```js
@@ -28,19 +28,19 @@ config.includes.core = {
 		includePath:    './'
 	},
 	src:  'libs/kafe/kafe',
-	dest: 'js/kafe-build.js'
+	dest: 'js/kafe-dist.js'
 };
 ```
 
 #### Standalone
-- Take the files under [build](https://github.com/absolunet/kafe/tree/master/build) folder and put them in your project.
+- Take the files under [dist](https://github.com/absolunet/kafe/tree/master/dist) folder and put them in your project.
 - Use the `// @import 'FILENAME'` in the files header to know which files to include manually.
 
 
 ## Documentation
 Visit the [http://absolunet.github.io/kafe](http://absolunet.github.io/kafe) website for all the things.
 ## Release history
-See the [CHANGELOG](https://github.com/absolunet/kafe/tree/master/CHANGELOG).
+See the [CHANGELOG](https://github.com/absolunet/kafe/tree/master/CHANGELOG.md).
 
 ## License 
-See the [MIT LICENSE](https://github.com/absolunet/kafe/tree/master/LICENSE).
+See the [MIT LICENSE](https://github.com/absolunet/kafe/tree/master/LICENSE.md).

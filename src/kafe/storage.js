@@ -1,5 +1,5 @@
-// @import 'libs/vendor/jquery/cookie'
-// @import 'libs/vendor/jquery/json'
+// @import 'libs/vendor/jquery.cookie'
+// @import 'libs/vendor/jquery.json'
 // @import 'libs/kafe/string'
 
 /* {%= HEADER %} */

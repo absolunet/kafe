@@ -1,4 +1,4 @@
-// @import 'libs/vendor/jquery/bbq'
+// @import 'libs/vendor/jquery.bbq'
 
 /* {%= HEADER %} */
 

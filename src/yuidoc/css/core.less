@@ -19,14 +19,14 @@
 
 
 /*- Fonts ------------------------------------------------------------------*/
-.LoadFont('montserratregular', 'montserrat-regular-webfont');
-.LoadFont('montserratbold',    'montserrat-bold-webfont');
-.LoadFont('icomoon',           'icomoon');
+.LoadFont('BrandonGrotesque-Medium', '275719_B_0');
+.LoadFont('BrandonGrotesque-Bold',   '275719_0_0');
+.LoadFont('icomoon',                 'icomoon');
 
 @text-font: helvetica, arial, sans-serif;
 .text-font()    { font-family:@text-font; }
-.alt-font()     { font-family:'montserratregular', @text-font;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
-.altBold-font() { font-family:'montserratbold', @text-font;     font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt-font()     { font-family:'BrandonGrotesque-Medium', @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.altBold-font() { font-family:'BrandonGrotesque-Bold',   @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 .code-font()    { font-family:Monaco, 'Lucida Console', Courier, 'Courier New', monospace; font-weight:normal !important; font-style:normal !important;  }
 
 .ico-font() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
@@ -68,7 +68,7 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 
 
 #Header { position:relative; height:53px; .altBold-font(); text-align:center; background-color:@white;
-	h1 { position:absolute; left:2%; top:11px; font-size:20px;
+	h1 { position:absolute; left:2%; top:11px; font-size:24px;
 		a { color:@text-color; text-decoration:none !important;
 			img { width:20px; height:32px; margin:0 15px 0 0; }
 		}
@@ -83,7 +83,7 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 		}
 	}
 	h2 { position:absolute; top:16px; right:2.5%;
-		a { position:relative; display:inline-block; .alt-font(); font-size:14px; text-decoration:none !important;
+		a { position:relative; display:inline-block; .alt-font(); font-size:16px; text-decoration:none !important;
 			&:before { position:absolute; top:-5px; left:-35px; .icoGithub-char(); font-size:28px; }
 			&:hover { color:@text-color; }
 		}
@@ -104,14 +104,13 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 
 		ul { position:relative; z-index:2;
 			li { position:relative; margin:0 0 3px 0;
-				a { .alt-font(); font-size:16px; color:@white; }
+				a { .alt-font(); font-size:18px; color:@white; }
 				&.On a { color:@title-color; text-decoration:none; }
 			}
 		}
 
 		@media @mobile-media { width:100%; padding:15px;
 			&:before { display:none; }
-			ul li  a { font-size:14px; }
 		}
 	}
 
@@ -144,7 +143,7 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 		}
 
 		// module methods list
-		> nav {	padding:30px 2.5%; .alt-font();
+		> nav {	padding:30px 2.5%; .alt-font(); font-size:18px;
 			@media @mobile-media { padding:15px; }
 			li:before { content:'•  '; }
 		}

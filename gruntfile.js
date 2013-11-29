@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 		src_yuidoc    = src+'/yuidoc',
 		src_qunit     = src+'/qunit',
 		out_root      = './',
-		out_build     = 'build', //dist
+		out_build     = 'dist',
 		out_doc       = 'doc',
 		out_test      = 'test',
 

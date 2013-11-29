@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>dist/kafe/plugin/carousel.js - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/kafe/assets/core.js"></script>
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="file">
+	<h1>dist/kafe/plugin/carousel.js</h1>
+	<h2>File</h2>
+</header>
+
+<pre>
+window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
+
+	var
+		// refresh active/inactive controls, and statuses
+		refresh = function(self) {
+			var
+				__ = self.__,
+				none = function(e) { e.preventDefault(); }
+			;
+
+			if (!__.wrap) {
+
+				// précédent
+				if (__.curr === 0) {
+					__.$start
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.startClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+					__.$previous
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.previousClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+				} else {
+					__.$start
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.startClick)
+						.on(&#x27;click&#x27;,  __.startClick)
+					;
+					__.$previous
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.previousClick)
+						.on(&#x27;click&#x27;,  __.previousClick)
+					;
+				}
+
+				// next
+				if (__.curr == (__.total-1)) {
+					__.$next
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.nextClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+					__.$end
+						.addClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.endClick)
+						.on(&#x27;click&#x27;,  none)
+					;
+				} else {
+					__.$next
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.nextClick)
+						.on(&#x27;click&#x27;,  __.nextClick)
+					;
+					__.$end
+						.removeClass(&#x27;kafecarousel-inactive&#x27;)
+						.off(&#x27;click&#x27;, __.endClick)
+						.on(&#x27;click&#x27;,  __.endClick)
+					;
+				}
+			}
+
+
+			// position
+			__.$position.html(__.curr+1);
+
+			// status
+			__.$status.html(&#x27;&#x27;);
+			__.$statusNum.html(&#x27;&#x27;);
+			for (var i=0; i&lt;__.total; ++i) {
+				if (i == __.curr) {
+					__.$status.append(&#x27;&lt;span class=&quot;kafecarousel-highlight&quot;&gt;&#x27;+__.statusBullet+&#x27;&lt;/span&gt;&#x27;);
+					__.$statusNum.append(&#x27;&lt;span class=&quot;kafecarousel-highlight&quot;&gt;&#x27;+(i+1)+&#x27;&lt;/span&gt;&#x27;);
+				} else {
+					if(!!__.statusLink) {
+						__.$status.append(
+							$(&#x27;&lt;a&gt;&#x27;)
+								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
+								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
+								.on(&#x27;click&#x27;,__.itemSimpleClick)
+								.html(&#x27;&lt;span&gt;&#x27;+__.statusBullet+&#x27;&lt;/span&gt;&#x27;)
+						);
+						__.$statusNum.append(
+							$(&#x27;&lt;a&gt;&#x27;)
+								.attr(&#x27;href&#x27;,&#x27;#&#x27;)
+								.data(&#x27;kafecarousel-itemid&#x27;, i+1)
+								.on(&#x27;click&#x27;,__.itemSimpleClick)
+								.html(&#x27;&lt;span&gt;&#x27;+(i+1)+&#x27;&lt;/span&gt;&#x27;)
+						);
+					} else {
+						__.$status.append(__.statusBullet);
+						__.$statusNum.append(i+1);
+					}
+				}
+			}
+
+			// items highlight
+			__.$itemsimple.removeClass(&#x27;kafecarousel-highlight&#x27;)
+				.filter(&#x27;[data-kafecarousel-target=&quot;&#x27;+(__.curr+1)+&#x27;&quot;]&#x27;).addClass(&#x27;kafecarousel-highlight&#x27;)
+			;
+
+			__.$items.each(function() {
+				$(this).children().removeClass(&#x27;kafecarousel-highlight&#x27;)
+					.eq(__.curr).addClass(&#x27;kafecarousel-highlight&#x27;)
+				;
+			});
+		},
+
+
+		// change the slide
+		change = function(self, target) {
+			var __ = self.__;
+
+			if (!!__.changing) {
+				return false;
+			}
+			if (target == __.curr) {
+				return false;
+			}
+			__.changing = true;
+			__.slideStopAuto();
+
+			var callbackData = {
+				action: (Number(target) == target) ? &#x27;item&#x27; : target,
+				source: {
+					position: __.curr+1
+				},
+				target: {}
+			};
+
+			var way;
+
+			var postCallback = function() {
+				if (!!__.postSwitchCallback) {
+					__.postSwitchCallback(callbackData);
+				}
+			};
+
+			// current li
+			var $liCurr = __.$slides.eq(__.curr);
+
+			// prev/next
+			if (target == &#x27;prev&#x27; || target == &#x27;next&#x27;) {
+
+				way = (target == &#x27;prev&#x27;) ? -1 : 1;
+
+				__.curr =
+					(__.wrap) ?
+						(__.curr === 0 &amp;&amp; way == -1) ?
+							(__.total-1)
+							: ((__.curr + way) % __.total)
+						: (__.curr + way)
+				;
+
+			// item
+			} else {
+				target = Number(target);
+
+				way = (target &lt; __.curr) ? -1 : 1;
+				__.curr = target;
+			}
+
+			// new li
+			var $liNew = __.$slides.eq(__.curr);
+
+
+			// add callback data
+			callbackData.source.obj      = $liCurr.get(0);
+			callbackData.target.position = __.curr+1;
+			callbackData.target.obj      = $liNew.get(0);
+
+			if (!!__.preSwitchCallback) {
+				__.preSwitchCallback(callbackData);
+			}
+
+
+
+			// transitions
+			switch (__.transition) {
+
+				// fade
+				case &#x27;fade&#x27;:
+					$liCurr.css(&#x27;z-index&#x27;,1);
+
+					$liNew
+						.css(&#x27;z-index&#x27;,2)
+						.fadeIn(__.speed, function(){
+							$liCurr.hide();
+							__.changing = false;
+							postCallback();
+						})
+					;
+				break;
+
+
+				// move right-bottom &gt; top-left
+				/*
+				case &#x27;slideTopLeft&#x27;: 
+					var height = __.$container.height() + &#x27;px&#x27;;
+					var width = __.$container.width() + &#x27;px&#x27;;
+
+					$liCurr.animate({
+						top:  (way == 1) ? &#x27;-&#x27;+height : height,
+						left: (way == 1) ? &#x27;-&#x27;+width  : width
+					});
+
+					$liNew
+						.css(&#x27;top&#x27;,  (way == 1) ? height : &#x27;-&#x27;+height)
+						.css(&#x27;left&#x27;, (way == 1) ? width  : &#x27;-&#x27;+width)
+						.animate({
+							top:  &#x27;0px&#x27;,
+							left: &#x27;0px&#x27;
+						}, postCallback)
+					;
+				break;
+				*/
+
+				// slide horizontal
+				case &#x27;slideUp&#x27;:
+				case &#x27;slideDown&#x27;:
+					way = (__.transition == &#x27;slideDown&#x27;) ? -way : way;
+
+					var height = __.$container.height() + &#x27;px&#x27;;
+
+					$liCurr.animate(
+						{ top: (way == 1) ? &#x27;-&#x27;+height : height},
+						__.speed,
+						function() { $(this).hide(); __.changing = false; }
+					);
+
+					$liNew
+						.css({
+							top:     (way == 1) ? height : &#x27;-&#x27;+height,
+							display: &#x27;block&#x27;
+						})
+						.animate({
+							top: &#x27;0px&#x27;
+						}, __.speed, postCallback)
+					;
+				break;
+
+				// slide vertical
+				//case &#x27;slideLeft&#x27;:
+				//case &#x27;slideRight&#x27;:
+				default:
+					way = (__.transition == &#x27;slideRight&#x27;) ? -way : way;
+
+					var width = __.$container.width() + &#x27;px&#x27;;
+
+					$liCurr.animate(
+						{ left: (way == 1) ? &#x27;-&#x27;+width : width },
+						__.speed,
+						function() { $(this).hide(); __.changing = false; }
+					);
+
+					$liNew
+						.css({
+							left:     (way == 1) ? width : &#x27;-&#x27;+width,
+							display: &#x27;block&#x27;
+						})
+						.animate({
+							left: &#x27;0px&#x27;
+						}, __.speed, postCallback)
+					;
+				break;
+			}
+
+			refresh(self);
+			__.slideStartAuto();
+		}
+	;
+
+
+
+
+	/**
+	* ### Version 1.0.2
+	* Carousel, image scroller, ticker, whatever you wanna call it...
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.carousel
+	*/
+	var carousel = kafe.fn.createInstantiableObject();
+
+	/**
+	* Attach behaviors to the carousel structure.
+	*
+	* @method __constructor
+	* @param {Object} options Initial configurations
+	*	@param {Object} options.selector The carousel elements
+	*		@param {String|jQueryObject|DOMElement} options.selector.container The carousel container.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.slides] The carousel slides.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.start] Clickable elements that will switch the carousel to the first slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.prev] Clickable elements that will switch the carousel to the previous slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.next] Clickable elements that will switch the carousel to the next slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.end] Clickable elements that will switch the carousel to the last slide.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.items] Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the &#x60;data-kafecarousel-target&#x60; attribute.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.play] Clickable elements that will switch the carousel to autoplay.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.pause] Clickable elements that will stop the autoplay of the carousel.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.position] Elements that will contain the current position.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.total] Elements that will contain the total number of slides.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.status] Elements that will contain a list of bullets indicating the status of the carousel.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.statusNum] Elements that will contain a list of numbers indicating the status of the carousel.
+	*	@param {Boolean} [options.wrap=true] If true, will loop back to the first slide upon reaching the last one. The same is enabled in reverse.
+	*	@param {String} [options.transition=&#x27;slideLeft&#x27;] Animation used during a transition. Possible values are &#x60;slideLeft&#x60;, &#x60;slideRight&#x60;, &#x60;slideUp&#x60;, &#x60;slideDown&#x60; and &#x60;fade&#x60;.
+	*	@param {Number} [options.speed=500] Duration (in milliseconds) of the transition.
+	*	@param {Number} [options.startId=1] Index of the starting slide, starting at 1.
+	*	@param {Object} [options.autostart] Allows slides to change without a user interaction after a chosen delay.
+	*		@param {Number} [options.autostart.interval=3000] Delay (in milliseconds) before starting a transition to the next slide. The transition duration is included in the delay. As an example, an &#x60;interval&#x60; of 3000 combined with a &#x60;speed&#x60; of 500 will hold a slide still for 2500 milliseconds before starting the transition.
+	*	@param {Function} [options.preSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. The following object is passed as a first argument:
+	*		@param {Object} options.preSwitchCallback.data An object containing information relative to the transition in progress.
+	*			@param {String} options.preSwitchCallback.data.action Current action being performed. Possible values are &#x60;prev&#x60;, &#x60;next&#x60; or &#x60;item&#x60; when using a specific index.
+	*			@param {Object} options.preSwitchCallback.data.source Information about the slide being changed.
+	*				@param {Number} options.preSwitchCallback.data.source.position Index of the source slide.
+	*				@param {DOMElement} options.preSwitchCallback.data.source.obj Reference to the source slide.
+	*			@param {Object} options.preSwitchCallback.data.target Information about the destination slide.
+	*				@param {Number} options.preSwitchCallback.data.target.position Index of the target slide.
+	*				@param {DOMElement} options.preSwitchCallback.data.target.obj Reference to the target slide.
+	*	@param {Function} [options.postSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the &#x60;preSwitchCallback&#x60;.
+	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via &#x60;data-kafecarousel-id&#x60; and the &#x60;data-kafecarousel-action=&quot;status&quot;&#x60; attribute.
+	*	@param {String} [options.statusBullet=&#x27;&amp;bull;&#x27;] Text used as the content of generated link in a &#x60;statusLink&#x60; navigation.
+	*	@param {Boolean} [options.pauseOnHover=true] If true, autoswitch will be paused while the mouse hovers a slide.
+	*
+	* @example
+	*	// Sample carousel structure
+	*	&lt;section class=&quot;home-carousel&quot;&gt;
+	*		&lt;ul class=&quot;home-slides&quot;&gt;
+	*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+	*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+	*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;/images/slide-01.jpg&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+	*		&lt;/ul&gt;
+	*		&lt;span class=&quot;home-prev&quot;&gt;Back&lt;/span&gt;
+	*		&lt;span class=&quot;home-next&quot;&gt;Next&lt;/span&gt;
+	*		&lt;div class=&quot;home-status&quot;&gt;&lt;/div&gt;
+	*	&lt;/section&gt;
+	*	
+	* @example
+	*	// Attach behaviors using...
+	*	var myCarousel = kafe.plugin.carousel({ selector: { container: &#x27;.home-slides&#x27; } });
+	* @example
+	*	// Carousels can be remotely interacted with using custom data attributes...
+	*	var myCarousel = kafe.plugin.carousel({ selector: { container: &#x27;.home-slides&#x27; } });
+	* @example
+	*	// The jQuery alternative...
+	*	$(&#x27;.home-slides&#x27;).kafeCarousel(&#x27;init&#x27;, {});
+	*/
+	carousel.prototype.__constructor = function(options) {
+		var self = this, __ = self.__;
+
+		// elements
+		__.$container  = $(options.selector.container).data(&#x27;kafecarousel-self&#x27;, self);
+		__.$slides     = (options.selector.slides) ? $(options.selector.slides) : __.$container.children();
+		__.$start      = $(options.selector.start);
+		__.$previous   = $(options.selector.prev);
+		__.$next       = $(options.selector.next);
+		__.$end        = $(options.selector.end);
+		__.$items      = $(options.selector.items);
+		__.$itemsimple = $(options.selector.item);
+		__.$play       = $(options.selector.play);
+		__.$pause      = $(options.selector.pause);
+		__.$position   = $(options.selector.position);
+		__.$total      = $(options.selector.total);
+		__.$status     = $(options.selector.status);
+		__.$statusNum  = $(options.selector.statusNum);
+
+		__.wrap         = (options.wrap === false)  ? false                   : true;
+		__.transition   = (options.transition)      ? options.transition      : &#x27;slideLeft&#x27;;
+		__.speed        = (Number(options.speed))   ? Number(options.speed)   : 500;
+		__.startId      = (Number(options.startId)) ? Number(options.startId) : 1;
+		__.autointerval = (
+			(options.autostart) ? (
+				(Number(options.autostart.interval)) ?
+					Number(options.autostart.interval)
+					: 3000)
+				: undefined
+		);
+		__.preSwitchCallback    = (typeof(options.preSwitchCallback)    == &#x27;function&#x27;) ? options.preSwitchCallback    : undefined;
+		__.postSwitchCallback   = (typeof(options.postSwitchCallback)   == &#x27;function&#x27;) ? options.postSwitchCallback   : undefined;
+		__.initCompleteCallback = (typeof(options.initCompleteCallback) == &#x27;function&#x27;) ? options.initCompleteCallback : undefined;
+		__.statusLink           = !!options.statusLink;
+		__.statusBullet         = (options.statusBullet) ? options.statusBullet : &#x27;&amp;bull&#x27;;
+		__.pauseOnHover         = (options.pauseOnHover === false) ? false : true;
+
+
+		// cache
+		__.$slidesFirst = __.$slides.eq(0);
+		__.total        = __.$slides.length;
+
+
+		// désactiver tout si un seul item
+		if (__.total == 1) {
+			__.$previous.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$next.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$items.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$itemsimple.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$position.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$total.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$status.addClass(&#x27;kafecarousel-none&#x27;);
+			__.$statusNum.addClass(&#x27;kafecarousel-none&#x27;);
+
+		// sinon préparer carousel
+		} else {
+
+			// initial
+			__.curr     = __.startId-1;
+			__.changing = false;
+
+			// general events				
+			__.startClick = function(e) {
+				e.preventDefault();
+				change(self, 0);
+			};
+
+			__.previousClick = function(e) {
+				e.preventDefault();
+				change(self, &#x27;prev&#x27;);
+			};
+
+			__.nextClick = function(e) {
+				e.preventDefault();
+				change(self, &#x27;next&#x27;);
+			};
+
+			__.endClick = function(e) {
+				e.preventDefault();
+				change(self, __.total-1);
+			};
+
+			__.itemSimpleClick = function(e) {
+				e.preventDefault();
+				change(self, $(this).data(&#x27;kafecarousel-target&#x27;) - 1);
+			};
+
+			__.playClick = function(e) {
+				e.preventDefault();
+				__.AutoRunning = true;
+				__.slideStartAuto();
+			};
+
+			__.pauseClick = function(e) {
+				e.preventDefault();
+				__.AutoRunning = false;
+				__.slideStopAuto();
+			};
+
+			__.slideStartAuto = function() {
+				if (__.AutoRunning) {
+					__.Timeout = setTimeout(function(){ change(self, &#x27;next&#x27;, true); }, __.autointerval);
+				}
+			};
+
+			__.slideStopAuto = function() {
+				clearTimeout(__.Timeout);
+				__.Timeout = undefined;
+			};
+
+
+
+
+			// on events
+			__.$start.on(&#x27;click&#x27;,__.startClick);
+			__.$previous.on(&#x27;click&#x27;,__.previousClick);
+			__.$next.on(&#x27;click&#x27;,__.nextClick);
+			__.$end.on(&#x27;click&#x27;,__.endClick);
+			__.$itemsimple.on(&#x27;click&#x27;,__.itemSimpleClick);
+
+			__.$items.each(function() {
+				$(this).children().each(function(i) {
+					$(this).on(&#x27;click&#x27;,function(e){
+						e.preventDefault();
+						change(self, i);
+					});
+				});
+			});
+
+			__.$play.on(&#x27;click&#x27;,__.playClick);
+			__.$pause.on(&#x27;click&#x27;,__.pauseClick);
+
+			if (__.pauseOnHover) {
+				__.$slides.on({
+					mouseenter: __.slideStopAuto,
+					mouseleave: __.slideStartAuto
+				});
+			}
+
+
+
+
+
+			// intialiser look
+			__.$total.html(__.total);
+			refresh(self);
+
+			__.$slides.hide()
+				.eq(__.startId-1).show()
+			;
+
+			switch (__.transition) {
+				// fade
+				case &#x27;fade&#x27;:
+				break;
+
+
+				// move vertical
+				case &#x27;slideUp&#x27;:
+				case &#x27;slideDown&#x27;:
+					__.$slides.css({
+						left: &#x27;0px&#x27;
+					});
+					__.$slidesFirst.css(&#x27;top&#x27;,&#x27;0px&#x27;);
+				break;
+
+				// move horizontal
+				//case &#x27;slideLeft&#x27;:
+				//case &#x27;slideRight&#x27;:
+				default:
+					__.$slides.css({
+						top: &#x27;0px&#x27;
+					});
+					__.$slidesFirst.css(&#x27;left&#x27;,&#x27;0px&#x27;);
+				break;
+			}
+
+
+			// autostart	
+			if (__.autointerval !== undefined) {
+				__.AutoRunning = true;
+				__.slideStartAuto();
+			}
+		}
+
+		// Init. Completed callback
+		if (!!__.initCompleteCallback) {
+			__.initCompleteCallback(self);
+		}
+	};
+
+
+	/**
+	* Manually call a slide change
+	*
+	* @method change
+	* @param {String|Number} target Action or 1-based slide position
+	*
+	* @example
+	*	// Go to next slide
+	*	myCarousel.change(&#x27;next&#x27;);
+	* @example
+	*	// Go to first slide 
+	*	myCarousel.change(1);
+	* @example
+	*	// The jQuery alternative...
+	*	$(&#x27;#home-slides&#x27;).kafeCarousel(&#x27;change&#x27;, 1);
+	*/
+	carousel.prototype.change = function(target) {
+		var self = this, __ = self.__;
+		return change(self, (Number(target) == target) ? target-1 : target);
+	};
+
+
+
+	// Add as jQuery plugin
+	kafe.fn.plugIntojQuery(&#x27;Carousel&#x27;, {
+		init: function(obj, parameters) {
+			carousel($.extend(true, {}, parameters[0], {selector:{container:obj}}));
+		},
+		change: function(obj, parameters) {
+			$(obj).data(&#x27;kafecarousel-self&#x27;).change(parameters[0]);
+		}
+	});
+
+	return carousel;
+
+})(window.kafe)});
+</pre>
+
+		</section>
+		<nav>
+			<ul>
+    
+        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
+
+		</nav>
+	</div>
+
+	<footer id="Footer">2013 &copy; <a href="http://absolunet.com">Absolunet</a> - All rights reserved. <a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+</body>
+</html>

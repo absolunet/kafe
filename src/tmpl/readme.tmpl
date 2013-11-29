@@ -16,7 +16,7 @@ A jQuery instance that will be copied in <!-- @echo package -->.
 ```
 
 #### With [Grunt](http://gruntjs.com/)
-- Take the files under [build](<!-- @echo repo_url -->/build) folder and put them in a `libs` folder next to your `gruntfile.js`.
+- Take the files under [dist](<!-- @echo repo_url -->/dist) folder and put them in a `libs` folder next to your `gruntfile.js`.
 - Use [grunt-includes](https://github.com/vanetix/grunt-includes) with a setup looking like this:
 
 ```js
@@ -28,12 +28,12 @@ config.includes.core = {
 		includePath:    './'
 	},
 	src:  'libs/<!-- @echo package -->/<!-- @echo package -->',
-	dest: 'js/<!-- @echo package -->-build.js'
+	dest: 'js/<!-- @echo package -->-dist.js'
 };
 ```
 
 #### Standalone
-- Take the files under [build](<!-- @echo repo_url -->/build) folder and put them in your project.
+- Take the files under [dist](<!-- @echo repo_url -->/dist) folder and put them in your project.
 - Use the `// @import 'FILENAME'` in the files header to know which files to include manually.
 
 
@@ -48,7 +48,7 @@ Visit the [Github repository](<!-- @echo repo -->) for all the things.
 <!-- @endif-->
 
 ## Release history
-See the [CHANGELOG](<!-- @echo repo_url -->/CHANGELOG).
+See the [CHANGELOG](<!-- @echo repo_url -->/CHANGELOG.md).
 
 ## License 
-See the [MIT LICENSE](<!-- @echo repo_url -->/LICENSE).
+See the [MIT LICENSE](<!-- @echo repo_url -->/LICENSE.md).

@@ -1,5 +1,5 @@
 config.clean.vendor = {
-	src: [out_build+'/vendor', out_build+'/vendor-resources'], options: { force:true }
+	src: [out_build+'/vendor'], options: { force:true }
 };
 
 grunt.task.registerTask('get_vendor', '', function() {
@@ -20,24 +20,24 @@ grunt.task.registerTask('get_vendor', '', function() {
 			{ dest:'qrcode',            src:'http://d-project.googlecode.com/svn/trunk/misc/qrcode/js/qrcode.js' },
 			{ dest:'simplexml',         src:'https://simplexmljs.googlecode.com/svn/trunk/simplexml.js' },
 
-			{ dest:'jquery/bbq',           src: 'https://raw.github.com/cowboy/jquery-bbq/master/jquery.ba-bbq.js' },
-			{ dest:'jquery/colorbox',      src: 'https://raw.github.com/jackmoore/colorbox/master/jquery.colorbox.js' },
-			{ dest:'jquery/cookie',        src: 'https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js' },
-			{ dest:'jquery/hashchange',    src: 'https://raw.github.com/cowboy/jquery-hashchange/master/jquery.ba-hashchange.js' },
-			{ dest:'jquery/inputmask',     src: 'https://raw.github.com/RobinHerbots/jquery.inputmask/2.x/dist/jquery.inputmask.bundle.js'},
-			{ dest:'jquery/isotope',       src: 'https://raw.github.com/desandro/isotope/master/jquery.isotope.js' },
-			{ dest:'jquery/jcarousellite', src: 'https://raw.github.com/kswedberg/jquery-carousel-lite/master/jcarousellite.js' },
-			{ dest:'jquery/json',          src: 'https://jquery-json.googlecode.com/svn/trunk/src/jquery.json.js' },
-			{ dest:'jquery/powertip',      src: 'http://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js' },
-			{ dest:'jquery/scrollto',      src: 'https://raw.github.com/flesler/jquery.scrollTo/master/jquery.scrollTo.js' },
+			{ dest:'jquery.bbq',           src: 'https://raw.github.com/cowboy/jquery-bbq/master/jquery.ba-bbq.js' },
+			{ dest:'jquery.colorbox',      src: 'https://raw.github.com/jackmoore/colorbox/master/jquery.colorbox.js' },
+			{ dest:'jquery.cookie',        src: 'https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js' },
+			{ dest:'jquery.hashchange',    src: 'https://raw.github.com/cowboy/jquery-hashchange/master/jquery.ba-hashchange.js' },
+			{ dest:'jquery.inputmask',     src: 'https://raw.github.com/RobinHerbots/jquery.inputmask/2.x/dist/jquery.inputmask.bundle.js'},
+			{ dest:'jquery.isotope',       src: 'https://raw.github.com/desandro/isotope/master/jquery.isotope.js' },
+			{ dest:'jquery.jcarousellite', src: 'https://raw.github.com/kswedberg/jquery-carousel-lite/master/jcarousellite.js' },
+			{ dest:'jquery.json',          src: 'https://jquery-json.googlecode.com/svn/trunk/src/jquery.json.js' },
+			{ dest:'jquery.powertip',      src: 'http://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js' },
+			{ dest:'jquery.scrollto',      src: 'https://raw.github.com/flesler/jquery.scrollTo/master/jquery.scrollTo.js' },
 
-			{ dest:'jquery/jscrollpane',  src:'https://raw.github.com/vitch/jScrollPane/master/script/jquery.jscrollpane.js', dependencies:['jquery/mousewheel', 'jquery/mwheelintent'] },
-			{ dest:'jquery/mousewheel',   src:'https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js' },
-			{ dest:'jquery/mwheelintent', src:'https://raw.github.com/vitch/jScrollPane/master/script/mwheelIntent.js' },
+			{ dest:'jquery.jscrollpane',  src:'https://raw.github.com/vitch/jScrollPane/master/script/jquery.jscrollpane.js', dependencies:['jquery.mousewheel', 'jquery.mwheelintent'] },
+			{ dest:'jquery.mousewheel',   src:'https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js' },
+			{ dest:'jquery.mwheelintent', src:'https://raw.github.com/vitch/jScrollPane/master/script/mwheelIntent.js' },
 		]
 	;
 	
-	async.map(files,
+	async.mapLimit(files, 10,
 		function(item, callback){
 			request(item.src, function(error, response, body){
 				if (!error && response.statusCode == 200) {
@@ -79,7 +79,7 @@ config.copy.resources = {
 	expand: true,
 	cwd:    src_resources+'/',
 	src:    '**',
-	dest:   out_build+'/vendor-resources/',
+	dest:   out_build+'/vendor/resources/',
 	filter: 'isFile'
 };
 
@@ -87,21 +87,19 @@ grunt.task.registerTask('get_vendor_resources', '', function() {
 	var
 		done  = this.async(),
 
-		//replace with '.'
-
 		files = [
 			{
-				name: 'jquery-jscrollpane',
+				name: 'jquery.jscrollpane',
 				files: [ { dest:'jscrollpane.less', src:'https://raw.github.com/vitch/jScrollPane/master/style/jquery.jscrollpane.css' } ]
 			},
 			{
-				name: 'jquery-colorbox',
+				name: 'jquery.colorbox',
 				files: [ { dest:'colorbox.zip', src:'https://github.com/jackmoore/colorbox/archive/master.zip' } ]
 			}
 		]
 	;
 	
-	async.map(files,
+	async.mapLimit(files, 10,
 		function(item, callback){
 			var process = function(error, response, body){
 				if (!error && response.statusCode == 200) {
@@ -132,7 +130,7 @@ grunt.task.registerTask('get_vendor_resources', '', function() {
 
 				for (var i in results) {
 
-					var dest = out_build+'/vendor-resources/'+results[i].package;
+					var dest = out_build+'/vendor/resources/'+results[i].package;
 					grunt.file.write(dest+'/'+results[i].dest, results[i].content);
 					
 					if (/\.zip$/.test(results[i].dest)) {
@@ -153,15 +151,15 @@ grunt.task.registerTask('get_vendor_resources', '', function() {
 
 config.copy.colorbox = {
 	expand: true,
-	cwd:    out_build+'/vendor-resources/jquery-colorbox/colorbox-master/',
+	cwd:    out_build+'/vendor/resources/jquery.colorbox/colorbox-master/',
 	src:    'example*/**/*',
-	dest:   out_build+'/vendor-resources/jquery-colorbox/',
+	dest:   out_build+'/vendor/resources/jquery.colorbox/',
 	filter: 'isFile'
 };
 
 
 grunt.task.registerTask('process_colorbox', '', function() {
-	var root = out_build+'/vendor-resources/jquery-colorbox';
+	var root = out_build+'/vendor/resources/jquery.colorbox';
 	grunt.file.delete(root+'/colorbox-master', {force:true});
 	grunt.file.delete(root+'/colorbox.zip', {force:true});
 
@@ -172,7 +170,7 @@ grunt.task.registerTask('process_colorbox', '', function() {
 
 		grunt.file.write(list[i]+'/colorbox.less',
 			grunt.file.read(list[i]+'/colorbox.css')
-				.replace(/url\(images\//g, "url('@{img-path}/vendor/jquery-colorbox/")
+				.replace(/url\(images\//g, "url('@{img-path}/vendor/jquery.colorbox/")
 				.replace(/\.png\)/g,       ".png')")
 				.replace(/\.gif\)/g,       ".gif')")
 

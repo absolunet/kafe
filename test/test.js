@@ -5026,7 +5026,7 @@
     }
 
     /**
-     * Creates an array that is the smymetric difference of the provided arrays.
+     * Creates an array that is the symmetric difference of the provided arrays.
      * See http://en.wikipedia.org/wiki/Symmetric_difference.
      *
      * @static
@@ -8889,7 +8889,7 @@ window.Modernizr = (function( window, document, undefined ) {
 * @module kafe
 * @main kafe
 */
-window.kafe = (function(undefined){
+window.kafe = (function(window, undefined){
 
 	var
 		// check if module imported
@@ -8982,7 +8982,7 @@ window.kafe = (function(undefined){
 				* Lo-Dash defined under window._  
 				* ref: [http://lodash.com/](http://lodash.com/)
 				*
-				* @property dependencies.lodash 
+				* @property dependencies.LoDash 
 				* @type Object
 				**/
 				LoDash: window._,
@@ -9188,7 +9188,7 @@ window.kafe = (function(undefined){
 
 	return core;
 
-})();
+})(window);
 
 
 
@@ -9715,7 +9715,8 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 		return '"' + str + '"';
 	};
 
-}(window.kafe.dependencies.jQuery));
+}(jQuery));
+
 
 window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 
