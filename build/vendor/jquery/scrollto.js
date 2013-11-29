@@ -214,4 +214,4 @@
 		return typeof val == 'object' ? val : { top:val, left:val };
 	};
 
-})( window.kafe.dependencies.jQuery );
+})( jQuery );

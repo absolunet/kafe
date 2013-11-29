@@ -983,7 +983,7 @@
     
   });
   
-})(kafe.dependencies.jQuery,this);
+})(jQuery,this);
 
 /*!
  * jQuery hashchange event - v1.3 - 7/21/2010
@@ -1374,4 +1374,4 @@
     return self;
   })();
   
-})(window.kafe.dependencies.jQuery,this);
+})(jQuery,this);

@@ -1,20 +1,20 @@
 module.exports = function(grunt) {
 	var
-		_          = require('lodash'),
-		request    = require('request'),
-		async      = require('async'),
-		src        = 'src',
-		tmp        = src+'/.tmp-kafe',
-		src_tasks  = src+'/tasks',
-		src_tmpl   = src+'/tmpl',
-		src_kafe   = src+'/kafe',
-		src_vendor = src+'/vendor',
-		src_yuidoc = src+'/yuidoc',
-		src_qunit  = src+'/qunit',
-		out_root   = './',
-		out_build  = 'build', //dist
-		out_doc    = 'doc',
-		out_test   = 'test',
+		_             = require('lodash'),
+		request       = require('request'),
+		async         = require('async'),
+		src           = 'src',
+		tmp           = src+'/.tmp-kafe',
+		src_tasks     = src+'/tasks',
+		src_tmpl      = src+'/tmpl',
+		src_kafe      = src+'/kafe',
+		src_resources = src+'/resources',
+		src_yuidoc    = src+'/yuidoc',
+		src_qunit     = src+'/qunit',
+		out_root      = './',
+		out_build     = 'build', //dist
+		out_doc       = 'doc',
+		out_test      = 'test',
 
 
 		tasks = { default:['build', 'dependencies', 'doc', 'test'] },

@@ -196,4 +196,4 @@
 		return '"' + str + '"';
 	};
 
-}(window.kafe.dependencies.jQuery));
+}(jQuery));

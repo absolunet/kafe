@@ -11,7 +11,7 @@
 		define(['jquery'], factory);
 	} else {
 		// Browser globals
-		factory(window.kafe.dependencies.jQuery);
+		factory(jQuery);
 	}
 }(function($) {
 

@@ -44,7 +44,7 @@
 * @module <%= PACKAGE %>
 * @main <%= PACKAGE %>
 */
-window.kafe = (function(undefined){
+window.kafe = (function(window, undefined){
 
 	var
 		// check if module imported
@@ -343,7 +343,7 @@ window.kafe = (function(undefined){
 
 	return core;
 
-})();
+})(window);
 
 
 

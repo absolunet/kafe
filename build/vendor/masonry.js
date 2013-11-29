@@ -137,7 +137,7 @@ if ( typeof define === 'function' && define.amd ) {
   define( [ 'jquery' ], defineBridget );
 } else {
   // get jquery from browser global
-  defineBridget( window.jQuery );
+  defineBridget( jQuery );
 }
 
 })( window );

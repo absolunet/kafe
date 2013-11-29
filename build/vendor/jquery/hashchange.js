@@ -387,4 +387,4 @@
     return self;
   })();
   
-})(window.kafe.dependencies.jQuery,this);
+})(jQuery,this);

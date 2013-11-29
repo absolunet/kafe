@@ -1406,4 +1406,4 @@
     return this;
   };
 
-})( window, window.kafe.dependencies.jQuery );
+})( window, jQuery );

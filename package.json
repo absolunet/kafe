@@ -25,6 +25,7 @@
 		"grunt-contrib-cssmin": "~0.6.2",
 		"grunt-contrib-jshint": "~0.6.4",
 		"grunt-includes":       "~0.3.6",
-		"grunt-contrib-uglify": "~0.2.7"
+		"grunt-contrib-uglify": "~0.2.7",
+		"grunt-zip":            "~0.10.0"
 	}
 }
