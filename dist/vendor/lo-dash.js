@@ -481,7 +481,8 @@
         hasOwnProperty = objectProto.hasOwnProperty,
         push = arrayRef.push,
         setTimeout = context.setTimeout,
-        splice = arrayRef.splice;
+        splice = arrayRef.splice,
+        unshift = arrayRef.unshift;
 
     /** Used to set meta data on functions */
     var defineProperty = (function() {
@@ -711,7 +712,7 @@
         // `Function#bind` spec
         // http://es5.github.io/#x15.3.4.5
         if (partialArgs) {
-          var args = partialArgs.slice();
+          var args = slice(partialArgs);
           push.apply(args, arguments);
         }
         // mimic the constructor's `return` behavior
@@ -928,7 +929,7 @@
       function bound() {
         var thisBinding = isBind ? thisArg : this;
         if (partialArgs) {
-          var args = partialArgs.slice();
+          var args = slice(partialArgs);
           push.apply(args, arguments);
         }
         if (partialRightArgs || isCurry) {
@@ -1410,8 +1411,14 @@
       }
       var bindData = func && func.__bindData__;
       if (bindData && bindData !== true) {
-        bindData = bindData.slice();
-
+        // clone `bindData`
+        bindData = slice(bindData);
+        if (bindData[2]) {
+          bindData[2] = slice(bindData[2]);
+        }
+        if (bindData[3]) {
+          bindData[3] = slice(bindData[3]);
+        }
         // set `thisBinding` is not previously bound
         if (isBind && !(bindData[1] & 1)) {
           bindData[4] = thisArg;
@@ -1430,7 +1437,7 @@
         }
         // append partial right arguments
         if (isPartialRight) {
-          push.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
+          unshift.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
         }
         // merge flags
         bindData[1] |= bitmask;
