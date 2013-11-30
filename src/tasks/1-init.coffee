@@ -55,8 +55,8 @@ module.exports = (grunt) ->
 	}
 
 	grunt.task.registerTask 'default', [
-		'dist_core'
-		#'dependencies'
+		'core'
+		'vendor'
 		#'doc'
 		#'test'
 	]
@@ -64,9 +64,6 @@ module.exports = (grunt) ->
 
 	###
 
-	_       = require 'lodash'
-	request = require 'request'
-	async   = require 'async'
 
 
 	((cleanup_required) ->

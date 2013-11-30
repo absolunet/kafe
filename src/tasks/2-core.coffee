@@ -1,31 +1,33 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'dist-core loaded'
+	grunt.log.ok 'core loaded'
 
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
 
+	src = path.src.kafe
+	out = path.out.dist+'/'+pkg.name
 
 	# config
 	grunt.config.set name, data for name, data of {
-		'clean.distcore': 
-			src:     [path.out.dist+'/kafe']
+		'clean.dist_core': 
+			src:     [out]
 			options: force:true
 
-		'jshint.distcore':
-			src: [path.out.dist+'/'+pkg.name+'/**/*.js']
+		'jshint.dist_core':
+			src: [out+'/**/*.js']
 			options:
 				'-W061': true   # eval can be harmful
 	}
 
 
 	# task
-	grunt.task.registerTask 'build_distcore', '', ()->
+	grunt.task.registerTask 'build_core', '', ()->
 
-		versions = grunt.file.readJSON path.src.kafe+'/versions.json'
-		files    = grunt.file.expand   path.src.kafe+'/**/*.js'
+		versions = grunt.file.readJSON src+'/versions.json'
+		files    = grunt.file.expand   src+'/**/*.js'
 
 		for file in files
-			parts        = file.split path.src.kafe+'/'
+			parts        = file.split src+'/'
 			filename     = parts[parts.length-1]
 			name         = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3)
 			module       = name.split '.'
@@ -57,14 +59,14 @@ module.exports = (grunt) ->
 					FOOTER: "})(window."+pkgName+")});"
 			}
 
-			grunt.file.write path.out.dist+'/'+pkgName+'/'+filename, contents
+			grunt.file.write out+'/'+filename, contents
 
 
 
 	# main task
-	grunt.task.registerTask 'dist_core', [
-		'clean:distcore'
-		'build_distcore'
-		'jshint:distcore'
+	grunt.task.registerTask 'core', [
+		'clean:dist_core'
+		'build_core'
+		'jshint:dist_core'
 		'clean:placeholders'
 	]

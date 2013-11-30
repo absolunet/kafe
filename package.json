@@ -14,6 +14,7 @@
 		"lodash":               "~2.4.0",
 		"request":              "~2.27.0",
 		"async":                "~0.2.9",
+		"adm-zip":              "~0.4.3",
 		"grunt":                "~0.4.1",
 		"grunt-contrib-watch":  "~0.5.3",
 		"grunt-contrib-clean":  "~0.5.0",
@@ -25,7 +26,6 @@
 		"grunt-contrib-cssmin": "~0.6.2",
 		"grunt-contrib-jshint": "~0.6.4",
 		"grunt-includes":       "~0.3.6",
-		"grunt-contrib-uglify": "~0.2.7",
-		"grunt-zip":            "~0.10.0"
+		"grunt-contrib-uglify": "~0.2.7"
 	}
 }
