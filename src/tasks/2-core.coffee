@@ -66,5 +66,5 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'core', [
 		'build_core'
 		'jshint:dist_core'
-		'clean:placeholders'
+		'delete_placeholders'
 	]
