@@ -4,7 +4,6 @@ module.exports = (grunt) ->
 	grunt.task.loadNpmTasks task for task in [
 		'grunt-contrib-watch'
 		'grunt-contrib-clean'
-		'grunt-contrib-copy'
 		'grunt-contrib-yuidoc'
 		'grunt-preprocess'
 		'grunt-markdown'
@@ -36,6 +35,11 @@ module.exports = (grunt) ->
 	grunt.template.addDelimiters 'jscomment', '/* {%', '%} */'
 
 	grunt.config.set name, data for name, data of {
+		'util':
+			copy:   (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter
+			delete: (src...) -> grunt.file.delete file, {force:true} for file in src
+
+
 		'internal': 
 			path: path
 			pkg:  grunt.file.readJSON 'package.json'

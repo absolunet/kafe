@@ -3,16 +3,13 @@ module.exports = (grunt) ->
 
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
+	util = grunt.config.get 'util'
 
 	src = path.src.kafe
 	out = path.out.dist+'/'+pkg.name
 
 	# config
 	grunt.config.set name, data for name, data of {
-		'clean.dist_core': 
-			src:     [out]
-			options: force:true
-
 		'jshint.dist_core':
 			src: [out+'/**/*.js']
 			options:
@@ -22,6 +19,8 @@ module.exports = (grunt) ->
 
 	# task
 	grunt.task.registerTask 'build_core', '', ()->
+
+		util.delete out
 
 		versions = grunt.file.readJSON src+'/versions.json'
 		files    = grunt.file.expand   src+'/**/*.js'
@@ -65,7 +64,6 @@ module.exports = (grunt) ->
 
 	# main task
 	grunt.task.registerTask 'core', [
-		'clean:dist_core'
 		'build_core'
 		'jshint:dist_core'
 		'clean:placeholders'
