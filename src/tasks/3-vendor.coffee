@@ -5,14 +5,19 @@ module.exports = (grunt) ->
 	request = require 'request'
 	async   = require 'async'
 	AdmZip  = require 'adm-zip'
+	ncp     = require('ncp').ncp
 
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
 
+	tmp           = path.tmp+'/vendor'
 	src_resources = path.src.resources
 	out           = path.out.dist+'/vendor'
 	out_resources = out+'/resources'
 	out_colorbox  = out_resources+'/jquery.colorbox'
+
+
+
 
 	# config
 	grunt.config.set name, data for name, data of {
@@ -20,20 +25,12 @@ module.exports = (grunt) ->
 			src:     [out]
 			options: force:true
 
-		'copy.vendor_resources':
-			expand: true
-			cwd:    src_resources+'/'
-			src:    '**'
-			dest:   out_resources+'/'
-			filter: 'isFile'
-
 		'copy.vendor_colorbox':
 			expand: true
 			cwd:    out_colorbox+'/colorbox-master/'
 			src:    'example*/**/*'
 			dest:   out_colorbox+'/'
 			filter: 'isFile'
-
 	}
 
 	
@@ -104,72 +101,80 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'get_vendor_resources', '', ()->
 		done  = this.async()
 
-		files = [
-			{
-				name: 'jquery.jscrollpane',
-				files: [ dest:'jscrollpane.less', src:'https://raw.github.com/vitch/jScrollPane/master/style/jquery.jscrollpane.css' ]
-			}
-			{
-				name: 'jquery.colorbox',
-				files: [ dest:'colorbox.zip', src:'https://github.com/jackmoore/colorbox/archive/master.zip' ]
-			}
-		]
+		ncp src_resources+'/', out_resources+'/', ()->
+
+			files = [
+				{
+					name: 'jquery.jscrollpane',
+					files: [ dest:'jscrollpane.less', src:'https://raw.github.com/vitch/jScrollPane/master/style/jquery.jscrollpane.css' ]
+				}
+				{
+					name: 'jquery.colorbox',
+					files: [ dest:'colorbox.zip', src:'https://github.com/jackmoore/colorbox/archive/master.zip' ]
+				}
+			]
+			
+			async.mapLimit files, 10,
+				(item, callback) ->
+					for file in item.files
+						options = url: file.src
+
+						options.encoding = null if /\.zip$/.test(options.url)
+
+						request options, (error, response, body)->
+							if not error and response.statusCode is 200
+								file.package = item.name;
+								file.content = body;
+								callback null, file
+							else
+								callback error
+
+
+				(error, results) ->
+					if error
+						grunt.log.error error
+						done false
+					else
+						for file in results
+							dest = out_resources+'/'+file.package;
+							
+							grunt.file.write dest+'/'+file.dest, file.content
+							
+							new AdmZip(dest+'/'+file.dest).extractAllTo(dest) if /\.zip$/.test(file.dest)
 		
-		async.mapLimit files, 10,
-			(item, callback) ->
-				for file in item.files
-					options = url: file.src
-
-					options.encoding = null if /\.zip$/.test(options.url)
-
-					request options, (error, response, body)->
-						if not error and response.statusCode is 200
-							file.package = item.name;
-							file.content = body;
-							callback null, file
-						else
-							callback error
-
-
-			(error, results) ->
-				if error
-					grunt.log.error error
-					done false
-				else
-					for file in results
-						dest = out_resources+'/'+file.package;
-						
-						grunt.file.write dest+'/'+file.dest, file.content
-						
-						new AdmZip(dest+'/'+file.dest).extractAllTo(dest) if /\.zip$/.test(file.dest)
-	
-					grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
-					done()
+						grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
+						done()
 
 
 
 
 	# process colorbox resources
 	grunt.task.registerTask 'process_colorbox', '', () ->
+		done  = this.async()
+	
+		ncp out_colorbox+'/colorbox-master', out_colorbox, { filter:/colorbox-master$|example/ }, (err) ->
 
-		grunt.file.delete out_colorbox+'/colorbox-master', {force:true}
-		grunt.file.delete out_colorbox+'/colorbox.zip', {force:true}
+			if err then console.log err
 
-		for example in grunt.file.expand(out_colorbox+'/*')
-			grunt.file.delete example+'/index.html', {force:true}
+			grunt.file.delete out_colorbox+'/colorbox-master', {force:true}
+			grunt.file.delete out_colorbox+'/colorbox.zip', {force:true}
 
-			grunt.file.write example+'/colorbox.less',
-				grunt.file.read(example+'/colorbox.css')
-					.replace(/url\(images\//g, "url('@{img-path}/vendor/jquery.colorbox/")
-					.replace(/\.png\)/g,       ".png')")
-					.replace(/\.gif\)/g,       ".gif')")
+			for example in grunt.file.expand(out_colorbox+'/*')
+				grunt.file.delete example+'/index.html', {force:true}
 
-					.replace(/filter: progid/g, 'filter: ~"progid')
-					.replace(/FFFFFF\);/g,      'FFFFFF)";')
+				grunt.file.write example+'/colorbox.less',
+					grunt.file.read(example+'/colorbox.css')
+						.replace(/url\(images\//g, "url('@{img-path}/vendor/jquery.colorbox/")
+						.replace(/\.png\)/g,       ".png')")
+						.replace(/\.gif\)/g,       ".gif')")
 
-			grunt.file.delete example+'/colorbox.css', {force:true}
+						.replace(/filter: progid/g, 'filter: ~"progid')
+						.replace(/FFFFFF\);/g,      'FFFFFF)";')
 
-		grunt.log.ok()
+				grunt.file.delete example+'/colorbox.css', {force:true}
+
+				done()
+
 
 
 
@@ -178,8 +183,6 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'vendor', [
 		'clean:dist_vendor'
 		'get_vendor'
-		'copy:vendor_resources'
 		'get_vendor_resources'
-		'copy:vendor_colorbox'
 		'process_colorbox'
 	]

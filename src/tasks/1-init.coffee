@@ -13,7 +13,6 @@ module.exports = (grunt) ->
 		'grunt-contrib-jshint'
 		'grunt-includes'
 		'grunt-contrib-uglify'
-		'grunt-zip'
 	]
 
 	path = {
