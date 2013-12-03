@@ -1,9 +1,10 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'doc loaded'
-
 	_          = require 'lodash'
 	preprocess = require 'preprocess'
 	marked     = require 'marked'
+	Y          = require 'yuidocjs'
+	less       = require 'less'
+
 
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
@@ -17,55 +18,112 @@ module.exports = (grunt) ->
 	out_root = path.out.root
 	out_libs = path.out.dist+'/'+pkg.name
 
-
-	# config
-	grunt.config.set name, data for name, data of {
-		'yuidoc.doc':
-			name:        pkg.name
+	# read me
+	readme = {
+		tmpl: grunt.file.read src_tmpl+'/readme.tmpl'
+		data:
+			package:     pkg.name
+			version:     pkg.version
 			description: pkg.description
-			version:     pkg.name+' v'+pkg.version
-			url:         pkg.repository_url
-			options: 
-				paths:    out_libs
-				themedir: src+'/tmpl/'
-				outdir:   out+'/'
+			definition:  pkg.definition
+			repo:        'https://github.com/absolunet/'+pkg.name
+			repo_url:    'https://github.com/absolunet/'+pkg.name+'/tree/master'
+			homepage:    pkg.homepage
 	}
 
 
-	#config.uglify = { options: { preserveComments:'some', compress:{ global_defs: { DEBUG:false } }}};
 
-	# doc
-	grunt.task.registerTask 'readme', '', ()->
+	# config
+	grunt.config.set name, data for name, data of {
+		'less.doc': files: [ 
+			src:  src+'/css/core.less'
+			dest: tmp+'/doc-less.css'
+		]
 
-		# read me
-		readme = {
-			tmpl: grunt.file.read src_tmpl+'/readme.tmpl'
-			data:
-				package:     pkg.name
-				version:     pkg.version
-				description: pkg.description
-				definition:  pkg.definition
-				repo:        'https://github.com/absolunet/'+pkg.name
-				repo_url:    'https://github.com/absolunet/'+pkg.name+'/tree/master'
-				homepage:    pkg.homepage
-		}
+		'cssmin.doc': files: [
+			src: [
+				src+'/css/libs/reset.css'
+				src+'/css/libs/normalize.css'
+				src+'/css/libs/html5boilerplate.css'
+				tmp+'/doc-less.css'
+			]
+			dest: out+'/assets/core.css'
+		]
 
+		'watch.doc':
+			files: [
+				src+'/**/*', 
+				'!'+src+'/tmpl/partials/index.handlebars',
+				src_tmpl+'/readme.tmpl'
+			]
+			tasks: 'doc'
+	}
+
+
+
+
+
+
+
+
+
+	# readme
+	grunt.task.registerTask 'readme', '', ()-> 
 		grunt.file.write out_root+'/README.md', preprocess.preprocess(readme.tmpl, _.merge({},readme.data,{doc:false}))
+		grunt.log.ok 'README.md generated.'
 
+
+	# yuidoc
+	grunt.task.registerTask 'yuidoc', '', ()->
+		done = this.async()
+
+		# homepage
 		grunt.file.write src+'/tmpl/partials/index.handlebars', 
 			'<div class="Home">' + 
-				marked preprocess.preprocess( readme.tmpl, _.merge({},readme.data,{doc:true}) ).replace('### '+pkg.name, '# '+pkg.name) +
+				marked( preprocess.preprocess( readme.tmpl, _.merge({},readme.data,{doc:true}) ).replace('### '+pkg.name, '# '+pkg.name) ) +
 			'</div>'
 
-
-		# modules desc
+		# module description
 		module_tmpl = grunt.file.read src_tmpl+'/module.tmpl'
 		for module, desc of info.modules
 			grunt.file.write out_libs+'/'+module+'/_'+module+'.js', grunt.template.process(module_tmpl, { data: { MODULE: pkg.name+'.'+module, DESCRIPTION:desc }})
 		
-			
-		util.delete out_libs+'/**/_*.js'
+		# compiler
+		options = {
+			quiet:    true
+			paths:    [out_libs]
+			themedir: src+'/tmpl/'
+			outdir:   out+'/'
+			project:
+				name:        pkg.name
+				description: pkg.description
+				version:     pkg.name+' v'+pkg.version
+				url:         pkg.repository_url
+		}
 
+		json = new Y.YUIDoc(options).run()
+		options = Y.Project.mix json, options
+
+		new Y.DocBuilder(options, json).compile ()->
+			util.delete [out+'/assets']
+			done()
+			
+			# base assets
+			util.copy src+'/assets/', out+'/assets/'
+
+			grunt.log.ok 'Documentation generated.'
+
+
+
+	# cleanup
+	grunt.task.registerTask 'doc_cleanup', '', ()->
+		util.delete [
+			out_libs+'/**/_*.js'
+			src+'/tmpl/partials/index.handlebars'
+			out+'/api.js'
+			out+'/data.json'
+			tmp+'/doc-less.css'
+		]
 
 
 
@@ -73,52 +131,16 @@ module.exports = (grunt) ->
 	# main task
 	grunt.task.registerTask 'doc', [
 		'readme'
-		#'yuidoc:doc'
+		'yuidoc'
+		'less:doc'
+		'cssmin:doc'
+		'doc_cleanup'
 	]
 
 
 
-#	util.delete out+'/assets', out+'/api.js', out_+'/data.json'
-#
-#
-#
-#config.clean.docless = {src: [tmp+'/doc-less.css', tmp+'/readme-doc.md', src_yuidoc+'/tmpl/partials/index.handlebars'],  options: { force:true }};
-#
-#config.yuidoc.compile = {
-#	name:        '<%= pkg.name %>',
-#	description: '<%= pkg.description %>',
-#	version:     '<%= pkg.name %> v<%= pkg.version %>',
-#	url:         '<%= pkg.repository_url %>',
-#	options: {
-#		paths:    out_build+'/'+config.pkg.name+'/',
-#		themedir: src_yuidoc+'/tmpl/',
-#		outdir:   out_doc+'/'
-#	}
-#};
-#
-#
-#
-#
-#config.copy.docassets = {
-#	expand: true,
-#	cwd:    src_yuidoc+'/assets/',
-#	src:    '**',
-#	dest:   out_doc+'/assets/',
-#	filter: 'isFile'
-#};
-#
-#config.less.doc = { files: [
-#	{ src:src_yuidoc+'/css/core.less', dest:tmp+'/doc-less.css' }
-#]};
-#
-#config.cssmin.doc = { files: [ { src: [
-#	src_yuidoc+'/css/libs/reset.css',
-#	src_yuidoc+'/css/libs/normalize.css',
-#	src_yuidoc+'/css/libs/html5boilerplate.css',
-#	tmp+'/doc-less.css'
-#], dest: out_doc+'/assets/core.css'
-#}]};
-#
+#config.uglify = { options: { preserveComments:'some', compress:{ global_defs: { DEBUG:false } }}};
+
 #config.includes.doc = {
 #	options: { includePath: src_yuidoc+'/js/' },
 #	files: [{
@@ -131,14 +153,4 @@ module.exports = (grunt) ->
 #	src:  tmp+'/doc-core.js',
 #	dest: out_doc+'/assets/core.js'
 #}]};
-#
-#
-#
-#tasks.doc = _.without(tasks.build,'clean:placeholders');
-#tasks.doc.push(
-#	'preprocess:readme', 'preprocess:readme_doc',
-#	'markdown:doc', 'yuidoc:compile', 'clean:placeholders',
-#	'clean:doc','copy:docassets','less:doc','cssmin:doc','includes:doc','uglify:doc','clean:docless'
-#);
-#config.watch.doc = { files: [src_yuidoc+'/**/*', '!'+src_yuidoc+'/tmpl/partials/index.handlebars', src_tmpl+'/readme.tmpl'], tasks: 'doc' };
 #

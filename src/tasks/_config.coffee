@@ -1,6 +1,4 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'config loaded'
-
 	grunt.task.loadNpmTasks task for task in [
 		'grunt-contrib-watch'
 		'grunt-contrib-yuidoc'
@@ -30,9 +28,8 @@ module.exports = (grunt) ->
 	}
 
 	util = {
-		copy:   (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter
-		
-		delete: (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { src: pattern } for pattern in src
+		copy:   (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter		
+		delete: (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { cwd:path.out.root }, pattern for pattern in src
 	}
 
 	grunt.template.addDelimiters 'jscomment', '/* {%', '%} */'

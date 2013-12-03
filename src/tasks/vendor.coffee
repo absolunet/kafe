@@ -1,6 +1,4 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'vendor loaded'
-
 	_       = require 'lodash'
 	request = require 'request'
 	async   = require 'async'
@@ -68,6 +66,7 @@ module.exports = (grunt) ->
 					grunt.log.error error
 					done false
 				else
+					done()
 
 					addImport = (file) -> "// @import 'libs/vendor/"+file+"'"
 
@@ -78,7 +77,6 @@ module.exports = (grunt) ->
 
 
 					grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
-					done()
 
 
 
@@ -123,6 +121,8 @@ module.exports = (grunt) ->
 					grunt.log.error error
 					done false
 				else
+					done()
+	
 					for file in results
 						dest = out_resources+'/'+file.package;
 						
@@ -131,7 +131,6 @@ module.exports = (grunt) ->
 						new AdmZip(dest+'/'+file.dest).extractAllTo(dest) if /\.zip$/.test(file.dest)
 	
 					grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
-					done()
 
 
 
@@ -152,6 +151,8 @@ module.exports = (grunt) ->
 								.replace(/FFFFFF\);/g,      'FFFFFF)";')
 
 						util.delete example+'/colorbox.css'
+
+					grunt.log.ok 'Assets processed.'
 
 
 

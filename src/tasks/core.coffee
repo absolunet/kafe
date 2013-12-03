@@ -1,6 +1,4 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'core loaded'
-
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
 	info = grunt.config.get 'internal.info'
@@ -58,7 +56,8 @@ module.exports = (grunt) ->
 			}
 
 			grunt.file.write out+'/'+filename, contents
-
+		
+		grunt.log.ok pkg.name+' core built.'
 
 
 	# main task

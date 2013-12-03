@@ -1,6 +1,4 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'test loaded'
-
 	path = grunt.config.get 'internal.path'
 	util = grunt.config.get 'util'
 
