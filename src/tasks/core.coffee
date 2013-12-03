@@ -3,6 +3,7 @@ module.exports = (grunt) ->
 
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
+	info = grunt.config.get 'internal.info'
 	util = grunt.config.get 'util'
 
 	src = path.src.kafe
@@ -22,10 +23,8 @@ module.exports = (grunt) ->
 
 		util.delete out
 
-		versions = grunt.file.readJSON src+'/versions.json'
-		files    = grunt.file.expand   src+'/**/*.js'
+		for file in grunt.file.expand src+'/**/*.js'
 
-		for file in files
 			parts        = file.split src+'/'
 			filename     = parts[parts.length-1]
 			name         = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3)
@@ -34,7 +33,7 @@ module.exports = (grunt) ->
 			finalName    = if name.substring(0,1) isnt '_' then module.pop() else ''
 			finalNameCap = finalName.charAt(0).toUpperCase() + finalName.slice(1)
 			contents     = grunt.file.read file
-			version      = if name is pkg.name then pkg.version else versions[name]
+			version      = if name is pkg.name then pkg.version else info.versions[name]
 
 			contents = grunt.template.process contents, {
 				data:
@@ -66,5 +65,4 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'core', [
 		'build_core'
 		'jshint:dist_core'
-		'delete_placeholders'
 	]

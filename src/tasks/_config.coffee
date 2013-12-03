@@ -1,11 +1,9 @@
 module.exports = (grunt) ->
-	grunt.log.ok 'init loaded'
+	grunt.log.ok 'config loaded'
 
 	grunt.task.loadNpmTasks task for task in [
 		'grunt-contrib-watch'
 		'grunt-contrib-yuidoc'
-		'grunt-preprocess'
-		'grunt-markdown'
 		'grunt-contrib-less'
 		'grunt-contrib-cssmin'
 		'grunt-contrib-jshint'
@@ -33,7 +31,8 @@ module.exports = (grunt) ->
 
 	util = {
 		copy:   (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter
-		delete: (src...) -> grunt.file.delete file, {force:true} for file in src
+		
+		delete: (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { src: pattern } for pattern in src
 	}
 
 	grunt.template.addDelimiters 'jscomment', '/* {%', '%} */'
@@ -46,6 +45,7 @@ module.exports = (grunt) ->
 		'internal': 
 			path: path
 			pkg:  grunt.file.readJSON 'package.json'
+			info: grunt.file.readJSON path.src.kafe+'/~info.json'
 
 
 		'includes.options':
@@ -60,7 +60,6 @@ module.exports = (grunt) ->
 
 
 	# A FINALISER
-	grunt.task.registerTask 'delete_placeholders', '', ()-> util.delete path.out.dist+'/**/_*.js'
 	grunt.task.registerTask 'delete_tmp', '', ()-> util.delete tmp
 
 
@@ -74,7 +73,7 @@ module.exports = (grunt) ->
 		'core'
 		'vendor'
 		'test'
-		#'doc'
+		'doc'
 	]
 
 
