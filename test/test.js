@@ -33,7 +33,7 @@
 
 /**
  * @license
- * Lo-Dash 2.4.0 (Custom Build) <http://lodash.com/>
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash modern -o ./dist/lodash.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
@@ -501,8 +501,8 @@
     /** Used to detect if a method is native */
     var reNative = RegExp('^' +
       String(toString)
-        .replace(/[.*+?^${}()|[\]\\]/g, '\\// @import 'libs/vendor/lo-dash'')
-        .replace(/toString| for [^\]]+/g, '.*?') + '
+        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        .replace(/toString| for [^\]]+/g, '.*?') + '$'
     );
 
     /** Native method shortcuts */
@@ -745,6 +745,9 @@
         // `Function#bind` spec
         // http://es5.github.io/#x15.3.4.5
         if (partialArgs) {
+          // avoid `arguments` object deoptimizations by using `slice` instead
+          // of `Array.prototype.slice.call` and not assigning `arguments` to a
+          // variable as a ternary expression
           var args = slice(partialArgs);
           push.apply(args, arguments);
         }
@@ -1187,51 +1190,54 @@
 
       // recursively compare objects and arrays (susceptible to call stack limits)
       if (isArr) {
+        // compare lengths to determine if a deep comparison is necessary
         length = a.length;
         size = b.length;
+        result = size == length;
 
-        // compare lengths to determine if a deep comparison is necessary
-        result = size == a.length;
-        if (!result && !isWhere) {
-          return result;
-        }
-        // deep compare the contents, ignoring non-numeric properties
-        while (size--) {
-          var index = length,
-              value = b[size];
+        if (result || isWhere) {
+          // deep compare the contents, ignoring non-numeric properties
+          while (size--) {
+            var index = length,
+                value = b[size];
 
-          if (isWhere) {
-            while (index--) {
-              if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
-                break;
+            if (isWhere) {
+              while (index--) {
+                if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
+                  break;
+                }
               }
+            } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
+              break;
             }
-          } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
-            break;
           }
         }
-        return result;
       }
-      // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
-      // which, in this case, is more costly
-      forIn(b, function(value, key, b) {
-        if (hasOwnProperty.call(b, key)) {
-          // count the number of properties.
-          size++;
-          // deep compare each property value.
-          return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
-        }
-      });
-
-      if (result && !isWhere) {
-        // ensure both objects have the same number of properties
-        forIn(a, function(value, key, a) {
-          if (hasOwnProperty.call(a, key)) {
-            // `size` will be `-1` if `a` has more properties than `b`
-            return (result = --size > -1);
+      else {
+        // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
+        // which, in this case, is more costly
+        forIn(b, function(value, key, b) {
+          if (hasOwnProperty.call(b, key)) {
+            // count the number of properties.
+            size++;
+            // deep compare each property value.
+            return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
           }
         });
+
+        if (result && !isWhere) {
+          // ensure both objects have the same number of properties
+          forIn(a, function(value, key, a) {
+            if (hasOwnProperty.call(a, key)) {
+              // `size` will be `-1` if `a` has more properties than `b`
+              return (result = --size > -1);
+            }
+          });
+        }
       }
+      stackA.pop();
+      stackB.pop();
+
       if (initedStack) {
         releaseArray(stackA);
         releaseArray(stackB);
@@ -6269,7 +6275,7 @@
         (options.escape || reNoMatch).source + '|' +
         interpolate.source + '|' +
         (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
-        (options.evaluate || reNoMatch).source + '|
+        (options.evaluate || reNoMatch).source + '|$'
       , 'g');
 
       text.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
@@ -6309,8 +6315,8 @@
       }
       // cleanup code by stripping empty strings
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
-        .replace(reEmptyStringMiddle, 'libs/vendor/lo-dash')
-        .replace(reEmptyStringTrailing, 'libs/vendor/lo-dash;');
+        .replace(reEmptyStringMiddle, '$1')
+        .replace(reEmptyStringTrailing, '$1;');
 
       // frame code as the function body
       source = 'function(' + variable + ') {\n' +
@@ -6735,7 +6741,7 @@
      * @memberOf _
      * @type string
      */
-    lodash.VERSION = '2.4.0';
+    lodash.VERSION = '2.4.1';
 
     // add "Chaining" functions to the wrapper
     lodash.prototype.chain = wrapperChain;
@@ -7086,7 +7092,7 @@
 
     escapeRegExp: function(str){
       if (str == null) return '';
-      return String(str).replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\libs/vendor/underscore.string');
+      return String(str).replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
     },
 
     splice: function(str, i, howmany, substr){
@@ -7154,11 +7160,11 @@
     },
 
     underscored: function(str){
-      return _s.trim(str).replace(/([a-z\d])([A-Z]+)/g, 'libs/vendor/underscore.string_$2').replace(/[-\s]+/g, '_').toLowerCase();
+      return _s.trim(str).replace(/([a-z\d])([A-Z]+)/g, '$1_$2').replace(/[-\s]+/g, '_').toLowerCase();
     },
 
     dasherize: function(str){
-      return _s.trim(str).replace(/([A-Z])/g, '-libs/vendor/underscore.string').replace(/[-_\s]+/g, '-').toLowerCase();
+      return _s.trim(str).replace(/([A-Z])/g, '-$1').replace(/[-_\s]+/g, '-').toLowerCase();
     },
 
     classify: function(str){
@@ -7173,7 +7179,7 @@
       if (str == null) return '';
       if (!characters && nativeTrim) return nativeTrim.call(str);
       characters = defaultToWhiteSpace(characters);
-      return String(str).replace(new RegExp('\^' + characters + '+|' + characters + '+, 'g'), '');
+      return String(str).replace(new RegExp('\^' + characters + '+|' + characters + '+$', 'g'), '');
     },
 
     ltrim: function(str, characters){
@@ -7187,7 +7193,7 @@
       if (str == null) return '';
       if (!characters && nativeTrimRight) return nativeTrimRight.call(str);
       characters = defaultToWhiteSpace(characters);
-      return String(str).replace(new RegExp(characters + '+), '');
+      return String(str).replace(new RegExp(characters + '+$'), '');
     },
 
     truncate: function(str, length, truncateStr){
@@ -7286,7 +7292,7 @@
       var parts = number.split('.'), fnums = parts[0],
         decimals = parts[1] ? (dsep || '.') + parts[1] : '';
 
-      return fnums.replace(/(\d)(?=(?:\d{3})+$)/g, 'libs/vendor/underscore.string' + tsep) + decimals;
+      return fnums.replace(/(\d)(?=(?:\d{3})+$)/g, '$1' + tsep) + decimals;
     },
 
     strRight: function(str, sep){
@@ -7486,7 +7492,7 @@
 }(this, String);
 
 /*!
- * Modernizr v2.7.0
+ * Modernizr v2.7.1
  * www.modernizr.com
  *
  * Copyright (c) Faruk Ates, Paul Irish, Alex Sexton
@@ -7511,7 +7517,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.7.0',
+    var version = '2.7.1',
 
     Modernizr = {},
 
@@ -8882,7 +8888,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     /*>>cssclasses*/
     // Remove "no-js" class from <html> element, if it exists:
-    docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, 'libs/vendor/modernizr$2') +
+    docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
 
                             // Add the new classes to the <html> element.
                             (enableClasses ? ' js ' + classes.join(' ') : '');
@@ -9468,68 +9474,7 @@ window.kafe.bonify({name:'number', version:'1.0', obj:(function(kafe,undefined){
 
 
 })(window.kafe);
-// @import 'libs/kafe/storage',
-
-(function(kafe,undefined){
-
-	var
-		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.LoDash,
-		Modernizr = kafe.dependencies.Modernizr
-	;
-
-	module('kafe.storage');
-
-
-	test('get/set/delete item', function() {
-
-
-
-
-		kafe.storage.setPersistentItem('TEST', 'alpha');
-		strictEqual( kafe.storage.getPersistentItem('TEST'), 'alpha', 'get/set PersistentItem' );
-		kafe.storage.removePersistentItem('TEST');
-		strictEqual( kafe.storage.getPersistentItem('TEST'), undefined, 'delete PersistentItem' );
-
-	});
-
-
-	/*
-	storage.getPersistentItem
-	storage.getSessionItem
-
-	storage.setPersistentItem
-	storage.setSessionItem
-
-	storage.removePersistentItem
-	storage.removeSessionItem
-
-
-
-	storage.getPersistentNamespaceKeys
-	storage.getSessionNamespaceKeys
-
-	storage.getPersistentNamespaceItems
-	storage.getSessionNamespaceItems
-
-	storage.removePersistentNamespace
-	storage.removeSessionNamespace
-
-	storage.getAllPersistentKeys
-	storage.getAllSessionKeys
-
-
-
-	storage.getAllPersistentItems
-	storage.getAllSessionItems
-
-	storage.removeAllPersistent
-	storage.removeAllSession
-
-	storage.getJSON = function() {
-	*/
-
-})(window.kafe);
+// **@import 'storage'
 /**
  * jQuery JSON plugin 2.4.0
  *
@@ -10220,7 +10165,7 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 			case '1A1':     format='[0-9][a-z][0-9]';                 break;
 			default:        format='([a-z][0-9]){3}';                 break;
 		}
-		return new RegExp('^'+format+','i').test(str);
+		return new RegExp('^'+format+'$','i').test(str);
 	};
 
 
@@ -10281,7 +10226,7 @@ window.kafe.bonify({name:'string.validate', version:'1.0', obj:(function(kafe,un
 			discover:        '6(?:011|5[0-9]{2})[0-9]{12}'
 		};
 
-		return validate.isLuhnAlgorithm(str) && new RegExp('^'+pattern[cc]+','i').test(str);
+		return validate.isLuhnAlgorithm(str) && new RegExp('^'+pattern[cc]+'$','i').test(str);
 	};
 
 

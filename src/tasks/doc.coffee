@@ -50,6 +50,20 @@ module.exports = (grunt) ->
 			dest: out+'/assets/core.css'
 		]
 
+
+		'includes.doc':
+			options: { includePath: src+'/js/' }
+			files: [
+				src:  src+'/js/core.js'
+				dest: tmp+'/doc-core.js'
+			]
+
+		'uglify.doc': files: [
+			src:  tmp+'/doc-core.js'
+			dest: out+'/assets/core.js'
+		]
+
+
 		'watch.doc':
 			files: [
 				src+'/**/*', 
@@ -122,8 +136,9 @@ module.exports = (grunt) ->
 			src+'/tmpl/partials/index.handlebars'
 			out+'/api.js'
 			out+'/data.json'
-			tmp+'/doc-less.css'
+			tmp
 		]
+	
 
 
 
@@ -134,23 +149,8 @@ module.exports = (grunt) ->
 		'yuidoc'
 		'less:doc'
 		'cssmin:doc'
+		'includes:doc'
+		'uglify:doc'
 		'doc_cleanup'
 	]
 
-
-
-#config.uglify = { options: { preserveComments:'some', compress:{ global_defs: { DEBUG:false } }}};
-
-#config.includes.doc = {
-#	options: { includePath: src_yuidoc+'/js/' },
-#	files: [{
-#		src:  src_yuidoc+'/js/core.js',
-#		dest: tmp+'/doc-core.js'
-#	}]
-#};
-#
-#config.uglify.doc = { files: [ {
-#	src:  tmp+'/doc-core.js',
-#	dest: out_doc+'/assets/core.js'
-#}]};
-#

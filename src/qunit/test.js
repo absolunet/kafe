@@ -3,7 +3,7 @@
 // **@import 'form'
 // **@import 'geolocation'      // difficult to automate
 // @import 'number'
-// @import 'storage'
+// **@import 'storage'
 // @import 'string'
 // @import 'string-encrypt'
 // @import 'string-validate'

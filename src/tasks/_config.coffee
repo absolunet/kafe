@@ -50,6 +50,10 @@ module.exports = (grunt) ->
 			duplicates:     false
 			filenameSuffix: '.js'
 
+		'uglify.options':
+			preserveComments:'some'
+			compress: global_defs: DEBUG:false
+
 		'watch.all':
 			files: ['gruntfile.js']
 			tasks: 'default'

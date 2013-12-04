@@ -6,14 +6,15 @@
  * by David DeSandro
  */
 
+
 /**
  * Bridget makes jQuery widgets
- * v1.0.0
+ * v1.0.1
  */
 
 ( function( window ) {
 
-'use strict';
+
 
 // -------------------------- utils -------------------------- //
 
@@ -129,19 +130,20 @@ $.bridget = function( namespace, PluginClass ) {
   bridge( namespace, PluginClass );
 };
 
+return $.bridget;
+
 }
 
 // transport
 if ( typeof define === 'function' && define.amd ) {
   // AMD
-  define( [ 'jquery' ], defineBridget );
+  define( 'jquery-bridget/jquery.bridget',[ 'jquery' ], defineBridget );
 } else {
   // get jquery from browser global
   defineBridget( jQuery );
 }
 
 })( window );
-
 
 /*!
  * eventie v1.0.3
@@ -289,7 +291,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( this );
 
 /*!
- * EventEmitter v4.2.6 - git.io/ee
+ * EventEmitter v4.2.4 - git.io/ee
  * Oliver Caldwell
  * MIT license
  * @preserve
@@ -307,9 +309,9 @@ if ( typeof define === 'function' && define.amd ) {
 	function EventEmitter() {}
 
 	// Shortcuts to improve speed and size
+
+	// Easy access to the prototype
 	var proto = EventEmitter.prototype;
-	var exports = this;
-	var originalGlobalValue = exports.EventEmitter;
 
 	/**
 	 * Finds the index of the listener for the event in it's storage array.
@@ -737,16 +739,6 @@ if ( typeof define === 'function' && define.amd ) {
 		return this._events || (this._events = {});
 	};
 
-	/**
-	 * Reverts the global {@link EventEmitter} to its previous value and returns a reference to this version.
-	 *
-	 * @return {Function} Non conflicting EventEmitter class.
-	 */
-	EventEmitter.noConflict = function noConflict() {
-		exports.EventEmitter = originalGlobalValue;
-		return EventEmitter;
-	};
-
 	// Expose the class either via AMD, CommonJS or the global object
 	if (typeof define === 'function' && define.amd) {
 		define('eventEmitter/EventEmitter',[],function () {
@@ -762,13 +754,12 @@ if ( typeof define === 'function' && define.amd ) {
 }.call(this));
 
 /*!
- * getStyleProperty v1.0.3
- * original by kangax
+ * getStyleProperty by kangax
  * http://perfectionkills.com/feature-testing-css-properties/
  */
 
 /*jshint browser: true, strict: true, undef: true */
-/*global define: false, exports: false, module: false */
+/*globals define: false */
 
 ( function( window ) {
 
@@ -806,9 +797,6 @@ if ( typeof define === 'function' && define.amd ) {
   define( 'get-style-property/get-style-property',[],function() {
     return getStyleProperty;
   });
-} else if ( typeof exports === 'object' ) {
-  // CommonJS for Component
-  module.exports = getStyleProperty;
 } else {
   // browser global
   window.getStyleProperty = getStyleProperty;
@@ -817,12 +805,12 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /**
- * getSize v1.1.6
+ * getSize v1.1.5
  * measure size of elements
  */
 
 /*jshint browser: true, strict: true, undef: true, unused: true */
-/*global define: false, exports: false, require: false, module: false */
+/*global define: false */
 
 ( function( window, undefined ) {
 
@@ -994,23 +982,23 @@ function mungeNonPixel( elem, value ) {
     return value;
   }
   var style = elem.style;
-  // Remember the original values
-  var left = style.left;
-  var rs = elem.runtimeStyle;
-  var rsLeft = rs && rs.left;
+	// Remember the original values
+	var left = style.left;
+	var rs = elem.runtimeStyle;
+	var rsLeft = rs && rs.left;
 
-  // Put in the new values to get a computed value out
-  if ( rsLeft ) {
-    rs.left = elem.currentStyle.left;
-  }
-  style.left = value;
-  value = style.pixelLeft;
+	// Put in the new values to get a computed value out
+	if ( rsLeft ) {
+		rs.left = elem.currentStyle.left;
+	}
+	style.left = value;
+	value = style.pixelLeft;
 
-  // Revert the changed values
-  style.left = left;
-  if ( rsLeft ) {
-    rs.left = rsLeft;
-  }
+	// Revert the changed values
+	style.left = left;
+	if ( rsLeft ) {
+		rs.left = rsLeft;
+	}
 
   return value;
 }
@@ -1021,11 +1009,8 @@ return getSize;
 
 // transport
 if ( typeof define === 'function' && define.amd ) {
-  // AMD for RequireJS
+  // AMD
   define( 'get-size/get-size',[ 'get-style-property/get-style-property' ], defineGetSize );
-} else if ( typeof exports === 'object' ) {
-  // CommonJS for Component
-  module.exports = defineGetSize( require('get-style-property') );
 } else {
   // browser global
   window.getSize = defineGetSize( window.getStyleProperty );
@@ -2843,7 +2828,7 @@ function masonryDefinition( Outlayer, getSize ) {
 
 if ( typeof define === 'function' && define.amd ) {
   // AMD
-  define( 'masonry/masonry',[
+  define( [
       'outlayer/outlayer',
       'get-size/get-size'
     ],
