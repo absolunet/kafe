@@ -20,8 +20,9 @@ module.exports = (grunt) ->
 
 
 	# copy test
-	grunt.task.registerTask 'copy_test', '', ()-> util.copy src+'/', out+'/', '*.html'
-
+	grunt.task.registerTask 'copy_test', '', ()-> 
+		util.copy src+'/', out+'/', '*.html'
+		grunt.log.ok 'Test files copied.'
 
 
 	# main task

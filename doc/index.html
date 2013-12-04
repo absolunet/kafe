@@ -60,16 +60,16 @@
 <li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/dist">dist</a> folder and put them in a <code>libs</code> folder next to your <code>gruntfile.js</code>.</li>
 <li>Use <a href="https://github.com/vanetix/grunt-includes">grunt-includes</a> with a setup looking like this:</li>
 </ul>
-<pre><code class="lang-js">config.includes.core = {
+<pre><code class="lang-js">grunt.config.set(&#39;includes.kafe&#39;, {
     options: {
-        includeRegexp:  /^\s*\/\/\s@import\s&#39;([^&#39;]+)&#39;\s*$/,
+        includeRegexp:  /^\s*\/\/\s@import\s&#39;([^\&#39;]+)&#39;\s*$/,
         duplicates:     false,
         filenameSuffix: &#39;.js&#39;,
         includePath:    &#39;./&#39;
     },
     src:  &#39;libs/kafe/kafe&#39;,
     dest: &#39;js/kafe-dist.js&#39;
-};</code></pre>
+});</code></pre>
 <h4 id="standalone">Standalone</h4>
 <ul>
 <li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/dist">dist</a> folder and put them in your project.</li>
@@ -80,7 +80,7 @@
 <h2 id="release-history">Release history</h2>
 <p>See the <a href="https://github.com/absolunet/kafe/tree/master/CHANGELOG.md">CHANGELOG</a>.</p>
 <h2 id="license">License</h2>
-<p>See the <a href="https://github.com/absolunet/kafe/tree/master/LICENSE.md">MIT LICENSE</a>.</p>
+<p>See the <a href="https://github.com/absolunet/kafe/tree/master/LICENSE.md">LICENSE</a>.</p>
 </div>
 		</section>
 		<nav>

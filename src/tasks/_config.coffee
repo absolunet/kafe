@@ -1,12 +1,11 @@
 module.exports = (grunt) ->
 	grunt.task.loadNpmTasks task for task in [
 		'grunt-contrib-watch'
-		'grunt-contrib-yuidoc'
 		'grunt-contrib-less'
 		'grunt-contrib-cssmin'
 		'grunt-contrib-jshint'
-		'grunt-includes'
 		'grunt-contrib-uglify'
+		'grunt-includes'
 	]
 
 	path = {
@@ -28,8 +27,8 @@ module.exports = (grunt) ->
 	}
 
 	util = {
-		copy:   (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter		
-		delete: (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { cwd:path.out.root }, pattern for pattern in src
+		copy:      (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter		
+		delete:    (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { cwd:path.out.root }, pattern for pattern in src
 	}
 
 	grunt.template.addDelimiters 'jscomment', '/* {%', '%} */'
@@ -60,14 +59,6 @@ module.exports = (grunt) ->
 	}
 
 
-	# A FINALISER
-	grunt.task.registerTask 'delete_tmp', '', ()-> util.delete tmp
-
-
-
-
-
-
 
 
 	grunt.task.registerTask 'default', [
@@ -76,15 +67,3 @@ module.exports = (grunt) ->
 		'test'
 		'doc'
 	]
-
-
-	###
-
-
-
-	((cleanup_required) ->
-		for name in cleanup_required
-			tasks[name].unshift 'clean:tmp'
-			tasks[name].push 'clean:tmp'
-	)(['doc','test'])
-	###

@@ -20,16 +20,16 @@ A jQuery instance that will be copied in kafe.
 - Use [grunt-includes](https://github.com/vanetix/grunt-includes) with a setup looking like this:
 
 ```js
-config.includes.core = {
+grunt.config.set('includes.kafe', {
 	options: {
-		includeRegexp:  /^\s*\/\/\s@import\s'([^']+)'\s*$/,
+		includeRegexp:  /^\s*\/\/\s@import\s'([^\']+)'\s*$/,
 		duplicates:     false,
 		filenameSuffix: '.js',
 		includePath:    './'
 	},
 	src:  'libs/kafe/kafe',
 	dest: 'js/kafe-dist.js'
-};
+});
 ```
 
 #### Standalone
@@ -43,4 +43,4 @@ Visit the [http://absolunet.github.io/kafe](http://absolunet.github.io/kafe) web
 See the [CHANGELOG](https://github.com/absolunet/kafe/tree/master/CHANGELOG.md).
 
 ## License 
-See the [MIT LICENSE](https://github.com/absolunet/kafe/tree/master/LICENSE.md).
+See the [LICENSE](https://github.com/absolunet/kafe/tree/master/LICENSE.md).

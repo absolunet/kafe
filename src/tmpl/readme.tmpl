@@ -20,16 +20,16 @@ A jQuery instance that will be copied in <!-- @echo package -->.
 - Use [grunt-includes](https://github.com/vanetix/grunt-includes) with a setup looking like this:
 
 ```js
-config.includes.core = {
+grunt.config.set('includes.<!-- @echo package -->', {
 	options: {
-		includeRegexp:  /^\s*\/\/\s@import\s'([^']+)'\s*$/,
+		includeRegexp:  /^\s*\/\/\s@import\s'([^\']+)'\s*$/,
 		duplicates:     false,
 		filenameSuffix: '.js',
 		includePath:    './'
 	},
 	src:  'libs/<!-- @echo package -->/<!-- @echo package -->',
 	dest: 'js/<!-- @echo package -->-dist.js'
-};
+});
 ```
 
 #### Standalone
@@ -51,4 +51,4 @@ Visit the [Github repository](<!-- @echo repo -->) for all the things.
 See the [CHANGELOG](<!-- @echo repo_url -->/CHANGELOG.md).
 
 ## License 
-See the [MIT LICENSE](<!-- @echo repo_url -->/LICENSE.md).
+See the [LICENSE](<!-- @echo repo_url -->/LICENSE.md).

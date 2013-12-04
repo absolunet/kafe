@@ -3,7 +3,6 @@ module.exports = (grunt) ->
 	preprocess = require 'preprocess'
 	marked     = require 'marked'
 	Y          = require 'yuidocjs'
-	less       = require 'less'
 
 
 	path = grunt.config.get 'internal.path'
@@ -82,9 +81,18 @@ module.exports = (grunt) ->
 
 
 	# readme
-	grunt.task.registerTask 'readme', '', ()-> 
+	grunt.task.registerTask 'basedoc', '', ()-> 
+
+		data = {
+			year:   grunt.template.today 'yyyy'
+			author: pkg.author.name
+			site:   pkg.author.url
+		}
+
 		grunt.file.write out_root+'/README.md', preprocess.preprocess(readme.tmpl, _.merge({},readme.data,{doc:false}))
-		grunt.log.ok 'README.md generated.'
+		grunt.file.write out_root+'/LICENSE.md', grunt.template.process(grunt.file.read(src_tmpl+'/license.tmpl'),{data:data})
+		grunt.file.copy src_tmpl+'/changelog.tmpl', out_root+'/CHANGELOG.md'
+		grunt.log.ok 'Base documentation generated.'
 
 
 	# yuidoc
@@ -125,7 +133,7 @@ module.exports = (grunt) ->
 			# base assets
 			util.copy src+'/assets/', out+'/assets/'
 
-			grunt.log.ok 'Documentation generated.'
+			grunt.log.ok 'Full documentation generated.'
 
 
 
@@ -136,8 +144,10 @@ module.exports = (grunt) ->
 			src+'/tmpl/partials/index.handlebars'
 			out+'/api.js'
 			out+'/data.json'
-			tmp
+			path.tmp
 		]
+
+		grunt.log.ok 'Documentation cleaned.'
 	
 
 
@@ -145,7 +155,7 @@ module.exports = (grunt) ->
 
 	# main task
 	grunt.task.registerTask 'doc', [
-		'readme'
+		'basedoc'
 		'yuidoc'
 		'less:doc'
 		'cssmin:doc'

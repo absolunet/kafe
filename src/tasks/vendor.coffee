@@ -8,7 +8,6 @@ module.exports = (grunt) ->
 	pkg  = grunt.config.get 'internal.pkg'
 	util = grunt.config.get 'util'
 
-	tmp           = path.tmp+'/vendor'
 	src_resources = path.src.resources
 	out           = path.out.dist+'/vendor'
 	out_resources = out+'/resources'
