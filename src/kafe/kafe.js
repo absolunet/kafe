@@ -36,13 +36,13 @@
 // @import 'libs/vendor/modernizr'
 
 /**
-* ### Version <%= VERSION %>
-* <%= DESCRIPTION %>
-* <%= DEFINITION %>
-* <%= HOMEPAGE %>
+* ### Version <!-- @echo VERSION -->
+* <!-- @echo DESCRIPTION -->
+* <!-- @echo DEFINITION -->
+* <!-- @echo HOMEPAGE -->
 *
-* @module <%= PACKAGE %>
-* @main <%= PACKAGE %>
+* @module <!-- @echo PACKAGE -->
+* @main <!-- @echo PACKAGE -->
 */
 window.kafe = (function(window, undefined){
 
@@ -85,24 +85,24 @@ window.kafe = (function(window, undefined){
 
 
 		/**
-		* ### Version <%= VERSION %>
-		* <%= PACKAGE %> core
+		* ### Version <!-- @echo VERSION -->
+		* <!-- @echo PACKAGE --> core
 		*
-		* @module <%= PACKAGE %>
-		* @class <%= PACKAGE %>
+		* @module <!-- @echo PACKAGE -->
+		* @class <!-- @echo PACKAGE -->
 		*/
 		core = {
 
 			/**
-			* <%= PACKAGE %> version
+			* <!-- @echo PACKAGE --> version
 			*
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '<%= VERSION %>',
+			_vesyon: '<!-- @echo VERSION -->',
 
 			/**
-			* <%= PACKAGE %> author
+			* <!-- @echo PACKAGE --> author
 			*
 			* @property _griyaj 
 			* @type String
@@ -110,7 +110,7 @@ window.kafe = (function(window, undefined){
 			_griyaj: 'absolunet.com',
 
 			/**
-			* Versions of dependencies / <%= PACKAGE %> modules
+			* Versions of dependencies / <!-- @echo PACKAGE --> modules
 			*
 			* @property _chaje 
 			* @type Object
@@ -233,7 +233,7 @@ window.kafe = (function(window, undefined){
 		plugIntojQuery: function(name, methods) {
 			var
 				$  = core.dependencies.jQuery,
-				id = '<%= PACKAGE %>'+name
+				id = '<!-- @echo PACKAGE -->'+name
 			;
 			name = name || 'CORE';
 
@@ -273,11 +273,11 @@ window.kafe = (function(window, undefined){
 			ie:      _ie
 		};
 
-		// grab <%= PACKAGE %> env
+		// grab <!-- @echo PACKAGE --> env
 		_data.culture = document.documentElement.id.toLowerCase()   || '';
 		_data.lang    = document.documentElement.lang.toLowerCase() || '';
-		_data.page    = document.documentElement.getAttribute('data-<%= PACKAGE %>-page') || '';
-		_data.tmpl    = document.documentElement.getAttribute('data-<%= PACKAGE %>-tmpl') || '';
+		_data.page    = document.documentElement.getAttribute('data-<!-- @echo PACKAGE -->-page') || '';
+		_data.tmpl    = document.documentElement.getAttribute('data-<!-- @echo PACKAGE -->-tmpl') || '';
 		_data.tmpl    = _data.tmpl.split(' ');
 
 		// public method
@@ -292,7 +292,7 @@ window.kafe = (function(window, undefined){
 
 				// throw error
 				} else {
-					throw core.error(new Error("<%= PACKAGE %>.env > property '"+name+"' already defined"));
+					throw core.error(new Error("<!-- @echo PACKAGE -->.env > property '"+name+"' already defined"));
 				}
 			}
 
@@ -320,23 +320,23 @@ window.kafe = (function(window, undefined){
 
 		// throw error
 		} else {
-			throw core.error('<%= PACKAGE %>.'+options.name+' already exists');
+			throw core.error('<!-- @echo PACKAGE -->.'+options.name+' already exists');
 		}
 	};
 
 
 	/**
-	* Throw <%= PACKAGE %> errors
+	* Throw <!-- @echo PACKAGE --> errors
 	*
 	* @method error
 	* @param {Error} error The error with description
 	* @return {Error} error The error
 	* @example
-	*	<%= PACKAGE %>.error(new Error('barf'));
+	*	<!-- @echo PACKAGE -->.error(new Error('barf'));
 	*/
 	core.error = function(e) {
 		var msg = ((!!e.description) ? e.description : e.message);
-		e.description = e.message = '<<%= PACKAGE %>:erè> : '+ ((!!msg) ? msg : 'anonim');
+		e.description = e.message = '<<!-- @echo PACKAGE -->:erè> : '+ ((!!msg) ? msg : 'anonim');
 		return (_ie && _ie == 8) ? new Error(e) : e;
 	};
 

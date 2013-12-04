@@ -4,6 +4,8 @@ module.exports = (grunt) ->
 	info = grunt.config.get 'internal.info'
 	util = grunt.config.get 'util'
 
+	preprocess = require 'preprocess'
+
 	src = path.src.kafe
 	out = path.out.dist+'/'+pkg.name
 
@@ -27,33 +29,29 @@ module.exports = (grunt) ->
 			filename     = parts[parts.length-1]
 			name         = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3)
 			module       = name.split '.'
-			pkgName      = pkg.name
 			finalName    = if name.substring(0,1) isnt '_' then module.pop() else ''
 			finalNameCap = finalName.charAt(0).toUpperCase() + finalName.slice(1)
 			contents     = grunt.file.read file
 			version      = if name is pkg.name then pkg.version else info.versions[name]
 
-			contents = grunt.template.process contents, {
-				data:
-					PACKAGE:     pkgName
-					DESCRIPTION: pkg.description
-					DEFINITION:  pkg.definition
-					HOMEPAGE:    pkg.homepage
-					NAME:        name
-					NAME_FULL:   pkgName+'.'+name
-					NAME_FINAL:  finalNameCap
-					NAME_ATTR:   pkgName+finalName
-					NAME_JQUERY: pkgName+finalNameCap
-					MODULE:      pkgName+( if module.length then '.'+module.join('.') else '' )
-					VERSION:     version
+			contents = preprocess.preprocess contents, {
+				PACKAGE:     pkg.name
+				DESCRIPTION: pkg.description
+				DEFINITION:  pkg.definition
+				HOMEPAGE:    pkg.homepage
+				NAME:        name
+				NAME_FULL:   pkg.name+'.'+name
+				NAME_FINAL:  finalNameCap
+				NAME_ATTR:   pkg.name+finalName
+				NAME_JQUERY: pkg.name+finalNameCap
+				MODULE:      pkg.name+( if module.length then '.'+module.join('.') else '' )
+				VERSION:     version
 			}
 
-			contents = grunt.template.process contents, {
-				delimiters: 'jscomment'
-				data:
-					HEADER: "window."+pkgName+".bonify({name:'"+name+"', version:'"+version+"', obj:(function("+pkgName+",undefined){\n\n\tvar $ = "+pkgName+".dependencies.jQuery;"
-					FOOTER: "})(window."+pkgName+")});"
-			}
+			contents = preprocess.preprocess contents, {
+				header: "window."+pkg.name+".bonify({name:'"+name+"', version:'"+version+"', obj:(function("+pkg.name+",undefined){\n\n\tvar $ = "+pkg.name+".dependencies.jQuery;"
+				footer: "})(window."+pkg.name+")});"
+			}, 'js'
 
 			grunt.file.write out+'/'+filename, contents
 		

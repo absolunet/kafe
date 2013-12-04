@@ -1,6 +1,6 @@
 // @import 'libs/kafe/url'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		// default params
@@ -57,11 +57,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for Youtube.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var youtube = {};
 	
@@ -197,4 +197,4 @@
 
 	return youtube;
 
-/* {%= FOOTER %} */
+/* @echo footer */

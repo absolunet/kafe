@@ -1,11 +1,11 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal methods for AddThis
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var addthis = {};
 
@@ -28,4 +28,4 @@
 
 	return addthis;
 
-/* {%= FOOTER %} */
+/* @echo footer */

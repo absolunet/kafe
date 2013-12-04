@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		$window   = $(window),
@@ -8,11 +8,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Sticky box
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var sticky = {};
 
@@ -28,9 +28,9 @@
 	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
 	*
 	* @example
-	*	<%= NAME_FULL %>.init({ selector: '#post-it' })
+	*	<!-- @echo NAME_FULL -->.init({ selector: '#post-it' })
 	* @example
-	*	$('#post-it').<%= NAME_JQUERY %>('init', {})
+	*	$('#post-it').<!-- @echo NAME_JQUERY -->('init', {})
 	*/
 	sticky.init = function(options) {
 		options = options || {};
@@ -115,7 +115,7 @@
 
 						// apply
 						$e.css(attr);
-						$container.addClass('<%= NAME_ATTR %>-sticking');
+						$container.addClass('<!-- @echo NAME_ATTR -->-sticking');
 						sticking = true;
 						fromBottom = false;
 
@@ -133,7 +133,7 @@
 
 						// apply
 						$e.css(attr);
-						$container.removeClass('<%= NAME_ATTR %>-sticking');
+						$container.removeClass('<!-- @echo NAME_ATTR -->-sticking');
 						sticking   = false;
 						fromBottom = false;
 
@@ -151,7 +151,7 @@
 
 						// apply
 						$e.css(attr);
-						$container.removeClass('<%= NAME_ATTR %>-sticking');
+						$container.removeClass('<!-- @echo NAME_ATTR -->-sticking');
 						sticking   = false;
 						fromBottom = true;
 					}
@@ -166,7 +166,7 @@
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
+	kafe.fn.plugIntojQuery('<!-- @echo NAME_FINAL -->', {
 		init: function(obj, parameters) {
 			sticky.init($.extend({}, parameters[0], {selector:obj}));
 		}
@@ -174,4 +174,4 @@
 
 	return sticky;
 
-/* {%= FOOTER %} */
+/* @echo footer */

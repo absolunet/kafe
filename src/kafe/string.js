@@ -1,13 +1,13 @@
 // @import 'libs/vendor/jquery.json'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal methods for string manipulation and generation.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var string = {};
 
@@ -18,7 +18,7 @@
 	* @param {String} string
 	* @return {String} The unaccented string.
 	* @example
-	*	<%= NAME_FULL %>.removeAccent('Kafe signifie café en créole.');
+	*	<!-- @echo NAME_FULL -->.removeAccent('Kafe signifie café en créole.');
 	*	// returns "Kafe signifie cafe en creole."
 	*/
 	string.removeAccent = function() {
@@ -44,7 +44,7 @@
 	* @param {String} string A JSON string.
 	* @return {Object} A valid javascript object.
 	* @example
-	*	<%= NAME_FULL %>.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
+	*	<!-- @echo NAME_FULL -->.toObject('{"UserId":"456","Items":["first", "second", "last"],"State":true,"TotalAmount":52,"Taxes":[]}');
 	*	// returns Object {UserId: "456", Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
 	*/
 	string.toObject = function(s) {
@@ -73,7 +73,7 @@
 	* @method generateGuid
 	* @return {String} A random valid GUID/UUID.
 	* @example
-	*	<%= NAME_FULL %>.generateGuid();
+	*	<!-- @echo NAME_FULL -->.generateGuid();
 	*	// returns "c573f4f3-982a-4046-818a-083757f98804"
 	*/
 	string.generateGuid = function() {
@@ -86,4 +86,4 @@
 
 	return string;
 
-/* {%= FOOTER %} */
+/* @echo footer */

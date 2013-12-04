@@ -1,6 +1,6 @@
 // @import 'libs/vendor/jquery.bbq'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		_params = {
@@ -18,11 +18,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the jQuery BBQ plugin.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var bbq = {};
 
@@ -85,4 +85,4 @@
 
 	return bbq;
 
-/* {%= FOOTER %} */
+/* @echo footer */

@@ -1,13 +1,13 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
 	* 
-	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`<%= NAME_ATTR %>-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
+	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`<!-- @echo NAME_ATTR -->-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var menu = {};
 
@@ -50,11 +50,11 @@
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	<%= NAME_FULL %>.init({ selector: '#main-menu > ul' });
+	*	<!-- @echo NAME_FULL -->.init({ selector: '#main-menu > ul' });
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
-	*	$('#main-menu > ul').<%= NAME_JQUERY %>();
+	*	$('#main-menu > ul').<!-- @echo NAME_JQUERY -->();
 	*/
 	menu.init = function() {
 		var
@@ -84,13 +84,13 @@
 					$sub = $parent.children(c.submenus)
 				;
 
-				if ($sub.data('<%= NAME_ATTR %>-timer') !== undefined) {
-					clearTimeout($sub.data('<%= NAME_ATTR %>-timer'));
+				if ($sub.data('<!-- @echo NAME_ATTR -->-timer') !== undefined) {
+					clearTimeout($sub.data('<!-- @echo NAME_ATTR -->-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('<%= NAME_ATTR %>-timer', setTimeout(function() {
-						$parent.addClass('<%= NAME_ATTR %>-open');
+					$sub.data('<!-- @echo NAME_ATTR -->-timer', setTimeout(function() {
+						$parent.addClass('<!-- @echo NAME_ATTR -->-open');
 						if (!!c.enterCallback) {
 							c.enterCallback($sub);
 						}
@@ -112,16 +112,16 @@
 					$parent = $(this),
 					$sub = $parent.children(c.submenus),
 					_clearclass = function() {
-						$parent.removeClass('<%= NAME_ATTR %>-open');
+						$parent.removeClass('<!-- @echo NAME_ATTR -->-open');
 					}
 				;
 
-				if ($sub.data('<%= NAME_ATTR %>-timer') !== undefined) {
-					clearTimeout($sub.data('<%= NAME_ATTR %>-timer'));
+				if ($sub.data('<!-- @echo NAME_ATTR -->-timer') !== undefined) {
+					clearTimeout($sub.data('<!-- @echo NAME_ATTR -->-timer'));
 				}
 
 				if ($sub.size() > 0) {
-					$sub.data('<%= NAME_ATTR %>-timer', setTimeout(function() {
+					$sub.data('<!-- @echo NAME_ATTR -->-timer', setTimeout(function() {
 						if (!!c.leaveCallback) {
 							c.leaveCallback($sub);
 						}
@@ -143,7 +143,7 @@
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
+	kafe.fn.plugIntojQuery('<!-- @echo NAME_FINAL -->', {
 		init: function(obj, parameters) {
 			menu.init($.extend({}, parameters[0], {selector:obj}));
 		}
@@ -151,4 +151,4 @@
 
 	return menu;
 
-/* {%= FOOTER %} */
+/* @echo footer */

@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		$Drupal = window.jQuery,
@@ -10,11 +10,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal methods for Drupal
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var drupal = {};
 
@@ -26,4 +26,4 @@
 
 	return drupal;
 
-/* {%= FOOTER %} */
+/* @echo footer */

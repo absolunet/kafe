@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		// default params
@@ -235,11 +235,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the Flickr API.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var flickr = {
 
@@ -551,4 +551,4 @@
 
 	return flickr;
 
-/* {%= FOOTER %} */
+/* @echo footer */

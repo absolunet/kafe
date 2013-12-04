@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		Modernizr = kafe.dependencies.Modernizr,
@@ -34,11 +34,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Methods to access geolocalization information about the client.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %> 
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL --> 
 	*/
 	var geolocation = {};
 
@@ -52,7 +52,7 @@
 	*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
 	*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
 	* @example
-	*	<%= NAME_FULL %>.locate({
+	*	<!-- @echo NAME_FULL -->.locate({
 	*		selector: '#GeoLocStatus', lang: 'en',
 	*		success: function(coords) {
 	*			console.log('latitude: ' + coords.latitude);
@@ -63,7 +63,7 @@
 	*		}
 	*	});
 	* @example
-	*	$('#GeoLocStatus').<%= PACKAGE %>('<%= NAME %>.locate', {});
+	*	$('#GeoLocStatus').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.locate', {});
 	*/
 	geolocation.locate = function(options) {
 		var
@@ -117,7 +117,7 @@
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'<%= NAME %>.locate': function(obj, parameters) {
+		'<!-- @echo NAME -->.locate': function(obj, parameters) {
 			geolocation.locate($.extend({}, parameters[0], {selector:obj}));
 		}
 	});
@@ -125,4 +125,4 @@
 
 	return geolocation;
 
-/* {%= FOOTER %} */
+/* @echo footer */

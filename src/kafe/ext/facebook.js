@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		// dictionary
@@ -70,11 +70,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the Facebook API.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var facebook = {};
 
@@ -229,4 +229,4 @@
 
 	return facebook;
 
-/* {%= FOOTER %} */
+/* @echo footer */

@@ -1,6 +1,6 @@
 // @import 'libs/vendor/jquery.colorbox'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		_params = {
@@ -36,7 +36,7 @@
 		;
 		classes = classes.toString().split(' ');
 		for (var i in classes) {
-			if (/^<%= NAME_ATTR %>-theme-/.test(classes[i])) {
+			if (/^<!-- @echo NAME_ATTR -->-theme-/.test(classes[i])) {
 				$body.removeClass(classes[i]);
 			}
 		}
@@ -58,11 +58,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the colorbox jQuery plugin.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var colorbox = {};
 
@@ -101,7 +101,7 @@
 
 
 	/**
-	* Change the default theme, which is a class on the body with the name `<%= NAME_ATTR %>-theme-THEME`.
+	* Change the default theme, which is a class on the body with the name `<!-- @echo NAME_ATTR -->-theme-THEME`.
 	*
 	* @method changeTheme
 	* @param {String} theme Theme name.
@@ -109,17 +109,17 @@
 	colorbox.changeTheme = function(theme) {
 		var $body = $('body');
 
-		if (!$body.hasClass('<%= NAME_ATTR %>-theme-'+theme)) {
+		if (!$body.hasClass('<!-- @echo NAME_ATTR -->-theme-'+theme)) {
 
 			var classes = $body.attr('class') || '';
 			classes = classes.toString().split(' ');
 			for (var i in classes) {
-				if (/^<%= NAME_ATTR %>-theme-/.test(classes[i])) {
+				if (/^<!-- @echo NAME_ATTR -->-theme-/.test(classes[i])) {
 					$body.removeClass(classes[i]);
 				}
 			}
 
-			$body.addClass('<%= NAME_ATTR %>-theme-'+theme);
+			$body.addClass('<!-- @echo NAME_ATTR -->-theme-'+theme);
 			$.colorbox.remove();
 			$.colorbox.init();
 		}
@@ -191,7 +191,7 @@
 	*/
 	colorbox.dialog = function( content, commands  ) {
 
-		var html = '<div id="<%= NAME_ATTR %>-dialog">' + content;
+		var html = '<div id="<!-- @echo NAME_ATTR -->-dialog">' + content;
 
 		if (commands === undefined || commands.length === 0) {
 			commands = [{ label:'OK', callback:function(){ $.colorbox.close(); } }];
@@ -244,15 +244,15 @@
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
+	kafe.fn.plugIntojQuery('<!-- @echo NAME_FINAL -->', {
 
 		/**
 		* Binds $(selector).colorbox() with the default params including theme.
 		*
-		* @method $.<%= NAME_JQUERY %>('init')
+		* @method $.<!-- @echo NAME_JQUERY -->('init')
 		* @param {Object} [options] The colorbox params.
 		* @example
-		*	$('.picture').<%= NAME_JQUERY %>('init', { theme:'Alternate' })
+		*	$('.picture').<!-- @echo NAME_JQUERY -->('init', { theme:'Alternate' })
 		*/
 		'init': function(obj, parameters) {
 			return _open(parameters[0], obj);
@@ -261,4 +261,4 @@
 
 	return colorbox;
 
-/* {%= FOOTER %} */
+/* @echo footer */

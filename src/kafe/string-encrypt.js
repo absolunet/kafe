@@ -1,14 +1,14 @@
 // @import 'libs/kafe/string'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* String encryption tools.
 	*
-	* @module <%= PACKAGE %>
-	* @class <%= NAME_FULL %>
-	* @extensionfor <%= MODULE %>
+	* @module <!-- @echo PACKAGE -->
+	* @class <!-- @echo NAME_FULL -->
+	* @extensionfor <!-- @echo MODULE -->
 	*/
 	var encrypt = {};
 
@@ -19,7 +19,7 @@
 	* @param {String} string
 	* @return {String} The encrypted value.
 	* @example
-	*	<%= NAME_FULL %>.md5('kafe is awesome.');
+	*	<!-- @echo NAME_FULL -->.md5('kafe is awesome.');
 	*	// returns "1fc5f96ff478b0c37baaf27506063603"
 	*/
 	encrypt.md5 = function (string) {
@@ -227,4 +227,4 @@
 
 	return encrypt;
 
-/* {%= FOOTER %} */
+/* @echo footer */

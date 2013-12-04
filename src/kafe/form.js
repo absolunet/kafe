@@ -1,11 +1,11 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Utilitary methods for html forms and related interactions.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var form = {};
 
@@ -16,9 +16,9 @@
 	* @method placeholder
 	* @param {String} [selector] Selector of text-based form elements. Defaults to 'input&#91;placeholder&#93;, textarea&#91;placeholder&#93;' when left undefined.
 	* @example
-	*	<%= NAME_FULL %>.placeholder('.search-field');
+	*	<!-- @echo NAME_FULL -->.placeholder('.search-field');
 	* @example
-	*	$('.search-field').<%= PACKAGE %>('<%= NAME %>.placeholder');
+	*	$('.search-field').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.placeholder');
 	*/
 	form.placeholder = function() {
 		var test = document.createElement('input'), placeholderSupport = false;
@@ -78,11 +78,11 @@
 	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Function} callback Function to be fired by the keypress.
 	* @example
-	*	<%= NAME_FULL %>.onEnter('.search-field', function(input) {
+	*	<!-- @echo NAME_FULL -->.onEnter('.search-field', function(input) {
 	*		$(input).parents('form').submit();
 	*	});
 	* @example
-	*	$('.search-field').<%= PACKAGE %>('<%= NAME %>.onEnter', function(input) {
+	*	$('.search-field').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.onEnter', function(input) {
 	*		$(input).parents('form').submit();
 	*	});
 	*/
@@ -102,9 +102,9 @@
 	* @method autofocusOnNext
 	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @example
-	*	<%= NAME_FULL %>.autofocusOnNext('.first-name, .last-name, .email');
+	*	<!-- @echo NAME_FULL -->.autofocusOnNext('.first-name, .last-name, .email');
 	* @example
-	*	$('.first-name, .last-name, .email').<%= PACKAGE %>('<%= NAME %>.autofocusOnNext');
+	*	$('.first-name, .last-name, .email').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.autofocusOnNext');
 	*/
 	form.autofocusOnNext = function(selector) {
 		$(selector).on('keyup',function(e) {
@@ -131,11 +131,11 @@
 	* @param {Boolean} [block=false] Prevent further character entry once the limit is reached.
 	* @param {Function} [callback] Callback triggered when the character limit is reached. The current number of characters is provided as the first argument of the callback.
 	* @example
-	*	<%= NAME_FULL %>.maxLength('.twitter-post', 140, false, function(count) {
+	*	<!-- @echo NAME_FULL -->.maxLength('.twitter-post', 140, false, function(count) {
 	*		console.log(count);
 	*	});
 	* @example
-	*	$('.twitter-post').<%= PACKAGE %>('<%= NAME %>.maxLength', 140, false, function(count) {
+	*	$('.twitter-post').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.maxLength', 140, false, function(count) {
 	*		console.log(count);
 	*	});
 	*/
@@ -177,11 +177,11 @@
 	* @param {String|jQueryObject|DOMElement} selector Selector of text-based form elements.
 	* @param {Function} [callback] Callback triggered when the value is changed. The calculated strengh value is provided as the first argument of the callback.
 	* @example
-	*	<%= NAME_FULL %>.passwordStrength('.password', function(strengh) {
+	*	<!-- @echo NAME_FULL -->.passwordStrength('.password', function(strengh) {
 	*		console.log(strengh);
 	*	});
 	* @example
-	*	$('.password').<%= PACKAGE %>('<%= NAME %>.passwordStrength', function(strengh) {
+	*	$('.password').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.passwordStrength', function(strengh) {
 	*		console.log(strengh);
 	*	});
 	*/
@@ -275,9 +275,9 @@
 	* @method sanitizeFormData
 	* @param {String|jQueryObject|DOMElement} selector Reference to the current .NET form.
 	* @example
-	*	<%= NAME_FULL %>.sanitizeFormData('#Form1');
+	*	<!-- @echo NAME_FULL -->.sanitizeFormData('#Form1');
 	* @example
-	*	$('#Form1').<%= NAME %>('<%= NAME %>.sanitizeFormData');
+	*	$('#Form1').<!-- @echo NAME -->('<!-- @echo NAME -->.sanitizeFormData');
 	*/
 	form.sanitizeFormData = function(selector) {
 		var
@@ -301,16 +301,16 @@
 	* @method replaceSubmit
 	* @param {String|jQueryObject|DOMElement} [selector='input:submit'] Elements to replace
 	* @example
-	*	<%= NAME_FULL %>.replaceSubmit();
+	*	<!-- @echo NAME_FULL -->.replaceSubmit();
 	* @example
-	*	$('.Search input:submit').<%= PACKAGE %>('<%= NAME %>.replaceSubmit');
+	*	$('.Search input:submit').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.replaceSubmit');
 	*/
 	form.replaceSubmit = function(selector) {
 		( (selector) ? $(selector) : $('input:submit') ).each(function() {
 				var $this = $(this);
 				$this
 					.hide()
-					.after( $('<button type="submit" data-<%= PACKAGE %>-replacesubmit-processed="true" class="'+ $this.attr('class') +'">'+ $this.val() +'</button>').on('click', function(e) { e.preventDefault(); $this.trigger('click'); }) )
+					.after( $('<button type="submit" data-<!-- @echo PACKAGE -->-replacesubmit-processed="true" class="'+ $this.attr('class') +'">'+ $this.val() +'</button>').on('click', function(e) { e.preventDefault(); $this.trigger('click'); }) )
 				;
 		});
 	};
@@ -318,25 +318,25 @@
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'<%= NAME %>.placeholder': function(obj, parameters) {
+		'<!-- @echo NAME -->.placeholder': function(obj, parameters) {
 			form.placeholder(obj);
 		},
-		'<%= NAME %>.onEnter': function(obj, parameters) {
+		'<!-- @echo NAME -->.onEnter': function(obj, parameters) {
 			form.onEnter(obj, parameters[0]);
 		},
-		'<%= NAME %>.autofocusOnNext': function(obj, parameters) {
+		'<!-- @echo NAME -->.autofocusOnNext': function(obj, parameters) {
 			form.autofocusOnNext(obj);
 		},
-		'<%= NAME %>.maxLength': function(obj, parameters) {
+		'<!-- @echo NAME -->.maxLength': function(obj, parameters) {
 			form.maxLength(obj, parameters[0]);
 		},
-		'<%= NAME %>.passwordStrength': function(obj, parameters) {
+		'<!-- @echo NAME -->.passwordStrength': function(obj, parameters) {
 			form.passwordStrength(obj, parameters[0]);
 		},
-		'<%= NAME %>.sanitizeFormData': function(obj, parameters) {
+		'<!-- @echo NAME -->.sanitizeFormData': function(obj, parameters) {
 			form.sanitizeFormData(obj);
 		},
-		'<%= NAME %>.replaceSubmit': function(obj, parameters) {
+		'<!-- @echo NAME -->.replaceSubmit': function(obj, parameters) {
 			form.replaceSubmit(obj);
 		}
 	});
@@ -344,4 +344,4 @@
 
 	return form;
 
-/* {%= FOOTER %} */
+/* @echo footer */

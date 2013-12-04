@@ -1,11 +1,11 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Common adjustment and manipulation methods for html layouts.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %> 
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL --> 
 	*/
 	var style = {};
 
@@ -19,9 +19,9 @@
 	*	@param {Boolean} [options.resetHeight=false] Resets css height of all elements to 'auto' before comparing.
 	*	@param {Boolean} [options.borderBox=false] If true, heights will be computed as if the elements had the 'box-sizing' css attribute to 'border-box'.
 	* @example
-	*	<%= NAME_FULL %>.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
+	*	<!-- @echo NAME_FULL -->.equalHeight('.products', { nbPerRow: 3, resetHeight: true });
 	* @example
-	*	$('.products').<%= PACKAGE %>('<%= NAME %>.equalHeight', { nbPerRow: 3, resetHeight: true });
+	*	$('.products').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.equalHeight', { nbPerRow: 3, resetHeight: true });
 	*/
 	style.equalHeight = function() {
 		var
@@ -65,13 +65,13 @@
 	* @method replaceHr
 	* @param {String|jQueryObject|DOMElement} [selector='hr'] Restricts the process to a specific context.
 	* @example
-	*	<%= NAME_FULL %>.replaceHr('.page-content');
+	*	<!-- @echo NAME_FULL -->.replaceHr('.page-content');
 	* @example
-	*	$('.page-content').<%= PACKAGE %>('<%= NAME %>.replaceHr');
+	*	$('.page-content').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.replaceHr');
 	*/
 	style.replaceHr = function() {
-		var $e = (arguments[0]) ? $('hr:not(.<%= PACKAGE %>-replacehr-processed)', $(arguments[0])) : $('hr');
-		$e.addClass('<%= PACKAGE %>-replacehr-processed').hide().wrap('<div class="hr"></div>');
+		var $e = (arguments[0]) ? $('hr:not(.<!-- @echo PACKAGE -->-replacehr-processed)', $(arguments[0])) : $('hr');
+		$e.addClass('<!-- @echo PACKAGE -->-replacehr-processed').hide().wrap('<div class="hr"></div>');
 	};
 
 
@@ -82,9 +82,9 @@
 	* @param {String|jQueryObject|DOMElement} selector Affected elements.
 	* @param {String|jQueryObject|DOMElement} [parent=DIRECT_PARENT] Container in which we want to be centered.
 	* @example
-	*	<%= NAME_FULL %>.vAlign('.menu-items > .label');
+	*	<!-- @echo NAME_FULL -->.vAlign('.menu-items > .label');
 	* @example
-	*	$('.menu-items > .label').<%= PACKAGE %>('<%= NAME %>.vAlign');
+	*	$('.menu-items > .label').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.vAlign');
 	*/
 	style.vAlign = function(e, parent) {
 		$(e).each(function(){
@@ -99,13 +99,13 @@
 
 	// Add as jQuery plugin
 	kafe.fn.plugIntojQuery('', {
-		'<%= NAME %>.equalHeight': function(obj, parameters) {
+		'<!-- @echo NAME -->.equalHeight': function(obj, parameters) {
 			style.equalHeight(obj, parameters[0]);
 		},
-		'<%= NAME %>.replaceHr': function(obj, parameters) {
+		'<!-- @echo NAME -->.replaceHr': function(obj, parameters) {
 			style.replaceHr(obj);
 		},
-		'<%= NAME %>.vAlign': function(obj, parameters) {
+		'<!-- @echo NAME -->.vAlign': function(obj, parameters) {
 			style.replaceHr(obj, parameters[0]);
 		}
 	});
@@ -113,4 +113,4 @@
 
 	return style;
 
-/* {%= FOOTER %} */
+/* @echo footer */

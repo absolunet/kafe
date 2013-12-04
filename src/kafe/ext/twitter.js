@@ -1,11 +1,11 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for Twitter.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var twitter = {};
 	
@@ -41,7 +41,7 @@
 	* @return {String} The tweet with links
 	*
 	* @example
-	*	<%= NAME_FULL %>.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');
+	*	<!-- @echo NAME_FULL -->.linkifyTweet('I really dig this #twitter function by @absolunet : http://www.absolunet.com/');
 	*	// returns "I really dig this #<a href="//search.twitter.com/search?q=%23twitter" data-external="true">twitter</a> function by @<a href="//twitter.com/absolunet" data-external="true">absolunet</a> : <a href="http://www.absolunet.com/" data-external="true">http://www.absolunet.com/</a>"
 	*/
 	twitter.linkifyTweet = function(tweet,options) {
@@ -74,4 +74,4 @@
 
 	return twitter;
 
-/* {%= FOOTER %} */
+/* @echo footer */

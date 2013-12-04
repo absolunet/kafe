@@ -1,13 +1,13 @@
 // @import 'libs/vendor/qrcode'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Returns a HTML table for displaying a QR code, encoded from the sent string.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var qrcodeK = {};
 
@@ -22,7 +22,7 @@
 	* @return {String} The HTML table representing the QR code.
 	*
 	* @example
-	*	<%= NAME_FULL %>.generate('Scan me beautiful');
+	*	<!-- @echo NAME_FULL -->.generate('Scan me beautiful');
 	*	// returns "<table><tbody><tr><td class="X"></td><td></td><td class="X"></td></tr>[...]</tbody></table>"
 	*/
 	qrcodeK.generate = function(text, options) {
@@ -58,4 +58,4 @@
 
 	return qrcodeK;
 
-/* {%= FOOTER %} */
+/* @echo footer */

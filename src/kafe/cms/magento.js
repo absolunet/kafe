@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		_privateFunction = function () {
@@ -8,11 +8,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal methods for Magento
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var magento = {};
 
@@ -29,4 +29,4 @@
 
 	return magento;
 
-/* {%= FOOTER %} */
+/* @echo footer */

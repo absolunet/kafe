@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		// parse url
@@ -23,11 +23,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Manipulation tools for route-based urls.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var url = {};
 
@@ -38,7 +38,7 @@
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Object} An object represention of the querystring.
 	* @example
-	*	<%= NAME_FULL %>.parseSearchParams('?group=players&team=blue&ranking=3');
+	*	<!-- @echo NAME_FULL -->.parseSearchParams('?group=players&team=blue&ranking=3');
 	*	// returns Object {group: "players", team: "blue", ranking: "3"}
 	*/
 	url.parseSearchParams = function(s) {
@@ -54,7 +54,7 @@
 	* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
 	* @return {Array(String)} An array represention of the querystring path.
 	* @example
-	*	<%= NAME_FULL %>.parseSearchPath('?/Players/Teams/Blue');
+	*	<!-- @echo NAME_FULL -->.parseSearchPath('?/Players/Teams/Blue');
 	*	// returns ["Players", "Teams", "Blue"]
 	*/
 	url.parseSearchPath = function(s) {
@@ -70,7 +70,7 @@
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hash string.
 	* @example
-	*	<%= NAME_FULL %>.parseHashParams('#color=blue&size=large&extras=false');
+	*	<!-- @echo NAME_FULL -->.parseHashParams('#color=blue&size=large&extras=false');
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseHashParams = function(s) {
@@ -86,7 +86,7 @@
 	* @param {String} [hash=CURRENT_LOCATION_HASH]
 	* @return {Array(String)} An array represention of the hash path.
 	* @example
-	*	<%= NAME_FULL %>.parseHashPath('#/clothing/man/shirts');
+	*	<!-- @echo NAME_FULL -->.parseHashPath('#/clothing/man/shirts');
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseHashPath = function(s) {
@@ -102,7 +102,7 @@
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Object} An object represention of the hashbang.
 	* @example
-	*	<%= NAME_FULL %>.parseAjaxParams('#!color=blue&size=large&extras=false');
+	*	<!-- @echo NAME_FULL -->.parseAjaxParams('#!color=blue&size=large&extras=false');
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseAjaxParams = function(s) {
@@ -118,7 +118,7 @@
 	* @param {String} [hashbang=CURRENT_LOCATION_HASH]
 	* @return {Array(String)} An array represention of the hashbang path.
 	* @example
-	*	<%= NAME_FULL %>.parseAjaxPath('#!/clothing/man/shirts');
+	*	<!-- @echo NAME_FULL -->.parseAjaxPath('#!/clothing/man/shirts');
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseAjaxPath = function(s) {
@@ -129,4 +129,4 @@
 
 	return url;
 
-/* {%= FOOTER %} */
+/* @echo footer */

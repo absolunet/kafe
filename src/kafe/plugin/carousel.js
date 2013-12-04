@@ -1,4 +1,4 @@
-﻿/* {%= HEADER %} */
+﻿/* @echo header */
 
 	var
 		// refresh active/inactive controls, and statuses
@@ -13,23 +13,23 @@
 				// précédent
 				if (__.curr === 0) {
 					__.$start
-						.addClass('<%= NAME_ATTR %>-inactive')
+						.addClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.startClick)
 						.on('click',  none)
 					;
 					__.$previous
-						.addClass('<%= NAME_ATTR %>-inactive')
+						.addClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.previousClick)
 						.on('click',  none)
 					;
 				} else {
 					__.$start
-						.removeClass('<%= NAME_ATTR %>-inactive')
+						.removeClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.startClick)
 						.on('click',  __.startClick)
 					;
 					__.$previous
-						.removeClass('<%= NAME_ATTR %>-inactive')
+						.removeClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.previousClick)
 						.on('click',  __.previousClick)
 					;
@@ -38,23 +38,23 @@
 				// next
 				if (__.curr == (__.total-1)) {
 					__.$next
-						.addClass('<%= NAME_ATTR %>-inactive')
+						.addClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.nextClick)
 						.on('click',  none)
 					;
 					__.$end
-						.addClass('<%= NAME_ATTR %>-inactive')
+						.addClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.endClick)
 						.on('click',  none)
 					;
 				} else {
 					__.$next
-						.removeClass('<%= NAME_ATTR %>-inactive')
+						.removeClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.nextClick)
 						.on('click',  __.nextClick)
 					;
 					__.$end
-						.removeClass('<%= NAME_ATTR %>-inactive')
+						.removeClass('<!-- @echo NAME_ATTR -->-inactive')
 						.off('click', __.endClick)
 						.on('click',  __.endClick)
 					;
@@ -70,21 +70,21 @@
 			__.$statusNum.html('');
 			for (var i=0; i<__.total; ++i) {
 				if (i == __.curr) {
-					__.$status.append('<span class="<%= NAME_ATTR %>-highlight">'+__.statusBullet+'</span>');
-					__.$statusNum.append('<span class="<%= NAME_ATTR %>-highlight">'+(i+1)+'</span>');
+					__.$status.append('<span class="<!-- @echo NAME_ATTR -->-highlight">'+__.statusBullet+'</span>');
+					__.$statusNum.append('<span class="<!-- @echo NAME_ATTR -->-highlight">'+(i+1)+'</span>');
 				} else {
 					if(!!__.statusLink) {
 						__.$status.append(
 							$('<a>')
 								.attr('href','#')
-								.data('<%= NAME_ATTR %>-itemid', i+1)
+								.data('<!-- @echo NAME_ATTR -->-itemid', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+__.statusBullet+'</span>')
 						);
 						__.$statusNum.append(
 							$('<a>')
 								.attr('href','#')
-								.data('<%= NAME_ATTR %>-itemid', i+1)
+								.data('<!-- @echo NAME_ATTR -->-itemid', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+(i+1)+'</span>')
 						);
@@ -96,13 +96,13 @@
 			}
 
 			// items highlight
-			__.$itemsimple.removeClass('<%= NAME_ATTR %>-highlight')
-				.filter('[data-<%= NAME_ATTR %>-target="'+(__.curr+1)+'"]').addClass('<%= NAME_ATTR %>-highlight')
+			__.$itemsimple.removeClass('<!-- @echo NAME_ATTR -->-highlight')
+				.filter('[data-<!-- @echo NAME_ATTR -->-target="'+(__.curr+1)+'"]').addClass('<!-- @echo NAME_ATTR -->-highlight')
 			;
 
 			__.$items.each(function() {
-				$(this).children().removeClass('<%= NAME_ATTR %>-highlight')
-					.eq(__.curr).addClass('<%= NAME_ATTR %>-highlight')
+				$(this).children().removeClass('<!-- @echo NAME_ATTR -->-highlight')
+					.eq(__.curr).addClass('<!-- @echo NAME_ATTR -->-highlight')
 				;
 			});
 		},
@@ -275,11 +275,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Carousel, image scroller, ticker, whatever you wanna call it...
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var carousel = kafe.fn.createInstantiableObject();
 
@@ -296,7 +296,7 @@
 	*		@param {String|jQueryObject|DOMElement} [options.selector.next] Clickable elements that will switch the carousel to the next slide.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.end] Clickable elements that will switch the carousel to the last slide.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.items] Clickable parent container of elements that will switch the carousel to a specific slide, assumes the children are in slide order.
-	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the `data-<%= NAME_ATTR %>-target` attribute.
+	*		@param {String|jQueryObject|DOMElement} [options.selector.item] Clickable elements that will switch the carousel to a specific slide via the `data-<!-- @echo NAME_ATTR -->-target` attribute.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.play] Clickable elements that will switch the carousel to autoplay.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.pause] Clickable elements that will stop the autoplay of the carousel.
 	*		@param {String|jQueryObject|DOMElement} [options.selector.position] Elements that will contain the current position.
@@ -319,7 +319,7 @@
 	*				@param {Number} options.preSwitchCallback.data.target.position Index of the target slide.
 	*				@param {DOMElement} options.preSwitchCallback.data.target.obj Reference to the target slide.
 	*	@param {Function} [options.postSwitchCallback] Trigged upon receiving an instruction to change the current slide but before starting the transition. Passes the same argument object as the `preSwitchCallback`.
-	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via `data-<%= NAME_ATTR %>-id` and the `data-<%= NAME_ATTR %>-action="status"` attribute.
+	*	@param {Boolean} [options.statusLink=false] If true, will generate navigation links in elements linked to the carousel via `data-<!-- @echo NAME_ATTR -->-id` and the `data-<!-- @echo NAME_ATTR -->-action="status"` attribute.
 	*	@param {String} [options.statusBullet='&bull;'] Text used as the content of generated link in a `statusLink` navigation.
 	*	@param {Boolean} [options.pauseOnHover=true] If true, autoswitch will be paused while the mouse hovers a slide.
 	*
@@ -338,19 +338,19 @@
 	*	
 	* @example
 	*	// Attach behaviors using...
-	*	var myCarousel = <%= NAME_FULL %>({ selector: { container: '.home-slides' } });
+	*	var myCarousel = <!-- @echo NAME_FULL -->({ selector: { container: '.home-slides' } });
 	* @example
 	*	// Carousels can be remotely interacted with using custom data attributes...
-	*	var myCarousel = <%= NAME_FULL %>({ selector: { container: '.home-slides' } });
+	*	var myCarousel = <!-- @echo NAME_FULL -->({ selector: { container: '.home-slides' } });
 	* @example
 	*	// The jQuery alternative...
-	*	$('.home-slides').<%= NAME_JQUERY %>('init', {});
+	*	$('.home-slides').<!-- @echo NAME_JQUERY -->('init', {});
 	*/
 	carousel.prototype.__constructor = function(options) {
 		var self = this, __ = self.__;
 
 		// elements
-		__.$container  = $(options.selector.container).data('<%= NAME_ATTR %>-self', self);
+		__.$container  = $(options.selector.container).data('<!-- @echo NAME_ATTR -->-self', self);
 		__.$slides     = (options.selector.slides) ? $(options.selector.slides) : __.$container.children();
 		__.$start      = $(options.selector.start);
 		__.$previous   = $(options.selector.prev);
@@ -391,14 +391,14 @@
 
 		// désactiver tout si un seul item
 		if (__.total == 1) {
-			__.$previous.addClass('<%= NAME_ATTR %>-none');
-			__.$next.addClass('<%= NAME_ATTR %>-none');
-			__.$items.addClass('<%= NAME_ATTR %>-none');
-			__.$itemsimple.addClass('<%= NAME_ATTR %>-none');
-			__.$position.addClass('<%= NAME_ATTR %>-none');
-			__.$total.addClass('<%= NAME_ATTR %>-none');
-			__.$status.addClass('<%= NAME_ATTR %>-none');
-			__.$statusNum.addClass('<%= NAME_ATTR %>-none');
+			__.$previous.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$next.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$items.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$itemsimple.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$position.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$total.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$status.addClass('<!-- @echo NAME_ATTR -->-none');
+			__.$statusNum.addClass('<!-- @echo NAME_ATTR -->-none');
 
 		// sinon préparer carousel
 		} else {
@@ -430,7 +430,7 @@
 
 			__.itemSimpleClick = function(e) {
 				e.preventDefault();
-				change(self, $(this).data('<%= NAME_ATTR %>-target') - 1);
+				change(self, $(this).data('<!-- @echo NAME_ATTR -->-target') - 1);
 			};
 
 			__.playClick = function(e) {
@@ -552,7 +552,7 @@
 	*	myCarousel.change(1);
 	* @example
 	*	// The jQuery alternative...
-	*	$('#home-slides').<%= NAME_JQUERY %>('change', 1);
+	*	$('#home-slides').<!-- @echo NAME_JQUERY -->('change', 1);
 	*/
 	carousel.prototype.change = function(target) {
 		var self = this, __ = self.__;
@@ -562,15 +562,15 @@
 
 
 	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery('<%= NAME_FINAL %>', {
+	kafe.fn.plugIntojQuery('<!-- @echo NAME_FINAL -->', {
 		init: function(obj, parameters) {
 			carousel($.extend(true, {}, parameters[0], {selector:{container:obj}}));
 		},
 		change: function(obj, parameters) {
-			$(obj).data('<%= NAME_ATTR %>-self').change(parameters[0]);
+			$(obj).data('<!-- @echo NAME_ATTR -->-self').change(parameters[0]);
 		}
 	});
 
 	return carousel;
 
-/* {%= FOOTER %} */
+/* @echo footer */

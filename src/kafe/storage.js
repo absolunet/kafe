@@ -2,7 +2,7 @@
 // @import 'libs/vendor/jquery.json'
 // @import 'libs/kafe/string'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		Modernizr = kafe.dependencies.Modernizr,
@@ -214,11 +214,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Easily access, sort and manipulate local and session storage values.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %> 
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL --> 
 	*/
 	var storage = {};
 
@@ -229,7 +229,7 @@
 	* @param {String} key
 	* @return {String} If not expiration flag was trigged (cookie or datetime), returns the local storage value. Otherwise, returns *undefined*.
 	* @example
-	*	<%= NAME_FULL %>.getPersistentItem('history:last-visit');
+	*	<!-- @echo NAME_FULL -->.getPersistentItem('history:last-visit');
 	*/
 	storage.getPersistentItem = function(key) {
 		return _get(LOCAL,key);
@@ -243,7 +243,7 @@
 	* @param {String} key
 	* @return {String} If not expiration flag was trigged (cookie or datetime), returns the session storage value. Otherwise, returns *undefined*.
 	* @example
-	*	<%= NAME_FULL %>.getSessionItem('user:first-name');
+	*	<!-- @echo NAME_FULL -->.getSessionItem('user:first-name');
 	*/
 	storage.getSessionItem = function(key) {
 		return _get(SESSION,key);
@@ -260,10 +260,10 @@
 	*	@param {String} [options.expires] Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will flag the local storage value for the provided key as expired.
 	*	@param {Number} [options.expires] Sets a time based expiration flag in *seconds*. After that time period, the local storage value for the provided key will be flagged as expired.
 	* @example
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21', { expires: 3600 });
 	*	// The local storage value will return undefined in one hour.
 	* @example
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21', { expires: 'last-visit-cookie' });
 	*	// The local storage value will return undefined if the value of the cookie 'last-visit-cookie' is changed.
 	*/
 	storage.setPersistentItem = function(key,value,options) {
@@ -281,10 +281,10 @@
 	*	@param {String} [options.expires] Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will flag the session storage value for the provided key as expired.
 	*	@param {Number} [options.expires] Sets a time based expiration flag in *seconds*. After that time period, the session storage value for the provided key will be flagged as expired.
 	* @example
-	*	<%= NAME_FULL %>.setSessionItem('user:first-name', 'John', { expires: 3600 });
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John', { expires: 3600 });
 	*	// The session storage value will return undefined in one hour.
 	* @example
-	*	<%= NAME_FULL %>.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John', { expires: 'logged-user' });
 	*	// The session storage value will return undefined if the value of the cookie 'logged-user' is changed.
 	*/
 	storage.setSessionItem = function(key,value,options) {
@@ -298,7 +298,7 @@
 	* @method removePersistentItem
 	* @param {String} key
 	* @example
-	*	<%= NAME_FULL %>.removePersistentItem('history:last-visit');
+	*	<!-- @echo NAME_FULL -->.removePersistentItem('history:last-visit');
 	*/
 	storage.removePersistentItem = function(key) {
 		_remove(LOCAL,key);
@@ -311,7 +311,7 @@
 	* @method removeSessionItem
 	* @param {String} key
 	* @example
-	*	<%= NAME_FULL %>.removeSessionItem('user:first-name');
+	*	<!-- @echo NAME_FULL -->.removeSessionItem('user:first-name');
 	*/
 	storage.removeSessionItem = function(key) {
 		_remove(SESSION,key);
@@ -325,10 +325,10 @@
 	* @param {String} namespace
 	* @return {Array(String)} A list of keys.
 	* @example
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-visit', '2013-07-21');
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-page', '/about-us');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-page', '/about-us');
 	*	
-	*	<%= NAME_FULL %>.getPersistentNamespaceKeys('history');
+	*	<!-- @echo NAME_FULL -->.getPersistentNamespaceKeys('history');
 	*	// returns ["history:last-page", "history:last-visit"]
 	*/
 	storage.getPersistentNamespaceKeys = function(name) {
@@ -343,10 +343,10 @@
 	* @param {String} namespace
 	* @return {Array(String)} A list of keys.
 	* @example
-	*	<%= NAME_FULL %>.setSessionItem('user:first-name', 'John');
-	*	<%= NAME_FULL %>.setSessionItem('user:last-name', 'Doe');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:last-name', 'Doe');
 	*	
-	*	<%= NAME_FULL %>.getSessionNamespaceKeys('user');
+	*	<!-- @echo NAME_FULL -->.getSessionNamespaceKeys('user');
 	*	// returns ["user:first-name", "user:last-name"]
 	*/
 	storage.getSessionNamespaceKeys = function(name) {
@@ -361,10 +361,10 @@
 	* @param {String} namespace
 	* @return {Object} An object containing all local key/value combinations for the namespace.
 	* @example
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-visit', '2013-07-21');
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-page', '/about-us');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-page', '/about-us');
 	*	
-	*	<%= NAME_FULL %>.getPersistentNamespaceItems('history');
+	*	<!-- @echo NAME_FULL -->.getPersistentNamespaceItems('history');
 	*	// returns { "history:last-page": "/about-us", "history:last-visit": "2013-07-21" }
 	*/
 	storage.getPersistentNamespaceItems = function(name) {
@@ -379,10 +379,10 @@
 	* @param {String} namespace
 	* @return {Object} An object containing all session key/value combinations for the namespace.
 	* @example
-	*	<%= NAME_FULL %>.setSessionItem('user:first-name', 'John');
-	*	<%= NAME_FULL %>.setSessionItem('user:last-name', 'Doe');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:last-name', 'Doe');
 	*	
-	*	<%= NAME_FULL %>.getSessionNamespaceItems('user');
+	*	<!-- @echo NAME_FULL -->.getSessionNamespaceItems('user');
 	*	// returns { "user:first-name": "John", "user:last-name": "Doe" }
 	*/
 	storage.getSessionNamespaceItems = function(name) {
@@ -396,7 +396,7 @@
 	* @method removePersistentNamespace
 	* @param {String} namespace
 	* @example
-	*	<%= NAME_FULL %>.removePersistentNamespace('history');
+	*	<!-- @echo NAME_FULL -->.removePersistentNamespace('history');
 	*/
 	storage.removePersistentNamespace = function(name) {
 		_removeNamespace(LOCAL,name);
@@ -409,7 +409,7 @@
 	* @method removeSessionNamespace
 	* @param {String} namespace
 	* @example
-	*	<%= NAME_FULL %>.removeSessionNamespace('user');
+	*	<!-- @echo NAME_FULL -->.removeSessionNamespace('user');
 	*/
 	storage.removeSessionNamespace = function(name) {
 		_removeNamespace(SESSION,name);
@@ -422,10 +422,10 @@
 	* @method getAllPersistentKeys
 	* @return {Array(String)} A list of keys.
 	* @example
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-visit', '2013-07-21');
-	*	<%= NAME_FULL %>.setPersistentItem('website:show-ads', 'true');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('website:show-ads', 'true');
 	*	
-	*	<%= NAME_FULL %>.getAllPersistentKeys();
+	*	<!-- @echo NAME_FULL -->.getAllPersistentKeys();
 	*	// returns ["history:last-visit", "website:show-ads"]
 	*/
 	storage.getAllPersistentKeys = function() {
@@ -439,10 +439,10 @@
 	* @method getAllSessionKeys
 	* @return {Array(String)} A list of keys.
 	* @example
-	*	<%= NAME_FULL %>.setSessionItem('user:first-name', 'John');
-	*	<%= NAME_FULL %>.setSessionItem('preferences:tutorials', 'false');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('preferences:tutorials', 'false');
 	*	
-	*	<%= NAME_FULL %>.getAllSessionKeys();
+	*	<!-- @echo NAME_FULL -->.getAllSessionKeys();
 	*	// returns ["user:first-name", "preferences:tutorials"]
 	*/
 	storage.getAllSessionKeys = function() {
@@ -456,10 +456,10 @@
 	* @method getAllPersistentItems
 	* @return {Object} An object containing all local key/value combinations.
 	* @example
-	*	<%= NAME_FULL %>.setPersistentItem('history:last-visit', '2013-07-21');
-	*	<%= NAME_FULL %>.setPersistentItem('website:show-ads', 'true');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
+	*	<!-- @echo NAME_FULL -->.setPersistentItem('website:show-ads', 'true');
 	*	
-	*	<%= NAME_FULL %>.getAllPersistentItems();
+	*	<!-- @echo NAME_FULL -->.getAllPersistentItems();
 	*	// returns { "history:last-visit": "2013-07-21", "settings:show-ads": "true" }
 	*/
 	storage.getAllPersistentItems = function() {
@@ -473,10 +473,10 @@
 	* @method getAllSessionItems
 	* @return {Object} An object containing all session key/value combinations.
 	* @example
-	*	<%= NAME_FULL %>.setSessionItem('user:first-name', 'John');
-	*	<%= NAME_FULL %>.setSessionItem('preferences:tutorials', 'false');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
+	*	<!-- @echo NAME_FULL -->.setSessionItem('preferences:tutorials', 'false');
 	*	
-	*	<%= NAME_FULL %>.getAllSessionItems();
+	*	<!-- @echo NAME_FULL -->.getAllSessionItems();
 	*	// returns { "preferences:tutorials": "false", "user:first-name": "John" }
 	*/
 	storage.getAllSessionItems = function() {
@@ -489,7 +489,7 @@
 	*
 	* @method removeAllPersistent
 	* @example
-	*	<%= NAME_FULL %>.removeAllPersistent();
+	*	<!-- @echo NAME_FULL -->.removeAllPersistent();
 	*/
 	storage.removeAllPersistent = function() {
 		_removeAll(LOCAL);
@@ -501,7 +501,7 @@
 	*
 	* @method removeAllSession
 	* @example
-	*	<%= NAME_FULL %>.removeAllSession();
+	*	<!-- @echo NAME_FULL -->.removeAllSession();
 	*/
 	storage.removeAllSession = function() {
 		_removeAll(SESSION);
@@ -509,7 +509,7 @@
 
 
 	/**
-	* Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *<%= NAME_ATTR %>-getJSON* namespace.
+	* Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the *<!-- @echo NAME_ATTR -->-getJSON* namespace.
 	*
 	* @method getJSON
 	* @param {String} url URL address of the webservice.
@@ -518,7 +518,7 @@
 	*	@param {Number} [options.expires] Sets a time based expiration flag in *seconds*. After that time period, the next use will call the webservice instead of using the session storage.
 	*	@param {Function} [options.callback] Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.
 	* @example
-	*	<%= NAME_FULL %>.getJSON('/UserServices/GetUserInfos?username=john_doe', { expires: 3600 });
+	*	<!-- @echo NAME_FULL -->.getJSON('/UserServices/GetUserInfos?username=john_doe', { expires: 3600 });
 	*	// Using this same line will use the session stored value instead of calling the service unless one hour has passed.
 	*/
 	storage.getJSON = function() {
@@ -527,7 +527,7 @@
 				url      = arguments[0],
 				options  = (typeof(arguments[1]) != 'function') ? arguments[1] : {expires:600},
 				callback = (typeof(arguments[1]) != 'function') ? arguments[2] : arguments[1],
-				key      = '<%= NAME_ATTR %>-getJSON:'+url.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+				key      = '<!-- @echo NAME_ATTR -->-getJSON:'+url.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
 				cache    = storage.getSessionItem(key)
 			;
 
@@ -545,4 +545,4 @@
 
 	return storage;
 
-/* {%= FOOTER %} */
+/* @echo footer */

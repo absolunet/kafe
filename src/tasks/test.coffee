@@ -14,7 +14,7 @@ module.exports = (grunt) ->
 			dest: out+'/test.js'
 		
 		'watch.test': 
-			files: [src+'/**/*.js', '!'+src+'/libs/*']
+			files: [src+'/**/*', '!'+src+'/libs/*']
 			tasks: 'test'
 	}
 

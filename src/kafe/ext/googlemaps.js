@@ -1,12 +1,12 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the GoogleMaps API.
 	* Requires `//maps.google.com/maps/api/js` to be included
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var googlemaps = {};
 
@@ -18,7 +18,7 @@
 	* @param {Array(Array)} coords List of lat/lon coords
 	*
 	* @example
-	*   myMap.fitBounds( <%= NAME_FULL %>.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
+	*   myMap.fitBounds( <!-- @echo NAME_FULL -->.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
 	*/
 	googlemaps.getCoordsBounds = function (coords) {
 		var
@@ -41,4 +41,4 @@
 
 	return googlemaps;
 
-/* {%= FOOTER %} */
+/* @echo footer */

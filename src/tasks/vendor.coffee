@@ -13,6 +13,15 @@ module.exports = (grunt) ->
 	out_resources = out+'/resources'
 	out_colorbox  = out_resources+'/jquery.colorbox'
 
+	
+
+	# config
+	grunt.config.set name, data for name, data of {
+		'watch.vendor': 
+			files: [src_resources+'/**/*']
+			tasks: 'test'
+	}
+
 
 
 	# get vendor

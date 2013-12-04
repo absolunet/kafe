@@ -1,14 +1,14 @@
 // @import 'libs/kafe/string'
 
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* String validation tools.
 	*
-	* @module <%= PACKAGE %>
-	* @class <%= NAME_FULL %>
-	* @extensionfor <%= MODULE %>
+	* @module <!-- @echo PACKAGE -->
+	* @class <!-- @echo NAME_FULL -->
+	* @extensionfor <!-- @echo MODULE -->
 	*/
 	var validate = {};
 
@@ -19,10 +19,10 @@
 	* @param {String} string
 	* @return {Boolean} If true, the string could be converted to a number.
 	* @example
-	*	<%= NAME_FULL %>.isNum('k4f3');
+	*	<!-- @echo NAME_FULL -->.isNum('k4f3');
 	*	// returns false
 	* @example
-	*	<%= NAME_FULL %>.isNum('43');
+	*	<!-- @echo NAME_FULL -->.isNum('43');
 	*	// returns true
 	*/
 	validate.isNum = function(str) {
@@ -37,10 +37,10 @@
 	* @param {String} string
 	* @return {Boolean} If true, the string is a valid email address.
 	* @example
-	*	<%= NAME_FULL %>.isEmail('mailbox@mailaddress');
+	*	<!-- @echo NAME_FULL -->.isEmail('mailbox@mailaddress');
 	*	// returns false
 	* @example
-	*	<%= NAME_FULL %>.isEmail('kafe.feedback@absolunet.com');
+	*	<!-- @echo NAME_FULL -->.isEmail('kafe.feedback@absolunet.com');
 	*	// returns true
 	*/
 	validate.isEmail = function(str) {
@@ -58,10 +58,10 @@
 	* @param {String} [format] Validation pattern (Regular expression). Default pattern is *([a-z][0-9]){3}*. Can also be set to *A1A 1A1* for a single precise value or as *A1A* and *1A1* when divided into two values.
 	* @return {Boolean} If true, the string matches the validation format.
 	* @example
-	*	<%= NAME_FULL %>.isPostalCode('KAF123');
+	*	<!-- @echo NAME_FULL -->.isPostalCode('KAF123');
 	*	// returns false
 	* @example
-	*	<%= NAME_FULL %>.isPostalCode('K4F 3F3', 'A1A 1A1');
+	*	<!-- @echo NAME_FULL -->.isPostalCode('K4F 3F3', 'A1A 1A1');
 	*	// returns true
 	*/
 	validate.isPostalCode = function(str,format) {
@@ -85,7 +85,7 @@
 	* @param {String} string
 	* @return {Boolean} If true, the string passes the Luhn algorithm.
 	* @example
-	*	<%= NAME_FULL %>.isLuhn('79927398713');
+	*	<!-- @echo NAME_FULL -->.isLuhn('79927398713');
 	*	// returns true
 	*/
 	validate.isLuhnAlgorithm = function(str) {
@@ -115,10 +115,10 @@
 	* @param {String} creditcard A credit card brand abbreviation. Possible values are **visa**, **mastercard**, **americanexpress**, **dinersclub**, **discover**, **jcb**.
 	* @return {Boolean} If true, the string is a valid credit card number.
 	* @example
-	*	<%= NAME_FULL %>.isCreditCard('k789 kafe 3789', 'mc');
+	*	<!-- @echo NAME_FULL -->.isCreditCard('k789 kafe 3789', 'mc');
 	*	// returns false
 	* @example
-	*	<%= NAME_FULL %>.isCreditCard('1234 5678 1234 5678', 'vi');
+	*	<!-- @echo NAME_FULL -->.isCreditCard('1234 5678 1234 5678', 'vi');
 	*	// returns true
 	*/
 	validate.isCreditCard = function(str,cc) {
@@ -138,4 +138,4 @@
 
 	return validate;
 
-/* {%= FOOTER %} */
+/* @echo footer */

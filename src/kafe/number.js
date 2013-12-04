@@ -1,11 +1,11 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal manipulation methods for numbers.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %> 
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL --> 
 	*/
 	var number = {};
 
@@ -16,7 +16,7 @@
 	* @param {Number} number
 	* @return {String} The roman numeral value.
 	* @example
-	*	<%= NAME_FULL %>.toRoman(1954);
+	*	<!-- @echo NAME_FULL -->.toRoman(1954);
 	*	// returns "MCMLIV"
 	*/
 	number.toRoman = function(n) {
@@ -52,10 +52,10 @@
 	* @param {Number} number
 	* @return {Number} Amount of numbers after the radix point.
 	* @example
-	*	<%= NAME_FULL %>.getPrecision(5.458);
+	*	<!-- @echo NAME_FULL -->.getPrecision(5.458);
 	*	// returns 3
 	* @example
-	*	<%= NAME_FULL %>.getPrecision(11);
+	*	<!-- @echo NAME_FULL -->.getPrecision(11);
 	*	// returns 0
 	*/
 	number.getPrecision = function(n) {
@@ -71,13 +71,13 @@
 	* @param {Number} precision Maximum amount of numbers after the radix point.
 	* @return {Number} The modified number
 	* @example
-	*	<%= NAME_FULL %>.trimPrecision(5.458, 2);
+	*	<!-- @echo NAME_FULL -->.trimPrecision(5.458, 2);
 	*	// returns 5.45
 	* @example
-	*	<%= NAME_FULL %>.trimPrecision(5.458, 0);
+	*	<!-- @echo NAME_FULL -->.trimPrecision(5.458, 0);
 	*	// returns 5
 	* @example
-	*	<%= NAME_FULL %>.trimPrecision(5.458, 6);
+	*	<!-- @echo NAME_FULL -->.trimPrecision(5.458, 6);
 	*	// returns 5.458
 	*/
 	number.trimPrecision = function(n, precision) {
@@ -95,7 +95,7 @@
 	*	3 * 5.3
 	*	// returns 15.8999999
 	* @example
-	*	<%= NAME_FULL %>.product(3, 5.3);
+	*	<!-- @echo NAME_FULL -->.product(3, 5.3);
 	*	// returns 15.9
 	*/
 	number.product = function(n, factor) {
@@ -106,4 +106,4 @@
 
 	return number;
 
-/* {%= FOOTER %} */
+/* @echo footer */

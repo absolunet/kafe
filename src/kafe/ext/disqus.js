@@ -1,4 +1,4 @@
-﻿/* {%= HEADER %} */
+﻿/* @echo header */
 
 	var
 		_params = {
@@ -25,11 +25,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the Disqus API.
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var disqus = {};
 
@@ -96,4 +96,4 @@
 
 	return disqus;
 
-/* {%= FOOTER %} */
+/* @echo footer */

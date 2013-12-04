@@ -67,7 +67,7 @@ module.exports = (grunt) ->
 			files: [
 				src+'/**/*', 
 				'!'+src+'/tmpl/partials/index.handlebars',
-				src_tmpl+'/readme.tmpl'
+				src_tmpl+'/*.tmpl'
 			]
 			tasks: 'doc'
 	}
@@ -90,7 +90,7 @@ module.exports = (grunt) ->
 		}
 
 		grunt.file.write out_root+'/README.md', preprocess.preprocess(readme.tmpl, _.merge({},readme.data,{doc:false}))
-		grunt.file.write out_root+'/LICENSE.md', grunt.template.process(grunt.file.read(src_tmpl+'/license.tmpl'),{data:data})
+		preprocess.preprocessFileSync src_tmpl+'/license.tmpl', out_root+'/LICENSE.md', data
 		grunt.file.copy src_tmpl+'/changelog.tmpl', out_root+'/CHANGELOG.md'
 		grunt.log.ok 'Base documentation generated.'
 
@@ -105,10 +105,10 @@ module.exports = (grunt) ->
 				marked( preprocess.preprocess( readme.tmpl, _.merge({},readme.data,{doc:true}) ).replace('### '+pkg.name, '# '+pkg.name) ) +
 			'</div>'
 
+
 		# module description
-		module_tmpl = grunt.file.read src_tmpl+'/module.tmpl'
-		for module, desc of info.modules
-			grunt.file.write out_libs+'/'+module+'/_'+module+'.js', grunt.template.process(module_tmpl, { data: { MODULE: pkg.name+'.'+module, DESCRIPTION:desc }})
+		preprocess.preprocessFileSync src_tmpl+'/module.tmpl', out_libs+'/'+module+'/_'+module+'.js', { MODULE: pkg.name+'.'+module, DESCRIPTION:desc } for module, desc of info.modules
+
 		
 		# compiler
 		options = {

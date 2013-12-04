@@ -1,4 +1,4 @@
-﻿/* {%= HEADER %} */
+﻿/* @echo header */
 
 	var
 		// default params
@@ -9,12 +9,12 @@
 	
 	
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Extra methods for the Soundcloud API.
 	* Requires `//connect.soundcloud.com/sdk.js` to be included
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %>
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var soundcloud = {};
 
@@ -74,4 +74,4 @@
 
 	return soundcloud;
 
-/* {%= FOOTER %} */
+/* @echo footer */

@@ -1,4 +1,4 @@
-/* {%= HEADER %} */
+/* @echo header */
 
 	var
 		// dictionary
@@ -51,11 +51,11 @@
 
 
 	/**
-	* ### Version <%= VERSION %>
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal methods for date manipulation
 	*
-	* @module <%= MODULE %>
-	* @class <%= NAME_FULL %> 
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL --> 
 	*/
 	var date = {
 
@@ -124,7 +124,7 @@
 	* @param {Date} d The date
 	* @return {Number} The day of the year
 	* @example
-	*	<%= NAME_FULL %>.getDayYear(new Date('2013-07-17'));
+	*	<!-- @echo NAME_FULL -->.getDayYear(new Date('2013-07-17'));
 	*	// returns 198
 	*/
 	date.getDayYear = function(d) {
@@ -149,10 +149,10 @@
 	* @param {Number} year The year.
 	* @return {Boolean} If it is a leap year or not.
 	* @example
-	*	<%= NAME_FULL %>.isLeapYear(2013);
+	*	<!-- @echo NAME_FULL -->.isLeapYear(2013);
 	*	// returns false
 	* @example
-	*	<%= NAME_FULL %>.isLeapYear(2004);
+	*	<!-- @echo NAME_FULL -->.isLeapYear(2004);
 	*	// returns true
 	*/
 	date.isLeapYear = function(year) {
@@ -167,10 +167,10 @@
 	* @param {Number} year The year.
 	* @return {Array(Number)} An ordered array of day counts for each months of the given year.
 	* @example
-	*	<%= NAME_FULL %>.getMaxMonth(2013);
+	*	<!-- @echo NAME_FULL -->.getMaxMonth(2013);
 	*	// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 	* @example
-	*	<%= NAME_FULL %>.getMaxMonth(2013)[3];
+	*	<!-- @echo NAME_FULL -->.getMaxMonth(2013)[3];
 	*	// returns 30
 	*/
 	date.getMaxMonth = function(year) {
@@ -185,10 +185,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of month names.
 	* @example
-	*	<%= NAME_FULL %>.getMonthNames('en');
+	*	<!-- @echo NAME_FULL -->.getMonthNames('en');
 	*	// returns ["January", "February", "March", "April", "May", "June", ... ]
 	* @example
-	*	<%= NAME_FULL %>.getMonthNames('en')[3];
+	*	<!-- @echo NAME_FULL -->.getMonthNames('en')[3];
 	*	// returns "April"
 	*/
 	date.getMonthNames = function(lang) {
@@ -203,10 +203,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of 1-char month abbreviations.
 	* @example
-	*	<%= NAME_FULL %>.getMonth1Names('en');
+	*	<!-- @echo NAME_FULL -->.getMonth1Names('en');
 	*	// returns ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
 	* @example
-	*	<%= NAME_FULL %>.getMonth1Names('en')[3];
+	*	<!-- @echo NAME_FULL -->.getMonth1Names('en')[3];
 	*	// returns "A"
 	*/
 	date.getMonth1Names = function(lang) {
@@ -221,10 +221,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of 2-char month abbreviations.
 	* @example
-	*	<%= NAME_FULL %>.getMonth2Names('en');
+	*	<!-- @echo NAME_FULL -->.getMonth2Names('en');
 	*	// returns ["Ja", "Fe", "Mr", "Al", "Ma", "Jn", "Jl", "Au", "Se", "Oc", "No", "De"]
 	* @example
-	*	<%= NAME_FULL %>.getMonth2Names('en')[3];
+	*	<!-- @echo NAME_FULL -->.getMonth2Names('en')[3];
 	*	// returns "Al"
 	*/
 	date.getMonth2Names = function(lang) {
@@ -240,10 +240,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of 3-char month abbreviations.
 	* @example
-	*	<%= NAME_FULL %>.getMonth3Names('en');
+	*	<!-- @echo NAME_FULL -->.getMonth3Names('en');
 	*	// returns ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 	* @example
-	*	<%= NAME_FULL %>.getMonth3Names('en')[3];
+	*	<!-- @echo NAME_FULL -->.getMonth3Names('en')[3];
 	*	// returns "Apr"
 	*/
 	date.getMonth3Names = function(lang) {
@@ -262,10 +262,10 @@
 	* @param {Date} d The date
 	* @return {Boolean} If it is within a weekend or not.
 	* @example
-	*	<%= NAME_FULL %>.isWeekend(new Date('2013-07-17'));
+	*	<!-- @echo NAME_FULL -->.isWeekend(new Date('2013-07-17'));
 	*	// returns false
 	* @example
-	*	<%= NAME_FULL %>.isWeekend(new Date('2013-07-20'));
+	*	<!-- @echo NAME_FULL -->.isWeekend(new Date('2013-07-20'));
 	*	// returns true
 	*/
 	date.isWeekend = function(date) {
@@ -281,10 +281,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of weekday names.
 	* @example
-	*	<%= NAME_FULL %>.getWeekdayNames('en');
+	*	<!-- @echo NAME_FULL -->.getWeekdayNames('en');
 	*	// returns ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 	* @example
-	*	<%= NAME_FULL %>.getWeekdayNames('en')[3];
+	*	<!-- @echo NAME_FULL -->.getWeekdayNames('en')[3];
 	*	// returns "Wednesday"
 	*/
 	date.getWeekdayNames = function(lang) {
@@ -299,10 +299,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of 1-char weekday abbreviations.
 	* @example
-	*	<%= NAME_FULL %>.getWeekday1Names('en');
+	*	<!-- @echo NAME_FULL -->.getWeekday1Names('en');
 	*	// returns ["S", "M", "T", "W", "T", "F", "S"]
 	* @example
-	*	<%= NAME_FULL %>.getWeekday1Names('en')[3];
+	*	<!-- @echo NAME_FULL -->.getWeekday1Names('en')[3];
 	*	// returns "W"
 	*/
 	date.getWeekday1Names = function(lang) {
@@ -317,10 +317,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of 2-char weekday abbreviations.
 	* @example
-	*	<%= NAME_FULL %>.getWeekday2Names('en');
+	*	<!-- @echo NAME_FULL -->.getWeekday2Names('en');
 	*	// returns ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
 	* @example
-	*	<%= NAME_FULL %>.getWeekday2Names('en')[3];
+	*	<!-- @echo NAME_FULL -->.getWeekday2Names('en')[3];
 	*	// returns "We"
 	*/
 	date.getWeekday2Names = function(lang) {
@@ -335,10 +335,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of 3-char weekday abbreviations.
 	* @example
-	*	<%= NAME_FULL %>.getWeekday3Names('en');
+	*	<!-- @echo NAME_FULL -->.getWeekday3Names('en');
 	*	// returns ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 	* @example
-	*	<%= NAME_FULL %>.getWeekday3Names('en')[3];
+	*	<!-- @echo NAME_FULL -->.getWeekday3Names('en')[3];
 	*	// returns "Wed"
 	*/
 	date.getWeekday3Names = function(lang) {
@@ -357,10 +357,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {Array(String)} An ordered array of clean representations for all possible days of a month.
 	* @example
-	*	<%= NAME_FULL %>.getDayNames('en');
+	*	<!-- @echo NAME_FULL -->.getDayNames('en');
 	*	// returns ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", ... ]
 	* @example
-	*	<%= NAME_FULL %>.getDayNames('en')[3];
+	*	<!-- @echo NAME_FULL -->.getDayNames('en')[3];
 	*	// returns "4th"
 	*/
 	date.getDayNames = function(lang) {
@@ -391,10 +391,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {String} The formatted date.
 	* @example
-	*	<%= NAME_FULL %>.format('%W, %A %e, %Y', new Date('2013-07-17'), 'en');
+	*	<!-- @echo NAME_FULL -->.format('%W, %A %e, %Y', new Date('2013-07-17'), 'en');
 	*	// returns "Tuesday, July 16th, 2013"
 	* @example
-	*	<%= NAME_FULL %>.format('%W, %d %a, %Y', new Date('2013-07-17'), 'fr');
+	*	<!-- @echo NAME_FULL -->.format('%W, %d %a, %Y', new Date('2013-07-17'), 'fr');
 	*	// returns "Mardi, 16 juillet, 2013"
 	*/
 	date.format = function(format, date, lang) {
@@ -465,10 +465,10 @@
 	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
 	* @return {String} The relative time expression
 	* @example
-	*	<%= NAME_FULL %>.formatRelative(new Date('2013-07-19 6:00:00'), new Date('2013-07-19 20:00:00'), 'en');
+	*	<!-- @echo NAME_FULL -->.formatRelative(new Date('2013-07-19 6:00:00'), new Date('2013-07-19 20:00:00'), 'en');
 	*	// returns "14 hours ago"
 	* @example
-	*	<%= NAME_FULL %>.formatRelative(new Date('2013-05-19'), new Date('2013-07-19'), 'en');
+	*	<!-- @echo NAME_FULL -->.formatRelative(new Date('2013-05-19'), new Date('2013-07-19'), 'en');
 	*	// returns "2 months ago"
 	*/
 	date.formatRelative = function(time, now, lang) {
@@ -516,10 +516,10 @@
 	* @param {String} dtstring Custom datetime string
 	* @return {Date} The date object
 	* @example
-	*	<%= NAME_FULL %>.parse('2012-08-08T12:18:00.000-04:00');
+	*	<!-- @echo NAME_FULL -->.parse('2012-08-08T12:18:00.000-04:00');
 	*	// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
 	* @example
-	*	<%= NAME_FULL %>.parse('June 3, 2013');
+	*	<!-- @echo NAME_FULL -->.parse('June 3, 2013');
 	*	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
 	*/
 	date.parse = function(dtstring) {
@@ -603,7 +603,7 @@
 	* @param {Number} year The year
 	* @example
 	*	$('.select-month').on('change', function(e) {
-	*		<%= NAME_FULL %>.refreshSelectDays('.select-day', $(this).val(), $('.select-year').val());
+	*		<!-- @echo NAME_FULL -->.refreshSelectDays('.select-day', $(this).val(), $('.select-year').val());
 	*	})
 	*/
 	date.refreshSelectDays = function(obj, month, year) {
@@ -649,7 +649,7 @@
 	*	@param {Array} links.YYYY-MM-DD The links
 	* @return {String} The rendered HTML
 	* @example
-	*	<%= NAME_FULL %>.makeMonthCalendar(2013, 4, {'2013-04-03':'http://mybirthday.com/'});
+	*	<!-- @echo NAME_FULL -->.makeMonthCalendar(2013, 4, {'2013-04-03':'http://mybirthday.com/'});
 	*	// returns "<table data-month="2013-04"><caption>Avril 2013</caption><thead><tr><th>Dim</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th></thead><tbody><tr><td>&nbsp;</td><td data-date="2013-04-01"><span>1</span></td><td data-date="2013-04-02"><span>2</span></td><td data-date="2013-04-03"><a href="http://mybirthday.com/">3</a></td><td data-date="2013-04-04"><span>4</span></td><td data-date="2013-04-05"><span>5</span></td><td data-date="2013-04-06"><span>6</span></td></tr><tr><td data-date="2013-04-07"><span>7</span></td><td data-date="2013-04-08"><span>8</span></td><td data-date="2013-04-09"><span>9</span></td><td data-date="2013-04-10"><span>10</span></td><td data-date="2013-04-11"><span>11</span></td><td data-date="2013-04-12"><span>12</span></td><td data-date="2013-04-13"><span>13</span></td></tr><tr><td data-date="2013-04-14"><span>14</span></td><td data-date="2013-04-15"><span>15</span></td><td data-date="2013-04-16"><span>16</span></td><td data-date="2013-04-17"><span>17</span></td><td data-date="2013-04-18"><span>18</span></td><td data-date="2013-04-19"><span>19</span></td><td data-date="2013-04-20"><span>20</span></td></tr><tr><td data-date="2013-04-21"><span>21</span></td><td data-date="2013-04-22"><span>22</span></td><td data-date="2013-04-23"><span>23</span></td><td data-date="2013-04-24"><span>24</span></td><td data-date="2013-04-25"><span>25</span></td><td data-date="2013-04-26"><span>26</span></td><td data-date="2013-04-27"><span>27</span></td></tr><tr><td data-date="2013-04-28"><span>28</span></td><td data-date="2013-04-29"><span>29</span></td><td data-date="2013-04-30"><span>30</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>"
 	*/
 	date.makeMonthCalendar = function(year, month, links) {
@@ -702,4 +702,4 @@
 
 	return date;
 
-/* {%= FOOTER %} */
+/* @echo footer */
