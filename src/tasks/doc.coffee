@@ -1,5 +1,4 @@
 module.exports = (grunt) ->
-	_          = require 'lodash'
 	preprocess = require 'preprocess'
 	marked     = require 'marked'
 	Y          = require 'yuidocjs'
@@ -17,19 +16,19 @@ module.exports = (grunt) ->
 	out_root = path.out.root
 	out_libs = path.out.dist+'/'+pkg.name
 
-	# read me
-	readme = {
-		tmpl: grunt.file.read src_tmpl+'/readme.tmpl'
-		data:
-			package:     pkg.name
-			version:     pkg.version
-			description: pkg.description
-			definition:  pkg.definition
-			repo:        'https://github.com/absolunet/'+pkg.name
-			repo_url:    'https://github.com/absolunet/'+pkg.name+'/tree/master'
-			homepage:    pkg.homepage
+	# doc data
+	docdata = {
+		package:     pkg.name
+		version:     pkg.version
+		description: pkg.description
+		definition:  pkg.definition
+		repo:        'https://github.com/absolunet/'+pkg.name
+		repo_url:    'https://github.com/absolunet/'+pkg.name+'/tree/master'
+		homepage:    pkg.homepage
+		year:        grunt.template.today 'yyyy'
+		author:      pkg.author.name
+		site:        pkg.author.url
 	}
-
 
 
 	# config
@@ -82,15 +81,10 @@ module.exports = (grunt) ->
 
 	# readme
 	grunt.task.registerTask 'basedoc', '', ()-> 
+		docdata.doc = false;
 
-		data = {
-			year:   grunt.template.today 'yyyy'
-			author: pkg.author.name
-			site:   pkg.author.url
-		}
-
-		grunt.file.write out_root+'/README.md', preprocess.preprocess(readme.tmpl, _.merge({},readme.data,{doc:false}))
-		preprocess.preprocessFileSync src_tmpl+'/license.tmpl', out_root+'/LICENSE.md', data
+		preprocess.preprocessFileSync src_tmpl+'/readme.tmpl',  out_root+'/README.md', docdata
+		preprocess.preprocessFileSync src_tmpl+'/license.tmpl', out_root+'/LICENSE.md', docdata
 		grunt.file.copy src_tmpl+'/changelog.tmpl', out_root+'/CHANGELOG.md'
 		grunt.log.ok 'Base documentation generated.'
 
@@ -100,9 +94,11 @@ module.exports = (grunt) ->
 		done = this.async()
 
 		# homepage
+		docdata.doc = true;
+
 		grunt.file.write src+'/tmpl/partials/index.handlebars', 
 			'<div class="Home">' + 
-				marked( preprocess.preprocess( readme.tmpl, _.merge({},readme.data,{doc:true}) ).replace('### '+pkg.name, '# '+pkg.name) ) +
+				marked( preprocess.preprocess(grunt.file.read(src_tmpl+'/readme.tmpl'),docdata).replace('### '+pkg.name, '# '+pkg.name) ) +
 			'</div>'
 
 
