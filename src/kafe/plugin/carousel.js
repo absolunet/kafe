@@ -267,6 +267,7 @@
 			}
 
 			refresh(self);
+			// TODO wrap:false autostart bug
 			__.slideStartAuto();
 		}
 	;

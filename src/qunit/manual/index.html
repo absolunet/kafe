@@ -1,0 +1,128 @@
+<!doctype html>
+<html id="fr-CA" lang="fr" class="no-js" data-kafe-page="SpecialContent" data-kafe-tmpl="Content">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="http://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="http://s7.addthis.com">
+	<link rel="dns-prefetch" href="http://www.google-analytics.com">
+	<link rel="dns-prefetch" href="http://connect.facebook.net">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+
+
+	<!--[if lt IE 9]>       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	
+	<script>window.kafejQuery = window.jQuery.noConflict()</script>
+	
+
+
+
+	<!-- CDN 
+	<script src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=TODO&amp;async=1"></script>
+	-->
+
+
+
+	<title>kafe - tests</title>
+	<script src="../../../dist/vendor/lo-dash.js"></script>
+	<script src="../../../dist/vendor/modernizr.js"></script>
+	<script src="../../../dist/kafe/kafe.js"></script>
+	<script src="../../../dist/kafe/plugin/carousel.js"></script>
+	<style type="text/css">
+		div,ul,li,p {
+			margin:0;
+			padding:0;
+		}
+		ul#carrousel {
+			overflow:hidden;
+			width:650px;
+			height:350px;
+			position:relative;
+		}
+		ul#carrousel li {
+			position:absolute;
+			height:350px;
+			width:650px;
+		}
+		ul#carrousel .texte {
+			position:absolute;
+			top:50px;
+			left:50px;
+		}
+		.kafecarousel-highlight{
+			font-size:18px;
+			color:#ff0000;
+		}
+	</style>
+
+
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<div class="container-carrousel">
+		<ul id="carrousel">
+			<li>
+				<div class="texte">Slide 1</div>
+				<img src="http://placehold.it/650x350" />
+			</li>
+			<li>
+				<div class="texte">Slide 2</div>
+				<img src="http://placehold.it/650x350" />
+			</li>
+			<li>
+				<div class="texte">Slide 3</div>
+				<img src="http://placehold.it/650x350" />
+			</li>
+			<li>
+				<div class="texte">Slide 4</div>
+				<img src="http://placehold.it/650x350" />
+			</li>
+			<li>
+				<div class="texte">Slide 5</div>
+				<img src="http://placehold.it/650x350" />
+			</li>
+		</ul>
+		<div style="float:left;margin-right:15px;">
+			<br />
+			<p>Bouton de navigation</p>
+			<ul>
+				<li class="btnStart">start</li>
+				<li class="btnPrev">prev</li>
+				<li class="btnNext">next</li>
+				<li class="btnEnd">end</li>
+				<li class="btnPlay">play</li>
+				<li class="btnPause">pause</li>
+			</ul>
+			<br />
+			<p>Slide go to</p>
+			<ul class="slideNumber">
+				<li>GO 1</li>
+				<li>GO 2</li>
+				<li>GO 3</li>
+				<li>GO 4</li>
+				<li>GO 5</li>
+			</ul>
+		</div>
+		<div style="float:left;">
+			<br />
+			<p>Current Position</p>
+			<p class="curPos"></p>
+			<br />
+			<p>Total</p>
+			<p class="curTotal"></p>
+			<br />
+			<p>Status</p>
+			<p class="curStatus"></p>
+			<br />
+			<p>Status Number</p>
+			<p class="curStatusNum"></p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var myCarousel = kafe.plugin.carousel({ selector: { container: '#carrousel', start: '.btnStart', prev: '.btnPrev', next: '.btnNext', end: '.btnEnd', play: '.btnPlay', pause: '.btnPause', items: '.slideNumber', position: '.curPos', total: '.curTotal', status: '.curStatus', statusNum: '.curStatusNum' }, wrap: false, speed: 500, transition: 'slideLeft', autostart: true, startId: 2 });
+	</script>
+</body>
+</html>
