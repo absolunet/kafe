@@ -9,24 +9,15 @@ module.exports = (grunt) ->
 	util = grunt.config.get 'util'
 
 	src_resources = path.src.resources
-	out           = path.out.dist+'/vendor'
-	out_resources = out+'/resources'
-	out_colorbox  = out_resources+'/jquery.colorbox'
-
-	
-
-	# config
-	grunt.config.set name, data for name, data of {
-		'watch.vendor': 
-			files: [src_resources+'/**/*']
-			tasks: 'test'
-	}
+	out           = "#{path.out.dist}/vendor"
+	out_resources = "#{out}/resources"
+	out_colorbox  = "#{out_resources}/jquery.colorbox"
 
 
 
 	# get vendor
 	grunt.task.registerTask 'get_vendor', '', ()->
-		done  = this.async()
+		done = this.async()
 
 		util.delete out
 
@@ -35,14 +26,14 @@ module.exports = (grunt) ->
 			{ dest:'underscore.string', src:'https://raw.github.com/epeli/underscore.string/master/lib/underscore.string.js' }
 			{ dest:'modernizr',         src:'http://modernizr.com/downloads/modernizr-latest.js' }
 
-			{ dest:'accounting',        src:'https://raw.github.com/josscrowcroft/accounting.js/master/accounting.js' }
-			{ dest:'cssua',             src:'https://bitbucket.org/mckamey/cssuseragent/raw/tip/cssua.js' }
-			{ dest:'json2',             src:'https://raw.github.com/douglascrockford/JSON-js/master/json2.js' }
-			{ dest:'jsrender',          src:'https://raw.github.com/BorisMoore/jsrender/master/jsrender.js' }
-			{ dest:'markerclusterer',   src:'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js' }
-			{ dest:'masonry',           src:'http://masonry.desandro.com/masonry.pkgd.js' }
-			{ dest:'qrcode',            src:'http://d-project.googlecode.com/svn/trunk/misc/qrcode/js/qrcode.js' }
-			{ dest:'simplexml',         src:'https://simplexmljs.googlecode.com/svn/trunk/simplexml.js' }
+			{ dest:'accounting',      src:'https://raw.github.com/josscrowcroft/accounting.js/master/accounting.js' }
+			{ dest:'cssua',           src:'https://bitbucket.org/mckamey/cssuseragent/raw/tip/cssua.js' }
+			{ dest:'json2',           src:'https://raw.github.com/douglascrockford/JSON-js/master/json2.js' }
+			{ dest:'jsrender',        src:'https://raw.github.com/BorisMoore/jsrender/master/jsrender.js' }
+			{ dest:'markerclusterer', src:'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js' }
+			{ dest:'masonry',         src:'http://masonry.desandro.com/masonry.pkgd.js' }
+			{ dest:'qrcode',          src:'http://d-project.googlecode.com/svn/trunk/misc/qrcode/js/qrcode.js' }
+			{ dest:'simplexml',       src:'https://simplexmljs.googlecode.com/svn/trunk/simplexml.js' }
 
 			{ dest:'jquery.bbq',           src: 'https://raw.github.com/cowboy/jquery-bbq/master/jquery.ba-bbq.js' }
 			{ dest:'jquery.colorbox',      src: 'https://raw.github.com/jackmoore/colorbox/master/jquery.colorbox.js' }
@@ -59,6 +50,9 @@ module.exports = (grunt) ->
 			{ dest:'jquery.mousewheel',   src:'https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js' }
 			{ dest:'jquery.mwheelintent', src:'https://raw.github.com/vitch/jScrollPane/master/script/mwheelIntent.js' }
 		]
+
+
+		bar = util.progress 'Downloading', files.length
 		
 		async.mapLimit files, 10,
 			(item, callback) ->
@@ -69,22 +63,24 @@ module.exports = (grunt) ->
 					else
 						callback error
 
+					bar.tick()
+
 			(error, results) ->
 				if error 
 					grunt.log.error error
 					done false
 				else
-					done()
+					util.progress_done bar
 
-					addImport = (file) -> "// @import 'libs/vendor/"+file+"'"
+					addImport = (file) -> "// @import 'libs/vendor/#{file}'"
 
 					for file in results
 						file.content = _.map(file.dependencies, addImport).join('\n')+'\n\n'+file.content if file.dependencies 
 
-						grunt.file.write out+'/'+file.dest+'.js', file.content.replace('window.jQuery','jQuery')
+						grunt.file.write "#{out}/#{file.dest}.js", file.content.replace('window.jQuery','jQuery')
 
 
-					grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
+					done()
 
 
 
@@ -95,7 +91,7 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'get_vendor_resources', '', ()->
 		done  = this.async()
 
-		util.copy src_resources+'/', out_resources+'/'
+		util.copy "#{src_resources}/", "#{out_resources}/"
 
 		files = [
 			{
@@ -107,7 +103,9 @@ module.exports = (grunt) ->
 				files: [ dest:'colorbox.zip', src:'https://github.com/jackmoore/colorbox/archive/master.zip' ]
 			}
 		]
-		
+	
+		bar = util.progress 'Downloading', files.length
+	
 		async.mapLimit files, 10,
 			(item, callback) ->
 				for file in item.files
@@ -123,34 +121,35 @@ module.exports = (grunt) ->
 						else
 							callback error
 
+						bar.tick()
+
+
 
 			(error, results) ->
 				if error
 					grunt.log.error error
 					done false
 				else
-					done()
+					util.progress_done bar
 	
 					for file in results
-						dest = out_resources+'/'+file.package;
+						dest = "#{out_resources}/#{file.package}"
 						
-						grunt.file.write dest+'/'+file.dest, file.content
+						grunt.file.write "#{dest}/#{file.dest}", file.content
 						
-						new AdmZip(dest+'/'+file.dest).extractAllTo(dest) if /\.zip$/.test(file.dest)
+						new AdmZip("#{dest}/#{file.dest}").extractAllTo(dest) if /\.zip$/.test(file.dest)
 	
-					grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
-
 
 
 					# process colorbox resources
-					util.copy out_colorbox+'/colorbox-master/', out_colorbox+'/', 'example*/**/*'
-					util.delete out_colorbox+'/colorbox-master', out_colorbox+'/colorbox.zip'
+					util.copy "#{out_colorbox}/colorbox-master/", "#{out_colorbox}/", 'example*/**/*'
+					util.delete "#{out_colorbox}/colorbox-master", "#{out_colorbox}/colorbox.zip"
 
-					for example in grunt.file.expand(out_colorbox+'/*')
-						util.delete example+'/index.html'
+					for example in grunt.file.expand("#{out_colorbox}/*")
+						util.delete "#{example}/index.html"
 
-						grunt.file.write example+'/colorbox.less',
-							grunt.file.read(example+'/colorbox.css')
+						grunt.file.write "#{example}/colorbox.less",
+							grunt.file.read("#{example}/colorbox.css")
 								.replace(/url\(images\//g, "url('@{img-path}/vendor/jquery.colorbox/")
 								.replace(/\.png\)/g,       ".png')")
 								.replace(/\.gif\)/g,       ".gif')")
@@ -158,10 +157,11 @@ module.exports = (grunt) ->
 								.replace(/filter: progid/g, 'filter: ~"progid')
 								.replace(/FFFFFF\);/g,      'FFFFFF)";')
 
-						util.delete example+'/colorbox.css'
+						util.delete "#{example}/colorbox.css"
 
 					grunt.log.ok 'Assets processed.'
 
+					done()
 
 
 

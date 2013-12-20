@@ -1,18 +1,17 @@
 module.exports = (grunt) ->
 	path = grunt.config.get 'internal.path'
 	pkg  = grunt.config.get 'internal.pkg'
-	info = grunt.config.get 'internal.info'
 	util = grunt.config.get 'util'
 
 	preprocess = require 'preprocess'
 
 	src = path.src.kafe
-	out = path.out.dist+'/'+pkg.name
+	out = "#{path.out.dist}/#{pkg.name}"
 
 	# config
 	grunt.config.set name, data for name, data of {
 		'jshint.dist_core':
-			src: [out+'/**/*.js']
+			src: ["#{out}/**/*.js"]
 			options:
 				'-W061': true   # eval can be harmful
 	}
@@ -20,12 +19,13 @@ module.exports = (grunt) ->
 
 	# task
 	grunt.task.registerTask 'build_core', '', ()->
+		info = grunt.config.get 'internal.info'
 
 		util.delete out
 
-		for file in grunt.file.expand src+'/**/*.js'
+		for file in grunt.file.expand "#{src}/**/*.js"
 
-			parts        = file.split src+'/'
+			parts        = file.split "#{src}/"
 			filename     = parts[parts.length-1]
 			name         = filename.replace(/[\/\-]/,'.').substr(0,filename.length-3)
 			module       = name.split '.'
@@ -49,13 +49,13 @@ module.exports = (grunt) ->
 			}
 
 			contents = preprocess.preprocess contents, {
-				header: "window."+pkg.name+".bonify({name:'"+name+"', version:'"+version+"', obj:(function("+pkg.name+",undefined){\n\n\tvar $ = "+pkg.name+".dependencies.jQuery;"
-				footer: "})(window."+pkg.name+")});"
+				header: "window.#{pkg.name}.bonify({name:'#{name}', version:'#{version}', obj:(function(#{pkg.name},undefined){\n\n\tvar $ = #{pkg.name}.dependencies.jQuery;"
+				footer: "})(window.#{pkg.name})});"
 			}, 'js'
 
-			grunt.file.write out+'/'+filename, contents
+			grunt.file.write "#{out}/#{filename}", contents
 		
-		grunt.log.ok pkg.name+' core built.'
+		grunt.log.ok "#{pkg.name} core built."
 
 
 	# main task

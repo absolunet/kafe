@@ -9,19 +9,19 @@ module.exports = (grunt) ->
 	# config
 	grunt.config.set name, data for name, data of {
 		'includes.test':
-			options: { includePath:src+'/', },
-			src:  src+'/test.js',
-			dest: out+'/test.js'
+			options: { includePath:"#{src}/" }
+			src:  "#{src}/test.js"
+			dest: "#{out}/test.js"
 		
-		'watch.test': 
-			files: [src+'/**/*', '!'+src+'/libs/*']
+		'watch.test':
+			files: ["#{src}/**/*", "!#{src}/libs/*"]
 			tasks: 'test'
 	}
 
 
 	# copy test
 	grunt.task.registerTask 'copy_test', '', ()-> 
-		util.copy src+'/', out+'/', '*.html'
+		util.copy "#{src}/", "#{out}/", '*.html'
 		grunt.log.ok 'Test files copied.'
 
 
