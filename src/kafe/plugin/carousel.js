@@ -77,14 +77,14 @@
 						__.$status.append(
 							$('<a>')
 								.attr('href','#')
-								.data('<!-- @echo NAME_ATTR -->-itemid', i+1)
+								.attr('data-<!-- @echo NAME_ATTR -->-target', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+__.statusBullet+'</span>')
 						);
 						__.$statusNum.append(
 							$('<a>')
 								.attr('href','#')
-								.data('<!-- @echo NAME_ATTR -->-itemid', i+1)
+								.attr('data-<!-- @echo NAME_ATTR -->-target', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+(i+1)+'</span>')
 						);

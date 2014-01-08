@@ -47,7 +47,7 @@
 			height:350px;
 			width:650px;
 		}
-		ul#carrousel .texte {
+		ul#carrousel .text {
 			position:absolute;
 			top:50px;
 			left:50px;
@@ -55,6 +55,7 @@
 		.kafecarousel-highlight{
 			font-size:18px;
 			color:#ff0000;
+			border:1px solid red;
 		}
 	</style>
 
@@ -65,26 +66,27 @@
 	<div class="container-carrousel">
 		<ul id="carrousel">
 			<li>
-				<div class="texte">Slide 1</div>
+				<div class="text">Slide 1</div>
 				<img src="http://placehold.it/650x350" />
 			</li>
 			<li>
-				<div class="texte">Slide 2</div>
+				<div class="text">Slide 2</div>
 				<img src="http://placehold.it/650x350" />
 			</li>
 			<li>
-				<div class="texte">Slide 3</div>
+				<div class="text">Slide 3</div>
 				<img src="http://placehold.it/650x350" />
 			</li>
 			<li>
-				<div class="texte">Slide 4</div>
+				<div class="text">Slide 4</div>
 				<img src="http://placehold.it/650x350" />
 			</li>
 			<li>
-				<div class="texte">Slide 5</div>
+				<div class="text">Slide 5</div>
 				<img src="http://placehold.it/650x350" />
 			</li>
 		</ul>
+
 		<div style="float:left;margin-right:15px;">
 			<br />
 			<p>Bouton de navigation</p>
@@ -106,7 +108,7 @@
 				<li>GO 5</li>
 			</ul>
 		</div>
-		<div style="float:left;">
+		<div style="float:left;margin-right:15px;">
 			<br />
 			<p>Current Position</p>
 			<p class="curPos"></p>
@@ -119,10 +121,60 @@
 			<br />
 			<p>Status Number</p>
 			<p class="curStatusNum"></p>
+			<br />
+			<p>Go to item</p>
+			<p class="btnGo" data-kafecarousel-target="3">GO 3</p>
+			<p class="btnGo" data-kafecarousel-target="5">GO 5</p>
+		</div>
+		<div style="float:left;">
+			<br />
+			<p>Manual Call jQuery</p>
+			<p onclick="jQuery('#carrousel').kafeCarousel('change','prev');">Prev</p>
+			<p onclick="jQuery('#carrousel').kafeCarousel('change','next');">Next</p>
+			<br />
+			<p>Manual Call variable</p>
+			<p onclick="myCarousel.change('prev');">Prev</p>
+			<p onclick="myCarousel.change('next');">Next</p>
 		</div>
 	</div>
 	<script type="text/javascript">
-		var myCarousel = kafe.plugin.carousel({ selector: { container: '#carrousel', start: '.btnStart', prev: '.btnPrev', next: '.btnNext', end: '.btnEnd', play: '.btnPlay', pause: '.btnPause', items: '.slideNumber', position: '.curPos', total: '.curTotal', status: '.curStatus', statusNum: '.curStatusNum' }, wrap: false, speed: 500, transition: 'slideLeft', autostart: true, startId: 2 });
+		var myCarousel = kafe.plugin.carousel({
+		//jQuery('#carrousel').kafeCarousel('init', {
+			selector: { 
+				container: '#carrousel',
+				//slides: '#carrousel li',
+				start: '.btnStart',
+				prev: '.btnPrev',
+				next: '.btnNext',
+				end: '.btnEnd',
+				play: '.btnPlay',
+				pause: '.btnPause',
+				items: '.slideNumber',
+				item: '.btnGo',
+				position: '.curPos',
+				total: '.curTotal',
+				status: '.curStatus',
+				statusNum: '.curStatusNum'
+				},
+			wrap: true,
+			transition: 'slideLeft',
+			speed: 500,
+			startId: 1,	
+			autostart: true,
+			//autostart: {interval:1500},
+			preSwitchCallback: function(data){
+				console.log('preSwitchCallback');
+				console.log(data);
+			},
+			postSwitchCallback: function(data){
+				console.log('postSwitchCallback');
+				console.log(data);
+				console.log('----------------------------------');
+			},
+			statusLink: true,
+			statusBullet: '<img src="http://placehold.it/20x20" />',
+			pauseOnHover: true
+		});
 	</script>
 </body>
 </html>
