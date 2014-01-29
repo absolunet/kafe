@@ -79,14 +79,14 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 						__.$status.append(
 							$('<a>')
 								.attr('href','#')
-								.data('kafecarousel-itemid', i+1)
+								.attr('data-kafecarousel-target', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+__.statusBullet+'</span>')
 						);
 						__.$statusNum.append(
 							$('<a>')
 								.attr('href','#')
-								.data('kafecarousel-itemid', i+1)
+								.attr('data-kafecarousel-target', i+1)
 								.on('click',__.itemSimpleClick)
 								.html('<span>'+(i+1)+'</span>')
 						);
@@ -269,6 +269,7 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 			}
 
 			refresh(self);
+			// TODO wrap:false autostart bug
 			__.slideStartAuto();
 		}
 	;

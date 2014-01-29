@@ -1,5 +1,5 @@
 /*!
- * Masonry PACKAGED v3.1.3
+ * Masonry PACKAGED v3.1.4
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -146,14 +146,15 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * eventie v1.0.3
+ * eventie v1.0.5
  * event binding helper
  *   eventie.bind( elem, 'click', myFn )
  *   eventie.unbind( elem, 'click', myFn )
+ * MIT license
  */
 
 /*jshint browser: true, undef: true, unused: true */
-/*global define: false */
+/*global define: false, module: false */
 
 ( function( window ) {
 
@@ -163,6 +164,13 @@ var docElem = document.documentElement;
 
 var bind = function() {};
 
+function getIEEvent( obj ) {
+  var event = window.event;
+  // add event.target
+  event.target = event.target || event.srcElement || obj;
+  return event;
+}
+
 if ( docElem.addEventListener ) {
   bind = function( obj, type, fn ) {
     obj.addEventListener( type, fn, false );
@@ -171,15 +179,11 @@ if ( docElem.addEventListener ) {
   bind = function( obj, type, fn ) {
     obj[ type + fn ] = fn.handleEvent ?
       function() {
-        var event = window.event;
-        // add event.target
-        event.target = event.target || event.srcElement;
+        var event = getIEEvent( obj );
         fn.handleEvent.call( fn, event );
       } :
       function() {
-        var event = window.event;
-        // add event.target
-        event.target = event.target || event.srcElement;
+        var event = getIEEvent( obj );
         fn.call( obj, event );
       };
     obj.attachEvent( "on" + type, obj[ type + fn ] );
@@ -209,10 +213,14 @@ var eventie = {
   unbind: unbind
 };
 
-// transport
+// ----- module definition ----- //
+
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( 'eventie/eventie',eventie );
+} else if ( typeof exports === 'object' ) {
+  // CommonJS
+  module.exports = eventie;
 } else {
   // browser global
   window.eventie = eventie;
@@ -291,7 +299,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( this );
 
 /*!
- * EventEmitter v4.2.4 - git.io/ee
+ * EventEmitter v4.2.7 - git.io/ee
  * Oliver Caldwell
  * MIT license
  * @preserve
@@ -309,9 +317,9 @@ if ( typeof define === 'function' && define.amd ) {
 	function EventEmitter() {}
 
 	// Shortcuts to improve speed and size
-
-	// Easy access to the prototype
 	var proto = EventEmitter.prototype;
+	var exports = this;
+	var originalGlobalValue = exports.EventEmitter;
 
 	/**
 	 * Finds the index of the listener for the event in it's storage array.
@@ -361,7 +369,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 		// Return a concatenated array of all matching events if
 		// the selector is a regular expression.
-		if (typeof evt === 'object') {
+		if (evt instanceof RegExp) {
 			response = {};
 			for (key in events) {
 				if (events.hasOwnProperty(key) && evt.test(key)) {
@@ -614,7 +622,7 @@ if ( typeof define === 'function' && define.amd ) {
 			// Remove all listeners for the specified event
 			delete events[evt];
 		}
-		else if (type === 'object') {
+		else if (evt instanceof RegExp) {
 			// Remove all events matching the regex.
 			for (key in events) {
 				if (events.hasOwnProperty(key) && evt.test(key)) {
@@ -739,6 +747,16 @@ if ( typeof define === 'function' && define.amd ) {
 		return this._events || (this._events = {});
 	};
 
+	/**
+	 * Reverts the global {@link EventEmitter} to its previous value and returns a reference to this version.
+	 *
+	 * @return {Function} Non conflicting EventEmitter class.
+	 */
+	EventEmitter.noConflict = function noConflict() {
+		exports.EventEmitter = originalGlobalValue;
+		return EventEmitter;
+	};
+
 	// Expose the class either via AMD, CommonJS or the global object
 	if (typeof define === 'function' && define.amd) {
 		define('eventEmitter/EventEmitter',[],function () {
@@ -754,12 +772,13 @@ if ( typeof define === 'function' && define.amd ) {
 }.call(this));
 
 /*!
- * getStyleProperty by kangax
+ * getStyleProperty v1.0.3
+ * original by kangax
  * http://perfectionkills.com/feature-testing-css-properties/
  */
 
 /*jshint browser: true, strict: true, undef: true */
-/*globals define: false */
+/*global define: false, exports: false, module: false */
 
 ( function( window ) {
 
@@ -797,6 +816,9 @@ if ( typeof define === 'function' && define.amd ) {
   define( 'get-style-property/get-style-property',[],function() {
     return getStyleProperty;
   });
+} else if ( typeof exports === 'object' ) {
+  // CommonJS for Component
+  module.exports = getStyleProperty;
 } else {
   // browser global
   window.getStyleProperty = getStyleProperty;
@@ -805,12 +827,12 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /**
- * getSize v1.1.5
+ * getSize v1.1.7
  * measure size of elements
  */
 
 /*jshint browser: true, strict: true, undef: true, unused: true */
-/*global define: false */
+/*global define: false, exports: false, require: false, module: false */
 
 ( function( window, undefined ) {
 
@@ -818,12 +840,10 @@ if ( typeof define === 'function' && define.amd ) {
 
 // -------------------------- helpers -------------------------- //
 
-var defView = document.defaultView;
-var isComputedStyle = defView && defView.getComputedStyle;
-
-var getStyle = isComputedStyle ?
+var getComputedStyle = window.getComputedStyle;
+var getStyle = getComputedStyle ?
   function( elem ) {
-    return defView.getComputedStyle( elem, null );
+    return getComputedStyle( elem, null );
   } :
   function( elem ) {
     return elem.currentStyle;
@@ -978,27 +998,27 @@ function getSize( elem ) {
 // taken from jQuery's curCSS
 function mungeNonPixel( elem, value ) {
   // IE8 and has percent value
-  if ( isComputedStyle || value.indexOf('%') === -1 ) {
+  if ( getComputedStyle || value.indexOf('%') === -1 ) {
     return value;
   }
   var style = elem.style;
-	// Remember the original values
-	var left = style.left;
-	var rs = elem.runtimeStyle;
-	var rsLeft = rs && rs.left;
+  // Remember the original values
+  var left = style.left;
+  var rs = elem.runtimeStyle;
+  var rsLeft = rs && rs.left;
 
-	// Put in the new values to get a computed value out
-	if ( rsLeft ) {
-		rs.left = elem.currentStyle.left;
-	}
-	style.left = value;
-	value = style.pixelLeft;
+  // Put in the new values to get a computed value out
+  if ( rsLeft ) {
+    rs.left = elem.currentStyle.left;
+  }
+  style.left = value;
+  value = style.pixelLeft;
 
-	// Revert the changed values
-	style.left = left;
-	if ( rsLeft ) {
-		rs.left = rsLeft;
-	}
+  // Revert the changed values
+  style.left = left;
+  if ( rsLeft ) {
+    rs.left = rsLeft;
+  }
 
   return value;
 }
@@ -1009,8 +1029,11 @@ return getSize;
 
 // transport
 if ( typeof define === 'function' && define.amd ) {
-  // AMD
+  // AMD for RequireJS
   define( 'get-size/get-size',[ 'get-style-property/get-style-property' ], defineGetSize );
+} else if ( typeof exports === 'object' ) {
+  // CommonJS for Component
+  module.exports = defineGetSize( require('get-style-property') );
 } else {
   // browser global
   window.getSize = defineGetSize( window.getStyleProperty );
@@ -1123,7 +1146,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 /**
  * Outlayer Item
-**/
+ */
 
 ( function( window ) {
 
@@ -1227,7 +1250,7 @@ extend( Item.prototype, EventEmitter.prototype );
 
 Item.prototype._create = function() {
   // transition objects
-  this._transition = {
+  this._transn = {
     ingProperties: {},
     clean: {},
     onEnd: {}
@@ -1408,7 +1431,7 @@ Item.prototype._transition = function( args ) {
     return;
   }
 
-  var _transition = this._transition;
+  var _transition = this._transn;
   // keep track of onTransitionEnd callback by css property
   for ( var prop in args.onTransitionEnd ) {
     _transition.onEnd[ prop ] = args.onTransitionEnd[ prop ];
@@ -1491,7 +1514,7 @@ Item.prototype.ontransitionend = function( event ) {
   if ( event.target !== this.element ) {
     return;
   }
-  var _transition = this._transition;
+  var _transition = this._transn;
   // get property name of transitioned property, convert to prefix-free
   var propertyName = dashedVendorProperties[ event.propertyName ] || event.propertyName;
 
@@ -1647,8 +1670,9 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Outlayer v1.1.9
+ * Outlayer v1.1.10
  * the brains and guts of a layout library
+ * MIT license
  */
 
 ( function( window ) {
@@ -1758,7 +1782,7 @@ function Outlayer( element, options ) {
   // bail out if not proper element
   if ( !element || !isElement( element ) ) {
     if ( console ) {
-      console.error( 'Bad ' + this.settings.namespace + ' element: ' + element );
+      console.error( 'Bad ' + this.constructor.namespace + ' element: ' + element );
     }
     return;
   }
@@ -1783,10 +1807,8 @@ function Outlayer( element, options ) {
 }
 
 // settings are for internal use only
-Outlayer.prototype.settings = {
-  namespace: 'outlayer',
-  item: Item
-};
+Outlayer.namespace = 'outlayer';
+Outlayer.Item = Item;
 
 // default options
 Outlayer.prototype.options = {
@@ -1850,7 +1872,7 @@ Outlayer.prototype.reloadItems = function() {
 Outlayer.prototype._itemize = function( elems ) {
 
   var itemElems = this._filterFindItemElements( elems );
-  var Item = this.settings.item;
+  var Item = this.constructor.Item;
 
   // create new Outlayer Items for collection
   var items = [];
@@ -1962,6 +1984,7 @@ Outlayer.prototype._getMeasurement = function( measurement, size ) {
     // default to 0
     this[ measurement ] = 0;
   } else {
+    // use option as an element
     if ( typeof option === 'string' ) {
       elem = this.element.querySelector( option );
     } else if ( isElement( option ) ) {
@@ -2007,16 +2030,19 @@ Outlayer.prototype._getItemsForLayout = function( items ) {
  * @param {Boolean} isInstant
  */
 Outlayer.prototype._layoutItems = function( items, isInstant ) {
+  var _this = this;
+  function onItemsLayout() {
+    _this.emitEvent( 'layoutComplete', [ _this, items ] );
+  }
+
   if ( !items || !items.length ) {
     // no items, emit event with empty array
-    this.emitEvent( 'layoutComplete', [ this, items ] );
+    onItemsLayout();
     return;
   }
 
   // emit layoutComplete when done
-  this._itemsOn( items, 'layout', function onItemsLayout() {
-    this.emitEvent( 'layoutComplete', [ this, items ] );
-  });
+  this._itemsOn( items, 'layout', onItemsLayout );
 
   var queue = [];
 
@@ -2026,7 +2052,7 @@ Outlayer.prototype._layoutItems = function( items, isInstant ) {
     var position = this._getItemLayoutPosition( item );
     // enqueue
     position.item = item;
-    position.isInstant = isInstant;
+    position.isInstant = isInstant || item.isLayoutInstant;
     queue.push( position );
   }
 
@@ -2390,10 +2416,11 @@ Outlayer.prototype.prepended = function( elems ) {
  * @param {Array of Outlayer.Items} items
  */
 Outlayer.prototype.reveal = function( items ) {
-  if ( !items || !items.length ) {
+  var len = items && items.length;
+  if ( !len ) {
     return;
   }
-  for ( var i=0, len = items.length; i < len; i++ ) {
+  for ( var i=0; i < len; i++ ) {
     var item = items[i];
     item.reveal();
   }
@@ -2404,10 +2431,11 @@ Outlayer.prototype.reveal = function( items ) {
  * @param {Array of Outlayer.Items} items
  */
 Outlayer.prototype.hide = function( items ) {
-  if ( !items || !items.length ) {
+  var len = items && items.length;
+  if ( !len ) {
     return;
   }
-  for ( var i=0, len = items.length; i < len; i++ ) {
+  for ( var i=0; i < len; i++ ) {
     var item = items[i];
     item.hide();
   }
@@ -2496,7 +2524,7 @@ Outlayer.prototype.destroy = function() {
   delete this.element.outlayerGUID;
   // remove data for jQuery
   if ( jQuery ) {
-    jQuery.removeData( this.element, this.settings.namespace );
+    jQuery.removeData( this.element, this.constructor.namespace );
   }
 
 };
@@ -2515,8 +2543,7 @@ Outlayer.data = function( elem ) {
 
 // --------------------------  -------------------------- //
 
-// copy an object on the Outlayer prototype
-// used in options and settings
+// copy an object on the Outlayer prototype to new object
 function copyOutlayerProto( obj, property ) {
   obj.prototype[ property ] = extend( {}, Outlayer.prototype[ property ] );
 }
@@ -2532,15 +2559,21 @@ Outlayer.create = function( namespace, options ) {
   function Layout() {
     Outlayer.apply( this, arguments );
   }
+  // inherit Outlayer prototype, use Object.create if there
+  if ( Object.create ) {
+    Layout.prototype = Object.create( Outlayer.prototype );
+  } else {
+    extend( Layout.prototype, Outlayer.prototype );
+  }
+  // set contructor, used for namespace and Item
+  Layout.prototype.constructor = Layout;
 
-  extend( Layout.prototype, Outlayer.prototype );
-
+  // copy default options so Outlayer.options don't get touched
   copyOutlayerProto( Layout, 'options' );
-  copyOutlayerProto( Layout, 'settings' );
-
+  // apply new options
   extend( Layout.prototype.options, options );
 
-  Layout.prototype.settings.namespace = namespace;
+  Layout.namespace = namespace;
 
   Layout.data = Outlayer.data;
 
@@ -2550,8 +2583,6 @@ Outlayer.create = function( namespace, options ) {
   };
 
   Layout.Item.prototype = new Item();
-
-  Layout.prototype.settings.item = Layout.Item;
 
   // -------------------------- declarative -------------------------- //
 
@@ -2635,7 +2666,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Masonry v3.1.3
+ * Masonry v3.1.4
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -2774,6 +2805,8 @@ function masonryDefinition( Outlayer, getSize ) {
     var firstCol = Math.floor( firstX / this.columnWidth );
     firstCol = Math.max( 0, firstCol );
     var lastCol = Math.floor( lastX / this.columnWidth );
+    // lastCol should not go over if multiple of columnWidth #425
+    lastCol -= lastX % this.columnWidth ? 0 : 1;
     lastCol = Math.min( this.cols - 1, lastCol );
     // set colYs to bottom of the stamp
     var stampMaxY = ( this.options.isOriginTop ? offset.top : offset.bottom ) +
