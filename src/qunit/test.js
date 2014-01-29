@@ -22,7 +22,7 @@
 // **@import 'ext/soundcloud'
 // **@import 'ext/twitter'
 // **@import 'ext/youtube'
-// **@import 'plugin/carousel'
+// **@import 'plugin/carousel'  // manual
 // **@import 'plugin/menu'
 // **@import 'plugin/qrcode'
 // **@import 'plugin/sticky'
