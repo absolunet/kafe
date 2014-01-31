@@ -3,7 +3,7 @@
 * http://github.com/RobinHerbots/jquery.inputmask
 * Copyright (c) 2010 - 2014 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 2.4.21
+* Version: 2.4.22
 */
 
 (function ($) {
@@ -224,7 +224,7 @@
             return opts.greedy ? ms : ms.sort(function (a, b) { return a["mask"].length - b["mask"].length; });
         }
 
-        var msie10 = navigator.userAgent.match(new RegExp("msie 10", "i")) !== null,
+        var msie1x = new Function("/*@cc_on return @_jscript_version; @*/")() >= 10, //conditional compilation from mickeysoft trick
             iphone = navigator.userAgent.match(new RegExp("iphone", "i")) !== null,
             android = navigator.userAgent.match(new RegExp("android.*safari.*", "i")) !== null,
             androidchrome = navigator.userAgent.match(new RegExp("android.*chrome.*", "i")) !== null,
@@ -1171,7 +1171,7 @@
                 $input.click();
             }
 
-            function chromeInputEvent(e) {
+            function chrome32InputEvent(e) {
                 if (skipInputEvent === true) {
                     skipInputEvent = false;
                     return true;
@@ -1181,17 +1181,18 @@
                 //backspace in chrome32 only fires input event - detect & treat
                 var caretPos = caret(input),
                     currentValue = input._valueGet();
-                if (currentValue.charAt(caretPos.begin) != getActiveBuffer()[caretPos.begin] && !isMask(caretPos.begin)) {
-                    e.keyCode = opts.keyCode.BACKSPACE;
-                    keydownEvent.call(input, e);
-                } else {
+                if (currentValue.charAt(caretPos.begin) != getActiveBuffer()[caretPos.begin] 
+              	  	&& currentValue.charAt(caretPos.begin + 1) != getActiveBuffer()[caretPos.begin] 
+                	&& !isMask(caretPos.begin)) {
+                    	e.keyCode = opts.keyCode.BACKSPACE;
+                    	keydownEvent.call(input, e);
+                } else { //nonnumerics don't fire keypress 
                     checkVal(input, false, false);
                     writeBuffer(input, getActiveBuffer());
                     if (isComplete(getActiveBuffer()) === true)
                         $input.trigger("complete");
                     $input.click();
                 }
-                
                 e.preventDefault()
             }
 
@@ -1383,9 +1384,10 @@
                          ).bind("keypress.inputmask", keypressEvent
                          ).bind("keyup.inputmask", keyupEvent);
 
-                    if (androidchrome32)
-                        $el.bind("input.inputmask", chromeInputEvent);
-                    if (msie10)
+                    if (androidchrome32) {
+                        $el.bind("input.inputmask", chrome32InputEvent);
+                    }    
+                    if (msie1x)
                         $el.bind("input.inputmask", inputEvent);
 
                     //apply mask
@@ -1658,7 +1660,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.4.21
+Version: 2.4.22
 
 Optional extensions on the jquery.inputmask base
 */
@@ -1780,7 +1782,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.4.21
+Version: 2.4.22
 
 Optional extensions on the jquery.inputmask base
 */
@@ -2268,7 +2270,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.4.21
+Version: 2.4.22
 
 Optional extensions on the jquery.inputmask base
 */
@@ -2445,7 +2447,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.4.21
+Version: 2.4.22
 
 Regex extensions on the jquery.inputmask base
 Allows for using regular expressions as a mask
@@ -2615,7 +2617,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.4.21
+Version: 2.4.22
 
 Phone extension.
 When using this extension make sure you specify the correct url to get the masks

@@ -18,7 +18,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 
-	<title>dist/kafe/cms/sitecore.js - kafe</title>
+	<title>dist\kafe\cms\sitecore.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2014 Absolunet inc. -->
@@ -40,7 +40,7 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/kafe/cms/sitecore.js</h1>
+	<h1>dist\kafe\cms\sitecore.js</h1>
 	<h2>File</h2>
 </header>
 
@@ -91,6 +91,7 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 	/**
 	* ### Version 0.1
 	* Additionnal methods for Sitecore
+	* Adds the environment variable &quot;sitecore-editor&quot; to kafe based on the data attribute &quot;data-sitecore-editor&quot; (true/false) on the html tag
 	*
 	* @module kafe.cms
 	* @class kafe.cms.sitecore
@@ -101,9 +102,12 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 	/**
 	* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
 	*
+	* Requires data attribute (data-sitecore-editor=&quot;true&quot;) on html tag when page-editor is active.
+	* Styles location : /vendor/ressources/cms.sitecore/editorToolbox.less
+	*
 	* @method editorToolbox
 	* @param {Object} [options] Initial configurations.
-	*	@param {String} [options.label=&#x27;Editor Toolbox&#x27;] The label shown on the toolbox handle.
+	*	@param {String} [options.label=&#x27;EditorToolbox&#x27;] The label shown on the toolbox handle.
 	*	@param {Function} [options.onUpdate] Callback that fires everytime the toolbox updates its component status.
 	* @example
 	*	// Initializing placeholders for the toolbox using data attributes
@@ -131,11 +135,34 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 
 		c.label = !!options.label ? options.label : &#x27;Editor Toolbox&#x27;;
 		c.placeholders = {
-			label:     !!options.placeholders.label ? options.placeholders.label : &#x27;Placeholders&#x27;,
 			$elements: _getPlaceholders()
 		};
 		c.updateCallback = $.isFunction(options.onUpdate) ? options.onUpdate : function(){};
 
+		/*--- Functions ---*/
+		var _updateToolbox = function(){
+			/* Placeholders */
+			$.each(c.placeholders.$elements, function(i,_ph){
+				var _phIsEmpty = _ph.$element.children(_ph.filter).length === 0;
+				var _oppositeIsActive = _ph.opposite ? _ph.opposite.$field.is(&#x27;:checked&#x27;) : false;
+				var _phIsActive = _phIsEmpty &amp;&amp; !_oppositeIsActive;
+				_ph.$field.prop(&#x27;disabled&#x27;, !_phIsActive);
+			});
+			c.updateCallback(_callbackData);
+		};
+
+		var _getCallbackData = function(){
+			/* Placeholders */
+			var _placeholders = [];
+			$.each(c.placeholders.$elements, function(i,_ph){
+				_placeholders.push(_ph.$element.get(0));
+			});
+
+			return {
+				placeholders:$(_placeholders)
+			};
+		};
+		
 		/*--- Config ---*/
 		var _showToolbox = false;
 		var _toolboxOpenClass = &#x27;open&#x27;;
@@ -165,30 +192,6 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 				_toolboxHandle.$self.trigger(&#x27;click&#x27;);
 			}
 		});
-
-		/*--- Functions ---*/
-		var _updateToolbox = function(){
-			/* Placeholders */
-			$.each(c.placeholders.$elements, function(i,_ph){
-				var _phIsEmpty = _ph.$element.children(_ph.filter).length === 0;
-				var _oppositeIsActive = _ph.opposite ? _ph.opposite.$field.is(&#x27;:checked&#x27;) : false;
-				var _phIsActive = _phIsEmpty &amp;&amp; !_oppositeIsActive;
-				_ph.$field.prop(&#x27;disabled&#x27;, !_phIsActive);
-			});
-			c.updateCallback(_callbackData);
-		};
-
-		var _getCallbackData = function(){
-			/* Placeholders */
-			var _placeholders = [];
-			$.each(c.placeholders.$elements, function(i,_ph){
-				_placeholders.push(_ph.$element.get(0));
-			});
-
-			return {
-				placeholders:$(_placeholders)
-			};
-		};
 
 		/*--- Contents ---*/
 

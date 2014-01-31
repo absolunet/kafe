@@ -43,10 +43,11 @@
 	<h1>kafe.cms.sitecore</h1>
 	<h2>Class</h2>
 	<h3 id="version-0-1">Version 0.1</h3>
-<p>Additionnal methods for Sitecore</p>
+<p>Additionnal methods for Sitecore
+Adds the environment variable &quot;sitecore-editor&quot; to kafe based on the data attribute &quot;data-sitecore-editor&quot; (true/false) on the html tag</p>
 
 	<div>
-		<span>Source: <a href="../files/dist_kafe_cms_sitecore.js.html#l44">dist/kafe/cms/sitecore.js</a></span>
+		<span>Source: <a href="../files/dist_kafe_cms_sitecore.js.html#l44">dist\kafe\cms\sitecore.js</a></span>
 		<span>Unit test: <a href="/kafe/test/?module=kafe.cms.sitecore">Report</a></span>
 	</div>
 </header>
@@ -59,9 +60,11 @@
 	
 		<section>
 	<h1>editorToolbox</h1>
-	<footer><a href="../files/dist_kafe_cms_sitecore.js.html#l54">@54</a></footer>
+	<footer><a href="../files/dist_kafe_cms_sitecore.js.html#l55">@55</a></footer>
 
 	<p>Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.</p>
+<p>Requires data attribute (data-sitecore-editor=&quot;true&quot;) on html tag when page-editor is active.
+Styles location : /vendor/ressources/cms.sitecore/editorToolbox.less</p>
 
 
 	<header>
@@ -72,12 +75,6 @@
 
 				
 					<li class="Optional"><code>options</code></li>
-				
-				
-			
-
-				
-					<li><code class="Simple">[options.label=&#x27;Editor</code></li>
 				
 				
 			
@@ -114,6 +111,19 @@
 						
 							<li>
 								
+									<code>[label = &#x27;EditorToolbox&#x27;]</code>
+									<strong>String</strong>
+									<span>Optional</span>
+								
+								<p>The label shown on the toolbox handle.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
 									<code>[onUpdate]</code>
 									<strong>Function</strong>
 									<span>Optional</span>
@@ -126,19 +136,6 @@
 							</li>
 						
 						</ul>
-					
-
-				</li>
-			
-				<li>
-					
-						<code>[options.label=&#x27;Editor</code>
-						<strong>String</strong>
-					
-					<p>Toolbox&#39;] The label shown on the toolbox handle.</p>
-
-
-
 					
 
 				</li>

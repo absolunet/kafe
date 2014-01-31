@@ -1,4 +1,6 @@
-/* @echo header */
+window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undefined){
+
+	var $ = kafe.dependencies.jQuery;
 
 	var
 		_getPlaceholders = function(){
@@ -40,11 +42,12 @@
 	;
 
 	/**
-	* ### Version <!-- @echo VERSION -->
+	* ### Version 0.1
 	* Additionnal methods for Sitecore
+	* Adds the environment variable "sitecore-editor" to kafe based on the data attribute "data-sitecore-editor" (true/false) on the html tag
 	*
-	* @module <!-- @echo MODULE -->
-	* @class <!-- @echo NAME_FULL -->
+	* @module kafe.cms
+	* @class kafe.cms.sitecore
 	*/
 	var sitecore = {};
 	kafe.env('sitecore-editor', $('html').data('sitecore-editor') === true);
@@ -52,9 +55,12 @@
 	/**
 	* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
 	*
+	* Requires data attribute (data-sitecore-editor="true") on html tag when page-editor is active.
+	* Styles location : /vendor/ressources/cms.sitecore/editorToolbox.less
+	*
 	* @method editorToolbox
 	* @param {Object} [options] Initial configurations.
-	*	@param {String} [options.label='Editor Toolbox'] The label shown on the toolbox handle.
+	*	@param {String} [options.label='EditorToolbox'] The label shown on the toolbox handle.
 	*	@param {Function} [options.onUpdate] Callback that fires everytime the toolbox updates its component status.
 	* @example
 	*	// Initializing placeholders for the toolbox using data attributes
@@ -68,7 +74,7 @@
 	*	</section>
 	* @example
 	*	// Initializing the toolbox
-	*	<!-- @echo NAME_FULL -->.editorToolbox({
+	*	kafe.cms.sitecore.editorToolbox({
 	*		label:"My Toolbox",
 	*		onUpdate:function(data){
 	*			console.log('There are ' + data.placeholders.filter(':visible').length + ' visible in the page');
@@ -82,11 +88,34 @@
 
 		c.label = !!options.label ? options.label : 'Editor Toolbox';
 		c.placeholders = {
-			label:     !!options.placeholders.label ? options.placeholders.label : 'Placeholders',
 			$elements: _getPlaceholders()
 		};
 		c.updateCallback = $.isFunction(options.onUpdate) ? options.onUpdate : function(){};
 
+		/*--- Functions ---*/
+		var _updateToolbox = function(){
+			/* Placeholders */
+			$.each(c.placeholders.$elements, function(i,_ph){
+				var _phIsEmpty = _ph.$element.children(_ph.filter).length === 0;
+				var _oppositeIsActive = _ph.opposite ? _ph.opposite.$field.is(':checked') : false;
+				var _phIsActive = _phIsEmpty && !_oppositeIsActive;
+				_ph.$field.prop('disabled', !_phIsActive);
+			});
+			c.updateCallback(_callbackData);
+		};
+
+		var _getCallbackData = function(){
+			/* Placeholders */
+			var _placeholders = [];
+			$.each(c.placeholders.$elements, function(i,_ph){
+				_placeholders.push(_ph.$element.get(0));
+			});
+
+			return {
+				placeholders:$(_placeholders)
+			};
+		};
+		
 		/*--- Config ---*/
 		var _showToolbox = false;
 		var _toolboxOpenClass = 'open';
@@ -116,30 +145,6 @@
 				_toolboxHandle.$self.trigger('click');
 			}
 		});
-
-		/*--- Functions ---*/
-		var _updateToolbox = function(){
-			/* Placeholders */
-			$.each(c.placeholders.$elements, function(i,_ph){
-				var _phIsEmpty = _ph.$element.children(_ph.filter).length === 0;
-				var _oppositeIsActive = _ph.opposite ? _ph.opposite.$field.is(':checked') : false;
-				var _phIsActive = _phIsEmpty && !_oppositeIsActive;
-				_ph.$field.prop('disabled', !_phIsActive);
-			});
-			c.updateCallback(_callbackData);
-		};
-
-		var _getCallbackData = function(){
-			/* Placeholders */
-			var _placeholders = [];
-			$.each(c.placeholders.$elements, function(i,_ph){
-				_placeholders.push(_ph.$element.get(0));
-			});
-
-			return {
-				placeholders:$(_placeholders)
-			};
-		};
 
 		/*--- Contents ---*/
 
@@ -183,4 +188,4 @@
 
 	return sitecore;
 
-/* @echo footer */
+})(window.kafe)});
