@@ -103,7 +103,7 @@ window.kafe.bonify({name:&#x27;plugin.menu&#x27;, version:&#x27;1.0&#x27;, obj:(
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
-	*	$(&#x27;#main-menu &gt; ul&#x27;).kafeMenu();
+	*	$(&#x27;#main-menu &gt; ul&#x27;).kafeMenu(&#x27;init&#x27;, {});
 	*/
 	menu.init = function() {
 		var
@@ -113,10 +113,10 @@ window.kafe.bonify({name:&#x27;plugin.menu&#x27;, version:&#x27;1.0&#x27;, obj:(
 				handle:        (options.handle) ? options.handle : &#x27;li&#x27;,
 				submenus:      (options.submenus) ? options.submenus : &#x27;ul&#x27;,
 				animation:     (options.animation) ? options.animation : &#x27;slide&#x27;,
-				openSpeed:     (Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
-				openDelay:     (Number(options.openDelay)) ? Number(options.openDelay) : 500,
-				closeSpeed:    (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
-				closeDelay:    (Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
+				openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
+				openDelay:     !isNaN(Number(options.openDelay)) ? Number(options.openDelay) : 500,
+				closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
+				closeDelay:    !isNaN(Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
 				enterCallback: (typeof(options.enterCallback)  == &#x27;function&#x27;) ? options.enterCallback  : undefined,
 				leaveCallback: (typeof(options.leaveCallback)  == &#x27;function&#x27;) ? options.leaveCallback  : undefined
 			}

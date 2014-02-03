@@ -10,7 +10,7 @@
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
-	<!--[if lt IE 9]>       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if lt IE 9]><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
 
 	<script>window.kafejQuery = window.jQuery</script>
@@ -40,7 +40,7 @@
 			width:100%; border-bottom:1px solid #ddd;
 			box-shadow:0 0 3px #ccc;
 		}
-		.wrapper-menu{ height:100%; width:980px; margin:0 auto; }
+		.wrapper-menu{ height:100%; width:980px; margin:0 auto; background:#f0f0f0; }
 		.menu{ float:left; height:100%; }
 		.menu.right{ float:right; margin-right:-1px; }
 		.menu-element{
@@ -48,7 +48,7 @@
 			position:relative; margin-left:-1px;
 		}
 		.menu-element > a{
-			display:block; line-height:40px;
+			display:block; line-height:40px; background:#fff;
 			padding:0 50px; border-right:1px solid #f0f0f0;
 			border-left:1px solid #f0f0f0; position:relative; z-index:2;
 		}
@@ -78,6 +78,7 @@
 	<div class="region-menu">
 		<div class="wrapper-menu">
 			<nav class="menu left">
+				
 				<ul>
 					<li class="menu-element">
 						<a href="#">Menu 1</a>
@@ -106,6 +107,7 @@
 				</ul>
 			</nav>
 			<nav class="menu right">
+
 				<div>
 					<div class="menu-element">
 						<a href="#">Menu 1</a>
@@ -154,15 +156,14 @@
 			});
 
 			//RIGHT MENU (Custom Settings)
-			kafe.plugin.menu.init({
-				selector: '.menu.right > div',
+			$('.menu.right > div').kafeMenu('init', {
 				handle: 'div',
 				submenus: 'div',
 				animation: 'fade',
-				openSpeed:1,
-				openDelay:1,
-				closeSpeed:1,
-				closeDelay:1,
+				openSpeed:0,
+				openDelay:0,
+				closeSpeed:0,
+				closeDelay:0,
 				enterCallback: function(_subMenu){
 					console.log('enterCallback >>>>>');
 					console.log(_subMenu);
@@ -173,7 +174,6 @@
 				}
 			});
 
-			//$('.menu.right > div').kafeMenu();
 		});
 	</script>
 </body>

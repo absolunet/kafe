@@ -56,7 +56,7 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 	*	
 	* @example
 	*	// Or use the jQuery alternative...
-	*	$('#main-menu > ul').kafeMenu();
+	*	$('#main-menu > ul').kafeMenu('init', {});
 	*/
 	menu.init = function() {
 		var
@@ -66,10 +66,10 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 				handle:        (options.handle) ? options.handle : 'li',
 				submenus:      (options.submenus) ? options.submenus : 'ul',
 				animation:     (options.animation) ? options.animation : 'slide',
-				openSpeed:     (Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
-				openDelay:     (Number(options.openDelay)) ? Number(options.openDelay) : 500,
-				closeSpeed:    (Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
-				closeDelay:    (Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
+				openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
+				openDelay:     !isNaN(Number(options.openDelay)) ? Number(options.openDelay) : 500,
+				closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
+				closeDelay:    !isNaN(Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
 				enterCallback: (typeof(options.enterCallback)  == 'function') ? options.enterCallback  : undefined,
 				leaveCallback: (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined
 			}
