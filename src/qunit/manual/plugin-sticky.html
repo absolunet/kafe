@@ -1,0 +1,115 @@
+<!doctype html>
+<html id="fr-CA" lang="fr" class="no-js" data-kafe-page="SpecialContent" data-kafe-tmpl="Content">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="http://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="http://s7.addthis.com">
+	<link rel="dns-prefetch" href="http://www.google-analytics.com">
+	<link rel="dns-prefetch" href="http://connect.facebook.net">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<!--[if lt IE 9]><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+
+	<script>window.kafejQuery = window.jQuery</script>
+
+	<title>KAFE - /plugin/sticky.js</title>
+
+	<script src="../../../dist/vendor/lo-dash.js"></script>
+	<script src="../../../dist/vendor/modernizr.js"></script>
+	<script src="../../../dist/kafe/kafe.js"></script>
+	<script src="../../../dist/kafe/plugin/sticky.js"></script>
+
+	<style type="text/css">
+		html, body{
+			height:100%; margin:0;
+			padding:0; background:#f0f0f0;
+			font-family:Arial, Helvetica, sans-serif;
+			font-size:15px;
+		}
+		div,ul,li,p {
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		.post-it{
+			position:absolute; top:50px;
+			background:#fff;
+			border:1px solid #ddd; box-shadow:0 0 3px #ccc;
+			padding:25px 35px; z-index:10;
+		}
+		.post-it.left{ left:50px; }
+		.post-it.right{ right:50px; }
+		.post-it.restreined{ left:50px; }
+		.container{
+			position:relative; top:30%; left:20%;
+			width:300px; height:800px;
+			z-index:2; border:10px solid #666;
+		}
+		.floating-container{
+			position:absolute; top:65%;
+			left:60%; width:300px;
+		}
+		.bg{
+			position:absolute; left:0; display:block;
+			width:100%; border-top:1px solid #ccc;
+			color:#999; text-align:center;
+			line-height:0; height:0;
+		}
+		.bg > span{
+			background-color:#f0f0f0;
+			padding:0 5px;
+		}
+	</style>
+	
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<div class="post-it left">Left Sticky</div>
+	<div class="post-it right">Right Sticky</div>
+	<div class="container">
+		<div class="post-it restreined">Restreined Sticky</div>
+	</div>
+	<div class="floating-container">
+		<div class="post-it floating">Floating Sticky</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+
+			//LEFT STICKY (Default Settings)
+			kafe.plugin.sticky.init({
+				selector: '.post-it.left'
+			});
+
+			//RIGHT STICKY (Custom Settings)
+			kafe.plugin.sticky.init({
+				selector: '.post-it.right',
+				align:'right'
+			});
+
+			//RESTREINED STICKY (Custom Settings)
+			kafe.plugin.sticky.init({
+				selector: '.post-it.restreined',
+				contain:true,
+				container:'.container'
+			});
+
+			//FLOATING STICKY (Default Settings with parent positioning)
+			kafe.plugin.sticky.init({
+				selector: '.post-it.floating'
+			});
+
+			//BG Lines
+			var $body = $('body');
+			var _interval = 100;
+			for (var i = _interval; i <= 3000; i+=_interval) {
+				$('<div class="bg"><span>'+i+'</span></div>').appendTo($body).css('top',i);
+			};
+
+		});
+	</script>
+</body>
+</html>

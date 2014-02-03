@@ -23,6 +23,6 @@
 // **@import 'ext/twitter'
 // **@import 'ext/youtube'
 // **@import 'plugin/carousel'  // manual
-// **@import 'plugin/menu'
+// **@import 'plugin/menu'		// manual
 // **@import 'plugin/qrcode'
-// **@import 'plugin/sticky'
+// **@import 'plugin/sticky'	// manual
