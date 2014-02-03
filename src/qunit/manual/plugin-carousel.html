@@ -10,27 +10,18 @@
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
-
-
 	<!--[if lt IE 9]>       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
 	
-	<script>window.kafejQuery = window.jQuery.noConflict()</script>
-	
+	<script>window.kafejQuery = window.jQuery</script>
 
+	<title>KAFE - /plugin/carousel.js</title>
 
-
-	<!-- CDN 
-	<script src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=TODO&amp;async=1"></script>
-	-->
-
-
-
-	<title>kafe - tests</title>
 	<script src="../../../dist/vendor/lo-dash.js"></script>
 	<script src="../../../dist/vendor/modernizr.js"></script>
 	<script src="../../../dist/kafe/kafe.js"></script>
 	<script src="../../../dist/kafe/plugin/carousel.js"></script>
+
 	<style type="text/css">
 		div,ul,li,p {
 			margin:0;
@@ -58,8 +49,7 @@
 			border:1px solid red;
 		}
 	</style>
-
-
+	
 	<!-- (c) 2013 Absolunet inc. -->
 </head>
 <body>
@@ -155,7 +145,7 @@
 				total: '.curTotal',
 				status: '.curStatus',
 				statusNum: '.curStatusNum'
-				},
+			},
 			wrap: true,
 			transition: 'slideLeft',
 			speed: 500,
