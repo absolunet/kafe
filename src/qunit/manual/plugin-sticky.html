@@ -91,16 +91,13 @@
 			});
 
 			//RESTREINED STICKY (Custom Settings)
-			kafe.plugin.sticky.init({
-				selector: '.post-it.restreined',
+			$('.post-it.restreined').kafeSticky('init',{
 				contain:true,
 				container:'.container'
 			});
 
 			//FLOATING STICKY (Default Settings with parent positioning)
-			kafe.plugin.sticky.init({
-				selector: '.post-it.floating'
-			});
+			$('.post-it.floating').kafeSticky('init');
 
 			//BG Lines
 			var $body = $('body');
