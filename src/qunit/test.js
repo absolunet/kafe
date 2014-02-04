@@ -24,5 +24,5 @@
 // **@import 'ext/youtube'
 // **@import 'plugin/carousel'  // manual
 // **@import 'plugin/menu'		// manual
-// **@import 'plugin/qrcode'
+// **@import 'plugin/qrcode'	// manual
 // **@import 'plugin/sticky'	// manual
