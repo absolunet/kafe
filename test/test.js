@@ -411,7 +411,7 @@ Error including "src\qunit\libs\kafe\url.js".
 })(window.kafe);
 // **@import 'cms/drupal'
 // **@import 'cms/magento'
-// **@import 'cms/sitecore'
+// **@import 'cms/sitecore'		// manual
 // **@import 'ext/addthis'
 // **@import 'ext/bbq'
 // **@import 'ext/colorbox'
@@ -423,6 +423,6 @@ Error including "src\qunit\libs\kafe\url.js".
 // **@import 'ext/twitter'
 // **@import 'ext/youtube'
 // **@import 'plugin/carousel'  // manual
-// **@import 'plugin/menu'
-// **@import 'plugin/qrcode'
-// **@import 'plugin/sticky'
+// **@import 'plugin/menu'		// manual
+// **@import 'plugin/qrcode'	// manual
+// **@import 'plugin/sticky'	// manual

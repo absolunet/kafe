@@ -11,7 +11,7 @@
 // @import 'url'
 // **@import 'cms/drupal'
 // **@import 'cms/magento'
-// **@import 'cms/sitecore'
+// **@import 'cms/sitecore'		// manual
 // **@import 'ext/addthis'
 // **@import 'ext/bbq'
 // **@import 'ext/colorbox'
