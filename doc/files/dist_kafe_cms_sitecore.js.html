@@ -18,7 +18,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 
-	<title>dist\kafe\cms\sitecore.js - kafe</title>
+	<title>dist/kafe/cms/sitecore.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2014 Absolunet inc. -->
@@ -40,7 +40,7 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist\kafe\cms\sitecore.js</h1>
+	<h1>dist/kafe/cms/sitecore.js</h1>
 	<h2>File</h2>
 </header>
 
@@ -51,20 +51,20 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 
 	var
 		_getPlaceholders = function(){
-			var $placeholders = $(&#x27;[data-sitecore-placeholder]&#x27;);
+			var $placeholders = $(&#x27;[data-kafesitecore-placeholder]&#x27;);
 			var _output = [];
 
 			$placeholders.each(function(i,v){
 				var _ph = {};
 				_ph.$element = $(this);
-				_ph.name = _ph.$element.data(&#x27;sitecore-placeholder&#x27;);
-				_ph.label = !!_ph.$element.data(&#x27;sitecore-displayname&#x27;) ? _ph.$element.data(&#x27;sitecore-displayname&#x27;) : _ph.name;
+				_ph.name = _ph.$element.data(&#x27;kafesitecore-placeholder&#x27;);
+				_ph.label = !!_ph.$element.data(&#x27;kafesitecore-displayname&#x27;) ? _ph.$element.data(&#x27;kafesitecore-displayname&#x27;) : _ph.name;
 				_ph.filter = &#x27;:not(code, .scEmptyPlaceholder, .clearer)&#x27;;
-				_ph.$locator = $(&#x27;&lt;span class=&quot;sitecore-editor-toolbox-locator&quot;&gt;&lt;/span&gt;&#x27;);
-				_ph.$field = $(&#x27;&lt;input id=&quot;sitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot; type=&quot;checkbox&quot; checked=&quot;checked&quot;/&gt;&#x27;);
-				_ph.$fieldLabel = $(&#x27;&lt;label for=&quot;sitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot;&gt;&#x27;+_ph.label+&#x27;&lt;/label&gt;&#x27;);
-				if(!!_ph.$element.data(&#x27;sitecore-placeholder-opposite&#x27;)){
-					_ph.opposite = _ph.$element.data(&#x27;sitecore-placeholder-opposite&#x27;);
+				_ph.$locator = $(&#x27;&lt;span class=&quot;kafesitecore-editor-toolbox-locator&quot;&gt;&lt;/span&gt;&#x27;);
+				_ph.$field = $(&#x27;&lt;input id=&quot;kafesitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot; type=&quot;checkbox&quot; checked=&quot;checked&quot;/&gt;&#x27;);
+				_ph.$fieldLabel = $(&#x27;&lt;label for=&quot;kafesitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot;&gt;&#x27;+_ph.label+&#x27;&lt;/label&gt;&#x27;);
+				if(!!_ph.$element.data(&#x27;kafesitecore-placeholder-opposite&#x27;)){
+					_ph.opposite = _ph.$element.data(&#x27;kafesitecore-placeholder-opposite&#x27;);
 				}
 				_output.push(_ph);
 			});
@@ -91,19 +91,19 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 	/**
 	* ### Version 0.1
 	* Additionnal methods for Sitecore
-	* Adds the environment variable &quot;sitecore-editor&quot; to kafe based on the data attribute &quot;data-sitecore-editor&quot; (true/false) on the html tag
+	* Adds the environment variable &#x60;sitecore-editor&#x60; to kafe based on the data attribute &#x60;data-kafesitecore&#x60; (true/false) on the html tag
 	*
 	* @module kafe.cms
 	* @class kafe.cms.sitecore
 	*/
 	var sitecore = {};
-	kafe.env(&#x27;sitecore-editor&#x27;, $(&#x27;html&#x27;).data(&#x27;sitecore-editor&#x27;) === true);
+	kafe.env(&#x27;sitecore-editor&#x27;, $(&#x27;html&#x27;).data(&#x27;kafesitecore&#x27;) === true);
 
 	/**
 	* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
 	*
-	* Requires data attribute (data-sitecore-editor=&quot;true&quot;) on html tag when page-editor is active.
-	* Styles location : /vendor/ressources/cms.sitecore/editorToolbox.less
+	* Requires data attribute &#x60;data-kafesitecore=&quot;true&quot;&#x60; on html tag when page-editor is active.
+	* Styles location : &#x60;/vendor/ressources/cms.sitecore/editorToolbox.css&#x60;
 	*
 	* @method editorToolbox
 	* @param {Object} [options] Initial configurations.
@@ -111,12 +111,12 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 	*	@param {Function} [options.onUpdate] Callback that fires everytime the toolbox updates its component status.
 	* @example
 	*	// Initializing placeholders for the toolbox using data attributes
-	*	&lt;section data-sitecore-placeholder=&quot;sidebar-left&quot; data-sitecore-displayname=&quot;Left column&quot; data-sitecore-placeholder-opposite=&quot;sidebar-right&quot;&gt;
+	*	&lt;section data-kafesitecore-placeholder=&quot;sidebar-left&quot; data-kafesitecore-displayname=&quot;Left column&quot; data-kafesitecore-placeholder-opposite=&quot;sidebar-right&quot;&gt;
 	*		&lt;ul&gt;
 	*			&lt;li&gt;This is the optional left column&lt;/li&gt;
-	*			&lt;li&gt;data-sitecore-placeholder : *Required* The name of the placeholder defined in Sitecore, this attribute initiates the element has a placeholder for the toolbox.&lt;/li&gt;
-	*			&lt;li&gt;data-sitecore-displayname : The label identifying the placeholder within the toolbox, defaults to the value of &#x27;data-sitecore-placeholder&#x27; if not set.&lt;/li&gt;
-	*			&lt;li&gt;data-sitecore-placeholder-opposite : The &#x27;data-sitecore-placeholder&#x27; value of the opposite placeholder. Determines that the current placeholder should not be toggled if the opposite placeholder is active.&lt;/li&gt;
+	*			&lt;li&gt;data-kafesitecore-placeholder : *Required* The name of the placeholder defined in Sitecore, this attribute initiates the element has a placeholder for the toolbox.&lt;/li&gt;
+	*			&lt;li&gt;data-kafesitecore-displayname : The label identifying the placeholder within the toolbox, defaults to the value of &#x60;data-kafesitecore-placeholder&#x60; if not set.&lt;/li&gt;
+	*			&lt;li&gt;data-kafesitecore-placeholder-opposite : The &#x60;data-kafesitecore-placeholder&#x60; value of the opposite placeholder. Determines that the current placeholder should not be toggled if the opposite placeholder is active.&lt;/li&gt;
 	*        &lt;/ul&gt;
 	*	&lt;/section&gt;
 	* @example
@@ -169,7 +169,7 @@ window.kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1&#x27;, obj:
 		var _callbackData = _getCallbackData();
 
 		/*--- Elements ---*/
-		var $editorToolbox = $(&#x27;&lt;div id=&quot;sitecore-editor-toolbox&quot;&gt;&lt;/div&gt;&#x27;);
+		var $editorToolbox = $(&#x27;&lt;div id=&quot;kafesitecore-editor-toolbox&quot;&gt;&lt;/div&gt;&#x27;);
 		var $toolboxContent = $(&#x27;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&#x27;).appendTo($editorToolbox).hide();
 		var _toolboxHandle = {
 			$self:$(&#x27;&lt;a href=&quot;#&quot; class=&quot;handle&quot;&gt;&lt;/a&gt;&#x27;),

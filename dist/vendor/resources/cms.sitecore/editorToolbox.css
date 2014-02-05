@@ -2,7 +2,7 @@
 // SITECORE - Editor Toolbox
 //------------------------------------------------------------------------------------*/
 
-#sitecore-editor-toolbox{
+#kafesitecore-editor-toolbox{
 	z-index:9999;
 	border-top:1px solid #d2d2d2;
 	border-bottom:1px solid #d2d2d2;
@@ -18,20 +18,20 @@
 	
 	/*-*-* Content *-*-*/
 
-	#sitecore-editor-toolbox > .content{
+	#kafesitecore-editor-toolbox > .content{
 		max-width:200px;
 		padding:20px;
 	}
-		#sitecore-editor-toolbox > .content input[type='checkbox']{
+		#kafesitecore-editor-toolbox > .content input[type='checkbox']{
 			margin-right:5px;
 		}
-		#sitecore-editor-toolbox > .content .toolbox-item + .toolbox-item{
+		#kafesitecore-editor-toolbox > .content .toolbox-item + .toolbox-item{
 			margin-top:10px;
 		}
 
 	/*-*-* Handle *-*-*/
 
-	#sitecore-editor-toolbox > .handle{
+	#kafesitecore-editor-toolbox > .handle{
 		display:block;
 		width:12px;
 		height:100%;
@@ -63,7 +63,7 @@
 		-webkit-background-clip:padding-box;
 		background-clip:padding-box;
 	}
-		#sitecore-editor-toolbox > .handle > .label{
+		#kafesitecore-editor-toolbox > .handle > .label{
 			text-align:center;
 			white-space:nowrap;
 			text-transform:uppercase;
@@ -74,17 +74,17 @@
 			padding:0 9px;
 			margin-left:-3px;
 		}
-		#sitecore-editor-toolbox > .handle > .label.initialized{
+		#kafesitecore-editor-toolbox > .handle > .label.initialized{
 			display:block;
 			padding:0;
-			height:100%;
+			height:100% !important;
 			-webkit-transform:rotate(-90deg);
 			-moz-transform:rotate(-90deg);
 			-o-transform:rotate(-90deg);
 			-ms-transform:rotate(-90deg);
 			transform:rotate(-90deg);
 		}
-		#sitecore-editor-toolbox > .handle > .label:before{
+		#kafesitecore-editor-toolbox > .handle > .label:before{
 			content:'';
 			height:0;
 			margin:0 10px 1px 0;
@@ -94,7 +94,7 @@
 			border-right:6px solid transparent;
 			border-top:6px solid #999;
 		}
-		#sitecore-editor-toolbox > .handle > .label:after{
+		#kafesitecore-editor-toolbox > .handle > .label:after{
 			content:'';
 			height:0;
 			margin:0 0 1px 10px;
@@ -104,7 +104,7 @@
 			border-right:6px solid transparent;
 			border-top:6px solid #999;
 		}
-		#sitecore-editor-toolbox.open > .handle > .label:before, #sitecore-editor-toolbox.open > .handle > .label:after{
+		#kafesitecore-editor-toolbox.open > .handle > .label:before, #kafesitecore-editor-toolbox.open > .handle > .label:after{
 			margin-bottom:2px;
 			display:inline-block; 
 			border:0;
@@ -115,13 +115,13 @@
 
 	/*-*-* Checkboxes *-*-*/
 
-	#sitecore-editor-toolbox input[type="checkbox"]:not(:checked),
-	#sitecore-editor-toolbox input[type="checkbox"]:checked {  
+	#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked),
+	#kafesitecore-editor-toolbox input[type="checkbox"]:checked {  
 		position: absolute;  
 		left: -9999px;
 	}
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label,
-		#sitecore-editor-toolbox input[type="checkbox"]:checked + label {  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label,
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked + label {  
 			position: relative;
 			padding-left: 22px;
 			cursor: pointer;
@@ -136,8 +136,8 @@
 		}
 
 		/* Box styles */
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label:before,
-		#sitecore-editor-toolbox input[type="checkbox"]:checked + label:before {  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label:before,
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked + label:before {  
 			content: '';
 			position: absolute;
 			left:7px; top: 7px;
@@ -147,8 +147,8 @@
 		}
 
 		/* Bullet styles */
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label:after,
-		#sitecore-editor-toolbox input[type="checkbox"]:checked + label:after {  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label:after,
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked + label:after {  
 			content: '';
 			position: absolute;
 			top: 10px; left: 10px;
@@ -158,28 +158,28 @@
 		}
 
 		/* Not Checked */
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label:after{  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked) + label:after{  
 			opacity:0;
 		}
 
 
 		/* Checked */  
-		#sitecore-editor-toolbox input[type="checkbox"]:checked + label:after{  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked + label:after{  
 			opacity:1;
 		}
 
 		/* Disabled */
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked):disabled + label,
-		#sitecore-editor-toolbox input[type="checkbox"]:checked:disabled + label {  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked):disabled + label,
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked:disabled + label {  
 			color:#999;
 			cursor:default;
 		}
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked):disabled + label:before,
-		#sitecore-editor-toolbox input[type="checkbox"]:checked:disabled + label:before {  
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked):disabled + label:before,
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked:disabled + label:before {  
 			border-color: #ccc;
 			background-color: #f0f0f0;
 		}
-		#sitecore-editor-toolbox input[type="checkbox"]:not(:checked):disabled + label:after,
-		#sitecore-editor-toolbox input[type="checkbox"]:checked:disabled + label:after {
+		#kafesitecore-editor-toolbox input[type="checkbox"]:not(:checked):disabled + label:after,
+		#kafesitecore-editor-toolbox input[type="checkbox"]:checked:disabled + label:after {
 			background-color: #ccc;
 		}

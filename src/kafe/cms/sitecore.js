@@ -1,23 +1,21 @@
-window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+/* @echo header */
 
 	var
 		_getPlaceholders = function(){
-			var $placeholders = $('[data-sitecore-placeholder]');
+			var $placeholders = $('[data-<!-- @echo NAME_ATTR -->-placeholder]');
 			var _output = [];
 
 			$placeholders.each(function(i,v){
 				var _ph = {};
 				_ph.$element = $(this);
-				_ph.name = _ph.$element.data('sitecore-placeholder');
-				_ph.label = !!_ph.$element.data('sitecore-displayname') ? _ph.$element.data('sitecore-displayname') : _ph.name;
+				_ph.name = _ph.$element.data('<!-- @echo NAME_ATTR -->-placeholder');
+				_ph.label = !!_ph.$element.data('<!-- @echo NAME_ATTR -->-displayname') ? _ph.$element.data('<!-- @echo NAME_ATTR -->-displayname') : _ph.name;
 				_ph.filter = ':not(code, .scEmptyPlaceholder, .clearer)';
-				_ph.$locator = $('<span class="sitecore-editor-toolbox-locator"></span>');
-				_ph.$field = $('<input id="sitecore-editor-toolbox-placeholder'+i+'" type="checkbox" checked="checked"/>');
-				_ph.$fieldLabel = $('<label for="sitecore-editor-toolbox-placeholder'+i+'">'+_ph.label+'</label>');
-				if(!!_ph.$element.data('sitecore-placeholder-opposite')){
-					_ph.opposite = _ph.$element.data('sitecore-placeholder-opposite');
+				_ph.$locator = $('<span class="<!-- @echo NAME_ATTR -->-editor-toolbox-locator"></span>');
+				_ph.$field = $('<input id="<!-- @echo NAME_ATTR -->-editor-toolbox-placeholder'+i+'" type="checkbox" checked="checked"/>');
+				_ph.$fieldLabel = $('<label for="<!-- @echo NAME_ATTR -->-editor-toolbox-placeholder'+i+'">'+_ph.label+'</label>');
+				if(!!_ph.$element.data('<!-- @echo NAME_ATTR -->-placeholder-opposite')){
+					_ph.opposite = _ph.$element.data('<!-- @echo NAME_ATTR -->-placeholder-opposite');
 				}
 				_output.push(_ph);
 			});
@@ -42,21 +40,21 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 	;
 
 	/**
-	* ### Version 0.1
+	* ### Version <!-- @echo VERSION -->
 	* Additionnal methods for Sitecore
-	* Adds the environment variable "sitecore-editor" to kafe based on the data attribute "data-sitecore-editor" (true/false) on the html tag
+	* Adds the environment variable `sitecore-editor` to kafe based on the data attribute `data-<!-- @echo NAME_ATTR -->` (true/false) on the html tag
 	*
-	* @module kafe.cms
-	* @class kafe.cms.sitecore
+	* @module <!-- @echo MODULE -->
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var sitecore = {};
-	kafe.env('sitecore-editor', $('html').data('sitecore-editor') === true);
+	kafe.env('sitecore-editor', $('html').data('<!-- @echo NAME_ATTR -->') === true);
 
 	/**
 	* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
 	*
-	* Requires data attribute (data-sitecore-editor="true") on html tag when page-editor is active.
-	* Styles location : /vendor/ressources/cms.sitecore/editorToolbox.less
+	* Requires data attribute `data-<!-- @echo NAME_ATTR -->="true"` on html tag when page-editor is active.
+	* Styles location : `/vendor/ressources/cms.sitecore/editorToolbox.css`
 	*
 	* @method editorToolbox
 	* @param {Object} [options] Initial configurations.
@@ -64,17 +62,17 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 	*	@param {Function} [options.onUpdate] Callback that fires everytime the toolbox updates its component status.
 	* @example
 	*	// Initializing placeholders for the toolbox using data attributes
-	*	<section data-sitecore-placeholder="sidebar-left" data-sitecore-displayname="Left column" data-sitecore-placeholder-opposite="sidebar-right">
+	*	<section data-<!-- @echo NAME_ATTR -->-placeholder="sidebar-left" data-<!-- @echo NAME_ATTR -->-displayname="Left column" data-<!-- @echo NAME_ATTR -->-placeholder-opposite="sidebar-right">
 	*		<ul>
 	*			<li>This is the optional left column</li>
-	*			<li>data-sitecore-placeholder : *Required* The name of the placeholder defined in Sitecore, this attribute initiates the element has a placeholder for the toolbox.</li>
-	*			<li>data-sitecore-displayname : The label identifying the placeholder within the toolbox, defaults to the value of 'data-sitecore-placeholder' if not set.</li>
-	*			<li>data-sitecore-placeholder-opposite : The 'data-sitecore-placeholder' value of the opposite placeholder. Determines that the current placeholder should not be toggled if the opposite placeholder is active.</li>
+	*			<li>data-<!-- @echo NAME_ATTR -->-placeholder : *Required* The name of the placeholder defined in Sitecore, this attribute initiates the element has a placeholder for the toolbox.</li>
+	*			<li>data-<!-- @echo NAME_ATTR -->-displayname : The label identifying the placeholder within the toolbox, defaults to the value of `data-<!-- @echo NAME_ATTR -->-placeholder` if not set.</li>
+	*			<li>data-<!-- @echo NAME_ATTR -->-placeholder-opposite : The `data-<!-- @echo NAME_ATTR -->-placeholder` value of the opposite placeholder. Determines that the current placeholder should not be toggled if the opposite placeholder is active.</li>
 	*        </ul>
 	*	</section>
 	* @example
 	*	// Initializing the toolbox
-	*	kafe.cms.sitecore.editorToolbox({
+	*	<!-- @echo NAME_FULL -->.editorToolbox({
 	*		label:"My Toolbox",
 	*		onUpdate:function(data){
 	*			console.log('There are ' + data.placeholders.filter(':visible').length + ' visible in the page');
@@ -122,7 +120,7 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 		var _callbackData = _getCallbackData();
 
 		/*--- Elements ---*/
-		var $editorToolbox = $('<div id="sitecore-editor-toolbox"></div>');
+		var $editorToolbox = $('<div id="<!-- @echo NAME_ATTR -->-editor-toolbox"></div>');
 		var $toolboxContent = $('<div class="content"></div>').appendTo($editorToolbox).hide();
 		var _toolboxHandle = {
 			$self:$('<a href="#" class="handle"></a>'),
@@ -188,4 +186,4 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 
 	return sitecore;
 
-})(window.kafe)});
+/* @echo footer */
