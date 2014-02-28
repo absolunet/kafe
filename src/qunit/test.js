@@ -1,6 +1,6 @@
 // @import 'kafe'
 // @import 'date'               // 2 methods pending
-// **@import 'form'
+// **@import 'form'				// manual
 // **@import 'geolocation'      // difficult to automate
 // @import 'number'
 // **@import 'storage'

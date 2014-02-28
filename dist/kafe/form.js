@@ -284,14 +284,14 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 	form.sanitizeFormData = function(selector) {
 		var
 			$form = $(selector),
-			data  = $this.serializeArray()
+			data  = $form.serializeArray()
 		;
 
 		for (var i in data) {
 			$form.find('input[type="text"][name="'+data[i].name+'"],textarea[name="'+data[i].name+'"]').val(
 				data[i].value.toString()
-					.replace(/\\</g,'&lt;')
-					.replace(/\\>/g,'&gt;')
+					.replace(/</g,'&lt;')
+					.replace(/>/g,'&gt;')
 			);
 		}
 	};
