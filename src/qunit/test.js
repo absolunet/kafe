@@ -7,7 +7,7 @@
 // @import 'string'
 // @import 'string-encrypt'
 // @import 'string-validate'
-// **@import 'style'
+// **@import 'style'			// manual
 // @import 'url'
 // **@import 'cms/drupal'
 // **@import 'cms/magento'

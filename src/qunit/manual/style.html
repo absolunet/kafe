@@ -1,0 +1,94 @@
+<!doctype html>
+<html id="fr-CA" lang="fr" class="no-js" data-kafe-page="SpecialContent" data-kafe-tmpl="Content">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="http://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="http://s7.addthis.com">
+	<link rel="dns-prefetch" href="http://www.google-analytics.com">
+	<link rel="dns-prefetch" href="http://connect.facebook.net">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<!--[if lt IE 9]><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><![endif]-->
+	<!--[if gte IE 9]><!--> <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!--<![endif]-->
+
+	<script>window.kafejQuery = window.jQuery</script>
+
+	<title>KAFE - /style.js</title>
+
+	<script src="../../../dist/vendor/lo-dash.js"></script>
+	<script src="../../../dist/vendor/modernizr.js"></script>
+	<script src="../../../dist/vendor/cssua.js"></script>
+	<script src="../../../dist/kafe/kafe.js"></script>
+	<script src="../../../dist/kafe/style.js"></script>
+
+	<style type="text/css">
+		html, body{
+			height:100%; margin:0;
+			padding:0; background:#f0f0f0;
+			font-family:Arial, Helvetica, sans-serif;
+			font-size:15px;
+		}
+		div,ul,li,p {
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		.wrapper{
+			margin:0 auto; width:960px; border:1px solid #ddd;
+			padding:30px; background:#fff; box-shadow:0 0 3px #ccc;
+		}
+		ul{ overflow:hidden; margin:-2px 0 0 -2px; width:964px; }
+		li{
+			width:231px; margin:2px; padding:3px;
+			float:left; background:#eee;
+		}
+		li span{
+			display:block; background:#999; box-shadow:0 0 3px #000;
+			width:50px; height:50px; margin:0 auto;
+		}
+		.hr{
+			border:none; height:0;
+			border-top:1px dashed #999; margin:15px 0;
+		}
+	</style>
+	
+	<!-- (c) 2013 Absolunet inc. -->
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="list-one">
+			<li style="height:200px;"><span>&nbsp;</span></li>
+			<li style="height:250px;"><span>&nbsp;</span></li>
+			<li style="height:150px;"><span>&nbsp;</span></li>
+			<li style="height:50px;"><span>&nbsp;</span></li>
+			<li style="height:125px;"><span>&nbsp;</span></li>
+			<li style="height:175px;"><span>&nbsp;</span></li>
+		</ul>
+		<hr/>
+		<ul class="list-two">
+			<li style="height:200px;"><hr/><hr/><hr/></li>
+			<li style="height:250px;"><hr/><hr/></li>
+			<li style="height:150px;"><hr/></li>
+			<li style="height:50px;"><hr/><hr/><hr/><hr/><hr/></li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+
+			//replaceHr
+			kafe.style.replaceHr('.wrapper');
+
+			//equalHeight
+			kafe.style.equalHeight('ul.list-one > li', { nbPerRow: 4 });
+			kafe.style.equalHeight('ul.list-two > li', { resetHeight:true });
+
+			//vAlign
+			kafe.style.vAlign('ul > li > span');
+
+		});
+	</script>
+</body>
+</html>
