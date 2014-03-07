@@ -3,7 +3,7 @@
  * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash modern -o ./dist/lodash.js`
  * Copyright 2012-2014 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Based on Underscore.js 1.6.0 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <http://lodash.com/license>
  */
@@ -19,12 +19,6 @@
       CURRY_BOUND_FLAG = 8,
       PARTIAL_FLAG = 16,
       PARTIAL_RIGHT_FLAG = 32;
-
-  /** Used as the size when optimizations are enabled for arrays */
-  var LARGE_ARRAY_SIZE = 40;
-
-  /** Used as the max size of the `arrayPool` and `objectPool` */
-  var MAX_POOL_SIZE = 40;
 
   /** Used as the semantic version number */
   var version = '2.4.1';
@@ -64,14 +58,27 @@
   /** Used to detect hexadecimal string values */
   var reHexPrefix = /^0[xX]/;
 
+  /** Used to match latin-1 supplement letters */
+  var reLatin1 = /[\xC0-\xFF]/g;
+
   /** Used to ensure capturing order of template delimiters */
   var reNoMatch = /($^)/;
+
+  /**
+   * Used to match RegExp special characters.
+   * See this [article on RegExp characters](http://www.regular-expressions.info/characters.html#special)
+   * for more details.
+   */
+  var reRegExpChars = /[.*+?^${}()|[\]\\]/g;
 
   /** Used to detect functions containing a `this` reference */
   var reThis = /\bthis\b/;
 
   /** Used to match unescaped characters in compiled string literals */
   var reUnescapedString = /['\n\r\t\u2028\u2029\\]/g;
+
+  /** Used to match words to create compound words */
+  var reWords = /[a-z0-9]+/g;
 
   /** Used to detect and test whitespace */
   var whitespace = (
@@ -84,10 +91,6 @@
     // unicode category "Zs" space separators
     '\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000'
   );
-
-  /** Used to pool arrays and objects used internally */
-  var arrayPool = [],
-      objectPool = [];
 
   /** Used to assign default `context` object properties */
   var contextProps = [
@@ -118,7 +121,7 @@
   cloneableClasses[numberClass] = cloneableClasses[objectClass] =
   cloneableClasses[regexpClass] = cloneableClasses[stringClass] = true;
 
-  /** Used as an internal `_.debounce` options object */
+  /** Used as an internal `_.debounce` options object by `_.throttle` */
   var debounceOptions = {
     'leading': false,
     'maxWait': 0,
@@ -157,6 +160,31 @@
     '&gt;': '>',
     '&quot;': '"',
     '&#39;': "'"
+  };
+
+  /**
+   * Used to convert latin-1 supplement letters to basic latin (ASCII) letters.
+   * See [Wikipedia](http://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)#Character_table)
+   * for more details.
+   */
+  var deburredLetters = {
+    '\xC0': 'A',  '\xC1': 'A', '\xC2': 'A', '\xC3': 'A', '\xC4': 'A', '\xC5': 'A',
+    '\xE0': 'a',  '\xE1': 'a', '\xE2': 'a', '\xE3': 'a', '\xE4': 'a', '\xE5': 'a',
+    '\xC7': 'C',  '\xE7': 'c',
+    '\xD0': 'D',  '\xF0': 'd',
+    '\xC8': 'E',  '\xC9': 'E', '\xCA': 'E', '\xCB': 'E',
+    '\xE8': 'e',  '\xE9': 'e', '\xEA': 'e', '\xEB': 'e',
+    '\xCC': 'I',  '\xCD': 'I', '\xCE': 'I', '\xCF': 'I',
+    '\xEC': 'i',  '\xED': 'i', '\xEE': 'i', '\xEF': 'i',
+    '\xD1': 'N',  '\xF1': 'n',
+    '\xD2': 'O',  '\xD3': 'O', '\xD4': 'O', '\xD5': 'O', '\xD6': 'O', '\xD8': 'O',
+    '\xF2': 'o',  '\xF3': 'o', '\xF4': 'o', '\xF5': 'o', '\xF6': 'o', '\xF8': 'o',
+    '\xD9': 'U',  '\xDA': 'U', '\xDB': 'U', '\xDC': 'U',
+    '\xF9': 'u',  '\xFA': 'u', '\xFB': 'u', '\xFC': 'u',
+    '\xDD': 'Y',  '\xFD': 'y', '\xFF': 'y',
+    '\xC6': 'AE', '\xE6': 'ae',
+    '\xDE': 'Th', '\xFE': 'th',
+    '\xDF': 'ss', '\xD7': ' ', '\xF7': ' '
   };
 
   /** Used to determine if values are of the language type Object */
@@ -338,19 +366,53 @@
     // for `a` and `b`. See https://github.com/jashkenas/underscore/pull/1247
     //
     // This also ensures a stable sort in V8 and other engines.
-    // See http://code.google.com/p/v8/issues/detail?id=90
+    // See https://code.google.com/p/v8/issues/detail?id=90
     return a.index - b.index;
+  }
+
+  /**
+   * Creates a function that produces compound words out of the words in a
+   * given string.
+   *
+   * @private
+   * @param {Function} callback The function called to combine each word.
+   * @returns {Function} Returns the new compounder function.
+   */
+  function createCompounder(callback) {
+    return function(string) {
+      var index = -1,
+          words = string != null && String(string).replace(reLatin1, deburrLetter).match(reWords),
+          length = words ? words.length : 0,
+          result = '';
+
+      while (++index < length) {
+        result = callback(result, words[index], index, words);
+      }
+      return result;
+    };
+  }
+
+  /**
+   * Used by `createCompounder` to convert latin-1 supplement letters to basic
+   * latin (ASCII) letters.
+   *
+   * @private
+   * @param {string} letter The matched letter to deburr.
+   * @returns {string} Returns the deburred letter.
+   */
+  function deburrLetter(letter) {
+    return deburredLetters[letter];
   }
 
   /**
    * Used by `escape` to convert characters to HTML entities.
    *
    * @private
-   * @param {string} match The matched character to escape.
+   * @param {string} chr The matched character to escape.
    * @returns {string} Returns the escaped character.
    */
-  function escapeHtmlChar(match) {
-    return htmlEscapes[match];
+  function escapeHtmlChar(chr) {
+    return htmlEscapes[chr];
   }
 
   /**
@@ -358,61 +420,11 @@
    * string literals.
    *
    * @private
-   * @param {string} match The matched character to escape.
+   * @param {string} chr The matched character to escape.
    * @returns {string} Returns the escaped character.
    */
-  function escapeStringChar(match) {
-    return '\\' + stringEscapes[match];
-  }
-
-  /**
-   * Gets an array from the array pool or creates a new one if the pool is empty.
-   *
-   * @private
-   * @returns {Array} The array from the pool.
-   */
-  function getArray() {
-    return arrayPool.pop() || [];
-  }
-
-  /**
-   * Gets an object from the object pool or creates a new one if the pool is empty.
-   *
-   * @private
-   * @returns {Object} The object from the pool.
-   */
-  function getObject() {
-    return objectPool.pop() || {
-      'criteria': null,
-      'index': 0,
-      'value': null
-    };
-  }
-
-  /**
-   * Releases `array` back to the array pool.
-   *
-   * @private
-   * @param {Array} array The array to release.
-   */
-  function releaseArray(array) {
-    array.length = 0;
-    if (arrayPool.length < MAX_POOL_SIZE) {
-      arrayPool.push(array);
-    }
-  }
-
-  /**
-   * Releases `object` back to the object pool.
-   *
-   * @private
-   * @param {Object} object The object to release.
-   */
-  function releaseObject(object) {
-    object.criteria = object.value = null;
-    if (objectPool.length < MAX_POOL_SIZE) {
-      objectPool.push(object);
-    }
+  function escapeStringChar(chr) {
+    return '\\' + stringEscapes[chr];
   }
 
   /**
@@ -522,11 +534,11 @@
    * Used by `unescape` to convert HTML entities to characters.
    *
    * @private
-   * @param {string} match The matched character to unescape.
+   * @param {string} chr The matched character to unescape.
    * @returns {string} Returns the unescaped character.
    */
-  function unescapeHtmlChar(match) {
-    return htmlUnescapes[match];
+  function unescapeHtmlChar(chr) {
+    return htmlUnescapes[chr];
   }
 
   /*--------------------------------------------------------------------------*/
@@ -575,9 +587,8 @@
 
     /** Used to detect if a method is native */
     var reNative = RegExp('^' +
-      String(toString)
-        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        .replace(/toString|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+      escapeRegExp(toString)
+      .replace(/toString|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
     );
 
     /** Native method shortcuts */
@@ -645,12 +656,12 @@
      * implicitly or explicitly included in the build.
      *
      * The chainable wrapper functions are:
-     * `after`, `assign`, `bind`, `bindAll`, `bindKey`, `chain`, `compact`,
+     * `after`, `assign`, `at`, `bind`, `bindAll`, `bindKey`, `chain`, `compact`,
      * `compose`, `concat`, `constant`, `countBy`, `create`, `createCallback`,
      * `curry`, `debounce`, `defaults`, `defer`, `delay`, `difference`, `filter`,
      * `flatten`, `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`,
      * `forOwnRight`, `functions`, `groupBy`, `indexBy`, `initial`, `intersection`,
-     * `invert`, `invoke`, `keys`, `map`, `mapValues`, `match`, `max`, `memoize`,
+     * `invert`, `invoke`, `keys`, `map`, `mapValues`, `matches`, `max`, `memoize`,
      * `merge`, `min`, `noop`, `object`, `omit`, `once`, `pairs`, `partial`,
      * `partialRight`, `pick`, `pluck`, `property`, `pull`, `push`, `range`,
      * `reject`, `remove`, `rest`, `reverse`, `shuffle`, `slice`, `sort`, `sortBy`,
@@ -834,17 +845,23 @@
     function baseBind(data) {
       var func = data[0],
           thisArg = data[3],
-          partialArgs = data[4];
+          partialArgs = data[4],
+          partialHolders = data[6];
 
       function bound() {
         // `Function#bind` spec
         // http://es5.github.io/#x15.3.4.5
         if (partialArgs) {
-          // avoid `arguments` object deoptimizations by using `slice` instead
-          // of `Array.prototype.slice.call` and not assigning `arguments` to a
-          // variable as a ternary expression
-          var args = slice(partialArgs);
-          push.apply(args, arguments);
+          // avoid `arguments` object use disqualifying optimizations by
+          // converting it to an array before passing it to `composeArgs`
+          var index = -1,
+               length = arguments.length,
+               args = Array(length);
+
+          while (++index < length) {
+            args[index] = arguments[index];
+          }
+          args = composeArgs(partialArgs, partialHolders, args);
         }
         // mimic the constructor's `return` behavior
         // http://es5.github.io/#x13.2.2
@@ -852,6 +869,7 @@
           // ensure `new bound` is an instance of `func`
           var thisBinding = baseCreate(func.prototype),
               result = func.apply(thisBinding, args || arguments);
+
           return isObject(result) ? result : thisBinding;
         }
         return func.apply(thisArg, args || arguments);
@@ -908,8 +926,8 @@
       if (isDeep) {
         // check for circular references and return corresponding clone
         var initedStack = !stackA;
-        stackA || (stackA = getArray());
-        stackB || (stackB = getArray());
+        stackA || (stackA = []);
+        stackB || (stackB = []);
 
         var length = stackA.length;
         while (length--) {
@@ -945,10 +963,6 @@
         result[key] = baseClone(objValue, isDeep, callback, stackA, stackB);
       });
 
-      if (initedStack) {
-        releaseArray(stackA);
-        releaseArray(stackB);
-      }
       return result;
     }
 
@@ -1049,7 +1063,9 @@
           arity = data[2],
           thisArg = data[3],
           partialArgs = data[4],
-          partialRightArgs = data[5];
+          partialRightArgs = data[5],
+          partialHolders = data[6],
+          partialRightHolders = data[7];
 
       var isBind = bitmask & BIND_FLAG,
           isBindKey = bitmask & BIND_KEY_FLAG,
@@ -1058,28 +1074,29 @@
           key = func;
 
       function bound() {
-        var thisBinding = isBind ? thisArg : this;
+        var index = -1,
+            length = arguments.length,
+            args = Array(length);
+
+        while (++index < length) {
+          args[index] = arguments[index];
+        }
         if (partialArgs) {
-          var args = slice(partialArgs);
-          push.apply(args, arguments);
+          args = composeArgs(partialArgs, partialHolders, args);
         }
-        if (partialRightArgs || isCurry) {
-          args || (args = slice(arguments));
-          if (partialRightArgs) {
-            push.apply(args, partialRightArgs);
-          }
-          var argsLength = arguments.length;
-          if (isCurry && argsLength < arity) {
-            bitmask |= PARTIAL_FLAG;
-            bitmask &= ~PARTIAL_RIGHT_FLAG
-            if (!isCurryBound) {
-              bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG);
-            }
-            var newArity = nativeMax(0, arity - argsLength);
-            return baseCreateWrapper([func, bitmask, newArity, thisArg, args]);
-          }
+        if (partialRightArgs) {
+          args = composeArgsRight(partialRightArgs, partialRightHolders, args);
         }
-        args || (args = arguments);
+        if (isCurry && length < arity) {
+          bitmask |= PARTIAL_FLAG;
+          bitmask &= ~PARTIAL_RIGHT_FLAG
+          if (!isCurryBound) {
+            bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG);
+          }
+          var newArity = nativeMax(0, arity - length);
+          return baseCreateWrapper([func, bitmask, newArity, thisArg, args, null, []]);
+        }
+        var thisBinding = isBind ? thisArg : this;
         if (isBindKey) {
           func = thisBinding[key];
         }
@@ -1104,18 +1121,36 @@
      * @returns {Array} Returns a new array of filtered values.
      */
     function baseDifference(array, values) {
+      var length = array ? array.length : 0;
+      if (!length) {
+        return [];
+      }
       var index = -1,
           indexOf = getIndexOf(),
-          length = array ? array.length : 0,
-          result = [];
+          prereq = indexOf === baseIndexOf,
+          isLarge = prereq && createCache && values && values.length >= 200,
+          isCommon = prereq && !isLarge,
+          result = [],
+          valuesLength = values ? values.length : 0;
 
-      if (createCache && values && indexOf === baseIndexOf && values.length >= LARGE_ARRAY_SIZE) {
+      if (isLarge) {
         indexOf = cacheIndexOf;
         values = createCache(values);
       }
+      outer:
       while (++index < length) {
         var value = array[index];
-        if (indexOf(values, value) < 0) {
+
+        if (isCommon) {
+          var valuesIndex = valuesLength;
+          while (valuesIndex--) {
+            if (values[valuesIndex] === value) {
+              continue outer;
+            }
+          }
+          result.push(value);
+        }
+        else if (indexOf(values, value) < 0) {
           result.push(value);
         }
       }
@@ -1149,7 +1184,7 @@
     }
 
     /**
-     * The base implementation of `_.forEachEach` without support for callback
+     * The base implementation of `_.forEachRight` without support for callback
      * shorthands or `thisArg` binding.
      *
      * @private
@@ -1272,7 +1307,6 @@
      * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
      */
     function baseIsEqual(a, b, callback, isWhere, stackA, stackB) {
-      // used to indicate that when comparing objects, `a` has at least the properties of `b`
       if (callback) {
         var result = callback(a, b);
         if (typeof result != 'undefined') {
@@ -1288,15 +1322,9 @@
           otherType = typeof b;
 
       // exit early for unlike primitive values
-      if (a === a &&
-          !(a && (type == 'function' || type == 'object')) &&
-          !(b && (otherType == 'function' || otherType == 'object'))) {
+      if (a === a && (a == null || b == null ||
+          (type != 'function' && type != 'object' && otherType != 'function' && otherType != 'object'))) {
         return false;
-      }
-      // exit early for `null` and `undefined` avoiding ES3's Function#call behavior
-      // http://es5.github.io/#x15.3.4.4
-      if (a == null || b == null) {
-        return a === b;
       }
       // compare [[Class]] names
       var className = toString.call(a),
@@ -1322,7 +1350,7 @@
           // treat `NaN` vs. `NaN` as equal
           return (a != +a)
             ? b != +b
-            // but treat `+0` vs. `-0` as not equal
+            // but treat `-0` vs. `+0` as not equal
             : (a == 0 ? (1 / a == 1 / b) : a == +b);
 
         case regexpClass:
@@ -1361,8 +1389,8 @@
       // the algorithm for detecting cyclic structures is adapted from ES 5.1
       // section 15.12.3, abstract operation `JO` (http://es5.github.io/#x15.12.3)
       var initedStack = !stackA;
-      stackA || (stackA = getArray());
-      stackB || (stackB = getArray());
+      stackA || (stackA = []);
+      stackB || (stackB = []);
 
       var length = stackA.length;
       while (length--) {
@@ -1427,10 +1455,6 @@
       stackA.pop();
       stackB.pop();
 
-      if (initedStack) {
-        releaseArray(stackA);
-        releaseArray(stackB);
-      }
       return result;
     }
 
@@ -1523,53 +1547,135 @@
      * @returns {Array} Returns a duplicate-value-free array.
      */
     function baseUniq(array, isSorted, callback) {
+      var length = array ? array.length : 0;
+      if (!length) {
+        return [];
+      }
       var index = -1,
           indexOf = getIndexOf(),
-          length = array ? array.length : 0,
-          isLarge = createCache && !isSorted && indexOf === baseIndexOf && length >= LARGE_ARRAY_SIZE,
+          prereq = !isSorted && indexOf === baseIndexOf,
+          isLarge = prereq && createCache && length >= 200,
+          isCommon = prereq && !isLarge,
           result = [];
 
       if (isLarge) {
         var seen = createCache();
         indexOf = cacheIndexOf;
       } else {
-        seen = callback ? getArray() : result;
+        seen = (callback && !isSorted) ? [] : result;
       }
+      outer:
       while (++index < length) {
         var value = array[index],
             computed = callback ? callback(value, index, array) : value;
 
-        if (isSorted
-              ? !index || seen[seen.length - 1] !== computed
-              : indexOf(seen, computed) < 0
-            ) {
+        if (isCommon) {
+          var seenIndex = seen.length;
+          while (seenIndex--) {
+            if (seen[seenIndex] === computed) {
+              continue outer;
+            }
+          }
+          if (callback) {
+            seen.push(computed);
+          }
+          result.push(value);
+        }
+        else if (isSorted) {
+          if (!index || seen !== computed) {
+            seen = computed;
+            result.push(value);
+          }
+        }
+        else if (indexOf(seen, computed) < 0) {
           if (callback || isLarge) {
             seen.push(computed);
           }
           result.push(value);
         }
       }
-      if (!isLarge && callback) {
-        releaseArray(seen);
+      return result;
+    }
+
+    /**
+     * Creates an array that is the composition of partially applied arguments,
+     * placeholders, and provided arguments into a single array of arguments.
+     *
+     * @private
+     * @param {Array} partialArg An array of arguments to prepend to those provided.
+     * @param {Array} partialHolders An array of `partialArgs` placeholder indexes.
+     * @param {Array|Object} args The provided arguments.
+     * @returns {Array} Returns a new array of composed arguments.
+     */
+    function composeArgs(partialArgs, partialHolders, args) {
+      var holdersLength = partialHolders.length,
+          argsIndex = -1,
+          argsLength = nativeMax(args.length - holdersLength, 0),
+          leftIndex = -1,
+          leftLength = partialArgs.length,
+          result = Array(argsLength + leftLength);
+
+      while (++leftIndex < leftLength) {
+        result[leftIndex] = partialArgs[leftIndex];
+      }
+      while (++argsIndex < holdersLength) {
+        result[partialHolders[argsIndex]] = args[argsIndex];
+      }
+      while (argsLength--) {
+        result[leftIndex++] = args[argsIndex++];
       }
       return result;
     }
 
     /**
-     * Creates a function that aggregates a collection, creating an object composed
-     * of keys generated from the results of running each element of the collection
-     * through a callback. The given `setter` function sets the keys and values
-     * of the composed object.
+     * This function is like `composeArgs` except that the arguments composition
+     * is tailored for `_.partialRight`.
+     *
+     * @private
+     * @param {Array} partialRightArg An array of arguments to append to those provided.
+     * @param {Array} partialHolders An array of `partialRightArgs` placeholder indexes.
+     * @param {Array|Object} args The provided arguments.
+     * @returns {Array} Returns a new array of composed arguments.
+     */
+    function composeArgsRight(partialRightArgs, partialRightHolders, args) {
+      var holdersIndex = -1,
+          holdersLength = partialRightHolders.length,
+          argsIndex = -1,
+          argsLength = nativeMax(args.length - holdersLength, 0),
+          rightIndex = -1,
+          rightLength = partialRightArgs.length,
+          result = Array(argsLength + rightLength);
+
+      while (++argsIndex < argsLength) {
+        result[argsIndex] = args[argsIndex];
+      }
+      var pad = argsIndex;
+      while (++rightIndex < rightLength) {
+        result[pad + rightIndex] = partialRightArgs[rightIndex];
+      }
+      while (++holdersIndex < holdersLength) {
+        result[pad + partialRightHolders[holdersIndex]] = args[argsIndex++];
+      }
+      return result;
+    }
+
+    /**
+     * Creates a function that aggregates a collection, creating an object or
+     * array composed from the results of running each element of the collection
+     * through a callback. The given setter function sets the keys and values
+     * of the composed object or array.
      *
      * @private
      * @param {Function} setter The setter function.
+     * @param {boolean} [retArray=false] A flag to indicate that the aggregator
+     *  function should return an array.
      * @returns {Function} Returns the new aggregator function.
      */
-    function createAggregator(setter) {
+    function createAggregator(setter, retArray) {
       return function(collection, callback, thisArg) {
-        var result = {};
-
+        var result = retArray ? [[], []] : {};
         callback = lodash.createCallback(callback, thisArg, 3);
+
         var index = -1,
             length = collection ? collection.length : 0;
 
@@ -1606,6 +1712,29 @@
     };
 
     /**
+     * Creates the pad required for `string` based on the given padding length.
+     * The `chars` string may be truncated if the number of padding characters
+     * exceeds the padding length.
+     *
+     * @private
+     * @param {string} string The string to create padding for.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the pad for `string`.
+     */
+    function createPad(string, length, chars) {
+      var strLength = string.length;
+      length = +length || 0;
+
+      if (strLength >= length) {
+        return '';
+      }
+      var padLength = length - strLength;
+      chars = chars == null ? ' ' : String(chars);
+      return repeat(chars, ceil(padLength / chars.length)).slice(0, padLength);
+    }
+
+    /**
      * Creates a function that, when called, either curries or invokes `func`
      * with an optional `this` binding and partially applied arguments.
      *
@@ -1625,9 +1754,11 @@
      *  provided to the new function.
      * @param {Array} [partialRightArgs] An array of arguments to append to those
      *  provided to the new function.
+     * @param {Array} [partialHolders] An array of `partialArgs` placeholder indexes.
+     * @param {Array} [partialRightHolders] An array of `partialRightArgs` placeholder indexes.
      * @returns {Function} Returns the new function.
      */
-    function createWrapper(func, bitmask, arity, thisArg, partialArgs, partialRightArgs) {
+    function createWrapper(func, bitmask, arity, thisArg, partialArgs, partialRightArgs, partialHolders, partialRightHolders) {
       var isBind = bitmask & BIND_FLAG,
           isBindKey = bitmask & BIND_KEY_FLAG,
           isPartial = bitmask & PARTIAL_FLAG,
@@ -1695,11 +1826,17 @@
       } else if (arity < 0) {
         arity = 0;
       }
+      if (isPartial) {
+        partialHolders = [];
+      }
+      if (isPartialRight) {
+        partialRightHolders = [];
+      }
       // fast path for `_.bind`
-      var newData = [func, bitmask, arity, thisArg, partialArgs, partialRightArgs];
+      data = [func, bitmask, arity, thisArg, partialArgs, partialRightArgs, partialHolders, partialRightHolders];
       return (bitmask == BIND_FLAG || bitmask == (BIND_FLAG | PARTIAL_FLAG))
-        ? baseBind(newData)
-        : baseCreateWrapper(newData);
+        ? baseBind(data)
+        : baseCreateWrapper(data);
     }
 
     /**
@@ -1739,10 +1876,10 @@
     };
 
     /**
-     * A fallback implementation of `isPlainObject` which checks if a given value
-     * is an object created by the `Object` constructor, assuming objects created
-     * by the `Object` constructor have no inherited enumerable properties and that
-     * there are no `Object.prototype` extensions.
+     * A fallback implementation of `isPlainObject` which checks if `value` is
+     * an object created by the `Object` constructor, assuming objects created
+     * by the `Object` constructor have no inherited enumerable properties and
+     * that there are no `Object.prototype` extensions.
      *
      * @private
      * @param {*} value The value to check.
@@ -1877,21 +2014,160 @@
      * @returns {Array} Returns a new array of filtered values.
      * @example
      *
-     * _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
-     * // => [1, 3, 4]
+     * _.difference([1, 2, 3], [5, 2, 10]);
+     * // => [1, 3]
      */
     function difference(array) {
       return baseDifference(array, baseFlatten(arguments, true, true, 1));
     }
 
     /**
-     * This method is like `_.find` except that it returns the index of the first
-     * element that passes the callback check, instead of the element itself.
+     * Creates an array with `n` elements dropped from the beginning of `array`.
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to drop.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.drop([1, 2, 3], 1);
+     * // => [2, 3]
+     *
+     * _.drop([1, 2, 3], 2);
+     * // => [3]
+     *
+     * _.drop([1, 2, 3], 5);
+     * // => []
+     *
+     * _.drop([1, 2, 3], 0);
+     * // => [1, 2, 3]
+     */
+    var drop = rest;
+
+    /**
+     * Creates an array with `n` elements dropped from the end of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to drop.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.dropRight([1, 2, 3], 1);
+     * // => [1, 2]
+     *
+     * _.dropRight([1, 2, 3], 2);
+     * // => [1]
+     *
+     * _.dropRight([1, 2, 3], 5);
+     * // => []
+     *
+     * _.dropRight([1, 2, 3], 0);
+     * // => [1, 2, 3]
+     */
+    var dropRight = initial;
+
+    /**
+     * Creates an array of elements excluding those dropped from the end of `array`.
+     * Elements will be dropped until the predicate returns falsey. The predicate
+     * is bound to `thisArg`nand invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per element.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.dropRightWhile([1, 2, 3], function(num) {
+     *   return num > 1;
+     * });
+     * // => [1]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'employer': 'slate' },
+     *   { 'name': 'fred',    'employer': 'slate', 'blocked': true },
+     *   { 'name': 'pebbles', 'employer': 'na',    'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.pluck(_.dropRightWhile(characters, 'blocked'), 'name');
+     * // => ['barney']
+     *
+     * // using "_.where" callback shorthand
+     * _.pluck(_.dropRightWhile(characters, { 'employer': 'na' }), 'name');
+     * // => ['barney', 'fred']
+     */
+    var dropRightWhile = initial;
+
+    /**
+     * Creates an array of elements excluding those dropped from the beginning
+     * of `array`. Elements will be dropped until the predicate returns falsey.
+     * The predicate is bound to `thisArg` and invoked with three arguments;
+     * (value, index, array).
+     *
+     * If a property name is provided for `predicate` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `predicate` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per element.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.dropWhile([1, 2, 3], function(num) {
+     *   return num < 3;
+     * });
+     * // => [3]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'employer': 'slate', 'blocked': true },
+     *   { 'name': 'fred',    'employer': 'slate' },
+     *   { 'name': 'pebbles', 'employer': 'na',    'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.pluck(_.dropWhile(characters, 'blocked'), 'name');
+     * // => ['fred', 'pebbles']
+     *
+     * // using "_.where" callback shorthand
+     * _.pluck(_.dropWhile(characters, { 'employer': 'slate' }), 'name');
+     * // => ['pebbles']
+     */
+    var dropWhile = rest;
+
+    /**
+     * This method is like `_.find` except that it returns the index of the first
+     * element the predicate returns truthy for, instead of the element itself.
+     *
+     * If a property name is provided for `predicate` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -1899,17 +2175,17 @@
      * @memberOf _
      * @category Arrays
      * @param {Array} array The array to search.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {number} Returns the index of the found element, else `-1`.
      * @example
      *
      * var characters = [
-     *   { 'name': 'barney',  'age': 36, 'blocked': false },
+     *   { 'name': 'barney',  'age': 36 },
      *   { 'name': 'fred',    'age': 40, 'blocked': true },
-     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
+     *   { 'name': 'pebbles', 'age': 1 }
      * ];
      *
      * _.findIndex(characters, function(chr) {
@@ -1925,13 +2201,13 @@
      * _.findIndex(characters, 'blocked');
      * // => 1
      */
-    function findIndex(array, callback, thisArg) {
+    function findIndex(array, predicate, thisArg) {
       var index = -1,
           length = array ? array.length : 0;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       while (++index < length) {
-        if (callback(array[index], index, array)) {
+        if (predicate(array[index], index, array)) {
           return index;
         }
       }
@@ -1942,10 +2218,10 @@
      * This method is like `_.findIndex` except that it iterates over elements
      * of a `collection` from right to left.
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -1953,16 +2229,16 @@
      * @memberOf _
      * @category Arrays
      * @param {Array} array The array to search.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {number} Returns the index of the found element, else `-1`.
      * @example
      *
      * var characters = [
      *   { 'name': 'barney',  'age': 36, 'blocked': true },
-     *   { 'name': 'fred',    'age': 40, 'blocked': false },
+     *   { 'name': 'fred',    'age': 40 },
      *   { 'name': 'pebbles', 'age': 1,  'blocked': true }
      * ];
      *
@@ -1979,12 +2255,12 @@
      * _.findLastIndex(characters, 'blocked');
      * // => 2
      */
-    function findLastIndex(array, callback, thisArg) {
+    function findLastIndex(array, predicate, thisArg) {
       var length = array ? array.length : 0;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       while (length--) {
-        if (callback(array[length], length, array)) {
+        if (predicate(array[length], length, array)) {
           return length;
         }
       }
@@ -1992,70 +2268,34 @@
     }
 
     /**
-     * Gets the first element or first `n` elements of an array. If a callback
-     * is provided elements at the beginning of the array are returned as long
-     * as the callback returns truey. The callback is bound to `thisArg` and
-     * invoked with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
+     * Gets the first element of `array`.
      *
      * @static
      * @memberOf _
-     * @alias head, take
+     * @alias head
      * @category Arrays
      * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback] The function called
-     *  per element or the number of elements to return. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the first element(s) of `array`.
+     * @returns {*} Returns the first element of `array`.
      * @example
      *
      * _.first([1, 2, 3]);
      * // => 1
      *
-     * // returns the first two elements
-     * _.first([1, 2, 3], 2);
-     * // => [1, 2]
-     *
-     * // returns elements from the beginning until the callback result is falsey
-     * _.first([1, 2, 3], function(num) {
-     *   return num < 3;
-     * });
-     * // => [1, 2]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': false, 'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.first(characters, 'blocked');
-     * // => [{ 'name': 'barney', 'blocked': true, 'employer': 'slate' }]
-     *
-     * // using "_.where" callback shorthand
-     * _.pluck(_.first(characters, { 'employer': 'slate' }), 'name');
-     * // => ['barney', 'fred']
+     * _.first([]);
+     * // => undefined
      */
-    function first(array, callback, thisArg) {
-      var n = 0,
-          length = array ? array.length : 0;
+    function first(array, predicate, thisArg) {
+      if (typeof predicate != 'number' && predicate != null) {
+        var index = -1,
+            length = array ? array.length : 0,
+            n = 0;
 
-      if (typeof callback != 'number' && callback != null) {
-        var index = -1;
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (++index < length && callback(array[index], index, array)) {
+        predicate = lodash.createCallback(predicate, thisArg, 3);
+        while (++index < length && predicate(array[index], index, array)) {
           n++;
         }
       } else {
-        n = callback;
+        n = predicate;
         if (n == null || thisArg) {
           return array ? array[0] : undefined;
         }
@@ -2065,7 +2305,7 @@
 
     /**
      * Flattens a nested array (the nesting can be to any depth). If `isShallow`
-     * is truey, the array will only be flattened a single level. If a callback
+     * is truthy, the array will only be flattened a single level. If a callback
      * is provided each element of the array is passed through the callback before
      * flattening. The callback is bound to `thisArg` and invoked with three
      * arguments; (value, index, array).
@@ -2082,9 +2322,9 @@
      * @category Arrays
      * @param {Array} array The array to flatten.
      * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {Function|Object|string} [callback] The function called per iteration.
+     *  If a property name or object is provided it will be used to create a "_.pluck"
+     *  or "_.where" style callback, respectively.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {Array} Returns a new flattened array.
      * @example
@@ -2106,9 +2346,12 @@
      * // => ['hoppy', 'baby puss', 'dino']
      */
     function flatten(array, isShallow, callback, thisArg) {
-      var type = typeof isShallow;
-
+      var length = array ? array.length : 0;
+      if (!length) {
+        return [];
+      }
       // juggle arguments
+      var type = typeof isShallow;
       if (type != 'boolean' && isShallow != null) {
         thisArg = callback;
         callback = isShallow;
@@ -2154,7 +2397,7 @@
     function indexOf(array, value, fromIndex) {
       var length = array ? array.length : 0;
       if (typeof fromIndex == 'number') {
-        fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex || 0);
+        fromIndex = fromIndex < 0 ? nativeMax(0, length + fromIndex) : (fromIndex || 0);
       } else if (fromIndex) {
         var index = sortedIndex(array, value);
         return (length && array[index] === value) ? index : -1;
@@ -2163,69 +2406,31 @@
     }
 
     /**
-     * Gets all but the last element or last `n` elements of an array. If a
-     * callback is provided elements at the end of the array are excluded from
-     * the result as long as the callback returns truey. The callback is bound
-     * to `thisArg` and invoked with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
+     * Gets all but the last element of `array`.
      *
      * @static
      * @memberOf _
      * @category Arrays
      * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback=1] The function called
-     *  per element or the number of elements to exclude. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a slice of `array`.
+     * @returns {Array} Returns the slice of `array`.
      * @example
      *
      * _.initial([1, 2, 3]);
      * // => [1, 2]
-     *
-     * // excludes the last two elements
-     * _.initial([1, 2, 3], 2);
-     * // => [1]
-     *
-     * // excludes elements from the end until the callback fails
-     * _.initial([1, 2, 3], function(num) {
-     *   return num > 1;
-     * });
-     * // => [1]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.initial(characters, 'blocked');
-     * // => [{ 'name': 'barney',  'blocked': false, 'employer': 'slate' }]
-     *
-     * // using "_.where" callback shorthand
-     * _.pluck(_.initial(characters, { 'employer': 'na' }), 'name');
-     * // => ['barney', 'fred']
      */
-    function initial(array, callback, thisArg) {
-      var n = 0,
-          length = array ? array.length : 0;
+    function initial(array, predicate, thisArg) {
+      var length = array ? array.length : 0;
 
-      if (typeof callback != 'number' && callback != null) {
-        var index = length;
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (index-- && callback(array[index], index, array)) {
+      if (typeof predicate != 'number' && predicate != null) {
+        var index = length,
+            n = 0;
+
+        predicate = lodash.createCallback(predicate, thisArg, 3);
+        while (index-- && predicate(array[index], index, array)) {
           n++;
         }
       } else {
-        n = (callback == null || thisArg) ? 1 : callback || n;
+        n = (predicate == null || thisArg) ? 1 : predicate;
       }
       n = length - n;
       return slice(array, 0, n > 0 ? n : 0);
@@ -2249,16 +2454,16 @@
       var args = [],
           argsIndex = -1,
           argsLength = arguments.length,
-          caches = getArray(),
+          caches = [],
           indexOf = getIndexOf(),
-          largePrereq = createCache && indexOf === baseIndexOf,
-          seen = getArray();
+          prereq = createCache && indexOf === baseIndexOf,
+          seen = [];
 
       while (++argsIndex < argsLength) {
         var value = arguments[argsIndex];
         if (isArray(value) || isArguments(value)) {
           args.push(value);
-          caches.push(largePrereq && value.length >= LARGE_ARRAY_SIZE &&
+          caches.push(prereq && value.length >= 120 &&
             createCache(argsIndex ? args[argsIndex] : seen));
         }
       }
@@ -2284,75 +2489,35 @@
           result.push(value);
         }
       }
-      releaseArray(caches);
-      releaseArray(seen);
       return result;
     }
 
     /**
-     * Gets the last element or last `n` elements of an array. If a callback is
-     * provided elements at the end of the array are returned as long as the
-     * callback returns truey. The callback is bound to `thisArg` and invoked
-     * with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
+     * Gets the last element of `array`.
      *
      * @static
      * @memberOf _
      * @category Arrays
      * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback] The function called
-     *  per element or the number of elements to return. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the last element(s) of `array`.
+     * @returns {*} Returns the last element of `array`.
      * @example
      *
      * _.last([1, 2, 3]);
      * // => 3
-     *
-     * // returns the last two elements
-     * _.last([1, 2, 3], 2);
-     * // => [2, 3]
-     *
-     * // returns elements from the end until the callback fails
-     * _.last([1, 2, 3], function(num) {
-     *   return num > 1;
-     * });
-     * // => [2, 3]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.pluck(_.last(characters, 'blocked'), 'name');
-     * // => ['fred', 'pebbles']
-     *
-     * // using "_.where" callback shorthand
-     * _.last(characters, { 'employer': 'na' });
-     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
      */
-    function last(array, callback, thisArg) {
-      var n = 0,
-          length = array ? array.length : 0;
+    function last(array, predicate, thisArg) {
+      var length = array ? array.length : 0;
 
-      if (typeof callback != 'number' && callback != null) {
-        var index = length;
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (index-- && callback(array[index], index, array)) {
+      if (typeof predicate != 'number' && predicate != null) {
+        var index = length,
+            n = 0;
+
+        predicate = lodash.createCallback(predicate, thisArg, 3);
+        while (index-- && predicate(array[index], index, array)) {
           n++;
         }
       } else {
-        n = callback;
+        n = predicate;
         if (n == null || thisArg) {
           return array ? array[length - 1] : undefined;
         }
@@ -2365,13 +2530,6 @@
      * Gets the index at which the last occurrence of `value` is found using strict
      * equality for comparisons, i.e. `===`. If `fromIndex` is negative, it is used
      * as the offset from the end of the collection.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
      *
      * @static
      * @memberOf _
@@ -2420,14 +2578,13 @@
      * // => [1, 1]
      */
     function pull(array) {
-      var args = arguments,
-          argsIndex = 0,
-          argsLength = args.length,
+      var argsIndex = 0,
+          argsLength = arguments.length,
           length = array ? array.length : 0;
 
       while (++argsIndex < argsLength) {
         var index = -1,
-            value = args[argsIndex];
+            value = arguments[argsIndex];
 
         while (++index < length) {
           if (array[index] === value) {
@@ -2493,14 +2650,14 @@
     }
 
     /**
-     * Removes all elements from an array that the callback returns truey for
-     * and returns an array of removed elements. The callback is bound to `thisArg`
+     * Removes all elements from an array that the predicate returns truthy for
+     * and returns an array of removed elements. The predicate is bound to `thisArg`
      * and invoked with three arguments; (value, index, array).
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -2508,10 +2665,10 @@
      * @memberOf _
      * @category Arrays
      * @param {Array} array The array to modify.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {Array} Returns a new array of removed elements.
      * @example
      *
@@ -2524,15 +2681,15 @@
      * console.log(evens);
      * // => [2, 4, 6]
      */
-    function remove(array, callback, thisArg) {
+    function remove(array, predicate, thisArg) {
       var index = -1,
           length = array ? array.length : 0,
           result = [];
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       while (++index < length) {
         var value = array[index];
-        if (callback(value, index, array)) {
+        if (predicate(value, index, array)) {
           result.push(value);
           splice.call(array, index--, 1);
           length--;
@@ -2542,73 +2699,33 @@
     }
 
     /**
-     * The opposite of `_.initial`; this method gets all but the first element or
-     * first `n` elements of an array. If a callback function is provided elements
-     * at the beginning of the array are excluded from the result as long as the
-     * callback returns truey. The callback is bound to `thisArg` and invoked
-     * with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
+     * Gets all but the first element of `array`.
      *
      * @static
      * @memberOf _
-     * @alias drop, tail
+     * @alias tail
      * @category Arrays
      * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback=1] The function called
-     *  per element or the number of elements to exclude. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a slice of `array`.
+     * @returns {Array} Returns the slice of `array`.
      * @example
      *
      * _.rest([1, 2, 3]);
      * // => [2, 3]
-     *
-     * // excludes the first two elements
-     * _.rest([1, 2, 3], 2);
-     * // => [3]
-     *
-     * // excludes elements from the beginning until the callback fails
-     * _.rest([1, 2, 3], function(num) {
-     *   return num < 3;
-     * });
-     * // => [3]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': false,  'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true, 'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.pluck(_.rest(characters, 'blocked'), 'name');
-     * // => ['fred', 'pebbles']
-     *
-     * // using "_.where" callback shorthand
-     * _.rest(characters, { 'employer': 'slate' });
-     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
      */
-    function rest(array, callback, thisArg) {
-      if (typeof callback != 'number' && callback != null) {
-        var n = 0,
-            index = -1,
-            length = array ? array.length : 0;
+    function rest(array, predicate, thisArg) {
+      if (typeof predicate != 'number' && predicate != null) {
+        var index = -1,
+            length = array ? array.length : 0,
+            n = 0;
 
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (++index < length && callback(array[index], index, array)) {
+        predicate = lodash.createCallback(predicate, thisArg, 3);
+        while (++index < length && predicate(array[index], index, array)) {
           n++;
         }
-      } else if (callback == null || thisArg) {
+      } else if (predicate == null || thisArg) {
         n = 1;
       } else {
-        n = callback > 0 ? callback : 0;
+        n = predicate > 0 ? predicate : 0;
       }
       return slice(array, n);
     }
@@ -2715,11 +2832,149 @@
       while (low < high) {
         var mid = (low + high) >>> 1;
         (callback(array[mid]) < value)
-          ? low = mid + 1
-          : high = mid;
+          ? (low = mid + 1)
+          : (high = mid);
       }
       return low;
     }
+
+    /**
+     * Creates an array of the first `n` elements of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to take.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.take([1, 2, 3], 1);
+     * // => [2]
+     *
+     * _.take([1, 2, 3], 2);
+     * // => [1, 2]
+     *
+     * _.take([1, 2, 3], 5);
+     * // => [1, 2, 3]
+     *
+     * _.take([1, 2, 3], 0);
+     * // => []
+     */
+    var take = first;
+
+    /**
+     * Creates an array of the last `n` elements of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to take.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.takeRight([1, 2, 3], 1);
+     * // => [3]
+     *
+     * _.takeRight([1, 2, 3], 2);
+     * // => [2, 3]
+     *
+     * _.takeRight([1, 2, 3], 5);
+     * // => [1, 2, 3]
+     *
+     * _.takeRight([1, 2, 3], 0);
+     * // => []
+     */
+    var takeRight = last;
+
+    /**
+     * Creates an array of elements from the end of `array`. Elements will be
+     * taken until the predicate returns falsey. The predicate is bound to `thisArg`
+     * and invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `predicate` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `predicate` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per element.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.takeRightWhile([1, 2, 3], function(num) {
+     *   return num > 1;
+     * });
+     * // => [2, 3]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'employer': 'slate' },
+     *   { 'name': 'fred',    'employer': 'slate', 'blocked': true },
+     *   { 'name': 'pebbles', 'employer': 'na',    'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.pluck(_.takeRightWhile(characters, 'blocked'), 'name');
+     * // => ['fred', 'pebbles']
+     *
+     * // using "_.where" callback shorthand
+     * _.pluck(_.takeRightWhile(characters, { 'employer': 'na' }), 'name');
+     * // => ['pebbles']
+     */
+    var takeRightWhile = last;
+
+    /**
+     * Creates an array of elements from the beginning of `array`. Elements will
+     * be taken until the predicate returns falsey. The predicate is bound to
+     * `thisArg` and invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `predicate` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `predicate` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per element.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.takeWhile([1, 2, 3], function(num) {
+     *   return num < 3;
+     * });
+     * // => [1, 2]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'employer': 'slate', 'blocked': true },
+     *   { 'name': 'fred',    'employer': 'slate' },
+     *   { 'name': 'pebbles', 'employer': 'na',    'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.pluck(_.takeWhile(characters, 'blocked'), 'name');
+     * // => ['barney']
+     *
+     * // using "_.where" callback shorthand
+     * _.pluck(_.takeWhile(characters, { 'employer': 'slate' }), 'name');
+     * // => ['barney', 'fred']
+     */
+    var takeWhile = first;
 
     /**
      * Creates an array of unique values, in order, of the provided arrays using
@@ -2760,9 +3015,9 @@
      * @category Arrays
      * @param {Array} array The array to process.
      * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {Function|Object|string} [callback] The function called per iteration.
+     *  If a property name or object is provided it will be used to create a "_.pluck"
+     *  or "_.where" style callback, respectively.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {Array} Returns a duplicate-value-free array.
      * @example
@@ -2787,9 +3042,12 @@
      * // => [{ 'x': 1 }, { 'x': 2 }]
      */
     function uniq(array, isSorted, callback, thisArg) {
-      var type = typeof isSorted;
-
+      var length = array ? array.length : 0;
+      if (!length) {
+        return [];
+      }
       // juggle arguments
+      var type = typeof isSorted;
       if (type != 'boolean' && isSorted != null) {
         thisArg = callback;
         callback = isSorted;
@@ -2827,7 +3085,8 @@
 
     /**
      * Creates an array that is the symmetric difference of the provided arrays.
-     * See [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_difference) for more details.
+     * See [Wikipedia](http://en.wikipedia.org/wiki/Symmetric_difference) for
+     * more details.
      *
      * @static
      * @memberOf _
@@ -2858,16 +3117,16 @@
     }
 
     /**
-     * Creates an array of grouped elements, the first of which contains the
-     * first elements of the given arrays, the second of which contains the second
-     * elements of the given arrays, and so on. If a zipped value is provided its
-     * corresponding unzipped value will be returned.
+     * Creates an array of grouped elements, the first of which contains the first
+     * elements of the given arrays, the second of which contains the second elements
+     * of the given arrays, and so on. If a zipped value is provided its corresponding
+     * unzipped value will be returned.
      *
      * @static
      * @memberOf _
      * @alias unzip
      * @category Arrays
-     * @param {...Array} [array] Arrays to process.
+     * @param {...Array} [array] The arrays to process.
      * @returns {Array} Returns a new array of grouped elements.
      * @example
      *
@@ -3097,10 +3356,10 @@
      * @memberOf _
      * @alias include
      * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Array|Object|string} collection The collection to search.
      * @param {*} target The value to check for.
      * @param {number} [fromIndex=0] The index to search from.
-     * @returns {boolean} Returns `true` if the `target` element is found, else `false`.
+     * @returns {boolean} Returns `true` if the target element is found, else `false`.
      * @example
      *
      * _.contains([1, 2, 3], 1);
@@ -3183,14 +3442,14 @@
     });
 
     /**
-     * Checks if the callback returns truey value for **all** elements of a
-     * collection. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, index|key, collection).
+     * Checks if the predicate returns truthy for **all** elements of a collection.
+     * The predicate is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -3199,11 +3458,11 @@
      * @alias all
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {boolean} Returns `true` if all elements passed the callback check,
+     * @param {*} [thisArg] The `this` binding of `predicate`.
+     * @returns {boolean} Returns `true` if all elements passed the predicate check,
      *  else `false`.
      * @example
      *
@@ -3223,36 +3482,36 @@
      * _.every(characters, { 'age': 36 });
      * // => false
      */
-    function every(collection, callback, thisArg) {
+    function every(collection, predicate, thisArg) {
       var result = true;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       var index = -1,
           length = collection ? collection.length : 0;
 
       if (typeof length == 'number') {
         while (++index < length) {
-          if (!(result = !!callback(collection[index], index, collection))) {
-            break;
+          if (!predicate(collection[index], index, collection)) {
+            return false;
           }
         }
       } else {
         baseEach(collection, function(value, index, collection) {
-          return (result = !!callback(value, index, collection));
+          return (result = !!predicate(value, index, collection));
         });
       }
       return result;
     }
 
     /**
-     * Iterates over elements of a collection, returning an array of all elements
-     * the callback returns truey for. The callback is bound to `thisArg` and
+     * Iterates over elements of a collection returning an array of all elements
+     * the predicate returns truthy for. The predicate is bound to `thisArg` and
      * invoked with three arguments; (value, index|key, collection).
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -3261,18 +3520,18 @@
      * @alias select
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of elements that passed the callback check.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
+     * @returns {Array} Returns a new array of elements that passed the predicate check.
      * @example
      *
-     * var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-     * // => [2, 4, 6]
+     * var evens = _.filter([1, 2, 3, 4], function(num) { return num % 2 == 0; });
+     * // => [2, 4]
      *
      * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'barney', 'age': 36 },
      *   { 'name': 'fred',   'age': 40, 'blocked': true }
      * ];
      *
@@ -3282,25 +3541,25 @@
      *
      * // using "_.where" callback shorthand
      * _.filter(characters, { 'age': 36 });
-     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
+     * // => [{ 'name': 'barney', 'age': 36 }]
      */
-    function filter(collection, callback, thisArg) {
+    function filter(collection, predicate, thisArg) {
       var result = [];
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       var index = -1,
           length = collection ? collection.length : 0;
 
       if (typeof length == 'number') {
         while (++index < length) {
           var value = collection[index];
-          if (callback(value, index, collection)) {
+          if (predicate(value, index, collection)) {
             result.push(value);
           }
         }
       } else {
         baseEach(collection, function(value, index, collection) {
-          if (callback(value, index, collection)) {
+          if (predicate(value, index, collection)) {
             result.push(value);
           }
         });
@@ -3310,13 +3569,13 @@
 
     /**
      * Iterates over elements of a collection, returning the first element that
-     * the callback returns truey for. The callback is bound to `thisArg` and
+     * the predicate returns truthy for. The predicate is bound to `thisArg` and
      * invoked with three arguments; (value, index|key, collection).
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -3324,49 +3583,49 @@
      * @memberOf _
      * @alias detect, findWhere
      * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Array|Object|string} collection The collection to search.
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {*} Returns the found element, else `undefined`.
      * @example
      *
      * var characters = [
-     *   { 'name': 'barney',  'age': 36, 'blocked': false },
+     *   { 'name': 'barney',  'age': 36 },
      *   { 'name': 'fred',    'age': 40, 'blocked': true },
-     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
+     *   { 'name': 'pebbles', 'age': 1 }
      * ];
      *
      * _.find(characters, function(chr) {
      *   return chr.age < 40;
      * });
-     * // => { 'name': 'barney', 'age': 36, 'blocked': false }
+     * // => { 'name': 'barney', 'age': 36 }
      *
      * // using "_.where" callback shorthand
      * _.find(characters, { 'age': 1 });
-     * // =>  { 'name': 'pebbles', 'age': 1, 'blocked': false }
+     * // =>  { 'name': 'pebbles', 'age': 1 }
      *
      * // using "_.pluck" callback shorthand
      * _.find(characters, 'blocked');
      * // => { 'name': 'fred', 'age': 40, 'blocked': true }
      */
-    function find(collection, callback, thisArg) {
-      callback = lodash.createCallback(callback, thisArg, 3);
+    function find(collection, predicate, thisArg) {
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       var index = -1,
           length = collection ? collection.length : 0;
 
       if (typeof length == 'number') {
         while (++index < length) {
           var value = collection[index];
-          if (callback(value, index, collection)) {
+          if (predicate(value, index, collection)) {
             return value;
           }
         }
       } else {
         var result;
         baseEach(collection, function(value, index, collection) {
-          if (callback(value, index, collection)) {
+          if (predicate(value, index, collection)) {
             result = value;
             return false;
           }
@@ -3382,11 +3641,11 @@
      * @static
      * @memberOf _
      * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Array|Object|string} collection The collection to search.
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {*} Returns the found element, else `undefined`.
      * @example
      *
@@ -3395,12 +3654,12 @@
      * });
      * // => 3
      */
-    function findLast(collection, callback, thisArg) {
+    function findLast(collection, predicate, thisArg) {
       var result;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       baseEachRight(collection, function(value, index, collection) {
-        if (callback(value, index, collection)) {
+        if (predicate(value, index, collection)) {
           result = value;
           return false;
         }
@@ -3496,7 +3755,7 @@
      *
      * If an object is provided for `callback` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
-     * else `false`
+     * else `false`.
      *
      * @static
      * @memberOf _
@@ -3563,7 +3822,7 @@
      * _.indexBy(keys, function(key) { return String.fromCharCode(key.code); });
      * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
      *
-     * _.indexBy(characters, function(key) { this.fromCharCode(key.code); }, String);
+     * _.indexBy(keys, function(key) { return this.fromCharCode(key.code); }, String);
      * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
      */
     var indexBy = createAggregator(function(result, value, key) {
@@ -3688,9 +3947,9 @@
      * @memberOf _
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {Function|Object|string} [callback] The function called per iteration.
+     *  If a property name or object is provided it will be used to create a "_.pluck"
+     *  or "_.where" style callback, respectively.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {*} Returns the maximum value.
      * @example
@@ -3763,9 +4022,9 @@
      * @memberOf _
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {Function|Object|string} [callback] The function called per iteration.
+     *  If a property name or object is provided it will be used to create a "_.pluck"
+     *  or "_.where" style callback, respectively.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {*} Returns the minimum value.
      * @example
@@ -3821,6 +4080,54 @@
     }
 
     /**
+     * Creates an array of elements split into two groups, the first of which
+     * contains elements the predicate returns truthy for, while the second of which
+     * contains elements the predicate returns falsey for. The predicate is bound
+     * to `thisArg` and invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `predicate` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `predicate` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
+     * @returns {Array} Returns a new array of grouped elements.
+     * @example
+     *
+     * _.partition([1, 2, 3], function(num) { return num % 2; });
+     * // => [[1, 3], [2]]
+     *
+     * _.partition([1.2, 2.3, 3.4], function(num) { return this.floor(num) % 2; }, Math);
+     * // => [[1, 3], [2]]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36 },
+     *   { 'name': 'fred',    'age': 40, 'blocked': true },
+     *   { 'name': 'pebbles', 'age': 1 }
+     * ];
+     *
+     * // using "_.where" callback shorthand
+     * _.map(_.partition(characters, { 'age': 1 }), function(array) { return _.pluck(array, 'name'); });
+     * // => [['pebbles'], ['barney', 'fred']]
+     *
+     * // using "_.pluck" callback shorthand
+     * _.map(_.partition(characters, 'blocked'), function(array) { return _.pluck(array, 'name'); });
+     * // => [['fred'], ['barney', 'pebbles']]
+     */
+    var partition = createAggregator(function(result, value, key) {
+      result[key ? 0 : 1].push(value);
+    }, true);
+
+    /**
      * Retrieves the value of a specified property from all elements in the collection.
      *
      * @static
@@ -3874,8 +4181,8 @@
      */
     function reduce(collection, callback, accumulator, thisArg) {
       var noaccum = arguments.length < 3;
-
       callback = lodash.createCallback(callback, thisArg, 4);
+
       var index = -1,
           length = collection ? collection.length : 0;
 
@@ -3928,13 +4235,13 @@
     }
 
     /**
-     * The opposite of `_.filter`; this method returns the elements of a
-     * collection that the callback does **not** return truey for.
+     * The opposite of `_.filter`; this method returns the elements of a collection
+     * the predicate does **not** return truthy for.
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -3942,33 +4249,33 @@
      * @memberOf _
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of elements that failed the callback check.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
+     * @returns {Array} Returns a new array of elements that failed the predicate check.
      * @example
      *
-     * var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-     * // => [1, 3, 5]
+     * var odds = _.reject([1, 2, 3, 4], function(num) { return num % 2 == 0; });
+     * // => [1, 3]
      *
      * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'barney', 'age': 36 },
      *   { 'name': 'fred',   'age': 40, 'blocked': true }
      * ];
      *
      * // using "_.pluck" callback shorthand
      * _.reject(characters, 'blocked');
-     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
+     * // => [{ 'name': 'barney', 'age': 36 }]
      *
      * // using "_.where" callback shorthand
      * _.reject(characters, { 'age': 36 });
      * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
      */
-    function reject(collection, callback, thisArg) {
-      callback = lodash.createCallback(callback, thisArg, 3);
+    function reject(collection, predicate, thisArg) {
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       return filter(collection, function(value, index, collection) {
-        return !callback(value, index, collection);
+        return !predicate(value, index, collection);
       });
     }
 
@@ -4004,7 +4311,8 @@
 
     /**
      * Creates an array of shuffled values, using a version of the Fisher-Yates
-     * shuffle. See [Wikipedia](http://en.wikipedia.org/wiki/Fisher-Yates_shuffle) for more details.
+     * shuffle. See [Wikipedia](http://en.wikipedia.org/wiki/Fisher-Yates_shuffle)
+     * for more details.
      *
      * @static
      * @memberOf _
@@ -4013,8 +4321,8 @@
      * @returns {Array} Returns a new shuffled collection.
      * @example
      *
-     * _.shuffle([1, 2, 3, 4, 5, 6]);
-     * // => [4, 1, 6, 3, 5, 2]
+     * _.shuffle([1, 2, 3, 4]);
+     * // => [4, 1, 3, 2]
      */
     function shuffle(collection) {
       var index = -1,
@@ -4056,15 +4364,15 @@
     }
 
     /**
-     * Checks if the callback returns a truey value for **any** element of a
-     * collection. The function returns as soon as it finds a passing value and
-     * does not iterate over the entire collection. The callback is bound to
-     * `thisArg` and invoked with three arguments; (value, index|key, collection).
+     * Checks if the predicate returns truthy for **any** element of a collection.
+     * The function returns as soon as it finds a passing value and does not iterate
+     * over the entire collection. The predicate is bound to `thisArg` and invoked
+     * with three arguments; (value, index|key, collection).
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -4073,11 +4381,11 @@
      * @alias any
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
+     * @param {Function|Object|string} [predicate=identity] The function called
      *  per iteration. If a property name or object is provided it will be used
      *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {boolean} Returns `true` if any element passed the callback check,
+     * @param {*} [thisArg] The `this` binding of `predicate`.
+     * @returns {boolean} Returns `true` if any element passed the predicate check,
      *  else `false`.
      * @example
      *
@@ -4085,7 +4393,7 @@
      * // => true
      *
      * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'barney', 'age': 36 },
      *   { 'name': 'fred',   'age': 40, 'blocked': true }
      * ];
      *
@@ -4097,22 +4405,22 @@
      * _.some(characters, { 'age': 1 });
      * // => false
      */
-    function some(collection, callback, thisArg) {
+    function some(collection, predicate, thisArg) {
       var result;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       var index = -1,
           length = collection ? collection.length : 0;
 
       if (typeof length == 'number') {
         while (++index < length) {
-          if ((result = callback(collection[index], index, collection))) {
-            break;
+          if (predicate(collection[index], index, collection)) {
+            return true;
           }
         }
       } else {
         baseEach(collection, function(value, index, collection) {
-          return !(result = callback(value, index, collection));
+          return !(result = predicate(value, index, collection));
         });
       }
       return !!result;
@@ -4139,9 +4447,9 @@
      * @memberOf _
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Array|Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {Array|Function|Object|string} [callback=identity] The function
+     *  called per iteration. If a property name or object is provided it will
+     *  be used to create a "_.pluck" or "_.where" style callback, respectively.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {Array} Returns a new array of sorted elements.
      * @example
@@ -4187,18 +4495,13 @@
         } else {
           criteria = callback(value, key, collection);
         }
-        var object = result[++index] = getObject();
-        object.criteria = criteria;
-        object.index = index;
-        object.value = value;
+        result[++index] = { 'criteria': criteria, 'index': index, 'value': value };
       });
 
       length = result.length;
       result.sort(multi ? compareMultipleAscending : compareAscending);
       while (length--) {
-        var object = result[length];
-        result[length] = object.value;
-        releaseObject(object);
+        result[length] = result[length].value;
       }
       return result;
     }
@@ -4225,7 +4528,7 @@
 
     /**
      * Performs a deep comparison between each element in `collection` and the
-     * `props` object, returning an array of all elements that have equivalent
+     * `source` object, returning an array of all elements that have equivalent
      * property values.
      *
      * @static
@@ -4233,7 +4536,7 @@
      * @type Function
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Object} props The object of property values to filter by.
+     * @param {Object} source The object of property values to filter by.
      * @returns {Array} Returns a new array of elements that have the given properties.
      * @example
      *
@@ -4546,7 +4849,7 @@
       if (!isFunction(func)) {
         throw new TypeError;
       }
-      wait = nativeMax(0, wait) || 0;
+      wait = wait > 0 ? wait : 0;
       if (options === true) {
         var leading = true;
         trailing = false;
@@ -4557,7 +4860,7 @@
       }
       var delayed = function() {
         var remaining = wait - (now() - stamp);
-        if (remaining <= 0) {
+        if (remaining <= 0 || remaining > wait) {
           if (maxTimeoutId) {
             clearTimeout(maxTimeoutId);
           }
@@ -4602,7 +4905,7 @@
             lastCalled = stamp;
           }
           var remaining = maxWait - (stamp - lastCalled),
-              isCalled = remaining <= 0;
+              isCalled = remaining <= 0 || remaining > maxWait;
 
           if (isCalled) {
             if (maxTimeoutId) {
@@ -4801,8 +5104,8 @@
     }
 
     /**
-     * This method is like `_.partial` except that `partial` arguments are
-     * appended to those provided to the new function.
+     * This method is like `_.partial` except that partially applied arguments
+     * are appended to those provided to the new function.
      *
      * Note: This method does not set the `length` property of partially applied
      * functions.
@@ -4881,11 +5184,11 @@
       if (options === false) {
         leading = false;
       } else if (isObject(options)) {
-        leading = 'leading' in options ? options.leading : leading;
-        trailing = 'trailing' in options ? options.trailing : trailing;
+        leading = 'leading' in options ? !!options.leading : leading;
+        trailing = 'trailing' in options ? !!options.trailing : trailing;
       }
       debounceOptions.leading = leading;
-      debounceOptions.maxWait = wait;
+      debounceOptions.maxWait = +wait;
       debounceOptions.trailing = trailing;
 
       return debounce(func, wait, debounceOptions);
@@ -5038,7 +5341,8 @@
           callback = null;
         }
       }
-      return baseClone(value, isDeep, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+      callback = typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1);
+      return baseClone(value, isDeep, callback);
     }
 
     /**
@@ -5084,7 +5388,8 @@
      * // => false
      */
     function cloneDeep(value, callback, thisArg) {
-      return baseClone(value, true, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+      callback = typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1);
+      return baseClone(value, true, callback);
     }
 
     /**
@@ -5170,12 +5475,12 @@
 
     /**
      * This method is like `_.findIndex` except that it returns the key of the
-     * first element that passes the callback check, instead of the element itself.
+     * first element the predicate returns truthy for, instead of the element itself.
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -5183,17 +5488,17 @@
      * @memberOf _
      * @category Objects
      * @param {Object} object The object to search.
-     * @param {Function|Object|string} [callback=identity] The function called per
-     *  iteration. If a property name or object is provided it will be used to
-     *  create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {string|undefined} Returns the key of the found element, else `undefined`.
      * @example
      *
      * var characters = {
-     *   'barney': {  'age': 36, 'blocked': false },
-     *   'fred': {    'age': 40, 'blocked': true },
-     *   'pebbles': { 'age': 1,  'blocked': false }
+     *   'barney': { 'age': 36 },
+     *   'fred': { 'age': 40, 'blocked': true },
+     *   'pebbles': { 'age': 1 }
      * };
      *
      * _.findKey(characters, function(chr) {
@@ -5209,12 +5514,12 @@
      * _.findKey(characters, 'blocked');
      * // => 'fred'
      */
-    function findKey(object, callback, thisArg) {
+    function findKey(object, predicate, thisArg) {
       var result;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       baseForOwn(object, function(value, key, object) {
-        if (callback(value, key, object)) {
+        if (predicate(value, key, object)) {
           result = key;
           return false;
         }
@@ -5226,10 +5531,10 @@
      * This method is like `_.findKey` except that it iterates over elements
      * of a `collection` in the opposite order.
      *
-     * If a property name is provided for `callback` the created "_.pluck" style
+     * If a property name is provided for `predicate` the created "_.pluck" style
      * callback will return the property value of the given element.
      *
-     * If an object is provided for `callback` the created "_.where" style callback
+     * If an object is provided for `predicate` the created "_.where" style callback
      * will return `true` for elements that have the properties of the given object,
      * else `false`.
      *
@@ -5237,17 +5542,17 @@
      * @memberOf _
      * @category Objects
      * @param {Object} object The object to search.
-     * @param {Function|Object|string} [callback=identity] The function called per
-     *  iteration. If a property name or object is provided it will be used to
-     *  create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {Function|Object|string} [predicate=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {string|undefined} Returns the key of the found element, else `undefined`.
      * @example
      *
      * var characters = {
-     *   'barney': {  'age': 36, 'blocked': true },
-     *   'fred': {    'age': 40, 'blocked': false },
-     *   'pebbles': { 'age': 1,  'blocked': true }
+     *   'barney': { 'age': 36, 'blocked': true },
+     *   'fred': { 'age': 40 },
+     *   'pebbles': { 'age': 1, 'blocked': true }
      * };
      *
      * _.findLastKey(characters, function(chr) {
@@ -5263,12 +5568,12 @@
      * _.findLastKey(characters, 'blocked');
      * // => 'pebbles'
      */
-    function findLastKey(object, callback, thisArg) {
+    function findLastKey(object, predicate, thisArg) {
       var result;
 
-      callback = lodash.createCallback(callback, thisArg, 3);
+      predicate = lodash.createCallback(predicate, thisArg, 3);
       baseForOwnRight(object, function(value, key, object) {
-        if (callback(value, key, object)) {
+        if (predicate(value, key, object)) {
           result = key;
           return false;
         }
@@ -5666,7 +5971,24 @@
      * // => true
      */
     function isEqual(a, b, callback, thisArg) {
-      return baseIsEqual(a, b, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 2));
+      callback = typeof callback == 'function' && baseCreateCallback(callback, thisArg, 2);
+
+      if (!callback) {
+        // exit early for identical values
+        if (a === b) {
+          // treat `-0` vs. `+0` as not equal
+          return a !== 0 || (1 / a == 1 / b);
+        }
+        var type = typeof a,
+            otherType = typeof b;
+
+        // exit early for unlike primitive values
+        if (a === a && (a == null || b == null ||
+            (type != 'function' && type != 'object' && otherType != 'function' && otherType != 'object'))) {
+          return false;
+        }
+      }
+      return baseIsEqual(a, b, callback);
     }
 
     /**
@@ -5743,7 +6065,7 @@
       // check if the value is the ECMAScript language type of Object
       // http://es5.github.io/#x8
       // and avoid a V8 bug
-      // http://code.google.com/p/v8/issues/detail?id=2291
+      // https://code.google.com/p/v8/issues/detail?id=2291
       var type = typeof value;
       return value && (type == 'function' || type == 'object') || false;
     }
@@ -5911,7 +6233,7 @@
     }
 
     /**
-     * Creates an array composed of the own enumerable property names of an object.
+     * Creates an array composed of the own enumerable property names of `object`.
      *
      * @static
      * @memberOf _
@@ -6047,33 +6369,31 @@
       }
       var sources = slice(arguments, 1, length),
           index = -1,
-          stackA = getArray(),
-          stackB = getArray();
+          stackA = [],
+          stackB = [];
 
       while (++index < length) {
         baseMerge(object, sources[index], callback, stackA, stackB);
       }
-      releaseArray(stackA);
-      releaseArray(stackB);
       return object;
     }
 
     /**
      * Creates a shallow clone of `object` excluding the specified properties.
      * Property names may be specified as individual arguments or as arrays of
-     * property names. If a callback is provided it will be executed for each
-     * property of `object` omitting the properties the callback returns truey
-     * for. The callback is bound to `thisArg` and invoked with three arguments;
+     * property names. If a predicate is provided it will be executed for each
+     * property of `object` omitting the properties the predicate returns truthy
+     * for. The predicate is bound to `thisArg` and invoked with three arguments;
      * (value, key, object).
      *
      * @static
      * @memberOf _
      * @category Objects
      * @param {Object} object The source object.
-     * @param {Function|...string|string[]} [callback] The function called per
+     * @param {Function|...string|string[]} [predicate] The function called per
      *  iteration or property names to omit, specified as individual property
      *  names or arrays of property names.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {Object} Returns an object without the omitted properties.
      * @example
      *
@@ -6085,19 +6405,11 @@
      * });
      * // => { 'name': 'fred' }
      */
-    function omit(object, callback, thisArg) {
-      var result = {},
-          type = typeof callback;
+    function omit(object, predicate, thisArg) {
+      var result = {};
 
-      if (type != 'function') {
-        // enables use as a callback for functions like `_.map`
-        // when combined with `_.partialRight`
-        var args = arguments;
-        if ((type == 'number' || type == 'string') && thisArg && thisArg[callback] === object) {
-          args = slice(args);
-          splice.call(args, 1, 2);
-        }
-        var omitProps = baseFlatten(args, true, false, 1),
+      if (typeof predicate != 'function') {
+        var omitProps = baseFlatten(arguments, true, false, 1),
             length = omitProps.length;
 
         while (length--) {
@@ -6117,9 +6429,9 @@
           result[key] = object[key];
         }
       } else {
-        callback = lodash.createCallback(callback, thisArg, 3);
+        predicate = lodash.createCallback(predicate, thisArg, 3);
         baseForIn(object, function(value, key, object) {
-          if (!callback(value, key, object)) {
+          if (!predicate(value, key, object)) {
             result[key] = value;
           }
         });
@@ -6128,7 +6440,7 @@
     }
 
     /**
-     * Creates a two dimensional array of an object's key-value pairs,
+     * Creates a two dimensional array of a given object's key-value pairs,
      * i.e. `[[key1, value1], [key2, value2]]`.
      *
      * @static
@@ -6157,19 +6469,19 @@
     /**
      * Creates a shallow clone of `object` composed of the specified properties.
      * Property names may be specified as individual arguments or as arrays of
-     * property names. If a callback is provided it will be executed for each
-     * property of `object` picking the properties the callback returns truey
-     * for. The callback is bound to `thisArg` and invoked with three arguments;
+     * property names. If a predicate is provided it will be executed for each
+     * property of `object` picking the properties the predicate returns truthy
+     * for. The predicate is bound to `thisArg` and invoked with three arguments;
      * (value, key, object).
      *
      * @static
      * @memberOf _
      * @category Objects
      * @param {Object} object The source object.
-     * @param {Function|...string|string[]} [callback] The function called per
+     * @param {Function|...string|string[]} [predicate] The function called per
      *  iteration or property names to pick, specified as individual property
      *  names or arrays of property names.
-     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @param {*} [thisArg] The `this` binding of `predicate`.
      * @returns {Object} Returns an object composed of the picked properties.
      * @example
      *
@@ -6181,20 +6493,12 @@
      * });
      * // => { 'name': 'fred' }
      */
-    function pick(object, callback, thisArg) {
-      var result = {},
-          type = typeof callback;
+    function pick(object, predicate, thisArg) {
+      var result = {};
 
-      if (type != 'function') {
-        // enables use as a callback for functions like `_.map`
-        // when combined with `_.partialRight`
-        var args = arguments;
-        if ((type == 'number' || type == 'string') && thisArg && thisArg[callback] === object) {
-          args = slice(args);
-          splice.call(args, 1, 2);
-        }
+      if (typeof predicate != 'function') {
         var index = -1,
-            props = baseFlatten(args, true, false, 1),
+            props = baseFlatten(arguments, true, false, 1),
             length = isObject(object) ? props.length : 0;
 
         while (++index < length) {
@@ -6204,9 +6508,9 @@
           }
         }
       } else {
-        callback = lodash.createCallback(callback, thisArg, 3);
+        predicate = lodash.createCallback(predicate, thisArg, 3);
         baseForIn(object, function(value, key, object) {
-          if (callback(value, key, object)) {
+          if (predicate(value, key, object)) {
             result[key] = value;
           }
         });
@@ -6232,7 +6536,7 @@
      * @returns {*} Returns the accumulated value.
      * @example
      *
-     * var squares = _.transform([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], function(result, num) {
+     * var squares = _.transform([1, 2, 3, 4, 5, 6, 7, 8], function(result, num) {
      *   num *= num;
      *   if (num % 2) {
      *     return result.push(num) < 3;
@@ -6294,12 +6598,36 @@
     /*--------------------------------------------------------------------------*/
 
     /**
-     * Converts the first character of `string` to upper case.
+     * Converts `string` to camel case.
+     * See [Wikipedia](http://en.wikipedia.org/wiki/CamelCase) for more details.
      *
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} string The string to capitalize.
+     * @param {string} [string=''] The string to camel case.
+     * @returns {string} Returns the camel cased string.
+     * @example
+     *
+     * _.camelCase('Hello world');
+     * // => 'helloWorld'
+     *
+     * _.camelCase('hello-world');
+     * // => 'helloWorld'
+     *
+     * _.camelCase('hello_world');
+     * // => 'helloWorld'
+     */
+    var camelCase = createCompounder(function(result, words, index) {
+      return result + words.charAt(0)[index ? 'toUpperCase' : 'toLowerCase']() + words.slice(1);
+    });
+
+    /**
+     * Capitalizes the first character of `string`.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to capitalize.
      * @returns {string} Returns the capitalized string.
      * @example
      *
@@ -6312,6 +6640,37 @@
       }
       string = String(string);
       return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    /**
+     * Checks if `string` ends with a given target string.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to search.
+     * @param {string} [target] The string to search for.
+     * @param {number} [position=string.length] The position to search from.
+     * @returns {boolean} Returns `true` if the given string ends with the
+     *  target string, else `false`.
+     * @example
+     *
+     * _.endsWith('abc', 'c');
+     * // => true
+     *
+     * _.endsWith('abc', 'b');
+     * // => false
+     *
+     * _.endsWith('abc', 'b', 2);
+     * // => true
+     */
+    function endsWith(string, target, position) {
+      string = string == null ? '' : String(string);
+      target = String(target);
+
+      var length = string.length;
+      position = (typeof position == 'number' ? nativeMin(nativeMax(position, 0), length) : length) - target.length;
+      return position >= 0 && string.indexOf(target, position) == position;
     }
 
     /**
@@ -6328,7 +6687,7 @@
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} string The string to escape.
+     * @param {string} [string=''] The string to escape.
      * @returns {string} Returns the escaped string.
      * @example
      *
@@ -6340,11 +6699,244 @@
     }
 
     /**
-     * A micro-templating method that handles arbitrary delimiters, preserves
-     * whitespace, and correctly escapes quotes within interpolated code.
+     * Escapes the RegExp special characters "\", "^", "$", ".", "|", "?", "*",
+     * "+", "(", ")", "[", "]", "{" and "}" in `string`.
      *
-     * Note: In the development build, `_.template` utilizes sourceURLs for easier
-     * debugging. See [HTML5 Rocks' article on sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to escape.
+     * @returns {string} Returns the escaped string.
+     * @example
+     *
+     * _.escapeRegExp('[lodash](http://lodash.com)');
+     * // => '\[lodash]\(http://lodash\.com\)'
+     */
+    function escapeRegExp(string) {
+      return string == null ? '' : String(string).replace(reRegExpChars, '\\$&');
+    }
+
+    /**
+     * Converts `string` to kebab case (a.k.a. spinal case).
+     * See [Wikipedia](http://en.wikipedia.org/wiki/Letter_case#Computers) for
+     * more details.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to kebab case.
+     * @returns {string} Returns the kebab cased string.
+     * @example
+     *
+     * _.kebabCase('Hello world');
+     * // => 'hello-world'
+     *
+     * _.kebabCase('helloWorld');
+     * // => 'hello-world'
+     *
+     * _.kebabCase('hello_world');
+     * // => 'hello-world'
+     */
+    var kebabCase = createCompounder(function(result, words, index) {
+      return result + (index ? '-' : '') + words.toLowerCase();
+    });
+
+    /**
+     * Pads `string` on the left and right sides if it is shorter then the given
+     * padding length. The `chars` string may be truncated if the number of padding
+     * characters can't be evenly divided by the padding length.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to pad.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padded string.
+     * @example
+     *
+     * _.pad('abc', 8);
+     * // => '  abc   '
+     *
+     * _.pad('abc', 8, '_-');
+     * // => '_-abc_-_'
+     *
+     * _.pad('abc', 3);
+     * // => 'abc'
+     */
+    function pad(string, length, chars) {
+      string = string == null ? '' : String(string);
+      length = +length || 0;
+
+      var strLength = string.length;
+      if (strLength >= length) {
+        return string;
+      }
+      var mid = (length - strLength) / 2,
+          leftLength = floor(mid),
+          rightLength = ceil(mid);
+
+      chars = createPad('', rightLength, chars);
+      return chars.slice(0, leftLength) + string + chars;
+    }
+
+    /**
+     * Pads `string` on the left side if it is shorter then the given padding
+     * length. The `chars` string may be truncated if the number of padding
+     * characters exceeds the padding length.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to pad.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padded string.
+     * @example
+     *
+     * _.padLeft('abc', 6);
+     * // => '   abc'
+     *
+     * _.padLeft('abc', 6, '_-');
+     * // => '_-_abc'
+     *
+     * _.padLeft('abc', 3);
+     * // => 'abc'
+     */
+    function padLeft(string, length, chars) {
+      string = string == null ? '' : String(string);
+      return createPad(string, length, chars) + string;
+    }
+
+    /**
+     * Pads `string` on the right side if it is shorter then the given padding
+     * length. The `chars` string may be truncated if the number of padding
+     * characters exceeds the padding length.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to pad.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padded string.
+     * @example
+     *
+     * _.padRight('abc', 6);
+     * // => 'abc   '
+     *
+     * _.padRight('abc', 6, '_-');
+     * // => 'abc_-_'
+     *
+     * _.padRight('abc', 3);
+     * // => 'abc'
+     */
+    function padRight(string, length, chars) {
+      string = string == null ? '' : String(string);
+      return string + createPad(string, length, chars);
+    }
+
+    /**
+     * Repeats the given string `n` times.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to repeat.
+     * @param {number} [n=0] The number of times to repeat the string.
+     * @returns {string} Returns the repeated string.
+     * @example
+     *
+     * _.repeat('*', 3);
+     * // => '***'
+     *
+     * _.repeat('abc', 2);
+     * // => 'abcabc'
+     *
+     * _.repeat('abc', 0);
+     * // => ''
+     */
+    function repeat(string, n) {
+      var result = '';
+      n = +n || 0;
+
+      if (n < 1 || string == null) {
+        return result;
+      }
+      string = String(string);
+      while (n > 0) {
+        if (n % 2) {
+          result += string;
+        }
+        n = floor(n / 2);
+        result += result;
+      }
+      return result;
+    }
+
+    /**
+     * Converts `string` to snake case.
+     * See [Wikipedia](http://en.wikipedia.org/wiki/Snake_case) for more details.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to snake case.
+     * @returns {string} Returns the snake cased string.
+     * @example
+     *
+     * _.snakeCase('Hello world');
+     * // => 'hello_world'
+     *
+     * _.snakeCase('hello-world');
+     * // => 'hello_world'
+     *
+     * _.snakeCase('helloWorld');
+     * // => 'hello_world'
+     */
+    var snakeCase = createCompounder(function(result, words, index) {
+      return result + (index ? '_' : '') + words.toLowerCase();
+    });
+
+    /**
+     * Checks if `string` starts with a given target string.
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to search.
+     * @param {string} [target] The string to search for.
+     * @param {number} [position=0] The position to search from.
+     * @returns {boolean} Returns `true` if the given string starts with the
+     *  target string, else `false`.
+     * @example
+     *
+     * _.startsWith('abc', 'a');
+     * // => true
+     *
+     * _.startsWith('abc', 'b');
+     * // => false
+     *
+     * _.startsWith('abc', 'b', 1);
+     * // => true
+     */
+    function startsWith(string, target, position) {
+      string = string == null ? '' : String(string);
+      position = typeof position == 'number' ? nativeMin(nativeMax(position, 0), string.length) : 0;
+      return string.lastIndexOf(target, position) == position;
+    }
+
+    /**
+     * Creates a compiled template function that can interpolate data properties
+     * in "interpolate" delimiters, HTML-escaped interpolated data properties in
+     * "escape" delimiters, and execute JavaScript in "evaluate" delimiters. If
+     * a data object is provided the interpolated template string will be returned.
+     * Data properties may be accessed as free variables in the template. If a
+     * settings object is provided it will override `_.templateSettings` for the
+     * template.
+     *
+     * Note: In the development build, `_.template` utilizes sourceURLs for easier debugging.
+     * See the [HTML5 Rocks article on sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
      * for more details.
      *
      * For more information on precompiling templates see
@@ -6356,17 +6948,17 @@
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} text The template text.
-     * @param {Object} [data] The data object used to populate the text.
+     * @param {string} [string=''] The template string.
+     * @param {Object} [data] The data object used to populate the template string.
      * @param {Object} [options] The options object.
-     * @param {RegExp} [options.escape] The "escape" delimiter.
+     * @param {RegExp} [options.escape] The HTML "escape" delimiter.
      * @param {RegExp} [options.evaluate] The "evaluate" delimiter.
      * @param {Object} [options.imports] An object to import into the template as local variables.
      * @param {RegExp} [options.interpolate] The "interpolate" delimiter.
      * @param {string} [options.sourceURL] The sourceURL of the template's compiled source.
      * @param {string} [options.variable] The data object variable name.
-     * @returns {Function|string} Returns a compiled function when no `data` object
-     *  is given, else it returns the interpolated text.
+     * @returns {Function|string} Returns the interpolated string if a data object
+     *  is provided, else it returns a template function.
      * @example
      *
      * // using the "interpolate" delimiter to create a compiled template
@@ -6374,11 +6966,11 @@
      * compiled({ 'name': 'fred' });
      * // => 'hello fred'
      *
-     * // using the "escape" delimiter to escape HTML in data property values
+     * // using the HTML "escape" delimiter to escape data property values
      * _.template('<b><%- value %></b>', { 'value': '<script>' });
      * // => '<b>&lt;script&gt;</b>'
      *
-     * // using the "evaluate" delimiter to generate HTML
+     * // using the "evaluate" delimiter to execute JavaScript and generate HTML
      * var list = '<% _.forEach(people, function(name) { %><li><%- name %></li><% }); %>';
      * _.template(list, { 'people': ['fred', 'barney'] });
      * // => '<li>fred</li><li>barney</li>'
@@ -6392,10 +6984,7 @@
      * // => 'hello barney!'
      *
      * // using a custom template delimiters
-     * _.templateSettings = {
-     *   'interpolate': /{{([\s\S]+?)}}/g
-     * };
-     *
+     * _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
      * _.template('hello {{ name }}!', { 'name': 'mustache' });
      * // => 'hello mustache!'
      *
@@ -6426,13 +7015,13 @@
      *   };\
      * ');
      */
-    function template(text, data, options) {
+    function template(string, data, options) {
       // based on John Resig's `tmpl` implementation
       // http://ejohn.org/blog/javascript-micro-templating/
       // and Laura Doktorova's doT.js
       // https://github.com/olado/doT
       var settings = lodash.templateSettings;
-      text = String(text || '');
+      string = String(string == null ? '' : string);
 
       // avoid missing dependencies when `iteratorTemplate` is not defined
       options = defaults({}, options, settings);
@@ -6441,7 +7030,8 @@
           importsKeys = keys(imports),
           importsValues = values(imports);
 
-      var isEvaluating,
+      var isEscaping,
+          isEvaluating,
           index = 0,
           interpolate = options.interpolate || reNoMatch,
           source = "__p += '";
@@ -6454,14 +7044,15 @@
         (options.evaluate || reNoMatch).source + '|$'
       , 'g');
 
-      text.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+      string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
         interpolateValue || (interpolateValue = esTemplateValue);
 
         // escape characters that cannot be included in string literals
-        source += text.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+        source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
 
         // replace delimiters with snippets
         if (escapeValue) {
+          isEscaping = true;
           source += "' +\n__e(" + escapeValue + ") +\n'";
         }
         if (evaluateValue) {
@@ -6482,12 +7073,9 @@
 
       // if `variable` is not specified, wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain
-      var variable = options.variable,
-          hasVariable = variable;
-
-      if (!hasVariable) {
-        variable = 'obj';
-        source = 'with (' + variable + ') {\n' + source + '\n}\n';
+      var variable = options.variable;
+      if (!variable) {
+        source = 'with (obj) {\n' + source + '\n}\n';
       }
       // cleanup code by stripping empty strings
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
@@ -6495,9 +7083,16 @@
         .replace(reEmptyStringTrailing, '$1;');
 
       // frame code as the function body
-      source = 'function(' + variable + ') {\n' +
-        (hasVariable ? '' : variable + ' || (' + variable + ' = {});\n') +
-        "var __t, __p = '', __e = _.escape" +
+      source = 'function(' + (variable || 'obj') + ') {\n' +
+        (variable
+          ? ''
+          : 'obj || (obj = {});\n'
+        ) +
+        "var __t, __p = ''" +
+        (isEscaping
+           ? ', __e = _.escape'
+           : ''
+        ) +
         (isEvaluating
           ? ', __j = Array.prototype.join;\n' +
             "function print() { __p += __j.call(arguments, '') }\n"
@@ -6532,7 +7127,7 @@
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} string The string to trim.
+     * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
      * @returns {string} Returns the trimmed string.
      * @example
@@ -6556,7 +7151,7 @@
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} string The string to trim.
+     * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
      * @returns {string} Returns the trimmed string.
      * @example
@@ -6580,7 +7175,7 @@
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} string The string to trim.
+     * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
      * @returns {string} Returns the trimmed string.
      * @example
@@ -6599,6 +7194,85 @@
     };
 
     /**
+     * Truncates `string` if it is longer than the given maximum string length.
+     * The last characters of the truncated string will be replaced with the
+     * omission string which defaults to "...".
+     *
+     * @static
+     * @memberOf _
+     * @category Strings
+     * @param {string} [string=''] The string to trim.
+     * @param {Object|number} [options] The options object or maximum string length.
+     * @param {number} [options.length=30] The maximum string length.
+     * @param {string} [options.omission='...'] The string used to indicate text is omitted.
+     * @param {RegExp|string} [options.separator] The separator pattern to truncate to.
+     * @returns {string} Returns the truncated string.
+     * @example
+     *
+     * _.truncate('hi-diddly-ho there, neighborino');
+     * // => 'hi-diddly-ho there, neighbo...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', 24);
+     * // => 'hi-diddly-ho there, n...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', { 'length': 24, 'separator': ' ' });
+     * // => 'hi-diddly-ho there,...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', { 'length': 24, 'separator': /,? +/ });
+     * //=> 'hi-diddly-ho there...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', { 'omission': ' [...]' });
+     * // => 'hi-diddly-ho there, neig [...]'
+     */
+    function truncate(string, options) {
+      var length = 30,
+          omission = '...';
+
+      if (options && isObject(options)) {
+        var separator = 'separator' in options ? options.separator : separator;
+        length = 'length' in options ? +options.length || 0 : length;
+        omission = 'omission' in options ? String(options.omission) : omission;
+      }
+      else if (options != null) {
+        length = +options || 0;
+      }
+      string = string == null ? '' : String(string);
+      if (length > string.length) {
+        return string;
+      }
+      var end = length - omission.length;
+      if (end < 1) {
+        return omission;
+      }
+      var result = string.slice(0, end);
+      if (separator == null) {
+        return result + omission;
+      }
+      if (isRegExp(separator)) {
+        if (string.slice(end).search(separator)) {
+          var match,
+              newEnd,
+              substring = string.slice(0, end);
+
+          if (!separator.global) {
+            separator = RegExp(separator.source, (reFlags.exec(separator) || '') + 'g');
+          }
+          separator.lastIndex = 0;
+          while ((match = separator.exec(substring))) {
+            newEnd = match.index;
+          }
+          result = result.slice(0, newEnd == null ? end : newEnd);
+        }
+      } else if (string.indexOf(separator, end) != end) {
+        var index = result.lastIndexOf(separator);
+        if (index > -1) {
+          result = result.slice(0, index);
+        }
+      }
+      return result + omission;
+    }
+
+    /**
      * The inverse of `_.escape`; this method converts the HTML entities
      * `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` in `string` to their
      * corresponding characters.
@@ -6609,7 +7283,7 @@
      * @static
      * @memberOf _
      * @category Strings
-     * @param {string} string The string to unescape.
+     * @param {string} [string=''] The string to unescape.
      * @returns {string} Returns the unescaped string.
      * @example
      *
@@ -6681,11 +7355,12 @@
      */
     function createCallback(func, thisArg, argCount) {
       var type = typeof func;
-      if (func == null || type == 'function') {
-        return baseCreateCallback(func, thisArg, argCount);
+      if (type == 'function' || func == null) {
+        return (typeof thisArg == 'undefined' || !('prototype' in func)) &&
+          func || baseCreateCallback(func, thisArg, argCount);
       }
       // handle "_.pluck" and "_.where" style callback shorthands
-      return type != 'object' ? property(func) : match(func);
+      return type != 'object' ? property(func) : matches(func);
     }
 
     /**
@@ -6707,14 +7382,14 @@
     }
 
     /**
-     * Creates a "_.where" style function, which performs a deep comparison
-     * between a given object and the `props` object, returning `true` if the
-     * given object has equivalent property values, else `false`.
+     * Creates a "_.where" style predicate function which performs a deep comparison
+     * between a given object and the `source` object, returning `true` if the given
+     * object has equivalent property values, else `false`.
      *
      * @static
      * @memberOf _
      * @category Utilities
-     * @param {Object} props The object of property values to match.
+     * @param {Object} source The object of property values to match.
      * @returns {Function} Returns the new function.
      * @example
      *
@@ -6723,15 +7398,15 @@
      *   { 'name': 'barney', 'age': 36 }
      * ];
      *
-     * var matchAge = _.match({ 'age': 36 });
+     * var matchesAge = _.matches({ 'age': 36 });
      *
-     * _.filter(characters, matchAge);
+     * _.filter(characters, matchesAge);
      * // => [{ 'name': 'barney', 'age': 36 }]
      *
-     * _.find(characters, matchAge);
+     * _.find(characters, matchesAge);
      * // => { 'name': 'barney', 'age': 36 }
      */
-    function match(source) {
+    function matches(source) {
       source || (source = {});
 
       var props = keys(source),
@@ -6745,6 +7420,7 @@
           if (!hasOwnProperty.call(object, key)) {
             return false;
           }
+          // treat `-0` vs. `+0` as not equal
           var b = object[key];
           return a === b && (a !== 0 || (1 / a == 1 / b));
         };
@@ -6774,7 +7450,8 @@
      * @param {Function|Object} [object=lodash] object The destination object.
      * @param {Object} source The object of functions to add.
      * @param {Object} [options] The options object.
-     * @param {boolean} [options.chain=true] Specify whether the functions added are chainable.
+     * @param {boolean} [options.chain=true] Specify whether the functions added
+     *  are chainable.
      * @example
      *
      * function vowels(string) {
@@ -6913,14 +7590,15 @@
      * // => 8
      */
     var parseInt = nativeParseInt(whitespace + '08') == 8 ? nativeParseInt : function(value, radix) {
+      // Firefox < 21 and Opera < 15 follow ES3  for `parseInt` and
       // Chrome fails to trim leading <BOM> whitespace characters.
-      // Firefox < 21 and Opera < 15 follow the ES3 specified implementation of `parseInt`.
+      // See https://code.google.com/p/v8/issues/detail?id=3109
       value = trim(value);
       return nativeParseInt(value, +radix || (reHexPrefix.test(value) ? 16 : 10));
     };
 
     /**
-     * Creates a "_.pluck" style function, which returns the `key` value of a
+     * Creates a "_.pluck" style function which returns the `key` value of a
      * given object.
      *
      * @static
@@ -6952,7 +7630,7 @@
     /**
      * Produces a random number between `min` and `max` (inclusive). If only one
      * argument is provided a number between `0` and the given number will be
-     * returned. If `floating` is truey or either `min` or `max` are floats a
+     * returned. If `floating` is truthy or either `min` or `max` are floats a
      * floating-point number will be returned instead of an integer.
      *
      * @static
@@ -7042,10 +7720,10 @@
      * // => 'slate'
      */
     function result(object, key, defaultValue) {
-      if (object == null || typeof object[key] == 'undefined') {
+      var value = object == null ? undefined : object[key];
+      if (typeof value == 'undefined') {
         return defaultValue;
       }
-      var value = object[key];
       return isFunction(value) ? object[key]() : value;
     }
 
@@ -7058,7 +7736,7 @@
      * @memberOf _
      * @category Utilities
      * @param {number} n The number of times to execute the callback.
-     * @param {Function} callback The function called per iteration.
+     * @param {Function} [callback=identity] The function called per iteration.
      * @param {*} [thisArg] The `this` binding of `callback`.
      * @returns {Array} Returns an array of the results of each `callback` execution.
      * @example
@@ -7127,6 +7805,10 @@
     lodash.defer = defer;
     lodash.delay = delay;
     lodash.difference = difference;
+    lodash.drop = drop;
+    lodash.dropRight = dropRight;
+    lodash.dropRightWhile = dropRightWhile;
+    lodash.dropWhile = dropWhile;
     lodash.filter = filter;
     lodash.flatten = flatten;
     lodash.forEach = forEach;
@@ -7145,7 +7827,7 @@
     lodash.keys = keys;
     lodash.map = map;
     lodash.mapValues = mapValues;
-    lodash.match = match;
+    lodash.matches = matches;
     lodash.max = max;
     lodash.memoize = memoize;
     lodash.merge = merge;
@@ -7155,6 +7837,7 @@
     lodash.pairs = pairs;
     lodash.partial = partial;
     lodash.partialRight = partialRight;
+    lodash.partition = partition;
     lodash.pick = pick;
     lodash.pluck = pluck;
     lodash.property = property;
@@ -7184,7 +7867,6 @@
     // add aliases
     lodash.callback = createCallback;
     lodash.collect = map;
-    lodash.drop = rest;
     lodash.each = forEach;
     lodash.eachRight = forEachRight;
     lodash.extend = assign;
@@ -7201,11 +7883,14 @@
     /*--------------------------------------------------------------------------*/
 
     // add functions that return unwrapped values when chaining
+    lodash.camelCase = camelCase;
     lodash.capitalize = capitalize;
     lodash.clone = clone;
     lodash.cloneDeep = cloneDeep;
     lodash.contains = contains;
+    lodash.endsWith = endsWith;
     lodash.escape = escape;
+    lodash.escapeRegExp = escapeRegExp;
     lodash.every = every;
     lodash.find = find;
     lodash.findIndex = findIndex;
@@ -7233,24 +7918,32 @@
     lodash.isRegExp = isRegExp;
     lodash.isString = isString;
     lodash.isUndefined = isUndefined;
+    lodash.kebabCase = kebabCase;
     lodash.lastIndexOf = lastIndexOf;
     lodash.mixin = mixin;
     lodash.noConflict = noConflict;
     lodash.noop = noop;
     lodash.now = now;
+    lodash.pad = pad;
+    lodash.padLeft = padLeft;
+    lodash.padRight = padRight;
     lodash.parseInt = parseInt;
     lodash.random = random;
     lodash.reduce = reduce;
     lodash.reduceRight = reduceRight;
+    lodash.repeat = repeat;
     lodash.result = result;
     lodash.runInContext = runInContext;
     lodash.size = size;
     lodash.some = some;
     lodash.sortedIndex = sortedIndex;
+    lodash.snakeCase = snakeCase;
+    lodash.startsWith = startsWith;
     lodash.template = template;
     lodash.trim = trim;
     lodash.trimLeft = trimLeft;
     lodash.trimRight = trimRight;
+    lodash.truncate = truncate;
     lodash.unescape = unescape;
     lodash.uniqueId = uniqueId;
 
@@ -7280,9 +7973,12 @@
     lodash.first = first;
     lodash.last = last;
     lodash.sample = sample;
+    lodash.take = first;
+    lodash.takeRight = last;
+    lodash.takeRightWhile = last;
+    lodash.takeWhile = first;
 
     // add aliases
-    lodash.take = first;
     lodash.head = first;
 
     baseForOwn(lodash, function(func, methodName) {

@@ -120,7 +120,7 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 			if (_isAvailable(type)) {
 
 				var
-					data = [],
+					data = {},
 					root = _get(type, name),
 					s    = _getStorageObj(type),
 					r    = new RegExp('^'+name+':')

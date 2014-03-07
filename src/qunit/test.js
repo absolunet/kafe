@@ -1,9 +1,9 @@
 // @import 'kafe'
-// @import 'date'               // 2 methods pending
+// @import 'date'
 // **@import 'form'				// manual
 // **@import 'geolocation'      // difficult to automate
 // @import 'number'
-// **@import 'storage'
+// @import 'storage'
 // @import 'string'
 // @import 'string-encrypt'
 // @import 'string-validate'

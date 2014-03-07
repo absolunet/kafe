@@ -18,7 +18,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 
-	<title>dist/kafe/form.js - kafe</title>
+	<title>dist\kafe\form.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2014 Absolunet inc. -->
@@ -40,7 +40,7 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/kafe/form.js</h1>
+	<h1>dist\kafe\form.js</h1>
 	<h2>File</h2>
 </header>
 
@@ -331,14 +331,14 @@ window.kafe.bonify({name:&#x27;form&#x27;, version:&#x27;1.4.1&#x27;, obj:(funct
 	form.sanitizeFormData = function(selector) {
 		var
 			$form = $(selector),
-			data  = $this.serializeArray()
+			data  = $form.serializeArray()
 		;
 
 		for (var i in data) {
 			$form.find(&#x27;input[type=&quot;text&quot;][name=&quot;&#x27;+data[i].name+&#x27;&quot;],textarea[name=&quot;&#x27;+data[i].name+&#x27;&quot;]&#x27;).val(
 				data[i].value.toString()
-					.replace(/\\&lt;/g,&#x27;&amp;lt;&#x27;)
-					.replace(/\\&gt;/g,&#x27;&amp;gt;&#x27;)
+					.replace(/&lt;/g,&#x27;&amp;lt;&#x27;)
+					.replace(/&gt;/g,&#x27;&amp;gt;&#x27;)
 			);
 		}
 	};

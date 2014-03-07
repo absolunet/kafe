@@ -118,7 +118,7 @@
 			if (_isAvailable(type)) {
 
 				var
-					data = [],
+					data = {},
 					root = _get(type, name),
 					s    = _getStorageObj(type),
 					r    = new RegExp('^'+name+':')
