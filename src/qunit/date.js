@@ -184,6 +184,7 @@
 
 		parse('January 1, 2013',                'US human readable');
 		parse('2013-01-01',                     'ISO 8601 (standard)');
+		parse('2013-01-01 00:00',               'ISO 8601 (standard)');
 		parse('2013-01-01 00:00:00',            'ISO 8601 (standard)');
 		parse('2013-01-01T01:00:00-04:00',      'ISO 8601 (standard)');
 		parse('2013-01-01T05:00:00+00:00',      'ISO 8601 (standard)');

@@ -527,7 +527,10 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 	date.parse = function(dtstring) {
 		if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2})$/gi.test(dtstring)) {
 			dtstring += ' 00:00:00';
+		} else if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2})$/gi.test(dtstring)) {
+			dtstring += ':00';
 		}
+
 
 		var ts = Date.parse(dtstring);
 
