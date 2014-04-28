@@ -25,7 +25,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -78,12 +78,8 @@
                     &#x60;+ssooossosososs/:.                 
 */
 
-// @import &#x27;libs/vendor/lo-dash&#x27;
-// @import &#x27;libs/vendor/underscore.string&#x27;
-// @import &#x27;libs/vendor/modernizr&#x27;
-
 /**
-* ### Version 2.0.0a
+* ### Version 2.1.0
 * Mixing javascript crops for a perfect flavour.
 * /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * http://absolunet.github.io/kafe
@@ -91,7 +87,7 @@
 * @module kafe
 * @main kafe
 */
-window.kafe = (function(window, undefined){
+(function(global, $, undefined) {
 
 	var
 		// check if module imported
@@ -132,7 +128,7 @@ window.kafe = (function(window, undefined){
 
 
 		/**
-		* ### Version 2.0.0a
+		* ### Version 2.1.0
 		* kafe core
 		*
 		* @module kafe
@@ -146,7 +142,7 @@ window.kafe = (function(window, undefined){
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: &#x27;2.0.0a&#x27;,
+			_vesyon: &#x27;2.1.0&#x27;,
 
 			/**
 			* kafe author
@@ -163,40 +159,23 @@ window.kafe = (function(window, undefined){
 			* @type Object
 			**/
 			_chaje: {
-				&#x27;dependencies.jQuery&#x27;:    window.kafejQuery().jquery,
-				&#x27;dependencies.LoDash&#x27;:    window._.VERSION,
-				&#x27;dependencies.Modernizr&#x27;: window.Modernizr._version
+				&#x27;dependencies.jQuery&#x27;:    $().jquery,
+				&#x27;dependencies.LoDash&#x27;:    _.VERSION,
+				&#x27;dependencies.Modernizr&#x27;: Modernizr._version
 			},
 
 			// isolate core dependencies
 			dependencies: {
-
+			
 				/**
-				* jQuery defined under window.kafejQuery  
+				* local jQuery copy 
 				* ref: [http://jquery.com/](http://jquery.com/)
 				*
 				* @property dependencies.jQuery 
 				* @type Object
 				**/
-				jQuery: window.kafejQuery,
+				jQuery: $
 
-				/**
-				* Lo-Dash defined under window._  
-				* ref: [http://lodash.com/](http://lodash.com/)
-				*
-				* @property dependencies.LoDash 
-				* @type Object
-				**/
-				LoDash: window._,
-
-				/**
-				* Modernizr defined under window.Modernizr  
-				* ref: [http://modernizr.com/](http://modernizr.com/)
-				*
-				* @property dependencies.Modernizr 
-				* @type Object
-				**/
-				Modernizr: window.Modernizr
 			},
 
 			cms:    {},
@@ -204,8 +183,6 @@ window.kafe = (function(window, undefined){
 			plugin: {}
 		}
 	;
-	_delete(&#x27;window.kafejQuery&#x27;);
-
 
 	// add flags for ie9 and less
 	if (_ie &amp;&amp; _ie &lt; 10) {
@@ -278,10 +255,7 @@ window.kafe = (function(window, undefined){
 		* @param {Object[Function]} methods Action:Method hash
 		*/
 		plugIntojQuery: function(name, methods) {
-			var
-				$  = core.dependencies.jQuery,
-				id = &#x27;kafe&#x27;+name
-			;
+			var id = &#x27;kafe&#x27;+name;
 			name = name || &#x27;CORE&#x27;;
 
 			if ($.fn[id] === undefined) {
@@ -388,9 +362,9 @@ window.kafe = (function(window, undefined){
 	};
 
 
-	return core;
+	global.kafe = core;
 
-})(window);
+})(typeof window !== &#x27;undefined&#x27; ? window : this, jQuery);
 
 
 

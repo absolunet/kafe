@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'ext.addthis', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.addthis', version:'0.1', obj:(function(){
 
 	/**
 	* ### Version 0.1
@@ -21,13 +19,13 @@ window.kafe.bonify({name:'ext.addthis', version:'0.1', obj:(function(kafe,undefi
 	*/
     addthis.refreshData = function (options) {
 		options = options || {};
-		window.addthis.ost = 0;
-		window.addthis.update('share', 'url',   (options.url)   ? options.url   : window.location.toString());
-		window.addthis.update('share', 'title', (options.title) ? options.title : document.title);
-		window.addthis.ready();
-		window.addthis.toolbox('.addthis_toolbox');
+		global.addthis.ost = 0;
+		global.addthis.update('share', 'url',   (options.url)   ? options.url   : global.location.toString());
+		global.addthis.update('share', 'title', (options.title) ? options.title : document.title);
+		global.addthis.ready();
+		global.addthis.toolbox('.addthis_toolbox');
     };
 
 	return addthis;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

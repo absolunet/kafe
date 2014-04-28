@@ -11,17 +11,17 @@
 
 		_isDisqusLoaded = function() {
 			if ($('#dsq-content #dsq-reply').length) {
-				window.clearInterval(disqus.interval);
+				global.clearInterval(disqus.interval);
 				disqus.loaded = true;
 				disqus.callback();
 			}
 		}
 	;
 
-	window.disqus_title      = null;
-	window.disqus_shortname  = null;
-	window.disqus_url        = null;
-	window.disqus_identifier = null;
+	global.disqus_title      = null;
+	global.disqus_shortname  = null;
+	global.disqus_url        = null;
+	global.disqus_identifier = null;
 
 
 	/**
@@ -49,12 +49,12 @@
 	disqus.init = function (options) {
 		var p = $.extend({}, _params, options);
 
-		window.disqus_title = p.title;
-		window.disqus_shortname = p.shortname;
-		window.disqus_url = p.url;
-		window.disqus_identifier = p.identifier;
+		global.disqus_title = p.title;
+		global.disqus_shortname = p.shortname;
+		global.disqus_url = p.url;
+		global.disqus_identifier = p.identifier;
 
-		window.disqus_config = function () {
+		global.disqus_config = function () {
 			this.language = p.language;
 		};
 
@@ -68,7 +68,7 @@
 		if (p.callback && typeof (p.callback) == 'function') {
 			if ($('#dsq-content #dsq-reply').length === 0) {
 				_callback = p.callback;
-				_interval = window.setInterval(_isDisqusLoaded, 200);
+				_interval = global.setInterval(_isDisqusLoaded, 200);
 			} else {
 				p.callback();
 			}

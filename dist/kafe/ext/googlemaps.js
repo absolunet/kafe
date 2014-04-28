@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'ext.googlemaps', version:'1.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googlemaps', version:'1.1', obj:(function(){
 
 	/**
 	* ### Version 1.1
@@ -43,4 +41,4 @@ window.kafe.bonify({name:'ext.googlemaps', version:'1.1', obj:(function(kafe,und
 
 	return googlemaps;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

@@ -1,8 +1,6 @@
 // @import 'libs/kafe/string'
 
-window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(){
 
 	/**
 	* ### Version 1.0
@@ -229,4 +227,4 @@ window.kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(kafe,und
 
 	return encrypt;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

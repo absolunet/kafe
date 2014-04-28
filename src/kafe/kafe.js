@@ -31,10 +31,6 @@
                     `+ssooossosososs/:.                 
 */
 
-// @import 'libs/vendor/lo-dash'
-// @import 'libs/vendor/underscore.string'
-// @import 'libs/vendor/modernizr'
-
 /**
 * ### Version <!-- @echo VERSION -->
 * <!-- @echo DESCRIPTION -->
@@ -44,7 +40,7 @@
 * @module <!-- @echo PACKAGE -->
 * @main <!-- @echo PACKAGE -->
 */
-window.kafe = (function(window, undefined){
+(function(global, $, undefined) {
 
 	var
 		// check if module imported
@@ -116,40 +112,23 @@ window.kafe = (function(window, undefined){
 			* @type Object
 			**/
 			_chaje: {
-				'dependencies.jQuery':    window.kafejQuery().jquery,
-				'dependencies.LoDash':    window._.VERSION,
-				'dependencies.Modernizr': window.Modernizr._version
+				'dependencies.jQuery':    $().jquery,
+				'dependencies.LoDash':    _.VERSION,
+				'dependencies.Modernizr': Modernizr._version
 			},
 
 			// isolate core dependencies
 			dependencies: {
-
+			
 				/**
-				* jQuery defined under window.kafejQuery  
+				* local jQuery copy 
 				* ref: [http://jquery.com/](http://jquery.com/)
 				*
 				* @property dependencies.jQuery 
 				* @type Object
 				**/
-				jQuery: window.kafejQuery,
+				jQuery: $
 
-				/**
-				* Lo-Dash defined under window._  
-				* ref: [http://lodash.com/](http://lodash.com/)
-				*
-				* @property dependencies.LoDash 
-				* @type Object
-				**/
-				LoDash: window._,
-
-				/**
-				* Modernizr defined under window.Modernizr  
-				* ref: [http://modernizr.com/](http://modernizr.com/)
-				*
-				* @property dependencies.Modernizr 
-				* @type Object
-				**/
-				Modernizr: window.Modernizr
 			},
 
 			cms:    {},
@@ -157,8 +136,6 @@ window.kafe = (function(window, undefined){
 			plugin: {}
 		}
 	;
-	_delete('window.kafejQuery');
-
 
 	// add flags for ie9 and less
 	if (_ie && _ie < 10) {
@@ -231,10 +208,7 @@ window.kafe = (function(window, undefined){
 		* @param {Object[Function]} methods Action:Method hash
 		*/
 		plugIntojQuery: function(name, methods) {
-			var
-				$  = core.dependencies.jQuery,
-				id = '<!-- @echo PACKAGE -->'+name
-			;
+			var id = '<!-- @echo PACKAGE -->'+name;
 			name = name || 'CORE';
 
 			if ($.fn[id] === undefined) {
@@ -341,9 +315,9 @@ window.kafe = (function(window, undefined){
 	};
 
 
-	return core;
+	global.<!-- @echo PACKAGE --> = core;
 
-})(window);
+})(typeof window !== 'undefined' ? window : this, jQuery);
 
 
 

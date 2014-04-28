@@ -1,8 +1,6 @@
 // @import 'libs/kafe/url'
 
-window.kafe.bonify({name:'ext.youtube', version:'1.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.youtube', version:'1.1', obj:(function(){
 
 	var
 		// default params
@@ -199,4 +197,4 @@ window.kafe.bonify({name:'ext.youtube', version:'1.1', obj:(function(kafe,undefi
 
 	return youtube;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

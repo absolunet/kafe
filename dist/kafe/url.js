@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.0', obj:(function(){
 
 	var
 		// parse url
@@ -44,7 +42,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*	// returns Object {group: "players", team: "blue", ranking: "3"}
 	*/
 	url.parseSearchParams = function(s) {
-		s = (s) ? s : window.location.search;
+		s = (s) ? s : global.location.search;
 		return _parseIt(s.toString().substring(1), 'params');
 	};
 
@@ -60,7 +58,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*	// returns ["Players", "Teams", "Blue"]
 	*/
 	url.parseSearchPath = function(s) {
-		s = (s) ? s : window.location.search;
+		s = (s) ? s : global.location.search;
 		return (s.toString().substring(1,2) == '/') ? _parseIt(s.toString().substring(2), 'path') : [];
 	};
 
@@ -76,7 +74,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseHashParams = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return _parseIt(s.toString().substring(1), 'params');
 	};
 
@@ -92,7 +90,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseHashPath = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,2) == '/') ? _parseIt(s.toString().substring(2), 'path') : [];
 	};
 
@@ -108,7 +106,7 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseAjaxParams = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,2) == '!') ? _parseIt(s.toString().substring(2), 'params') : {};
 	};
 
@@ -124,11 +122,11 @@ window.kafe.bonify({name:'url', version:'1.0', obj:(function(kafe,undefined){
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseAjaxPath = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,3) == '!/') ? _parseIt(s.toString().substring(3), 'path') : [];
 	};
 
 
 	return url;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

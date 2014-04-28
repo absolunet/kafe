@@ -2,20 +2,14 @@
 
 (function(kafe,undefined){
 
-	var
-		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.LoDash,
-		Modernizr = kafe.dependencies.Modernizr
-	;
-
 	module('kafe');
 
 
 	test('dependencies', function() {
-		ok( !_.isUndefined(kafe.dependencies.jQuery),        'jQuery - Loaded');
-		ok( !_.isUndefined(kafe.dependencies.LoDash),        'LoDash - Loaded');
-		ok( !_.isUndefined(kafe.dependencies.LoDash.string), 'underscore.string - Loaded');
-		ok( !_.isUndefined(kafe.dependencies.Modernizr),     'modernizr - Loaded');
+		ok( !_.isUndefined(kafe.dependencies.jQuery), 'jQuery - Loaded');
+		//ok( !_.isUndefined(_),         'LoDash - Loaded');
+		//ok( !_.isUndefined(_.string),  'underscore.string - Loaded');
+		//ok( !_.isUndefined(Modernizr), 'modernizr - Loaded');
 	});
 
 

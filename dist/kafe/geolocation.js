@@ -1,10 +1,6 @@
-window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'geolocation', version:'1.0', obj:(function(){
 
 	var
-		Modernizr = kafe.dependencies.Modernizr,
-
 		// dictonary
 		_dict = {
 			fr: {
@@ -127,4 +123,4 @@ window.kafe.bonify({name:'geolocation', version:'1.0', obj:(function(kafe,undefi
 
 	return geolocation;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

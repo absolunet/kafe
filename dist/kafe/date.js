@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'date', version:'1.2', obj:(function(){
 
 	var
 		// dictionary
@@ -707,4 +705,4 @@ window.kafe.bonify({name:'date', version:'1.2', obj:(function(kafe,undefined){
 
 	return date;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

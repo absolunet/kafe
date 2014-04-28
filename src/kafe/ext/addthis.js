@@ -19,11 +19,11 @@
 	*/
     addthis.refreshData = function (options) {
 		options = options || {};
-		window.addthis.ost = 0;
-		window.addthis.update('share', 'url',   (options.url)   ? options.url   : window.location.toString());
-		window.addthis.update('share', 'title', (options.title) ? options.title : document.title);
-		window.addthis.ready();
-		window.addthis.toolbox('.addthis_toolbox');
+		global.addthis.ost = 0;
+		global.addthis.update('share', 'url',   (options.url)   ? options.url   : global.location.toString());
+		global.addthis.update('share', 'title', (options.title) ? options.title : document.title);
+		global.addthis.ready();
+		global.addthis.toolbox('.addthis_toolbox');
     };
 
 	return addthis;

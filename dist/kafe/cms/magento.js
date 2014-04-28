@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(){
 
 	var
 		_privateFunction = function () {
@@ -31,4 +29,4 @@ window.kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(kafe,undefi
 
 	return magento;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

@@ -121,7 +121,7 @@
 
 		if (p.app_id) {
 			
-			window.fbAsyncInit = function() {
+			global.fbAsyncInit = function() {
 				
 				// Starts a relation with the Facebook app.
 				FB.init({

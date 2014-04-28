@@ -1,8 +1,6 @@
 // @import 'libs/vendor/jquery.json'
 
-window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string', version:'1.2', obj:(function(){
 
 	/**
 	* ### Version 1.2
@@ -88,4 +86,4 @@ window.kafe.bonify({name:'string', version:'1.2', obj:(function(kafe,undefined){
 
 	return string;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

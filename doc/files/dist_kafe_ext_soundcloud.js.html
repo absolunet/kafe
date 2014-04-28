@@ -25,7 +25,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -45,9 +45,7 @@
 </header>
 
 <pre>
-window.kafe.bonify({name:&#x27;ext.soundcloud&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.soundcloud&#x27;, version:&#x27;0.1&#x27;, obj:(function(){
 
 	var
 		// default params
@@ -78,7 +76,7 @@ window.kafe.bonify({name:&#x27;ext.soundcloud&#x27;, version:&#x27;0.1&#x27;, ob
 	soundcloud.init = function (options) {
 		var p = $.extend({}, _params, (options) ? options : {});
 
-		if (window.SC) {
+		if (global.SC) {
 			SC.initialize({ client_id: p.clientId });
 		}
 	};
@@ -95,7 +93,7 @@ window.kafe.bonify({name:&#x27;ext.soundcloud&#x27;, version:&#x27;0.1&#x27;, ob
 	soundcloud.getPlaylistTracks = function (playlistId, options, callback) {
 		options = (!!options) ? options : {};
 
-		if (window.SC) {
+		if (global.SC) {
 			SC.get(&#x27;/playlists/&#x27; + playlistId, options, callback);
 		} else {
 			callback();
@@ -113,7 +111,7 @@ window.kafe.bonify({name:&#x27;ext.soundcloud&#x27;, version:&#x27;0.1&#x27;, ob
 	soundcloud.getTracks = function (options, callback) {
 		options = (!!options) ? options : {};
 
-		if (window.SC) {
+		if (global.SC) {
 			SC.get(&#x27;/tracks/&#x27;, options, callback);
 		} else {
 			callback();
@@ -123,7 +121,7 @@ window.kafe.bonify({name:&#x27;ext.soundcloud&#x27;, version:&#x27;0.1&#x27;, ob
 
 	return soundcloud;
 
-})(window.kafe)});
+})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 </pre>
 
 		</section>

@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(){
 
 	/**
 	* ### Version 1.0
@@ -153,4 +151,4 @@ window.kafe.bonify({name:'plugin.menu', version:'1.0', obj:(function(kafe,undefi
 
 	return menu;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

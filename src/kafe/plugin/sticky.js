@@ -1,7 +1,7 @@
 /* @echo header */
 
 	var
-		$window   = $(window),
+		$window   = $(global),
 		$document = $(document)
 	;
 

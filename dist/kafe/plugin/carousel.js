@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(){
 
 	var
 		// refresh active/inactive controls, and statuses
@@ -576,4 +574,4 @@ window.kafe.bonify({name:'plugin.carousel', version:'1.0.2', obj:(function(kafe,
 
 	return carousel;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

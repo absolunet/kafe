@@ -1,8 +1,6 @@
 // @import 'libs/vendor/jquery.colorbox'
 
-window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(){
 
 	var
 		_params = {
@@ -263,4 +261,4 @@ window.kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(kafe,und
 
 	return colorbox;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

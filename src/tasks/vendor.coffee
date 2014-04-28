@@ -40,7 +40,7 @@ module.exports = (grunt) ->
 			{ dest:'jquery.cookie',        src: 'https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js' }
 			{ dest:'jquery.hashchange',    src: 'https://raw.github.com/cowboy/jquery-hashchange/master/jquery.ba-hashchange.js' }
 			{ dest:'jquery.inputmask',     src: 'https://raw.github.com/RobinHerbots/jquery.inputmask/2.x/dist/jquery.inputmask.bundle.js'}
-			{ dest:'jquery.isotope',       src: 'https://raw.github.com/desandro/isotope/master/jquery.isotope.js' }
+#			{ dest:'jquery.isotope',       src: 'https://raw.github.com/desandro/isotope/master/jquery.isotope.js' }
 			{ dest:'jquery.jcarousellite', src: 'https://raw.github.com/kswedberg/jquery-carousel-lite/master/jcarousellite.js' }
 			{ dest:'jquery.json',          src: 'https://jquery-json.googlecode.com/svn/trunk/src/jquery.json.js' }
 			{ dest:'jquery.powertip',      src: 'http://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js' }

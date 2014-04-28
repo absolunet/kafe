@@ -5,8 +5,6 @@
 /* @echo header */
 
 	var
-		Modernizr = kafe.dependencies.Modernizr,
-
 		LOCAL   = 1,
 		SESSION = 2,
 

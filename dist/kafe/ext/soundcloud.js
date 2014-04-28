@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(){
 
 	var
 		// default params
@@ -31,7 +29,7 @@ window.kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(kafe,und
 	soundcloud.init = function (options) {
 		var p = $.extend({}, _params, (options) ? options : {});
 
-		if (window.SC) {
+		if (global.SC) {
 			SC.initialize({ client_id: p.clientId });
 		}
 	};
@@ -48,7 +46,7 @@ window.kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(kafe,und
 	soundcloud.getPlaylistTracks = function (playlistId, options, callback) {
 		options = (!!options) ? options : {};
 
-		if (window.SC) {
+		if (global.SC) {
 			SC.get('/playlists/' + playlistId, options, callback);
 		} else {
 			callback();
@@ -66,7 +64,7 @@ window.kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(kafe,und
 	soundcloud.getTracks = function (options, callback) {
 		options = (!!options) ? options : {};
 
-		if (window.SC) {
+		if (global.SC) {
 			SC.get('/tracks/', options, callback);
 		} else {
 			callback();
@@ -76,4 +74,4 @@ window.kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(kafe,und
 
 	return soundcloud;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

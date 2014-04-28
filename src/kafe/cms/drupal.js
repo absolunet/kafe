@@ -1,7 +1,7 @@
 /* @echo header */
 
 	var
-		$Drupal = window.jQuery,
+		$Global = global.jQuery,
 
 		_privateFunction = function () {
 

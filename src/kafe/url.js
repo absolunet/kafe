@@ -42,7 +42,7 @@
 	*	// returns Object {group: "players", team: "blue", ranking: "3"}
 	*/
 	url.parseSearchParams = function(s) {
-		s = (s) ? s : window.location.search;
+		s = (s) ? s : global.location.search;
 		return _parseIt(s.toString().substring(1), 'params');
 	};
 
@@ -58,7 +58,7 @@
 	*	// returns ["Players", "Teams", "Blue"]
 	*/
 	url.parseSearchPath = function(s) {
-		s = (s) ? s : window.location.search;
+		s = (s) ? s : global.location.search;
 		return (s.toString().substring(1,2) == '/') ? _parseIt(s.toString().substring(2), 'path') : [];
 	};
 
@@ -74,7 +74,7 @@
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseHashParams = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return _parseIt(s.toString().substring(1), 'params');
 	};
 
@@ -90,7 +90,7 @@
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseHashPath = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,2) == '/') ? _parseIt(s.toString().substring(2), 'path') : [];
 	};
 
@@ -106,7 +106,7 @@
 	*	// returns Object {color: "blue", size: "large", extras: "false"}
 	*/
 	url.parseAjaxParams = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,2) == '!') ? _parseIt(s.toString().substring(2), 'params') : {};
 	};
 
@@ -122,7 +122,7 @@
 	*	// returns ["clothing", "man", "shirts"]
 	*/
 	url.parseAjaxPath = function(s) {
-		s = (s) ? s : window.location.hash;
+		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,3) == '!/') ? _parseIt(s.toString().substring(3), 'path') : [];
 	};
 

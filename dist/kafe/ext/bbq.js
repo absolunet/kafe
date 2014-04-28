@@ -1,8 +1,6 @@
 // @import 'libs/vendor/jquery.bbq'
 
-window.kafe.bonify({name:'ext.bbq', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.bbq', version:'0.1', obj:(function(){
 
 	var
 		_params = {
@@ -11,7 +9,7 @@ window.kafe.bonify({name:'ext.bbq', version:'0.1', obj:(function(kafe,undefined)
 		},
 
 		_unHashbangUrl = function() {
-			return (window.location.href).replace(new RegExp( _params.symbol ), '#');
+			return (global.location.href).replace(new RegExp( _params.symbol ), '#');
 		},
 		_reHashbangUrl = function(url) {
 			return url.replace( /#/, _params.symbol );
@@ -81,10 +79,10 @@ window.kafe.bonify({name:'ext.bbq', version:'0.1', obj:(function(kafe,undefined)
 	* @param {Number} [mergemode] Bbq merge mode `0-2`.
 	*/
 	bbq.setHashbang = function(params, mergemode) {
-		window.location = _reHashbangUrl( $.param.fragment( _unHashbangUrl(), params, mergemode ) );
+		global.location = _reHashbangUrl( $.param.fragment( _unHashbangUrl(), params, mergemode ) );
 	};
 
 
 	return bbq;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

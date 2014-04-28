@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'form', version:'1.4.1', obj:(function(){
 
 	/**
 	* ### Version 1.4.1
@@ -346,4 +344,4 @@ window.kafe.bonify({name:'form', version:'1.4.1', obj:(function(kafe,undefined){
 
 	return form;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

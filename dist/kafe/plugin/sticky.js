@@ -1,9 +1,7 @@
-window.kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(){
 
 	var
-		$window   = $(window),
+		$window   = $(global),
 		$document = $(document)
 	;
 
@@ -176,4 +174,4 @@ window.kafe.bonify({name:'plugin.sticky', version:'0.1', obj:(function(kafe,unde
 
 	return sticky;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

@@ -1,8 +1,6 @@
 // @import 'libs/vendor/qrcode'
 
-window.kafe.bonify({name:'plugin.qrcode', version:'0.1.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.qrcode', version:'0.1.1', obj:(function(){
 
 	/**
 	* ### Version 0.1.1
@@ -60,4 +58,4 @@ window.kafe.bonify({name:'plugin.qrcode', version:'0.1.1', obj:(function(kafe,un
 
 	return qrcodeK;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

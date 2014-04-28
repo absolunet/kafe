@@ -3,7 +3,7 @@
 * http://github.com/RobinHerbots/jquery.inputmask
 * Copyright (c) 2010 - 2014 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 2.5.6
+* Version: 2.5.10
 */
 
 (function ($) {
@@ -612,7 +612,8 @@
                         return isMask(index) && isValid(index, element, true) ? element : null;
                     });
                     var unmaskedValue = (isRTL ? umValue.reverse() : umValue).join('');
-                    return $.isFunction(opts.onUnMask) ? opts.onUnMask.call($input, getActiveBuffer().join(''), unmaskedValue, opts) : unmaskedValue;
+                    var bufferValue = (isRTL ? getActiveBuffer().reverse() : getActiveBuffer()).join('');
+                    return $.isFunction(opts.onUnMask) ? opts.onUnMask.call($input, bufferValue, unmaskedValue, opts) : unmaskedValue;
                 } else {
                     return $input[0]._valueGet();
                 }
@@ -1469,8 +1470,9 @@
                             isRTL = true;
                         }
 
-                        checkVal($el, false, false, actionObj["value"].split(''), true);
-                        return getActiveBuffer().join('');
+                    	var valueBuffer = actionObj["value"].split('');
+                        checkVal($el, false, false, isRTL ? valueBuffer.reverse() : valueBuffer, true);
+                        return isRTL ? getActiveBuffer().reverse().join('') : getActiveBuffer().join('');
                     case "isValid":
                         $el = $({});
                         $el.data('_inputmask', {
@@ -1484,7 +1486,8 @@
                             isRTL = true;
                         }
 
-                        checkVal($el, false, true, actionObj["value"].split(''));
+						var valueBuffer = actionObj["value"].split('');
+                        checkVal($el, false, true, isRTL ? valueBuffer.reverse() : valueBuffer);
                         return isComplete(getActiveBuffer());
                 }
             }
@@ -1643,10 +1646,13 @@
                     case "hasMaskedValue": //check wheter the returned value is masked or not; currently only works reliable when using jquery.val fn to retrieve the value 
                         return this.data('_inputmask') ? !this.data('_inputmask')['opts'].autoUnmask : false;
                     case "isComplete":
-                        masksets = this.data('_inputmask')['masksets'];
-                        activeMasksetIndex = this.data('_inputmask')['activeMasksetIndex'];
-                        opts = this.data('_inputmask')['opts'];
-                        return maskScope(masksets, activeMasksetIndex, opts, { "action": "isComplete", "buffer": this[0]._valueGet().split('') });
+						if (this.data('_inputmask')) {
+							masksets = this.data('_inputmask')['masksets'];
+							activeMasksetIndex = this.data('_inputmask')['activeMasksetIndex'];
+							opts = this.data('_inputmask')['opts'];
+							return maskScope(masksets, activeMasksetIndex, opts, { "action": "isComplete", "buffer": this[0]._valueGet().split('') });
+						}
+						else return true;
                     case "getmetadata": //return mask metadata if exists
                         if (this.data('_inputmask')) {
                             masksets = this.data('_inputmask')['masksets'];
@@ -1703,7 +1709,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.5.6
+Version: 2.5.10
 
 Optional extensions on the jquery.inputmask base
 */
@@ -1825,7 +1831,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.5.6
+Version: 2.5.10
 
 Optional extensions on the jquery.inputmask base
 */
@@ -1878,8 +1884,8 @@ Optional extensions on the jquery.inputmask base
             isInYearRange: function (chrs, minyear, maxyear) {
                 var enteredyear = parseInt(chrs.concat(minyear.toString().slice(chrs.length)));
                 var enteredyear2 = parseInt(chrs.concat(maxyear.toString().slice(chrs.length)));
-                return (enteredyear != NaN ? minyear <= enteredyear && enteredyear <= maxyear : false) ||
-            		   (enteredyear2 != NaN ? minyear <= enteredyear2 && enteredyear2 <= maxyear : false);
+                return (!isNaN(enteredyear) ? minyear <= enteredyear && enteredyear <= maxyear : false) ||
+            		   (!isNaN(enteredyear2) ? minyear <= enteredyear2 && enteredyear2 <= maxyear : false);
             },
             determinebaseyear: function (minyear, maxyear, hint) {
                 var currentyear = (new Date()).getFullYear();
@@ -2313,7 +2319,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.5.6
+Version: 2.5.10
 
 Optional extensions on the jquery.inputmask base
 */
@@ -2390,11 +2396,14 @@ Optional extensions on the jquery.inputmask base
             },
             regex: {
                 number: function (opts) {
-                    var escapedGroupSeparator = $.inputmask.escapeRegex.call(this, opts.groupSeparator);
                     var escapedRadixPoint = $.inputmask.escapeRegex.call(this, opts.radixPoint);
                     var digitExpression = isNaN(opts.digits) ? opts.digits : '{0,' + opts.digits + '}';
-                    var signedExpression = opts.allowPlus || opts.allowMinus ? "[" + (opts.allowPlus ? "\+" : "") + (opts.allowMinus ? "-" : "") + "]?" : "";
-                    return new RegExp("^" + signedExpression + "(\\d+|\\d{1," + opts.groupSize + "}((" + escapedGroupSeparator + "\\d{" + opts.groupSize + "})?)+)(" + escapedRadixPoint + "\\d" + digitExpression + ")?$");
+                    var integerExpression = isNaN(opts.integerDigits) ? opts.integerDigits : '{1,' + opts.integerDigits + '}';
+                    var signedExpression = opts.allowPlus || opts.allowMinus ? "[" + (opts.allowPlus ? "\+" : "") + (opts.allowMinus ? "-" : "") + "]?" : "";                   
+
+                    var currentRegExp = "^" + signedExpression + "\\d" + integerExpression + "(" + escapedRadixPoint + "\\d" + digitExpression + ")?$";
+                    return new RegExp(currentRegExp);
+
                 }
             },
             onKeyDown: function (e, buffer, opts) {
@@ -2496,7 +2505,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.5.6
+Version: 2.5.10
 
 Regex extensions on the jquery.inputmask base
 Allows for using regular expressions as a mask
@@ -2683,7 +2692,7 @@ Input Mask plugin extensions
 http://github.com/RobinHerbots/jquery.inputmask
 Copyright (c) 2010 - 2014 Robin Herbots
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.5.6
+Version: 2.5.10
 
 Phone extension.
 When using this extension make sure you specify the correct url to get the masks

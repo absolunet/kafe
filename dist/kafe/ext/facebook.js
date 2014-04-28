@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'ext.facebook', version:'1.4', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.facebook', version:'1.4', obj:(function(){
 
 	var
 		// dictionary
@@ -123,7 +121,7 @@ window.kafe.bonify({name:'ext.facebook', version:'1.4', obj:(function(kafe,undef
 
 		if (p.app_id) {
 			
-			window.fbAsyncInit = function() {
+			global.fbAsyncInit = function() {
 				
 				// Starts a relation with the Facebook app.
 				FB.init({
@@ -231,4 +229,4 @@ window.kafe.bonify({name:'ext.facebook', version:'1.4', obj:(function(kafe,undef
 
 	return facebook;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

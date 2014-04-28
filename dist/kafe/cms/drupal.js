@@ -1,9 +1,7 @@
-window.kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(){
 
 	var
-		$Drupal = window.jQuery,
+		$Global = global.jQuery,
 
 		_privateFunction = function () {
 
@@ -28,4 +26,4 @@ window.kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(kafe,undefin
 
 	return drupal;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

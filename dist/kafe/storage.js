@@ -2,13 +2,9 @@
 // @import 'libs/vendor/jquery.json'
 // @import 'libs/kafe/string'
 
-window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.1', obj:(function(){
 
 	var
-		Modernizr = kafe.dependencies.Modernizr,
-
 		LOCAL   = 1,
 		SESSION = 2,
 
@@ -547,4 +543,4 @@ window.kafe.bonify({name:'storage', version:'1.1', obj:(function(kafe,undefined)
 
 	return storage;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

@@ -2,12 +2,6 @@
 
 (function(kafe,undefined){
 
-	var
-		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.LoDash,
-		Modernizr = kafe.dependencies.Modernizr
-	;
-
 	module('kafe.url');
 
 

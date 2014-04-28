@@ -25,7 +25,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -45,9 +45,7 @@
 </header>
 
 <pre>
-window.kafe.bonify({name:&#x27;ext.addthis&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.addthis&#x27;, version:&#x27;0.1&#x27;, obj:(function(){
 
 	/**
 	* ### Version 0.1
@@ -68,16 +66,16 @@ window.kafe.bonify({name:&#x27;ext.addthis&#x27;, version:&#x27;0.1&#x27;, obj:(
 	*/
     addthis.refreshData = function (options) {
 		options = options || {};
-		window.addthis.ost = 0;
-		window.addthis.update(&#x27;share&#x27;, &#x27;url&#x27;,   (options.url)   ? options.url   : window.location.toString());
-		window.addthis.update(&#x27;share&#x27;, &#x27;title&#x27;, (options.title) ? options.title : document.title);
-		window.addthis.ready();
-		window.addthis.toolbox(&#x27;.addthis_toolbox&#x27;);
+		global.addthis.ost = 0;
+		global.addthis.update(&#x27;share&#x27;, &#x27;url&#x27;,   (options.url)   ? options.url   : global.location.toString());
+		global.addthis.update(&#x27;share&#x27;, &#x27;title&#x27;, (options.title) ? options.title : document.title);
+		global.addthis.ready();
+		global.addthis.toolbox(&#x27;.addthis_toolbox&#x27;);
     };
 
 	return addthis;
 
-})(window.kafe)});
+})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 </pre>
 
 		</section>

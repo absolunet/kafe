@@ -1,8 +1,6 @@
 /* @echo header */
 
 	var
-		Modernizr = kafe.dependencies.Modernizr,
-
 		// dictonary
 		_dict = {
 			fr: {

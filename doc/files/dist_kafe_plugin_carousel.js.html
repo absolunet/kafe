@@ -25,7 +25,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -45,9 +45,7 @@
 </header>
 
 <pre>
-window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;, obj:(function(){
 
 	var
 		// refresh active/inactive controls, and statuses
@@ -623,7 +621,7 @@ window.kafe.bonify({name:&#x27;plugin.carousel&#x27;, version:&#x27;1.0.2&#x27;,
 
 	return carousel;
 
-})(window.kafe)});
+})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 </pre>
 
 		</section>

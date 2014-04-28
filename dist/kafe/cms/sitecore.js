@@ -1,6 +1,4 @@
-window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(){
 
 	var
 		_getPlaceholders = function(){
@@ -188,4 +186,4 @@ window.kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(kafe,undef
 
 	return sitecore;
 
-})(window.kafe)});
+})()}); })(typeof window !== 'undefined' ? window : this);

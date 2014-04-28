@@ -49,8 +49,8 @@ module.exports = (grunt) ->
 			}
 
 			contents = preprocess.preprocess contents, {
-				header: "window.#{pkg.name}.bonify({name:'#{name}', version:'#{version}', obj:(function(#{pkg.name},undefined){\n\n\tvar $ = #{pkg.name}.dependencies.jQuery;"
-				footer: "})(window.#{pkg.name})});"
+				header: "(function(global, undefined) { var #{pkg.name} = global.#{pkg.name}, $ = #{pkg.name}.dependencies.jQuery; #{pkg.name}.bonify({name:'#{name}', version:'#{version}', obj:(function(){"
+				footer: "})()}); })(typeof window !== 'undefined' ? window : this);"
 			}, 'js'
 
 			grunt.file.write "#{out}/#{filename}", contents

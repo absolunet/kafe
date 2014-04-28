@@ -25,7 +25,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.0.0a</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -47,9 +47,7 @@
 <pre>
 // @import &#x27;libs/vendor/jquery.bbq&#x27;
 
-window.kafe.bonify({name:&#x27;ext.bbq&#x27;, version:&#x27;0.1&#x27;, obj:(function(kafe,undefined){
-
-	var $ = kafe.dependencies.jQuery;
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.bbq&#x27;, version:&#x27;0.1&#x27;, obj:(function(){
 
 	var
 		_params = {
@@ -58,7 +56,7 @@ window.kafe.bonify({name:&#x27;ext.bbq&#x27;, version:&#x27;0.1&#x27;, obj:(func
 		},
 
 		_unHashbangUrl = function() {
-			return (window.location.href).replace(new RegExp( _params.symbol ), &#x27;#&#x27;);
+			return (global.location.href).replace(new RegExp( _params.symbol ), &#x27;#&#x27;);
 		},
 		_reHashbangUrl = function(url) {
 			return url.replace( /#/, _params.symbol );
@@ -128,13 +126,13 @@ window.kafe.bonify({name:&#x27;ext.bbq&#x27;, version:&#x27;0.1&#x27;, obj:(func
 	* @param {Number} [mergemode] Bbq merge mode &#x60;0-2&#x60;.
 	*/
 	bbq.setHashbang = function(params, mergemode) {
-		window.location = _reHashbangUrl( $.param.fragment( _unHashbangUrl(), params, mergemode ) );
+		global.location = _reHashbangUrl( $.param.fragment( _unHashbangUrl(), params, mergemode ) );
 	};
 
 
 	return bbq;
 
-})(window.kafe)});
+})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 </pre>
 
 		</section>
