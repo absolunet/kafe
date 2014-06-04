@@ -74,7 +74,7 @@
 			));
 
 			return v > 4 ? v : undefined;
-		}),
+		})(),
 
 		// jquery methods
 		_jQueryMethods = {},

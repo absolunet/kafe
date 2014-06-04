@@ -10491,7 +10491,7 @@ window.Modernizr = (function( window, document, undefined ) {
 			));
 
 			return v > 4 ? v : undefined;
-		}),
+		})(),
 
 		// jquery methods
 		_jQueryMethods = {},
