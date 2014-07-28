@@ -18,7 +18,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 
-	<title>dist/kafe/ext/googlemaps.js - kafe</title>
+	<title>dist/kafe/plugin/social.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2014 Absolunet inc. -->
@@ -40,53 +40,96 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/kafe/ext/googlemaps.js</h1>
+	<h1>dist/kafe/plugin/social.js</h1>
 	<h2>File</h2>
 </header>
 
 <pre>
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googlemaps&#x27;, version:&#x27;1.1&#x27;, obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.social&#x27;, version:&#x27;0.1&#x27;, obj:(function(){
+
+	var
+		getAbsoluteUrl = function(href) {
+			if (href) {
+				var link = document.createElement(&#x27;a&#x27;);
+				link.href = href;
+				return (link.protocol+&#x27;//&#x27;+link.host+link.pathname+link.search+link.hash);
+			}
+			return &#x27;&#x27;;
+		},
+
+		networks = {
+			facebook: {
+				url:    &#x27;https://www.facebook.com/sharer/sharer.php?u=&lt;%= url %&gt;&#x27;,
+				width:  &#x27;675&#x27;,
+				height: &#x27;368&#x27;
+			},
+			twitter: {
+				url:    &#x27;https://twitter.com/intent/tweet?url=&lt;%= url %&gt;&amp;text=&lt;%= text %&gt;&amp;related=&lt;%= related %&gt;&#x27;,
+				width:  &#x27;550&#x27;,
+				height: &#x27;450&#x27;
+			},
+			linkedin: {
+				url:    &#x27;https://www.linkedin.com/shareArticle?url=&lt;%= url %&gt;&amp;summary=&lt;%= text %&gt;&amp;mini=true&#x27;,  // &amp;ro=false &amp;title=lorem &amp;source=example.com
+				width:  &#x27;600&#x27;,
+				height: &#x27;500&#x27;
+			},
+			googleplus: {
+				url:    &#x27;https://plus.google.com/share?url=&lt;%= url %&gt;&amp;t=&lt;%= text %&gt;&#x27;,
+				width:  &#x27;520&#x27;,
+				height: &#x27;520&#x27;
+			},
+			pinterest: {
+				url:    &#x27;http://www.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;description=&lt;%= text %&gt;&amp;media=&lt;%= media %&gt;&#x27;,
+				width:  &#x27;750&#x27;,
+				height: &#x27;335&#x27;
+			}
+		},
+
+		share_options = {
+			url:     document.location,
+			text:    document.title,
+			related: &#x27;&#x27;, // twitter : https://dev.twitter.com/docs/tweet-button#related
+			media:   getAbsoluteUrl( $(&#x27;head link[rel=&quot;image_src&quot;]&#x27;).attr(&#x27;href&#x27;) ) // pinterest media
+		}
+	;
+
 
 	/**
-	* ### Version 1.1
-	* Extra methods for the GoogleMaps API.
-	* Requires &#x60;//maps.google.com/maps/api/js&#x60; to be included
+	* ### Version 0.1
+	* Social tools
 	*
-	* @module kafe.ext
-	* @class kafe.ext.googlemaps
+	* @module kafe.plugin
+	* @class kafe.plugin.social
 	*/
-	var googlemaps = {};
+	var social = {};
 
 
 	/**
-	* Get bound box of array of coords.
+	* Initialize share buttons functionality
 	*
-	* @method getCoordsBounds
-	* @param {Array(Array)} coords List of lat/lon coords
+	* @method initShareButtons
+	* @param {Object} [options] Options
 	*
 	* @example
-	*   myMap.fitBounds( kafe.ext.googlemaps.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;facebook&lt;/span&gt;
+	*	kafe.plugin.social.initShareButtons()
 	*/
-	googlemaps.getCoordsBounds = function (coords) {
-		var
-			minLat = 90,
-			maxLat = -90,
-			minLon = 180,
-			maxLon = -180
-		;
-		
-		for (var i=0; i&lt;coords.length; ++i) {
-			minLat = Math.min(minLat, Number(coords[i][0]));
-			maxLat = Math.max(maxLat, Number(coords[i][0]));
-			minLon = Math.min(minLon, Number(coords[i][1]));
-			maxLon = Math.max(maxLon, Number(coords[i][1]));
-		}
+	social.initShareButtons = function(options) {
+		share_options = $.extend({}, share_options, options || {});
 
-		return new google.maps.LatLngBounds(new google.maps.LatLng(minLat, minLon), new google.maps.LatLng(maxLat, maxLon));
+		$(&#x27;[data-kafesocial-action=&quot;share&quot;]&#x27;).on(&#x27;click&#x27;, function() {
+			var $this = $(this);
+			var network = $this.data(&#x27;kafesocial-network&#x27;);
+			var options = $.extend({}, share_options, $this.data(&#x27;kafesocial-options&#x27;) || {});
+			var data = networks[network];
+			if (data.url) {
+				window.open( _.template(data.url)(options) , &#x27;_blank&#x27;, &#x27;width=&#x27;+data.width+&#x27;,height=&#x27;+data.height+&#x27;,menubar=no,toolbar=no&#x27;);
+			}
+		});
 	};
 
 
-	return googlemaps;
+	return social;
 
 })()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 </pre>

@@ -1,14 +1,14 @@
 /*!
- * jCarousel Lite - v1.8.7 - 2013-10-28
+ * jCarousel Lite - v1.8.10 - 2014-07-03
  * http://kswedberg.github.com/jquery-carousel-lite/
- * Copyright (c) 2013 Karl Swedberg
+ * Copyright (c) 2014 Karl Swedberg
  * Licensed MIT (http://kswedberg.github.com/jquery-carousel-lite/blob/master/LICENSE-MIT)
  */
 
 
 (function($) {
 $.jCarouselLite = {
-  version: '1.8.7',
+  version: '1.8.10',
   curr: 0
 };
 
@@ -305,8 +305,13 @@ $.fn.jCarouselLite = function(options) {
       // If circular and we are in first or last, then go to the other end
       if (o.circular) {
         if (to > curr && to > itemLength - visibleCeil) {
+
+          // temporarily set "to" as the difference
+          to = to - curr;
           curr = curr % tl;
-          to = curr + (settings.auto ? autoScrollBy : o.scroll);
+
+          // use the difference to make "to" correct relative to curr
+          to = curr + to;
           ul.css(animCss, (-curr * styles.liSize) - offset);
         } else if ( to < curr && to < 0) {
           curr += tl;
@@ -469,11 +474,13 @@ $.fn.jCarouselLite = function(options) {
         var tlength = event.targetTouches.length;
 
         if (tlength === 1) {
-          event.preventDefault();
           endTouch.x = event.targetTouches[0].pageX;
           endTouch.y = event.targetTouches[0].pageY;
           aniProps[animCss] = startTouch[animCss] + (endTouch[axisPrimary] - startTouch[axisPrimary]);
           ul.css(aniProps);
+          if (o.preventTouchWindowScroll) {
+            event.preventDefault();
+          }
         } else {
           endTouch.x = startTouch.x;
           endTouch.y = startTouch.y;
@@ -627,6 +634,9 @@ $.fn.jCarouselLite.defaults = {
     y: 40,
     time: 150
   },
+
+  // whether to prevent vertical scrolling of the document window when swiping
+  preventTouchWindowScroll: true,
 
   // Function to be called for each matched carousel when .jCaourselLite() is called.
   // Inside the function, `this` is the carousel div.

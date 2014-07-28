@@ -30,3 +30,7 @@
 // **@import 'plugin/menu'		// manual
 // **@import 'plugin/qrcode'	// manual
 // **@import 'plugin/sticky'	// manual
+
+
+
+// @import 'libs/kafe/plugin/social'

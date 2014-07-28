@@ -26,7 +26,7 @@ module.exports = (grunt) ->
 			{ dest:'underscore.string', src:'https://raw.github.com/epeli/underscore.string/master/lib/underscore.string.js' }
 			{ dest:'modernizr',         src:'http://modernizr.com/downloads/modernizr-latest.js' }
 
-			{ dest:'accounting',      src:'https://raw.github.com/josscrowcroft/accounting.js/master/accounting.js' }
+			{ dest:'accounting',      src:'https://raw.githubusercontent.com/openexchangerates/accounting.js/master/accounting.js' }
 			{ dest:'cssua',           src:'https://bitbucket.org/mckamey/cssuseragent/raw/tip/cssua.js' }
 			{ dest:'json2',           src:'https://raw.github.com/douglascrockford/JSON-js/master/json2.js' }
 			{ dest:'jsrender',        src:'https://raw.github.com/BorisMoore/jsrender/master/jsrender.js' }
@@ -37,10 +37,10 @@ module.exports = (grunt) ->
 
 			{ dest:'jquery.bbq',           src: 'https://raw.github.com/cowboy/jquery-bbq/master/jquery.ba-bbq.js' }
 			{ dest:'jquery.colorbox',      src: 'https://raw.github.com/jackmoore/colorbox/master/jquery.colorbox.js' }
-			{ dest:'jquery.cookie',        src: 'https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js' }
+			{ dest:'jquery.cookie',        src: 'https://raw.githubusercontent.com/carhartl/jquery-cookie/master/src/jquery.cookie.js' }
 			{ dest:'jquery.hashchange',    src: 'https://raw.github.com/cowboy/jquery-hashchange/master/jquery.ba-hashchange.js' }
 			{ dest:'jquery.inputmask',     src: 'https://raw.github.com/RobinHerbots/jquery.inputmask/2.x/dist/jquery.inputmask.bundle.js'}
-#			{ dest:'jquery.isotope',       src: 'https://raw.github.com/desandro/isotope/master/jquery.isotope.js' }
+			{ dest:'jquery.isotope',       src: 'https://raw.githubusercontent.com/metafizzy/isotope/master/dist/isotope.pkgd.js' }
 			{ dest:'jquery.jcarousellite', src: 'https://raw.github.com/kswedberg/jquery-carousel-lite/master/jcarousellite.js' }
 			{ dest:'jquery.json',          src: 'https://jquery-json.googlecode.com/svn/trunk/src/jquery.json.js' }
 			{ dest:'jquery.powertip',      src: 'http://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js' }
@@ -75,9 +75,10 @@ module.exports = (grunt) ->
 					addImport = (file) -> "// @import 'libs/vendor/#{file}'"
 
 					for file in results
-						file.content = _.map(file.dependencies, addImport).join('\n')+'\n\n'+file.content if file.dependencies 
-
-						grunt.file.write "#{out}/#{file.dest}.js", file.content.replace('window.jQuery','jQuery')
+						#console.log ( file isnt undefined )
+						if file isnt undefined
+							file.content = _.map(file.dependencies, addImport).join('\n')+'\n\n'+file.content if file.dependencies 
+							grunt.file.write "#{out}/#{file.dest}.js", file.content.replace('window.jQuery','jQuery')
 
 
 					done()

@@ -49,7 +49,7 @@
 
 			// call
 			$.ajax({
-				url: 'http://api.flickr.com/services/rest/',
+				url: 'https://api.flickr.com/services/rest/',
 				data: data,
 				jsonp: 'jsoncallback',
 				dataType: 'jsonp',
