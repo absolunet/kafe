@@ -46,7 +46,7 @@
 <p>Social tools</p>
 
 	<div>
-		<span>Source: <a href="../files/dist_kafe_plugin_social.js.html#l106">dist/kafe/plugin/social.js</a></span>
+		<span>Source: <a href="../files/dist_kafe_plugin_social.js.html#l107">dist/kafe/plugin/social.js</a></span>
 		
 	</div>
 </header>
@@ -59,7 +59,7 @@
 	
 		<section>
 	<h1>initGenuineButtons</h1>
-	<footer><a href="../files/dist_kafe_plugin_social.js.html#l140">@140</a></footer>
+	<footer><a href="../files/dist_kafe_plugin_social.js.html#l156">@156</a></footer>
 
 	<p>Initialize genuine buttons functionality</p>
 
@@ -112,7 +112,7 @@
 									<strong>Object</strong>
 									<span>Optional</span>
 								
-								<p>Display button language. Possible values are &#39;en&#39;, &#39;fr&#39; or by default is kafe.env(&#39;lang&#39;).</p>
+								<p>Display button language. Possible values are <code>en</code>, <code>fr</code> or by default is <code>kafe.env(&#39;lang&#39;)</code>.</p>
 
 
 								
@@ -151,7 +151,7 @@
 									<strong>Object</strong>
 									<span>Optional</span>
 								
-								<p>Display button size. Possible values are &#39;small&#39; and &#39;large&#39;. Only work with Twitter, Google + and Pinterest.</p>
+								<p>Display button size. Possible values are <code>small</code> and <code>large</code>. Only work with Twitter, Google + and Pinterest.</p>
 
 
 								
@@ -164,7 +164,7 @@
 									<strong>Object</strong>
 									<span>Optional</span>
 								
-								<p>Orientation and visibility of counter. Possible values are &#39;none&#39;, &#39;horizontal&#39; and &#39;vertical&#39;. By default is &#39;horizontal&#39;.</p>
+								<p>Orientation and visibility of counter. Possible values are <code>none</code>, <code>horizontal</code> and <code>vertical</code>. By default is <code>horizontal</code>.</p>
 
 
 								
@@ -177,7 +177,7 @@
 									<strong>Object</strong>
 									<span>Optional</span>
 								
-								<p>Image url for Pinterest sharing. By default is the link to the tag &#39;image_src&#39; in the head of the document.</p>
+								<p>Image url for Pinterest sharing. By default is the link to the tag <code>image_src</code> in the head of the document.</p>
 
 
 								
@@ -216,7 +216,7 @@
 	
 		<section>
 	<h1>initShareButtons</h1>
-	<footer><a href="../files/dist_kafe_plugin_social.js.html#l116">@116</a></footer>
+	<footer><a href="../files/dist_kafe_plugin_social.js.html#l117">@117</a></footer>
 
 	<p>Initialize share buttons functionality</p>
 
@@ -261,6 +261,62 @@
 
 
 					
+						<ul>
+						
+							<li>
+								
+									<code>[lang]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Display popup sharing language. Not fully supported by all social networks. Possible values are <code>en</code>, <code>fr</code> or by default is <code>kafe.env(&#39;lang&#39;)</code>.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[url]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Specific url sharing. By default is the current url.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[text]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Specific text sharing. By default is the browser title.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[media]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Image url for Pinterest sharing. By default is the link to the tag <code>image_src</code> in the head of the document.</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
 
 				</li>
 			
@@ -273,8 +329,16 @@
 	
 		<section>
 			<h1>Example:</h1>
-			<pre class="code prettyprint"><code>&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;facebook&lt;/span&gt;
-kafe.plugin.social.initShareButtons()</code></pre>
+			<pre class="code prettyprint"><code>&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;Facebook&lt;/span&gt;
+&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;Twitter/span&gt;
+&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;Linkedin&lt;/span&gt;
+&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;Google+&lt;/span&gt;
+&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;pinterest&quot; data-kafesocial-options=&#39;{ &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }&#39;&gt;Pinterest&lt;/span&gt;
+&lt;script&gt;
+    $(function() {
+        kafe.plugin.social.initShareButtons();
+    });
+&lt;/script&gt;</code></pre>
 
 		</section>
 	

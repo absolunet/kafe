@@ -59,7 +59,7 @@
 
 		networks = {
 			facebook: {
-				url:        &#x27;https://www.facebook.com/sharer/sharer.php?u=&lt;%= url %&gt;&#x27;,
+				url:        &#x27;https://www.facebook.com/sharer/sharer.php?u=&lt;%= url %&gt;&amp;lang=&lt;%= lang %&gt;&#x27;,
 				width:      &#x27;675&#x27;,
 				height:     &#x27;368&#x27;,
 				script:     { 
@@ -73,7 +73,7 @@
 				locale:     { fr: &#x27;fr_FR&#x27;, en: &#x27;en_US&#x27;},
 			},
 			twitter: {
-				url:        &#x27;https://twitter.com/intent/tweet?url=&lt;%= url %&gt;&amp;text=&lt;%= text %&gt;&amp;related=&lt;%= related %&gt;&#x27;,
+				url:        &#x27;https://twitter.com/intent/tweet?url=&lt;%= url %&gt;&amp;text=&lt;%= text %&gt;&amp;related=&lt;%= related %&gt;&amp;lang=&lt;%= lang %&gt;&#x27;,
 				width:      &#x27;550&#x27;,
 				height:     &#x27;450&#x27;,
 				script:     { 
@@ -87,7 +87,7 @@
 				locale:     { fr: &#x27;fr&#x27;, en: &#x27;en&#x27;},
 			},
 			linkedin: {
-				url:        &#x27;https://www.linkedin.com/shareArticle?url=&lt;%= url %&gt;&amp;summary=&lt;%= text %&gt;&amp;mini=true&#x27;,  // &amp;ro=false &amp;title=lorem &amp;source=example.com
+				url:        &#x27;https://www.linkedin.com/shareArticle?url=&lt;%= url %&gt;&amp;summary=&lt;%= text %&gt;&amp;mini=true&amp;lang=&lt;%= lang %&gt;&#x27;,  // &amp;ro=false &amp;title=lorem &amp;source=example.com
 				width:      &#x27;600&#x27;,
 				height:     &#x27;500&#x27;,
 				script:     { 
@@ -101,7 +101,7 @@
 				locale:     { fr: &#x27;fr_FR&#x27;, en: &#x27;en_US&#x27;},
 			},
 			googleplus: {
-				url:        &#x27;https://plus.google.com/share?url=&lt;%= url %&gt;&amp;t=&lt;%= text %&gt;&#x27;,
+				url:        &#x27;https://plus.google.com/share?url=&lt;%= url %&gt;&amp;t=&lt;%= text %&gt;&amp;lang=&lt;%= lang %&gt;&#x27;,
 				width:      &#x27;520&#x27;,
 				height:     &#x27;520&#x27;,
 				script:     { 
@@ -115,7 +115,7 @@
 				locale:     { fr: &#x27;fr-CA&#x27;, en: &#x27;en-US&#x27;},
 			},
 			pinterest: {
-				url:        &#x27;http://www.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;description=&lt;%= text %&gt;&amp;media=&lt;%= media %&gt;&#x27;,
+				url:        &#x27;http://&lt;%= lang %&gt;.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;description=&lt;%= text %&gt;&amp;media=&lt;%= media %&gt;&#x27;,
 				width:      &#x27;750&#x27;,
 				height:     &#x27;335&#x27;,
 				script:     { 
@@ -132,6 +132,7 @@
 
 
 		share_options = {
+			lang:    kafe.env(&#x27;lang&#x27;), 
 			url:     document.location,
 			text:    document.title,
 			related: &#x27;&#x27;, // twitter : https://dev.twitter.com/docs/tweet-button#related
@@ -165,10 +166,23 @@
 	*
 	* @method initShareButtons
 	* @param {Object} [options] Options
+	*	@param {Object} [options.lang] Display popup sharing language. Not fully supported by all social networks. Possible values are &#x60;en&#x60;, &#x60;fr&#x60; or by default is &#x60;kafe.env(&#x27;lang&#x27;)&#x60;.
+	*	@param {Object} [options.url] Specific url sharing. By default is the current url.
+	*	@param {Object} [options.text] Specific text sharing. By default is the browser title.
+	*	@param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag &#x60;image_src&#x60; in the head of the document.
 	*
 	* @example
-	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;facebook&lt;/span&gt;
-	*	kafe.plugin.social.initShareButtons()
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;Facebook&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;Twitter/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;Linkedin&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;Google+&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;pinterest&quot; data-kafesocial-options=&#x27;{ &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }&#x27;&gt;Pinterest&lt;/span&gt;
+	*	&lt;script&gt;
+	*		$(function() {
+	*			kafe.plugin.social.initShareButtons();
+	*		});
+	*	&lt;/script&gt;
+	*
 	*/
 	social.initShareButtons = function(options) {
 		share_options = $.extend({}, share_options, options || {});
@@ -178,6 +192,8 @@
 			var network = $this.data(&#x27;kafesocial-network&#x27;);
 			var options = $.extend({}, share_options, $this.data(&#x27;kafesocial-options&#x27;) || {});
 			var data = networks[network];
+			//set the good language format
+			options.lang = networks[network].locale[options.lang];
 			if (data.url) {
 				window.open( _.template(data.url)(options) , &#x27;_blank&#x27;, &#x27;width=&#x27;+data.width+&#x27;,height=&#x27;+data.height+&#x27;,menubar=no,toolbar=no&#x27;);
 			}
@@ -189,12 +205,12 @@
 	*
 	* @method initGenuineButtons
 	* @param {Object} [options] Options
-	*	@param {Object} [options.lang] Display button language. Possible values are &#x27;en&#x27;, &#x27;fr&#x27; or by default is kafe.env(&#x27;lang&#x27;).
+	*	@param {Object} [options.lang] Display button language. Possible values are &#x60;en&#x60;, &#x60;fr&#x60; or by default is &#x60;kafe.env(&#x27;lang&#x27;)&#x60;.
 	*	@param {Object} [options.url] Specific url sharing. By default is the current url.
 	*	@param {Object} [options.text] Specific text sharing. By default is the browser title.
-	*	@param {Object} [options.size] Display button size. Possible values are &#x27;small&#x27; and &#x27;large&#x27;. Only work with Twitter, Google + and Pinterest.
-	*	@param {Object} [options.counter] Orientation and visibility of counter. Possible values are &#x27;none&#x27;, &#x27;horizontal&#x27; and &#x27;vertical&#x27;. By default is &#x27;horizontal&#x27;.
-	*	@param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag &#x27;image_src&#x27; in the head of the document.
+	*	@param {Object} [options.size] Display button size. Possible values are &#x60;small&#x60; and &#x60;large&#x60;. Only work with Twitter, Google + and Pinterest.
+	*	@param {Object} [options.counter] Orientation and visibility of counter. Possible values are &#x60;none&#x60;, &#x60;horizontal&#x60; and &#x60;vertical&#x60;. By default is &#x60;horizontal&#x60;.
+	*	@param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag &#x60;image_src&#x60; in the head of the document.
 	*
 	* @example
 	*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;facebook&quot; data-kafesocial-options=&#x27;{ &quot;appid&quot;:&quot;1514943792075126&quot; }&#x27;&gt;&lt;/span&gt;

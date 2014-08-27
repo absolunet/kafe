@@ -1,5 +1,5 @@
 <!doctype html>
-<html id="fr-CA" lang="fr" class="no-js" data-kafe-page="SpecialContent" data-kafe-tmpl="Content">
+<html id="en-CA" lang="en" class="no-js" data-kafe-page="SpecialContent" data-kafe-tmpl="Content">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +39,8 @@
 			margin:0 auto; width:960px; border:1px solid #ddd;
 			padding:30px; background:#fff; box-shadow:0 0 3px #ccc;
 		}
-		.boutons-partager { display: none; }
-        .boutons-partager > span { 
+		.boutons-partager-genuine { display: none; }
+        .boutons-partager > span, .boutons-partager-genuine > span { 
             float: left;
             height: 25px;
             margin-bottom: 10px;
@@ -58,13 +58,25 @@
 <body>
 	<div class="wrapper">
         <a href="#" class="partager">PARTAGER</a>
-		<hr/>
-        <div class="boutons-partager">
+        <div class="boutons-partager-genuine">
             <span data-kafesocial-action="genuine" data-kafesocial-network="facebook" data-kafesocial-options='{ "appid":"1514943792075126" }'></span>
-            <span data-kafesocial-action="genuine" data-kafesocial-network="twitter" data-kafesocial-options=''></span>
-            <span data-kafesocial-action="genuine" data-kafesocial-network="linkedin" data-kafesocial-options=''></span>
-            <span data-kafesocial-action="genuine" data-kafesocial-network="googleplus" data-kafesocial-options=''></span>
+            <span data-kafesocial-action="genuine" data-kafesocial-network="twitter"></span>
+            <span data-kafesocial-action="genuine" data-kafesocial-network="linkedin"></span>
+            <span data-kafesocial-action="genuine" data-kafesocial-network="googleplus"></span>
             <span data-kafesocial-action="genuine" data-kafesocial-network="pinterest" data-kafesocial-options='{ "url":"http://www.flickr.com/photos/kentbrew/6851755809/", "media":"http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg" }'></span>
+            <div class="clearer"></div>
+        </div>
+        <br>
+        <br>
+        <hr/>
+        <br>
+        <br>
+        <div class="boutons-partager">
+            <span data-kafesocial-action="share" data-kafesocial-network="facebook">Facebook</span>
+            <span data-kafesocial-action="share" data-kafesocial-network="twitter">Twitter</span>
+            <span data-kafesocial-action="share" data-kafesocial-network="linkedin">LinkedIn</span>
+            <span data-kafesocial-action="share" data-kafesocial-network="googleplus">Google+</span>
+            <span data-kafesocial-action="share" data-kafesocial-network="pinterest" data-kafesocial-options='{ "url":"http://www.flickr.com/photos/kentbrew/6851755809/", "media":"http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg" }'>Pinterest</span>
             <div class="clearer"></div>
         </div>
 	</div>
@@ -73,10 +85,12 @@
 		$(function() {
 
 			$(".partager").on("click",function(){
-                $(".boutons-partager").show();
+                $(".boutons-partager-genuine").show();
                 kafe.plugin.social.initGenuineButtons({ url: 'http://absolunet.com' });
             });
 
+            kafe.plugin.social.initShareButtons({ url: 'http://absolunet.com' });
+            
 		});
 	</script>
 </body>
