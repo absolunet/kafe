@@ -47,89 +47,193 @@
 <pre>
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.social&#x27;, version:&#x27;0.1&#x27;, obj:(function(){
 
-	var
-		getAbsoluteUrl = function(href) {
-			if (href) {
-				var link = document.createElement(&#x27;a&#x27;);
-				link.href = href;
-				return (link.protocol+&#x27;//&#x27;+link.host+link.pathname+link.search+link.hash);
-			}
-			return &#x27;&#x27;;
-		},
+    var
+        getAbsoluteUrl = function(href) {
+            if (href) {
+                var link = document.createElement(&#x27;a&#x27;);
+                link.href = href;
+                return (link.protocol+&#x27;//&#x27;+link.host+link.pathname+link.search+link.hash);
+            }
+            return &#x27;&#x27;;
+        },
 
-		networks = {
-			facebook: {
-				url:    &#x27;https://www.facebook.com/sharer/sharer.php?u=&lt;%= url %&gt;&#x27;,
-				width:  &#x27;675&#x27;,
-				height: &#x27;368&#x27;
-			},
-			twitter: {
-				url:    &#x27;https://twitter.com/intent/tweet?url=&lt;%= url %&gt;&amp;text=&lt;%= text %&gt;&amp;related=&lt;%= related %&gt;&#x27;,
-				width:  &#x27;550&#x27;,
-				height: &#x27;450&#x27;
-			},
-			linkedin: {
-				url:    &#x27;https://www.linkedin.com/shareArticle?url=&lt;%= url %&gt;&amp;summary=&lt;%= text %&gt;&amp;mini=true&#x27;,  // &amp;ro=false &amp;title=lorem &amp;source=example.com
-				width:  &#x27;600&#x27;,
-				height: &#x27;500&#x27;
-			},
-			googleplus: {
-				url:    &#x27;https://plus.google.com/share?url=&lt;%= url %&gt;&amp;t=&lt;%= text %&gt;&#x27;,
-				width:  &#x27;520&#x27;,
-				height: &#x27;520&#x27;
-			},
-			pinterest: {
-				url:    &#x27;http://www.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;description=&lt;%= text %&gt;&amp;media=&lt;%= media %&gt;&#x27;,
-				width:  &#x27;750&#x27;,
-				height: &#x27;335&#x27;
-			}
-		},
+        networks = {
+            facebook: {
+                url:        &#x27;https://www.facebook.com/sharer/sharer.php?u=&lt;%= url %&gt;&#x27;,
+                width:      &#x27;675&#x27;,
+                height:     &#x27;368&#x27;,
+                scriptUrl:  &#x27;//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.0&#x27;,
+                button:     &#x27;&lt;div class=&quot;fb-like&quot; data-href=&quot;&lt;%= url %&gt;&quot; data-layout=&quot;standard&quot; data-action=&quot;like&quot; data-show-faces=&quot;false&quot; data-share=&quot;false&quot;&gt;&lt;/div&gt;&#x27;,
+                loaded:     false
+            },
+            twitter: {
+                url:        &#x27;https://twitter.com/intent/tweet?url=&lt;%= url %&gt;&amp;text=&lt;%= text %&gt;&amp;related=&lt;%= related %&gt;&#x27;,
+                width:      &#x27;550&#x27;,
+                height:     &#x27;450&#x27;,
+                scriptUrl:  &#x27;https://platform.twitter.com/widgets.js&#x27;,
+                button:     &#x27;&lt;a href=&quot;&lt;%= url %&gt;&quot; class=&quot;twitter-share-button&quot; data-lang=&quot;en&quot;&gt;Tweet&lt;/a&gt;&#x27;,
+                loaded:     false
+            },
+            linkedin: {
+                url:        &#x27;https://www.linkedin.com/shareArticle?url=&lt;%= url %&gt;&amp;summary=&lt;%= text %&gt;&amp;mini=true&#x27;,  // &amp;ro=false &amp;title=lorem &amp;source=example.com
+                width:      &#x27;600&#x27;,
+                height:     &#x27;500&#x27;,
+                scriptUrl:  &#x27;//platform.linkedin.com/in.js&#x27;,
+                button:     &#x27;&lt;script type=&quot;IN/Share&quot; data-url=&quot;&lt;%= url %&gt;&quot; data-counter=&quot;right&quot;&gt;&lt;/script&gt;&#x27;,
+                loaded:     false
+            },
+            googleplus: {
+                url:        &#x27;https://plus.google.com/share?url=&lt;%= url %&gt;&amp;t=&lt;%= text %&gt;&#x27;,
+                width:      &#x27;520&#x27;,
+                height:     &#x27;520&#x27;,
+                scriptUrl:  &#x27;https://apis.google.com/js/platform.js&#x27;,
+                button:     &#x27;&lt;div class=&quot;g-plus&quot; data-action=&quot;share&quot;&gt;&lt;/div&gt;&#x27;,
+                loaded:     false
+            },
+            pinterest: {
+                url:    &#x27;http://www.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;description=&lt;%= text %&gt;&amp;media=&lt;%= media %&gt;&#x27;,
+                width:  &#x27;750&#x27;,
+                height: &#x27;335&#x27;
+            }
+        },
 
-		share_options = {
-			url:     document.location,
-			text:    document.title,
-			related: &#x27;&#x27;, // twitter : https://dev.twitter.com/docs/tweet-button#related
-			media:   getAbsoluteUrl( $(&#x27;head link[rel=&quot;image_src&quot;]&#x27;).attr(&#x27;href&#x27;) ) // pinterest media
-		}
-	;
-
-
-	/**
-	* ### Version 0.1
-	* Social tools
-	*
-	* @module kafe.plugin
-	* @class kafe.plugin.social
-	*/
-	var social = {};
-
-
-	/**
-	* Initialize share buttons functionality
-	*
-	* @method initShareButtons
-	* @param {Object} [options] Options
-	*
-	* @example
-	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;facebook&lt;/span&gt;
-	*	kafe.plugin.social.initShareButtons()
-	*/
-	social.initShareButtons = function(options) {
-		share_options = $.extend({}, share_options, options || {});
-
-		$(&#x27;[data-kafesocial-action=&quot;share&quot;]&#x27;).on(&#x27;click&#x27;, function() {
-			var $this = $(this);
-			var network = $this.data(&#x27;kafesocial-network&#x27;);
-			var options = $.extend({}, share_options, $this.data(&#x27;kafesocial-options&#x27;) || {});
-			var data = networks[network];
-			if (data.url) {
-				window.open( _.template(data.url)(options) , &#x27;_blank&#x27;, &#x27;width=&#x27;+data.width+&#x27;,height=&#x27;+data.height+&#x27;,menubar=no,toolbar=no&#x27;);
-			}
-		});
-	};
+        share_options = {
+            url:     document.location,
+            text:    document.title,
+            related: &#x27;&#x27;, // twitter : https://dev.twitter.com/docs/tweet-button#related
+            media:   getAbsoluteUrl( $(&#x27;head link[rel=&quot;image_src&quot;]&#x27;).attr(&#x27;href&#x27;) ) // pinterest media
+        }
+    ;
 
 
-	return social;
+    /**
+    * ### Version 0.1
+    * Social tools
+    *
+    * @module kafe.plugin
+    * @class kafe.plugin.social
+    */
+    var social = {};
+
+
+    /**
+    * Initialize share buttons functionality
+    *
+    * @method initShareButtons
+    * @param {Object} [options] Options
+    *
+    * @example
+    *   &lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;facebook&lt;/span&gt;
+    *   kafe.plugin.social.initShareButtons()
+    */
+    social.initShareButtons = function(options) {
+        share_options = $.extend({}, share_options, options || {});
+
+        $(&#x27;[data-kafesocial-action=&quot;share&quot;]&#x27;).on(&#x27;click&#x27;, function() {
+            var $this = $(this);
+            var network = $this.data(&#x27;kafesocial-network&#x27;);
+            var options = $.extend({}, share_options, $this.data(&#x27;kafesocial-options&#x27;) || {});
+            var data = networks[network];
+            if (data.url) {
+                window.open( _.template(data.url)(options) , &#x27;_blank&#x27;, &#x27;width=&#x27;+data.width+&#x27;,height=&#x27;+data.height+&#x27;,menubar=no,toolbar=no&#x27;);
+            }
+        });
+    };
+
+    /**
+    * Initialize genuine buttons functionality
+    *
+    * @method initGenuineButtons
+    * @param {Object} [options] Options
+    *
+    * @example
+    *   &lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;facebook&quot;&gt;facebook&lt;/span&gt;
+    *   kafe.plugin.social.initShareButtons()
+    */
+    // https://developers.google.com/+/web/share/
+    // https://dev.twitter.com/docs/tweet-button
+    // https://developers.facebook.com/docs/plugins/like-button
+    // http://business.pinterest.com/en/widget-builder#do_pin_it_button
+    // https://developer.linkedin.com/plugins/share-plugin-generator
+
+    social.initGenuineButtons = function(options) {
+        share_options = $.extend({}, share_options, options || {});
+console.log(&quot;initGenuineButtons&quot;);
+        $(&#x27;[data-kafesocial-action=&quot;genuine&quot;]&#x27;).on(&#x27;click&#x27;, function() {
+            console.log($(this));
+            var 
+                $this = $(this),
+                insertScript = function(url) {
+                    var script = document.createElement(&#x27;script&#x27;);
+                    script.type = &#x27;text/javascript&#x27;;
+                    script.async = true;
+                    script.src = url;
+                    var all = document.getElementsByTagName(&#x27;script&#x27;)[0];
+                    all.parentNode.insertBefore(script, all);
+                },
+                network = $this.data(&#x27;kafesocial-network&#x27;),
+                options = $.extend({}, share_options, $this.data(&#x27;kafesocial-options&#x27;) || {}),
+                data = networks[network]
+            ;
+
+            if (!data.loaded) {
+                networks[network].loaded = true;
+                //App.env.lang
+                insertScript(data.scriptUrl);
+                $this.append(_.template(data.button)(options));
+            }
+            
+        });
+    };
+
+
+    /* ABSO EXEMPLE
+        // share box
+        $(&#x27;.ShareBox&#x27;).on(&#x27;click&#x27;, function() {
+            var
+                insertScript = function(url) {
+                    var script = document.createElement(&#x27;script&#x27;);
+                    script.type = &#x27;text/javascript&#x27;;
+                    script.async = true;
+                    script.src = url;
+                    
+                    var all = document.getElementsByTagName(&#x27;script&#x27;)[0];
+                    all.parentNode.insertBefore(script, all);
+                },
+
+                initAddThis = function() {
+                    if (!App.AddthisLoaded) {
+                        App.AddthisLoaded = true;
+                        window.addthis_config = {
+                            ui_language: App.env.lang,
+                            services_exclude: &quot;twitter, linkedin&quot;
+                        };
+                        insertScript(&#x27;//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52cee1b12e232e78&#x27;);
+                    }
+                },
+                $this = $(this)
+            ;
+
+
+            if (!$this.hasClass(&#x27;Open&#x27;)) {
+                initAddThis();
+                $this.append(App.tmpl.share.render()).addClass(&#x27;Open&#x27;);
+            }
+
+            //&lt;script src=&quot;//platform.linkedin.com/in.js&quot;&gt;lang:&lt;?php print ($language-&gt;language == &#x27;fr&#x27;) ? &#x27;fr_FR&#x27; : &#x27;en_US&#x27; ?&gt;&lt;/script&gt;
+
+            window.___gcfg = {lang: App.env.lang+&#x27;-CA&#x27;};
+            (function() {
+                var po = document.createElement(&#x27;script&#x27;); po.type = &#x27;text/javascript&#x27;; po.async = true;
+                po.src = &#x27;https://apis.google.com/js/platform.js&#x27;;
+                var s = document.getElementsByTagName(&#x27;script&#x27;)[0]; s.parentNode.insertBefore(po, s);
+            })();
+
+        });
+    };
+    */
+
+    return social;
 
 })()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 </pre>
