@@ -1,5 +1,5 @@
 <img align="right" src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" />
-### kafe v2.1.0
+### kafe v2.1.1
 #### Mixing javascript crops for a perfect flavour.
 > /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 

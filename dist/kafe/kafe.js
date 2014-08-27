@@ -32,7 +32,7 @@
 */
 
 /**
-* ### Version 2.1.0
+* ### Version 2.1.1
 * Mixing javascript crops for a perfect flavour.
 * /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * http://absolunet.github.io/kafe
@@ -81,7 +81,7 @@
 
 
 		/**
-		* ### Version 2.1.0
+		* ### Version 2.1.1
 		* kafe core
 		*
 		* @module kafe
@@ -95,7 +95,7 @@
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '2.1.0',
+			_vesyon: '2.1.1',
 
 			/**
 			* kafe author

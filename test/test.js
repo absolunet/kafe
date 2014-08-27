@@ -11525,7 +11525,7 @@ window.Modernizr = (function( window, document, undefined ) {
 */
 
 /**
-* ### Version 2.1.0
+* ### Version 2.1.1
 * Mixing javascript crops for a perfect flavour.
 * /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * http://absolunet.github.io/kafe
@@ -11574,7 +11574,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
 		/**
-		* ### Version 2.1.0
+		* ### Version 2.1.1
 		* kafe core
 		*
 		* @module kafe
@@ -11588,7 +11588,7 @@ window.Modernizr = (function( window, document, undefined ) {
 			* @property _vesyon 
 			* @type String
 			**/
-			_vesyon: '2.1.0',
+			_vesyon: '2.1.1',
 
 			/**
 			* kafe author
@@ -14828,7 +14828,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.social', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.social', version:'0.2', obj:(function(){
 
 	var
 		getAbsoluteUrl = function(href) {
@@ -14935,7 +14935,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
 	/**
-	* ### Version 0.1
+	* ### Version 0.2
 	* Social tools
 	*
 	* @module kafe.plugin
