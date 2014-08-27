@@ -46,7 +46,7 @@
 <p>Social tools</p>
 
 	<div>
-		<span>Source: <a href="../files/dist_kafe_plugin_social.js.html#l62">dist/kafe/plugin/social.js</a></span>
+		<span>Source: <a href="../files/dist_kafe_plugin_social.js.html#l106">dist/kafe/plugin/social.js</a></span>
 		
 	</div>
 </header>
@@ -59,7 +59,7 @@
 	
 		<section>
 	<h1>initGenuineButtons</h1>
-	<footer><a href="../files/dist_kafe_plugin_social.js.html#l96">@96</a></footer>
+	<footer><a href="../files/dist_kafe_plugin_social.js.html#l140">@140</a></footer>
 
 	<p>Initialize genuine buttons functionality</p>
 
@@ -104,6 +104,88 @@
 
 
 					
+						<ul>
+						
+							<li>
+								
+									<code>[lang]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Display button language. Possible values are &#39;en&#39;, &#39;fr&#39; or by default is kafe.env(&#39;lang&#39;).</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[url]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Specific url sharing. By default is the current url.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[text]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Specific text sharing. By default is the browser title.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[size]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Display button size. Possible values are &#39;small&#39; and &#39;large&#39;. Only work with Twitter, Google + and Pinterest.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[counter]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Orientation and visibility of counter. Possible values are &#39;none&#39;, &#39;horizontal&#39; and &#39;vertical&#39;. By default is &#39;horizontal&#39;.</p>
+
+
+								
+
+							</li>
+						
+							<li>
+								
+									<code>[media]</code>
+									<strong>Object</strong>
+									<span>Optional</span>
+								
+								<p>Image url for Pinterest sharing. By default is the link to the tag &#39;image_src&#39; in the head of the document.</p>
+
+
+								
+
+							</li>
+						
+						</ul>
+					
 
 				</li>
 			
@@ -116,8 +198,16 @@
 	
 		<section>
 			<h1>Example:</h1>
-			<p>  <span data-kafesocial-action="genuine" data-kafesocial-network="facebook">facebook</span>
-  kafe.plugin.social.initShareButtons()</p>
+			<p>  <span data-kafesocial-action="genuine" data-kafesocial-network="facebook" data-kafesocial-options='{ "appid":"1514943792075126" }'></span>
+  <span data-kafesocial-action="genuine" data-kafesocial-network="twitter"></span>
+  <span data-kafesocial-action="genuine" data-kafesocial-network="linkedin"></span>
+  <span data-kafesocial-action="genuine" data-kafesocial-network="googleplus"></span>
+  <span data-kafesocial-action="genuine" data-kafesocial-network="pinterest" data-kafesocial-options='{ "url":"http://www.flickr.com/photos/kentbrew/6851755809/", "media":"http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg" }'></span>
+  <script type="text/javascript">
+      $(function() {
+          kafe.plugin.social.initGenuineButtons();
+      });
+  </script></p>
 
 		</section>
 	
@@ -126,7 +216,7 @@
 	
 		<section>
 	<h1>initShareButtons</h1>
-	<footer><a href="../files/dist_kafe_plugin_social.js.html#l72">@72</a></footer>
+	<footer><a href="../files/dist_kafe_plugin_social.js.html#l116">@116</a></footer>
 
 	<p>Initialize share buttons functionality</p>
 

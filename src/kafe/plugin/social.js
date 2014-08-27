@@ -60,8 +60,8 @@
                 script:     { 
                                 url:   'https://apis.google.com/js/platform.js',
                                 inner: '{lang: \'<%= lang %>\'}'
-                            },        
-                button:     '<div class="g-plus" data-action="share" data-annotation="<%= counter %>" data-height="<% if(counter == "vertical-bubble") { %>60<% } else { %><%= size %><% } %>"></div>',
+                            },  
+                button:     '<div class="g-plus" data-action="share" data-href="<%= url %>" data-annotation="<%= counter %>" data-height="<% if(counter == "vertical-bubble") { %>60<% } else { %><%= size %><% } %>"></div>',
                 loaded:     false,
                 size:       { default: '', small: '15', large: '24' },
                 counter:    { none: 'none', horizontal: 'bubble', vertical: 'vertical-bubble'},
@@ -142,11 +142,28 @@
     *
     * @method initGenuineButtons
     * @param {Object} [options] Options
+    *   @param {Object} [options.lang] Display button language. Possible values are 'en', 'fr' or by default is kafe.env('lang').
+    *   @param {Object} [options.url] Specific url sharing. By default is the current url.
+    *   @param {Object} [options.text] Specific text sharing. By default is the browser title.
+    *   @param {Object} [options.size] Display button size. Possible values are 'small' and 'large'. Only work with Twitter, Google + and Pinterest.
+    *   @param {Object} [options.counter] Orientation and visibility of counter. Possible values are 'none', 'horizontal' and 'vertical'. By default is 'horizontal'.
+    *   @param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag 'image_src' in the head of the document.
     *
     * @example
-    *   <span data-kafesocial-action="genuine" data-kafesocial-network="facebook">facebook</span>
-    *   <!-- @echo NAME_FULL -->.initShareButtons()
+    *   <span data-kafesocial-action="genuine" data-kafesocial-network="facebook" data-kafesocial-options='{ "appid":"1514943792075126" }'></span>
+    *   <span data-kafesocial-action="genuine" data-kafesocial-network="twitter"></span>
+    *   <span data-kafesocial-action="genuine" data-kafesocial-network="linkedin"></span>
+    *   <span data-kafesocial-action="genuine" data-kafesocial-network="googleplus"></span>
+    *   <span data-kafesocial-action="genuine" data-kafesocial-network="pinterest" data-kafesocial-options='{ "url":"http://www.flickr.com/photos/kentbrew/6851755809/", "media":"http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg" }'></span>
+    *   <script type="text/javascript">
+    *       $(function() {
+    *           <!-- @echo NAME_FULL -->.initGenuineButtons();
+    *       });
+    *   </script>
+    * 
     */
+
+    // Dev Documentation :
     // https://developers.google.com/+/web/share/
     // https://dev.twitter.com/docs/tweet-button
     // https://developers.facebook.com/docs/plugins/like-button
