@@ -26,6 +26,9 @@
 		"grunt-contrib-cssmin": "~0.7.0",
 		"grunt-contrib-jshint": "~0.7.2",
 		"grunt-contrib-uglify": "~0.2.7",
-		"grunt-includes":       "~0.4.0"
+		"grunt-includes":       "~0.4.0",
+
+		"gulp":          "~3.8.8",
+		"gulp-gh-pages": "~0.3.4"
 	}
 }
