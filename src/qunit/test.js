@@ -1,36 +1,35 @@
-// @import 'libs/vendor/lo-dash'
-// @import 'libs/vendor/underscore.string'
-// @import 'libs/vendor/modernizr'
+// @import 'dependencies/bower/lodash/dist/lodash'
+// @import 'dependencies/bower/underscore.string/dist/underscore.string.min'
+// @import 'dependencies/bower/modernizr/modernizr'
 
-// @import 'kafe'
-// @import 'date'
-// **@import 'form'				// manual
-// **@import 'geolocation'      // difficult to automate
-// @import 'number'
-// @import 'storage'
-// @import 'string'
-// @import 'string-encrypt'
-// @import 'string-validate'
-// **@import 'style'			// manual
-// @import 'url'
-// **@import 'cms/drupal'
-// **@import 'cms/magento'
-// **@import 'cms/sitecore'		// manual
-// **@import 'ext/addthis'
-// **@import 'ext/bbq'
-// **@import 'ext/colorbox'
-// **@import 'ext/disqus'
-// **@import 'ext/facebook'
-// **@import 'ext/flickr'
-// **@import 'ext/googlemaps'
-// **@import 'ext/soundcloud'
-// **@import 'ext/twitter'
-// **@import 'ext/youtube'
-// **@import 'plugin/carousel'  // manual
-// **@import 'plugin/menu'		// manual
-// **@import 'plugin/qrcode'	// manual
-// **@import 'plugin/sticky'	// manual
+// @import 'src/qunit/kafe'
+// @import 'src/qunit/date'
+// **@import 'src/qunit/form'				// manual
+// **@import 'src/qunit/geolocation'      // difficult to automate
+// @import 'src/qunit/number'
+// @import 'src/qunit/storage'
+// @import 'src/qunit/string'
+// @import 'src/qunit/string-encrypt'
+// @import 'src/qunit/string-validate'
+// **@import 'src/qunit/style'			// manual
+// @import 'src/qunit/url'
+// **@import 'src/qunit/cms/drupal'
+// **@import 'src/qunit/cms/magento'
+// **@import 'src/qunit/cms/sitecore'		// manual
+// **@import 'src/qunit/ext/addthis'
+// **@import 'src/qunit/ext/bbq'
+// **@import 'src/qunit/ext/colorbox'
+// **@import 'src/qunit/ext/disqus'
+// **@import 'src/qunit/ext/facebook'
+// **@import 'src/qunit/ext/flickr'
+// **@import 'src/qunit/ext/googlemaps'
+// **@import 'src/qunit/ext/soundcloud'
+// **@import 'src/qunit/ext/twitter'
+// **@import 'src/qunit/ext/youtube'
+// **@import 'src/qunit/plugin/carousel'  // manual
+// **@import 'src/qunit/plugin/menu'		// manual
+// **@import 'src/qunit/plugin/qrcode'	// manual
+// **@import 'src/qunit/plugin/sticky'	// manual
 
 
 
-// @import 'libs/kafe/plugin/social'

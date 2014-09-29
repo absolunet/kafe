@@ -6,7 +6,7 @@ module.exports = (grunt) ->
 	preprocess = require 'preprocess'
 
 	src = path.src.kafe
-	out = "#{path.out.dist}/#{pkg.name}"
+	out = "#{path.out.dist}"
 
 	# config
 	grunt.config.set name, data for name, data of {

@@ -1,4 +1,4 @@
-// @import 'libs/vendor/jquery.json'
+// @import 'dependencies/bower/jquery-json/src/jquery.json'
 
 /* @echo header */
 

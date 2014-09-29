@@ -1,4 +1,4 @@
-// @import 'libs/kafe/string-validate'
+// @import 'dependencies/bower/kafe/dist/string-validate'
 
 (function(kafe,undefined){
 

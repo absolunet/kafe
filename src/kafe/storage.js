@@ -1,6 +1,6 @@
-// @import 'libs/vendor/jquery.cookie'
-// @import 'libs/vendor/jquery.json'
-// @import 'libs/kafe/string'
+// @import 'dependencies/bower/jquery-cookie/jquery.cookie'
+// @import 'dependencies/bower/jquery-json/src/jquery.json'
+// @import 'dependencies/bower/kafe/dist/string'
 
 /* @echo header */
 

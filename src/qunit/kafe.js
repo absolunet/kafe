@@ -1,4 +1,4 @@
-// @import 'libs/kafe/kafe'
+// @import 'dependencies/bower/kafe/dist/kafe'
 
 (function(kafe,undefined){
 

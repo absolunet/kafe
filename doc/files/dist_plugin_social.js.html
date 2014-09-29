@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+
+	<title>dist/plugin/social.js - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2014 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.2.0</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="//github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="file">
+	<h1>dist/plugin/social.js</h1>
+	<h2>File</h2>
+</header>
+
+<pre>
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.social&#x27;, version:&#x27;0.2&#x27;, obj:(function(){
+
+	var
+		getAbsoluteUrl = function(href) {
+			if (href) {
+				var link = document.createElement(&#x27;a&#x27;);
+				link.href = href;
+				return (link.protocol+&#x27;//&#x27;+link.host+link.pathname+link.search+link.hash);
+			}
+			return &#x27;&#x27;;
+		},
+
+		networks = {
+			facebook: {
+				url:        &#x27;https://www.facebook.com/sharer/sharer.php?u=&lt;%= url %&gt;&amp;lang=&lt;%= lang %&gt;&#x27;,
+				width:      &#x27;675&#x27;,
+				height:     &#x27;368&#x27;,
+				script:     { 
+								url:   &#x27;//connect.facebook.net/&lt;%= lang %&gt;/sdk.js#xfbml=1&amp;appId=&lt;%= appid %&gt;&amp;version=v2.0&#x27;,
+								inner: &#x27;&#x27;
+							},
+				button:     &#x27;&lt;div class=&quot;fb-share-button&quot; data-href=&quot;&lt;%= url %&gt;&quot; data-layout=&quot;&lt;%= counter %&gt;&quot;&gt;&lt;/div&gt;&#x27;,
+				loaded:     false,
+				size:       { default: &#x27;&#x27; },
+				counter:    { none: &#x27;button&#x27;, horizontal: &#x27;button_count&#x27;, vertical: &#x27;box_count&#x27;},
+				locale:     { fr: &#x27;fr_FR&#x27;, en: &#x27;en_US&#x27;},
+			},
+			twitter: {
+				url:        &#x27;https://twitter.com/intent/tweet?url=&lt;%= url %&gt;&amp;text=&lt;%= text %&gt;&amp;related=&lt;%= related %&gt;&amp;lang=&lt;%= lang %&gt;&#x27;,
+				width:      &#x27;550&#x27;,
+				height:     &#x27;450&#x27;,
+				script:     { 
+								url:   &#x27;https://platform.twitter.com/widgets.js&#x27;,
+								inner: &#x27;&#x27;
+							},
+				button:     &#x27;&lt;a href=&quot;&lt;%= url %&gt;&quot; class=&quot;twitter-share-button&quot; data-related=&quot;&lt;%= related %&gt;&quot; data-lang=&quot;&lt;%= lang %&gt;&quot; data-size=&quot;&lt;%= size %&gt;&quot; data-count=&quot;&lt;%= counter %&gt;&quot;&gt;&lt;/a&gt;&#x27;,
+				loaded:     false,
+				size:       { default: &#x27;&#x27;, small: &#x27;medium&#x27;, large: &#x27;large&#x27;},
+				counter:    { none: &#x27;none&#x27;, horizontal: &#x27;horizontal&#x27;, vertical: &#x27;vertical&#x27;},
+				locale:     { fr: &#x27;fr&#x27;, en: &#x27;en&#x27;},
+			},
+			linkedin: {
+				url:        &#x27;https://www.linkedin.com/shareArticle?url=&lt;%= url %&gt;&amp;summary=&lt;%= text %&gt;&amp;mini=true&amp;lang=&lt;%= lang %&gt;&#x27;,  // &amp;ro=false &amp;title=lorem &amp;source=example.com
+				width:      &#x27;600&#x27;,
+				height:     &#x27;500&#x27;,
+				script:     { 
+								url:   &#x27;//platform.linkedin.com/in.js&#x27;,
+								inner: &#x27;lang: &lt;%= lang %&gt;&#x27;
+							},
+				button:     &#x27;&lt;script type=&quot;IN/Share&quot; data-url=&quot;&lt;%= url %&gt;&quot; data-counter=&quot;&lt;%= counter %&gt;&quot;&gt;&lt;/script&gt;&#x27;,
+				loaded:     false,
+				size:       { default: &#x27;&#x27; },
+				counter:    { none: &#x27;&#x27;, horizontal: &#x27;right&#x27;, vertical: &#x27;top&#x27;},
+				locale:     { fr: &#x27;fr_FR&#x27;, en: &#x27;en_US&#x27;},
+			},
+			googleplus: {
+				url:        &#x27;https://plus.google.com/share?url=&lt;%= url %&gt;&amp;t=&lt;%= text %&gt;&amp;lang=&lt;%= lang %&gt;&#x27;,
+				width:      &#x27;520&#x27;,
+				height:     &#x27;520&#x27;,
+				script:     { 
+								url:   &#x27;https://apis.google.com/js/platform.js&#x27;,
+								inner: &#x27;{lang: \&#x27;&lt;%= lang %&gt;\&#x27;}&#x27;
+							},  
+				button:     &#x27;&lt;div class=&quot;g-plus&quot; data-action=&quot;share&quot; data-href=&quot;&lt;%= url %&gt;&quot; data-annotation=&quot;&lt;%= counter %&gt;&quot; data-height=&quot;&lt;% if(counter == &quot;vertical-bubble&quot;) { %&gt;60&lt;% } else { %&gt;&lt;%= size %&gt;&lt;% } %&gt;&quot;&gt;&lt;/div&gt;&#x27;,
+				loaded:     false,
+				size:       { default: &#x27;&#x27;, small: &#x27;15&#x27;, large: &#x27;24&#x27; },
+				counter:    { none: &#x27;none&#x27;, horizontal: &#x27;bubble&#x27;, vertical: &#x27;vertical-bubble&#x27;},
+				locale:     { fr: &#x27;fr-CA&#x27;, en: &#x27;en-US&#x27;},
+			},
+			pinterest: {
+				url:        &#x27;http://&lt;%= lang %&gt;.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;description=&lt;%= text %&gt;&amp;media=&lt;%= media %&gt;&#x27;,
+				width:      &#x27;750&#x27;,
+				height:     &#x27;335&#x27;,
+				script:     { 
+								url:   &#x27;//assets.pinterest.com/js/pinit.js&#x27;,
+								inner: &#x27;&#x27;
+							},        
+				button:     &#x27;&lt;a href=&quot;//&lt;%= lang %&gt;.pinterest.com/pin/create/button/?url=&lt;%= url %&gt;&amp;media=&lt;%= media %&gt;&amp;description=&lt;%= text %&gt;&quot; data-pin-do=&quot;buttonPin&quot; data-pin-config=&quot;&lt;%= counter %&gt;&quot; data-pin-height=&quot;&lt;%= size %&gt;&quot;&gt;&lt;img src=&quot;//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_&lt;%= size %&gt;.png&quot; /&gt;&lt;/a&gt;&#x27;,
+				loaded:     false,
+				size:       { default: &#x27;20&#x27;, small: &#x27;20&#x27;, large: &#x27;28&#x27; },
+				counter:    { none: &#x27;none&#x27;, horizontal: &#x27;beside&#x27;, vertical: &#x27;above&#x27;},
+				locale:     { fr: &#x27;fr&#x27;, en: &#x27;en&#x27;},
+			}
+		},
+
+
+		share_options = {
+			lang:    kafe.env(&#x27;lang&#x27;), 
+			url:     document.location,
+			text:    document.title,
+			related: &#x27;&#x27;, // twitter : https://dev.twitter.com/docs/tweet-button#related
+			media:   getAbsoluteUrl( $(&#x27;head link[rel=&quot;image_src&quot;]&#x27;).attr(&#x27;href&#x27;) ) // pinterest media
+		},
+
+		genuine_options = {
+			lang:    kafe.env(&#x27;lang&#x27;), 
+			url:     document.location,
+			text:    document.title,
+			related: &#x27;&#x27;, // twitter : https://dev.twitter.com/docs/tweet-button#related
+			size:    &#x27;default&#x27;, 
+			counter: &#x27;horizontal&#x27;,
+			media:   getAbsoluteUrl( $(&#x27;head link[rel=&quot;image_src&quot;]&#x27;).attr(&#x27;href&#x27;) ) // pinterest media
+		}
+	;
+
+
+	/**
+	* ### Version 0.2
+	* Social tools
+	*
+	* @module kafe.plugin
+	* @class kafe.plugin.social
+	*/
+	var social = {};
+
+
+	/**
+	* Initialize share buttons functionality
+	*
+	* @method initShareButtons
+	* @param {Object} [options] Options
+	*	@param {Object} [options.lang] Display popup sharing language. Not fully supported by all social networks. Possible values are &#x60;en&#x60;, &#x60;fr&#x60; or by default is &#x60;kafe.env(&#x27;lang&#x27;)&#x60;.
+	*	@param {Object} [options.url] Specific url sharing. By default is the current url.
+	*	@param {Object} [options.text] Specific text sharing. By default is the browser title.
+	*	@param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag &#x60;image_src&#x60; in the head of the document.
+	*
+	* @example
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;Facebook&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;Twitter/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;Linkedin&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;Google+&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;pinterest&quot; data-kafesocial-options=&#x27;{ &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }&#x27;&gt;Pinterest&lt;/span&gt;
+	*	&lt;script&gt;
+	*		$(function() {
+	*			kafe.plugin.social.initShareButtons();
+	*		});
+	*	&lt;/script&gt;
+	*
+	*/
+	social.initShareButtons = function(options) {
+		share_options = $.extend({}, share_options, options || {});
+
+		$(&#x27;[data-kafesocial-action=&quot;share&quot;]&#x27;).on(&#x27;click&#x27;, function() {
+			var $this = $(this);
+			var network = $this.data(&#x27;kafesocial-network&#x27;);
+			var options = $.extend({}, share_options, $this.data(&#x27;kafesocial-options&#x27;) || {});
+			var data = networks[network];
+			//set the good language format
+			options.lang = networks[network].locale[options.lang];
+			if (data.url) {
+				window.open( _.template(data.url)(options) , &#x27;_blank&#x27;, &#x27;width=&#x27;+data.width+&#x27;,height=&#x27;+data.height+&#x27;,menubar=no,toolbar=no&#x27;);
+			}
+		});
+	};
+
+	/**
+	* Initialize genuine buttons functionality
+	*
+	* @method initGenuineButtons
+	* @param {Object} [options] Options
+	*	@param {Object} [options.lang] Display button language. Possible values are &#x60;en&#x60;, &#x60;fr&#x60; or by default is &#x60;kafe.env(&#x27;lang&#x27;)&#x60;.
+	*	@param {Object} [options.url] Specific url sharing. By default is the current url.
+	*	@param {Object} [options.text] Specific text sharing. By default is the browser title.
+	*	@param {Object} [options.size] Display button size. Possible values are &#x60;small&#x60; and &#x60;large&#x60;. Only work with Twitter, Google + and Pinterest.
+	*	@param {Object} [options.counter] Orientation and visibility of counter. Possible values are &#x60;none&#x60;, &#x60;horizontal&#x60; and &#x60;vertical&#x60;. By default is &#x60;horizontal&#x60;.
+	*	@param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag &#x60;image_src&#x60; in the head of the document.
+	*
+	* @example
+	*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;facebook&quot; data-kafesocial-options=&#x27;{ &quot;appid&quot;:&quot;1514943792075126&quot; }&#x27;&gt;&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;&lt;/span&gt;
+	*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;pinterest&quot; data-kafesocial-options=&#x27;{ &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }&#x27;&gt;&lt;/span&gt;
+	*	&lt;script&gt;
+	*		$(function() {
+	*			kafe.plugin.social.initGenuineButtons();
+	*		});
+	*	&lt;/script&gt;
+	*
+	*/
+
+	// Dev Documentation :
+	// https://developers.google.com/+/web/share/
+	// https://dev.twitter.com/docs/tweet-button
+	// https://developers.facebook.com/docs/plugins/like-button
+	// http://business.pinterest.com/en/widget-builder#do_pin_it_button
+	// https://developer.linkedin.com/plugins/share-plugin-generator
+
+	social.initGenuineButtons = function(options) {
+		genuine_options = $.extend({}, genuine_options, options || {});
+
+		$(&#x27;[data-kafesocial-action=&quot;genuine&quot;]&#x27;).each(function() {
+
+			var 
+				$this = $(this),
+				insertScript = function(url, inner) {
+					var script = document.createElement(&#x27;script&#x27;);
+					script.type = &#x27;text/javascript&#x27;;
+					script.async = true;
+					script.src = url;
+					script.innerHTML = inner;
+					var all = document.getElementsByTagName(&#x27;script&#x27;)[0];
+					all.parentNode.insertBefore(script, all);
+				},
+				network = $this.data(&#x27;kafesocial-network&#x27;),
+				options = $.extend({}, genuine_options, $this.data(&#x27;kafesocial-options&#x27;) || {}),
+				data = networks[network]
+			;
+			//set the good language format
+			options.lang = networks[network].locale[options.lang];
+			//button counter layout
+			options.counter = networks[network].counter[options.counter];
+			//button size
+			options.size = ( networks[network].size ? networks[network].size[options.size] : options.size );
+
+			if (!data.loaded) {
+				networks[network].loaded = true;
+				$this.html(_.template(data.button)(options));
+				insertScript(_.template(data.script.url)(options), _.template(data.script.inner)(options));
+			}
+			
+		});
+	};
+
+	return social;
+
+})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+</pre>
+
+		</section>
+		<nav>
+			<ul>
+    
+        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+    
+        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+    
+        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+    
+        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+    
+        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+    
+        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+    
+        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+    
+        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+    
+        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+    
+        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+    
+</ul>
+
+		</nav>
+	</div>
+
+	<footer id="Footer">2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved. <a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>

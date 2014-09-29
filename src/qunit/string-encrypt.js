@@ -1,4 +1,4 @@
-// @import 'libs/kafe/string-encrypt'
+// @import 'dependencies/bower/kafe/dist/string-encrypt'
 
 (function(kafe,undefined){
 

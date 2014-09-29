@@ -1,4 +1,4 @@
-// @import 'libs/vendor/jquery.colorbox'
+// @import 'dependencies/bower/colorbox/jquery.colorbox.js'
 
 /* @echo header */
 

@@ -13,7 +13,7 @@ module.exports = (grunt) ->
 	src_tmpl  = path.src.tmpl
 	out       = path.out.doc
 	out_root  = path.out.root
-	out_libs  = "#{path.out.dist}/#{pkg.name}"
+	out_libs  = "#{path.out.dist}"
 
 	# doc data
 	docdata = {
@@ -23,6 +23,9 @@ module.exports = (grunt) ->
 		definition:  pkg.definition
 		repo:        "https://github.com/absolunet/#{pkg.name}"
 		repo_url:    "https://github.com/absolunet/#{pkg.name}/tree/master"
+		repository:  pkg.repository.url
+		bugs:        pkg.bugs.url
+		license:     pkg.licenses[0].url
 		homepage:    pkg.homepage
 		year:        grunt.template.today 'yyyy'
 		author:      pkg.author.name
@@ -82,8 +85,9 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'basedoc', '', ()-> 
 		docdata.doc = false;
 
-		preprocess.preprocessFileSync "#{src_tmpl}/readme.tmpl",  "#{out_root}/README.md", docdata
+		preprocess.preprocessFileSync "#{src_tmpl}/readme.tmpl",  "#{out_root}/README.md",  docdata
 		preprocess.preprocessFileSync "#{src_tmpl}/license.tmpl", "#{out_root}/LICENSE.md", docdata
+		preprocess.preprocessFileSync "#{src_tmpl}/bower.tmpl",   "#{out_root}/bower.json", docdata
 		grunt.file.copy "#{src_tmpl}/changelog.tmpl", "#{out_root}/CHANGELOG.md"
 		grunt.log.ok 'Base documentation generated.'
 

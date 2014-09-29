@@ -1,4 +1,4 @@
-// @import 'libs/kafe/number'
+// @import 'dependencies/bower/kafe/dist/number'
 
 (function(kafe,undefined){
 

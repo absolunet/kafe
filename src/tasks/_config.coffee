@@ -65,7 +65,6 @@ module.exports = (grunt) ->
 
 	grunt.task.registerTask 'all', [
 		'core'
-		'vendor'
 		'test'
 		'doc'
 	]
@@ -80,7 +79,6 @@ module.exports = (grunt) ->
 			type:    'list'
 			choices: [
 				{ name:'Build kafe core',        value:'core' }
-				{ name:'Get vendor librairies',  value:'vendor' }
 				new inquirer.Separator()
 				{ name:'Generate test',          value:'test' }
 				{ name:'Generate documentation', value:'doc' }

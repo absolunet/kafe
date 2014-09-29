@@ -9,7 +9,7 @@ module.exports = (grunt) ->
 	# config
 	grunt.config.set name, data for name, data of {
 		'includes.test':
-			options: { includePath:"#{src}/" }
+			options: { includePath:"." }
 			src:  "#{src}/test.js"
 			dest: "#{out}/test.js"
 		
