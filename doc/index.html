@@ -17,6 +17,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
 	<title>kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
@@ -25,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.2.0</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -39,35 +40,30 @@
 
 	<div id="Content">
 		<section>
-			<div class="Home"><p><img src="http://absolunet.github.io/kafe/assets/logo-kafe.png" width="160" height="256" alt="kafe" /></p>
-<h1 id="kafe-v2-2-0">kafe v2.2.0</h1>
+			<div class="Home"><p align="center">
+    <a href="http://absolunet.github.io/kafe">
+        <img src="http://absolunet.github.io/kafe/assets/logo-kafe.svg" width="180" height="180" alt="kafe">
+    </a>
+</p>
+
+<h1 id="kafe-3-0-0">kafe 3.0.0</h1>
 <h4 id="mixing-javascript-crops-for-a-perfect-flavour-">Mixing javascript crops for a perfect flavour.</h4>
 <blockquote>
 <p>/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.</p>
 </blockquote>
-<p><br></p>
-<h2 id="quick-start">Quick start</h2>
-<h4 id="requirements">Requirements</h4>
-<p>A jQuery instance that will be copied in kafe.</p>
-<pre><code class="lang-html">&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;</code></pre>
-<h4 id="with-grunt-http-gruntjs-com-">With <a href="http://gruntjs.com/">Grunt</a></h4>
+<h2 id="installation">Installation</h2>
+<pre><code>&gt; bower install kafe</code></pre>
+<h2 id="dependencies">Dependencies</h2>
 <ul>
-<li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/dist">dist</a> folder and put them in a <code>libs</code> folder next to your <code>gruntfile.js</code>.</li>
-<li>Use <a href="https://github.com/vanetix/grunt-includes">grunt-includes</a> with a setup looking like this:</li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+<li><a href="http://lodash.com/">Lo-Dash</a></li>
+<li><a href="http://epeli.github.io/underscore.string/">Underscore.string</a></li>
+<li><a href="http://modernizr.com/">Modernizr</a></li>
 </ul>
-<pre><code class="lang-js">grunt.config.set(&#39;includes.kafe&#39;, {
-    options: {
-        includeRegexp:  /^\s*\/\/\s@import\s&#39;([^\&#39;]+)&#39;\s*$/,
-        duplicates:     false,
-        filenameSuffix: &#39;.js&#39;,
-        includePath:    &#39;./&#39;
-    },
-    src:  &#39;libs/kafe/kafe&#39;,
-    dest: &#39;js/kafe-dist.js&#39;
-});</code></pre>
-<h4 id="standalone">Standalone</h4>
+<h2 id="usage">Usage</h2>
 <ul>
-<li>Take the files under <a href="https://github.com/absolunet/kafe/tree/master/dist">dist</a> folder and put them in your project.</li>
+<li>Use <a href="https://www.npmjs.org/package/grunt-includes">grunt-includes</a>
+or</li>
 <li>Use the <code>// @import &#39;FILENAME&#39;</code> in the files header to know which files to include manually.</li>
 </ul>
 <h2 id="sources">Sources</h2>
@@ -144,10 +140,10 @@
 		</nav>
 	</div>
 
-	<footer id="Footer">2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved. <a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
-	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
-	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->
 	<script src="/kafe/assets/core.js"></script>
 </body>
 </html>

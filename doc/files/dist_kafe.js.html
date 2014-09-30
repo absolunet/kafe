@@ -17,6 +17,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
 	<title>dist/kafe.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
@@ -25,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.png" alt="kafe" />kafe v2.2.0</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -45,41 +46,8 @@
 </header>
 
 <pre>
-/*                                                    
-                +-&#x60;-:::::::::::::::::/::::::.          
-          &#x60;::::/:-&#x60;                       &#x60;.:///      
-          o.                                   /:     
-        &#x60;o&#x60;                                     /-    
-      -:/.                                       .:/- 
-     :/    &#x60;&#x60;...-------:///+yyysyyssso++++++/:----.-s&#x60;
-    /mhhddsoo+++++///::---..&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;&#x60;....-:+dmdhho
-    .-::om&#x60;                                     d+.&#x60;&#x60; 
-        .d&#x60;                                    &#x60;m-    
-         -h&#x60;                                   y+     
-          so &#x60;&#x60;&#x60;&#x60;&#x60;......---://///////////::--./m      
-          ydoooooooooooo+///-------:::://///+ohN&#x60;     
-          hy.&#x60;&#x60;                               /N      
-           m&#x60;                                 +d      
-           &#x60;m                                .N-      
-            :&#x60;                               sy       
-             d-                             :m&#x60;       
-             m+                             +m        
-             &#x60;h/                           .N-        
-              :d.                          hs         
-               m+                         .d:         
-               -sdoossso+++-//+++oossooohy:.          
-                &#x60;d-&#x60;&#x60;&#x60;&#x60;.--:/::--..&#x60;&#x60;&#x60;&#x60; &#x60;y/            
-                 d/                    &#x60;d:            
-                 -d&#x60;                   /y             
-                 &#x60;d-                  +h              
-                  &#x60;y:                 os               
-                   +h                h/               
-                    so               os                
-                    &#x60;+ssooossosososs/:.                 
-*/
-
 /**
-* ### Version 2.2.0
+* ### Version 3.0.0
 * Mixing javascript crops for a perfect flavour.
 * /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * http://absolunet.github.io/kafe
@@ -128,7 +96,7 @@
 
 
 		/**
-		* ### Version 2.2.0
+		* ### Version 3.0.0
 		* kafe core
 		*
 		* @module kafe
@@ -139,26 +107,26 @@
 			/**
 			* kafe version
 			*
-			* @property _vesyon 
+			* @property VESYON 
 			* @type String
 			**/
-			_vesyon: &#x27;2.2.0&#x27;,
+			VESYON: &#x27;3.0.0&#x27;,
 
 			/**
 			* kafe author
 			*
-			* @property _griyaj 
+			* @property PARAN 
 			* @type String
 			**/
-			_griyaj: &#x27;absolunet.com&#x27;,
+			PARAN: &#x27;absolunet.com&#x27;,
 
 			/**
 			* Versions of dependencies / kafe modules
 			*
-			* @property _chaje 
+			* @property chaje 
 			* @type Object
 			**/
-			_chaje: {
+			chaje: {
 				&#x27;dependencies.jQuery&#x27;:    $().jquery,
 				&#x27;dependencies.LoDash&#x27;:    _.VERSION,
 				&#x27;dependencies.Modernizr&#x27;: Modernizr._version
@@ -336,7 +304,7 @@
 		// if not already extended
 		if (!_exists(&#x27;core.&#x27;+options.name)) {
 
-			core._chaje[options.name] = options.version;
+			core.chaje[options.name] = options.version;
 			eval(&#x27;this.&#x27;+options.name+&#x27; = arguments[0].obj;&#x27;);
 
 		// throw error
@@ -462,10 +430,10 @@
 		</nav>
 	</div>
 
-	<footer id="Footer">2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved. <a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a></footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
-	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
-	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->
 	<script src="/kafe/assets/core.js"></script>
 </body>
 </html>

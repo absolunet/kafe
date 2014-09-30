@@ -1,38 +1,28 @@
-<img <!-- @if !doc --> align="right"<!-- @endif--> src="<!-- @echo homepage -->/assets/logo-<!-- @echo package -->.png" width="160" height="256" alt="<!-- @echo package -->" />
-### <!-- @echo package --> v<!-- @echo version -->
+<p align="center">
+	<a href="<!-- @echo homepage -->">
+		<img src="<!-- @echo homepage -->/assets/logo-<!-- @echo package -->.svg" width="180" height="180" alt="<!-- @echo package -->">
+	</a>
+</p>
+
+# <!-- @echo package --> <!-- @echo version -->
 #### <!-- @echo description -->
 > <!-- @echo definition -->
 
-<br>
-
-## Quick start
-
-#### Requirements
-A jQuery instance that will be copied in <!-- @echo package -->.
-
-```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+## Installation
+```
+> bower install kafe
 ```
 
-#### With [Grunt](http://gruntjs.com/)
-- Take the files under [dist](<!-- @echo repo_url -->/dist) folder and put them in a `libs` folder next to your `gruntfile.js`.
-- Use [grunt-includes](https://github.com/vanetix/grunt-includes) with a setup looking like this:
+## Dependencies
+- [jQuery](http://jquery.com/)
+- [Lo-Dash](http://lodash.com/)
+- [Underscore.string](http://epeli.github.io/underscore.string/)
+- [Modernizr](http://modernizr.com/)
 
-```js
-grunt.config.set('includes.<!-- @echo package -->', {
-	options: {
-		includeRegexp:  /^\s*\/\/\s@import\s'([^\']+)'\s*$/,
-		duplicates:     false,
-		filenameSuffix: '.js',
-		includePath:    './'
-	},
-	src:  'libs/<!-- @echo package -->/<!-- @echo package -->',
-	dest: 'js/<!-- @echo package -->-dist.js'
-});
-```
 
-#### Standalone
-- Take the files under [dist](<!-- @echo repo_url -->/dist) folder and put them in your project.
+## Usage
+- Use [grunt-includes](https://www.npmjs.org/package/grunt-includes)
+or
 - Use the `// @import 'FILENAME'` in the files header to know which files to include manually.
 
 

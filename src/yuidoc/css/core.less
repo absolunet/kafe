@@ -9,24 +9,23 @@
 
 @bg-color:     #ededea;
 @text-color:   #444;
-@link-color:   #28a3db;
+@link-color:   #aa2f29;
 @nav-color:    #707070;
-@title-color:  #1aaf72;
-@header-color: #fec842;
+@title-color:  #659d32;
 
 @highlight-color:  fade(@black, 10%);
 @optional-color: fade(@title-color, 15%);
 
 
 /*- Fonts ------------------------------------------------------------------*/
-.LoadFont('BrandonGrotesque-Medium', '275719_B_0');
-.LoadFont('BrandonGrotesque-Bold',   '275719_0_0');
-.LoadFont('icomoon',                 'icomoon');
+.LoadFont('KreonRegular', 'kreon-regular-webfont');
+.LoadFont('KreonBold',    'kreon-bold-webfont');
+.LoadFont('icomoon',      'icomoon');
 
 @text-font: helvetica, arial, sans-serif;
 .text-font()    { font-family:@text-font; }
-.alt-font()     { font-family:'BrandonGrotesque-Medium', @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
-.altBold-font() { font-family:'BrandonGrotesque-Bold',   @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt-font()     { font-family:'KreonRegular', @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.altBold-font() { font-family:'KreonBold',    @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 .code-font()    { font-family:Monaco, 'Lucida Console', Courier, 'Courier New', monospace; font-weight:normal !important; font-style:normal !important;  }
 
 .ico-font() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
@@ -70,7 +69,7 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 #Header { position:relative; height:53px; .altBold-font(); text-align:center; background-color:@white;
 	h1 { position:absolute; left:2%; top:11px; font-size:24px;
 		a { color:@text-color; text-decoration:none !important;
-			img { width:20px; height:32px; margin:0 15px 0 0; }
+			img { width:32px; height:32px; margin:0 15px 0 0; }
 		}
 	}
 	nav { display:inline-block; margin:16px auto;
@@ -117,10 +116,10 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 	> section { float:right; width:75%; 
 		@media @mobile-media { width:100%; }
 
-		> header { padding:30px 2.5%; 
+		> header { padding:30px 2.5%; color:@black;
 			&.module { background-color:@link-color; }
 			&.class  { background-color:@title-color; }
-			&.file  { background-color:@header-color; }
+			&.file  { background-color:@nav-color; }
 
 			a { font-size:14px; color:@white; text-decoration:underline; }
 			h1 { display:inline-block; .alt-font(); font-size:30px; }
@@ -225,7 +224,7 @@ code { padding:2px 5px; .code-font(); font-size:0.8em; white-space:nowrap; backg
 		}
 
 		.Home { padding:30px;
-			img { float:right; width:160px; height:256px; margin:0 0 30px 30px;  }
+			img { float:right; margin:0 0 30px 30px;  }
 			h1 { margin:0 0 10px 0; .alt-font(); font-size:36px; }
 			h2 { margin:60px 0 5px 0; .altBold-font(); font-size:30px;
 				+ h4 { margin-top:10px;}

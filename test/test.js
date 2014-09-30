@@ -8193,41 +8193,8 @@ window.Modernizr = (function( window, document, undefined ) {
 })(this, this.document);
 
 
-/*                                                    
-                +-`-:::::::::::::::::/::::::.          
-          `::::/:-`                       `.:///      
-          o.                                   /:     
-        `o`                                     /-    
-      -:/.                                       .:/- 
-     :/    ``...-------:///+yyysyyssso++++++/:----.-s`
-    /mhhddsoo+++++///::---..`````````````....-:+dmdhho
-    .-::om`                                     d+.`` 
-        .d`                                    `m-    
-         -h`                                   y+     
-          so `````......---://///////////::--./m      
-          ydoooooooooooo+///-------:::://///+ohN`     
-          hy.``                               /N      
-           m`                                 +d      
-           `m                                .N-      
-            :`                               sy       
-             d-                             :m`       
-             m+                             +m        
-             `h/                           .N-        
-              :d.                          hs         
-               m+                         .d:         
-               -sdoossso+++-//+++oossooohy:.          
-                `d-````.--:/::--..```` `y/            
-                 d/                    `d:            
-                 -d`                   /y             
-                 `d-                  +h              
-                  `y:                 os               
-                   +h                h/               
-                    so               os                
-                    `+ssooossosososs/:.                 
-*/
-
 /**
-* ### Version 2.2.0
+* ### Version 3.0.0
 * Mixing javascript crops for a perfect flavour.
 * /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 * http://absolunet.github.io/kafe
@@ -8276,7 +8243,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
 		/**
-		* ### Version 2.2.0
+		* ### Version 3.0.0
 		* kafe core
 		*
 		* @module kafe
@@ -8287,26 +8254,26 @@ window.Modernizr = (function( window, document, undefined ) {
 			/**
 			* kafe version
 			*
-			* @property _vesyon 
+			* @property VESYON 
 			* @type String
 			**/
-			_vesyon: '2.2.0',
+			VESYON: '3.0.0',
 
 			/**
 			* kafe author
 			*
-			* @property _griyaj 
+			* @property PARAN 
 			* @type String
 			**/
-			_griyaj: 'absolunet.com',
+			PARAN: 'absolunet.com',
 
 			/**
 			* Versions of dependencies / kafe modules
 			*
-			* @property _chaje 
+			* @property chaje 
 			* @type Object
 			**/
-			_chaje: {
+			chaje: {
 				'dependencies.jQuery':    $().jquery,
 				'dependencies.LoDash':    _.VERSION,
 				'dependencies.Modernizr': Modernizr._version
@@ -8484,7 +8451,7 @@ window.Modernizr = (function( window, document, undefined ) {
 		// if not already extended
 		if (!_exists('core.'+options.name)) {
 
-			core._chaje[options.name] = options.version;
+			core.chaje[options.name] = options.version;
 			eval('this.'+options.name+' = arguments[0].obj;');
 
 		// throw error

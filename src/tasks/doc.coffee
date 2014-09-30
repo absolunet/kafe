@@ -117,7 +117,7 @@ module.exports = (grunt) ->
 			project:
 				name:        pkg.name
 				description: pkg.description
-				version:     "#{pkg.name} v#{pkg.version}"
+				version:     "#{pkg.name} #{pkg.version}"
 				url:         pkg.repository_url
 		}
 
