@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/kafe/dist/string'
+//= require 'dependencies/bower/kafe/dist/string'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string.validate', version:'1.0', obj:(function(){
 

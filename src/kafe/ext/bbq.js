@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/jquery.bbq/jquery.ba-bbq'
+//= require 'dependencies/bower/jquery.bbq/jquery.ba-bbq'
 
 /* @echo header */
 

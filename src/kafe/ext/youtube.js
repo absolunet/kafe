@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/kafe/dist/url'
+//= require 'dependencies/bower/kafe/dist/url'
 
 /* @echo header */
 

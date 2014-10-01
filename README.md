@@ -9,8 +9,8 @@
 > /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 
 ## Installation
-```
-> bower install kafe
+```bash
+bower install kafe --config.directory=./dependencies/bower
 ```
 
 ## Dependencies
@@ -21,9 +21,29 @@
 
 
 ## Usage
-- Use [grunt-includes](https://www.npmjs.org/package/grunt-includes)
-or
-- Use the `// @import 'FILENAME'` in the files header to know which files to include manually.
+
+### Grunt
+Use [grunt-includes](https://www.npmjs.org/package/grunt-includes)
+```js
+options: {
+    includeRegexp:  /^\s*\/\/\=\srequire\s'([^']+)'\s*/,
+    duplicates:     false,
+    filenameSuffix: '.js',
+    includePath:    './'
+}
+```
+
+### Gulp
+Use [gulp-include](https://www.npmjs.org/package/gulp-include)
+```js
+.pipe( include({
+	basePath: './',
+	autoExtension: true
+}) )
+```
+
+### Standalone
+Use the `//= require 'FILENAME'` in the file header to know which files to include manually.
 
 
 ## Documentation

@@ -1,7 +1,7 @@
-// @import 'shCore'
-// @import 'shBrushJScript'
-// @import 'jquery.scrollto'
-// @import 'modernizr'
+//= require 'shCore'
+//= require 'shBrushJScript'
+//= require 'jquery.scrollto'
+//= require 'modernizr'
 
 (function($) {
 	$(function(){

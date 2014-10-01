@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/jquery.bbq/jquery.ba-bbq'
+//= require 'dependencies/bower/jquery.bbq/jquery.ba-bbq'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.bbq', version:'0.1', obj:(function(){
 

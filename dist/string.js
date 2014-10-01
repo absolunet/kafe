@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/jquery-json/src/jquery.json'
+//= require 'dependencies/bower/jquery-json/src/jquery.json'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string', version:'1.2', obj:(function(){
 

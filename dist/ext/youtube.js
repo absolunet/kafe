@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/kafe/dist/url'
+//= require 'dependencies/bower/kafe/dist/url'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.youtube', version:'1.1', obj:(function(){
 

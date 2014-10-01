@@ -1,6 +1,6 @@
-// @import 'dependencies/bower/jquery-cookie/jquery.cookie'
-// @import 'dependencies/bower/jquery-json/src/jquery.json'
-// @import 'dependencies/bower/kafe/dist/string'
+//= require 'dependencies/bower/jquery-cookie/jquery.cookie'
+//= require 'dependencies/bower/jquery-json/src/jquery.json'
+//= require 'dependencies/bower/kafe/dist/string'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.1', obj:(function(){
 

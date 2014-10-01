@@ -52,7 +52,7 @@
 <p>/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.</p>
 </blockquote>
 <h2 id="installation">Installation</h2>
-<pre><code>&gt; bower install kafe</code></pre>
+<pre><code class="lang-bash">bower install kafe --config.directory=./dependencies/bower</code></pre>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
 <li><a href="http://jquery.com/">jQuery</a></li>
@@ -61,11 +61,22 @@
 <li><a href="http://modernizr.com/">Modernizr</a></li>
 </ul>
 <h2 id="usage">Usage</h2>
-<ul>
-<li>Use <a href="https://www.npmjs.org/package/grunt-includes">grunt-includes</a>
-or</li>
-<li>Use the <code>// @import &#39;FILENAME&#39;</code> in the files header to know which files to include manually.</li>
-</ul>
+<h3 id="grunt">Grunt</h3>
+<p>Use <a href="https://www.npmjs.org/package/grunt-includes">grunt-includes</a></p>
+<pre><code class="lang-js">options: {
+    includeRegexp:  /^\s*\/\/\=\srequire\s&#39;([^&#39;]+)&#39;\s*/,
+    duplicates:     false,
+    filenameSuffix: &#39;.js&#39;,
+    includePath:    &#39;./&#39;
+}</code></pre>
+<h3 id="gulp">Gulp</h3>
+<p>Use <a href="https://www.npmjs.org/package/gulp-include">gulp-include</a></p>
+<pre><code class="lang-js">.pipe( include({
+    basePath: &#39;./&#39;,
+    autoExtension: true
+}) )</code></pre>
+<h3 id="standalone">Standalone</h3>
+<p>Use the <code>//= require &#39;FILENAME&#39;</code> in the file header to know which files to include manually.</p>
 <h2 id="sources">Sources</h2>
 <p>Visit the <a href="https://github.com/absolunet/kafe">Github repository</a> for all the things.</p>
 <h2 id="release-history">Release history</h2>
@@ -116,8 +127,6 @@ or</li>
         <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
     
         <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.qrcode.html">kafe.plugin.qrcode</a></li>
     
         <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
     

@@ -1,4 +1,4 @@
-// @import 'dependencies/bower/kafe/dist/date'
+//= require 'dependencies/bower/kafe/dist/date'
 
 (function(kafe,undefined){
 

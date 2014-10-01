@@ -47,7 +47,7 @@ module.exports = (grunt) ->
 
 
 		'includes.options':
-			includeRegexp:  /^\s*\/\/\s@import\s'([^']+)'\s*$/
+			includeRegexp:  /^\s*\/\/\=\srequire\s'([^']+)'\s*/
 			duplicates:     false
 			filenameSuffix: '.js'
 
