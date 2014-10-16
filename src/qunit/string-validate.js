@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/kafe/dist/string-validate'
+//= require 'bower_components/kafe/dist/string-validate'
 
 (function(kafe,undefined){
 

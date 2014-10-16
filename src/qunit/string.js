@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/kafe/dist/string'
+//= require 'bower_components/kafe/dist/string'
 
 (function(kafe,undefined){
 

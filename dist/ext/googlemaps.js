@@ -1,7 +1,7 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googlemaps', version:'1.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googlemaps', version:'1.1.0', obj:(function(){
 
 	/**
-	* ### Version 1.1
+	* ### Version 1.1.0
 	* Extra methods for the GoogleMaps API.
 	* Requires `//maps.google.com/maps/api/js` to be included
 	*

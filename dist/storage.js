@@ -1,8 +1,8 @@
-//= require 'dependencies/bower/jquery-cookie/jquery.cookie'
-//= require 'dependencies/bower/jquery-json/src/jquery.json'
-//= require 'dependencies/bower/kafe/dist/string'
+//= require 'bower_components/jquery-cookie/jquery.cookie'
+//= require 'bower_components/jquery-json/src/jquery.json'
+//= require 'bower_components/kafe/dist/string'
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.1.0', obj:(function(){
 
 	var
 		LOCAL   = 1,
@@ -212,7 +212,7 @@
 
 
 	/**
-	* ### Version 1.1
+	* ### Version 1.1.0
 	* Easily access, sort and manipulate local and session storage values.
 	*
 	* @module kafe

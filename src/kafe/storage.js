@@ -1,6 +1,6 @@
-//= require 'dependencies/bower/jquery-cookie/jquery.cookie'
-//= require 'dependencies/bower/jquery-json/src/jquery.json'
-//= require 'dependencies/bower/kafe/dist/string'
+//= require 'bower_components/jquery-cookie/jquery.cookie'
+//= require 'bower_components/jquery-json/src/jquery.json'
+//= require 'bower_components/kafe/dist/string'
 
 /* @echo header */
 

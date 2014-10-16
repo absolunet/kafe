@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.facebook', version:'1.4', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.facebook', version:'1.4.0', obj:(function(){
 
 	var
 		// dictionary
@@ -70,7 +70,7 @@
 
 
 	/**
-	* ### Version 1.4
+	* ### Version 1.4.0
 	* Extra methods for the Facebook API.
 	*
 	* @module kafe.ext

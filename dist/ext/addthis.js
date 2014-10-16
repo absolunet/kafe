@@ -1,7 +1,7 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.addthis', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.addthis', version:'0.1.0', obj:(function(){
 
 	/**
-	* ### Version 0.1
+	* ### Version 0.1.0
 	* Additionnal methods for AddThis
 	*
 	* @module kafe.ext

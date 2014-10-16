@@ -10,7 +10,7 @@
 
 ## Installation
 ```bash
-bower install kafe --config.directory=./dependencies/bower
+bower install kafe
 ```
 
 ## Dependencies

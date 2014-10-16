@@ -1,9 +1,13 @@
-﻿/**
-* ### Version <!-- @echo VERSION -->
-* <!-- @echo DESCRIPTION -->
-* <!-- @echo DEFINITION -->
-* <!-- @echo HOMEPAGE -->
-*
+﻿/*!
+ * <!-- @echo PACKAGE --> <!-- @echo VERSION -->
+ * <!-- @echo HOMEPAGE -->
+ *
+ * Copyright 2011-<!-- @echo YEAR --> <!-- @echo AUTHOR -->, <!-- @echo SITE -->
+ * Released under the MIT license
+ * <!-- @echo LICENSE -->
+ */
+
+/**
 * @module <!-- @echo PACKAGE -->
 * @main <!-- @echo PACKAGE -->
 */

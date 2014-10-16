@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.magento', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.magento', version:'0.1.0', obj:(function(){
 
 	var
 		_privateFunction = function () {
@@ -8,7 +8,7 @@
 
 
 	/**
-	* ### Version 0.1
+	* ### Version 0.1.0
 	* Additionnal methods for Magento
 	*
 	* @module kafe.cms

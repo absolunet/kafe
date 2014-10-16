@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.0.0', obj:(function(){
 
 	var
 		// parse url
@@ -23,7 +23,7 @@
 
 
 	/**
-	* ### Version 1.0
+	* ### Version 1.0.0
 	* Manipulation tools for route-based urls.
 	*
 	* @module kafe

@@ -1,6 +1,6 @@
-//= require 'dependencies/bower/kafe/dist/url'
+//= require 'bower_components/kafe/dist/url'
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.youtube', version:'1.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.youtube', version:'1.1.0', obj:(function(){
 
 	var
 		// default params
@@ -57,7 +57,7 @@
 
 
 	/**
-	* ### Version 1.1
+	* ### Version 1.1.0
 	* Extra methods for Youtube.
 	*
 	* @module kafe.ext

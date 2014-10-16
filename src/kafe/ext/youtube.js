@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/kafe/dist/url'
+//= require 'bower_components/kafe/dist/url'
 
 /* @echo header */
 

@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.soundcloud', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.soundcloud', version:'0.1.0', obj:(function(){
 
 	var
 		// default params
@@ -9,7 +9,7 @@
 	
 	
 	/**
-	* ### Version 0.1
+	* ### Version 0.1.0
 	* Extra methods for the Soundcloud API.
 	* Requires `//connect.soundcloud.com/sdk.js` to be included
 	*

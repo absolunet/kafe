@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.drupal', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.drupal', version:'0.0.1', obj:(function(){
 
 	var
 		$Global = global.jQuery,
@@ -10,7 +10,7 @@
 
 
 	/**
-	* ### Version 0.1
+	* ### Version 0.0.1
 	* Additionnal methods for Drupal
 	*
 	* @module kafe.cms

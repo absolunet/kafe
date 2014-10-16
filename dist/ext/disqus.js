@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.disqus', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.disqus', version:'0.1.0', obj:(function(){
 
 	var
 		_params = {
@@ -25,7 +25,7 @@
 
 
 	/**
-	* ### Version 0.1
+	* ### Version 0.1.0
 	* Extra methods for the Disqus API.
 	*
 	* @module kafe.ext

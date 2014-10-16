@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/kafe/dist/number'
+//= require 'bower_components/kafe/dist/number'
 
 (function(kafe,undefined){
 

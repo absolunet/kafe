@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.sitecore', version:'0.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'cms.sitecore', version:'0.1.0', obj:(function(){
 
 	var
 		_getPlaceholders = function(){
@@ -40,7 +40,7 @@
 	;
 
 	/**
-	* ### Version 0.1
+	* ### Version 0.1.0
 	* Additionnal methods for Sitecore
 	* Adds the environment variable `sitecore-editor` to kafe based on the data attribute `data-kafesitecore` (true/false) on the html tag
 	*

@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'date', version:'1.2', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'date', version:'1.2.0', obj:(function(){
 
 	var
 		// dictionary
@@ -51,7 +51,7 @@
 
 
 	/**
-	* ### Version 1.2
+	* ### Version 1.2.0
 	* Additionnal methods for date manipulation
 	*
 	* @module kafe

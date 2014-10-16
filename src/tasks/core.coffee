@@ -46,6 +46,10 @@ module.exports = (grunt) ->
 				NAME_JQUERY: pkg.name+finalNameCap
 				MODULE:      pkg.name+( if module.length then '.'+module.join('.') else '' )
 				VERSION:     version
+				LICENSE:     "https://github.com/absolunet/#{pkg.name}/tree/master/LICENSE.md"
+				AUTHOR:      pkg.author.name
+				SITE:        pkg.author.url
+				YEAR:        grunt.template.today 'yyyy'
 			}
 
 			contents = preprocess.preprocess contents, {

@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/colorbox/jquery.colorbox'
+//= require 'bower_components/colorbox/jquery.colorbox'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(){
 

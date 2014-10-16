@@ -1,9 +1,13 @@
+/*!
+ * kafe 3.0.1
+ * http://absolunet.github.io/kafe
+ *
+ * Copyright 2011-2014 Absolunet, http://absolunet.com/
+ * Released under the MIT license
+ * https://github.com/absolunet/kafe/tree/master/LICENSE.md
+ */
+
 /**
-* ### Version 3.0.0
-* Mixing javascript crops for a perfect flavour.
-* /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
-* http://absolunet.github.io/kafe
-*
 * @module kafe
 * @main kafe
 */
@@ -48,7 +52,7 @@
 
 
 		/**
-		* ### Version 3.0.0
+		* ### Version 3.0.1
 		* kafe core
 		*
 		* @module kafe
@@ -62,7 +66,7 @@
 			* @property VESYON 
 			* @type String
 			**/
-			VESYON: '3.0.0',
+			VESYON: '3.0.1',
 
 			/**
 			* kafe author

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.0</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -46,11 +46,11 @@
 </header>
 
 <pre>
-//= require &#x27;dependencies/bower/jquery-cookie/jquery.cookie&#x27;
-//= require &#x27;dependencies/bower/jquery-json/src/jquery.json&#x27;
-//= require &#x27;dependencies/bower/kafe/dist/string&#x27;
+//= require &#x27;bower_components/jquery-cookie/jquery.cookie&#x27;
+//= require &#x27;bower_components/jquery-json/src/jquery.json&#x27;
+//= require &#x27;bower_components/kafe/dist/string&#x27;
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1&#x27;, obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
 
 	var
 		LOCAL   = 1,
@@ -260,7 +260,7 @@
 
 
 	/**
-	* ### Version 1.1
+	* ### Version 1.1.0
 	* Easily access, sort and manipulate local and session storage values.
 	*
 	* @module kafe
@@ -605,6 +605,8 @@
         <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
     
         <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+    
+        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
     
         <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
     

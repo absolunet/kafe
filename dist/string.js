@@ -1,9 +1,9 @@
-//= require 'dependencies/bower/jquery-json/src/jquery.json'
+//= require 'bower_components/jquery-json/src/jquery.json'
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string', version:'1.2', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string', version:'1.2.0', obj:(function(){
 
 	/**
-	* ### Version 1.2
+	* ### Version 1.2.0
 	* Additionnal methods for string manipulation and generation.
 	*
 	* @module kafe

@@ -1,9 +1,9 @@
-//= require 'dependencies/bower/kafe/dist/string'
+//= require 'bower_components/kafe/dist/string'
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string.encrypt', version:'1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string.encrypt', version:'1.0.0', obj:(function(){
 
 	/**
-	* ### Version 1.0
+	* ### Version 1.0.0
 	* String encryption tools.
 	*
 	* @module kafe

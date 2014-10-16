@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/jquery-json/src/jquery.json'
+//= require 'bower_components/jquery-json/src/jquery.json'
 
 /* @echo header */
 

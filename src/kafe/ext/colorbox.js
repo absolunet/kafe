@@ -1,4 +1,4 @@
-//= require 'dependencies/bower/colorbox/jquery.colorbox'
+//= require 'bower_components/colorbox/jquery.colorbox'
 
 /* @echo header */
 

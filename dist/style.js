@@ -1,7 +1,7 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'style', version:'1.3', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'style', version:'1.3.0', obj:(function(){
 
 	/**
-	* ### Version 1.3
+	* ### Version 1.3.0
 	* Common adjustment and manipulation methods for html layouts.
 	*
 	* @module kafe

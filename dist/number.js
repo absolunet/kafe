@@ -1,7 +1,7 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'number', version:'1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'number', version:'1.0.0', obj:(function(){
 
 	/**
-	* ### Version 1.0
+	* ### Version 1.0.0
 	* Additionnal manipulation methods for numbers.
 	*
 	* @module kafe
