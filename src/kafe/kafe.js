@@ -63,7 +63,7 @@
 			/**
 			* <!-- @echo PACKAGE --> version
 			*
-			* @property VESYON 
+			* @property VESYON
 			* @type String
 			**/
 			VESYON: '<!-- @echo VERSION -->',
@@ -71,7 +71,7 @@
 			/**
 			* <!-- @echo PACKAGE --> author
 			*
-			* @property PARAN 
+			* @property PARAN
 			* @type String
 			**/
 			PARAN: 'absolunet.com',
@@ -79,7 +79,7 @@
 			/**
 			* Versions of dependencies / <!-- @echo PACKAGE --> modules
 			*
-			* @property chaje 
+			* @property chaje
 			* @type Object
 			**/
 			chaje: {
@@ -90,12 +90,12 @@
 
 			// isolate core dependencies
 			dependencies: {
-			
+
 				/**
-				* local jQuery copy 
+				* local jQuery copy
 				* ref: [http://jquery.com/](http://jquery.com/)
 				*
-				* @property dependencies.jQuery 
+				* @property dependencies.jQuery
 				* @type Object
 				**/
 				jQuery: $
@@ -125,8 +125,8 @@
 	core.fn = {
 
 		/**
-		* Create a instantiable object  
-		* By John Resig (MIT Licensed)  
+		* Create a instantiable object
+		* By John Resig (MIT Licensed)
 		* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
 		*
 		* @method fn.createInstantiableObject
@@ -187,8 +187,9 @@
 
 				$.fn[id] = function() {
 					var args = $.makeArray(arguments);
+					var method = args.shift();
 					return this.each(function() {
-						_jQueryMethods[name][args.shift()]( this, args );
+						_jQueryMethods[name][method]( this, args );
 					});
 				};
 			}
@@ -231,7 +232,7 @@
 
 			if (value !== undefined) {
 
-				// if not already set 
+				// if not already set
 				if (!(_data[name] !== undefined && updatable.search(new RegExp(':'+name+':')) == -1)) {
 					_data[name] = value;
 

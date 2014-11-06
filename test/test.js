@@ -10759,7 +10759,7 @@ window.Modernizr = (function( window, document, undefined ) {
 			/**
 			* kafe version
 			*
-			* @property VESYON 
+			* @property VESYON
 			* @type String
 			**/
 			VESYON: '3.0.1',
@@ -10767,7 +10767,7 @@ window.Modernizr = (function( window, document, undefined ) {
 			/**
 			* kafe author
 			*
-			* @property PARAN 
+			* @property PARAN
 			* @type String
 			**/
 			PARAN: 'absolunet.com',
@@ -10775,7 +10775,7 @@ window.Modernizr = (function( window, document, undefined ) {
 			/**
 			* Versions of dependencies / kafe modules
 			*
-			* @property chaje 
+			* @property chaje
 			* @type Object
 			**/
 			chaje: {
@@ -10786,12 +10786,12 @@ window.Modernizr = (function( window, document, undefined ) {
 
 			// isolate core dependencies
 			dependencies: {
-			
+
 				/**
-				* local jQuery copy 
+				* local jQuery copy
 				* ref: [http://jquery.com/](http://jquery.com/)
 				*
-				* @property dependencies.jQuery 
+				* @property dependencies.jQuery
 				* @type Object
 				**/
 				jQuery: $
@@ -10821,8 +10821,8 @@ window.Modernizr = (function( window, document, undefined ) {
 	core.fn = {
 
 		/**
-		* Create a instantiable object  
-		* By John Resig (MIT Licensed)  
+		* Create a instantiable object
+		* By John Resig (MIT Licensed)
 		* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
 		*
 		* @method fn.createInstantiableObject
@@ -10883,8 +10883,9 @@ window.Modernizr = (function( window, document, undefined ) {
 
 				$.fn[id] = function() {
 					var args = $.makeArray(arguments);
+					var method = args.shift();
 					return this.each(function() {
-						_jQueryMethods[name][args.shift()]( this, args );
+						_jQueryMethods[name][method]( this, args );
 					});
 				};
 			}
@@ -10927,7 +10928,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 			if (value !== undefined) {
 
-				// if not already set 
+				// if not already set
 				if (!(_data[name] !== undefined && updatable.search(new RegExp(':'+name+':')) == -1)) {
 					_data[name] = value;
 

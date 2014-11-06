@@ -111,7 +111,7 @@
 			/**
 			* kafe version
 			*
-			* @property VESYON 
+			* @property VESYON
 			* @type String
 			**/
 			VESYON: &#x27;3.0.1&#x27;,
@@ -119,7 +119,7 @@
 			/**
 			* kafe author
 			*
-			* @property PARAN 
+			* @property PARAN
 			* @type String
 			**/
 			PARAN: &#x27;absolunet.com&#x27;,
@@ -127,7 +127,7 @@
 			/**
 			* Versions of dependencies / kafe modules
 			*
-			* @property chaje 
+			* @property chaje
 			* @type Object
 			**/
 			chaje: {
@@ -138,12 +138,12 @@
 
 			// isolate core dependencies
 			dependencies: {
-			
+
 				/**
-				* local jQuery copy 
+				* local jQuery copy
 				* ref: [http://jquery.com/](http://jquery.com/)
 				*
-				* @property dependencies.jQuery 
+				* @property dependencies.jQuery
 				* @type Object
 				**/
 				jQuery: $
@@ -173,8 +173,8 @@
 	core.fn = {
 
 		/**
-		* Create a instantiable object  
-		* By John Resig (MIT Licensed)  
+		* Create a instantiable object
+		* By John Resig (MIT Licensed)
 		* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
 		*
 		* @method fn.createInstantiableObject
@@ -235,8 +235,9 @@
 
 				$.fn[id] = function() {
 					var args = $.makeArray(arguments);
+					var method = args.shift();
 					return this.each(function() {
-						_jQueryMethods[name][args.shift()]( this, args );
+						_jQueryMethods[name][method]( this, args );
 					});
 				};
 			}
@@ -279,7 +280,7 @@
 
 			if (value !== undefined) {
 
-				// if not already set 
+				// if not already set
 				if (!(_data[name] !== undefined &amp;&amp; updatable.search(new RegExp(&#x27;:&#x27;+name+&#x27;:&#x27;)) == -1)) {
 					_data[name] = value;
 
