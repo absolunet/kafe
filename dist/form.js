@@ -71,6 +71,15 @@
 	};
 
 
+	form.selectPlaceholder = function() {
+		$('select[data-placeholder]')
+			.on('change', function() {
+				$(this).toggleClass('placeholder', $(this).children(':selected').text() === $(this).data('placeholder'));
+			})
+			.trigger('change')
+		;
+	};
+
 	/**
 	* Detects the RETURN key, then triggers a callback.
 	*

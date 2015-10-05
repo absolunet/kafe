@@ -92,7 +92,7 @@
 
 					// if is about to stick
 					//---------------------------
-					if (position >= tippingTop && (!contain || position <= tippingBottom)) {
+					if (position !== 0 && position >= tippingTop && (!contain || position <= tippingBottom)) {
 
 						// calculate offset left
 						var attrT = { position: 'absolute' };
@@ -122,7 +122,7 @@
 
 					// if is about to unstick from top
 					//---------------------------
-					} else if (position < tippingTop) {
+					} else if (position === 0 || position < tippingTop) {
 
 						// unstick it
 						attr = {

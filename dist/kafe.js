@@ -2,7 +2,7 @@
  * kafe 3.0.1
  * http://absolunet.github.io/kafe
  *
- * Copyright 2011-2014 Absolunet, http://absolunet.com/
+ * Copyright 2011-2015 Absolunet, http://absolunet.com/
  * Released under the MIT license
  * https://github.com/absolunet/kafe/tree/master/LICENSE.md
  */
