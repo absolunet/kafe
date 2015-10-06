@@ -22,11 +22,11 @@
 	<title>dist/plugin/sticky.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,258 +41,226 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/plugin/sticky.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.sticky&#x27;, version:&#x27;0.1.0&#x27;, obj:(function(){
-
-	var
-		$window   = $(global),
-		$document = $(document)
-	;
-
-
-
-	/**
-	* ### Version 0.1.0
-	* Sticky box
-	*
-	* @module kafe.plugin
-	* @class kafe.plugin.sticky
-	*/
-	var sticky = {};
-
-
-	/**
-	* Initialize sticky (has to be &#x60;position:absolute&#x60; with defined &#x60;top&#x60; &#x60;left|right&#x60; by default).
-	*
-	* @method init
-	* @param {Object} options Additional options.
-	*	@param {String|jQueryObject|DOMElement} options.selector Element to stick.
-	*	@param {String} [options.align=&#x27;left&#x27;] Specify &#x60;right&#x60; if your horizontal absolute positioning uses right instead of left.
-	*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
-	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
-	*
-	* @example
-	*	kafe.plugin.sticky.init({ selector: &#x27;#post-it&#x27; })
-	* @example
-	*	$(&#x27;#post-it&#x27;).kafeSticky(&#x27;init&#x27;, {})
-	*/
-	sticky.init = function(options) {
-		options = options || {};
-
-		var $e = $(options.selector);
-
-		// if lone object
-		if ($e.length == 1) {
-
-			var
-				// options
-				align      = (options.align == &#x27;right&#x27;) ? &#x27;right&#x27; : &#x27;left&#x27;,
-				contain    = !!options.contain,
-				$container = (!!options.container) ? $(options.container) : $e.parent(),
-
-				// original position
-				topOffset     = null,
-				originalTop   = parseInt($e.css(&#x27;top&#x27;).toString().substr(0, $e.css(&#x27;top&#x27;).length-2),10),
-				originalHori  = $e.css(align),
-				topMargin     = originalTop,
-				sticking      = true,
-				fromBottom    = false,
-				initiate      = true,
-
-				_updateOffset = function () {
-					topOffset = $container.offset().top + topMargin;
-				}
-			;
-
-			_updateOffset();
-
-			$window
-
-				// on scroll &amp; resize
-				//---------------------------
-				.on(&#x27;scroll resize&#x27;,function(event) {
-
-					_updateOffset();
-
-					// current position
-					var
-						position      = $window.scrollTop(),
-						tippingTop    = topOffset - topMargin,
-						tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2)),
-						attr          = {}
-					;
-
-					// onresize
-					if (event.type == &#x27;resize&#x27; &amp;&amp; fromBottom) {
-						$e.css(&#x27;top&#x27;, $container.outerHeight() - $e.outerHeight() - originalTop);
+				<h1>dist/plugin/sticky.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.sticky&#x27;, version:&#x27;0.1.1&#x27;, obj:(function(){
+			
+				var
+					$window   = $(global),
+					$document = $(document)
+				;
+			
+			
+			
+				/**
+				* ### Version 0.1.1
+				* Sticky box
+				*
+				* @module kafe.plugin
+				* @class kafe.plugin.sticky
+				*/
+				var sticky = {};
+			
+			
+				/**
+				* Initialize sticky (has to be &#x60;position:absolute&#x60; with defined &#x60;top&#x60; &#x60;left|right&#x60; by default).
+				*
+				* @method init
+				* @param {Object} options Additional options.
+				*	@param {String|jQueryObject|DOMElement} options.selector Element to stick.
+				*	@param {String} [options.align=&#x27;left&#x27;] Specify &#x60;right&#x60; if your horizontal absolute positioning uses right instead of left.
+				*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
+				*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
+				*
+				* @example
+				*	kafe.plugin.sticky.init({ selector: &#x27;#post-it&#x27; })
+				* @example
+				*	$(&#x27;#post-it&#x27;).kafeSticky(&#x27;init&#x27;, {})
+				*/
+				sticky.init = function(options) {
+					options = options || {};
+			
+					var $e = $(options.selector);
+			
+					// if lone object
+					if ($e.length == 1) {
+			
+						var
+							// options
+							align      = (options.align == &#x27;right&#x27;) ? &#x27;right&#x27; : &#x27;left&#x27;,
+							contain    = !!options.contain,
+							$container = (!!options.container) ? $(options.container) : $e.parent(),
+			
+							// original position
+							topOffset     = null,
+							originalTop   = parseInt($e.css(&#x27;top&#x27;).toString().substr(0, $e.css(&#x27;top&#x27;).length-2),10),
+							originalHori  = $e.css(align),
+							topMargin     = originalTop,
+							sticking      = true,
+							fromBottom    = false,
+							initiate      = true,
+			
+							_updateOffset = function () {
+								topOffset = $container.offset().top + topMargin;
+							}
+						;
+			
+						_updateOffset();
+			
+						$window
+			
+							// on scroll &amp; resize
+							//---------------------------
+							.on(&#x27;scroll resize&#x27;,function(event) {
+			
+								_updateOffset();
+			
+								// current position
+								var
+									position      = $window.scrollTop(),
+									tippingTop    = topOffset - topMargin,
+									tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2)),
+									attr          = {}
+								;
+			
+								// onresize
+								if (event.type == &#x27;resize&#x27; &amp;&amp; fromBottom) {
+									$e.css(&#x27;top&#x27;, $container.outerHeight() - $e.outerHeight() - originalTop);
+								}
+			
+								// initiate the first time
+								//---------------------------
+								if (initiate) {
+									sticking = !(position &gt;= tippingTop &amp;&amp; position &lt;= tippingBottom);
+									initiate = false;
+								}
+			
+								// if is about to stick
+								//---------------------------
+								if (position !== 0 &amp;&amp; position &gt;= tippingTop &amp;&amp; (!contain || position &lt;= tippingBottom)) {
+			
+									// calculate offset left
+									var attrT = { position: &#x27;absolute&#x27; };
+									attrT[align] = originalHori;
+									$e.css(attrT);
+									var offsetLeft = $e.offset().left;
+			
+									// stick it
+									attr = {
+										position: &#x27;fixed&#x27;,
+										top:  topMargin
+									};
+			
+									// evaluate horizontal position
+									if (align == &#x27;left&#x27;) {
+										attr.left = Math.ceil(offsetLeft);
+									} else {
+										attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
+									}
+			
+									// apply
+									$e.css(attr);
+									$container.addClass(&#x27;kafesticky-sticking&#x27;);
+									sticking = true;
+									fromBottom = false;
+			
+			
+								// if is about to unstick from top
+								//---------------------------
+								} else if (position === 0 || position &lt; tippingTop) {
+			
+									// unstick it
+									attr = {
+										position: &#x27;absolute&#x27;,
+										top:      originalTop+&#x27;px&#x27;
+									};
+									attr[align] = originalHori;
+			
+									// apply
+									$e.css(attr);
+									$container.removeClass(&#x27;kafesticky-sticking&#x27;);
+									sticking   = false;
+									fromBottom = false;
+			
+			
+								// if is about to unstick from end of container
+								//---------------------------
+								} else if (contain &amp;&amp; position &gt;= tippingBottom) {
+			
+									// unstick it
+									attr = {
+										position: &#x27;absolute&#x27;,
+										top:      ($container.outerHeight() - $e.outerHeight() - originalTop)+&#x27;px&#x27;
+									};
+									attr[align] = originalHori;
+			
+									// apply
+									$e.css(attr);
+									$container.removeClass(&#x27;kafesticky-sticking&#x27;);
+									sticking   = false;
+									fromBottom = true;
+								}
+			
+							})
+			
+							// initiate
+							.trigger(&#x27;scroll&#x27;)
+						;
 					}
-
-					// initiate the first time
-					//---------------------------
-					if (initiate) {
-						sticking = !(position &gt;= tippingTop &amp;&amp; position &lt;= tippingBottom);
-						initiate = false;
+				};
+			
+			
+				// Add as jQuery plugin
+				kafe.fn.plugIntojQuery(&#x27;Sticky&#x27;, {
+					init: function(obj, parameters) {
+						sticky.init($.extend({}, parameters[0], {selector:obj}));
 					}
-
-					// if is about to stick
-					//---------------------------
-					if (position &gt;= tippingTop &amp;&amp; (!contain || position &lt;= tippingBottom)) {
-
-						// calculate offset left
-						var attrT = { position: &#x27;absolute&#x27; };
-						attrT[align] = originalHori;
-						$e.css(attrT);
-						var offsetLeft = $e.offset().left;
-
-						// stick it
-						attr = {
-							position: &#x27;fixed&#x27;,
-							top:  topMargin
-						};
-
-						// evaluate horizontal position
-						if (align == &#x27;left&#x27;) {
-							attr.left = Math.ceil(offsetLeft);
-						} else {
-							attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
-						}
-
-						// apply
-						$e.css(attr);
-						$container.addClass(&#x27;kafesticky-sticking&#x27;);
-						sticking = true;
-						fromBottom = false;
-
-
-					// if is about to unstick from top
-					//---------------------------
-					} else if (position &lt; tippingTop) {
-
-						// unstick it
-						attr = {
-							position: &#x27;absolute&#x27;,
-							top:      originalTop+&#x27;px&#x27;
-						};
-						attr[align] = originalHori;
-
-						// apply
-						$e.css(attr);
-						$container.removeClass(&#x27;kafesticky-sticking&#x27;);
-						sticking   = false;
-						fromBottom = false;
-
-
-					// if is about to unstick from end of container
-					//---------------------------
-					} else if (contain &amp;&amp; position &gt;= tippingBottom) {
-
-						// unstick it
-						attr = {
-							position: &#x27;absolute&#x27;,
-							top:      ($container.outerHeight() - $e.outerHeight() - originalTop)+&#x27;px&#x27;
-						};
-						attr[align] = originalHori;
-
-						// apply
-						$e.css(attr);
-						$container.removeClass(&#x27;kafesticky-sticking&#x27;);
-						sticking   = false;
-						fromBottom = true;
-					}
-
-				})
-
-				// initiate
-				.trigger(&#x27;scroll&#x27;)
-			;
-		}
-	};
-
-
-	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery(&#x27;Sticky&#x27;, {
-		init: function(obj, parameters) {
-			sticky.init($.extend({}, parameters[0], {selector:obj}));
-		}
-	});
-
-	return sticky;
-
-})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
-</pre>
-
+				});
+			
+				return sticky;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

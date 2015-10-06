@@ -1,7 +1,7 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'form', version:'1.4.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'form', version:'1.4.2', obj:(function(){
 
 	/**
-	* ### Version 1.4.1
+	* ### Version 1.4.2
 	* Utilitary methods for html forms and related interactions.
 	*
 	* @module kafe

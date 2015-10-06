@@ -22,11 +22,11 @@
 	<title>dist/ext/googlemaps.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,125 +41,93 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/ext/googlemaps.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googlemaps&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
-
-	/**
-	* ### Version 1.1.0
-	* Extra methods for the GoogleMaps API.
-	* Requires &#x60;//maps.google.com/maps/api/js&#x60; to be included
-	*
-	* @module kafe.ext
-	* @class kafe.ext.googlemaps
-	*/
-	var googlemaps = {};
-
-
-	/**
-	* Get bound box of array of coords.
-	*
-	* @method getCoordsBounds
-	* @param {Array(Array)} coords List of lat/lon coords
-	*
-	* @example
-	*   myMap.fitBounds( kafe.ext.googlemaps.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
-	*/
-	googlemaps.getCoordsBounds = function (coords) {
-		var
-			minLat = 90,
-			maxLat = -90,
-			minLon = 180,
-			maxLon = -180
-		;
-		
-		for (var i=0; i&lt;coords.length; ++i) {
-			minLat = Math.min(minLat, Number(coords[i][0]));
-			maxLat = Math.max(maxLat, Number(coords[i][0]));
-			minLon = Math.min(minLon, Number(coords[i][1]));
-			maxLon = Math.max(maxLon, Number(coords[i][1]));
-		}
-
-		return new google.maps.LatLngBounds(new google.maps.LatLng(minLat, minLon), new google.maps.LatLng(maxLat, maxLon));
-	};
-
-
-	return googlemaps;
-
-})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
-</pre>
-
+				<h1>dist/ext/googlemaps.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googlemaps&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
+			
+				/**
+				* ### Version 1.1.0
+				* Extra methods for the GoogleMaps API.
+				* Requires &#x60;//maps.google.com/maps/api/js&#x60; to be included
+				*
+				* @module kafe.ext
+				* @class kafe.ext.googlemaps
+				*/
+				var googlemaps = {};
+			
+			
+				/**
+				* Get bound box of array of coords.
+				*
+				* @method getCoordsBounds
+				* @param {Array(Array)} coords List of lat/lon coords
+				*
+				* @example
+				*   myMap.fitBounds( kafe.ext.googlemaps.getCoordsBounds([ [45.64137, -73.86612], [45.51933, -73.58503] ]) );
+				*/
+				googlemaps.getCoordsBounds = function (coords) {
+					var
+						minLat = 90,
+						maxLat = -90,
+						minLon = 180,
+						maxLon = -180
+					;
+					
+					for (var i=0; i&lt;coords.length; ++i) {
+						minLat = Math.min(minLat, Number(coords[i][0]));
+						maxLat = Math.max(maxLat, Number(coords[i][0]));
+						minLon = Math.min(minLon, Number(coords[i][1]));
+						maxLon = Math.max(maxLon, Number(coords[i][1]));
+					}
+			
+					return new google.maps.LatLngBounds(new google.maps.LatLng(minLat, minLon), new google.maps.LatLng(maxLat, maxLon));
+				};
+			
+			
+				return googlemaps;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

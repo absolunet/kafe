@@ -1,6 +1,6 @@
 //= require 'shCore'
 //= require 'shBrushJScript'
-//= require 'jquery.scrollto'
+//= require 'jquery.scrollto.js'
 //= require 'modernizr'
 
 (function($) {
@@ -12,7 +12,7 @@
 			isFile   = !!$('#Content header.file').length,
 			location = window.location.pathname
 		;
-		
+
 		if (isFile) {
 			location = $('#Content header.file h1').text().split('/');
 			location.shift();
@@ -50,7 +50,7 @@
 		}
 
 		SyntaxHighlighter.all();
-		
+
 		var line = window.location.hash.substring(2);
 		if (isFile && line) {
 			setTimeout(function() {

@@ -1,7 +1,7 @@
 {
 	"versions": {
 		"date":            "1.2.0",
-		"form":            "1.4.1",
+		"form":            "1.4.2",
 		"geolocation":     "1.0.0",
 		"number":          "1.0.0",
 		"storage":         "1.1.0",
@@ -31,7 +31,7 @@
 		"plugin.menu":     "1.0.0",
 		"plugin.qrcode":   "0.1.1",
 		"plugin.social":   "0.2.0",
-		"plugin.sticky":   "0.1.0"
+		"plugin.sticky":   "0.1.1"
 	},
 
 	"modules": {

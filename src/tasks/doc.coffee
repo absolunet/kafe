@@ -17,25 +17,26 @@ module.exports = (grunt) ->
 
 	# doc data
 	docdata = {
-		package:     pkg.name
-		version:     pkg.version
-		description: pkg.description
-		definition:  pkg.definition
-		repo:        "https://github.com/absolunet/#{pkg.name}"
-		repo_url:    "https://github.com/absolunet/#{pkg.name}/tree/master"
-		repository:  pkg.repository.url
-		bugs:        pkg.bugs.url
-		license:     pkg.licenses[0].url
-		homepage:    pkg.homepage
-		year:        grunt.template.today 'yyyy'
-		author:      pkg.author.name
-		site:        pkg.author.url
+		package:      pkg.name
+		version:      pkg.version
+		description:  pkg.description
+		definition:   pkg.definition
+		repo:         "https://github.com/absolunet/#{pkg.name}"
+		repo_url:     "https://github.com/absolunet/#{pkg.name}/tree/master"
+		repository:   pkg.repository.url
+		bugs:         pkg.bugs.url
+		license:      "https://github.com/absolunet/#{pkg.name}/blob/master/LICENSE.md"
+		license_name: 'MIT'
+		homepage:     pkg.homepage
+		year:         grunt.template.today 'yyyy'
+		author:       pkg.author.name
+		site:         pkg.author.url
 	}
 
 
 	# config
 	grunt.config.set name, data for name, data of {
-		'less.doc': files: [ 
+		'less.doc': files: [
 			src:  "#{src}/css/core.less"
 			dest: "#{tmp_local}/doc-less.css"
 		]
@@ -82,7 +83,7 @@ module.exports = (grunt) ->
 
 
 	# readme
-	grunt.task.registerTask 'basedoc', '', ()-> 
+	grunt.task.registerTask 'basedoc', '', ()->
 		docdata.doc = false;
 
 		preprocess.preprocessFileSync "#{src_tmpl}/readme.tmpl",  "#{out_root}/README.md",  docdata
@@ -107,7 +108,7 @@ module.exports = (grunt) ->
 		# module description
 		preprocess.preprocessFileSync "#{src_tmpl}/module.tmpl", "#{out_libs}/#{module}/_#{module}.js", { MODULE: "#{pkg.name}.#{module}", DESCRIPTION:desc } for module, desc of info.modules
 
-		
+
 		# compiler
 		options = {
 			quiet:    true
@@ -127,7 +128,7 @@ module.exports = (grunt) ->
 		new Y.DocBuilder(options, json).compile ()->
 			util.delete ["#{out}/assets"]
 			done()
-			
+
 			# base assets
 			util.copy "#{src}/assets/", "#{out}/assets/"
 
@@ -146,7 +147,7 @@ module.exports = (grunt) ->
 		]
 
 		grunt.log.ok 'Documentation cleaned.'
-	
+
 
 
 

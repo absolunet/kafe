@@ -1,4 +1,4 @@
-//= require 'bower_components/jquery-cookie/jquery.cookie'
+//= require 'bower_components/js-cookie/src/js.cookie'
 //= require 'bower_components/jquery-json/src/jquery.json'
 //= require 'bower_components/kafe/dist/string'
 
@@ -36,7 +36,7 @@
 
 					} else if (!!data.expires && _.isString(data.expires)) {
 
-						if (data.cookie != $.cookie(data.expires)) {
+						if (data.cookie != Cookies.get(data.expires)) {
 							_remove(type,key);
 
 						} else {
@@ -62,7 +62,7 @@
 
 				if (!!options.expires) {
 					if (_.isString(options.expires)) {
-						data.cookie = $.cookie(options.expires);
+						data.cookie = Cookies.get(options.expires);
 						data.expires = options.expires;
 					} else {
 						data.expires = new Date( new Date().getTime()+(options.expires * 1000) );
@@ -216,7 +216,7 @@
 	* Easily access, sort and manipulate local and session storage values.
 	*
 	* @module <!-- @echo MODULE -->
-	* @class <!-- @echo NAME_FULL --> 
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var storage = {};
 
@@ -325,7 +325,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-page', '/about-us');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getPersistentNamespaceKeys('history');
 	*	// returns ["history:last-page", "history:last-visit"]
 	*/
@@ -343,7 +343,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
 	*	<!-- @echo NAME_FULL -->.setSessionItem('user:last-name', 'Doe');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getSessionNamespaceKeys('user');
 	*	// returns ["user:first-name", "user:last-name"]
 	*/
@@ -361,7 +361,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-page', '/about-us');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getPersistentNamespaceItems('history');
 	*	// returns { "history:last-page": "/about-us", "history:last-visit": "2013-07-21" }
 	*/
@@ -379,7 +379,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
 	*	<!-- @echo NAME_FULL -->.setSessionItem('user:last-name', 'Doe');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getSessionNamespaceItems('user');
 	*	// returns { "user:first-name": "John", "user:last-name": "Doe" }
 	*/
@@ -422,7 +422,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('website:show-ads', 'true');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getAllPersistentKeys();
 	*	// returns ["history:last-visit", "website:show-ads"]
 	*/
@@ -439,7 +439,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
 	*	<!-- @echo NAME_FULL -->.setSessionItem('preferences:tutorials', 'false');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getAllSessionKeys();
 	*	// returns ["user:first-name", "preferences:tutorials"]
 	*/
@@ -456,7 +456,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('history:last-visit', '2013-07-21');
 	*	<!-- @echo NAME_FULL -->.setPersistentItem('website:show-ads', 'true');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getAllPersistentItems();
 	*	// returns { "history:last-visit": "2013-07-21", "settings:show-ads": "true" }
 	*/
@@ -473,7 +473,7 @@
 	* @example
 	*	<!-- @echo NAME_FULL -->.setSessionItem('user:first-name', 'John');
 	*	<!-- @echo NAME_FULL -->.setSessionItem('preferences:tutorials', 'false');
-	*	
+	*
 	*	<!-- @echo NAME_FULL -->.getAllSessionItems();
 	*	// returns { "preferences:tutorials": "false", "user:first-name": "John" }
 	*/

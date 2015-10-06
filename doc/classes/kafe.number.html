@@ -22,11 +22,11 @@
 	<title>kafe.number - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,435 +41,301 @@
 	<div id="Content">
 		<section>
 			<header class="class">
-	<h1>kafe.number</h1>
-	<h2>Class</h2>
-	<h3 id="version-1-0-0">Version 1.0.0</h3>
-<p>Additionnal manipulation methods for numbers.</p>
-
-	<div>
-		<span>Source: <a href="../files/dist_number.js.html#l3">dist/number.js</a></span>
-		
-	</div>
-</header>
-
-
-
-
-<section>
-	<h1>Methods</h1>
-	
-		<section>
-	<h1>getPrecision</h1>
-	<footer><a href="../files/dist_number.js.html#l48">@48</a></footer>
-
-	<p>Gets the float precision of a given number.</p>
-
-
-	<header>
-		<strong>getPrecision</strong>
-		
-			<ul>
+				<h1>kafe.number</h1>
+				<h2>Class</h2>
+				<h3>Version 1.0.0</h3>
+			<p>Additionnal manipulation methods for numbers.</p>
 			
-
-				
-					<li><code class="Simple">number</code></li>
-				
-				
+				<div>
+					<span>Source: <a href="../files/dist_number.js.html#l3">dist/number.js</a></span>
+				</div>
+			</header>
 			
-			</ul>
-		
-
-		
-			<span>Number</span>
-		
-	</header>
-
-
-
-
-
-
-
-	
-		<section>
-			<h1>Parameters:</h1>
-
-			<ul>
 			
-				<li>
+			<section>
+				<h1>Methods</h1>
+					<section>
+						<h1>getPrecision</h1>
+						<footer><a href="../files/dist_number.js.html#l48">@48</a></footer>
 					
-						<code>number</code>
-						<strong>Number</strong>
+						<p>Gets the float precision of a given number.</p>
 					
-					 
-
-
 					
-
-				</li>
-			
-			</ul>
-		</section>
-	
-
-	
-		<section class="Return">
-			<h1>Returns:</h1>
-			<strong>Number</strong>
-			<p>Amount of numbers after the radix point.</p>
-
-		</section>
-	
-
-	
-		<section>
-			<h1>Example:</h1>
-			<pre class="code prettyprint"><code>kafe.number.getPrecision(5.458);
-// returns 3</code></pre>
-<pre class="code prettyprint"><code>kafe.number.getPrecision(11);
-// returns 0</code></pre>
-
-		</section>
-	
-</section>
-
-	
-		<section>
-	<h1>product</h1>
-	<footer><a href="../files/dist_number.js.html#l87">@87</a></footer>
-
-	<p>Multiply two numbers while avoiding the javascript multiplication irregularities.</p>
-
-
-	<header>
-		<strong>product</strong>
-		
-			<ul>
-			
-
-				
-					<li><code class="Simple">number</code></li>
-				
-				
-			
-
-				
-					<li><code class="Simple">factor</code></li>
-				
-				
-			
-			</ul>
-		
-
-		
-			<span>Number</span>
-		
-	</header>
-
-
-
-
-
-
-
-	
-		<section>
-			<h1>Parameters:</h1>
-
-			<ul>
-			
-				<li>
+						<header>
+							<strong>getPrecision</strong>
+								<ul>
 					
-						<code>number</code>
-						<strong>Number</strong>
+										<li><code class="Simple">number</code></li>
+									
+								</ul>
 					
-					 
-
-
+								<span>Number</span>
+						</header>
 					
-
-				</li>
-			
-				<li>
 					
-						<code>factor</code>
-						<strong>Number</strong>
 					
-					<p>The factor causing the javascript calculation irregularity.</p>
-
-
-
 					
-
-				</li>
-			
-			</ul>
-		</section>
-	
-
-	
-		<section class="Return">
-			<h1>Returns:</h1>
-			<strong>Number</strong>
-			<p>Product of the equation.</p>
-
-		</section>
-	
-
-	
-		<section>
-			<h1>Example:</h1>
-			<pre class="code prettyprint"><code>3 * 5.3
-// returns 15.8999999</code></pre>
-<pre class="code prettyprint"><code>kafe.number.product(3, 5.3);
-// returns 15.9</code></pre>
-
-		</section>
-	
-</section>
-
-	
-		<section>
-	<h1>toRoman</h1>
-	<footer><a href="../files/dist_number.js.html#l12">@12</a></footer>
-
-	<p>Converts a number to its roman numeral value.</p>
-
-
-	<header>
-		<strong>toRoman</strong>
-		
-			<ul>
-			
-
-				
-					<li><code class="Simple">number</code></li>
-				
-				
-			
-			</ul>
-		
-
-		
-			<span>String</span>
-		
-	</header>
-
-
-
-
-
-
-
-	
-		<section>
-			<h1>Parameters:</h1>
-
-			<ul>
-			
-				<li>
 					
-						<code>number</code>
-						<strong>Number</strong>
 					
-					 
-
-
 					
-
-				</li>
-			
-			</ul>
-		</section>
-	
-
-	
-		<section class="Return">
-			<h1>Returns:</h1>
-			<strong>String</strong>
-			<p>The roman numeral value.</p>
-
-		</section>
-	
-
-	
-		<section>
-			<h1>Example:</h1>
-			<pre class="code prettyprint"><code>kafe.number.toRoman(1954);
-// returns &quot;MCMLIV&quot;</code></pre>
-
-		</section>
-	
-</section>
-
-	
-		<section>
-	<h1>trimPrecision</h1>
-	<footer><a href="../files/dist_number.js.html#l66">@66</a></footer>
-
-	<p>Modifies, if needed, a number to only allow a miximum float precision.</p>
-
-
-	<header>
-		<strong>trimPrecision</strong>
-		
-			<ul>
-			
-
-				
-					<li><code class="Simple">number</code></li>
-				
-				
-			
-
-				
-					<li><code class="Simple">precision</code></li>
-				
-				
-			
-			</ul>
-		
-
-		
-			<span>Number</span>
-		
-	</header>
-
-
-
-
-
-
-
-	
-		<section>
-			<h1>Parameters:</h1>
-
-			<ul>
-			
-				<li>
+							<section>
+								<h1>Parameters:</h1>
 					
-						<code>number</code>
-						<strong>Number</strong>
+								<ul>
+									<li>
+											<code>number</code>
+											<strong>Number</strong>
+										 
 					
-					 
-
-
 					
-
-				</li>
-			
-				<li>
 					
-						<code>precision</code>
-						<strong>Number</strong>
+									</li>
+								</ul>
+							</section>
 					
-					<p>Maximum amount of numbers after the radix point.</p>
-
-
-
+							<section class="Return">
+								<h1>Returns:</h1>
+								<strong>Number</strong>
+								<p>Amount of numbers after the radix point.</p>
 					
-
-				</li>
-			
-			</ul>
-		</section>
-	
-
-	
-		<section class="Return">
-			<h1>Returns:</h1>
-			<strong>Number</strong>
-			<p>The modified number</p>
-
-		</section>
-	
-
-	
-		<section>
-			<h1>Example:</h1>
-			<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 2);
-// returns 5.45</code></pre>
-<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 0);
-// returns 5</code></pre>
-<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 6);
-// returns 5.458</code></pre>
-
-		</section>
-	
-</section>
-
-	
-</section>
-
+							</section>
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.number.getPrecision(5.458);
+					// returns 3</code></pre>
+					<pre class="code prettyprint"><code>kafe.number.getPrecision(11);
+					// returns 0</code></pre>
+					
+							</section>
+					</section>
+					<section>
+						<h1>product</h1>
+						<footer><a href="../files/dist_number.js.html#l87">@87</a></footer>
+					
+						<p>Multiply two numbers while avoiding the javascript multiplication irregularities.</p>
+					
+					
+						<header>
+							<strong>product</strong>
+								<ul>
+					
+										<li><code class="Simple">number</code></li>
+									
+					
+										<li><code class="Simple">factor</code></li>
+									
+								</ul>
+					
+								<span>Number</span>
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>number</code>
+											<strong>Number</strong>
+										 
+					
+					
+					
+									</li>
+									<li>
+											<code>factor</code>
+											<strong>Number</strong>
+										<p>The factor causing the javascript calculation irregularity.</p>
+					
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+							<section class="Return">
+								<h1>Returns:</h1>
+								<strong>Number</strong>
+								<p>Product of the equation.</p>
+					
+							</section>
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>3 * 5.3
+					// returns 15.8999999</code></pre>
+					<pre class="code prettyprint"><code>kafe.number.product(3, 5.3);
+					// returns 15.9</code></pre>
+					
+							</section>
+					</section>
+					<section>
+						<h1>toRoman</h1>
+						<footer><a href="../files/dist_number.js.html#l12">@12</a></footer>
+					
+						<p>Converts a number to its roman numeral value.</p>
+					
+					
+						<header>
+							<strong>toRoman</strong>
+								<ul>
+					
+										<li><code class="Simple">number</code></li>
+									
+								</ul>
+					
+								<span>String</span>
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>number</code>
+											<strong>Number</strong>
+										 
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+							<section class="Return">
+								<h1>Returns:</h1>
+								<strong>String</strong>
+								<p>The roman numeral value.</p>
+					
+							</section>
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.number.toRoman(1954);
+					// returns &quot;MCMLIV&quot;</code></pre>
+					
+							</section>
+					</section>
+					<section>
+						<h1>trimPrecision</h1>
+						<footer><a href="../files/dist_number.js.html#l66">@66</a></footer>
+					
+						<p>Modifies, if needed, a number to only allow a miximum float precision.</p>
+					
+					
+						<header>
+							<strong>trimPrecision</strong>
+								<ul>
+					
+										<li><code class="Simple">number</code></li>
+									
+					
+										<li><code class="Simple">precision</code></li>
+									
+								</ul>
+					
+								<span>Number</span>
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>number</code>
+											<strong>Number</strong>
+										 
+					
+					
+					
+									</li>
+									<li>
+											<code>precision</code>
+											<strong>Number</strong>
+										<p>Maximum amount of numbers after the radix point.</p>
+					
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+							<section class="Return">
+								<h1>Returns:</h1>
+								<strong>Number</strong>
+								<p>The modified number</p>
+					
+							</section>
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 2);
+					// returns 5.45</code></pre>
+					<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 0);
+					// returns 5</code></pre>
+					<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 6);
+					// returns 5.458</code></pre>
+					
+							</section>
+					</section>
+			</section>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

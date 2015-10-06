@@ -1,7 +1,6 @@
-//= require 'bower_components/jquery/dist/jquery.min'
+//= require 'bower_components/jquery/dist/jquery.min.js'
 //= require 'bower_components/qunit/qunit/qunit'
-//= require 'bower_components/lodash/dist/lodash'
-//= require 'bower_components/underscore.string/dist/underscore.string.min'
+//= require 'bower_components/lodash/lodash.min.js'
 //= require 'bower_components/modernizr/modernizr'
 
 //= require 'src/qunit/kafe'

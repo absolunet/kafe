@@ -22,11 +22,11 @@
 	<title>dist/cms/sitecore.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,270 +41,238 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/cms/sitecore.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1.0&#x27;, obj:(function(){
-
-	var
-		_getPlaceholders = function(){
-			var $placeholders = $(&#x27;[data-kafesitecore-placeholder]&#x27;);
-			var _output = [];
-
-			$placeholders.each(function(i,v){
-				var _ph = {};
-				_ph.$element = $(this);
-				_ph.name = _ph.$element.data(&#x27;kafesitecore-placeholder&#x27;);
-				_ph.label = !!_ph.$element.data(&#x27;kafesitecore-displayname&#x27;) ? _ph.$element.data(&#x27;kafesitecore-displayname&#x27;) : _ph.name;
-				_ph.filter = &#x27;:not(code, .scEmptyPlaceholder, .clearer)&#x27;;
-				_ph.$locator = $(&#x27;&lt;span class=&quot;kafesitecore-editor-toolbox-locator&quot;&gt;&lt;/span&gt;&#x27;);
-				_ph.$field = $(&#x27;&lt;input id=&quot;kafesitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot; type=&quot;checkbox&quot; checked=&quot;checked&quot;/&gt;&#x27;);
-				_ph.$fieldLabel = $(&#x27;&lt;label for=&quot;kafesitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot;&gt;&#x27;+_ph.label+&#x27;&lt;/label&gt;&#x27;);
-				if(!!_ph.$element.data(&#x27;kafesitecore-placeholder-opposite&#x27;)){
-					_ph.opposite = _ph.$element.data(&#x27;kafesitecore-placeholder-opposite&#x27;);
-				}
-				_output.push(_ph);
-			});
-
-			$.each(_output, function(i,_currentPh){
-				if(!!_currentPh.opposite){
-					$.each(_output, function(i,_otherPh){
-						if(_currentPh.opposite == _otherPh.name){
-							_currentPh.opposite = {
-								$element:_otherPh.$element,
-								$field:_otherPh.$field
-							};
-							return false;
+				<h1>dist/cms/sitecore.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;cms.sitecore&#x27;, version:&#x27;0.1.0&#x27;, obj:(function(){
+			
+				var
+					_getPlaceholders = function(){
+						var $placeholders = $(&#x27;[data-kafesitecore-placeholder]&#x27;);
+						var _output = [];
+			
+						$placeholders.each(function(i,v){
+							var _ph = {};
+							_ph.$element = $(this);
+							_ph.name = _ph.$element.data(&#x27;kafesitecore-placeholder&#x27;);
+							_ph.label = !!_ph.$element.data(&#x27;kafesitecore-displayname&#x27;) ? _ph.$element.data(&#x27;kafesitecore-displayname&#x27;) : _ph.name;
+							_ph.filter = &#x27;:not(code, .scEmptyPlaceholder, .clearer)&#x27;;
+							_ph.$locator = $(&#x27;&lt;span class=&quot;kafesitecore-editor-toolbox-locator&quot;&gt;&lt;/span&gt;&#x27;);
+							_ph.$field = $(&#x27;&lt;input id=&quot;kafesitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot; type=&quot;checkbox&quot; checked=&quot;checked&quot;/&gt;&#x27;);
+							_ph.$fieldLabel = $(&#x27;&lt;label for=&quot;kafesitecore-editor-toolbox-placeholder&#x27;+i+&#x27;&quot;&gt;&#x27;+_ph.label+&#x27;&lt;/label&gt;&#x27;);
+							if(!!_ph.$element.data(&#x27;kafesitecore-placeholder-opposite&#x27;)){
+								_ph.opposite = _ph.$element.data(&#x27;kafesitecore-placeholder-opposite&#x27;);
+							}
+							_output.push(_ph);
+						});
+			
+						$.each(_output, function(i,_currentPh){
+							if(!!_currentPh.opposite){
+								$.each(_output, function(i,_otherPh){
+									if(_currentPh.opposite == _otherPh.name){
+										_currentPh.opposite = {
+											$element:_otherPh.$element,
+											$field:_otherPh.$field
+										};
+										return false;
+									}
+								});
+								_currentPh.opposite = $.isPlainObject(_currentPh.opposite) ? _currentPh.opposite : null;
+							}
+						});
+			
+						return _output;
+					}
+				;
+			
+				/**
+				* ### Version 0.1.0
+				* Additionnal methods for Sitecore
+				* Adds the environment variable &#x60;sitecore-editor&#x60; to kafe based on the data attribute &#x60;data-kafesitecore&#x60; (true/false) on the html tag
+				*
+				* @module kafe.cms
+				* @class kafe.cms.sitecore
+				*/
+				var sitecore = {};
+				kafe.env(&#x27;sitecore-editor&#x27;, $(&#x27;html&#x27;).data(&#x27;kafesitecore&#x27;) === true);
+			
+				/**
+				* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
+				*
+				* Requires data attribute &#x60;data-kafesitecore=&quot;true&quot;&#x60; on html tag when page-editor is active.
+				* Styles location : &#x60;/vendor/ressources/cms.sitecore/editorToolbox.css&#x60;
+				*
+				* @method editorToolbox
+				* @param {Object} [options] Initial configurations.
+				*	@param {String} [options.label=&#x27;EditorToolbox&#x27;] The label shown on the toolbox handle.
+				*	@param {Function} [options.onUpdate] Callback that fires everytime the toolbox updates its component status.
+				* @example
+				*	// Initializing placeholders for the toolbox using data attributes
+				*	&lt;section data-kafesitecore-placeholder=&quot;sidebar-left&quot; data-kafesitecore-displayname=&quot;Left column&quot; data-kafesitecore-placeholder-opposite=&quot;sidebar-right&quot;&gt;
+				*		&lt;ul&gt;
+				*			&lt;li&gt;This is the optional left column&lt;/li&gt;
+				*			&lt;li&gt;data-kafesitecore-placeholder : *Required* The name of the placeholder defined in Sitecore, this attribute initiates the element has a placeholder for the toolbox.&lt;/li&gt;
+				*			&lt;li&gt;data-kafesitecore-displayname : The label identifying the placeholder within the toolbox, defaults to the value of &#x60;data-kafesitecore-placeholder&#x60; if not set.&lt;/li&gt;
+				*			&lt;li&gt;data-kafesitecore-placeholder-opposite : The &#x60;data-kafesitecore-placeholder&#x60; value of the opposite placeholder. Determines that the current placeholder should not be toggled if the opposite placeholder is active.&lt;/li&gt;
+				*        &lt;/ul&gt;
+				*	&lt;/section&gt;
+				* @example
+				*	// Initializing the toolbox
+				*	kafe.cms.sitecore.editorToolbox({
+				*		label:&quot;My Toolbox&quot;,
+				*		onUpdate:function(data){
+				*			console.log(&#x27;There are &#x27; + data.placeholders.filter(&#x27;:visible&#x27;).length + &#x27; visible in the page&#x27;);
+				*		}
+				*	});
+				*/
+				sitecore.editorToolbox = function(){
+					/*--- Options ---*/
+					var c = {};
+					var options = (arguments) ? arguments[0] : {};
+			
+					c.label = !!options.label ? options.label : &#x27;Editor Toolbox&#x27;;
+					c.placeholders = {
+						$elements: _getPlaceholders()
+					};
+					c.updateCallback = $.isFunction(options.onUpdate) ? options.onUpdate : function(){};
+			
+					/*--- Functions ---*/
+					var _updateToolbox = function(){
+						/* Placeholders */
+						$.each(c.placeholders.$elements, function(i,_ph){
+							var _phIsEmpty = _ph.$element.children(_ph.filter).length === 0;
+							var _oppositeIsActive = _ph.opposite ? _ph.opposite.$field.is(&#x27;:checked&#x27;) : false;
+							var _phIsActive = _phIsEmpty &amp;&amp; !_oppositeIsActive;
+							_ph.$field.prop(&#x27;disabled&#x27;, !_phIsActive);
+						});
+						c.updateCallback(_callbackData);
+					};
+			
+					var _getCallbackData = function(){
+						/* Placeholders */
+						var _placeholders = [];
+						$.each(c.placeholders.$elements, function(i,_ph){
+							_placeholders.push(_ph.$element.get(0));
+						});
+			
+						return {
+							placeholders:$(_placeholders)
+						};
+					};
+					
+					/*--- Config ---*/
+					var _showToolbox = false;
+					var _toolboxOpenClass = &#x27;open&#x27;;
+					var _callbackData = _getCallbackData();
+			
+					/*--- Elements ---*/
+					var $editorToolbox = $(&#x27;&lt;div id=&quot;kafesitecore-editor-toolbox&quot;&gt;&lt;/div&gt;&#x27;);
+					var $toolboxContent = $(&#x27;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&#x27;).appendTo($editorToolbox).hide();
+					var _toolboxHandle = {
+						$self:$(&#x27;&lt;a href=&quot;#&quot; class=&quot;handle&quot;&gt;&lt;/a&gt;&#x27;),
+						$label:$(&#x27;&lt;span class=&quot;label&quot;&gt;&#x27;+c.label+&#x27;&lt;/span&gt;&#x27;)
+					};
+					_toolboxHandle.$self.append(_toolboxHandle.$label).appendTo($editorToolbox);
+			
+					/*--- Bindings ---*/
+					_toolboxHandle.$self.on(&#x27;click&#x27;, function(e){
+						e.preventDefault();
+						$toolboxContent.toggle();
+						$editorToolbox.toggleClass(_toolboxOpenClass);
+						if($editorToolbox.hasClass(_toolboxOpenClass)){
+							_updateToolbox();
 						}
 					});
-					_currentPh.opposite = $.isPlainObject(_currentPh.opposite) ? _currentPh.opposite : null;
-				}
-			});
-
-			return _output;
-		}
-	;
-
-	/**
-	* ### Version 0.1.0
-	* Additionnal methods for Sitecore
-	* Adds the environment variable &#x60;sitecore-editor&#x60; to kafe based on the data attribute &#x60;data-kafesitecore&#x60; (true/false) on the html tag
-	*
-	* @module kafe.cms
-	* @class kafe.cms.sitecore
-	*/
-	var sitecore = {};
-	kafe.env(&#x27;sitecore-editor&#x27;, $(&#x27;html&#x27;).data(&#x27;kafesitecore&#x27;) === true);
-
-	/**
-	* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
-	*
-	* Requires data attribute &#x60;data-kafesitecore=&quot;true&quot;&#x60; on html tag when page-editor is active.
-	* Styles location : &#x60;/vendor/ressources/cms.sitecore/editorToolbox.css&#x60;
-	*
-	* @method editorToolbox
-	* @param {Object} [options] Initial configurations.
-	*	@param {String} [options.label=&#x27;EditorToolbox&#x27;] The label shown on the toolbox handle.
-	*	@param {Function} [options.onUpdate] Callback that fires everytime the toolbox updates its component status.
-	* @example
-	*	// Initializing placeholders for the toolbox using data attributes
-	*	&lt;section data-kafesitecore-placeholder=&quot;sidebar-left&quot; data-kafesitecore-displayname=&quot;Left column&quot; data-kafesitecore-placeholder-opposite=&quot;sidebar-right&quot;&gt;
-	*		&lt;ul&gt;
-	*			&lt;li&gt;This is the optional left column&lt;/li&gt;
-	*			&lt;li&gt;data-kafesitecore-placeholder : *Required* The name of the placeholder defined in Sitecore, this attribute initiates the element has a placeholder for the toolbox.&lt;/li&gt;
-	*			&lt;li&gt;data-kafesitecore-displayname : The label identifying the placeholder within the toolbox, defaults to the value of &#x60;data-kafesitecore-placeholder&#x60; if not set.&lt;/li&gt;
-	*			&lt;li&gt;data-kafesitecore-placeholder-opposite : The &#x60;data-kafesitecore-placeholder&#x60; value of the opposite placeholder. Determines that the current placeholder should not be toggled if the opposite placeholder is active.&lt;/li&gt;
-	*        &lt;/ul&gt;
-	*	&lt;/section&gt;
-	* @example
-	*	// Initializing the toolbox
-	*	kafe.cms.sitecore.editorToolbox({
-	*		label:&quot;My Toolbox&quot;,
-	*		onUpdate:function(data){
-	*			console.log(&#x27;There are &#x27; + data.placeholders.filter(&#x27;:visible&#x27;).length + &#x27; visible in the page&#x27;);
-	*		}
-	*	});
-	*/
-	sitecore.editorToolbox = function(){
-		/*--- Options ---*/
-		var c = {};
-		var options = (arguments) ? arguments[0] : {};
-
-		c.label = !!options.label ? options.label : &#x27;Editor Toolbox&#x27;;
-		c.placeholders = {
-			$elements: _getPlaceholders()
-		};
-		c.updateCallback = $.isFunction(options.onUpdate) ? options.onUpdate : function(){};
-
-		/*--- Functions ---*/
-		var _updateToolbox = function(){
-			/* Placeholders */
-			$.each(c.placeholders.$elements, function(i,_ph){
-				var _phIsEmpty = _ph.$element.children(_ph.filter).length === 0;
-				var _oppositeIsActive = _ph.opposite ? _ph.opposite.$field.is(&#x27;:checked&#x27;) : false;
-				var _phIsActive = _phIsEmpty &amp;&amp; !_oppositeIsActive;
-				_ph.$field.prop(&#x27;disabled&#x27;, !_phIsActive);
-			});
-			c.updateCallback(_callbackData);
-		};
-
-		var _getCallbackData = function(){
-			/* Placeholders */
-			var _placeholders = [];
-			$.each(c.placeholders.$elements, function(i,_ph){
-				_placeholders.push(_ph.$element.get(0));
-			});
-
-			return {
-				placeholders:$(_placeholders)
-			};
-		};
-		
-		/*--- Config ---*/
-		var _showToolbox = false;
-		var _toolboxOpenClass = &#x27;open&#x27;;
-		var _callbackData = _getCallbackData();
-
-		/*--- Elements ---*/
-		var $editorToolbox = $(&#x27;&lt;div id=&quot;kafesitecore-editor-toolbox&quot;&gt;&lt;/div&gt;&#x27;);
-		var $toolboxContent = $(&#x27;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&#x27;).appendTo($editorToolbox).hide();
-		var _toolboxHandle = {
-			$self:$(&#x27;&lt;a href=&quot;#&quot; class=&quot;handle&quot;&gt;&lt;/a&gt;&#x27;),
-			$label:$(&#x27;&lt;span class=&quot;label&quot;&gt;&#x27;+c.label+&#x27;&lt;/span&gt;&#x27;)
-		};
-		_toolboxHandle.$self.append(_toolboxHandle.$label).appendTo($editorToolbox);
-
-		/*--- Bindings ---*/
-		_toolboxHandle.$self.on(&#x27;click&#x27;, function(e){
-			e.preventDefault();
-			$toolboxContent.toggle();
-			$editorToolbox.toggleClass(_toolboxOpenClass);
-			if($editorToolbox.hasClass(_toolboxOpenClass)){
-				_updateToolbox();
-			}
-		});
-
-		$editorToolbox.on(&#x27;mouseleave&#x27;,function(e){
-			if($editorToolbox.hasClass(_toolboxOpenClass)){
-				_toolboxHandle.$self.trigger(&#x27;click&#x27;);
-			}
-		});
-
-		/*--- Contents ---*/
-
-		/* Placeholders */
-		if(c.placeholders.$elements.length &gt; 0){
-			var $scPlaceholders = $(&#x27;&lt;div class=&quot;toolbox-section placeholders&quot;&gt;&lt;/div&gt;&#x27;).appendTo($toolboxContent);
-			var $pendingBox = $(&#x27;&lt;div style=&quot;display:none !important;&quot;&gt;&lt;/div&gt;&#x27;).appendTo($editorToolbox);
-
-			$.each(c.placeholders.$elements, function(i,_ph){
-				var $currentItem = $(&#x27;&lt;div class=&quot;toolbox-item&quot;&gt;&lt;/div&gt;&#x27;).appendTo($scPlaceholders);
-				_ph.$field.appendTo($currentItem).after(_ph.$fieldLabel)
-					.on(&#x27;change&#x27;, function(e, _isInit){
-						if(_ph.$field.is(&#x27;:checked&#x27;)){
-							_ph.$locator.replaceWith(_ph.$element);
-						}else{
-							_ph.$element.before(_ph.$locator).appendTo($pendingBox);
+			
+					$editorToolbox.on(&#x27;mouseleave&#x27;,function(e){
+						if($editorToolbox.hasClass(_toolboxOpenClass)){
+							_toolboxHandle.$self.trigger(&#x27;click&#x27;);
 						}
-						if(!_isInit){ _updateToolbox(); }
 					});
-
-				if(_ph.$element.children(_ph.filter).length === 0){
-					_ph.$field.prop(&#x27;checked&#x27;, false).trigger(&#x27;change&#x27;, true);
-				}
-
-				_showToolbox = true;
-			});
-		}
-
-		/*--- Initialization ---*/
-		if(_showToolbox){
-			$editorToolbox.prependTo(&#x27;body&#x27;).css({
-				&#x27;position&#x27;:&#x27;fixed&#x27;,
-				&#x27;top&#x27;:&#x27;50%&#x27;,
-				&#x27;left&#x27;:&#x27;0&#x27;,
-				&#x27;min-height&#x27;:_toolboxHandle.$label.outerWidth()
-			}).css(&#x27;margin-top&#x27;,&#x27;-&#x27;+($editorToolbox.outerHeight() / 2)+&#x27;px&#x27;);
-			_toolboxHandle.$label.width($editorToolbox.outerHeight()).addClass(&#x27;initialized&#x27;);
-			_updateToolbox();
-		}
-	};
-
-	return sitecore;
-
-})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
-</pre>
-
+			
+					/*--- Contents ---*/
+			
+					/* Placeholders */
+					if(c.placeholders.$elements.length &gt; 0){
+						var $scPlaceholders = $(&#x27;&lt;div class=&quot;toolbox-section placeholders&quot;&gt;&lt;/div&gt;&#x27;).appendTo($toolboxContent);
+						var $pendingBox = $(&#x27;&lt;div style=&quot;display:none !important;&quot;&gt;&lt;/div&gt;&#x27;).appendTo($editorToolbox);
+			
+						$.each(c.placeholders.$elements, function(i,_ph){
+							var $currentItem = $(&#x27;&lt;div class=&quot;toolbox-item&quot;&gt;&lt;/div&gt;&#x27;).appendTo($scPlaceholders);
+							_ph.$field.appendTo($currentItem).after(_ph.$fieldLabel)
+								.on(&#x27;change&#x27;, function(e, _isInit){
+									if(_ph.$field.is(&#x27;:checked&#x27;)){
+										_ph.$locator.replaceWith(_ph.$element);
+									}else{
+										_ph.$element.before(_ph.$locator).appendTo($pendingBox);
+									}
+									if(!_isInit){ _updateToolbox(); }
+								});
+			
+							if(_ph.$element.children(_ph.filter).length === 0){
+								_ph.$field.prop(&#x27;checked&#x27;, false).trigger(&#x27;change&#x27;, true);
+							}
+			
+							_showToolbox = true;
+						});
+					}
+			
+					/*--- Initialization ---*/
+					if(_showToolbox){
+						$editorToolbox.prependTo(&#x27;body&#x27;).css({
+							&#x27;position&#x27;:&#x27;fixed&#x27;,
+							&#x27;top&#x27;:&#x27;50%&#x27;,
+							&#x27;left&#x27;:&#x27;0&#x27;,
+							&#x27;min-height&#x27;:_toolboxHandle.$label.outerWidth()
+						}).css(&#x27;margin-top&#x27;,&#x27;-&#x27;+($editorToolbox.outerHeight() / 2)+&#x27;px&#x27;);
+						_toolboxHandle.$label.width($editorToolbox.outerHeight()).addClass(&#x27;initialized&#x27;);
+						_updateToolbox();
+					}
+				};
+			
+				return sitecore;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

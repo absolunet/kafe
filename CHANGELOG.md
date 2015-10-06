@@ -1,5 +1,8 @@
 # kafe changelog
 
+## 3.0.2 (2015-10-06)
+- Updates
+
 ## 3.0.1 (2014-10-16)
 - Bower path
 

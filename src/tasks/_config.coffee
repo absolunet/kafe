@@ -29,7 +29,7 @@ module.exports = (grunt) ->
 	}
 
 	util = {
-		copy:          (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter		
+		copy:          (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter
 		delete:        (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { cwd:path.out.root }, pattern for pattern in src
 		progress:      (action,nb) -> grunt.log.writeln "#{action} #{nb.toString().cyan} files..."; return new progress '[:bar] :percent (:elapseds)', { total:nb, width:20, incomplete:' ', clear:true }
 		progress_done: (bar) -> bar.terminate(); grunt.log.ok "Completed in #{((new Date() - bar.start) / 1000).toFixed(1)}s"; grunt.log.writeln()
@@ -40,7 +40,7 @@ module.exports = (grunt) ->
 	grunt.config.set name, data for name, data of {
 		'util': util
 
-		'internal': 
+		'internal':
 			path: path
 			pkg:  grunt.file.readJSON 'package.json'
 			info: grunt.file.readJSON "#{path.src.kafe}/~info.json"

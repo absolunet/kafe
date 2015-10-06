@@ -18,18 +18,18 @@
 
 		// get expired
 		var _pCookieName = 'persistent-expired-test';
-		$.cookie(_pCookieName, 'init');
+		Cookies.set(_pCookieName, 'init');
 		kafe.storage.setPersistentItem('expire', 'item', { expires: _pCookieName });
-		$.cookie(_pCookieName, 'changed');
+		Cookies.set(_pCookieName, 'changed');
 		strictEqual( kafe.storage.getPersistentItem('expire'), undefined, 'get an expired item based on cookie (persistent)' );
-		$.removeCookie(_pCookieName);
+		Cookies.remove(_pCookieName);
 		kafe.storage.setPersistentItem('expire', 'item', { expires: -1 });
 		strictEqual( kafe.storage.getPersistentItem('expire'), undefined, 'get an expired item based on time (persistent)' );
 
 		// get - namespaces
 		kafe.storage.setPersistentItem('test:first-key', 'first-value');
 		kafe.storage.setPersistentItem('test:second-key', 'second-value');
-		deepEqual( kafe.storage.getPersistentNamespaceKeys('test'), ['test:second-key', 'test:first-key'], 'get a namespace keys (persistent)' );
+		deepEqual( kafe.storage.getPersistentNamespaceKeys('test'), ['test:first-key', 'test:second-key'], 'get a namespace keys (persistent)' );
 		deepEqual( kafe.storage.getPersistentNamespaceItems('test'), { 'test:second-key':'second-value', 'test:first-key':'first-value' }, 'get a namespace items (persistent)' );
 		// delete - namespaces
 		kafe.storage.removePersistentNamespace('test');
@@ -39,7 +39,7 @@
 		kafe.storage.setPersistentItem('test:first-key', 'first-value');
 		kafe.storage.setPersistentItem('test:second-key', 'second-value');
 		kafe.storage.setPersistentItem('user', 'my-username');
-		deepEqual( kafe.storage.getAllPersistentKeys(), ['user', 'test:second-key', 'test:first-key'], 'get all keys (persistent)' );
+		deepEqual( kafe.storage.getAllPersistentKeys(), ['test:first-key', 'test:second-key', 'user'], 'get all keys (persistent)' );
 		deepEqual( kafe.storage.getAllPersistentItems(), { 'test:first-key':'first-value', 'test:second-key':'second-value', 'user':'my-username' }, 'get all items (persistent)' );
 		// delete - All
 		kafe.storage.removeAllPersistent();
@@ -56,18 +56,18 @@
 
 		// get expired
 		var _sCookieName = 'session-expired-test';
-		$.cookie(_sCookieName, 'init');
+		Cookies.set(_sCookieName, 'init');
 		kafe.storage.setSessionItem('expire', 'item', { expires: _sCookieName });
-		$.cookie(_sCookieName, 'changed');
+		Cookies.set(_sCookieName, 'changed');
 		strictEqual( kafe.storage.getSessionItem('expire'), undefined, 'get an expired item based on cookie (session)' );
-		$.removeCookie(_sCookieName);
+		Cookies.remove(_sCookieName);
 		kafe.storage.setPersistentItem('expire', 'item', { expires: -1 });
 		strictEqual( kafe.storage.getSessionItem('expire'), undefined, 'get an expired item based on time (session)' );
 
 		// get - namespace
 		kafe.storage.setSessionItem('test:first-key', 'first-value');
 		kafe.storage.setSessionItem('test:second-key', 'second-value');
-		deepEqual( kafe.storage.getSessionNamespaceKeys('test'), ['test:second-key', 'test:first-key'], 'get a namespace keys (session)' );
+		deepEqual( kafe.storage.getSessionNamespaceKeys('test'), ['test:first-key', 'test:second-key'], 'get a namespace keys (session)' );
 		deepEqual( kafe.storage.getSessionNamespaceItems('test'), { 'test:second-key':'second-value', 'test:first-key':'first-value' }, 'get a namespace items (session)' );
 		// delete - namespace
 		kafe.storage.removeSessionNamespace('test');
@@ -77,7 +77,7 @@
 		kafe.storage.setSessionItem('test:first-key', 'first-value');
 		kafe.storage.setSessionItem('test:second-key', 'second-value');
 		kafe.storage.setSessionItem('user', 'my-username');
-		deepEqual( kafe.storage.getAllSessionKeys(), ['user', 'test:second-key', 'test:first-key'], 'get all keys (session)' );
+		deepEqual( kafe.storage.getAllSessionKeys(), ['test:first-key', 'test:second-key', 'user'], 'get all keys (session)' );
 		deepEqual( kafe.storage.getAllSessionItems(), { 'test:first-key':'first-value', 'test:second-key':'second-value', 'user':'my-username' }, 'get all items (session)' );
 		// delete - All
 		kafe.storage.removeAllSession();

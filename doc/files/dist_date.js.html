@@ -22,11 +22,11 @@
 	<title>dist/date.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,789 +41,757 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/date.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
-
-	var
-		// dictionary
-		_dict = {
-			fr: {
-				m:  [&#x27;Janvier&#x27;,&#x27;Février&#x27;,&#x27;Mars&#x27;,&#x27;Avril&#x27;,&#x27;Mai&#x27;,&#x27;Juin&#x27;,&#x27;Juillet&#x27;,&#x27;Août&#x27;,&#x27;Septembre&#x27;,&#x27;Octobre&#x27;,&#x27;Novembre&#x27;,&#x27;Décembre&#x27;],
-				m3: [0,0,0,0,0,&#x27;Jun&#x27;,&#x27;Jul&#x27;],
-				w:  [&#x27;Dimanche&#x27;,&#x27;Lundi&#x27;,&#x27;Mardi&#x27;,&#x27;Mercredi&#x27;,&#x27;Jeudi&#x27;,&#x27;Vendredi&#x27;,&#x27;Samedi&#x27;],
-				d:  [&#x27;1er&#x27;],
-				r:  [&#x27;en ce moment&#x27;,&#x27;il y a moins d\&#x27;une minute&#x27;,&#x27;il y a environ une minute&#x27;,&#x27;il y a %n minutes&#x27;,&#x27;il y a environ une heure&#x27;,&#x27;il y a %n heures&#x27;,&#x27;hier&#x27;,&#x27;avant-hier&#x27;,&#x27;il y a %n jours&#x27;,&#x27;la semaine passée&#x27;,&#x27;il y a %n semaines&#x27;,&#x27;le mois passé&#x27;,&#x27;il y a %n mois&#x27;]
-			},
-			en: {
-				m:  [&#x27;January&#x27;,&#x27;February&#x27;,&#x27;March&#x27;,&#x27;April&#x27;,&#x27;May&#x27;,&#x27;June&#x27;,&#x27;July&#x27;,&#x27;August&#x27;,&#x27;September&#x27;,&#x27;October&#x27;,&#x27;November&#x27;,&#x27;December&#x27;],
-				w:  [&#x27;Sunday&#x27;,&#x27;Monday&#x27;,&#x27;Tuesday&#x27;,&#x27;Wednesday&#x27;,&#x27;Thursday&#x27;,&#x27;Friday&#x27;,&#x27;Saturday&#x27;],
-				d:  [&#x27;1st&#x27;,&#x27;2nd&#x27;,&#x27;3rd&#x27;,&#x27;4th&#x27;,&#x27;5th&#x27;,&#x27;6th&#x27;,&#x27;7th&#x27;,&#x27;8th&#x27;,&#x27;9th&#x27;,&#x27;10th&#x27;,&#x27;11th&#x27;,&#x27;12th&#x27;,&#x27;13th&#x27;,&#x27;14th&#x27;,&#x27;15th&#x27;,&#x27;16th&#x27;,&#x27;17th&#x27;,&#x27;18th&#x27;,&#x27;19th&#x27;,&#x27;20th&#x27;,&#x27;21st&#x27;,&#x27;22nd&#x27;,&#x27;23rd&#x27;,&#x27;24th&#x27;,&#x27;25th&#x27;,&#x27;26th&#x27;,&#x27;27th&#x27;,&#x27;28th&#x27;,&#x27;29th&#x27;,&#x27;30th&#x27;,&#x27;31st&#x27;],
-				r:  [&#x27;now&#x27;,&#x27;less than a minute ago&#x27;,&#x27;about a minute ago&#x27;,&#x27;%n minutes ago&#x27;,&#x27;about an hour ago&#x27;,&#x27;%n hours ago&#x27;,&#x27;yesterday&#x27;,&#x27;day before yesterday&#x27;,&#x27;%n days ago&#x27;,&#x27;last week&#x27;,&#x27;%n weeks ago&#x27;,&#x27;last month&#x27;,&#x27;%n months ago&#x27;]
-			},
-			multi: {
-				m2: [&#x27;Ja&#x27;,&#x27;Fe&#x27;,&#x27;Mr&#x27;,&#x27;Al&#x27;,&#x27;Ma&#x27;,&#x27;Jn&#x27;,&#x27;Jl&#x27;,&#x27;Au&#x27;,&#x27;Se&#x27;,&#x27;Oc&#x27;,&#x27;No&#x27;,&#x27;De&#x27;]
-			}
-		},
-
-		// get a valid lang
-		_lang = function(lang) {
-			return kafe.fn.lang(_dict,lang);
-		},
-
-		// get the 3-char month abbreviation
-		_m3 = function(month, lang) {
-			var d = _dict[_lang(lang)];
-			return (d.m3 &amp;&amp; d.m3[month]) ? d.m3[month] : d.m[month].toString().substring(0,3);
-		},
-
-		// get the 3-char weekday abbreviation
-		_w3 = function(weekday, lang) {
-			var d = _dict[_lang(lang)];
-			return (d.w3 &amp;&amp; d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].toString().substring(0,3);
-		},
-
-		// trim every element of the array
-		_trim = function(list, nb) {
-			var d = [];
-			for (var i in list) {
-				d.push(list[i].toString().substr(0,nb));
-			}
-			return d;
-		}
-	;
-
-
-
-	/**
-	* ### Version 1.2.0
-	* Additionnal methods for date manipulation
-	*
-	* @module kafe
-	* @class kafe.date 
-	*/
-	var date = {
-
-		/**
-		* Number of milliseconds in a second (1000 ms per second)
-		*
-		* @property SECOND 
-		* @type Number
-		**/
-		SECOND:1000,
-
-		/**
-		* Number of milliseconds in a minute (60 seconds per minute)
-		*
-		* @property MINUTE 
-		* @type Number
-		**/
-		MINUTE:60000,
-
-		/**
-		* Number of milliseconds in an hour (60 minutes per hour)
-		*
-		* @property HOUR 
-		* @type Number
-		**/
-		HOUR:3600000,
-
-		/**
-		* Number of milliseconds in a day (24 hours per day)
-		*
-		* @property DAY 
-		* @type Number
-		**/
-		DAY:86400000,
-
-		/**
-		* Number of milliseconds in a week (7 days per week)
-		*
-		* @property WEEK 
-		* @type Number
-		**/
-		WEEK:604800000,
-
-		/**
-		* Number of milliseconds in a month (4.348121428571429 weeks per month)
-		*
-		* @property MONTH 
-		* @type Number
-		**/
-		MONTH:2629743840,
-
-		/**
-		* Number of milliseconds in a year (365.2422 days per year)
-		*
-		* @property YEAR 
-		* @type Number
-		**/
-		YEAR:31556926080
-	};
-
-
-	/**
-	* Get the day number out of the full year (365 days).
-	*
-	* @method getDayYear
-	* @param {Date} d The date
-	* @return {Number} The day of the year
-	* @example
-	*	kafe.date.getDayYear(new Date(&#x27;2013-07-17&#x27;));
-	*	// returns 198
-	*/
-	date.getDayYear = function(d) {
-		var
-			max = this.getMaxMonth(d.getFullYear()),
-			m   = d.getMonth(),
-			total = 0
-		;
-
-		for (var i=0; i&lt;m; ++i) {
-			total += max[i];
-		}
-
-		return total+d.getDate();
-	};
-
-
-	/**
-	* Returns whether the date is within a leap year or not.
-	*
-	* @method isLeapYear
-	* @param {Number} year The year.
-	* @return {Boolean} If it is a leap year or not.
-	* @example
-	*	kafe.date.isLeapYear(2013);
-	*	// returns false
-	* @example
-	*	kafe.date.isLeapYear(2004);
-	*	// returns true
-	*/
-	date.isLeapYear = function(year) {
-		return ((year%4 === 0 &amp;&amp; year%400 !== 0) || year == 2000);
-	};
-
-
-	/**
-	* Get the number of days for all the months of a given year.
-	*
-	* @method getMaxMonth
-	* @param {Number} year The year.
-	* @return {Array(Number)} An ordered array of day counts for each months of the given year.
-	* @example
-	*	kafe.date.getMaxMonth(2013);
-	*	// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-	* @example
-	*	kafe.date.getMaxMonth(2013)[3];
-	*	// returns 30
-	*/
-	date.getMaxMonth = function(year) {
-		return [31, (this.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-	};
-
-
-	/**
-	* Get the full name of the months of the year.
-	*
-	* @method getMonthNames
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of month names.
-	* @example
-	*	kafe.date.getMonthNames(&#x27;en&#x27;);
-	*	// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]
-	* @example
-	*	kafe.date.getMonthNames(&#x27;en&#x27;)[3];
-	*	// returns &quot;April&quot;
-	*/
-	date.getMonthNames = function(lang) {
-		return _dict[_lang(lang)].m;
-	};
-
-
-	/**
-	* Get the 1-char abbreviations of the months of the year.
-	*
-	* @method getMonth1Names
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of 1-char month abbreviations.
-	* @example
-	*	kafe.date.getMonth1Names(&#x27;en&#x27;);
-	*	// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]
-	* @example
-	*	kafe.date.getMonth1Names(&#x27;en&#x27;)[3];
-	*	// returns &quot;A&quot;
-	*/
-	date.getMonth1Names = function(lang) {
-		return _trim(_dict[_lang(lang)].m,1);
-	};
-
-
-	/**
-	* Get the 2-char abbreviations of the months of the year.
-	*
-	* @method getMonth2Names
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of 2-char month abbreviations.
-	* @example
-	*	kafe.date.getMonth2Names(&#x27;en&#x27;);
-	*	// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]
-	* @example
-	*	kafe.date.getMonth2Names(&#x27;en&#x27;)[3];
-	*	// returns &quot;Al&quot;
-	*/
-	date.getMonth2Names = function(lang) {
-		lang = _lang(lang);
-		return (_dict[lang].m2) ? _dict[lang].m2 : _dict.multi.m2;
-	};
-
-
-	/**
-	* Get the 3-char abbreviations of the months of the year.
-	*
-	* @method getMonth3Names
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of 3-char month abbreviations.
-	* @example
-	*	kafe.date.getMonth3Names(&#x27;en&#x27;);
-	*	// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]
-	* @example
-	*	kafe.date.getMonth3Names(&#x27;en&#x27;)[3];
-	*	// returns &quot;Apr&quot;
-	*/
-	date.getMonth3Names = function(lang) {
-		var d = [];
-		for (var i=0; i&lt;12; ++i) {
-			d.push(_m3(i, lang));
-		}
-		return d;
-	};
-
-
-	/**
-	* Returns whether the date is within a weekend.
-	*
-	* @method isWeekend
-	* @param {Date} d The date
-	* @return {Boolean} If it is within a weekend or not.
-	* @example
-	*	kafe.date.isWeekend(new Date(&#x27;2013-07-17&#x27;));
-	*	// returns false
-	* @example
-	*	kafe.date.isWeekend(new Date(&#x27;2013-07-20&#x27;));
-	*	// returns true
-	*/
-	date.isWeekend = function(date) {
-		var weekday = date.getDay();
-		return (weekday === 0 || weekday === 6);
-	};
-
-
-	/**
-	* Get the full name of the days of the week.
-	*
-	* @method getWeekdayNames
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of weekday names.
-	* @example
-	*	kafe.date.getWeekdayNames(&#x27;en&#x27;);
-	*	// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]
-	* @example
-	*	kafe.date.getWeekdayNames(&#x27;en&#x27;)[3];
-	*	// returns &quot;Wednesday&quot;
-	*/
-	date.getWeekdayNames = function(lang) {
-		return _dict[_lang(lang)].w;
-	};
-
-
-	/**
-	* Get the 1-char abbreviations of the days of the week.
-	*
-	* @method getWeekday1Names
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of 1-char weekday abbreviations.
-	* @example
-	*	kafe.date.getWeekday1Names(&#x27;en&#x27;);
-	*	// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]
-	* @example
-	*	kafe.date.getWeekday1Names(&#x27;en&#x27;)[3];
-	*	// returns &quot;W&quot;
-	*/
-	date.getWeekday1Names = function(lang) {
-		return _trim(_dict[_lang(lang)].w,1);
-	};
-
-
-	/**
-	* Get the 2-char abbreviations of the days of the week.
-	*
-	* @method getWeekday2Names
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of 2-char weekday abbreviations.
-	* @example
-	*	kafe.date.getWeekday2Names(&#x27;en&#x27;);
-	*	// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]
-	* @example
-	*	kafe.date.getWeekday2Names(&#x27;en&#x27;)[3];
-	*	// returns &quot;We&quot;
-	*/
-	date.getWeekday2Names = function(lang) {
-		return _trim(_dict[_lang(lang)].w,2);
-	};
-
-
-	/**
-	* Get the 3-char abbreviations of the days of the week.
-	*
-	* @method getWeekday3Names
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of 3-char weekday abbreviations.
-	* @example
-	*	kafe.date.getWeekday3Names(&#x27;en&#x27;);
-	*	// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]
-	* @example
-	*	kafe.date.getWeekday3Names(&#x27;en&#x27;)[3];
-	*	// returns &quot;Wed&quot;
-	*/
-	date.getWeekday3Names = function(lang) {
-		var d = [];
-		for (var i=0; i&lt;7; ++i) {
-			d.push(_w3(i, lang));
-		}
-		return d;
-	};
-
-
-	/**
-	* Get a clean representation for all possible days of a month.
-	*
-	* @method getDayNames
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {Array(String)} An ordered array of clean representations for all possible days of a month.
-	* @example
-	*	kafe.date.getDayNames(&#x27;en&#x27;);
-	*	// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]
-	* @example
-	*	kafe.date.getDayNames(&#x27;en&#x27;)[3];
-	*	// returns &quot;4th&quot;
-	*/
-	date.getDayNames = function(lang) {
-		var
-			d = _dict[_lang(lang)].d,
-			l = d.length
-		;
-		for (var i=l; i&lt;31; ++i) {
-			d[i] = (i+1).toString();
-		}
-		return d;
-	};
-
-
-	/**
-	* Flexible formatting a given date object.
-	*
-	* @method format
-	* @param {String} format A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.
-	*	@param {Token} format.%Y,%y Year variants: [2011, 11]
-	*	@param {Token} format.%M,%m,%A,%a,%B,%b,%C,%c Month variants: [01, 1, January, january, Jan, jan, JA, Ja]
-	*	@param {Token} format.%D,%d,%e Day variants: [02, 2, 2nd]
-	*	@param {Token} format.%W,%w,%X,%x,%Z,%z Weekday variants: [Sunday, sunday, Sun, sun, Su, su]
-	*	@param {Token} format.%H,%h,%K,%k,%p Hour variants [15, 15, 03, 3, pm]
-	*	@param {Token} format.%I,%i Minute variants [04, 4]
-	*	@param {Token} format.%S,%s Second variants [05, 5]
-	* @param {Date} [date=NOW] A date to be formatted.
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {String} The formatted date.
-	* @example
-	*	kafe.date.format(&#x27;%W, %A %e, %Y&#x27;, new Date(&#x27;2013-07-17&#x27;), &#x27;en&#x27;);
-	*	// returns &quot;Tuesday, July 16th, 2013&quot;
-	* @example
-	*	kafe.date.format(&#x27;%W, %d %a, %Y&#x27;, new Date(&#x27;2013-07-17&#x27;), &#x27;fr&#x27;);
-	*	// returns &quot;Mardi, 16 juillet, 2013&quot;
-	*/
-	date.format = function(format, date, lang) {
-		date = (date) ? date : new Date();
-		lang = _lang(lang);
-
-		var
-			pad  = function() { return (&#x27;0&#x27;+arguments[0].toString()).slice(-2); },
-			d    = _dict[lang],
-
-			year      = date.getFullYear(),
-			month     = date.getMonth()+1,
-			day       = date.getDate(),
-			weekday   = date.getDay(),
-			hours     = date.getHours(),
-			minutes   = date.getMinutes(),
-			seconds   = date.getSeconds(),
-			hours12   = ((hours % 12) === 0) ? 12 : (hours % 12),
-			hoursAmPm = Math.floor(hours/12),
-
-			//                                                                 2011-01-02 15:04:05
-			data = {                                                        // -------------------
-				Y: year,                                                    // year           2011
-				y: year.toString().substring(2),                            // year             11
-				M: pad(month),                                              // month            01
-				m: month,                                                   // month             1
-				A: d.m[month-1],                                            // month       January
-				a: d.m[month-1].toLowerCase(),                              // month       january
-				B: this.getMonth3Names(lang)[month-1],                      // month           Jan
-				b: this.getMonth3Names(lang)[month-1].toLowerCase(),        // month           jan
-				C: this.getMonth2Names(lang)[month-1].toUpperCase(),        // month            JA
-				c: this.getMonth2Names(lang)[month-1],                      // month            Ja
-				D: pad(day),                                                // day              02
-				d: day,                                                     // day               2
-				e: this.getDayNames(lang)[day-1],                           // day             2nd
-				W: d.w[weekday],                                            // weekday      Sunday
-				w: d.w[weekday].toLowerCase(),                              // weekday      sunday
-				X: this.getWeekday3Names(lang)[weekday],                    // weekday         Sun
-				x: this.getWeekday3Names(lang)[weekday].toLowerCase(),      // weekday         sun
-				Z: this.getWeekday2Names(lang)[weekday],                    // weekday          Su
-				z: this.getWeekday2Names(lang)[weekday].toLowerCase(),      // weekday          su
-				H: pad(hours),                                              // hour             15
-				h: hours,                                                   // hour             15
-				K: pad(hours12),                                            // hour             03 
-				k: hours12,                                                 // hour              3
-				p: (hoursAmPm) ? &#x27;pm&#x27; : &#x27;am&#x27;,                               // hour             pm
-				I: pad(minutes),                                            // minute           04
-				i: minutes,                                                 // minute            4
-				S: pad(seconds),                                            // second           05
-				s: seconds                                                  // second            5
-			}
-		;
-
-		for (var i in data) {
-			format = format.replace(new RegExp(&#x27;%&#x27;+i,&#x27;g&#x27;),data[i]);
-		}
-
-		return format;
-	};
-
-
-	/**
-	* Get a relative time expression from a specific datetime.
-	*
-	* @method formatRelative
-	* @param {Date} time Specific datetime object.
-	* @param {Date} [now=NOW] Comparative datetime object to calculate the time difference.
-	* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
-	* @return {String} The relative time expression
-	* @example
-	*	kafe.date.formatRelative(new Date(&#x27;2013-07-19 6:00:00&#x27;), new Date(&#x27;2013-07-19 20:00:00&#x27;), &#x27;en&#x27;);
-	*	// returns &quot;14 hours ago&quot;
-	* @example
-	*	kafe.date.formatRelative(new Date(&#x27;2013-05-19&#x27;), new Date(&#x27;2013-07-19&#x27;), &#x27;en&#x27;);
-	*	// returns &quot;2 months ago&quot;
-	*/
-	date.formatRelative = function(time, now, lang) {
-		now = (now) ? now : new Date();
-
-		var
-			d     = _dict[_lang(lang)].r,
-			delta = now.getTime() - time.getTime()
-		;
-
-		if (delta &lt;= 0) {
-			return d[0];
-		} else if (delta &lt; date.MINUTE) {
-			return d[1];
-		} else if(delta &lt; 2*date.MINUTE) {
-			return d[2];
-		} else if(delta &lt; date.HOUR) {
-			return d[3].replace(&#x27;%n&#x27;, Math.floor(delta/date.MINUTE));
-		} else if(delta &lt; 2*date.HOUR) {
-			return d[4];
-		} else if(delta &lt; date.DAY) {
-			return d[5].replace(&#x27;%n&#x27;, Math.floor(delta/date.HOUR));
-		} else if(delta &lt; 2*date.DAY) {
-			return d[6];
-		} else if(delta &lt; 3*date.DAY) {
-			return d[7];
-		} else if(delta &lt; date.WEEK) {
-			return d[8].replace(&#x27;%n&#x27;, Math.floor(delta/date.DAY));
-		} else if(delta &lt; 2*date.WEEK) {
-			return d[9];
-		} else if(delta &lt; date.MONTH) {
-			return d[10].replace(&#x27;%n&#x27;, Math.floor(delta/date.WEEK));
-		} else if(delta &lt; 2*date.MONTH) {
-			return d[11];
-		} else {
-			return d[12].replace(&#x27;%n&#x27;, Math.floor(delta/date.MONTH));
-		}
-	};
-
-
-	/**
-	* Parses a given datetime string into a standard datetime object.
-	*
-	* @method parse
-	* @param {String} dtstring Custom datetime string
-	* @return {Date} The date object
-	* @example
-	*	kafe.date.parse(&#x27;2012-08-08T12:18:00.000-04:00&#x27;);
-	*	// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
-	* @example
-	*	kafe.date.parse(&#x27;June 3, 2013&#x27;);
-	*	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
-	*/
-	date.parse = function(dtstring) {
-		if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2})$/gi.test(dtstring)) {
-			dtstring += &#x27; 00:00:00&#x27;;
-		} else if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2})$/gi.test(dtstring)) {
-			dtstring += &#x27;:00&#x27;;
-		}
-
-
-		var ts = Date.parse(dtstring);
-
-		if (isNaN(ts)) {
-
-			var
-				y2y4 = function(year) {
-					if (year &gt; 69 &amp;&amp; year &lt; 100) {
-						return Number(year) + 1900;
-					} else if (year &lt; 69) {
-						return Number(year) + 2000;
-					} else {
-						return year;
+				<h1>dist/date.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;date&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
+			
+				var
+					// dictionary
+					_dict = {
+						fr: {
+							m:  [&#x27;Janvier&#x27;,&#x27;Février&#x27;,&#x27;Mars&#x27;,&#x27;Avril&#x27;,&#x27;Mai&#x27;,&#x27;Juin&#x27;,&#x27;Juillet&#x27;,&#x27;Août&#x27;,&#x27;Septembre&#x27;,&#x27;Octobre&#x27;,&#x27;Novembre&#x27;,&#x27;Décembre&#x27;],
+							m3: [0,0,0,0,0,&#x27;Jun&#x27;,&#x27;Jul&#x27;],
+							w:  [&#x27;Dimanche&#x27;,&#x27;Lundi&#x27;,&#x27;Mardi&#x27;,&#x27;Mercredi&#x27;,&#x27;Jeudi&#x27;,&#x27;Vendredi&#x27;,&#x27;Samedi&#x27;],
+							d:  [&#x27;1er&#x27;],
+							r:  [&#x27;en ce moment&#x27;,&#x27;il y a moins d\&#x27;une minute&#x27;,&#x27;il y a environ une minute&#x27;,&#x27;il y a %n minutes&#x27;,&#x27;il y a environ une heure&#x27;,&#x27;il y a %n heures&#x27;,&#x27;hier&#x27;,&#x27;avant-hier&#x27;,&#x27;il y a %n jours&#x27;,&#x27;la semaine passée&#x27;,&#x27;il y a %n semaines&#x27;,&#x27;le mois passé&#x27;,&#x27;il y a %n mois&#x27;]
+						},
+						en: {
+							m:  [&#x27;January&#x27;,&#x27;February&#x27;,&#x27;March&#x27;,&#x27;April&#x27;,&#x27;May&#x27;,&#x27;June&#x27;,&#x27;July&#x27;,&#x27;August&#x27;,&#x27;September&#x27;,&#x27;October&#x27;,&#x27;November&#x27;,&#x27;December&#x27;],
+							w:  [&#x27;Sunday&#x27;,&#x27;Monday&#x27;,&#x27;Tuesday&#x27;,&#x27;Wednesday&#x27;,&#x27;Thursday&#x27;,&#x27;Friday&#x27;,&#x27;Saturday&#x27;],
+							d:  [&#x27;1st&#x27;,&#x27;2nd&#x27;,&#x27;3rd&#x27;,&#x27;4th&#x27;,&#x27;5th&#x27;,&#x27;6th&#x27;,&#x27;7th&#x27;,&#x27;8th&#x27;,&#x27;9th&#x27;,&#x27;10th&#x27;,&#x27;11th&#x27;,&#x27;12th&#x27;,&#x27;13th&#x27;,&#x27;14th&#x27;,&#x27;15th&#x27;,&#x27;16th&#x27;,&#x27;17th&#x27;,&#x27;18th&#x27;,&#x27;19th&#x27;,&#x27;20th&#x27;,&#x27;21st&#x27;,&#x27;22nd&#x27;,&#x27;23rd&#x27;,&#x27;24th&#x27;,&#x27;25th&#x27;,&#x27;26th&#x27;,&#x27;27th&#x27;,&#x27;28th&#x27;,&#x27;29th&#x27;,&#x27;30th&#x27;,&#x27;31st&#x27;],
+							r:  [&#x27;now&#x27;,&#x27;less than a minute ago&#x27;,&#x27;about a minute ago&#x27;,&#x27;%n minutes ago&#x27;,&#x27;about an hour ago&#x27;,&#x27;%n hours ago&#x27;,&#x27;yesterday&#x27;,&#x27;day before yesterday&#x27;,&#x27;%n days ago&#x27;,&#x27;last week&#x27;,&#x27;%n weeks ago&#x27;,&#x27;last month&#x27;,&#x27;%n months ago&#x27;]
+						},
+						multi: {
+							m2: [&#x27;Ja&#x27;,&#x27;Fe&#x27;,&#x27;Mr&#x27;,&#x27;Al&#x27;,&#x27;Ma&#x27;,&#x27;Jn&#x27;,&#x27;Jl&#x27;,&#x27;Au&#x27;,&#x27;Se&#x27;,&#x27;Oc&#x27;,&#x27;No&#x27;,&#x27;De&#x27;]
+						}
+					},
+			
+					// get a valid lang
+					_lang = function(lang) {
+						return kafe.fn.lang(_dict,lang);
+					},
+			
+					// get the 3-char month abbreviation
+					_m3 = function(month, lang) {
+						var d = _dict[_lang(lang)];
+						return (d.m3 &amp;&amp; d.m3[month]) ? d.m3[month] : d.m[month].toString().substring(0,3);
+					},
+			
+					// get the 3-char weekday abbreviation
+					_w3 = function(weekday, lang) {
+						var d = _dict[_lang(lang)];
+						return (d.w3 &amp;&amp; d.w3[weekday]) ? d.w3[weekday] : d.w[weekday].toString().substring(0,3);
+					},
+			
+					// trim every element of the array
+					_trim = function(list, nb) {
+						var d = [];
+						for (var i in list) {
+							d.push(list[i].toString().substr(0,nb));
+						}
+						return d;
 					}
-				},
-				m = date.getMonth3Names(&#x27;en&#x27;),
-				year, month, day, hour, minute, second, delta, e, d
-			;
-
-			// ISO 8601 / 2011-03-08 09:25:15 (useless for chrome)
-			if ((e = new RegExp(&#x27;^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
-				year   = y2y4(e[1]);
-				month  = e[2];
-				day    = e[3];
-				hour   = e[4];
-				minute = e[5];
-				second = e[6];
-
-			// RFC 822 (rss) / Sat, 30 Oct 10 13:51:32 +0000
-			} else if ((e = new RegExp(&#x27;^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
-				year   = y2y4(e[4]);
-				month  = $.inArray(e[3], m)+1;
-				day    = e[2];
-				hour   = e[5];
-				minute = e[6];
-				second = e[7];
-				delta  = e[8]/100;
-
-			// (twitter) / Mon Nov 01 01:49:22 +0000 2010
-			} else if ((e = new RegExp(&#x27;^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4}) ([0-9]{2,4})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
-				year   = y2y4(e[8]);
-				month  = $.inArray(e[2], m)+1;
-				day    = e[3];
-				hour   = e[4];
-				minute = e[5];
-				second = e[6];
-				delta  = e[7]/100;
-
-			// ISO 8601 / 2012-08-08T12:18:00.000-04:00 (useless for chrome/safari)
-			} else if ((e = new RegExp(&#x27;^([0-9]{2,4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([+-])([0-9]{2}):([0-9]{2})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
-				year   = y2y4(e[1]);
-				month  = e[2];
-				day    = e[3];
-				hour   = e[4];
-				minute = e[5];
-				second = e[6];
-				delta  = (Number(e[9]) + (Number(e[10])/60)) * ((e[8] == &#x27;-&#x27;) ? -1 : 1);
-			}
-
-			d = new Date(year, month-1, day, hour, minute, second, 0);
-			return (delta !== undefined) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
-
-		} else {
-			return new Date(ts);
-		}
-	};
-
-
-	/**
-	* Refreshes a dropdown containing the days of a given year/month combination.
-	*
-	* @method refreshSelectDays
-	* @param {DOMElement} obj The &amp;lt;select&amp;gt; element
-	* @param {Number} month The month 
-	* @param {Number} year The year
-	* @example
-	*	$(&#x27;.select-month&#x27;).on(&#x27;change&#x27;, function(e) {
-	*		kafe.date.refreshSelectDays(&#x27;.select-day&#x27;, $(this).val(), $(&#x27;.select-year&#x27;).val());
-	*	})
-	*/
-	date.refreshSelectDays = function(obj, month, year) {
-
-		// if a title in the dropdown
-		var
-			dp = (Number(obj.options[0].value)) ? 0 : 1,
-			dn = -dp,
-			nb = this.getMaxMonth(year)[month-1]
-		;
-
-		// if there are less day in the new month
-		if (obj.length+dn &gt; nb) {
-
-			// if a impossible day for the new days is selected
-			if (obj.selectedIndex+1 &gt; nb+dn) {
-				obj.selectedIndex = nb-1+dp;
-			}
-			obj.length = nb+dp;
-
-		// if there are more days in the new month
-		} else if ( obj.length+dn &lt; nb ) {
-
-			var curr = obj.length;
-			obj.length = nb+dp;
-
-			// rebuild the new days
-			for (var i=curr; i&lt;nb+dp; ++i) {
-				obj.options[i].text = i+1+dn;
-				obj.options[i].value = i+1+dn;
-			}
-		}
-	};
-
-
-	/**
-	* Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.
-	*
-	* @method makeMonthCalendar
-	* @param {Number} year The year
-	* @param {Number} month The month 
-	* @param {Object} [links] The links by date
-	*	@param {Array} links.YYYY-MM-DD The links
-	* @return {String} The rendered HTML
-	* @example
-	*	kafe.date.makeMonthCalendar(2013, 4, {&#x27;2013-04-03&#x27;:&#x27;http://mybirthday.com/&#x27;});
-	*	// returns &quot;&lt;table data-month=&quot;2013-04&quot;&gt;&lt;caption&gt;Avril 2013&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dim&lt;/th&gt;&lt;th&gt;Lun&lt;/th&gt;&lt;th&gt;Mar&lt;/th&gt;&lt;th&gt;Mer&lt;/th&gt;&lt;th&gt;Jeu&lt;/th&gt;&lt;th&gt;Ven&lt;/th&gt;&lt;th&gt;Sam&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td data-date=&quot;2013-04-01&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-02&quot;&gt;&lt;span&gt;2&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-03&quot;&gt;&lt;a href=&quot;http://mybirthday.com/&quot;&gt;3&lt;/a&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-04&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-05&quot;&gt;&lt;span&gt;5&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-06&quot;&gt;&lt;span&gt;6&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-07&quot;&gt;&lt;span&gt;7&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-08&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-09&quot;&gt;&lt;span&gt;9&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-10&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-11&quot;&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-12&quot;&gt;&lt;span&gt;12&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-13&quot;&gt;&lt;span&gt;13&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-14&quot;&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-15&quot;&gt;&lt;span&gt;15&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-16&quot;&gt;&lt;span&gt;16&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-17&quot;&gt;&lt;span&gt;17&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-18&quot;&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-19&quot;&gt;&lt;span&gt;19&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-20&quot;&gt;&lt;span&gt;20&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-21&quot;&gt;&lt;span&gt;21&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-22&quot;&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-23&quot;&gt;&lt;span&gt;23&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-24&quot;&gt;&lt;span&gt;24&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-25&quot;&gt;&lt;span&gt;25&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-26&quot;&gt;&lt;span&gt;26&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-27&quot;&gt;&lt;span&gt;27&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-28&quot;&gt;&lt;span&gt;28&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-29&quot;&gt;&lt;span&gt;29&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-30&quot;&gt;&lt;span&gt;30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot;
-	*/
-	date.makeMonthCalendar = function(year, month, links) {
-		links = links || {};
-		--m;
-
-		var
-			i,
-			weekdays = date.getWeekday3Names(),
-			max      = date.getMaxMonth(year)[month],
-			firstDay = new Date(year,month,1).getDay(),
-			week     = 0,
-			today    = date.format(&#x27;%Y-%M-%D&#x27;, new Date()),
-			html     = &#x27;&lt;table data-month=&quot;&#x27;+date.format(&#x27;%Y-%M&#x27;, new Date(year,month,1))+&#x27;&quot;&gt;&lt;caption&gt;&#x27;+date.getMonthNames()[month]+&#x27; &#x27;+year+&#x27;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&#x27;
-		;
-
-		// weekdays
-		for (i in weekdays) {
-			html += &#x27;&lt;th&gt;&#x27;+weekdays[i]+&#x27;&lt;/th&gt;&#x27;;
-		}
-
-		html += &#x27;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&#x27;;
-
-		// start padding
-		for (i=0; i&lt;firstDay; ++i) {
-			html += &#x27;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&#x27;;
-			++week;
-		}
-
-		// days
-		for (i=1; i&lt;=max; ++i) {
-			if (week == 7) {
-				html += &#x27;&lt;/tr&gt;&lt;tr&gt;&#x27;;
-				week = 0;
-			}
-
-			var thisDate = date.format(&#x27;%Y-%M-%D&#x27;, new Date(year,month,i));
-			html += &#x27;&lt;td data-date=&quot;&#x27;+thisDate+&#x27;&quot;&#x27;+((thisDate == today) ? &#x27; class=&quot;Today&quot;&#x27; : &#x27;&#x27;)+&#x27;&gt;&#x27; + ((links[thisDate]) ? &#x27;&lt;a href=&quot;&#x27;+links[thisDate]+&#x27;&quot;&gt;&#x27;+i+&#x27;&lt;/a&gt;&#x27; : &#x27;&lt;span&gt;&#x27;+i+&#x27;&lt;/span&gt;&#x27;) + &#x27;&lt;/td&gt;&#x27;;
-			++week;
-		}
-
-		// end padding
-		for (i=week; i&lt;7; ++i) {
-			html += &#x27;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&#x27;;
-		}
-
-		return html+&#x27;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&#x27;;
-	};
-
-
-	return date;
-
-})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
-</pre>
-
+				;
+			
+			
+			
+				/**
+				* ### Version 1.2.0
+				* Additionnal methods for date manipulation
+				*
+				* @module kafe
+				* @class kafe.date 
+				*/
+				var date = {
+			
+					/**
+					* Number of milliseconds in a second (1000 ms per second)
+					*
+					* @property SECOND 
+					* @type Number
+					**/
+					SECOND:1000,
+			
+					/**
+					* Number of milliseconds in a minute (60 seconds per minute)
+					*
+					* @property MINUTE 
+					* @type Number
+					**/
+					MINUTE:60000,
+			
+					/**
+					* Number of milliseconds in an hour (60 minutes per hour)
+					*
+					* @property HOUR 
+					* @type Number
+					**/
+					HOUR:3600000,
+			
+					/**
+					* Number of milliseconds in a day (24 hours per day)
+					*
+					* @property DAY 
+					* @type Number
+					**/
+					DAY:86400000,
+			
+					/**
+					* Number of milliseconds in a week (7 days per week)
+					*
+					* @property WEEK 
+					* @type Number
+					**/
+					WEEK:604800000,
+			
+					/**
+					* Number of milliseconds in a month (4.348121428571429 weeks per month)
+					*
+					* @property MONTH 
+					* @type Number
+					**/
+					MONTH:2629743840,
+			
+					/**
+					* Number of milliseconds in a year (365.2422 days per year)
+					*
+					* @property YEAR 
+					* @type Number
+					**/
+					YEAR:31556926080
+				};
+			
+			
+				/**
+				* Get the day number out of the full year (365 days).
+				*
+				* @method getDayYear
+				* @param {Date} d The date
+				* @return {Number} The day of the year
+				* @example
+				*	kafe.date.getDayYear(new Date(&#x27;2013-07-17&#x27;));
+				*	// returns 198
+				*/
+				date.getDayYear = function(d) {
+					var
+						max = this.getMaxMonth(d.getFullYear()),
+						m   = d.getMonth(),
+						total = 0
+					;
+			
+					for (var i=0; i&lt;m; ++i) {
+						total += max[i];
+					}
+			
+					return total+d.getDate();
+				};
+			
+			
+				/**
+				* Returns whether the date is within a leap year or not.
+				*
+				* @method isLeapYear
+				* @param {Number} year The year.
+				* @return {Boolean} If it is a leap year or not.
+				* @example
+				*	kafe.date.isLeapYear(2013);
+				*	// returns false
+				* @example
+				*	kafe.date.isLeapYear(2004);
+				*	// returns true
+				*/
+				date.isLeapYear = function(year) {
+					return ((year%4 === 0 &amp;&amp; year%400 !== 0) || year == 2000);
+				};
+			
+			
+				/**
+				* Get the number of days for all the months of a given year.
+				*
+				* @method getMaxMonth
+				* @param {Number} year The year.
+				* @return {Array(Number)} An ordered array of day counts for each months of the given year.
+				* @example
+				*	kafe.date.getMaxMonth(2013);
+				*	// returns [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+				* @example
+				*	kafe.date.getMaxMonth(2013)[3];
+				*	// returns 30
+				*/
+				date.getMaxMonth = function(year) {
+					return [31, (this.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+				};
+			
+			
+				/**
+				* Get the full name of the months of the year.
+				*
+				* @method getMonthNames
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of month names.
+				* @example
+				*	kafe.date.getMonthNames(&#x27;en&#x27;);
+				*	// returns [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, ... ]
+				* @example
+				*	kafe.date.getMonthNames(&#x27;en&#x27;)[3];
+				*	// returns &quot;April&quot;
+				*/
+				date.getMonthNames = function(lang) {
+					return _dict[_lang(lang)].m;
+				};
+			
+			
+				/**
+				* Get the 1-char abbreviations of the months of the year.
+				*
+				* @method getMonth1Names
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of 1-char month abbreviations.
+				* @example
+				*	kafe.date.getMonth1Names(&#x27;en&#x27;);
+				*	// returns [&quot;J&quot;, &quot;F&quot;, &quot;M&quot;, &quot;A&quot;, &quot;M&quot;, &quot;J&quot;, &quot;J&quot;, &quot;A&quot;, &quot;S&quot;, &quot;O&quot;, &quot;N&quot;, &quot;D&quot;]
+				* @example
+				*	kafe.date.getMonth1Names(&#x27;en&#x27;)[3];
+				*	// returns &quot;A&quot;
+				*/
+				date.getMonth1Names = function(lang) {
+					return _trim(_dict[_lang(lang)].m,1);
+				};
+			
+			
+				/**
+				* Get the 2-char abbreviations of the months of the year.
+				*
+				* @method getMonth2Names
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of 2-char month abbreviations.
+				* @example
+				*	kafe.date.getMonth2Names(&#x27;en&#x27;);
+				*	// returns [&quot;Ja&quot;, &quot;Fe&quot;, &quot;Mr&quot;, &quot;Al&quot;, &quot;Ma&quot;, &quot;Jn&quot;, &quot;Jl&quot;, &quot;Au&quot;, &quot;Se&quot;, &quot;Oc&quot;, &quot;No&quot;, &quot;De&quot;]
+				* @example
+				*	kafe.date.getMonth2Names(&#x27;en&#x27;)[3];
+				*	// returns &quot;Al&quot;
+				*/
+				date.getMonth2Names = function(lang) {
+					lang = _lang(lang);
+					return (_dict[lang].m2) ? _dict[lang].m2 : _dict.multi.m2;
+				};
+			
+			
+				/**
+				* Get the 3-char abbreviations of the months of the year.
+				*
+				* @method getMonth3Names
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of 3-char month abbreviations.
+				* @example
+				*	kafe.date.getMonth3Names(&#x27;en&#x27;);
+				*	// returns [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;]
+				* @example
+				*	kafe.date.getMonth3Names(&#x27;en&#x27;)[3];
+				*	// returns &quot;Apr&quot;
+				*/
+				date.getMonth3Names = function(lang) {
+					var d = [];
+					for (var i=0; i&lt;12; ++i) {
+						d.push(_m3(i, lang));
+					}
+					return d;
+				};
+			
+			
+				/**
+				* Returns whether the date is within a weekend.
+				*
+				* @method isWeekend
+				* @param {Date} d The date
+				* @return {Boolean} If it is within a weekend or not.
+				* @example
+				*	kafe.date.isWeekend(new Date(&#x27;2013-07-17&#x27;));
+				*	// returns false
+				* @example
+				*	kafe.date.isWeekend(new Date(&#x27;2013-07-20&#x27;));
+				*	// returns true
+				*/
+				date.isWeekend = function(date) {
+					var weekday = date.getDay();
+					return (weekday === 0 || weekday === 6);
+				};
+			
+			
+				/**
+				* Get the full name of the days of the week.
+				*
+				* @method getWeekdayNames
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of weekday names.
+				* @example
+				*	kafe.date.getWeekdayNames(&#x27;en&#x27;);
+				*	// returns [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;]
+				* @example
+				*	kafe.date.getWeekdayNames(&#x27;en&#x27;)[3];
+				*	// returns &quot;Wednesday&quot;
+				*/
+				date.getWeekdayNames = function(lang) {
+					return _dict[_lang(lang)].w;
+				};
+			
+			
+				/**
+				* Get the 1-char abbreviations of the days of the week.
+				*
+				* @method getWeekday1Names
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of 1-char weekday abbreviations.
+				* @example
+				*	kafe.date.getWeekday1Names(&#x27;en&#x27;);
+				*	// returns [&quot;S&quot;, &quot;M&quot;, &quot;T&quot;, &quot;W&quot;, &quot;T&quot;, &quot;F&quot;, &quot;S&quot;]
+				* @example
+				*	kafe.date.getWeekday1Names(&#x27;en&#x27;)[3];
+				*	// returns &quot;W&quot;
+				*/
+				date.getWeekday1Names = function(lang) {
+					return _trim(_dict[_lang(lang)].w,1);
+				};
+			
+			
+				/**
+				* Get the 2-char abbreviations of the days of the week.
+				*
+				* @method getWeekday2Names
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of 2-char weekday abbreviations.
+				* @example
+				*	kafe.date.getWeekday2Names(&#x27;en&#x27;);
+				*	// returns [&quot;Su&quot;, &quot;Mo&quot;, &quot;Tu&quot;, &quot;We&quot;, &quot;Th&quot;, &quot;Fr&quot;, &quot;Sa&quot;]
+				* @example
+				*	kafe.date.getWeekday2Names(&#x27;en&#x27;)[3];
+				*	// returns &quot;We&quot;
+				*/
+				date.getWeekday2Names = function(lang) {
+					return _trim(_dict[_lang(lang)].w,2);
+				};
+			
+			
+				/**
+				* Get the 3-char abbreviations of the days of the week.
+				*
+				* @method getWeekday3Names
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of 3-char weekday abbreviations.
+				* @example
+				*	kafe.date.getWeekday3Names(&#x27;en&#x27;);
+				*	// returns [&quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;]
+				* @example
+				*	kafe.date.getWeekday3Names(&#x27;en&#x27;)[3];
+				*	// returns &quot;Wed&quot;
+				*/
+				date.getWeekday3Names = function(lang) {
+					var d = [];
+					for (var i=0; i&lt;7; ++i) {
+						d.push(_w3(i, lang));
+					}
+					return d;
+				};
+			
+			
+				/**
+				* Get a clean representation for all possible days of a month.
+				*
+				* @method getDayNames
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {Array(String)} An ordered array of clean representations for all possible days of a month.
+				* @example
+				*	kafe.date.getDayNames(&#x27;en&#x27;);
+				*	// returns [&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, ... ]
+				* @example
+				*	kafe.date.getDayNames(&#x27;en&#x27;)[3];
+				*	// returns &quot;4th&quot;
+				*/
+				date.getDayNames = function(lang) {
+					var
+						d = _dict[_lang(lang)].d,
+						l = d.length
+					;
+					for (var i=l; i&lt;31; ++i) {
+						d[i] = (i+1).toString();
+					}
+					return d;
+				};
+			
+			
+				/**
+				* Flexible formatting a given date object.
+				*
+				* @method format
+				* @param {String} format A custom format composed of %- tokens. Characters that are not part of a token will be rendered literally.
+				*	@param {Token} format.%Y,%y Year variants: [2011, 11]
+				*	@param {Token} format.%M,%m,%A,%a,%B,%b,%C,%c Month variants: [01, 1, January, january, Jan, jan, JA, Ja]
+				*	@param {Token} format.%D,%d,%e Day variants: [02, 2, 2nd]
+				*	@param {Token} format.%W,%w,%X,%x,%Z,%z Weekday variants: [Sunday, sunday, Sun, sun, Su, su]
+				*	@param {Token} format.%H,%h,%K,%k,%p Hour variants [15, 15, 03, 3, pm]
+				*	@param {Token} format.%I,%i Minute variants [04, 4]
+				*	@param {Token} format.%S,%s Second variants [05, 5]
+				* @param {Date} [date=NOW] A date to be formatted.
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {String} The formatted date.
+				* @example
+				*	kafe.date.format(&#x27;%W, %A %e, %Y&#x27;, new Date(&#x27;2013-07-17&#x27;), &#x27;en&#x27;);
+				*	// returns &quot;Tuesday, July 16th, 2013&quot;
+				* @example
+				*	kafe.date.format(&#x27;%W, %d %a, %Y&#x27;, new Date(&#x27;2013-07-17&#x27;), &#x27;fr&#x27;);
+				*	// returns &quot;Mardi, 16 juillet, 2013&quot;
+				*/
+				date.format = function(format, date, lang) {
+					date = (date) ? date : new Date();
+					lang = _lang(lang);
+			
+					var
+						pad  = function() { return (&#x27;0&#x27;+arguments[0].toString()).slice(-2); },
+						d    = _dict[lang],
+			
+						year      = date.getFullYear(),
+						month     = date.getMonth()+1,
+						day       = date.getDate(),
+						weekday   = date.getDay(),
+						hours     = date.getHours(),
+						minutes   = date.getMinutes(),
+						seconds   = date.getSeconds(),
+						hours12   = ((hours % 12) === 0) ? 12 : (hours % 12),
+						hoursAmPm = Math.floor(hours/12),
+			
+						//                                                                 2011-01-02 15:04:05
+						data = {                                                        // -------------------
+							Y: year,                                                    // year           2011
+							y: year.toString().substring(2),                            // year             11
+							M: pad(month),                                              // month            01
+							m: month,                                                   // month             1
+							A: d.m[month-1],                                            // month       January
+							a: d.m[month-1].toLowerCase(),                              // month       january
+							B: this.getMonth3Names(lang)[month-1],                      // month           Jan
+							b: this.getMonth3Names(lang)[month-1].toLowerCase(),        // month           jan
+							C: this.getMonth2Names(lang)[month-1].toUpperCase(),        // month            JA
+							c: this.getMonth2Names(lang)[month-1],                      // month            Ja
+							D: pad(day),                                                // day              02
+							d: day,                                                     // day               2
+							e: this.getDayNames(lang)[day-1],                           // day             2nd
+							W: d.w[weekday],                                            // weekday      Sunday
+							w: d.w[weekday].toLowerCase(),                              // weekday      sunday
+							X: this.getWeekday3Names(lang)[weekday],                    // weekday         Sun
+							x: this.getWeekday3Names(lang)[weekday].toLowerCase(),      // weekday         sun
+							Z: this.getWeekday2Names(lang)[weekday],                    // weekday          Su
+							z: this.getWeekday2Names(lang)[weekday].toLowerCase(),      // weekday          su
+							H: pad(hours),                                              // hour             15
+							h: hours,                                                   // hour             15
+							K: pad(hours12),                                            // hour             03 
+							k: hours12,                                                 // hour              3
+							p: (hoursAmPm) ? &#x27;pm&#x27; : &#x27;am&#x27;,                               // hour             pm
+							I: pad(minutes),                                            // minute           04
+							i: minutes,                                                 // minute            4
+							S: pad(seconds),                                            // second           05
+							s: seconds                                                  // second            5
+						}
+					;
+			
+					for (var i in data) {
+						format = format.replace(new RegExp(&#x27;%&#x27;+i,&#x27;g&#x27;),data[i]);
+					}
+			
+					return format;
+				};
+			
+			
+				/**
+				* Get a relative time expression from a specific datetime.
+				*
+				* @method formatRelative
+				* @param {Date} time Specific datetime object.
+				* @param {Date} [now=NOW] Comparative datetime object to calculate the time difference.
+				* @param {String} [lang=CURRENT_ENV_LANG] A two character language code.
+				* @return {String} The relative time expression
+				* @example
+				*	kafe.date.formatRelative(new Date(&#x27;2013-07-19 6:00:00&#x27;), new Date(&#x27;2013-07-19 20:00:00&#x27;), &#x27;en&#x27;);
+				*	// returns &quot;14 hours ago&quot;
+				* @example
+				*	kafe.date.formatRelative(new Date(&#x27;2013-05-19&#x27;), new Date(&#x27;2013-07-19&#x27;), &#x27;en&#x27;);
+				*	// returns &quot;2 months ago&quot;
+				*/
+				date.formatRelative = function(time, now, lang) {
+					now = (now) ? now : new Date();
+			
+					var
+						d     = _dict[_lang(lang)].r,
+						delta = now.getTime() - time.getTime()
+					;
+			
+					if (delta &lt;= 0) {
+						return d[0];
+					} else if (delta &lt; date.MINUTE) {
+						return d[1];
+					} else if(delta &lt; 2*date.MINUTE) {
+						return d[2];
+					} else if(delta &lt; date.HOUR) {
+						return d[3].replace(&#x27;%n&#x27;, Math.floor(delta/date.MINUTE));
+					} else if(delta &lt; 2*date.HOUR) {
+						return d[4];
+					} else if(delta &lt; date.DAY) {
+						return d[5].replace(&#x27;%n&#x27;, Math.floor(delta/date.HOUR));
+					} else if(delta &lt; 2*date.DAY) {
+						return d[6];
+					} else if(delta &lt; 3*date.DAY) {
+						return d[7];
+					} else if(delta &lt; date.WEEK) {
+						return d[8].replace(&#x27;%n&#x27;, Math.floor(delta/date.DAY));
+					} else if(delta &lt; 2*date.WEEK) {
+						return d[9];
+					} else if(delta &lt; date.MONTH) {
+						return d[10].replace(&#x27;%n&#x27;, Math.floor(delta/date.WEEK));
+					} else if(delta &lt; 2*date.MONTH) {
+						return d[11];
+					} else {
+						return d[12].replace(&#x27;%n&#x27;, Math.floor(delta/date.MONTH));
+					}
+				};
+			
+			
+				/**
+				* Parses a given datetime string into a standard datetime object.
+				*
+				* @method parse
+				* @param {String} dtstring Custom datetime string
+				* @return {Date} The date object
+				* @example
+				*	kafe.date.parse(&#x27;2012-08-08T12:18:00.000-04:00&#x27;);
+				*	// returns Wed Aug 08 2012 12:18:00 GMT-0400 (EDT)
+				* @example
+				*	kafe.date.parse(&#x27;June 3, 2013&#x27;);
+				*	// returns Mon Jun 03 2013 00:00:00 GMT-0400 (EDT)
+				*/
+				date.parse = function(dtstring) {
+					if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2})$/gi.test(dtstring)) {
+						dtstring += &#x27; 00:00:00&#x27;;
+					} else if (/^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2})$/gi.test(dtstring)) {
+						dtstring += &#x27;:00&#x27;;
+					}
+			
+			
+					var ts = Date.parse(dtstring);
+			
+					if (isNaN(ts)) {
+			
+						var
+							y2y4 = function(year) {
+								if (year &gt; 69 &amp;&amp; year &lt; 100) {
+									return Number(year) + 1900;
+								} else if (year &lt; 69) {
+									return Number(year) + 2000;
+								} else {
+									return year;
+								}
+							},
+							m = date.getMonth3Names(&#x27;en&#x27;),
+							year, month, day, hour, minute, second, delta, e, d
+						;
+			
+						// ISO 8601 / 2011-03-08 09:25:15 (useless for chrome)
+						if ((e = new RegExp(&#x27;^([0-9]{2,4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
+							year   = y2y4(e[1]);
+							month  = e[2];
+							day    = e[3];
+							hour   = e[4];
+							minute = e[5];
+							second = e[6];
+			
+						// RFC 822 (rss) / Sat, 30 Oct 10 13:51:32 +0000
+						} else if ((e = new RegExp(&#x27;^([a-z]{3}), ([0-9]{2}) ([a-z]{3}) ([0-9]{2,4}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
+							year   = y2y4(e[4]);
+							month  = $.inArray(e[3], m)+1;
+							day    = e[2];
+							hour   = e[5];
+							minute = e[6];
+							second = e[7];
+							delta  = e[8]/100;
+			
+						// (twitter) / Mon Nov 01 01:49:22 +0000 2010
+						} else if ((e = new RegExp(&#x27;^([a-z]{3}) ([a-z]{3}) ([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2}) ([+-][0-9]{4}) ([0-9]{2,4})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
+							year   = y2y4(e[8]);
+							month  = $.inArray(e[2], m)+1;
+							day    = e[3];
+							hour   = e[4];
+							minute = e[5];
+							second = e[6];
+							delta  = e[7]/100;
+			
+						// ISO 8601 / 2012-08-08T12:18:00.000-04:00 (useless for chrome/safari)
+						} else if ((e = new RegExp(&#x27;^([0-9]{2,4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})([+-])([0-9]{2}):([0-9]{2})$&#x27;,&#x27;gi&#x27;).exec(dtstring))) {
+							year   = y2y4(e[1]);
+							month  = e[2];
+							day    = e[3];
+							hour   = e[4];
+							minute = e[5];
+							second = e[6];
+							delta  = (Number(e[9]) + (Number(e[10])/60)) * ((e[8] == &#x27;-&#x27;) ? -1 : 1);
+						}
+			
+						d = new Date(year, month-1, day, hour, minute, second, 0);
+						return (delta !== undefined) ? new Date(d - ( (d.getTimezoneOffset() + (Number(delta)*60) ) * 60 * 1000)) : d;
+			
+					} else {
+						return new Date(ts);
+					}
+				};
+			
+			
+				/**
+				* Refreshes a dropdown containing the days of a given year/month combination.
+				*
+				* @method refreshSelectDays
+				* @param {DOMElement} obj The &amp;lt;select&amp;gt; element
+				* @param {Number} month The month 
+				* @param {Number} year The year
+				* @example
+				*	$(&#x27;.select-month&#x27;).on(&#x27;change&#x27;, function(e) {
+				*		kafe.date.refreshSelectDays(&#x27;.select-day&#x27;, $(this).val(), $(&#x27;.select-year&#x27;).val());
+				*	})
+				*/
+				date.refreshSelectDays = function(obj, month, year) {
+			
+					// if a title in the dropdown
+					var
+						dp = (Number(obj.options[0].value)) ? 0 : 1,
+						dn = -dp,
+						nb = this.getMaxMonth(year)[month-1]
+					;
+			
+					// if there are less day in the new month
+					if (obj.length+dn &gt; nb) {
+			
+						// if a impossible day for the new days is selected
+						if (obj.selectedIndex+1 &gt; nb+dn) {
+							obj.selectedIndex = nb-1+dp;
+						}
+						obj.length = nb+dp;
+			
+					// if there are more days in the new month
+					} else if ( obj.length+dn &lt; nb ) {
+			
+						var curr = obj.length;
+						obj.length = nb+dp;
+			
+						// rebuild the new days
+						for (var i=curr; i&lt;nb+dp; ++i) {
+							obj.options[i].text = i+1+dn;
+							obj.options[i].value = i+1+dn;
+						}
+					}
+				};
+			
+			
+				/**
+				* Creates an html table calendar for a given month/year combination. You can also provide specific dates with destination url to be included in the rendered source.
+				*
+				* @method makeMonthCalendar
+				* @param {Number} year The year
+				* @param {Number} month The month 
+				* @param {Object} [links] The links by date
+				*	@param {Array} links.YYYY-MM-DD The links
+				* @return {String} The rendered HTML
+				* @example
+				*	kafe.date.makeMonthCalendar(2013, 4, {&#x27;2013-04-03&#x27;:&#x27;http://mybirthday.com/&#x27;});
+				*	// returns &quot;&lt;table data-month=&quot;2013-04&quot;&gt;&lt;caption&gt;Avril 2013&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dim&lt;/th&gt;&lt;th&gt;Lun&lt;/th&gt;&lt;th&gt;Mar&lt;/th&gt;&lt;th&gt;Mer&lt;/th&gt;&lt;th&gt;Jeu&lt;/th&gt;&lt;th&gt;Ven&lt;/th&gt;&lt;th&gt;Sam&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td data-date=&quot;2013-04-01&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-02&quot;&gt;&lt;span&gt;2&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-03&quot;&gt;&lt;a href=&quot;http://mybirthday.com/&quot;&gt;3&lt;/a&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-04&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-05&quot;&gt;&lt;span&gt;5&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-06&quot;&gt;&lt;span&gt;6&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-07&quot;&gt;&lt;span&gt;7&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-08&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-09&quot;&gt;&lt;span&gt;9&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-10&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-11&quot;&gt;&lt;span&gt;11&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-12&quot;&gt;&lt;span&gt;12&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-13&quot;&gt;&lt;span&gt;13&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-14&quot;&gt;&lt;span&gt;14&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-15&quot;&gt;&lt;span&gt;15&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-16&quot;&gt;&lt;span&gt;16&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-17&quot;&gt;&lt;span&gt;17&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-18&quot;&gt;&lt;span&gt;18&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-19&quot;&gt;&lt;span&gt;19&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-20&quot;&gt;&lt;span&gt;20&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-21&quot;&gt;&lt;span&gt;21&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-22&quot;&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-23&quot;&gt;&lt;span&gt;23&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-24&quot;&gt;&lt;span&gt;24&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-25&quot;&gt;&lt;span&gt;25&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-26&quot;&gt;&lt;span&gt;26&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-27&quot;&gt;&lt;span&gt;27&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-date=&quot;2013-04-28&quot;&gt;&lt;span&gt;28&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-29&quot;&gt;&lt;span&gt;29&lt;/span&gt;&lt;/td&gt;&lt;td data-date=&quot;2013-04-30&quot;&gt;&lt;span&gt;30&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot;
+				*/
+				date.makeMonthCalendar = function(year, month, links) {
+					links = links || {};
+					--m;
+			
+					var
+						i,
+						weekdays = date.getWeekday3Names(),
+						max      = date.getMaxMonth(year)[month],
+						firstDay = new Date(year,month,1).getDay(),
+						week     = 0,
+						today    = date.format(&#x27;%Y-%M-%D&#x27;, new Date()),
+						html     = &#x27;&lt;table data-month=&quot;&#x27;+date.format(&#x27;%Y-%M&#x27;, new Date(year,month,1))+&#x27;&quot;&gt;&lt;caption&gt;&#x27;+date.getMonthNames()[month]+&#x27; &#x27;+year+&#x27;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&#x27;
+					;
+			
+					// weekdays
+					for (i in weekdays) {
+						html += &#x27;&lt;th&gt;&#x27;+weekdays[i]+&#x27;&lt;/th&gt;&#x27;;
+					}
+			
+					html += &#x27;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&#x27;;
+			
+					// start padding
+					for (i=0; i&lt;firstDay; ++i) {
+						html += &#x27;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&#x27;;
+						++week;
+					}
+			
+					// days
+					for (i=1; i&lt;=max; ++i) {
+						if (week == 7) {
+							html += &#x27;&lt;/tr&gt;&lt;tr&gt;&#x27;;
+							week = 0;
+						}
+			
+						var thisDate = date.format(&#x27;%Y-%M-%D&#x27;, new Date(year,month,i));
+						html += &#x27;&lt;td data-date=&quot;&#x27;+thisDate+&#x27;&quot;&#x27;+((thisDate == today) ? &#x27; class=&quot;Today&quot;&#x27; : &#x27;&#x27;)+&#x27;&gt;&#x27; + ((links[thisDate]) ? &#x27;&lt;a href=&quot;&#x27;+links[thisDate]+&#x27;&quot;&gt;&#x27;+i+&#x27;&lt;/a&gt;&#x27; : &#x27;&lt;span&gt;&#x27;+i+&#x27;&lt;/span&gt;&#x27;) + &#x27;&lt;/td&gt;&#x27;;
+						++week;
+					}
+			
+					// end padding
+					for (i=week; i&lt;7; ++i) {
+						html += &#x27;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&#x27;;
+					}
+			
+					return html+&#x27;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&#x27;;
+				};
+			
+			
+				return date;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

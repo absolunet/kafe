@@ -1,4 +1,4 @@
-//= require 'bower_components/jquery-cookie/jquery.cookie'
+//= require 'bower_components/js-cookie/src/js.cookie'
 //= require 'bower_components/jquery-json/src/jquery.json'
 //= require 'bower_components/kafe/dist/string'
 
@@ -36,7 +36,7 @@
 
 					} else if (!!data.expires && _.isString(data.expires)) {
 
-						if (data.cookie != $.cookie(data.expires)) {
+						if (data.cookie != Cookies.get(data.expires)) {
 							_remove(type,key);
 
 						} else {
@@ -62,7 +62,7 @@
 
 				if (!!options.expires) {
 					if (_.isString(options.expires)) {
-						data.cookie = $.cookie(options.expires);
+						data.cookie = Cookies.get(options.expires);
 						data.expires = options.expires;
 					} else {
 						data.expires = new Date( new Date().getTime()+(options.expires * 1000) );
@@ -216,7 +216,7 @@
 	* Easily access, sort and manipulate local and session storage values.
 	*
 	* @module kafe
-	* @class kafe.storage 
+	* @class kafe.storage
 	*/
 	var storage = {};
 
@@ -325,7 +325,7 @@
 	* @example
 	*	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	*	kafe.storage.setPersistentItem('history:last-page', '/about-us');
-	*	
+	*
 	*	kafe.storage.getPersistentNamespaceKeys('history');
 	*	// returns ["history:last-page", "history:last-visit"]
 	*/
@@ -343,7 +343,7 @@
 	* @example
 	*	kafe.storage.setSessionItem('user:first-name', 'John');
 	*	kafe.storage.setSessionItem('user:last-name', 'Doe');
-	*	
+	*
 	*	kafe.storage.getSessionNamespaceKeys('user');
 	*	// returns ["user:first-name", "user:last-name"]
 	*/
@@ -361,7 +361,7 @@
 	* @example
 	*	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	*	kafe.storage.setPersistentItem('history:last-page', '/about-us');
-	*	
+	*
 	*	kafe.storage.getPersistentNamespaceItems('history');
 	*	// returns { "history:last-page": "/about-us", "history:last-visit": "2013-07-21" }
 	*/
@@ -379,7 +379,7 @@
 	* @example
 	*	kafe.storage.setSessionItem('user:first-name', 'John');
 	*	kafe.storage.setSessionItem('user:last-name', 'Doe');
-	*	
+	*
 	*	kafe.storage.getSessionNamespaceItems('user');
 	*	// returns { "user:first-name": "John", "user:last-name": "Doe" }
 	*/
@@ -422,7 +422,7 @@
 	* @example
 	*	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	*	kafe.storage.setPersistentItem('website:show-ads', 'true');
-	*	
+	*
 	*	kafe.storage.getAllPersistentKeys();
 	*	// returns ["history:last-visit", "website:show-ads"]
 	*/
@@ -439,7 +439,7 @@
 	* @example
 	*	kafe.storage.setSessionItem('user:first-name', 'John');
 	*	kafe.storage.setSessionItem('preferences:tutorials', 'false');
-	*	
+	*
 	*	kafe.storage.getAllSessionKeys();
 	*	// returns ["user:first-name", "preferences:tutorials"]
 	*/
@@ -456,7 +456,7 @@
 	* @example
 	*	kafe.storage.setPersistentItem('history:last-visit', '2013-07-21');
 	*	kafe.storage.setPersistentItem('website:show-ads', 'true');
-	*	
+	*
 	*	kafe.storage.getAllPersistentItems();
 	*	// returns { "history:last-visit": "2013-07-21", "settings:show-ads": "true" }
 	*/
@@ -473,7 +473,7 @@
 	* @example
 	*	kafe.storage.setSessionItem('user:first-name', 'John');
 	*	kafe.storage.setSessionItem('preferences:tutorials', 'false');
-	*	
+	*
 	*	kafe.storage.getAllSessionItems();
 	*	// returns { "preferences:tutorials": "false", "user:first-name": "John" }
 	*/

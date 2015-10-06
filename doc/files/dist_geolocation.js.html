@@ -22,11 +22,11 @@
 	<title>dist/geolocation.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,207 +41,175 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/geolocation.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0.0&#x27;, obj:(function(){
-
-	var
-		// dictonary
-		_dict = {
-			fr: {
-				search:      &#x27;Recherche de votre positionnement&#x27;,
-				position:    &#x27;Votre position&#x27;,
-				unavailable: &#x27;Service de localisation non-disponible&#x27;,
-				deactivated: &#x27;Service de localisation désactivé&#x27;,
-				notFound:    &#x27;Position indisponible&#x27;,
-				timeout:     &#x27;Délai expiré&#x27;,
-				error:       &#x27;Il y a eu un problème&#x27;
-			},
-			en: {
-				search:      &#x27;Searching your location&#x27;,
-				position:    &#x27;Your position&#x27;,
-				unavailable: &#x27;Location service unavailable&#x27;,
-				deactivated: &#x27;Location service deactivated&#x27;,
-				notFound:    &#x27;Position not found&#x27;,
-				timeout:     &#x27;Timeout&#x27;,
-				error:       &#x27;There has been a problem&#x27;
-			}
-		},
-
-		// get a valid lang
-		_lang = function(lang) {
-			return kafe.fn.lang(_dict,lang);
-		}
-	;
-
-
-
-	/**
-	* ### Version 1.0.0
-	* Methods to access geolocalization information about the client.
-	*
-	* @module kafe
-	* @class kafe.geolocation 
-	*/
-	var geolocation = {};
-
-	/**
-	* Get the current geolocalization information of the client.
-	*
-	* @method locate
-	* @param {Object} parameters Parameters for the current request.
-	*	@param {String|jQueryObject|DOMElement} [parameters.selector] Element used to show status messages.
-	*	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
-	*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
-	*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
-	* @example
-	*	kafe.geolocation.locate({
-	*		selector: &#x27;#GeoLocStatus&#x27;, lang: &#x27;en&#x27;,
-	*		success: function(coords) {
-	*			console.log(&#x27;latitude: &#x27; + coords.latitude);
-	*			console.log(&#x27;longitude: &#x27; + coords.longitude);
-	*		}
-	*		error: function(msg) {
-	*			console.log(&#x27;Cannot geoloc: &#x27; + msg);
-	*		}
-	*	});
-	* @example
-	*	$(&#x27;#GeoLocStatus&#x27;).kafe(&#x27;geolocation.locate&#x27;, {});
-	*/
-	geolocation.locate = function(options) {
-		var
-			d               = _dict[_lang(options.lang)],
-			$msg            = $(options.selector),
-			errorCallback   = options.error,
-			successCallback = options.success
-		;
-
-		// if service available
-		if (Modernizr.geolocation) {
-			$msg.html(&#x27;... &#x27;+d.search+&#x27; ...&#x27;);
-
-			// try to get coords
-			navigator.geolocation.getCurrentPosition(
-
-				// success
-				function(position) {
-					$msg.html(d.position + &#x27;: &#x27; + position.coords.latitude + &#x27;, &#x27; +  position.coords.longitude);
-					if (!!successCallback) {
-						successCallback({coords:position.coords});
+				<h1>dist/geolocation.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;geolocation&#x27;, version:&#x27;1.0.0&#x27;, obj:(function(){
+			
+				var
+					// dictonary
+					_dict = {
+						fr: {
+							search:      &#x27;Recherche de votre positionnement&#x27;,
+							position:    &#x27;Votre position&#x27;,
+							unavailable: &#x27;Service de localisation non-disponible&#x27;,
+							deactivated: &#x27;Service de localisation désactivé&#x27;,
+							notFound:    &#x27;Position indisponible&#x27;,
+							timeout:     &#x27;Délai expiré&#x27;,
+							error:       &#x27;Il y a eu un problème&#x27;
+						},
+						en: {
+							search:      &#x27;Searching your location&#x27;,
+							position:    &#x27;Your position&#x27;,
+							unavailable: &#x27;Location service unavailable&#x27;,
+							deactivated: &#x27;Location service deactivated&#x27;,
+							notFound:    &#x27;Position not found&#x27;,
+							timeout:     &#x27;Timeout&#x27;,
+							error:       &#x27;There has been a problem&#x27;
+						}
+					},
+			
+					// get a valid lang
+					_lang = function(lang) {
+						return kafe.fn.lang(_dict,lang);
 					}
-				},
-
-				// failure
-				function(error) {
-					var msg = &#x27;&#x27;;
-					switch (error.code) {
-						case 1:	msg = d.deactivated; break;
-						case 2:	msg = d.notFound; break;
-						case 3:	msg = d.timeout; break;
+				;
+			
+			
+			
+				/**
+				* ### Version 1.0.0
+				* Methods to access geolocalization information about the client.
+				*
+				* @module kafe
+				* @class kafe.geolocation 
+				*/
+				var geolocation = {};
+			
+				/**
+				* Get the current geolocalization information of the client.
+				*
+				* @method locate
+				* @param {Object} parameters Parameters for the current request.
+				*	@param {String|jQueryObject|DOMElement} [parameters.selector] Element used to show status messages.
+				*	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
+				*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
+				*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
+				* @example
+				*	kafe.geolocation.locate({
+				*		selector: &#x27;#GeoLocStatus&#x27;, lang: &#x27;en&#x27;,
+				*		success: function(coords) {
+				*			console.log(&#x27;latitude: &#x27; + coords.latitude);
+				*			console.log(&#x27;longitude: &#x27; + coords.longitude);
+				*		}
+				*		error: function(msg) {
+				*			console.log(&#x27;Cannot geoloc: &#x27; + msg);
+				*		}
+				*	});
+				* @example
+				*	$(&#x27;#GeoLocStatus&#x27;).kafe(&#x27;geolocation.locate&#x27;, {});
+				*/
+				geolocation.locate = function(options) {
+					var
+						d               = _dict[_lang(options.lang)],
+						$msg            = $(options.selector),
+						errorCallback   = options.error,
+						successCallback = options.success
+					;
+			
+					// if service available
+					if (Modernizr.geolocation) {
+						$msg.html(&#x27;... &#x27;+d.search+&#x27; ...&#x27;);
+			
+						// try to get coords
+						navigator.geolocation.getCurrentPosition(
+			
+							// success
+							function(position) {
+								$msg.html(d.position + &#x27;: &#x27; + position.coords.latitude + &#x27;, &#x27; +  position.coords.longitude);
+								if (!!successCallback) {
+									successCallback({coords:position.coords});
+								}
+							},
+			
+							// failure
+							function(error) {
+								var msg = &#x27;&#x27;;
+								switch (error.code) {
+									case 1:	msg = d.deactivated; break;
+									case 2:	msg = d.notFound; break;
+									case 3:	msg = d.timeout; break;
+								}
+			
+								$msg.html(msg);
+								if (!!errorCallback) {
+									errorCallback({message:msg});
+								}
+							}
+						);
+			
+					// if service unavailable
+					} else {
+						var msg = d.unavailable;
+						$msg.html(msg);
+						if (!!errorCallback) {
+							errorCallback({message:msg});
+						}
 					}
-
-					$msg.html(msg);
-					if (!!errorCallback) {
-						errorCallback({message:msg});
+				};
+			
+			
+				// Add as jQuery plugin
+				kafe.fn.plugIntojQuery(&#x27;&#x27;, {
+					&#x27;geolocation.locate&#x27;: function(obj, parameters) {
+						geolocation.locate($.extend({}, parameters[0], {selector:obj}));
 					}
-				}
-			);
-
-		// if service unavailable
-		} else {
-			var msg = d.unavailable;
-			$msg.html(msg);
-			if (!!errorCallback) {
-				errorCallback({message:msg});
-			}
-		}
-	};
-
-
-	// Add as jQuery plugin
-	kafe.fn.plugIntojQuery(&#x27;&#x27;, {
-		&#x27;geolocation.locate&#x27;: function(obj, parameters) {
-			geolocation.locate($.extend({}, parameters[0], {selector:obj}));
-		}
-	});
-
-
-	return geolocation;
-
-})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
-</pre>
-
+				});
+			
+			
+				return geolocation;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

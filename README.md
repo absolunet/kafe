@@ -4,7 +4,7 @@
 	</a>
 </p>
 
-# kafe ![Bower version][bower-image] 
+# kafe ![Bower version][bower-image]
 #### Mixing javascript crops for a perfect flavour.
 > /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 
@@ -16,7 +16,6 @@ bower install kafe
 ## Dependencies
 - [jQuery](http://jquery.com/)
 - [Lo-Dash](http://lodash.com/)
-- [Underscore.string](http://epeli.github.io/underscore.string/)
 - [Modernizr](http://modernizr.com/)
 
 
@@ -48,10 +47,12 @@ Use the `//= require 'FILENAME'` in the file header to know which files to inclu
 
 ## Documentation
 Visit the [http://absolunet.github.io/kafe](http://absolunet.github.io/kafe) website for all the things.
+
+
 ## Release history
 See the [CHANGELOG](https://github.com/absolunet/kafe/tree/master/CHANGELOG.md).
 
-## License 
+## License
 See the [LICENSE](https://github.com/absolunet/kafe/tree/master/LICENSE.md).
 
 

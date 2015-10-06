@@ -22,11 +22,11 @@
 	<title>dist/kafe.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2014 Absolunet inc. -->
+	<!-- (c) 2015 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -41,401 +41,369 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-	<h1>dist/kafe.js</h1>
-	<h2>File</h2>
-</header>
-
-<pre>
-/*!
- * kafe 3.0.1
- * http://absolunet.github.io/kafe
- *
- * Copyright 2011-2014 Absolunet, http://absolunet.com/
- * Released under the MIT license
- * https://github.com/absolunet/kafe/tree/master/LICENSE.md
- */
-
-/**
-* @module kafe
-* @main kafe
-*/
-(function(global, $, undefined) {
-
-	var
-		// check if module imported
-		_exists = function(name) {
-			try {
-				return eval(&quot;(&quot;+name+&quot; != undefined)&quot;);
-			} catch(e) {
-				return false;
-			}
-		},
-
-		// delete var (try/catch for ie8)
-		_delete = function(name) {
-			try {
-				eval(&quot;delete &quot;+name+&quot;;&quot;);
-			} catch(e) {
-				eval(name+&quot; = undefined;&quot;);
-			}
-		},
-
-		// ie version
-		_ie = (function(){
-			var
-				v = 3,
-				div = document.createElement(&#x27;div&#x27;),
-				all = div.getElementsByTagName(&#x27;i&#x27;)
-			;
-			while ((
-				div.innerHTML = &#x27;&lt;!--[if gt IE &#x27; + (++v) + &#x27;]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]--&gt;&#x27;,
-				all[0]
-			));
-
-			return v &gt; 4 ? v : undefined;
-		})(),
-
-		// jquery methods
-		_jQueryMethods = {},
-
-
-		/**
-		* ### Version 3.0.1
-		* kafe core
-		*
-		* @module kafe
-		* @class kafe
-		*/
-		core = {
-
+				<h1>dist/kafe.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			/*!
+			 * kafe 3.0.2
+			 * http://absolunet.github.io/kafe
+			 *
+			 * Copyright 2011-2015 Absolunet, http://absolunet.com/
+			 * Released under the MIT license
+			 * https://github.com/absolunet/kafe/tree/master/LICENSE.md
+			 */
+			
 			/**
-			* kafe version
-			*
-			* @property VESYON
-			* @type String
-			**/
-			VESYON: &#x27;3.0.1&#x27;,
-
-			/**
-			* kafe author
-			*
-			* @property PARAN
-			* @type String
-			**/
-			PARAN: &#x27;absolunet.com&#x27;,
-
-			/**
-			* Versions of dependencies / kafe modules
-			*
-			* @property chaje
-			* @type Object
-			**/
-			chaje: {
-				&#x27;dependencies.jQuery&#x27;:    $().jquery,
-				&#x27;dependencies.LoDash&#x27;:    _.VERSION,
-				&#x27;dependencies.Modernizr&#x27;: Modernizr._version
-			},
-
-			// isolate core dependencies
-			dependencies: {
-
-				/**
-				* local jQuery copy
-				* ref: [http://jquery.com/](http://jquery.com/)
-				*
-				* @property dependencies.jQuery
-				* @type Object
-				**/
-				jQuery: $
-
-			},
-
-			cms:    {},
-			ext:    {},
-			plugin: {}
-		}
-	;
-
-	// add flags for ie9 and less
-	if (_ie &amp;&amp; _ie &lt; 10) {
-		var classes = [&#x27;is-ie&#x27;+_ie];
-
-		for (var i=6; i&lt;10; ++i) {
-			if (_ie &lt; i) { classes.push(&#x27;lt-ie&#x27;+_ie); }
-			if (_ie &gt; i) { classes.push(&#x27;gt-ie&#x27;+_ie); }
-		}
-
-		$(function() { $(&#x27;html&#x27;).addClass(classes.join(&#x27; &#x27;)); });
-	}
-
-
-	// miscellaneous core functions
-	core.fn = {
-
-		/**
-		* Create a instantiable object
-		* By John Resig (MIT Licensed)
-		* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
-		*
-		* @method fn.createInstantiableObject
-		* @return {Object} The instantiable object
-		*/
-		createInstantiableObject: function() {
-			return function(args){
-				if (this instanceof arguments.callee) {
-					if (typeof this.__constructor == &#x27;function&#x27;) {
-						this.__ = {};
-						this.__constructor.apply(this, (args.callee) ? args : arguments);
+			* @module kafe
+			* @main kafe
+			*/
+			(function(global, $, undefined) {
+			
+				var
+					// check if module imported
+					_exists = function(name) {
+						try {
+							return eval(&quot;(&quot;+name+&quot; != undefined)&quot;);
+						} catch(e) {
+							return false;
+						}
+					},
+			
+					// delete var (try/catch for ie8)
+					_delete = function(name) {
+						try {
+							eval(&quot;delete &quot;+name+&quot;;&quot;);
+						} catch(e) {
+							eval(name+&quot; = undefined;&quot;);
+						}
+					},
+			
+					// ie version
+					_ie = (function(){
+						var
+							v = 3,
+							div = document.createElement(&#x27;div&#x27;),
+							all = div.getElementsByTagName(&#x27;i&#x27;)
+						;
+						while ((
+							div.innerHTML = &#x27;&lt;!--[if gt IE &#x27; + (++v) + &#x27;]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]--&gt;&#x27;,
+							all[0]
+						));
+			
+						return v &gt; 4 ? v : undefined;
+					})(),
+			
+					// jquery methods
+					_jQueryMethods = {},
+			
+			
+					/**
+					* ### Version 3.0.2
+					* kafe core
+					*
+					* @module kafe
+					* @class kafe
+					*/
+					core = {
+			
+						/**
+						* kafe version
+						*
+						* @property VESYON
+						* @type String
+						**/
+						VESYON: &#x27;3.0.2&#x27;,
+			
+						/**
+						* kafe author
+						*
+						* @property PARAN
+						* @type String
+						**/
+						PARAN: &#x27;absolunet.com&#x27;,
+			
+						/**
+						* Versions of dependencies / kafe modules
+						*
+						* @property chaje
+						* @type Object
+						**/
+						chaje: {
+							&#x27;dependencies.jQuery&#x27;:    $().jquery,
+							&#x27;dependencies.LoDash&#x27;:    _.VERSION,
+							&#x27;dependencies.Modernizr&#x27;: Modernizr._version
+						},
+			
+						// isolate core dependencies
+						dependencies: {
+			
+							/**
+							* local jQuery copy
+							* ref: [http://jquery.com/](http://jquery.com/)
+							*
+							* @property dependencies.jQuery
+							* @type Object
+							**/
+							jQuery: $
+			
+						},
+			
+						cms:    {},
+						ext:    {},
+						plugin: {}
 					}
-				} else {
-					return new arguments.callee(arguments);
+				;
+			
+				// add flags for ie9 and less
+				if (_ie &amp;&amp; _ie &lt; 10) {
+					var classes = [&#x27;is-ie&#x27;+_ie];
+			
+					for (var i=6; i&lt;10; ++i) {
+						if (_ie &lt; i) { classes.push(&#x27;lt-ie&#x27;+_ie); }
+						if (_ie &gt; i) { classes.push(&#x27;gt-ie&#x27;+_ie); }
+					}
+			
+					$(function() { $(&#x27;html&#x27;).addClass(classes.join(&#x27; &#x27;)); });
 				}
-			};
-		},
-
-
-		/**
-		* Return the language if available or else &#x27;en&#x27;
-		*
-		* @method fn.lang
-		* @param {Object} dict The dictionary to check against
-		* @param {String} lang The language to check
-		* @return {String} The available language
-		*/
-		lang: function(dict, lang) {
-			lang = (!!lang) ? lang : core.env(&#x27;lang&#x27;);
-			return (!!dict[lang]) ? lang : &#x27;en&#x27;;
-		},
-
-
-		/**
-		* Delete the variable (patch for ie8)
-		*
-		* @method fn.deleteVar
-		* @param {String} name Name of the variable to delete
-		*/
-		deleteVar: function(name) {
-			_delete(name);
-		},
-
-
-		/**
-		* Add method as jQuery plugin
-		*
-		* @method fn.plugIntojQuery
-		* @param {String} name The jQuery plugin name
-		* @param {Object[Function]} methods Action:Method hash
-		*/
-		plugIntojQuery: function(name, methods) {
-			var id = &#x27;kafe&#x27;+name;
-			name = name || &#x27;CORE&#x27;;
-
-			if ($.fn[id] === undefined) {
-				_jQueryMethods[name] = {};
-
-				$.fn[id] = function() {
-					var args = $.makeArray(arguments);
-					var method = args.shift();
-					return this.each(function() {
-						_jQueryMethods[name][method]( this, args );
-					});
+			
+			
+				// miscellaneous core functions
+				core.fn = {
+			
+					/**
+					* Create a instantiable object
+					* By John Resig (MIT Licensed)
+					* ref: [http://ejohn.org/blog/simple-class-instantiation/](http://ejohn.org/blog/simple-class-instantiation/)
+					*
+					* @method fn.createInstantiableObject
+					* @return {Object} The instantiable object
+					*/
+					createInstantiableObject: function() {
+						return function(args){
+							if (this instanceof arguments.callee) {
+								if (typeof this.__constructor == &#x27;function&#x27;) {
+									this.__ = {};
+									this.__constructor.apply(this, (args.callee) ? args : arguments);
+								}
+							} else {
+								return new arguments.callee(arguments);
+							}
+						};
+					},
+			
+			
+					/**
+					* Return the language if available or else &#x27;en&#x27;
+					*
+					* @method fn.lang
+					* @param {Object} dict The dictionary to check against
+					* @param {String} lang The language to check
+					* @return {String} The available language
+					*/
+					lang: function(dict, lang) {
+						lang = (!!lang) ? lang : core.env(&#x27;lang&#x27;);
+						return (!!dict[lang]) ? lang : &#x27;en&#x27;;
+					},
+			
+			
+					/**
+					* Delete the variable (patch for ie8)
+					*
+					* @method fn.deleteVar
+					* @param {String} name Name of the variable to delete
+					*/
+					deleteVar: function(name) {
+						_delete(name);
+					},
+			
+			
+					/**
+					* Add method as jQuery plugin
+					*
+					* @method fn.plugIntojQuery
+					* @param {String} name The jQuery plugin name
+					* @param {Object[Function]} methods Action:Method hash
+					*/
+					plugIntojQuery: function(name, methods) {
+						var id = &#x27;kafe&#x27;+name;
+						name = name || &#x27;CORE&#x27;;
+			
+						if ($.fn[id] === undefined) {
+							_jQueryMethods[name] = {};
+			
+							$.fn[id] = function() {
+								var args = $.makeArray(arguments);
+								var method = args.shift();
+								return this.each(function() {
+									_jQueryMethods[name][method]( this, args );
+								});
+							};
+						}
+			
+						$.extend(_jQueryMethods[name], methods);
+					}
 				};
-			}
-
-			$.extend(_jQueryMethods[name], methods);
-		}
-	};
-
-
-
-	/**
-	* Environment constants
-	*
-	* @method env
-	* @param {String} name The constant to get/set
-	* @param {String} [value] The value to set
-	* @return {String} The value of the environment constant
-	*/
-	core.env = (function(){
-
-		// base vals
-		var _data = {
-			culture: &#x27;&#x27;,
-			lang:    &#x27;&#x27;,
-			page:    &#x27;&#x27;,
-			tmpl:    &#x27;&#x27;,
-			ie:      _ie
-		};
-
-		// grab kafe env
-		_data.culture = document.documentElement.id.toLowerCase()   || &#x27;&#x27;;
-		_data.lang    = document.documentElement.lang.toLowerCase() || &#x27;&#x27;;
-		_data.page    = document.documentElement.getAttribute(&#x27;data-kafe-page&#x27;) || &#x27;&#x27;;
-		_data.tmpl    = document.documentElement.getAttribute(&#x27;data-kafe-tmpl&#x27;) || &#x27;&#x27;;
-		_data.tmpl    = _data.tmpl.split(&#x27; &#x27;);
-
-		// public method
-		return function(name, value) {
-			var updatable = &#x27;&#x27;;
-
-			if (value !== undefined) {
-
-				// if not already set
-				if (!(_data[name] !== undefined &amp;&amp; updatable.search(new RegExp(&#x27;:&#x27;+name+&#x27;:&#x27;)) == -1)) {
-					_data[name] = value;
-
-				// throw error
-				} else {
-					throw core.error(new Error(&quot;kafe.env &gt; property &#x27;&quot;+name+&quot;&#x27; already defined&quot;));
+			
+			
+			
+				/**
+				* Environment constants
+				*
+				* @method env
+				* @param {String} name The constant to get/set
+				* @param {String} [value] The value to set
+				* @return {String} The value of the environment constant
+				*/
+				core.env = (function(){
+			
+					// base vals
+					var _data = {
+						culture: &#x27;&#x27;,
+						lang:    &#x27;&#x27;,
+						page:    &#x27;&#x27;,
+						tmpl:    &#x27;&#x27;,
+						ie:      _ie
+					};
+			
+					// grab kafe env
+					_data.culture = document.documentElement.id.toLowerCase()   || &#x27;&#x27;;
+					_data.lang    = document.documentElement.lang.toLowerCase() || &#x27;&#x27;;
+					_data.page    = document.documentElement.getAttribute(&#x27;data-kafe-page&#x27;) || &#x27;&#x27;;
+					_data.tmpl    = document.documentElement.getAttribute(&#x27;data-kafe-tmpl&#x27;) || &#x27;&#x27;;
+					_data.tmpl    = _data.tmpl.split(&#x27; &#x27;);
+			
+					// public method
+					return function(name, value) {
+						var updatable = &#x27;&#x27;;
+			
+						if (value !== undefined) {
+			
+							// if not already set
+							if (!(_data[name] !== undefined &amp;&amp; updatable.search(new RegExp(&#x27;:&#x27;+name+&#x27;:&#x27;)) == -1)) {
+								_data[name] = value;
+			
+							// throw error
+							} else {
+								throw core.error(new Error(&quot;kafe.env &gt; property &#x27;&quot;+name+&quot;&#x27; already defined&quot;));
+							}
+						}
+			
+						return _data[name];
+					};
+				})();
+			
+			
+				/**
+				* Add module to core
+				*
+				* @method bonify
+				* @param {Object} options The options
+				*	@param {String} options.name The module name
+				*	@param {String} options.version The module version
+				*	@param {Object} options.obj The module itself
+				*/
+				core.bonify = function(options) {
+			
+					// if not already extended
+					if (!_exists(&#x27;core.&#x27;+options.name)) {
+			
+						core.chaje[options.name] = options.version;
+						eval(&#x27;this.&#x27;+options.name+&#x27; = arguments[0].obj;&#x27;);
+			
+					// throw error
+					} else {
+						throw core.error(&#x27;kafe.&#x27;+options.name+&#x27; already exists&#x27;);
+					}
+				};
+			
+			
+				/**
+				* Throw kafe errors
+				*
+				* @method error
+				* @param {Error} error The error with description
+				* @return {Error} error The error
+				* @example
+				*	kafe.error(new Error(&#x27;barf&#x27;));
+				*/
+				core.error = function(e) {
+					var msg = ((!!e.description) ? e.description : e.message);
+					e.description = e.message = &#x27;&lt;kafe:erè&gt; : &#x27;+ ((!!msg) ? msg : &#x27;anonim&#x27;);
+					return (_ie &amp;&amp; _ie == 8) ? new Error(e) : e;
+				};
+			
+			
+				global.kafe = core;
+			
+			})(typeof window !== &#x27;undefined&#x27; ? window : this, jQuery);
+			
+			
+			
+			
+			
+			// Avoid &#x60;console&#x60; errors in browsers that lack a console.
+			// (c) HTML5 Boilerplate
+			(function() {
+				var method;
+				var noop = function () {};
+				var methods = [
+					&#x27;assert&#x27;, &#x27;clear&#x27;, &#x27;count&#x27;, &#x27;debug&#x27;, &#x27;dir&#x27;, &#x27;dirxml&#x27;, &#x27;error&#x27;,
+					&#x27;exception&#x27;, &#x27;group&#x27;, &#x27;groupCollapsed&#x27;, &#x27;groupEnd&#x27;, &#x27;info&#x27;, &#x27;log&#x27;,
+					&#x27;markTimeline&#x27;, &#x27;profile&#x27;, &#x27;profileEnd&#x27;, &#x27;table&#x27;, &#x27;time&#x27;, &#x27;timeEnd&#x27;,
+					&#x27;timeStamp&#x27;, &#x27;trace&#x27;, &#x27;warn&#x27;
+				];
+				var length = methods.length;
+				var console = (window.console = window.console || {});
+			
+				while (length--) {
+					method = methods[length];
+			
+					// Only stub undefined methods.
+					if (!console[method]) {
+						console[method] = noop;
+					}
 				}
-			}
-
-			return _data[name];
-		};
-	})();
-
-
-	/**
-	* Add module to core
-	*
-	* @method bonify
-	* @param {Object} options The options
-	*	@param {String} options.name The module name
-	*	@param {String} options.version The module version
-	*	@param {Object} options.obj The module itself
-	*/
-	core.bonify = function(options) {
-
-		// if not already extended
-		if (!_exists(&#x27;core.&#x27;+options.name)) {
-
-			core.chaje[options.name] = options.version;
-			eval(&#x27;this.&#x27;+options.name+&#x27; = arguments[0].obj;&#x27;);
-
-		// throw error
-		} else {
-			throw core.error(&#x27;kafe.&#x27;+options.name+&#x27; already exists&#x27;);
-		}
-	};
-
-
-	/**
-	* Throw kafe errors
-	*
-	* @method error
-	* @param {Error} error The error with description
-	* @return {Error} error The error
-	* @example
-	*	kafe.error(new Error(&#x27;barf&#x27;));
-	*/
-	core.error = function(e) {
-		var msg = ((!!e.description) ? e.description : e.message);
-		e.description = e.message = &#x27;&lt;kafe:erè&gt; : &#x27;+ ((!!msg) ? msg : &#x27;anonim&#x27;);
-		return (_ie &amp;&amp; _ie == 8) ? new Error(e) : e;
-	};
-
-
-	global.kafe = core;
-
-})(typeof window !== &#x27;undefined&#x27; ? window : this, jQuery);
-
-
-
-
-
-// Avoid &#x60;console&#x60; errors in browsers that lack a console.
-// (c) HTML5 Boilerplate
-(function() {
-	var method;
-	var noop = function () {};
-	var methods = [
-		&#x27;assert&#x27;, &#x27;clear&#x27;, &#x27;count&#x27;, &#x27;debug&#x27;, &#x27;dir&#x27;, &#x27;dirxml&#x27;, &#x27;error&#x27;,
-		&#x27;exception&#x27;, &#x27;group&#x27;, &#x27;groupCollapsed&#x27;, &#x27;groupEnd&#x27;, &#x27;info&#x27;, &#x27;log&#x27;,
-		&#x27;markTimeline&#x27;, &#x27;profile&#x27;, &#x27;profileEnd&#x27;, &#x27;table&#x27;, &#x27;time&#x27;, &#x27;timeEnd&#x27;,
-		&#x27;timeStamp&#x27;, &#x27;trace&#x27;, &#x27;warn&#x27;
-	];
-	var length = methods.length;
-	var console = (window.console = window.console || {});
-
-	while (length--) {
-		method = methods[length];
-
-		// Only stub undefined methods.
-		if (!console[method]) {
-			console[method] = noop;
-		}
-	}
-}());
-</pre>
-
+			}());
+			</pre>
 		</section>
 		<nav>
 			<ul>
-    
-        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
-    
-        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
-    
-        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
-    
-        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
-    
-        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
-    
-        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
-    
-        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
-    
-        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
-    
-        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
-    
-        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
-    
-        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
-    
-        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
-    
-</ul>
-
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2014 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->
