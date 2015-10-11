@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.social', version:'0.2.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.social', version:'0.2.1', obj:(function(){
 
 	var
 		getAbsoluteUrl = function(href) {
@@ -119,7 +119,7 @@
 
 
 	/**
-	* ### Version 0.2.0
+	* ### Version 0.2.1
 	* Social tools
 	*
 	* @module kafe.plugin
