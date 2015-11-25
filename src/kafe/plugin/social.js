@@ -25,6 +25,20 @@
 				counter:    { none: 'button', horizontal: 'button_count', vertical: 'box_count'},
 				locale:     { fr: 'fr_FR', en: 'en_US'},
 			},
+			houzz: {
+				url:        'http://www.houzz.com/imageClipperUpload?link=<%= url %>&source=button&hzid=<%= hzid %>&imageUrl=<%= media %>&title=<%= text %>&ref=<%= url %>',
+				width:      '675',
+				height:     '368',
+				script:     { 
+								url:   '//platform.houzz.com/js/widgets.js',
+								inner: ''
+							},
+				button:     '<a class="houzz-share-button" data-url="<%= url %>" data-hzid="<%= hzid %>" data-img="<%= media %>" data-title="<%= text %>" data-desc="<%= text %>" data-category="" data-showcount="<%= counter %>" href="http://www.houzz.com"></a>',
+				loaded:     false,
+				size:       { default: '' },
+				counter:    { none: '0', horizontal: '1'},
+				locale:     { fr: 'fr_FR', en: 'en_US'},
+			},
 			twitter: {
 				url:        'https://twitter.com/intent/tweet?url=<%= url %>&text=<%= text %>&related=<%= related %>&lang=<%= lang %>',
 				width:      '550',
@@ -167,6 +181,7 @@
 	*
 	* @example
 	*	<span data-kafesocial-action="genuine" data-kafesocial-network="facebook" data-kafesocial-options='{ "appid":"1514943792075126" }'></span>
+	*	<span data-kafesocial-action="genuine" data-kafesocial-network="houzz" data-kafesocial-options='{ "hzid":"26660", "url":"http://www.flickr.com/photos/kentbrew/6851755809/", "media":"http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg" }'></span>
 	*	<span data-kafesocial-action="genuine" data-kafesocial-network="twitter"></span>
 	*	<span data-kafesocial-action="genuine" data-kafesocial-network="linkedin"></span>
 	*	<span data-kafesocial-action="genuine" data-kafesocial-network="googleplus"></span>
@@ -185,6 +200,7 @@
 	// https://developers.facebook.com/docs/plugins/like-button
 	// http://business.pinterest.com/en/widget-builder#do_pin_it_button
 	// https://developer.linkedin.com/plugins/share-plugin-generator
+	// http://www.houzz.com/buttonsAndBadges
 
 	social.initGenuineButtons = function(options) {
 		genuine_options = $.extend({}, genuine_options, options || {});

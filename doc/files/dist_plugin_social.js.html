@@ -46,7 +46,7 @@
 			</header>
 			
 			<pre>
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.social&#x27;, version:&#x27;0.2.0&#x27;, obj:(function(){
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.social&#x27;, version:&#x27;0.2.1&#x27;, obj:(function(){
 			
 				var
 					getAbsoluteUrl = function(href) {
@@ -71,6 +71,20 @@
 							loaded:     false,
 							size:       { default: &#x27;&#x27; },
 							counter:    { none: &#x27;button&#x27;, horizontal: &#x27;button_count&#x27;, vertical: &#x27;box_count&#x27;},
+							locale:     { fr: &#x27;fr_FR&#x27;, en: &#x27;en_US&#x27;},
+						},
+						houzz: {
+							url:        &#x27;http://www.houzz.com/imageClipperUpload?link=&lt;%= url %&gt;&amp;source=button&amp;hzid=&lt;%= hzid %&gt;&amp;imageUrl=&lt;%= media %&gt;&amp;title=&lt;%= text %&gt;&amp;ref=&lt;%= url %&gt;&#x27;,
+							width:      &#x27;675&#x27;,
+							height:     &#x27;368&#x27;,
+							script:     { 
+											url:   &#x27;//platform.houzz.com/js/widgets.js&#x27;,
+											inner: &#x27;&#x27;
+										},
+							button:     &#x27;&lt;a class=&quot;houzz-share-button&quot; data-url=&quot;&lt;%= url %&gt;&quot; data-hzid=&quot;&lt;%= hzid %&gt;&quot; data-img=&quot;&lt;%= media %&gt;&quot; data-title=&quot;&lt;%= text %&gt;&quot; data-desc=&quot;&lt;%= text %&gt;&quot; data-category=&quot;&quot; data-showcount=&quot;&lt;%= counter %&gt;&quot; href=&quot;http://www.houzz.com&quot;&gt;&lt;/a&gt;&#x27;,
+							loaded:     false,
+							size:       { default: &#x27;&#x27; },
+							counter:    { none: &#x27;0&#x27;, horizontal: &#x27;1&#x27;},
 							locale:     { fr: &#x27;fr_FR&#x27;, en: &#x27;en_US&#x27;},
 						},
 						twitter: {
@@ -153,7 +167,7 @@
 			
 			
 				/**
-				* ### Version 0.2.0
+				* ### Version 0.2.1
 				* Social tools
 				*
 				* @module kafe.plugin
@@ -215,6 +229,7 @@
 				*
 				* @example
 				*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;facebook&quot; data-kafesocial-options=&#x27;{ &quot;appid&quot;:&quot;1514943792075126&quot; }&#x27;&gt;&lt;/span&gt;
+				*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;houzz&quot; data-kafesocial-options=&#x27;{ &quot;hzid&quot;:&quot;26660&quot;, &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }&#x27;&gt;&lt;/span&gt;
 				*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;/span&gt;
 				*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;&lt;/span&gt;
 				*	&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;&lt;/span&gt;
@@ -233,6 +248,7 @@
 				// https://developers.facebook.com/docs/plugins/like-button
 				// http://business.pinterest.com/en/widget-builder#do_pin_it_button
 				// https://developer.linkedin.com/plugins/share-plugin-generator
+				// http://www.houzz.com/buttonsAndBadges
 			
 				social.initGenuineButtons = function(options) {
 					genuine_options = $.extend({}, genuine_options, options || {});
@@ -290,6 +306,7 @@
 			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>

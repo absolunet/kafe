@@ -19,7 +19,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
-	<title>kafe.number - kafe</title>
+	<title>kafe.ext.googletagmanager - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2015 Absolunet inc. -->
@@ -41,13 +41,14 @@
 	<div id="Content">
 		<section>
 			<header class="class">
-				<h1>kafe.number</h1>
+				<h1>kafe.ext.googletagmanager</h1>
 				<h2>Class</h2>
-				<h3>Version 1.0.0</h3>
-			<p>Additionnal manipulation methods for numbers.</p>
+				<h3>Version 0.0.1</h3>
+			<p>Extra methods for the Google Tag Manager.
+			Requires GTM to be included</p>
 			
 				<div>
-					<span>Source: <a href="../files/dist_number.js.html#l3">dist/number.js</a></span>
+					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l33">dist/ext/googletagmanager.js</a></span>
 				</div>
 			</header>
 			
@@ -55,21 +56,22 @@
 			<section>
 				<h1>Methods</h1>
 					<section>
-						<h1>getPrecision</h1>
-						<footer><a href="../files/dist_number.js.html#l48">@48</a></footer>
+						<h1>addEvents</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l43">@43</a></footer>
 					
-						<p>Gets the float precision of a given number.</p>
+						<p>Add named events to the list of possible event to be triggered, with the possibility of replacement tokens.
+					Default tokens provided:
+					- {{uri}}: Current pathname</p>
 					
 					
 						<header>
-							<strong>getPrecision</strong>
+							<strong>addEvents</strong>
 								<ul>
 					
-										<li><code class="Simple">number</code></li>
+										<li><code class="Simple">events</code></li>
 					
 								</ul>
 					
-								<span>Number</span>
 						</header>
 					
 					
@@ -83,51 +85,80 @@
 					
 								<ul>
 									<li>
-											<code>number</code>
-											<strong>Number</strong>
-										 
+											<code>events</code>
+											<strong>Object</strong>
+										<p>List of possible events and their config</p>
 					
 					
+					
+											<ul>
+												<li>
+														<code>category</code>
+														<strong>String</strong>
+													<p>The <code>eventCategory</code> value.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>action</code>
+														<strong>String</strong>
+													<p>The <code>eventAction</code> value.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>label</code>
+														<strong>String</strong>
+													<p>The <code>eventLabel</code> value.</p>
+					
+					
+					
+												</li>
+											</ul>
 					
 									</li>
 								</ul>
 							</section>
 					
-							<section class="Return">
-								<h1>Returns:</h1>
-								<strong>Number</strong>
-								<p>Amount of numbers after the radix point.</p>
-					
-							</section>
 					
 							<section>
 								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.number.getPrecision(5.458);
-					// returns 3</code></pre>
-					<pre class="code prettyprint"><code>kafe.number.getPrecision(11);
-					// returns 0</code></pre>
+								<pre class="code prettyprint"><code>// Create named events
+					kafe.ext.googletagmanager.addEvents({
+					    'newsletter-subscribed': {
+					        category: 'Subscription',
+					        action:   'Newsletter',
+					        label:    '{{uri}}'
+					    },
+					    'product-addedtocart': {
+					        category: 'Cart',
+					        action:   'Product added - {{uri}}',
+					        label:    '{{productname}}'
+					    }
+					});</code></pre>
 					
 							</section>
 					</section>
 					<section>
-						<h1>product</h1>
-						<footer><a href="../files/dist_number.js.html#l87">@87</a></footer>
+						<h1>triggerEvent</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l74">@74</a></footer>
 					
-						<p>Multiply two numbers while avoiding the javascript multiplication irregularities.</p>
+						<p>Push a <code>ga_event</code> into the <code>dataLayer</code>.</p>
 					
 					
 						<header>
-							<strong>product</strong>
+							<strong>triggerEvent</strong>
 								<ul>
 					
-										<li><code class="Simple">number</code></li>
+										<li><code class="Simple">event</code></li>
 					
 					
-										<li><code class="Simple">factor</code></li>
+										<li class="Optional"><code>options</code></li>
 					
 								</ul>
 					
-								<span>Number</span>
 						</header>
 					
 					
@@ -141,17 +172,19 @@
 					
 								<ul>
 									<li>
-											<code>number</code>
-											<strong>Number</strong>
-										 
+											<code>event</code>
+											<strong>String</strong>
+										<p>Event name</p>
+					
 					
 					
 					
 									</li>
 									<li>
-											<code>factor</code>
-											<strong>Number</strong>
-										<p>The factor causing the javascript calculation irregularity.</p>
+											<code>[options]</code>
+											<strong>Object</strong>
+											<span>Optional</span>
+										<p>List of replacement tokens</p>
 					
 					
 					
@@ -160,141 +193,10 @@
 								</ul>
 							</section>
 					
-							<section class="Return">
-								<h1>Returns:</h1>
-								<strong>Number</strong>
-								<p>Product of the equation.</p>
-					
-							</section>
 					
 							<section>
 								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>3 * 5.3
-					// returns 15.8999999</code></pre>
-					<pre class="code prettyprint"><code>kafe.number.product(3, 5.3);
-					// returns 15.9</code></pre>
-					
-							</section>
-					</section>
-					<section>
-						<h1>toRoman</h1>
-						<footer><a href="../files/dist_number.js.html#l12">@12</a></footer>
-					
-						<p>Converts a number to its roman numeral value.</p>
-					
-					
-						<header>
-							<strong>toRoman</strong>
-								<ul>
-					
-										<li><code class="Simple">number</code></li>
-					
-								</ul>
-					
-								<span>String</span>
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>number</code>
-											<strong>Number</strong>
-										 
-					
-					
-					
-									</li>
-								</ul>
-							</section>
-					
-							<section class="Return">
-								<h1>Returns:</h1>
-								<strong>String</strong>
-								<p>The roman numeral value.</p>
-					
-							</section>
-					
-							<section>
-								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.number.toRoman(1954);
-					// returns &quot;MCMLIV&quot;</code></pre>
-					
-							</section>
-					</section>
-					<section>
-						<h1>trimPrecision</h1>
-						<footer><a href="../files/dist_number.js.html#l66">@66</a></footer>
-					
-						<p>Modifies, if needed, a number to only allow a miximum float precision.</p>
-					
-					
-						<header>
-							<strong>trimPrecision</strong>
-								<ul>
-					
-										<li><code class="Simple">number</code></li>
-					
-					
-										<li><code class="Simple">precision</code></li>
-					
-								</ul>
-					
-								<span>Number</span>
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>number</code>
-											<strong>Number</strong>
-										 
-					
-					
-					
-									</li>
-									<li>
-											<code>precision</code>
-											<strong>Number</strong>
-										<p>Maximum amount of numbers after the radix point.</p>
-					
-					
-					
-					
-									</li>
-								</ul>
-							</section>
-					
-							<section class="Return">
-								<h1>Returns:</h1>
-								<strong>Number</strong>
-								<p>The modified number</p>
-					
-							</section>
-					
-							<section>
-								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 2);
-					// returns 5.45</code></pre>
-					<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 0);
-					// returns 5</code></pre>
-					<pre class="code prettyprint"><code>kafe.number.trimPrecision(5.458, 6);
-					// returns 5.458</code></pre>
+								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.triggerEvent('product-addedtocart', { productname: 'Sexy rainbow pants' });</code></pre>
 					
 							</section>
 					</section>
