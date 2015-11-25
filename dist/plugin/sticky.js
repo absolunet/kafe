@@ -95,10 +95,15 @@
 					if (position !== 0 && position >= tippingTop && (!contain || position <= tippingBottom)) {
 
 						// calculate offset left
+						var $e2 = $e.clone();
+						$e.after($e2);
+
 						var attrT = { position: 'absolute' };
 						attrT[align] = originalHori;
-						$e.css(attrT);
-						var offsetLeft = $e.offset().left;
+						$e2.css(attrT);
+						var offsetLeft = $e2.offset().left;
+
+						$e2.remove();
 
 						// stick it
 						attr = {
