@@ -32,9 +32,9 @@
 	],
 
 	"devDependencies": {
-		"qunit":     "^1.20.0"
+		"qunit":     "^1.20.0",
 		"modernizr": "^3.2.0",
-		"lodash":    "^3.10.1",
+		"lodash":    "^3.10.1"
 	},
 
 	"dependencies": {
