@@ -48,7 +48,6 @@
 	* @class <!-- @echo NAME_FULL -->
 	*/
 	var sitecore = {};
-	kafe.env('sitecore-editor', $('html').data('<!-- @echo NAME_ATTR -->') === true);
 
 	/**
 	* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
@@ -113,7 +112,7 @@
 				placeholders:$(_placeholders)
 			};
 		};
-		
+
 		/*--- Config ---*/
 		var _showToolbox = false;
 		var _toolboxOpenClass = 'open';

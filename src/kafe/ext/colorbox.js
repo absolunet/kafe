@@ -43,7 +43,7 @@
 	});
 
 	// change controls text
-	if (kafe.env('lang') == 'fr') {
+	if (kafe.env.lang === 'fr') {
 		$.extend($.colorbox.settings, {
 			current:        'image {current} sur {total}',
 			previous:       'pr&eacute;c&eacute;dente',

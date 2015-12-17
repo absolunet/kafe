@@ -62,7 +62,7 @@
 				if (d.getElementById(id)) return;
 				js = d.createElement(s); js.id = id;
 				js.async = true;
-				js.src = '//connect.facebook.net/' + _locale[kafe.env('lang')] + '/all.js#xfbml=1';
+				js.src = '//connect.facebook.net/' + _locale[kafe.env.lang] + '/all.js#xfbml=1';
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		}
@@ -120,9 +120,9 @@
 		var p = facebook.getParams(arguments[0]);
 
 		if (p.app_id) {
-			
+
 			global.fbAsyncInit = function() {
-				
+
 				// Starts a relation with the Facebook app.
 				FB.init({
 					appId: p.app_id,
@@ -130,14 +130,14 @@
 					cookie: p.cookie, // enable cookies to allow the server to access the session
 					xfbml: p.xfbml    // parse XFBML
 				});
-				
+
 				// Listen to status changes to apply layout changes accordingly.
 				FB.Event.subscribe('auth.statusChange', _handleResponse);
-				
+
 				// Apply immediate layout changes depending of user login status.
 				FB.getLoginStatus(_handleResponse);
 			};
-			
+
 		} else {
 			throw kafe.error(new Error('Facebook requires an app_id to be initiated.'));
 		}
@@ -173,7 +173,7 @@
 	facebook.logout = function(callback) {
 		FB.logout(callback);
 	};
-	
+
 
 	/**
 	* Get the session.
@@ -217,7 +217,7 @@
 						return false;
 					}
 				});
-				
+
 				return _found;
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

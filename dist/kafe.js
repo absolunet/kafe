@@ -1,5 +1,5 @@
 /*!
- * kafe 3.0.4
+ * kafe 3.1.0
  * http://absolunet.github.io/kafe
  *
  * Copyright 2011-2015 Absolunet, http://absolunet.com/
@@ -52,7 +52,7 @@
 
 
 		/**
-		* ### Version 3.0.4
+		* ### Version 3.1.0
 		* kafe core
 		*
 		* @module kafe
@@ -66,7 +66,7 @@
 			* @property VESYON
 			* @type String
 			**/
-			VESYON: '3.0.4',
+			VESYON: '3.1.0',
 
 			/**
 			* kafe author
@@ -84,7 +84,7 @@
 			**/
 			chaje: {
 				'dependencies.jQuery':    $().jquery,
-				'dependencies.LoDash':    _.VERSION,
+				'dependencies.lodash':    _.VERSION,
 				'dependencies.Modernizr': Modernizr._version
 			},
 
@@ -107,18 +107,6 @@
 			plugin: {}
 		}
 	;
-
-	// add flags for ie9 and less
-	if (_ie && _ie < 10) {
-		var classes = ['is-ie'+_ie];
-
-		for (var i=6; i<10; ++i) {
-			if (_ie < i) { classes.push('lt-ie'+_ie); }
-			if (_ie > i) { classes.push('gt-ie'+_ie); }
-		}
-
-		$(function() { $('html').addClass(classes.join(' ')); });
-	}
 
 
 	// miscellaneous core functions
@@ -155,7 +143,7 @@
 		* @return {String} The available language
 		*/
 		lang: function(dict, lang) {
-			lang = (!!lang) ? lang : core.env('lang');
+			lang = (!!lang) ? lang : core.env.lang;
 			return (!!dict[lang]) ? lang : 'en';
 		},
 
@@ -200,51 +188,25 @@
 
 
 
-	/**
-	* Environment constants
-	*
-	* @method env
-	* @param {String} name The constant to get/set
-	* @param {String} [value] The value to set
-	* @return {String} The value of the environment constant
-	*/
-	core.env = (function(){
+	// environment constants
+	core.env = {
 
-		// base vals
-		var _data = {
-			culture: '',
-			lang:    '',
-			page:    '',
-			tmpl:    '',
-			ie:      _ie
-		};
+		/**
+		* Current lang
+		*
+		* @property env.lang
+		* @type String
+		**/
+		lang: document.documentElement.lang.toLowerCase().substr(0,2),
 
-		// grab kafe env
-		_data.culture = document.documentElement.id.toLowerCase()   || '';
-		_data.lang    = document.documentElement.lang.toLowerCase() || '';
-		_data.page    = document.documentElement.getAttribute('data-kafe-page') || '';
-		_data.tmpl    = document.documentElement.getAttribute('data-kafe-tmpl') || '';
-		_data.tmpl    = _data.tmpl.split(' ');
-
-		// public method
-		return function(name, value) {
-			var updatable = '';
-
-			if (value !== undefined) {
-
-				// if not already set
-				if (!(_data[name] !== undefined && updatable.search(new RegExp(':'+name+':')) == -1)) {
-					_data[name] = value;
-
-				// throw error
-				} else {
-					throw core.error(new Error("kafe.env > property '"+name+"' already defined"));
-				}
-			}
-
-			return _data[name];
-		};
-	})();
+		/**
+		* Internet Explorer version
+		*
+		* @property env.ie
+		* @type Number
+		**/
+		ie: _ie
+	};
 
 
 	/**
@@ -290,31 +252,3 @@
 	global.kafe = core;
 
 })(typeof window !== 'undefined' ? window : this, jQuery);
-
-
-
-
-
-// Avoid `console` errors in browsers that lack a console.
-// (c) HTML5 Boilerplate
-(function() {
-	var method;
-	var noop = function () {};
-	var methods = [
-		'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-		'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-		'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-		'timeStamp', 'trace', 'warn'
-	];
-	var length = methods.length;
-	var console = (window.console = window.console || {});
-
-	while (length--) {
-		method = methods[length];
-
-		// Only stub undefined methods.
-		if (!console[method]) {
-			console[method] = noop;
-		}
-	}
-}());

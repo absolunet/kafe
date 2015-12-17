@@ -1,5 +1,16 @@
 # kafe changelog
 
+## 3.1.0 (2015-12-17)
+- Cleanup kafe core
+- Cleanup non-bower dependencies
+
+## 3.0.4 (2015-11-25)
+- Added GTM extension
+- Added Houzz
+
+## 3.0.3 (2015-11-25)
+- Correction to plugin.sticky
+
 ## 3.0.2 (2015-10-06)
 - Updates
 

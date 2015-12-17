@@ -154,7 +154,7 @@
 
 				var
 					$this = $(this),
-					delay = (kafe.env('ie') && kafe.env('ie') < 9) ? 1 : 0
+					delay = (kafe.env.ie && kafe.env.ie < 9) ? 1 : 0
 				;
 
 				setTimeout(function(){
@@ -260,7 +260,7 @@
 
 				var
 					$this = $(this),
-					delay = (kafe.env('ie') && kafe.env('ie') < 9) ? 1 : 0
+					delay = (kafe.env.ie && kafe.env.ie < 9) ? 1 : 0
 				;
 
 				setTimeout(function(){

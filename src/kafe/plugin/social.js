@@ -15,7 +15,7 @@
 				url:        'https://www.facebook.com/sharer/sharer.php?u=<%= url %>&lang=<%= lang %>',
 				width:      '675',
 				height:     '368',
-				script:     { 
+				script:     {
 								url:   '//connect.facebook.net/<%= lang %>/sdk.js#xfbml=1&appId=<%= appid %>&version=v2.0',
 								inner: ''
 							},
@@ -29,7 +29,7 @@
 				url:        'http://www.houzz.com/imageClipperUpload?link=<%= url %>&source=button&hzid=<%= hzid %>&imageUrl=<%= media %>&title=<%= text %>&ref=<%= url %>',
 				width:      '675',
 				height:     '368',
-				script:     { 
+				script:     {
 								url:   '//platform.houzz.com/js/widgets.js',
 								inner: ''
 							},
@@ -43,7 +43,7 @@
 				url:        'https://twitter.com/intent/tweet?url=<%= url %>&text=<%= text %>&related=<%= related %>&lang=<%= lang %>',
 				width:      '550',
 				height:     '450',
-				script:     { 
+				script:     {
 								url:   'https://platform.twitter.com/widgets.js',
 								inner: ''
 							},
@@ -57,7 +57,7 @@
 				url:        'https://www.linkedin.com/shareArticle?url=<%= url %>&summary=<%= text %>&mini=true&lang=<%= lang %>',  // &ro=false &title=lorem &source=example.com
 				width:      '600',
 				height:     '500',
-				script:     { 
+				script:     {
 								url:   '//platform.linkedin.com/in.js',
 								inner: 'lang: <%= lang %>'
 							},
@@ -71,10 +71,10 @@
 				url:        'https://plus.google.com/share?url=<%= url %>&t=<%= text %>&lang=<%= lang %>',
 				width:      '520',
 				height:     '520',
-				script:     { 
+				script:     {
 								url:   'https://apis.google.com/js/platform.js',
 								inner: '{lang: \'<%= lang %>\'}'
-							},  
+							},
 				button:     '<div class="g-plus" data-action="share" data-href="<%= url %>" data-annotation="<%= counter %>" data-height="<% if(counter == "vertical-bubble") { %>60<% } else { %><%= size %><% } %>"></div>',
 				loaded:     false,
 				size:       { default: '', small: '15', large: '24' },
@@ -85,10 +85,10 @@
 				url:        'http://<%= lang %>.pinterest.com/pin/create/button/?url=<%= url %>&description=<%= text %>&media=<%= media %>',
 				width:      '750',
 				height:     '335',
-				script:     { 
+				script:     {
 								url:   '//assets.pinterest.com/js/pinit.js',
 								inner: ''
-							},        
+							},
 				button:     '<a href="//<%= lang %>.pinterest.com/pin/create/button/?url=<%= url %>&media=<%= media %>&description=<%= text %>" data-pin-do="buttonPin" data-pin-config="<%= counter %>" data-pin-height="<%= size %>"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_<%= size %>.png" /></a>',
 				loaded:     false,
 				size:       { default: '20', small: '20', large: '28' },
@@ -99,7 +99,7 @@
 
 
 		share_options = {
-			lang:    kafe.env('lang'), 
+			lang:    kafe.env.lang,
 			url:     document.location,
 			text:    document.title,
 			related: '', // twitter : https://dev.twitter.com/docs/tweet-button#related
@@ -107,11 +107,11 @@
 		},
 
 		genuine_options = {
-			lang:    kafe.env('lang'), 
+			lang:    kafe.env.lang,
 			url:     document.location,
 			text:    document.title,
 			related: '', // twitter : https://dev.twitter.com/docs/tweet-button#related
-			size:    'default', 
+			size:    'default',
 			counter: 'horizontal',
 			media:   getAbsoluteUrl( $('head link[rel="image_src"]').attr('href') ) // pinterest media
 		}
@@ -133,7 +133,7 @@
 	*
 	* @method initShareButtons
 	* @param {Object} [options] Options
-	*	@param {Object} [options.lang] Display popup sharing language. Not fully supported by all social networks. Possible values are `en`, `fr` or by default is `kafe.env('lang')`.
+	*	@param {Object} [options.lang] Display popup sharing language. Not fully supported by all social networks. Possible values are `en`, `fr` or by default is `kafe.env.lang`.
 	*	@param {Object} [options.url] Specific url sharing. By default is the current url.
 	*	@param {Object} [options.text] Specific text sharing. By default is the browser title.
 	*	@param {Object} [options.media] Image url for Pinterest sharing. By default is the link to the tag `image_src` in the head of the document.
@@ -172,7 +172,7 @@
 	*
 	* @method initGenuineButtons
 	* @param {Object} [options] Options
-	*	@param {Object} [options.lang] Display button language. Possible values are `en`, `fr` or by default is `kafe.env('lang')`.
+	*	@param {Object} [options.lang] Display button language. Possible values are `en`, `fr` or by default is `kafe.env.lang`.
 	*	@param {Object} [options.url] Specific url sharing. By default is the current url.
 	*	@param {Object} [options.text] Specific text sharing. By default is the browser title.
 	*	@param {Object} [options.size] Display button size. Possible values are `small` and `large`. Only work with Twitter, Google + and Pinterest.
@@ -207,7 +207,7 @@
 
 		$('[data-<!-- @echo NAME_ATTR -->-action="genuine"]').each(function() {
 
-			var 
+			var
 				$this = $(this),
 				insertScript = function(url, inner) {
 					var script = document.createElement('script');
@@ -234,7 +234,7 @@
 				$this.html(_.template(data.button)(options));
 				insertScript(_.template(data.script.url)(options), _.template(data.script.inner)(options));
 			}
-			
+
 		});
 	};
 

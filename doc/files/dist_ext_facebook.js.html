@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.4</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -110,7 +110,7 @@
 							if (d.getElementById(id)) return;
 							js = d.createElement(s); js.id = id;
 							js.async = true;
-							js.src = &#x27;//connect.facebook.net/&#x27; + _locale[kafe.env(&#x27;lang&#x27;)] + &#x27;/all.js#xfbml=1&#x27;;
+							js.src = &#x27;//connect.facebook.net/&#x27; + _locale[kafe.env.lang] + &#x27;/all.js#xfbml=1&#x27;;
 							fjs.parentNode.insertBefore(js, fjs);
 						}(document, &#x27;script&#x27;, &#x27;facebook-jssdk&#x27;));
 					}
@@ -168,9 +168,9 @@
 					var p = facebook.getParams(arguments[0]);
 			
 					if (p.app_id) {
-						
+			
 						global.fbAsyncInit = function() {
-							
+			
 							// Starts a relation with the Facebook app.
 							FB.init({
 								appId: p.app_id,
@@ -178,14 +178,14 @@
 								cookie: p.cookie, // enable cookies to allow the server to access the session
 								xfbml: p.xfbml    // parse XFBML
 							});
-							
+			
 							// Listen to status changes to apply layout changes accordingly.
 							FB.Event.subscribe(&#x27;auth.statusChange&#x27;, _handleResponse);
-							
+			
 							// Apply immediate layout changes depending of user login status.
 							FB.getLoginStatus(_handleResponse);
 						};
-						
+			
 					} else {
 						throw kafe.error(new Error(&#x27;Facebook requires an app_id to be initiated.&#x27;));
 					}
@@ -221,7 +221,7 @@
 				facebook.logout = function(callback) {
 					FB.logout(callback);
 				};
-				
+			
 			
 				/**
 				* Get the session.
@@ -265,7 +265,7 @@
 									return false;
 								}
 							});
-							
+			
 							return _found;
 						},
 						error: function(jqXHR, textStatus, errorThrown) {
@@ -278,6 +278,7 @@
 				return facebook;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.4</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -96,7 +96,6 @@
 				* @class kafe.cms.sitecore
 				*/
 				var sitecore = {};
-				kafe.env(&#x27;sitecore-editor&#x27;, $(&#x27;html&#x27;).data(&#x27;kafesitecore&#x27;) === true);
 			
 				/**
 				* Creates a toolbox for the Sitecore page editor. Allows the user to toggle unused placeholders to reflect a closer to reality result of the page.
@@ -161,7 +160,7 @@
 							placeholders:$(_placeholders)
 						};
 					};
-					
+			
 					/*--- Config ---*/
 					var _showToolbox = false;
 					var _toolboxOpenClass = &#x27;open&#x27;;
@@ -235,6 +234,7 @@
 				return sitecore;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.4</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -91,7 +91,7 @@
 				});
 			
 				// change controls text
-				if (kafe.env(&#x27;lang&#x27;) == &#x27;fr&#x27;) {
+				if (kafe.env.lang === &#x27;fr&#x27;) {
 					$.extend($.colorbox.settings, {
 						current:        &#x27;image {current} sur {total}&#x27;,
 						previous:       &#x27;pr&amp;eacute;c&amp;eacute;dente&#x27;,
@@ -310,6 +310,7 @@
 				return colorbox;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.0.4</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.0</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -47,7 +47,7 @@
 			
 			<pre>
 			/*!
-			 * kafe 3.0.4
+			 * kafe 3.1.0
 			 * http://absolunet.github.io/kafe
 			 *
 			 * Copyright 2011-2015 Absolunet, http://absolunet.com/
@@ -100,7 +100,7 @@
 			
 			
 					/**
-					* ### Version 3.0.4
+					* ### Version 3.1.0
 					* kafe core
 					*
 					* @module kafe
@@ -114,7 +114,7 @@
 						* @property VESYON
 						* @type String
 						**/
-						VESYON: &#x27;3.0.4&#x27;,
+						VESYON: &#x27;3.1.0&#x27;,
 			
 						/**
 						* kafe author
@@ -132,7 +132,7 @@
 						**/
 						chaje: {
 							&#x27;dependencies.jQuery&#x27;:    $().jquery,
-							&#x27;dependencies.LoDash&#x27;:    _.VERSION,
+							&#x27;dependencies.lodash&#x27;:    _.VERSION,
 							&#x27;dependencies.Modernizr&#x27;: Modernizr._version
 						},
 			
@@ -155,18 +155,6 @@
 						plugin: {}
 					}
 				;
-			
-				// add flags for ie9 and less
-				if (_ie &amp;&amp; _ie &lt; 10) {
-					var classes = [&#x27;is-ie&#x27;+_ie];
-			
-					for (var i=6; i&lt;10; ++i) {
-						if (_ie &lt; i) { classes.push(&#x27;lt-ie&#x27;+_ie); }
-						if (_ie &gt; i) { classes.push(&#x27;gt-ie&#x27;+_ie); }
-					}
-			
-					$(function() { $(&#x27;html&#x27;).addClass(classes.join(&#x27; &#x27;)); });
-				}
 			
 			
 				// miscellaneous core functions
@@ -203,7 +191,7 @@
 					* @return {String} The available language
 					*/
 					lang: function(dict, lang) {
-						lang = (!!lang) ? lang : core.env(&#x27;lang&#x27;);
+						lang = (!!lang) ? lang : core.env.lang;
 						return (!!dict[lang]) ? lang : &#x27;en&#x27;;
 					},
 			
@@ -248,51 +236,25 @@
 			
 			
 			
-				/**
-				* Environment constants
-				*
-				* @method env
-				* @param {String} name The constant to get/set
-				* @param {String} [value] The value to set
-				* @return {String} The value of the environment constant
-				*/
-				core.env = (function(){
+				// environment constants
+				core.env = {
 			
-					// base vals
-					var _data = {
-						culture: &#x27;&#x27;,
-						lang:    &#x27;&#x27;,
-						page:    &#x27;&#x27;,
-						tmpl:    &#x27;&#x27;,
-						ie:      _ie
-					};
+					/**
+					* Current lang
+					*
+					* @property env.lang
+					* @type String
+					**/
+					lang: document.documentElement.lang.toLowerCase().substr(0,2),
 			
-					// grab kafe env
-					_data.culture = document.documentElement.id.toLowerCase()   || &#x27;&#x27;;
-					_data.lang    = document.documentElement.lang.toLowerCase() || &#x27;&#x27;;
-					_data.page    = document.documentElement.getAttribute(&#x27;data-kafe-page&#x27;) || &#x27;&#x27;;
-					_data.tmpl    = document.documentElement.getAttribute(&#x27;data-kafe-tmpl&#x27;) || &#x27;&#x27;;
-					_data.tmpl    = _data.tmpl.split(&#x27; &#x27;);
-			
-					// public method
-					return function(name, value) {
-						var updatable = &#x27;&#x27;;
-			
-						if (value !== undefined) {
-			
-							// if not already set
-							if (!(_data[name] !== undefined &amp;&amp; updatable.search(new RegExp(&#x27;:&#x27;+name+&#x27;:&#x27;)) == -1)) {
-								_data[name] = value;
-			
-							// throw error
-							} else {
-								throw core.error(new Error(&quot;kafe.env &gt; property &#x27;&quot;+name+&quot;&#x27; already defined&quot;));
-							}
-						}
-			
-						return _data[name];
-					};
-				})();
+					/**
+					* Internet Explorer version
+					*
+					* @property env.ie
+					* @type Number
+					**/
+					ie: _ie
+				};
 			
 			
 				/**
@@ -339,33 +301,6 @@
 			
 			})(typeof window !== &#x27;undefined&#x27; ? window : this, jQuery);
 			
-			
-			
-			
-			
-			// Avoid &#x60;console&#x60; errors in browsers that lack a console.
-			// (c) HTML5 Boilerplate
-			(function() {
-				var method;
-				var noop = function () {};
-				var methods = [
-					&#x27;assert&#x27;, &#x27;clear&#x27;, &#x27;count&#x27;, &#x27;debug&#x27;, &#x27;dir&#x27;, &#x27;dirxml&#x27;, &#x27;error&#x27;,
-					&#x27;exception&#x27;, &#x27;group&#x27;, &#x27;groupCollapsed&#x27;, &#x27;groupEnd&#x27;, &#x27;info&#x27;, &#x27;log&#x27;,
-					&#x27;markTimeline&#x27;, &#x27;profile&#x27;, &#x27;profileEnd&#x27;, &#x27;table&#x27;, &#x27;time&#x27;, &#x27;timeEnd&#x27;,
-					&#x27;timeStamp&#x27;, &#x27;trace&#x27;, &#x27;warn&#x27;
-				];
-				var length = methods.length;
-				var console = (window.console = window.console || {});
-			
-				while (length--) {
-					method = methods[length];
-			
-					// Only stub undefined methods.
-					if (!console[method]) {
-						console[method] = noop;
-					}
-				}
-			}());
 			</pre>
 		</section>
 		<nav>
