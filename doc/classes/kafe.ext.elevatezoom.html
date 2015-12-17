@@ -19,7 +19,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
-	<title>kafe.ext.disqus - kafe</title>
+	<title>kafe.ext.elevatezoom - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2015 Absolunet inc. -->
@@ -41,13 +41,13 @@
 	<div id="Content">
 		<section>
 			<header class="class">
-				<h1>kafe.ext.disqus</h1>
+				<h1>kafe.ext.elevatezoom</h1>
 				<h2>Class</h2>
-				<h3>Version 0.1.0</h3>
-			<p>Extra methods for the Disqus API.</p>
+				<h3>Version 0.0.1</h3>
+			<p>Extra methods for the ElevateZoom Plus jQuery plugin.</p>
 			
 				<div>
-					<span>Source: <a href="../files/dist_ext_disqus.js.html#l27">dist/ext/disqus.js</a></span>
+					<span>Source: <a href="../files/dist_ext_elevatezoom.js.html#l12">dist/ext/elevatezoom.js</a></span>
 				</div>
 			</header>
 			
@@ -55,17 +55,17 @@
 			<section>
 				<h1>Methods</h1>
 					<section>
-						<h1>init</h1>
-						<footer><a href="../files/dist_ext_disqus.js.html#l37">@37</a></footer>
+						<h1>destroy</h1>
+						<footer><a href="../files/dist_ext_elevatezoom.js.html#l55">@55</a></footer>
 					
-						<p>Init Disqus async.</p>
+						<p>Destroy plugin</p>
 					
 					
 						<header>
-							<strong>init</strong>
+							<strong>destroy</strong>
 								<ul>
 					
-										<li><code class="Simple">options</code></li>
+										<li><code class="Simple">selector</code></li>
 					
 								</ul>
 					
@@ -82,63 +82,12 @@
 					
 								<ul>
 									<li>
-											<code>options</code>
-											<strong>Object</strong>
-										<p>Options.</p>
+											<code>selector</code>
+											<strong>String|jQueryObject|DOMElement</strong>
+										<p>Image</p>
 					
 					
 					
-											<ul>
-												<li>
-														<code>title</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>shortname</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>url</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>identifier</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>language</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>[callback]</code>
-														<strong>Function</strong>
-														<span>Optional</span>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-											</ul>
 					
 									</li>
 								</ul>
@@ -147,20 +96,20 @@
 					
 					</section>
 					<section>
-						<h1>reset</h1>
-						<footer><a href="../files/dist_ext_disqus.js.html#l79">@79</a></footer>
+						<h1>init</h1>
+						<footer><a href="../files/dist_ext_elevatezoom.js.html#l22">@22</a></footer>
 					
-						<p>Reset Disqus.</p>
+						<p>Initialize plugin</p>
 					
 					
 						<header>
-							<strong>reset</strong>
+							<strong>init</strong>
 								<ul>
 					
-										<li><code class="Simple">pageId</code></li>
+										<li><code class="Simple">selector</code></li>
 					
 					
-										<li><code class="Simple">url</code></li>
+										<li class="Optional"><code>options</code></li>
 					
 								</ul>
 					
@@ -177,18 +126,19 @@
 					
 								<ul>
 									<li>
-											<code>pageId</code>
-											<strong>String</strong>
-										<p>TODO</p>
+											<code>selector</code>
+											<strong>String|jQueryObject|DOMElement</strong>
+										<p>Image</p>
 					
 					
 					
 					
 									</li>
 									<li>
-											<code>url</code>
-											<strong>String</strong>
-										<p>TODO</p>
+											<code>[options]</code>
+											<strong>Object</strong>
+											<span>Optional</span>
+										<p>Options</p>
 					
 					
 					

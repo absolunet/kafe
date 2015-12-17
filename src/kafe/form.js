@@ -71,14 +71,24 @@
 	};
 
 
+	/**
+	* Adds support for a pseudo-placeholder attribute for select elements. If applied, a "Placeholder" class will also be present when the placeholder text is shown.
+	*
+	* @method selectPlaceholder
+	* @example
+	*	<!-- @echo NAME_FULL -->.selectPlaceholder();
+	*/
 	form.selectPlaceholder = function() {
-		$('select[data-placeholder]')
-			.on('change', function() {
-				$(this).toggleClass('placeholder', $(this).children(':selected').text() === $(this).data('placeholder'));
+		$('select[data-select-placeholder!="processed"]')
+			.on('change.placeholder', function() {
+				var $this = $(this);
+				$this.toggleClass('placeholder', !!$this.children(':first:selected').length);
 			})
-			.trigger('change')
+			.attr('data-select-placeholder', 'processed')
+			.trigger('change.placeholder')
 		;
 	};
+
 
 	/**
 	* Detects the RETURN key, then triggers a callback.

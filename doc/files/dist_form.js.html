@@ -119,14 +119,24 @@
 				};
 			
 			
+				/**
+				* Adds support for a pseudo-placeholder attribute for select elements. If applied, a &quot;Placeholder&quot; class will also be present when the placeholder text is shown.
+				*
+				* @method selectPlaceholder
+				* @example
+				*	kafe.form.selectPlaceholder();
+				*/
 				form.selectPlaceholder = function() {
-					$(&#x27;select[data-placeholder]&#x27;)
-						.on(&#x27;change&#x27;, function() {
-							$(this).toggleClass(&#x27;placeholder&#x27;, $(this).children(&#x27;:selected&#x27;).text() === $(this).data(&#x27;placeholder&#x27;));
+					$(&#x27;select[data-select-placeholder!=&quot;processed&quot;]&#x27;)
+						.on(&#x27;change.placeholder&#x27;, function() {
+							var $this = $(this);
+							$this.toggleClass(&#x27;placeholder&#x27;, !!$this.children(&#x27;:first:selected&#x27;).length);
 						})
-						.trigger(&#x27;change&#x27;)
+						.attr(&#x27;data-select-placeholder&#x27;, &#x27;processed&#x27;)
+						.trigger(&#x27;change.placeholder&#x27;)
 					;
 				};
+			
 			
 				/**
 				* Detects the RETURN key, then triggers a callback.
@@ -417,6 +427,7 @@
 			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>

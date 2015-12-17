@@ -19,7 +19,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
-	<title>kafe.ext.disqus - kafe</title>
+	<title>dist/ext/elevatezoom.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2015 Absolunet inc. -->
@@ -40,166 +40,83 @@
 
 	<div id="Content">
 		<section>
-			<header class="class">
-				<h1>kafe.ext.disqus</h1>
-				<h2>Class</h2>
-				<h3>Version 0.1.0</h3>
-			<p>Extra methods for the Disqus API.</p>
-			
-				<div>
-					<span>Source: <a href="../files/dist_ext_disqus.js.html#l27">dist/ext/disqus.js</a></span>
-				</div>
+			<header class="file">
+				<h1>dist/ext/elevatezoom.js</h1>
+				<h2>File</h2>
 			</header>
 			
+			<pre>
+			//= require bower_components/elevatezoom-plus/src/jquery.ez-plus
 			
-			<section>
-				<h1>Methods</h1>
-					<section>
-						<h1>init</h1>
-						<footer><a href="../files/dist_ext_disqus.js.html#l37">@37</a></footer>
-					
-						<p>Init Disqus async.</p>
-					
-					
-						<header>
-							<strong>init</strong>
-								<ul>
-					
-										<li><code class="Simple">options</code></li>
-					
-								</ul>
-					
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>options</code>
-											<strong>Object</strong>
-										<p>Options.</p>
-					
-					
-					
-											<ul>
-												<li>
-														<code>title</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>shortname</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>url</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>identifier</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>language</code>
-														<strong>String</strong>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>[callback]</code>
-														<strong>Function</strong>
-														<span>Optional</span>
-													<p>TODO</p>
-					
-					
-					
-												</li>
-											</ul>
-					
-									</li>
-								</ul>
-							</section>
-					
-					
-					</section>
-					<section>
-						<h1>reset</h1>
-						<footer><a href="../files/dist_ext_disqus.js.html#l79">@79</a></footer>
-					
-						<p>Reset Disqus.</p>
-					
-					
-						<header>
-							<strong>reset</strong>
-								<ul>
-					
-										<li><code class="Simple">pageId</code></li>
-					
-					
-										<li><code class="Simple">url</code></li>
-					
-								</ul>
-					
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>pageId</code>
-											<strong>String</strong>
-										<p>TODO</p>
-					
-					
-					
-					
-									</li>
-									<li>
-											<code>url</code>
-											<strong>String</strong>
-										<p>TODO</p>
-					
-					
-					
-					
-									</li>
-								</ul>
-							</section>
-					
-					
-					</section>
-			</section>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.elevatezoom&#x27;, version:&#x27;0.0.1&#x27;, obj:(function(){
+			
+				var
+					_container = &#x27;.zoomContainer&#x27;,
+					_options   = {}
+				;
+			
+			
+			
+				/**
+				* ### Version 0.0.1
+				* Extra methods for the ElevateZoom Plus jQuery plugin.
+				*
+				* @module kafe.ext
+				* @class kafe.ext.elevatezoom
+				*/
+				var elevatezoom = {};
+			
+			
+				/**
+				* Initialize plugin
+				*
+				* @method init
+				* @param {String|jQueryObject|DOMElement} selector Image
+				* @param {Object} [options] Options
+				*/
+				elevatezoom.init = function(selector, options) {
+			
+					// Non-touch
+					if (!Modernizr.touchevents) {
+						options         = _.merge({}, _options, options);
+						var $img        = $(selector);
+						var widthDelta  = $img.get(0).naturalWidth  - $img.width();
+						var heightDelta = $img.get(0).naturalHeight - $img.height();
+			
+						elevatezoom.destroy($img);
+			
+						// If zoom image is big enough
+						if (!$img.data(&#x27;nozoom&#x27;) &amp;&amp; widthDelta &gt; 20 &amp;&amp; heightDelta &gt; 20) {
+							$img.ezPlus(options);
+						}
+			
+						// Rebind resize
+						var refresh = function() {
+							elevatezoom.init($img, options);
+						};
+			
+						$(window).off(&#x27;resize.zoom&#x27;).on(&#x27;resize.zoom&#x27;, refresh);
+					}
+				};
+			
+			
+				/**
+				* Destroy plugin
+				*
+				* @method destroy
+				* @param {String|jQueryObject|DOMElement} selector Image
+				*/
+				elevatezoom.destroy = function(selector) {
+					$(_container).remove();
+					$(selector).removeData(&#x27;ezPlus&#x27;);
+				};
+			
+			
+				return elevatezoom;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
+			</pre>
 		</section>
 		<nav>
 			<ul>
