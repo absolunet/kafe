@@ -23,7 +23,7 @@
 		"ext.facebook":         "1.4.0",
 		"ext.flickr":           "1.1.0",
 		"ext.googlemaps":       "1.1.0",
-		"ext.googletagmanager": "0.0.1",
+		"ext.googletagmanager": "0.1.0",
 		"ext.elevatezoom":      "0.0.1",
 		"ext.soundcloud":       "0.1.0",
 		"ext.twitter":          "1.1.1",

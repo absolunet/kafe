@@ -3,7 +3,7 @@
 	var
 
 		// Process data
-		_processEventData = function(data, options) {
+		_processData = function(data, options) {
 			data = _.clone(data);
 			options = options || {};
 			options.uri = options.uri || global.location.pathname;
@@ -26,8 +26,26 @@
 			});
 		},
 
-		_gtmEvents = {}
+		// Push checkout option
+		_pushCheckoutOption = function(data) {
+			global.dataLayer.push({
+				event: 'checkoutOption',
+				ecommerce: {
+					checkout_option: {
+						actionField: {
+							step: data.step,
+							option: data.option
+						}
+					}
+				}
+			});
+		},
+
+		_gtmEvents = {},
+
+		_checkoutOptions = {}
 	;
+
 
 
 	/**
@@ -84,7 +102,53 @@
 	googletagmanager.triggerEvent = function(event, options) {
 		var data = _gtmEvents[event];
 		if (data) {
-			_pushEvent( _processEventData(data, options) );
+			_pushEvent( _processData(data, options) );
+		}
+	};
+
+
+	/**
+	* Add named checkout options to the list of possible options to be triggered, with the possibility of replacement tokens.
+	* Default tokens provided:
+	*	- {{uri}}: Current pathname
+	*
+	* @method addCheckoutOptions
+	* @param {Object} checkoutOptions List of possible checkout options and their config
+	*	@param {String} checkoutOptions.step The `step` value.
+	*	@param {String} checkoutOptions.option The `option` value.
+	*
+	* @example
+	*	// Create named checkout options
+	*	<!-- @echo NAME_FULL -->.addCheckoutOptions({
+	*		'checkout-type': {
+	*			step:  'Identification',
+	*			label: 'Identified as {{type}}'
+	*		},
+	*		'checkout-shipping': {
+	*			step:  'Shipping method',
+	*			label: 'Shipped via {{method}}'
+	*		}
+	*	});
+	*/
+	googletagmanager.addCheckoutOptions = function(checkoutOptions) {
+		_.merge(_checkoutOptions, checkoutOptions);
+	};
+
+
+	/**
+	* Push a `checkoutOption` into the `dataLayer`.
+	*
+	* @method triggerCheckoutOption
+	*	@param {String} checkoutOption Checkout option name
+	*	@param {Object} [options] List of replacement tokens
+	*
+	* @example
+	*	<!-- @echo NAME_FULL -->.triggerCheckoutOption('checkout-type', { type: 'guest' });
+	*/
+	googletagmanager.triggerCheckoutOption = function(checkoutOption, options) {
+		var data = _checkoutOptions[checkoutOption];
+		if (data) {
+			_pushCheckoutOption( _processData(data, options) );
 		}
 	};
 

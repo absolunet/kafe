@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.0</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.1</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -46,12 +46,12 @@
 			</header>
 			
 			<pre>
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googletagmanager&#x27;, version:&#x27;0.0.1&#x27;, obj:(function(){
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googletagmanager&#x27;, version:&#x27;0.1.0&#x27;, obj:(function(){
 			
 				var
 			
 					// Process data
-					_processEventData = function(data, options) {
+					_processData = function(data, options) {
 						data = _.clone(data);
 						options = options || {};
 						options.uri = options.uri || global.location.pathname;
@@ -74,12 +74,30 @@
 						});
 					},
 			
-					_gtmEvents = {}
+					// Push checkout option
+					_pushCheckoutOption = function(data) {
+						global.dataLayer.push({
+							event: &#x27;checkoutOption&#x27;,
+							ecommerce: {
+								checkout_option: {
+									actionField: {
+										step: data.step,
+										option: data.option
+									}
+								}
+							}
+						});
+					},
+			
+					_gtmEvents = {},
+			
+					_checkoutOptions = {}
 				;
 			
 			
+			
 				/**
-				* ### Version 0.0.1
+				* ### Version 0.1.0
 				* Extra methods for the Google Tag Manager.
 				* Requires GTM to be included
 				*
@@ -132,7 +150,53 @@
 				googletagmanager.triggerEvent = function(event, options) {
 					var data = _gtmEvents[event];
 					if (data) {
-						_pushEvent( _processEventData(data, options) );
+						_pushEvent( _processData(data, options) );
+					}
+				};
+			
+			
+				/**
+				* Add named checkout options to the list of possible options to be triggered, with the possibility of replacement tokens.
+				* Default tokens provided:
+				*	- {{uri}}: Current pathname
+				*
+				* @method addCheckoutOptions
+				* @param {Object} checkoutOptions List of possible checkout options and their config
+				*	@param {String} checkoutOptions.step The &#x60;step&#x60; value.
+				*	@param {String} checkoutOptions.option The &#x60;option&#x60; value.
+				*
+				* @example
+				*	// Create named checkout options
+				*	kafe.ext.googletagmanager.addCheckoutOptions({
+				*		&#x27;checkout-type&#x27;: {
+				*			step:  &#x27;Identification&#x27;,
+				*			label: &#x27;Identified as {{type}}&#x27;
+				*		},
+				*		&#x27;checkout-shipping&#x27;: {
+				*			step:  &#x27;Shipping method&#x27;,
+				*			label: &#x27;Shipped via {{method}}&#x27;
+				*		}
+				*	});
+				*/
+				googletagmanager.addCheckoutOptions = function(checkoutOptions) {
+					_.merge(_checkoutOptions, checkoutOptions);
+				};
+			
+			
+				/**
+				* Push a &#x60;checkoutOption&#x60; into the &#x60;dataLayer&#x60;.
+				*
+				* @method triggerCheckoutOption
+				*	@param {String} checkoutOption Checkout option name
+				*	@param {Object} [options] List of replacement tokens
+				*
+				* @example
+				*	kafe.ext.googletagmanager.triggerCheckoutOption(&#x27;checkout-type&#x27;, { type: &#x27;guest&#x27; });
+				*/
+				googletagmanager.triggerCheckoutOption = function(checkoutOption, options) {
+					var data = _checkoutOptions[checkoutOption];
+					if (data) {
+						_pushCheckoutOption( _processData(data, options) );
 					}
 				};
 			
@@ -140,6 +204,7 @@
 				return googletagmanager;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.0</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.1</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,12 +43,12 @@
 			<header class="class">
 				<h1>kafe.ext.googletagmanager</h1>
 				<h2>Class</h2>
-				<h3>Version 0.0.1</h3>
+				<h3>Version 0.1.0</h3>
 			<p>Extra methods for the Google Tag Manager.
 			Requires GTM to be included</p>
 			
 				<div>
-					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l33">dist/ext/googletagmanager.js</a></span>
+					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l51">dist/ext/googletagmanager.js</a></span>
 				</div>
 			</header>
 			
@@ -56,8 +56,84 @@
 			<section>
 				<h1>Methods</h1>
 					<section>
+						<h1>addCheckoutOptions</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l110">@110</a></footer>
+					
+						<p>Add named checkout options to the list of possible options to be triggered, with the possibility of replacement tokens.
+					Default tokens provided:
+					- {{uri}}: Current pathname</p>
+					
+					
+						<header>
+							<strong>addCheckoutOptions</strong>
+								<ul>
+					
+										<li><code class="Simple">checkoutOptions</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>checkoutOptions</code>
+											<strong>Object</strong>
+										<p>List of possible checkout options and their config</p>
+					
+					
+					
+											<ul>
+												<li>
+														<code>step</code>
+														<strong>String</strong>
+													<p>The <code>step</code> value.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>option</code>
+														<strong>String</strong>
+													<p>The <code>option</code> value.</p>
+					
+					
+					
+												</li>
+											</ul>
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>// Create named checkout options
+					kafe.ext.googletagmanager.addCheckoutOptions({
+					    'checkout-type': {
+					        step:  'Identification',
+					        label: 'Identified as {{type}}'
+					    },
+					    'checkout-shipping': {
+					        step:  'Shipping method',
+					        label: 'Shipped via {{method}}'
+					    }
+					});</code></pre>
+					
+							</section>
+					</section>
+					<section>
 						<h1>addEvents</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l43">@43</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l61">@61</a></footer>
 					
 						<p>Add named events to the list of possible event to be triggered, with the possibility of replacement tokens.
 					Default tokens provided:
@@ -142,8 +218,67 @@
 							</section>
 					</section>
 					<section>
+						<h1>triggerCheckoutOption</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l138">@138</a></footer>
+					
+						<p>Push a <code>checkoutOption</code> into the <code>dataLayer</code>.</p>
+					
+					
+						<header>
+							<strong>triggerCheckoutOption</strong>
+								<ul>
+					
+										<li><code class="Simple">checkoutOption</code></li>
+					
+					
+										<li class="Optional"><code>options</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>checkoutOption</code>
+											<strong>String</strong>
+										<p>Checkout option name</p>
+					
+					
+					
+					
+									</li>
+									<li>
+											<code>[options]</code>
+											<strong>Object</strong>
+											<span>Optional</span>
+										<p>List of replacement tokens</p>
+					
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.triggerCheckoutOption('checkout-type', { type: 'guest' });</code></pre>
+					
+							</section>
+					</section>
+					<section>
 						<h1>triggerEvent</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l74">@74</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l92">@92</a></footer>
 					
 						<p>Push a <code>ga_event</code> into the <code>dataLayer</code>.</p>
 					
