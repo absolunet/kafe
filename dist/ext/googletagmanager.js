@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googletagmanager', version:'0.1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googletagmanager', version:'0.1.1', obj:(function(){
 
 	var
 
@@ -17,17 +17,18 @@
 		},
 
 		// Push event
-		_pushEvent = function(data) {
+		_pushEvent = function(data, callback) {
 			global.dataLayer.push({
 				event:         'ga_event',
 				eventCategory: data.category,
 				eventAction:   data.action,
-				eventLabel:    data.label
+				eventLabel:    data.label,
+				eventCallback: callback
 			});
 		},
 
 		// Push checkout option
-		_pushCheckoutOption = function(data) {
+		_pushCheckoutOption = function(data, callback) {
 			global.dataLayer.push({
 				event: 'checkoutOption',
 				ecommerce: {
@@ -37,7 +38,8 @@
 							option: data.option
 						}
 					}
-				}
+				},
+				eventCallback: callback
 			});
 		},
 
@@ -49,7 +51,7 @@
 
 
 	/**
-	* ### Version 0.1.0
+	* ### Version 0.1.1
 	* Extra methods for the Google Tag Manager.
 	* Requires GTM to be included
 	*
@@ -95,14 +97,15 @@
 	* @method triggerEvent
 	*	@param {String} event Event name
 	*	@param {Object} [options] List of replacement tokens
+	*	@param {Function} [callback] Function to call after event is pushed
 	*
 	* @example
 	*	kafe.ext.googletagmanager.triggerEvent('product-addedtocart', { productname: 'Sexy rainbow pants' });
 	*/
-	googletagmanager.triggerEvent = function(event, options) {
+	googletagmanager.triggerEvent = function(event, options, callback) {
 		var data = _gtmEvents[event];
 		if (data) {
-			_pushEvent( _processData(data, options) );
+			_pushEvent( _processData(data, options), callback );
 		}
 	};
 
@@ -141,15 +144,47 @@
 	* @method triggerCheckoutOption
 	*	@param {String} checkoutOption Checkout option name
 	*	@param {Object} [options] List of replacement tokens
+	*	@param {Function} [callback] Function to call after event is pushed
 	*
 	* @example
 	*	kafe.ext.googletagmanager.triggerCheckoutOption('checkout-type', { type: 'guest' });
 	*/
-	googletagmanager.triggerCheckoutOption = function(checkoutOption, options) {
+	googletagmanager.triggerCheckoutOption = function(checkoutOption, options, callback) {
 		var data = _checkoutOptions[checkoutOption];
 		if (data) {
-			_pushCheckoutOption( _processData(data, options) );
+			_pushCheckoutOption( _processData(data, options), callback );
 		}
+	};
+
+
+	/**
+	* Delay link until GTM data is pushed.
+	*
+	* @method delayHyperlink
+	* @param {Function} callback Code to execute. Receives `cb` param
+	* @param {String} url Url to go to
+	* @param {Number} [delay=1000] Number of ms to wait before going to the link anyway
+	*
+	* @example
+	*	kafe.ext.googletagmanager.delayHyperlink( function (cb) {
+	*		kafe.ext.googletagmanager.triggerCheckoutOption('checkout-type', { type: 'guest' }, cb);
+	*	}, $(this).attr('href'));
+	*/
+	googletagmanager.delayHyperlink = function(callback, url, delay) {
+		var done = false;
+
+		var redirect = function() {
+			if (!done) {
+				done = true;
+				global.location.assign(url);
+			}
+		};
+
+		// Do the call
+		callback(redirect);
+
+		// If too long
+		global.setTimeout(redirect, delay || 1000);
 	};
 
 

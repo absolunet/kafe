@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.1</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.2</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,12 +43,12 @@
 			<header class="class">
 				<h1>kafe.ext.googletagmanager</h1>
 				<h2>Class</h2>
-				<h3>Version 0.1.0</h3>
+				<h3>Version 0.1.1</h3>
 			<p>Extra methods for the Google Tag Manager.
 			Requires GTM to be included</p>
 			
 				<div>
-					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l51">dist/ext/googletagmanager.js</a></span>
+					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l53">dist/ext/googletagmanager.js</a></span>
 				</div>
 			</header>
 			
@@ -57,7 +57,7 @@
 				<h1>Methods</h1>
 					<section>
 						<h1>addCheckoutOptions</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l110">@110</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l113">@113</a></footer>
 					
 						<p>Add named checkout options to the list of possible options to be triggered, with the possibility of replacement tokens.
 					Default tokens provided:
@@ -133,7 +133,7 @@
 					</section>
 					<section>
 						<h1>addEvents</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l61">@61</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l63">@63</a></footer>
 					
 						<p>Add named events to the list of possible event to be triggered, with the possibility of replacement tokens.
 					Default tokens provided:
@@ -218,8 +218,81 @@
 							</section>
 					</section>
 					<section>
+						<h1>delayHyperlink</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l160">@160</a></footer>
+					
+						<p>Delay link until GTM data is pushed.</p>
+					
+					
+						<header>
+							<strong>delayHyperlink</strong>
+								<ul>
+					
+										<li><code class="Simple">callback</code></li>
+					
+					
+										<li><code class="Simple">url</code></li>
+					
+					
+										<li class="Optional"><code>delay = 1000</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>callback</code>
+											<strong>Function</strong>
+										<p>Code to execute. Receives <code>cb</code> param</p>
+					
+					
+					
+					
+									</li>
+									<li>
+											<code>url</code>
+											<strong>String</strong>
+										<p>Url to go to</p>
+					
+					
+					
+					
+									</li>
+									<li>
+											<code>[delay = 1000]</code>
+											<strong>Number</strong>
+											<span>Optional</span>
+										<p>Number of ms to wait before going to the link anyway</p>
+					
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.delayHyperlink( function (cb) {
+					    kafe.ext.googletagmanager.triggerCheckoutOption('checkout-type', { type: 'guest' }, cb);
+					}, $(this).attr('href'));</code></pre>
+					
+							</section>
+					</section>
+					<section>
 						<h1>triggerCheckoutOption</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l138">@138</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l141">@141</a></footer>
 					
 						<p>Push a <code>checkoutOption</code> into the <code>dataLayer</code>.</p>
 					
@@ -232,6 +305,9 @@
 					
 					
 										<li class="Optional"><code>options</code></li>
+					
+					
+										<li class="Optional"><code>callback</code></li>
 					
 								</ul>
 					
@@ -266,6 +342,16 @@
 					
 					
 									</li>
+									<li>
+											<code>[callback]</code>
+											<strong>Function</strong>
+											<span>Optional</span>
+										<p>Function to call after event is pushed</p>
+					
+					
+					
+					
+									</li>
 								</ul>
 							</section>
 					
@@ -278,7 +364,7 @@
 					</section>
 					<section>
 						<h1>triggerEvent</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l92">@92</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l94">@94</a></footer>
 					
 						<p>Push a <code>ga_event</code> into the <code>dataLayer</code>.</p>
 					
@@ -291,6 +377,9 @@
 					
 					
 										<li class="Optional"><code>options</code></li>
+					
+					
+										<li class="Optional"><code>callback</code></li>
 					
 								</ul>
 					
@@ -320,6 +409,16 @@
 											<strong>Object</strong>
 											<span>Optional</span>
 										<p>List of replacement tokens</p>
+					
+					
+					
+					
+									</li>
+									<li>
+											<code>[callback]</code>
+											<strong>Function</strong>
+											<span>Optional</span>
+										<p>Function to call after event is pushed</p>
 					
 					
 					
