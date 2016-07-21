@@ -11,41 +11,16 @@
 			_.forEach(data, function(value, key) {
 				var tmpl = _.template(value, {interpolate:/{{([\s\S]+?)}}/g});
 				data[key] = tmpl(options);
+
+				switch ($.type(options[key])) {
+					case 'number': data[key] = Number(data[key]); break;
+				}
 			});
 
 			return data;
 		},
 
-		// Push event
-		_pushEvent = function(data, callback) {
-			global.dataLayer.push({
-				event:         'ga_event',
-				eventCategory: data.category,
-				eventAction:   data.action,
-				eventLabel:    data.label,
-				eventCallback: callback
-			});
-		},
-
-		// Push checkout option
-		_pushCheckoutOption = function(data, callback) {
-			global.dataLayer.push({
-				event: 'checkoutOption',
-				ecommerce: {
-					checkout_option: {
-						actionField: {
-							step: data.step,
-							option: data.option
-						}
-					}
-				},
-				eventCallback: callback
-			});
-		},
-
-		_gtmEvents = {},
-
-		_checkoutOptions = {}
+		_events = {}
 	;
 
 
@@ -61,98 +36,145 @@
 	var googletagmanager = {};
 
 	/**
-	* Add named events to the list of possible event to be triggered, with the possibility of replacement tokens.
+	* Add named events to the list of possible event to be tracked, with the possibility of replacement tokens.
 	* Default tokens provided:
 	*	- {{uri}}: Current pathname
 	*
-	* @method addEvents
+	* @method add
 	* @param {Object} events List of possible events and their config
-	*	@param {String} events.category The `eventCategory` value.
-	*	@param {String} events.action The `eventAction` value.
-	*	@param {String} events.label The `eventLabel` value.
+	*	@param {String} events.[0] The event type. Possible values are `ga_event`, `checkoutOption`, `productClick`, `productImpression`, `raw`
+	*	@param {Object} events.[1] The event data. Different for each type. View code for implemantation.
 	*
 	* @example
 	*	// Create named events
-	*	<!-- @echo NAME_FULL -->.addEvents({
-	*		'newsletter-subscribed': {
-	*			category: 'Subscription',
-	*			action:   'Newsletter',
-	*			label:    '{{uri}}'
-	*		},
-	*		'product-addedtocart': {
+	*	<!-- @echo NAME_FULL -->.add({
+	*		'product-addedtocart': ['ga_event', {
 	*			category: 'Cart',
 	*			action:   'Product added - {{uri}}',
 	*			label:    '{{productname}}'
-	*		}
-	*	});
-	*/
-	googletagmanager.addEvents = function(events) {
-		_.merge(_gtmEvents, events);
-	};
-
-
-	/**
-	* Push a `ga_event` into the `dataLayer`.
-	*
-	* @method triggerEvent
-	*	@param {String} event Event name
-	*	@param {Object} [options] List of replacement tokens
-	*	@param {Function} [callback] Function to call after event is pushed
-	*
-	* @example
-	*	<!-- @echo NAME_FULL -->.triggerEvent('product-addedtocart', { productname: 'Sexy rainbow pants' });
-	*/
-	googletagmanager.triggerEvent = function(event, options, callback) {
-		var data = _gtmEvents[event];
-		if (data) {
-			_pushEvent( _processData(data, options), callback );
-		}
-	};
-
-
-	/**
-	* Add named checkout options to the list of possible options to be triggered, with the possibility of replacement tokens.
-	* Default tokens provided:
-	*	- {{uri}}: Current pathname
-	*
-	* @method addCheckoutOptions
-	* @param {Object} checkoutOptions List of possible checkout options and their config
-	*	@param {String} checkoutOptions.step The `step` value.
-	*	@param {String} checkoutOptions.option The `option` value.
-	*
-	* @example
-	*	// Create named checkout options
-	*	<!-- @echo NAME_FULL -->.addCheckoutOptions({
-	*		'checkout-type': {
-	*			step:  'Identification',
-	*			label: 'Identified as {{type}}'
 	*		},
-	*		'checkout-shipping': {
+	*		'checkout-shipping': ['checkoutOption', {
 	*			step:  'Shipping method',
 	*			label: 'Shipped via {{method}}'
+	*		},
+	*		'upsell-click': ['productClick', {
+	*			id:       '{{sku}} - {{id}}',
+	*			name:     '{{name}}',
+	*			brand:    '{{productBrand}}',
+	*			price:    '{{priceWithoutTaxes}}',
+	*			category: '{{category}} / {{subcategory}}',
+	*			position: '{{position}}',
+	*			list:     'Upsell products'
+	*		},
+	*		'sunset-position': ['raw', {
+	*			foo: 'bar',
+	*			bar: 'foo'
 	*		}
 	*	});
 	*/
-	googletagmanager.addCheckoutOptions = function(checkoutOptions) {
-		_.merge(_checkoutOptions, checkoutOptions);
+	googletagmanager.add = function(events) {
+		_.merge(_events, events);
 	};
 
 
 	/**
-	* Push a `checkoutOption` into the `dataLayer`.
+	* Push a event into the `dataLayer`.
 	*
-	* @method triggerCheckoutOption
-	*	@param {String} checkoutOption Checkout option name
-	*	@param {Object} [options] List of replacement tokens
+	* @method track
+	*	@param {String} name Event name
+	*	@param {Object} [tokens] List of replacement tokens
 	*	@param {Function} [callback] Function to call after event is pushed
 	*
 	* @example
-	*	<!-- @echo NAME_FULL -->.triggerCheckoutOption('checkout-type', { type: 'guest' });
+	*	<!-- @echo NAME_FULL -->.track('product-addedtocart', { productname: 'Sexy rainbow pants' });
 	*/
-	googletagmanager.triggerCheckoutOption = function(checkoutOption, options, callback) {
-		var data = _checkoutOptions[checkoutOption];
-		if (data) {
-			_pushCheckoutOption( _processData(data, options), callback );
+	googletagmanager.track = function(name, tokens, callback) {
+		var event = _events[name];
+
+		if (event) {
+			var type    = event[0];
+			var options = event[1] ? _processData(event[1], tokens) : tokens;
+
+			switch (type) {
+
+				//-- Google Analytics - Event
+				case 'ga_event':
+					data = {
+						event:         'ga_event',
+						eventCategory: options.category,
+						eventAction:   options.action,
+						eventLabel:    options.label
+					};
+				break;
+
+				//-- Enhanced Ecommerce - Checkout option
+				case 'checkoutOption':
+					data = {
+						event: 'checkoutOption',
+						ecommerce: {
+							checkout_option: {
+								actionField: {
+									step:   options.step,
+									option: options.option
+								}
+							}
+						}
+					};
+				break;
+
+				//-- Enhanced Ecommerce - Product click
+				case 'productClick':
+					data = {
+						event: 'productClick',
+						ecommerce: {
+							click: {
+								actionField: {
+									list: options.list
+								},
+								products: [{
+									id:       options.id,
+									name:     options.name,
+									brand:    options.brand,
+									price:    options.price,
+									category: options.category,
+									position: options.position,
+									list:     options.list
+								}]
+							}
+						}
+					};
+				break;
+
+				//-- Enhanced Ecommerce - Product impression
+				case 'productImpression':
+					data = {
+						event: 'productImpression',
+						ecommerce: {
+							currency:   options.currency,
+							impressions: [{
+								id:       options.id,
+								name:     options.name,
+								brand:    options.brand,
+								price:    options.price,
+								category: options.category,
+								position: options.position,
+								list:     options.list
+							}]
+						}
+					};
+				break;
+
+				//-- RAW
+				case 'raw':
+					data = options;
+				break;
+			}
+
+			if (!data.eventCallback && callback) {
+				data.eventCallback = callback;
+			}
+
+			global.dataLayer.push(data);
 		}
 	};
 
@@ -161,22 +183,31 @@
 	* Delay link until GTM data is pushed.
 	*
 	* @method delayHyperlink
+	* @param {Event} event Original click event
 	* @param {Function} callback Code to execute. Receives `cb` param
-	* @param {String} url Url to go to
 	* @param {Number} [delay=1000] Number of ms to wait before going to the link anyway
 	*
 	* @example
-	*	<!-- @echo NAME_FULL -->.delayHyperlink( function (cb) {
-	*		<!-- @echo NAME_FULL -->.triggerCheckoutOption('checkout-type', { type: 'guest' }, cb);
-	*	}, $(this).attr('href'));
+	*	<!-- @echo NAME_FULL -->.delayHyperlink(event, function (cb) {
+	*		<!-- @echo NAME_FULL -->.track('checkout-type', { type: 'guest' }, cb);
+	*	}, 2000);
 	*/
-	googletagmanager.delayHyperlink = function(callback, url, delay) {
+	googletagmanager.delayHyperlink = function(event, callback, delay) {
+		event.preventDefault();
+
 		var done = false;
+		var url = $(event.currentTarget).attr('href');
 
 		var redirect = function() {
 			if (!done) {
 				done = true;
-				global.location.assign(url);
+
+				// Trying to guess if user requested a new window
+				if ( event.ctrlKey || event.shiftKey || event.metaKey || (event.button && event.button == 1) ) {
+					__.window.open(url, '_blank');
+				} else {
+					global.location.assign(url);
+				}
 			}
 		};
 

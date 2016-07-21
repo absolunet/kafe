@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.2</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.3</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,12 +43,12 @@
 			<header class="class">
 				<h1>kafe.ext.googletagmanager</h1>
 				<h2>Class</h2>
-				<h3>Version 0.1.1</h3>
+				<h3>Version 1.0.0</h3>
 			<p>Extra methods for the Google Tag Manager.
 			Requires GTM to be included</p>
 			
 				<div>
-					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l53">dist/ext/googletagmanager.js</a></span>
+					<span>Source: <a href="../files/dist_ext_googletagmanager.js.html#l28">dist/ext/googletagmanager.js</a></span>
 				</div>
 			</header>
 			
@@ -56,92 +56,16 @@
 			<section>
 				<h1>Methods</h1>
 					<section>
-						<h1>addCheckoutOptions</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l113">@113</a></footer>
+						<h1>add</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l38">@38</a></footer>
 					
-						<p>Add named checkout options to the list of possible options to be triggered, with the possibility of replacement tokens.
+						<p>Add named events to the list of possible event to be tracked, with the possibility of replacement tokens.
 					Default tokens provided:
 					- {{uri}}: Current pathname</p>
 					
 					
 						<header>
-							<strong>addCheckoutOptions</strong>
-								<ul>
-					
-										<li><code class="Simple">checkoutOptions</code></li>
-					
-								</ul>
-					
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>checkoutOptions</code>
-											<strong>Object</strong>
-										<p>List of possible checkout options and their config</p>
-					
-					
-					
-											<ul>
-												<li>
-														<code>step</code>
-														<strong>String</strong>
-													<p>The <code>step</code> value.</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>option</code>
-														<strong>String</strong>
-													<p>The <code>option</code> value.</p>
-					
-					
-					
-												</li>
-											</ul>
-					
-									</li>
-								</ul>
-							</section>
-					
-					
-							<section>
-								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>// Create named checkout options
-					kafe.ext.googletagmanager.addCheckoutOptions({
-					    'checkout-type': {
-					        step:  'Identification',
-					        label: 'Identified as {{type}}'
-					    },
-					    'checkout-shipping': {
-					        step:  'Shipping method',
-					        label: 'Shipped via {{method}}'
-					    }
-					});</code></pre>
-					
-							</section>
-					</section>
-					<section>
-						<h1>addEvents</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l63">@63</a></footer>
-					
-						<p>Add named events to the list of possible event to be triggered, with the possibility of replacement tokens.
-					Default tokens provided:
-					- {{uri}}: Current pathname</p>
-					
-					
-						<header>
-							<strong>addEvents</strong>
+							<strong>add</strong>
 								<ul>
 					
 										<li><code class="Simple">events</code></li>
@@ -169,25 +93,17 @@
 					
 											<ul>
 												<li>
-														<code>category</code>
+														<code>[0]</code>
 														<strong>String</strong>
-													<p>The <code>eventCategory</code> value.</p>
+													<p>The event type. Possible values are <code>ga_event</code>, <code>checkoutOption</code>, <code>productClick</code>, <code>productImpression</code>, <code>raw</code></p>
 					
 					
 					
 												</li>
 												<li>
-														<code>action</code>
-														<strong>String</strong>
-													<p>The <code>eventAction</code> value.</p>
-					
-					
-					
-												</li>
-												<li>
-														<code>label</code>
-														<strong>String</strong>
-													<p>The <code>eventLabel</code> value.</p>
+														<code>[1]</code>
+														<strong>Object</strong>
+													<p>The event data. Different for each type. View code for implemantation.</p>
 					
 					
 					
@@ -202,16 +118,28 @@
 							<section>
 								<h1>Example:</h1>
 								<pre class="code prettyprint"><code>// Create named events
-					kafe.ext.googletagmanager.addEvents({
-					    'newsletter-subscribed': {
-					        category: 'Subscription',
-					        action:   'Newsletter',
-					        label:    '{{uri}}'
-					    },
-					    'product-addedtocart': {
+					kafe.ext.googletagmanager.add({
+					    'product-addedtocart': ['ga_event', {
 					        category: 'Cart',
 					        action:   'Product added - {{uri}}',
 					        label:    '{{productname}}'
+					    },
+					    'checkout-shipping': ['checkoutOption', {
+					        step:  'Shipping method',
+					        label: 'Shipped via {{method}}'
+					    },
+					    'upsell-click': ['productClick', {
+					        id:       '{{sku}} - {{id}}',
+					        name:     '{{name}}',
+					        brand:    '{{productBrand}}',
+					        price:    '{{priceWithoutTaxes}}',
+					        category: '{{category}} / {{subcategory}}',
+					        position: '{{position}}',
+					        list:     'Upsell products'
+					    },
+					    'sunset-position': ['raw', {
+					        foo: 'bar',
+					        bar: 'foo'
 					    }
 					});</code></pre>
 					
@@ -219,7 +147,7 @@
 					</section>
 					<section>
 						<h1>delayHyperlink</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l160">@160</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l182">@182</a></footer>
 					
 						<p>Delay link until GTM data is pushed.</p>
 					
@@ -228,10 +156,10 @@
 							<strong>delayHyperlink</strong>
 								<ul>
 					
+										<li><code class="Simple">event</code></li>
+					
+					
 										<li><code class="Simple">callback</code></li>
-					
-					
-										<li><code class="Simple">url</code></li>
 					
 					
 										<li class="Optional"><code>delay = 1000</code></li>
@@ -251,18 +179,18 @@
 					
 								<ul>
 									<li>
-											<code>callback</code>
-											<strong>Function</strong>
-										<p>Code to execute. Receives <code>cb</code> param</p>
+											<code>event</code>
+											<strong>Event</strong>
+										<p>Original click event</p>
 					
 					
 					
 					
 									</li>
 									<li>
-											<code>url</code>
-											<strong>String</strong>
-										<p>Url to go to</p>
+											<code>callback</code>
+											<strong>Function</strong>
+										<p>Code to execute. Receives <code>cb</code> param</p>
 					
 					
 					
@@ -284,27 +212,27 @@
 					
 							<section>
 								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.delayHyperlink( function (cb) {
-					    kafe.ext.googletagmanager.triggerCheckoutOption('checkout-type', { type: 'guest' }, cb);
-					}, $(this).attr('href'));</code></pre>
+								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.delayHyperlink(event, function (cb) {
+					    kafe.ext.googletagmanager.track('checkout-type', { type: 'guest' }, cb);
+					}, 2000);</code></pre>
 					
 							</section>
 					</section>
 					<section>
-						<h1>triggerCheckoutOption</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l141">@141</a></footer>
+						<h1>track</h1>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l80">@80</a></footer>
 					
-						<p>Push a <code>checkoutOption</code> into the <code>dataLayer</code>.</p>
+						<p>Push a event into the <code>dataLayer</code>.</p>
 					
 					
 						<header>
-							<strong>triggerCheckoutOption</strong>
+							<strong>track</strong>
 								<ul>
 					
-										<li><code class="Simple">checkoutOption</code></li>
+										<li><code class="Simple">name</code></li>
 					
 					
-										<li class="Optional"><code>options</code></li>
+										<li class="Optional"><code>tokens</code></li>
 					
 					
 										<li class="Optional"><code>callback</code></li>
@@ -324,79 +252,7 @@
 					
 								<ul>
 									<li>
-											<code>checkoutOption</code>
-											<strong>String</strong>
-										<p>Checkout option name</p>
-					
-					
-					
-					
-									</li>
-									<li>
-											<code>[options]</code>
-											<strong>Object</strong>
-											<span>Optional</span>
-										<p>List of replacement tokens</p>
-					
-					
-					
-					
-									</li>
-									<li>
-											<code>[callback]</code>
-											<strong>Function</strong>
-											<span>Optional</span>
-										<p>Function to call after event is pushed</p>
-					
-					
-					
-					
-									</li>
-								</ul>
-							</section>
-					
-					
-							<section>
-								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.triggerCheckoutOption('checkout-type', { type: 'guest' });</code></pre>
-					
-							</section>
-					</section>
-					<section>
-						<h1>triggerEvent</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l94">@94</a></footer>
-					
-						<p>Push a <code>ga_event</code> into the <code>dataLayer</code>.</p>
-					
-					
-						<header>
-							<strong>triggerEvent</strong>
-								<ul>
-					
-										<li><code class="Simple">event</code></li>
-					
-					
-										<li class="Optional"><code>options</code></li>
-					
-					
-										<li class="Optional"><code>callback</code></li>
-					
-								</ul>
-					
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>event</code>
+											<code>name</code>
 											<strong>String</strong>
 										<p>Event name</p>
 					
@@ -405,7 +261,7 @@
 					
 									</li>
 									<li>
-											<code>[options]</code>
+											<code>[tokens]</code>
 											<strong>Object</strong>
 											<span>Optional</span>
 										<p>List of replacement tokens</p>
@@ -430,7 +286,7 @@
 					
 							<section>
 								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.triggerEvent('product-addedtocart', { productname: 'Sexy rainbow pants' });</code></pre>
+								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.track('product-addedtocart', { productname: 'Sexy rainbow pants' });</code></pre>
 					
 							</section>
 					</section>

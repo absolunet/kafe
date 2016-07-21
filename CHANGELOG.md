@@ -1,5 +1,14 @@
 # kafe changelog
 
+## 3.1.3 (2016-07-21)
+- Refacto kafe.ext.googletagmanager to be more flexible
+
+## 3.1.2 (2016-04-26)
+- Added kafe.ext.googletagmanager.delayHyperlink()
+
+## 3.1.1 (2016-04-08)
+- Added checkout options to GTM manager
+
 ## 3.1.0 (2015-12-17)
 - Cleanup kafe core
 - Cleanup non-bower dependencies
