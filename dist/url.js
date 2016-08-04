@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.0.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.1.0', obj:(function(){
 
 	var
 		// parse url
@@ -23,7 +23,7 @@
 
 
 	/**
-	* ### Version 1.0.0
+	* ### Version 1.1.0
 	* Manipulation tools for route-based urls.
 	*
 	* @module kafe
@@ -124,6 +124,35 @@
 	url.parseAjaxPath = function(s) {
 		s = (s) ? s : global.location.hash;
 		return (s.toString().substring(1,3) == '!/') ? _parseIt(s.toString().substring(3), 'path') : [];
+	};
+
+
+	/**
+	* Delay link until promises are resolved.
+	*
+	* @method followLinkWhen
+	* @param {Event} event Original click event
+	* @param {Array} promises Array of promises
+	*
+	* @example
+	*	kafe.url.followLinkWhen(event, [
+	*		kafe.ext.googletagmanager.track('checkout-type', { type: 'guest' }),
+	*		kafe.ext.googletagmanager.track('checkout-step', { number: 2 })
+	*	]);
+	*/
+	url.followLinkWhen = function(event, promises) {
+
+		// Trying to guess if user requested a new window
+		if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button && event.button == 1) ) ) {
+			event.preventDefault();
+
+			var url = $(event.currentTarget).attr('href');
+
+			$.when.apply(this, promises).always(function() {
+				global.location.assign(url);
+			});
+		}
+
 	};
 
 

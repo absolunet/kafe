@@ -1,5 +1,8 @@
 # kafe changelog
 
+## 3.1.4 (2016-08-04)
+- Refacto kafe.ext.googletagmanager to use Promises
+
 ## 3.1.3 (2016-07-21)
 - Refacto kafe.ext.googletagmanager to be more flexible
 

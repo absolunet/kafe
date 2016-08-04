@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.3</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.4</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,7 +43,7 @@
 			<header class="class">
 				<h1>kafe.url</h1>
 				<h2>Class</h2>
-				<h3>Version 1.0.0</h3>
+				<h3>Version 1.1.0</h3>
 			<p>Manipulation tools for route-based urls.</p>
 			
 				<div>
@@ -54,6 +54,67 @@
 			
 			<section>
 				<h1>Methods</h1>
+					<section>
+						<h1>followLinkWhen</h1>
+						<footer><a href="../files/dist_url.js.html#l130">@130</a></footer>
+					
+						<p>Delay link until promises are resolved.</p>
+					
+					
+						<header>
+							<strong>followLinkWhen</strong>
+								<ul>
+					
+										<li><code class="Simple">event</code></li>
+					
+					
+										<li><code class="Simple">promises</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>event</code>
+											<strong>Event</strong>
+										<p>Original click event</p>
+					
+					
+					
+					
+									</li>
+									<li>
+											<code>promises</code>
+											<strong>Array</strong>
+										<p>Array of promises</p>
+					
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.url.followLinkWhen(event, [
+					    kafe.ext.googletagmanager.track('checkout-type', { type: 'guest' }),
+					    kafe.ext.googletagmanager.track('checkout-step', { number: 2 })
+					]);</code></pre>
+					
+							</section>
+					</section>
 					<section>
 						<h1>parseAjaxParams</h1>
 						<footer><a href="../files/dist_url.js.html#l98">@98</a></footer>

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.3</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.4</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,7 +43,7 @@
 			<header class="class">
 				<h1>kafe.ext.googletagmanager</h1>
 				<h2>Class</h2>
-				<h3>Version 1.0.0</h3>
+				<h3>Version 1.1.0</h3>
 			<p>Extra methods for the Google Tag Manager.
 			Requires GTM to be included</p>
 			
@@ -128,7 +128,7 @@
 					        step:  'Shipping method',
 					        label: 'Shipped via {{method}}'
 					    },
-					    'upsell-click': ['productClick', {
+					    'upsell-shown': ['productImpression', {
 					        id:       '{{sku}} - {{id}}',
 					        name:     '{{name}}',
 					        brand:    '{{productBrand}}',
@@ -136,6 +136,7 @@
 					        category: '{{category}} / {{subcategory}}',
 					        position: '{{position}}',
 					        list:     'Upsell products'
+					        currency: 'CAD'
 					    },
 					    'sunset-position': ['raw', {
 					        foo: 'bar',
@@ -146,81 +147,8 @@
 							</section>
 					</section>
 					<section>
-						<h1>delayHyperlink</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l182">@182</a></footer>
-					
-						<p>Delay link until GTM data is pushed.</p>
-					
-					
-						<header>
-							<strong>delayHyperlink</strong>
-								<ul>
-					
-										<li><code class="Simple">event</code></li>
-					
-					
-										<li><code class="Simple">callback</code></li>
-					
-					
-										<li class="Optional"><code>delay = 1000</code></li>
-					
-								</ul>
-					
-						</header>
-					
-					
-					
-					
-					
-					
-					
-							<section>
-								<h1>Parameters:</h1>
-					
-								<ul>
-									<li>
-											<code>event</code>
-											<strong>Event</strong>
-										<p>Original click event</p>
-					
-					
-					
-					
-									</li>
-									<li>
-											<code>callback</code>
-											<strong>Function</strong>
-										<p>Code to execute. Receives <code>cb</code> param</p>
-					
-					
-					
-					
-									</li>
-									<li>
-											<code>[delay = 1000]</code>
-											<strong>Number</strong>
-											<span>Optional</span>
-										<p>Number of ms to wait before going to the link anyway</p>
-					
-					
-					
-					
-									</li>
-								</ul>
-							</section>
-					
-					
-							<section>
-								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.delayHyperlink(event, function (cb) {
-					    kafe.ext.googletagmanager.track('checkout-type', { type: 'guest' }, cb);
-					}, 2000);</code></pre>
-					
-							</section>
-					</section>
-					<section>
 						<h1>track</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l80">@80</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l81">@81</a></footer>
 					
 						<p>Push a event into the <code>dataLayer</code>.</p>
 					
@@ -233,9 +161,6 @@
 					
 					
 										<li class="Optional"><code>tokens</code></li>
-					
-					
-										<li class="Optional"><code>callback</code></li>
 					
 								</ul>
 					
@@ -270,23 +195,25 @@
 					
 					
 									</li>
-									<li>
-											<code>[callback]</code>
-											<strong>Function</strong>
-											<span>Optional</span>
-										<p>Function to call after event is pushed</p>
-					
-					
-					
-					
-									</li>
 								</ul>
 							</section>
 					
 					
 							<section>
 								<h1>Example:</h1>
-								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.track('product-addedtocart', { productname: 'Sexy rainbow pants' });</code></pre>
+								<pre class="code prettyprint"><code>kafe.ext.googletagmanager.track('product-addedtocart', { productname: 'Sexy rainbow pants' });
+					kafe.ext.googletagmanager.track('upsell-shown', [
+					    {
+					        sku: '123',
+					        price: 12.34,
+					        name: 'Sexy rainbow pants'
+					    },
+					    {
+					        sku: '456',
+					        price: 45.67,
+					        name: 'Plain beige skirt'
+					    }
+					]);</code></pre>
 					
 							</section>
 					</section>

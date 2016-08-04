@@ -57,7 +57,7 @@
 	*			step:  'Shipping method',
 	*			label: 'Shipped via {{method}}'
 	*		},
-	*		'upsell-click': ['productClick', {
+	*		'upsell-shown': ['productImpression', {
 	*			id:       '{{sku}} - {{id}}',
 	*			name:     '{{name}}',
 	*			brand:    '{{productBrand}}',
@@ -65,6 +65,7 @@
 	*			category: '{{category}} / {{subcategory}}',
 	*			position: '{{position}}',
 	*			list:     'Upsell products'
+	*			currency: 'CAD'
 	*		},
 	*		'sunset-position': ['raw', {
 	*			foo: 'bar',
@@ -83,18 +84,49 @@
 	* @method track
 	*	@param {String} name Event name
 	*	@param {Object} [tokens] List of replacement tokens
-	*	@param {Function} [callback] Function to call after event is pushed
 	*
 	* @example
 	*	<!-- @echo NAME_FULL -->.track('product-addedtocart', { productname: 'Sexy rainbow pants' });
+	*	<!-- @echo NAME_FULL -->.track('upsell-shown', [
+	*		{
+	*			sku: '123',
+	*			price: 12.34,
+	*			name: 'Sexy rainbow pants'
+	*		},
+	*		{
+	*			sku: '456',
+	*			price: 45.67,
+	*			name: 'Plain beige skirt'
+	*		}
+	*	]);
 	*/
-	googletagmanager.track = function(name, tokens, callback) {
+	googletagmanager.track = function(name, tokens) {
+		var deferred = $.Deferred();
+
 		var event = _events[name];
 
 		if (event) {
-			var type    = event[0];
-			var options = event[1] ? _processData(event[1], tokens) : tokens;
+			var type = event[0];
+			var options;
 
+			// Process tokens
+			switch (type) {
+
+				//-- Multiple
+				case 'productImpression':
+					options = [];
+					_.forEach(tokens, function(itemTokens) {
+						options.push( _processData(event[1], itemTokens) );
+					});
+				break;
+
+				//-- Single
+				default:
+					options = _processData(event[1], tokens);
+				break;
+			}
+
+			// Format to GTM data
 			switch (type) {
 
 				//-- Google Analytics - Event
@@ -147,19 +179,26 @@
 
 				//-- Enhanced Ecommerce - Product impression
 				case 'productImpression':
+
+					var impressions = [];
+
+					_.forEach(options, function(itemOptions) {
+						impressions.push({
+							id:       itemOptions.id,
+							name:     itemOptions.name,
+							brand:    itemOptions.brand,
+							price:    itemOptions.price,
+							category: itemOptions.category,
+							position: itemOptions.position,
+							list:     itemOptions.list
+						});
+					});
+
 					data = {
 						event: 'productImpression',
 						ecommerce: {
-							currency:   options.currency,
-							impressions: [{
-								id:       options.id,
-								name:     options.name,
-								brand:    options.brand,
-								price:    options.price,
-								category: options.category,
-								position: options.position,
-								list:     options.list
-							}]
+							currency:    options[0].currency,
+							impressions: impressions
 						}
 					};
 				break;
@@ -170,52 +209,26 @@
 				break;
 			}
 
-			if (!data.eventCallback && callback) {
-				data.eventCallback = callback;
-			}
+
+			// Resolve when GTM responds
+			data.eventCallback = function() {
+				if (deferred.state() === 'pending') {
+					deferred.resolve();
+				}
+			};
+
+			// Reject after 1 sec
+			global.setTimeout(function() {
+				if (deferred.state() === 'pending') {
+					deferred.reject();
+				}
+			}, 1000);
+
 
 			global.dataLayer.push(data);
+
+			return deferred.promise();
 		}
-	};
-
-
-	/**
-	* Delay link until GTM data is pushed.
-	*
-	* @method delayHyperlink
-	* @param {Event} event Original click event
-	* @param {Function} callback Code to execute. Receives `cb` param
-	* @param {Number} [delay=1000] Number of ms to wait before going to the link anyway
-	*
-	* @example
-	*	<!-- @echo NAME_FULL -->.delayHyperlink(event, function (cb) {
-	*		<!-- @echo NAME_FULL -->.track('checkout-type', { type: 'guest' }, cb);
-	*	}, 2000);
-	*/
-	googletagmanager.delayHyperlink = function(event, callback, delay) {
-		event.preventDefault();
-
-		var done = false;
-		var url = $(event.currentTarget).attr('href');
-
-		var redirect = function() {
-			if (!done) {
-				done = true;
-
-				// Trying to guess if user requested a new window
-				if ( event.ctrlKey || event.shiftKey || event.metaKey || (event.button && event.button == 1) ) {
-					__.window.open(url, '_blank');
-				} else {
-					global.location.assign(url);
-				}
-			}
-		};
-
-		// Do the call
-		callback(redirect);
-
-		// If too long
-		global.setTimeout(redirect, delay || 1000);
 	};
 
 

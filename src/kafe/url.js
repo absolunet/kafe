@@ -127,6 +127,35 @@
 	};
 
 
+	/**
+	* Delay link until promises are resolved.
+	*
+	* @method followLinkWhen
+	* @param {Event} event Original click event
+	* @param {Array} promises Array of promises
+	*
+	* @example
+	*	<!-- @echo NAME_FULL -->.followLinkWhen(event, [
+	*		<!-- @echo MODULE -->.ext.googletagmanager.track('checkout-type', { type: 'guest' }),
+	*		<!-- @echo MODULE -->.ext.googletagmanager.track('checkout-step', { number: 2 })
+	*	]);
+	*/
+	url.followLinkWhen = function(event, promises) {
+
+		// Trying to guess if user requested a new window
+		if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button && event.button == 1) ) ) {
+			event.preventDefault();
+
+			var url = $(event.currentTarget).attr('href');
+
+			$.when.apply(this, promises).always(function() {
+				global.location.assign(url);
+			});
+		}
+
+	};
+
+
 	return url;
 
 /* @echo footer */
