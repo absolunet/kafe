@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googletagmanager', version:'1.1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googletagmanager', version:'1.1.1', obj:(function(){
 
 	var
 
@@ -26,7 +26,7 @@
 
 
 	/**
-	* ### Version 1.1.0
+	* ### Version 1.1.1
 	* Extra methods for the Google Tag Manager.
 	* Requires GTM to be included
 	*
@@ -159,6 +159,7 @@
 					data = {
 						event: 'productClick',
 						ecommerce: {
+							currencyCode: options.currency,
 							click: {
 								actionField: {
 									list: options.list
@@ -197,8 +198,8 @@
 					data = {
 						event: 'productImpression',
 						ecommerce: {
-							currency:    options[0].currency,
-							impressions: impressions
+							currencyCode: options[0].currency,
+							impressions:  impressions
 						}
 					};
 				break;

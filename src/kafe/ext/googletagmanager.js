@@ -198,8 +198,8 @@
 					data = {
 						event: 'productImpression',
 						ecommerce: {
-							currencyCode:    options[0].currency,
-							impressions: impressions
+							currencyCode: options[0].currency,
+							impressions:  impressions
 						}
 					};
 				break;

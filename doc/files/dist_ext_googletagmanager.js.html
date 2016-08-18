@@ -22,11 +22,11 @@
 	<title>dist/ext/googletagmanager.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2015 Absolunet inc. -->
+	<!-- (c) 2016 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.4</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.5</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -46,7 +46,7 @@
 			</header>
 			
 			<pre>
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googletagmanager&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.googletagmanager&#x27;, version:&#x27;1.1.1&#x27;, obj:(function(){
 			
 				var
 			
@@ -74,7 +74,7 @@
 			
 			
 				/**
-				* ### Version 1.1.0
+				* ### Version 1.1.1
 				* Extra methods for the Google Tag Manager.
 				* Requires GTM to be included
 				*
@@ -207,6 +207,7 @@
 								data = {
 									event: &#x27;productClick&#x27;,
 									ecommerce: {
+										currencyCode: options.currency,
 										click: {
 											actionField: {
 												list: options.list
@@ -245,8 +246,8 @@
 								data = {
 									event: &#x27;productImpression&#x27;,
 									ecommerce: {
-										currency:    options[0].currency,
-										impressions: impressions
+										currencyCode: options[0].currency,
+										impressions:  impressions
 									}
 								};
 							break;
@@ -323,7 +324,7 @@
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2016 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

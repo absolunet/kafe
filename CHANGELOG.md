@@ -1,5 +1,9 @@
 # kafe changelog
 
+## 3.1.5 (2016-08-18)
+- Adjustments in kafe.ext.googletagmanager
+- Correction in kafe.ext.colorbox
+
 ## 3.1.4 (2016-08-04)
 - Refacto kafe.ext.googletagmanager to use Promises
 

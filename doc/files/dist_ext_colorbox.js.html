@@ -22,11 +22,11 @@
 	<title>dist/ext/colorbox.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
-	<!-- (c) 2015 Absolunet inc. -->
+	<!-- (c) 2016 Absolunet inc. -->
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.4</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.5</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -48,7 +48,7 @@
 			<pre>
 			//= require &#x27;bower_components/colorbox/jquery.colorbox&#x27;
 			
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.colorbox&#x27;, version:&#x27;1.2.1&#x27;, obj:(function(){
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.colorbox&#x27;, version:&#x27;1.2.2&#x27;, obj:(function(){
 			
 				var
 					_params = {
@@ -68,7 +68,7 @@
 							delete options.theme;
 						}
 			
-						if ($obj !== undefined) {
+						if (obj !== undefined) {
 							return $(obj).colorbox(options);
 						} else {
 							$.colorbox(options);
@@ -106,7 +106,7 @@
 			
 			
 				/**
-				* ### Version 1.2.1
+				* ### Version 1.2.2
 				* Extra methods for the colorbox jQuery plugin.
 				*
 				* @module kafe.ext
@@ -350,7 +350,7 @@
 		</nav>
 	</div>
 
-	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2015 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
+	<footer id="Footer"><a href="//github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2016 &copy; <a href="//absolunet.com">Absolunet</a> - All rights reserved.</footer>
 
 	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <![endif]-->
 	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> <!--<![endif]-->

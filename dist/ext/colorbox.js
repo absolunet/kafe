@@ -1,6 +1,6 @@
 //= require 'bower_components/colorbox/jquery.colorbox'
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.colorbox', version:'1.2.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.colorbox', version:'1.2.2', obj:(function(){
 
 	var
 		_params = {
@@ -20,7 +20,7 @@
 				delete options.theme;
 			}
 
-			if ($obj !== undefined) {
+			if (obj !== undefined) {
 				return $(obj).colorbox(options);
 			} else {
 				$.colorbox(options);
@@ -58,7 +58,7 @@
 
 
 	/**
-	* ### Version 1.2.1
+	* ### Version 1.2.2
 	* Extra methods for the colorbox jQuery plugin.
 	*
 	* @module kafe.ext
