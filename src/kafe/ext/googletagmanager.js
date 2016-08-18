@@ -159,6 +159,7 @@
 					data = {
 						event: 'productClick',
 						ecommerce: {
+							currencyCode: options.currency,
 							click: {
 								actionField: {
 									list: options.list
@@ -197,7 +198,7 @@
 					data = {
 						event: 'productImpression',
 						ecommerce: {
-							currency:    options[0].currency,
+							currencyCode:    options[0].currency,
 							impressions: impressions
 						}
 					};
