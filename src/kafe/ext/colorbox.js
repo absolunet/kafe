@@ -20,7 +20,7 @@
 				delete options.theme;
 			}
 
-			if ($obj !== undefined) {
+			if (obj !== undefined) {
 				return $(obj).colorbox(options);
 			} else {
 				$.colorbox(options);
