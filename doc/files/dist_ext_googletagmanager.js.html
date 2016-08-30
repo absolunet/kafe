@@ -99,12 +99,13 @@
 				*		&#x27;product-addedtocart&#x27;: [&#x27;ga_event&#x27;, {
 				*			category: &#x27;Cart&#x27;,
 				*			action:   &#x27;Product added - {{uri}}&#x27;,
-				*			label:    &#x27;{{productname}}&#x27;
-				*		},
+				*			label:    &#x27;{{productname}}&#x27;,
+				*			value:    &#x27;{{productvalue}}&#x27; // integer only
+				*		}],
 				*		&#x27;checkout-shipping&#x27;: [&#x27;checkoutOption&#x27;, {
 				*			step:  &#x27;Shipping method&#x27;,
 				*			label: &#x27;Shipped via {{method}}&#x27;
-				*		},
+				*		}],
 				*		&#x27;upsell-shown&#x27;: [&#x27;productImpression&#x27;, {
 				*			id:       &#x27;{{sku}} - {{id}}&#x27;,
 				*			name:     &#x27;{{name}}&#x27;,
@@ -112,13 +113,13 @@
 				*			price:    &#x27;{{priceWithoutTaxes}}&#x27;,
 				*			category: &#x27;{{category}} / {{subcategory}}&#x27;,
 				*			position: &#x27;{{position}}&#x27;,
-				*			list:     &#x27;Upsell products&#x27;
+				*			list:     &#x27;Upsell products&#x27;,
 				*			currency: &#x27;CAD&#x27;
-				*		},
+				*		}],
 				*		&#x27;sunset-position&#x27;: [&#x27;raw&#x27;, {
 				*			foo: &#x27;bar&#x27;,
 				*			bar: &#x27;foo&#x27;
-				*		}
+				*		}]
 				*	});
 				*/
 				googletagmanager.add = function(events) {
@@ -183,7 +184,8 @@
 									event:         &#x27;ga_event&#x27;,
 									eventCategory: options.category,
 									eventAction:   options.action,
-									eventLabel:    options.label
+									eventLabel:    options.label,
+									eventValue:    options.value
 								};
 							break;
 			
