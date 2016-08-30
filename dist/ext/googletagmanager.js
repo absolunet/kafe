@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googletagmanager', version:'1.1.1', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.googletagmanager', version:'1.1.2', obj:(function(){
 
 	var
 
@@ -26,7 +26,7 @@
 
 
 	/**
-	* ### Version 1.1.1
+	* ### Version 1.1.2
 	* Extra methods for the Google Tag Manager.
 	* Requires GTM to be included
 	*
@@ -51,12 +51,13 @@
 	*		'product-addedtocart': ['ga_event', {
 	*			category: 'Cart',
 	*			action:   'Product added - {{uri}}',
-	*			label:    '{{productname}}'
-	*		},
+	*			label:    '{{productname}}',
+	*			value:    '{{productvalue}}' // integer only
+	*		}],
 	*		'checkout-shipping': ['checkoutOption', {
 	*			step:  'Shipping method',
 	*			label: 'Shipped via {{method}}'
-	*		},
+	*		}],
 	*		'upsell-shown': ['productImpression', {
 	*			id:       '{{sku}} - {{id}}',
 	*			name:     '{{name}}',
@@ -64,13 +65,13 @@
 	*			price:    '{{priceWithoutTaxes}}',
 	*			category: '{{category}} / {{subcategory}}',
 	*			position: '{{position}}',
-	*			list:     'Upsell products'
+	*			list:     'Upsell products',
 	*			currency: 'CAD'
-	*		},
+	*		}],
 	*		'sunset-position': ['raw', {
 	*			foo: 'bar',
 	*			bar: 'foo'
-	*		}
+	*		}]
 	*	});
 	*/
 	googletagmanager.add = function(events) {
@@ -135,7 +136,8 @@
 						event:         'ga_event',
 						eventCategory: options.category,
 						eventAction:   options.action,
-						eventLabel:    options.label
+						eventLabel:    options.label,
+						eventValue:    options.value
 					};
 				break;
 

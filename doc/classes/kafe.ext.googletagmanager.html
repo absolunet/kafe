@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.5</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.1.6</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,7 +43,7 @@
 			<header class="class">
 				<h1>kafe.ext.googletagmanager</h1>
 				<h2>Class</h2>
-				<h3>Version 1.1.1</h3>
+				<h3>Version 1.1.2</h3>
 			<p>Extra methods for the Google Tag Manager.
 			Requires GTM to be included</p>
 			
@@ -122,12 +122,13 @@
 					    'product-addedtocart': ['ga_event', {
 					        category: 'Cart',
 					        action:   'Product added - {{uri}}',
-					        label:    '{{productname}}'
-					    },
+					        label:    '{{productname}}',
+					        value:    '{{productvalue}}' // integer only
+					    }],
 					    'checkout-shipping': ['checkoutOption', {
 					        step:  'Shipping method',
 					        label: 'Shipped via {{method}}'
-					    },
+					    }],
 					    'upsell-shown': ['productImpression', {
 					        id:       '{{sku}} - {{id}}',
 					        name:     '{{name}}',
@@ -135,20 +136,20 @@
 					        price:    '{{priceWithoutTaxes}}',
 					        category: '{{category}} / {{subcategory}}',
 					        position: '{{position}}',
-					        list:     'Upsell products'
+					        list:     'Upsell products',
 					        currency: 'CAD'
-					    },
+					    }],
 					    'sunset-position': ['raw', {
 					        foo: 'bar',
 					        bar: 'foo'
-					    }
+					    }]
 					});</code></pre>
 					
 							</section>
 					</section>
 					<section>
 						<h1>track</h1>
-						<footer><a href="../files/dist_ext_googletagmanager.js.html#l81">@81</a></footer>
+						<footer><a href="../files/dist_ext_googletagmanager.js.html#l82">@82</a></footer>
 					
 						<p>Push a event into the <code>dataLayer</code>.</p>
 					
