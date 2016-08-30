@@ -51,7 +51,8 @@
 	*		'product-addedtocart': ['ga_event', {
 	*			category: 'Cart',
 	*			action:   'Product added - {{uri}}',
-	*			label:    '{{productname}}'
+	*			label:    '{{productname}}',
+	*			value:    '{{productvalue}}' // integer only
 	*		}],
 	*		'checkout-shipping': ['checkoutOption', {
 	*			step:  'Shipping method',
@@ -135,7 +136,8 @@
 						event:         'ga_event',
 						eventCategory: options.category,
 						eventAction:   options.action,
-						eventLabel:    options.label
+						eventLabel:    options.label,
+						eventValue:    options.value
 					};
 				break;
 
