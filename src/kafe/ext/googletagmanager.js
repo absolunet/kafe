@@ -64,7 +64,7 @@
 	*			price:    '{{priceWithoutTaxes}}',
 	*			category: '{{category}} / {{subcategory}}',
 	*			position: '{{position}}',
-	*			list:     'Upsell products'
+	*			list:     'Upsell products',
 	*			currency: 'CAD'
 	*		}],
 	*		'sunset-position': ['raw', {
