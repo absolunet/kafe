@@ -52,11 +52,11 @@
 	*			category: 'Cart',
 	*			action:   'Product added - {{uri}}',
 	*			label:    '{{productname}}'
-	*		},
+	*		}],
 	*		'checkout-shipping': ['checkoutOption', {
 	*			step:  'Shipping method',
 	*			label: 'Shipped via {{method}}'
-	*		},
+	*		}],
 	*		'upsell-shown': ['productImpression', {
 	*			id:       '{{sku}} - {{id}}',
 	*			name:     '{{name}}',
@@ -66,11 +66,11 @@
 	*			position: '{{position}}',
 	*			list:     'Upsell products'
 	*			currency: 'CAD'
-	*		},
+	*		}],
 	*		'sunset-position': ['raw', {
 	*			foo: 'bar',
 	*			bar: 'foo'
-	*		}
+	*		}]
 	*	});
 	*/
 	googletagmanager.add = function(events) {
