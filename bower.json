@@ -1,6 +1,6 @@
 {
 	"name":        "kafe",
-	"version":     "3.1.6",
+	"version":     "3.2.0",
 	"description": "Mixing javascript crops for a perfect flavour.",
 	"definition":  "/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.",
 	"homepage":    "http://absolunet.github.io/kafe",
@@ -39,8 +39,8 @@
 	},
 
 	"dependencies": {
-		"jquery":      "^2.2.4",
+		"jquery":      "^3.1.1",
 		"js-cookie":   "^2.0.4",
-		"jquery-json": "^2.5.1"
+		"jquery-json": "^2.6.0"
 	}
 }
