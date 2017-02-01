@@ -19,7 +19,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
-	<title>dist/cms/wordpress.js - kafe</title>
+	<title>kafe.ext.foundation - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2016 Absolunet inc. -->
@@ -40,42 +40,101 @@
 
 	<div id="Content">
 		<section>
-			<header class="file">
-				<h1>dist/cms/wordpress.js</h1>
-				<h2>File</h2>
+			<header class="class">
+				<h1>kafe.ext.foundation</h1>
+				<h2>Class</h2>
+				<h3>Version 0.0.1</h3>
+			<p>Extra methods for Zurb Foundation.</p>
+			
+				<div>
+					<span>Source: <a href="../files/dist_ext_foundation.js.html#l3">dist/ext/foundation.js</a></span>
+				</div>
 			</header>
 			
-			<pre>
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;cms.wordpress&#x27;, version:&#x27;0.0.1&#x27;, obj:(function(){
 			
-				var
-					$Global = global.jQuery,
-			
-					_privateFunction = function () {
-			
-					}
-				;
-			
-			
-				/**
-				* ### Version 0.0.1
-				* Additionnal methods for Wordpress
-				*
-				* @module kafe.cms
-				* @class kafe.cms.wordpress
-				*/
-				var wordpress = {};
-			
-			
-			
-				wordpress.publicFunction = function() {
-			
-				};
-			
-				return wordpress;
-			
-			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
-			</pre>
+			<section>
+				<h1>Methods</h1>
+					<section>
+						<h1>equalizer</h1>
+						<footer><a href="../files/dist_ext_foundation.js.html#l13">@13</a></footer>
+					
+						<p>Custom equalizer binder.</p>
+					
+					
+						<header>
+							<strong>equalizer</strong>
+								<ul>
+					
+										<li><code class="Simple">options</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>options</code>
+											<strong>Object</strong>
+										<p>Options</p>
+					
+					
+					
+											<ul>
+												<li>
+														<code>wrapper</code>
+														<strong>String|jQueryObject|DOMElement</strong>
+													<p>Selector of list wrapper having the <code>data-resize</code> attribute.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>item</code>
+														<strong>String</strong>
+													<p>Selector of item to equalize.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[rows]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Object of breakpoint classes and number of items per row, 'and up' inheritance</p>
+					
+					
+					
+												</li>
+											</ul>
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>  kafe.ext.foundation.equalizer({
+					    wrapper: $('[data-component=&quot;list&quot;]'),
+					    item:    '[data-component=&quot;item&quot;]',
+					    rows:    {
+					      medium: 2,
+					      large:  3
+					    }
+					  });</code></pre>
+					
+							</section>
+					</section>
+			</section>
 		</section>
 		<nav>
 			<ul>

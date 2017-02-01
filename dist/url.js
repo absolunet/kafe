@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'url', version:'1.2.0', obj:(function(){
 
 	var
 		// parse url
@@ -23,7 +23,7 @@
 
 
 	/**
-	* ### Version 1.1.0
+	* ### Version 1.2.0
 	* Manipulation tools for route-based urls.
 	*
 	* @module kafe
@@ -142,14 +142,14 @@
 	*/
 	url.followLinkWhen = function(event, promises) {
 
+		var $target = $(event.currentTarget);
+
 		// Trying to guess if user requested a new window
-		if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button && event.button == 1) ) ) {
+		if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button && event.button == 1) || $target.is('[data-external], [target]:not([target="_self"]):not([target="_parent"]):not([target="_top"])') )) {
 			event.preventDefault();
 
-			var url = $(event.currentTarget).attr('href');
-
 			$.when.apply(this, promises).always(function() {
-				global.location.assign(url);
+				global.location.assign($target.attr('href'));
 			});
 		}
 

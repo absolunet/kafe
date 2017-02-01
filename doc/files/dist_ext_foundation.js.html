@@ -19,7 +19,7 @@
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
 	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
 
-	<title>dist/cms/wordpress.js - kafe</title>
+	<title>dist/ext/foundation.js - kafe</title>
 	<link rel="stylesheet" href="/kafe/assets/core.css">
 
 	<!-- (c) 2016 Absolunet inc. -->
@@ -41,38 +41,100 @@
 	<div id="Content">
 		<section>
 			<header class="file">
-				<h1>dist/cms/wordpress.js</h1>
+				<h1>dist/ext/foundation.js</h1>
 				<h2>File</h2>
 			</header>
 			
 			<pre>
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;cms.wordpress&#x27;, version:&#x27;0.0.1&#x27;, obj:(function(){
-			
-				var
-					$Global = global.jQuery,
-			
-					_privateFunction = function () {
-			
-					}
-				;
-			
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.foundation&#x27;, version:&#x27;0.0.1&#x27;, obj:(function(){
 			
 				/**
 				* ### Version 0.0.1
-				* Additionnal methods for Wordpress
+				* Extra methods for Zurb Foundation.
 				*
-				* @module kafe.cms
-				* @class kafe.cms.wordpress
+				* @module kafe.ext
+				* @class kafe.ext.foundation
 				*/
-				var wordpress = {};
+				var foundation = {};
 			
 			
+				/**
+				* Custom equalizer binder.
+				*
+				* @method equalizer
+				* @param {Object} options Options
+				* @param {String|jQueryObject|DOMElement} options.wrapper Selector of list wrapper having the &#x60;data-resize&#x60; attribute.
+				* @param {String} options.item Selector of item to equalize.
+				*	@param {Object} [options.rows] Object of breakpoint classes and number of items per row, &#x27;and up&#x27; inheritance
+				*
+				* @example
+				*	  kafe.ext.foundation.equalizer({
+				*	    wrapper: $(&#x27;[data-component=&quot;list&quot;]&#x27;),
+				*	    item:    &#x27;[data-component=&quot;item&quot;]&#x27;,
+				*	    rows:    {
+				*	      medium: 2,
+				*	      large:  3
+				*	    }
+				*	  });
+				*/
+				foundation.equalizer = function(options) {
+					var $elementList = $(options.wrapper);
 			
-				wordpress.publicFunction = function() {
+					if ($elementList.length) {
+						$elementList.each(function() {
+							var $this = $(this);
+							var $items = $this.find(options.item);
 			
+							if ($items.length &gt; 1) {
+			
+								// By rows
+								if (options.rows) {
+									var max = &#x27;small&#x27;;
+									Foundation.MediaQuery.queries.forEach(function(size) {
+										if (options.rows[size.name]) {
+											max = size.name;
+										} else {
+											options.rows[size.name] = options.rows[max];
+										}
+									});
+			
+									var $equalizer = new Foundation.Equalizer($this);
+			
+									$this.on(&#x27;resizeme.zf.trigger&#x27;, function() {
+										var data       = [];
+										var itemsByRow = _.chunk(_.flatten($items.toArray()), options.rows[Foundation.MediaQuery.current]);
+			
+										itemsByRow.forEach(function(rowItems) {
+											var row = [];
+			
+											rowItems.forEach(function(item) {
+												var $item = $(item);
+												$item.css(&#x27;height&#x27;, &#x27;auto&#x27;);
+												row.push([item, Math.ceil($item.get(0).offsetHeight)]);
+											});
+			
+											row.push(_.maxBy(row, 1)[1]);
+											data.push(row);
+										});
+			
+										$equalizer.applyHeightByRow(data);
+			
+									}).trigger(&#x27;resizeme.zf.trigger&#x27;);
+			
+								// All the same
+								} else {
+									$items.attr(&#x27;data-equalizer-watch&#x27;, &#x27;&#x27;);
+			
+									// eslint-disable-next-line no-new
+									new Foundation.Equalizer($this);
+								}
+							}
+						});
+					}
 				};
 			
-				return wordpress;
+			
+				return foundation;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
 			</pre>

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.0</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.1</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -46,7 +46,7 @@
 			</header>
 			
 			<pre>
-			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
 			
 				var
 					// parse url
@@ -71,7 +71,7 @@
 			
 			
 				/**
-				* ### Version 1.1.0
+				* ### Version 1.2.0
 				* Manipulation tools for route-based urls.
 				*
 				* @module kafe
@@ -190,14 +190,14 @@
 				*/
 				url.followLinkWhen = function(event, promises) {
 			
+					var $target = $(event.currentTarget);
+			
 					// Trying to guess if user requested a new window
-					if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button &amp;&amp; event.button == 1) ) ) {
+					if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button &amp;&amp; event.button == 1) || $target.is(&#x27;[data-external], [target]:not([target=&quot;_self&quot;]):not([target=&quot;_parent&quot;]):not([target=&quot;_top&quot;])&#x27;) )) {
 						event.preventDefault();
 			
-						var url = $(event.currentTarget).attr(&#x27;href&#x27;);
-			
 						$.when.apply(this, promises).always(function() {
-							global.location.assign(url);
+							global.location.assign($target.attr(&#x27;href&#x27;));
 						});
 					}
 			
@@ -224,6 +224,7 @@
 			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
 			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
