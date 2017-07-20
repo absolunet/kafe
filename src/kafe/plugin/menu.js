@@ -3,7 +3,7 @@
 	/**
 	* ### Version <!-- @echo VERSION -->
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
-	* 
+	*
 	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`<!-- @echo NAME_ATTR -->-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
 	* @module <!-- @echo MODULE -->
@@ -47,11 +47,11 @@
 	*			</li>
 	*		</ul>
 	*	</nav>
-	*	
+	*
 	* @example
 	*	// Attach behaviors using...
 	*	<!-- @echo NAME_FULL -->.init({ selector: '#main-menu > ul' });
-	*	
+	*
 	* @example
 	*	// Or use the jQuery alternative...
 	*	$('#main-menu > ul').<!-- @echo NAME_JQUERY -->('init', {});
@@ -62,6 +62,7 @@
 			c = {
 				$menu:         $(options.selector),
 				handle:        (options.handle) ? options.handle : 'li',
+				handleBtn:     (options.handleBtn) ? options.handleBtn : 'a',
 				submenus:      (options.submenus) ? options.submenus : 'ul',
 				animation:     (options.animation) ? options.animation : 'slide',
 				openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
@@ -69,7 +70,8 @@
 				closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
 				closeDelay:    !isNaN(Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
 				enterCallback: (typeof(options.enterCallback)  == 'function') ? options.enterCallback  : undefined,
-				leaveCallback: (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined
+				leaveCallback: (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined,
+				clickOnly:     !!options.clickOnly
 			}
 		;
 
@@ -77,68 +79,116 @@
 			return false;
 		}
 
-		c.$menu.children(c.handle)
-			.bind('mouseenter', function(){
-				var
-					$parent = $(this),
-					$sub = $parent.children(c.submenus)
-				;
+		var $handles = c.$menu.children(c.handle);
 
-				if ($sub.data('<!-- @echo NAME_ATTR -->-timer') !== undefined) {
-					clearTimeout($sub.data('<!-- @echo NAME_ATTR -->-timer'));
-				}
+		$handles
+			.bind('<!-- @echo NAME_ATTR -->:open', function(){ _openMenu(this, 0); })
+			.bind('<!-- @echo NAME_ATTR -->:close', function(){ _closeMenu(this, 0); })
+		;
 
-				if ($sub.size() > 0) {
-					$sub.data('<!-- @echo NAME_ATTR -->-timer', setTimeout(function() {
-						$parent.addClass('<!-- @echo NAME_ATTR -->-open');
-						if (!!c.enterCallback) {
-							c.enterCallback($sub);
+		if (!c.clickOnly) {
+			$handles
+				.bind('mouseenter', function(e){ _openMenu(this, c.openDelay); })
+				.bind('mouseleave', function(e){ _closeMenu(this, c.closeDelay); })
+			;
+		}
+		else
+		{
+			$handles.each(function(){
+				var $handle = $(this);
+				if($handle.children(c.submenus).length > 0) {
+					$handle.children(c.handleBtn).on('click', function(e){
+						e.preventDefault();
+						e.stopPropagation();
+						var $handle = $(this).parent();
+						if($handle.hasClass('<!-- @echo NAME_ATTR -->-open')){
+							$handle.trigger('<!-- @echo NAME_ATTR -->:close');
+							document.location = $(this).attr('href');
+						}else{
+							$handles.filter('.<!-- @echo NAME_ATTR -->-open').trigger('<!-- @echo NAME_ATTR -->:close');
+							$handle.trigger('<!-- @echo NAME_ATTR -->:open');
 						}
-						switch (c.animation) {
-							case 'fade' :
-								$sub.fadeIn(c.openSpeed);
-							break;
-
-							//case 'slide' :
-							default :
-								$sub.slideDown(c.openSpeed);
-							break;
-						}
-					}, c.openDelay));
+					});
 				}
-			})
-			.bind('mouseleave', function(){
-				var
-					$parent = $(this),
-					$sub = $parent.children(c.submenus),
-					_clearclass = function() {
-						$parent.removeClass('<!-- @echo NAME_ATTR -->-open');
+			});
+			$('html').on('click', function() {
+				c.$menu.children(c.handle).filter('.<!-- @echo NAME_ATTR -->-open').trigger('<!-- @echo NAME_ATTR -->:close');
+			});
+		}
+
+		_closeMenu = function(_handle, _delay){
+			var
+				$parent = $(_handle),
+				$sub = $parent.children(c.submenus),
+				_clearclass = function() {
+					$parent.removeClass('<!-- @echo NAME_ATTR -->-open');
+				}
+			;
+
+			if ($sub.data('<!-- @echo NAME_ATTR -->-timer') !== undefined) {
+				clearTimeout($sub.data('<!-- @echo NAME_ATTR -->-timer'));
+			}
+
+			if ($sub.length > 0) {
+				$sub.data('<!-- @echo NAME_ATTR -->-timer', setTimeout(function() {
+					var returnCallback = true;
+					if (!!c.leaveCallback) {
+						returnCallback = c.leaveCallback($sub);
 					}
-				;
-
-				if ($sub.data('<!-- @echo NAME_ATTR -->-timer') !== undefined) {
-					clearTimeout($sub.data('<!-- @echo NAME_ATTR -->-timer'));
-				}
-
-				if ($sub.size() > 0) {
-					$sub.data('<!-- @echo NAME_ATTR -->-timer', setTimeout(function() {
-						if (!!c.leaveCallback) {
-							c.leaveCallback($sub);
-						}
+					if (returnCallback) {
 						switch (c.animation) {
 							case 'fade' :
 								$sub.fadeOut(c.closeSpeed, _clearclass);
 							break;
 
-							//case 'slide' :
-							default :
+							case 'slide' :
 								$sub.slideUp(c.closeSpeed, _clearclass);
 							break;
+
+							default :
+								$sub.hide(c.closeSpeed, _clearclass);
+							break;
 						}
-					}, c.closeDelay));
-				}
-			})
-		;
+					}
+				}, _delay));
+			}
+		};
+
+		_openMenu = function(_handle, _delay) {
+			var
+				$parent = $(_handle),
+				$sub = $parent.children(c.submenus)
+			;
+
+			if ($sub.data('<!-- @echo NAME_ATTR -->-timer') !== undefined) {
+				clearTimeout($sub.data('<!-- @echo NAME_ATTR -->-timer'));
+			}
+
+			if ($sub.length > 0) {
+				$sub.data('<!-- @echo NAME_ATTR -->-timer', setTimeout(function() {
+					$parent.addClass('<!-- @echo NAME_ATTR -->-open');
+					var returnCallback = true;
+					if (!!c.enterCallback) {
+						returnCallback = c.enterCallback($sub);
+					}
+					if (returnCallback) {
+						switch (c.animation) {
+							case 'fade' :
+								$sub.fadeIn(c.openSpeed);
+							break;
+
+							case 'slide' :
+								$sub.slideDown(c.openSpeed);
+							break;
+
+							default :
+								$sub.show(c.openSpeed);
+							break;
+						}
+					}
+				}, _delay));
+			}
+		};
 	};
 
 
