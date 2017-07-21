@@ -64,7 +64,7 @@
 				handle:        (options.handle) ? options.handle : 'li',
 				handleBtn:     (options.handleBtn) ? options.handleBtn : 'a',
 				submenus:      (options.submenus) ? options.submenus : 'ul',
-				animation:     (options.animation) ? options.animation : 'slide',
+				animation:     (options.animation) ? options.animation : '',
 				openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
 				openDelay:     !isNaN(Number(options.openDelay)) ? Number(options.openDelay) : 500,
 				closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
