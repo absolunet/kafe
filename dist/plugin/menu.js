@@ -1,7 +1,7 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.menu', version:'1.0.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.menu', version:'1.1.0', obj:(function(){
 
 	/**
-	* ### Version 1.0.0
+	* ### Version 1.1.0
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
 	*
 	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
