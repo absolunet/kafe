@@ -3,7 +3,7 @@
 	/**
 	* ### Version 1.0.0
 	* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
-	* 
+	*
 	* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (`kafemenu-open`) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 	*
 	* @module kafe.plugin
@@ -47,11 +47,11 @@
 	*			</li>
 	*		</ul>
 	*	</nav>
-	*	
+	*
 	* @example
 	*	// Attach behaviors using...
 	*	kafe.plugin.menu.init({ selector: '#main-menu > ul' });
-	*	
+	*
 	* @example
 	*	// Or use the jQuery alternative...
 	*	$('#main-menu > ul').kafeMenu('init', {});
@@ -62,14 +62,16 @@
 			c = {
 				$menu:         $(options.selector),
 				handle:        (options.handle) ? options.handle : 'li',
+				handleBtn:     (options.handleBtn) ? options.handleBtn : 'a',
 				submenus:      (options.submenus) ? options.submenus : 'ul',
-				animation:     (options.animation) ? options.animation : 'slide',
+				animation:     (options.animation) ? options.animation : '',
 				openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
 				openDelay:     !isNaN(Number(options.openDelay)) ? Number(options.openDelay) : 500,
 				closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
 				closeDelay:    !isNaN(Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
 				enterCallback: (typeof(options.enterCallback)  == 'function') ? options.enterCallback  : undefined,
-				leaveCallback: (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined
+				leaveCallback: (typeof(options.leaveCallback)  == 'function') ? options.leaveCallback  : undefined,
+				clickOnly:     !!options.clickOnly
 			}
 		;
 
@@ -77,68 +79,116 @@
 			return false;
 		}
 
-		c.$menu.children(c.handle)
-			.bind('mouseenter', function(){
-				var
-					$parent = $(this),
-					$sub = $parent.children(c.submenus)
-				;
+		var $handles = c.$menu.children(c.handle);
 
-				if ($sub.data('kafemenu-timer') !== undefined) {
-					clearTimeout($sub.data('kafemenu-timer'));
-				}
+		$handles
+			.bind('kafemenu:open', function(){ _openMenu(this, 0); })
+			.bind('kafemenu:close', function(){ _closeMenu(this, 0); })
+		;
 
-				if ($sub.size() > 0) {
-					$sub.data('kafemenu-timer', setTimeout(function() {
-						$parent.addClass('kafemenu-open');
-						if (!!c.enterCallback) {
-							c.enterCallback($sub);
+		if (!c.clickOnly) {
+			$handles
+				.bind('mouseenter', function(e){ _openMenu(this, c.openDelay); })
+				.bind('mouseleave', function(e){ _closeMenu(this, c.closeDelay); })
+			;
+		}
+		else
+		{
+			$handles.each(function(){
+				var $handle = $(this);
+				if($handle.children(c.submenus).length > 0) {
+					$handle.children(c.handleBtn).on('click', function(e){
+						e.preventDefault();
+						e.stopPropagation();
+						var $handle = $(this).parent();
+						if($handle.hasClass('kafemenu-open')){
+							$handle.trigger('kafemenu:close');
+							document.location = $(this).attr('href');
+						}else{
+							$handles.filter('.kafemenu-open').trigger('kafemenu:close');
+							$handle.trigger('kafemenu:open');
 						}
-						switch (c.animation) {
-							case 'fade' :
-								$sub.fadeIn(c.openSpeed);
-							break;
-
-							//case 'slide' :
-							default :
-								$sub.slideDown(c.openSpeed);
-							break;
-						}
-					}, c.openDelay));
+					});
 				}
-			})
-			.bind('mouseleave', function(){
-				var
-					$parent = $(this),
-					$sub = $parent.children(c.submenus),
-					_clearclass = function() {
-						$parent.removeClass('kafemenu-open');
+			});
+			$('html').on('click', function() {
+				c.$menu.children(c.handle).filter('.kafemenu-open').trigger('kafemenu:close');
+			});
+		}
+
+		_closeMenu = function(_handle, _delay){
+			var
+				$parent = $(_handle),
+				$sub = $parent.children(c.submenus),
+				_clearclass = function() {
+					$parent.removeClass('kafemenu-open');
+				}
+			;
+
+			if ($sub.data('kafemenu-timer') !== undefined) {
+				clearTimeout($sub.data('kafemenu-timer'));
+			}
+
+			if ($sub.length > 0) {
+				$sub.data('kafemenu-timer', setTimeout(function() {
+					var returnCallback = true;
+					if (!!c.leaveCallback) {
+						returnCallback = c.leaveCallback($sub);
 					}
-				;
-
-				if ($sub.data('kafemenu-timer') !== undefined) {
-					clearTimeout($sub.data('kafemenu-timer'));
-				}
-
-				if ($sub.size() > 0) {
-					$sub.data('kafemenu-timer', setTimeout(function() {
-						if (!!c.leaveCallback) {
-							c.leaveCallback($sub);
-						}
+					if (returnCallback) {
 						switch (c.animation) {
 							case 'fade' :
 								$sub.fadeOut(c.closeSpeed, _clearclass);
 							break;
 
-							//case 'slide' :
-							default :
+							case 'slide' :
 								$sub.slideUp(c.closeSpeed, _clearclass);
 							break;
+
+							default :
+								$sub.hide(c.closeSpeed, _clearclass);
+							break;
 						}
-					}, c.closeDelay));
-				}
-			})
-		;
+					}
+				}, _delay));
+			}
+		};
+
+		_openMenu = function(_handle, _delay) {
+			var
+				$parent = $(_handle),
+				$sub = $parent.children(c.submenus)
+			;
+
+			if ($sub.data('kafemenu-timer') !== undefined) {
+				clearTimeout($sub.data('kafemenu-timer'));
+			}
+
+			if ($sub.length > 0) {
+				$sub.data('kafemenu-timer', setTimeout(function() {
+					$parent.addClass('kafemenu-open');
+					var returnCallback = true;
+					if (!!c.enterCallback) {
+						returnCallback = c.enterCallback($sub);
+					}
+					if (returnCallback) {
+						switch (c.animation) {
+							case 'fade' :
+								$sub.fadeIn(c.openSpeed);
+							break;
+
+							case 'slide' :
+								$sub.slideDown(c.openSpeed);
+							break;
+
+							default :
+								$sub.show(c.openSpeed);
+							break;
+						}
+					}
+				}, _delay));
+			}
+		};
 	};
 
 

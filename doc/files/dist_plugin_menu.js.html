@@ -51,7 +51,7 @@
 				/**
 				* ### Version 1.0.0
 				* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
-				* 
+				*
 				* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (&#x60;kafemenu-open&#x60;) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
 				*
 				* @module kafe.plugin
@@ -95,11 +95,11 @@
 				*			&lt;/li&gt;
 				*		&lt;/ul&gt;
 				*	&lt;/nav&gt;
-				*	
+				*
 				* @example
 				*	// Attach behaviors using...
 				*	kafe.plugin.menu.init({ selector: &#x27;#main-menu &gt; ul&#x27; });
-				*	
+				*
 				* @example
 				*	// Or use the jQuery alternative...
 				*	$(&#x27;#main-menu &gt; ul&#x27;).kafeMenu(&#x27;init&#x27;, {});
@@ -110,14 +110,16 @@
 						c = {
 							$menu:         $(options.selector),
 							handle:        (options.handle) ? options.handle : &#x27;li&#x27;,
+							handleBtn:     (options.handleBtn) ? options.handleBtn : &#x27;a&#x27;,
 							submenus:      (options.submenus) ? options.submenus : &#x27;ul&#x27;,
-							animation:     (options.animation) ? options.animation : &#x27;slide&#x27;,
+							animation:     (options.animation) ? options.animation : &#x27;&#x27;,
 							openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
 							openDelay:     !isNaN(Number(options.openDelay)) ? Number(options.openDelay) : 500,
 							closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
 							closeDelay:    !isNaN(Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
 							enterCallback: (typeof(options.enterCallback)  == &#x27;function&#x27;) ? options.enterCallback  : undefined,
-							leaveCallback: (typeof(options.leaveCallback)  == &#x27;function&#x27;) ? options.leaveCallback  : undefined
+							leaveCallback: (typeof(options.leaveCallback)  == &#x27;function&#x27;) ? options.leaveCallback  : undefined,
+							clickOnly:     !!options.clickOnly
 						}
 					;
 			
@@ -125,68 +127,116 @@
 						return false;
 					}
 			
-					c.$menu.children(c.handle)
-						.bind(&#x27;mouseenter&#x27;, function(){
-							var
-								$parent = $(this),
-								$sub = $parent.children(c.submenus)
-							;
+					var $handles = c.$menu.children(c.handle);
 			
-							if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
-								clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
-							}
+					$handles
+						.bind(&#x27;kafemenu:open&#x27;, function(){ _openMenu(this, 0); })
+						.bind(&#x27;kafemenu:close&#x27;, function(){ _closeMenu(this, 0); })
+					;
 			
-							if ($sub.size() &gt; 0) {
-								$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
-									$parent.addClass(&#x27;kafemenu-open&#x27;);
-									if (!!c.enterCallback) {
-										c.enterCallback($sub);
+					if (!c.clickOnly) {
+						$handles
+							.bind(&#x27;mouseenter&#x27;, function(e){ _openMenu(this, c.openDelay); })
+							.bind(&#x27;mouseleave&#x27;, function(e){ _closeMenu(this, c.closeDelay); })
+						;
+					}
+					else
+					{
+						$handles.each(function(){
+							var $handle = $(this);
+							if($handle.children(c.submenus).length &gt; 0) {
+								$handle.children(c.handleBtn).on(&#x27;click&#x27;, function(e){
+									e.preventDefault();
+									e.stopPropagation();
+									var $handle = $(this).parent();
+									if($handle.hasClass(&#x27;kafemenu-open&#x27;)){
+										$handle.trigger(&#x27;kafemenu:close&#x27;);
+										document.location = $(this).attr(&#x27;href&#x27;);
+									}else{
+										$handles.filter(&#x27;.kafemenu-open&#x27;).trigger(&#x27;kafemenu:close&#x27;);
+										$handle.trigger(&#x27;kafemenu:open&#x27;);
 									}
-									switch (c.animation) {
-										case &#x27;fade&#x27; :
-											$sub.fadeIn(c.openSpeed);
-										break;
-			
-										//case &#x27;slide&#x27; :
-										default :
-											$sub.slideDown(c.openSpeed);
-										break;
-									}
-								}, c.openDelay));
+								});
 							}
-						})
-						.bind(&#x27;mouseleave&#x27;, function(){
-							var
-								$parent = $(this),
-								$sub = $parent.children(c.submenus),
-								_clearclass = function() {
-									$parent.removeClass(&#x27;kafemenu-open&#x27;);
+						});
+						$(&#x27;html&#x27;).on(&#x27;click&#x27;, function() {
+							c.$menu.children(c.handle).filter(&#x27;.kafemenu-open&#x27;).trigger(&#x27;kafemenu:close&#x27;);
+						});
+					}
+			
+					_closeMenu = function(_handle, _delay){
+						var
+							$parent = $(_handle),
+							$sub = $parent.children(c.submenus),
+							_clearclass = function() {
+								$parent.removeClass(&#x27;kafemenu-open&#x27;);
+							}
+						;
+			
+						if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
+							clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
+						}
+			
+						if ($sub.length &gt; 0) {
+							$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
+								var returnCallback = true;
+								if (!!c.leaveCallback) {
+									returnCallback = c.leaveCallback($sub);
 								}
-							;
-			
-							if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
-								clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
-							}
-			
-							if ($sub.size() &gt; 0) {
-								$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
-									if (!!c.leaveCallback) {
-										c.leaveCallback($sub);
-									}
+								if (returnCallback) {
 									switch (c.animation) {
 										case &#x27;fade&#x27; :
 											$sub.fadeOut(c.closeSpeed, _clearclass);
 										break;
 			
-										//case &#x27;slide&#x27; :
-										default :
+										case &#x27;slide&#x27; :
 											$sub.slideUp(c.closeSpeed, _clearclass);
 										break;
+			
+										default :
+											$sub.hide(c.closeSpeed, _clearclass);
+										break;
 									}
-								}, c.closeDelay));
-							}
-						})
-					;
+								}
+							}, _delay));
+						}
+					};
+			
+					_openMenu = function(_handle, _delay) {
+						var
+							$parent = $(_handle),
+							$sub = $parent.children(c.submenus)
+						;
+			
+						if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
+							clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
+						}
+			
+						if ($sub.length &gt; 0) {
+							$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
+								$parent.addClass(&#x27;kafemenu-open&#x27;);
+								var returnCallback = true;
+								if (!!c.enterCallback) {
+									returnCallback = c.enterCallback($sub);
+								}
+								if (returnCallback) {
+									switch (c.animation) {
+										case &#x27;fade&#x27; :
+											$sub.fadeIn(c.openSpeed);
+										break;
+			
+										case &#x27;slide&#x27; :
+											$sub.slideDown(c.openSpeed);
+										break;
+			
+										default :
+											$sub.show(c.openSpeed);
+										break;
+									}
+								}
+							}, _delay));
+						}
+					};
 				};
 			
 			
