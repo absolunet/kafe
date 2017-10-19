@@ -2,7 +2,7 @@
 //= require 'bower_components/jquery-json/src/jquery.json'
 //= require 'bower_components/kafe/dist/string'
 
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.1.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.2.0', obj:(function(){
 
 	var
 		LOCAL   = 1,
@@ -212,7 +212,7 @@
 
 
 	/**
-	* ### Version 1.1.0
+	* ### Version 1.2.0
 	* Easily access, sort and manipulate local and session storage values.
 	*
 	* @module kafe
@@ -389,6 +389,32 @@
 
 
 	/**
+	* Removes all expired local storage values for a specific namespace.
+	*
+	* @method cleanPersistentNamespaceItems
+	* @param {String} namespace
+	* @example
+	*	kafe.storage.cleanPersistentNamespaceItems('history');
+	*/
+	storage.cleanPersistentNamespaceItems = function(name) {
+		_getNamespaceItems(LOCAL,name);
+	};
+
+
+	/**
+	* Removes all expired session storage values for a specific namespace.
+	*
+	* @method cleanSessionNamespaceItems
+	* @param {String} namespace
+	* @example
+	*	kafe.storage.cleanSessionNamespaceItems('user');
+	*/
+	storage.cleanSessionNamespaceItems = function(name) {
+		_getNamespaceItems(SESSION,name);
+	};
+
+
+	/**
 	* Removes all local storage keys of a specific namespace.
 	*
 	* @method removePersistentNamespace
@@ -514,29 +540,32 @@
 	* @param {Object} [options] Other parameters
 	*	@param {String} [options.expires] Sets a cookie of the specified key as the expiration flag. Changes to the cookie's value will force a new call to the webservice on the next use.
 	*	@param {Number} [options.expires] Sets a time based expiration flag in *seconds*. After that time period, the next use will call the webservice instead of using the session storage.
-	*	@param {Function} [options.callback] Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.
+	* @return {Promise} The response (or stored value) is returned when promise is completed.
 	* @example
 	*	kafe.storage.getJSON('/UserServices/GetUserInfos?username=john_doe', { expires: 3600 });
 	*	// Using this same line will use the session stored value instead of calling the service unless one hour has passed.
 	*/
-	storage.getJSON = function() {
+	storage.getJSON = function(url, options) {
 		if (_isAvailable(SESSION)) {
+			options = options || { expires:600 };
+
 			var
-				url      = arguments[0],
-				options  = (typeof(arguments[1]) != 'function') ? arguments[1] : {expires:600},
-				callback = (typeof(arguments[1]) != 'function') ? arguments[2] : arguments[1],
 				key      = 'kafestorage-getJSON:'+url.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-				cache    = storage.getSessionItem(key)
+				cache    = storage.getPersistentItem(key),
+				deferred = $.Deferred()
 			;
 
 			if (cache !== undefined) {
-				callback(cache);
+				deferred.resolve(cache);
+
 			} else {
-				$.getJSON(url, function(data) {
-					storage.setSessionItem(key, data, options);
-					callback(data);
+				$.getJSON(url).then(function (data) {
+					storage.setPersistentItem(key, data, options);
+					deferred.resolve(data);
 				});
 			}
+
+			return deferred.promise();
 		}
 	};
 

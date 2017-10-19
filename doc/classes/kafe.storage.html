@@ -26,7 +26,7 @@
 </head>
 <body>
 	<header id="Header">
-		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.2</a></h1>
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.3</a></h1>
 		<nav>
 			<ul>
 				<li><a href="/kafe/modules/kafe.html">core</a></li>
@@ -43,7 +43,7 @@
 			<header class="class">
 				<h1>kafe.storage</h1>
 				<h2>Class</h2>
-				<h3>Version 1.1.0</h3>
+				<h3>Version 1.2.0</h3>
 			<p>Easily access, sort and manipulate local and session storage values.</p>
 			
 				<div>
@@ -55,8 +55,98 @@
 			<section>
 				<h1>Methods</h1>
 					<section>
+						<h1>cleanPersistentNamespaceItems</h1>
+						<footer><a href="../files/dist_storage.js.html#l391">@391</a></footer>
+					
+						<p>Removes all expired local storage values for a specific namespace.</p>
+					
+					
+						<header>
+							<strong>cleanPersistentNamespaceItems</strong>
+								<ul>
+					
+										<li><code class="Simple">namespace</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>namespace</code>
+											<strong>String</strong>
+										 
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.storage.cleanPersistentNamespaceItems('history');</code></pre>
+					
+							</section>
+					</section>
+					<section>
+						<h1>cleanSessionNamespaceItems</h1>
+						<footer><a href="../files/dist_storage.js.html#l404">@404</a></footer>
+					
+						<p>Removes all expired session storage values for a specific namespace.</p>
+					
+					
+						<header>
+							<strong>cleanSessionNamespaceItems</strong>
+								<ul>
+					
+										<li><code class="Simple">namespace</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>namespace</code>
+											<strong>String</strong>
+										 
+					
+					
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>kafe.storage.cleanSessionNamespaceItems('user');</code></pre>
+					
+							</section>
+					</section>
+					<section>
 						<h1>getAllPersistentItems</h1>
-						<footer><a href="../files/dist_storage.js.html#l451">@451</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l477">@477</a></footer>
 					
 						<p>Returns all local storage key values.</p>
 					
@@ -94,7 +184,7 @@
 					</section>
 					<section>
 						<h1>getAllPersistentKeys</h1>
-						<footer><a href="../files/dist_storage.js.html#l417">@417</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l443">@443</a></footer>
 					
 						<p>Returns an array of all local storage keys.</p>
 					
@@ -132,7 +222,7 @@
 					</section>
 					<section>
 						<h1>getAllSessionItems</h1>
-						<footer><a href="../files/dist_storage.js.html#l468">@468</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l494">@494</a></footer>
 					
 						<p>Returns all session storage key values.</p>
 					
@@ -170,7 +260,7 @@
 					</section>
 					<section>
 						<h1>getAllSessionKeys</h1>
-						<footer><a href="../files/dist_storage.js.html#l434">@434</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l460">@460</a></footer>
 					
 						<p>Returns an array of all session storage keys.</p>
 					
@@ -208,7 +298,7 @@
 					</section>
 					<section>
 						<h1>getJSON</h1>
-						<footer><a href="../files/dist_storage.js.html#l509">@509</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l535">@535</a></footer>
 					
 						<p>Get the JSON response of a webservice and keep it in the session storage with or without an expiration flag. Use this shorthand method to prevent unnecessary communication with the server on ajax heavy websites. All session keys used with this method are part of the <em>kafestorage-getJSON</em> namespace.</p>
 					
@@ -224,6 +314,7 @@
 					
 								</ul>
 					
+								<span>Promise</span>
 						</header>
 					
 					
@@ -272,21 +363,18 @@
 					
 					
 												</li>
-												<li>
-														<code>[callback]</code>
-														<strong>Function</strong>
-														<span>Optional</span>
-													<p>Callback triggered if the response is successful or a session stored value exists. The response (or stored value) is passed as the first argument.</p>
-					
-					
-					
-												</li>
 											</ul>
 					
 									</li>
 								</ul>
 							</section>
 					
+							<section class="Return">
+								<h1>Returns:</h1>
+								<strong>Promise</strong>
+								<p>The response (or stored value) is returned when promise is completed.</p>
+					
+							</section>
 					
 							<section>
 								<h1>Example:</h1>
@@ -625,7 +713,7 @@
 					</section>
 					<section>
 						<h1>removeAllPersistent</h1>
-						<footer><a href="../files/dist_storage.js.html#l485">@485</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l511">@511</a></footer>
 					
 						<p>Removes all local storage keys.</p>
 					
@@ -652,7 +740,7 @@
 					</section>
 					<section>
 						<h1>removeAllSession</h1>
-						<footer><a href="../files/dist_storage.js.html#l497">@497</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l523">@523</a></footer>
 					
 						<p>Removes all session storage keys.</p>
 					
@@ -724,7 +812,7 @@
 					</section>
 					<section>
 						<h1>removePersistentNamespace</h1>
-						<footer><a href="../files/dist_storage.js.html#l391">@391</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l417">@417</a></footer>
 					
 						<p>Removes all local storage keys of a specific namespace.</p>
 					
@@ -814,7 +902,7 @@
 					</section>
 					<section>
 						<h1>removeSessionNamespace</h1>
-						<footer><a href="../files/dist_storage.js.html#l404">@404</a></footer>
+						<footer><a href="../files/dist_storage.js.html#l430">@430</a></footer>
 					
 						<p>Removes all session storage keys of a specific namespace.</p>
 					

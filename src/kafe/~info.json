@@ -4,7 +4,7 @@
 		"form":                 "1.4.2",
 		"geolocation":          "1.0.0",
 		"number":               "1.0.0",
-		"storage":              "1.1.0",
+		"storage":              "1.2.0",
 		"string":               "1.2.0",
 		"string.encrypt":       "1.0.0",
 		"string.validate":      "1.0.0",
