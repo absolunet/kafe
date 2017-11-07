@@ -48,6 +48,7 @@
 
 				// original position
 				topOffset     = null,
+				topBuffer     = (options.topBuffer) ? options.topBuffer : 0,
 				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2),10),
 				originalHori  = $e.css(align),
 				topMargin     = originalTop,
@@ -73,7 +74,7 @@
 					// current position
 					var
 						position      = $window.scrollTop(),
-						tippingTop    = topOffset - topMargin,
+						tippingTop    = topOffset - topMargin + topBuffer,
 						tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2)),
 						attr          = {}
 					;
@@ -121,6 +122,7 @@
 						// apply
 						$e.css(attr);
 						$container.addClass('<!-- @echo NAME_ATTR -->-sticking');
+						$e.trigger('<!-- @echo NAME_ATTR -->-binding');
 						sticking = true;
 						fromBottom = false;
 
@@ -139,6 +141,7 @@
 						// apply
 						$e.css(attr);
 						$container.removeClass('<!-- @echo NAME_ATTR -->-sticking');
+						$e.trigger('<!-- @echo NAME_ATTR -->-unbinding');
 						sticking   = false;
 						fromBottom = false;
 
