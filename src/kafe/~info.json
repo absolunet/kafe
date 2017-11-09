@@ -34,7 +34,7 @@
 		"plugin.menu":          "1.1.0",
 		"plugin.qrcode":        "0.1.1",
 		"plugin.social":        "0.2.1",
-		"plugin.sticky":        "0.1.1"
+		"plugin.sticky":        "0.1.2"
 	},
 
 	"modules": {
