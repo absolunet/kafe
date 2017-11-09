@@ -26,6 +26,7 @@
 	*	@param {String} [options.align='left'] Specify `right` if your horizontal absolute positioning uses right instead of left.
 	*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
 	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
+	*	@param {Number} [options.topBuffer=0] Buffer in pixels before sticking occurs.
 	*
 	* @example
 	*	<!-- @echo NAME_FULL -->.init({ selector: '#post-it' })

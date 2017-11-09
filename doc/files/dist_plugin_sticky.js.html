@@ -74,6 +74,7 @@
 				*	@param {String} [options.align=&#x27;left&#x27;] Specify &#x60;right&#x60; if your horizontal absolute positioning uses right instead of left.
 				*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
 				*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
+				*	@param {Number} [options.topBuffer=0] Buffer in pixels before sticking occurs.
 				*
 				* @example
 				*	kafe.plugin.sticky.init({ selector: &#x27;#post-it&#x27; })
@@ -96,6 +97,7 @@
 			
 							// original position
 							topOffset     = null,
+							topBuffer     = (options.topBuffer) ? options.topBuffer : 0,
 							originalTop   = parseInt($e.css(&#x27;top&#x27;).toString().substr(0, $e.css(&#x27;top&#x27;).length-2),10),
 							originalHori  = $e.css(align),
 							topMargin     = originalTop,
@@ -121,7 +123,7 @@
 								// current position
 								var
 									position      = $window.scrollTop(),
-									tippingTop    = topOffset - topMargin,
+									tippingTop    = topOffset - topMargin + topBuffer,
 									tippingBottom = tippingTop + ($container.outerHeight() - $e.outerHeight() - (originalTop*2)),
 									attr          = {}
 								;
@@ -169,6 +171,7 @@
 									// apply
 									$e.css(attr);
 									$container.addClass(&#x27;kafesticky-sticking&#x27;);
+									$e.trigger(&#x27;kafesticky-binding&#x27;);
 									sticking = true;
 									fromBottom = false;
 			
@@ -187,6 +190,7 @@
 									// apply
 									$e.css(attr);
 									$container.removeClass(&#x27;kafesticky-sticking&#x27;);
+									$e.trigger(&#x27;kafesticky-unbinding&#x27;);
 									sticking   = false;
 									fromBottom = false;
 			
