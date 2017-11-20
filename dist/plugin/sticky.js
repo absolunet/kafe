@@ -50,7 +50,7 @@
 				// original position
 				topOffset     = null,
 				topBuffer     = (options.topBuffer) ? options.topBuffer : 0,
-				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2),10),
+				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2),10) || 0,
 				originalHori  = $e.css(align),
 				topMargin     = originalTop,
 				sticking      = true,
