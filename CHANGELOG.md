@@ -1,5 +1,8 @@
 # kafe changelog
 
+## 3.1.6 (2018-12-06)
+- Optimization, centered sticky instead of cloning kafe.plugin.sticky
+
 ## 3.1.5 (2016-08-18)
 - Adjustments in kafe.ext.googletagmanager
 - Correction in kafe.ext.colorbox
