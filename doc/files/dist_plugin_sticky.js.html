@@ -71,7 +71,7 @@
 				* @method init
 				* @param {Object} options Additional options.
 				*	@param {String|jQueryObject|DOMElement} options.selector Element to stick.
-				*	@param {String} [options.align=&#x27;left&#x27;] Specify &#x60;right&#x60; if your horizontal absolute positioning uses right instead of left.
+				*	@param {String} [options.align=&#x27;auto&#x27;] Specify &#x60;left&#x60; or &#x60;right&#x60; if your horizontal absolute positioning uses left or right instead of auto.
 				*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
 				*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
 				*	@param {Number} [options.topBuffer=0] Buffer in pixels before sticking occurs.
@@ -91,7 +91,7 @@
 			
 						var
 							// options
-							align      = (options.align == &#x27;right&#x27;) ? &#x27;right&#x27; : &#x27;left&#x27;,
+							align      = (options.align == &#x27;left&#x27; || options.align == &#x27;right&#x27;) ? options.align : &#x27;auto&#x27;,
 							contain    = !!options.contain,
 							$container = (!!options.container) ? $(options.container) : $e.parent(),
 			
@@ -144,17 +144,6 @@
 								//---------------------------
 								if (position !== 0 &amp;&amp; position &gt;= tippingTop &amp;&amp; (!contain || position &lt;= tippingBottom)) {
 			
-									// calculate offset left
-									var $e2 = $e.clone();
-									$e.after($e2);
-			
-									var attrT = { position: &#x27;absolute&#x27; };
-									attrT[align] = originalHori;
-									$e2.css(attrT);
-									var offsetLeft = $e2.offset().left;
-			
-									$e2.remove();
-			
 									// stick it
 									attr = {
 										position: &#x27;fixed&#x27;,
@@ -162,10 +151,26 @@
 									};
 			
 									// evaluate horizontal position
-									if (align == &#x27;left&#x27;) {
-										attr.left = Math.ceil(offsetLeft);
+									if (align == &#x27;auto&#x27;) {
+										attr.left  = &#x27;auto&#x27;;
+										attr.right = &#x27;auto&#x27;;
 									} else {
-										attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
+										// calculate offset left
+										var $e2 = $e.clone();
+										$e.after($e2);
+			
+										var attrT = { position: &#x27;absolute&#x27; };
+										attrT[align] = originalHori;
+										$e2.css(attrT);
+										var offsetLeft = $e2.offset().left;
+			
+										$e2.remove();
+			
+										if (align == &#x27;left&#x27;) {
+											attr.left = Math.ceil(offsetLeft);
+										} else {
+											attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
+										}
 									}
 			
 									// apply
@@ -232,6 +237,7 @@
 				return sticky;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

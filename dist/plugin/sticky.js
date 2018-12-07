@@ -23,7 +23,7 @@
 	* @method init
 	* @param {Object} options Additional options.
 	*	@param {String|jQueryObject|DOMElement} options.selector Element to stick.
-	*	@param {String} [options.align='left'] Specify `right` if your horizontal absolute positioning uses right instead of left.
+	*	@param {String} [options.align='auto'] Specify `left` or `right` if your horizontal absolute positioning uses left or right instead of auto.
 	*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
 	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
 	*	@param {Number} [options.topBuffer=0] Buffer in pixels before sticking occurs.
@@ -43,14 +43,14 @@
 
 			var
 				// options
-				align      = (options.align == 'right') ? 'right' : 'left',
+				align      = (options.align == 'left' || options.align == 'right') ? options.align : 'auto',
 				contain    = !!options.contain,
 				$container = (!!options.container) ? $(options.container) : $e.parent(),
 
 				// original position
 				topOffset     = null,
 				topBuffer     = (options.topBuffer) ? options.topBuffer : 0,
-				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2),10) || 0,
+				originalTop   = parseInt($e.css('top').toString().substr(0, $e.css('top').length-2),10),
 				originalHori  = $e.css(align),
 				topMargin     = originalTop,
 				sticking      = true,
@@ -96,17 +96,6 @@
 					//---------------------------
 					if (position !== 0 && position >= tippingTop && (!contain || position <= tippingBottom)) {
 
-						// calculate offset left
-						var $e2 = $e.clone();
-						$e.after($e2);
-
-						var attrT = { position: 'absolute' };
-						attrT[align] = originalHori;
-						$e2.css(attrT);
-						var offsetLeft = $e2.offset().left;
-
-						$e2.remove();
-
 						// stick it
 						attr = {
 							position: 'fixed',
@@ -114,10 +103,26 @@
 						};
 
 						// evaluate horizontal position
-						if (align == 'left') {
-							attr.left = Math.ceil(offsetLeft);
+						if (align == 'auto') {
+							attr.left  = 'auto';
+							attr.right = 'auto';
 						} else {
-							attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
+							// calculate offset left
+							var $e2 = $e.clone();
+							$e.after($e2);
+
+							var attrT = { position: 'absolute' };
+							attrT[align] = originalHori;
+							$e2.css(attrT);
+							var offsetLeft = $e2.offset().left;
+
+							$e2.remove();
+
+							if (align == 'left') {
+								attr.left = Math.ceil(offsetLeft);
+							} else {
+								attr.right = Math.ceil($window.width()) - (Math.ceil(offsetLeft) + Math.ceil($e.outerWidth()));
+							}
 						}
 
 						// apply
