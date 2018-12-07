@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
+
+	<title>kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2018 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.4</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<div class="Home"><p align="center">
+			    <a href="https://absolunet.github.io/kafe/">
+			        <img src="https://absolunet.github.io/kafe/assets/logo-kafe.svg" width="180" height="180" alt="kafe">
+			    </a>
+			</p>
+			
+			<h1 id="kafe-bower">kafe <img src="https://img.shields.io/bower/v/kafe.svg" alt="bower"></h1>
+			<h4 id="mixing-javascript-crops-for-a-perfect-flavour-">Mixing javascript crops for a perfect flavour.</h4>
+			<blockquote>
+			<p>/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.</p>
+			</blockquote>
+			<h2 id="installation">Installation</h2>
+			<pre><code class="language-bash">bower install kafe</code></pre>
+			<h2 id="dependencies">Dependencies</h2>
+			<ul>
+			<li><a href="http://jquery.com/">jQuery</a></li>
+			<li><a href="http://lodash.com/">Lodash</a></li>
+			<li><a href="http://modernizr.com/">Modernizr</a></li>
+			</ul>
+			<h2 id="usage">Usage</h2>
+			<h3 id="grunt">Grunt</h3>
+			<p>Use <a href="https://www.npmjs.org/package/grunt-includes">grunt-includes</a></p>
+			<pre><code class="language-js">options: {
+			    includeRegexp:  /^\s*\/\/\=\srequire\s&#39;([^&#39;]+)&#39;\s*/,
+			    duplicates:     false,
+			    filenameSuffix: &#39;.js&#39;,
+			    includePath:    &#39;./&#39;
+			}</code></pre>
+			<h3 id="gulp">Gulp</h3>
+			<p>Use <a href="https://www.npmjs.org/package/gulp-include">gulp-include</a></p>
+			<pre><code class="language-js">.pipe( include({
+			    basePath: &#39;./&#39;,
+			    autoExtension: true
+			}) )</code></pre>
+			<h3 id="standalone">Standalone</h3>
+			<p>Use the <code>//= require &#39;FILENAME&#39;</code> in the file header to know which files to include manually.</p>
+			<h2 id="documentation">Documentation</h2>
+			<p><a href="https://absolunet.github.io/kafe/">Full documentation</a></p>
+			<h2 id="release-history">Release history</h2>
+			<p>See the <a href="https://github.com/absolunet/kafe/releases">releases</a>.</p>
+			<h2 id="contributing">Contributing</h2>
+			<p><a href="https://github.com/absolunet/kafe/issues">Issues</a> | <a href="https://github.com/absolunet/kafe/pulls">Pull requests</a></p>
+			<h2 id="license">License</h2>
+			<p>MIT © <a href="https://absolunet.com">Absolunet</a></p>
+			</div>		</section>
+		<nav>
+			<ul>
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<footer id="Footer"><a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2018 &copy; <a href="https://absolunet.com">Absolunet</a> - All rights reserved.</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>

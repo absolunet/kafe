@@ -1,6 +1,7 @@
 module.exports = (grunt) ->
+	fs   = require 'fs'
 	path = grunt.config.get 'internal.path'
-	pkg  = grunt.config.get 'internal.pkg'
+	pkg  = JSON.parse(fs.readFileSync('./bower.json', 'utf-8'))
 	util = grunt.config.get 'util'
 
 	preprocess = require 'preprocess'
@@ -32,7 +33,7 @@ module.exports = (grunt) ->
 			finalName    = if name.substring(0,1) isnt '_' then module.pop() else ''
 			finalNameCap = finalName.charAt(0).toUpperCase() + finalName.slice(1)
 			contents     = grunt.file.read file
-			version      = if name is pkg.name then pkg.version else info.versions[name]
+			version      = if name is pkg.name then global.pkgVersion else info.versions[name]
 
 			contents = preprocess.preprocess contents, {
 				PACKAGE:     pkg.name
@@ -47,8 +48,8 @@ module.exports = (grunt) ->
 				MODULE:      pkg.name+( if module.length then '.'+module.join('.') else '' )
 				VERSION:     version
 				LICENSE:     "https://github.com/absolunet/#{pkg.name}/tree/master/LICENSE.md"
-				AUTHOR:      pkg.author.name
-				SITE:        pkg.author.url
+				AUTHOR:      pkg.authors[0].name
+				SITE:        pkg.authors[0].url
 				YEAR:        grunt.template.today 'yyyy'
 			}
 
@@ -58,7 +59,7 @@ module.exports = (grunt) ->
 			}, 'js'
 
 			grunt.file.write "#{out}/#{filename}", contents
-		
+
 		grunt.log.ok "#{pkg.name} core built."
 
 

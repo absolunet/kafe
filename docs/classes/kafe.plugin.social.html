@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
+
+	<title>kafe.plugin.social - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2018 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.4</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="class">
+				<h1>kafe.plugin.social</h1>
+				<h2>Class</h2>
+				<h3>Version 0.2.1</h3>
+			<p>Social tools</p>
+			
+				<div>
+					<span>Source: <a href="../files/dist_plugin_social.js.html#l121">dist/plugin/social.js</a></span>
+				</div>
+			</header>
+			
+			
+			<section>
+				<h1>Methods</h1>
+					<section>
+						<h1>initGenuineButtons</h1>
+						<footer><a href="../files/dist_plugin_social.js.html#l170">@170</a></footer>
+					
+						<p>Initialize genuine buttons functionality</p>
+					
+					
+						<header>
+							<strong>initGenuineButtons</strong>
+								<ul>
+					
+										<li class="Optional"><code>options</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>[options]</code>
+											<strong>Object</strong>
+											<span>Optional</span>
+										<p>Options</p>
+					
+					
+					
+											<ul>
+												<li>
+														<code>[lang]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Display button language. Possible values are <code>en</code>, <code>fr</code> or by default is <code>kafe.env.lang</code>.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[url]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Specific url sharing. By default is the current url.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[text]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Specific text sharing. By default is the browser title.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[size]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Display button size. Possible values are <code>small</code> and <code>large</code>. Only work with Twitter, Google + and Pinterest.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[counter]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Orientation and visibility of counter. Possible values are <code>none</code>, <code>horizontal</code> and <code>vertical</code>. By default is <code>horizontal</code>.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[media]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Image url for Pinterest sharing. By default is the link to the tag <code>image_src</code> in the head of the document.</p>
+					
+					
+					
+												</li>
+											</ul>
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;facebook&quot; data-kafesocial-options='{ &quot;appid&quot;:&quot;1514943792075126&quot; }'&gt;&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;houzz&quot; data-kafesocial-options='{ &quot;hzid&quot;:&quot;26660&quot;, &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }'&gt;&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;genuine&quot; data-kafesocial-network=&quot;pinterest&quot; data-kafesocial-options='{ &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }'&gt;&lt;/span&gt;
+					&lt;script&gt;
+					    $(function() {
+					        kafe.plugin.social.initGenuineButtons();
+					    });
+					&lt;/script&gt;
+					</code></pre>
+					
+							</section>
+					</section>
+					<section>
+						<h1>initShareButtons</h1>
+						<footer><a href="../files/dist_plugin_social.js.html#l131">@131</a></footer>
+					
+						<p>Initialize share buttons functionality</p>
+					
+					
+						<header>
+							<strong>initShareButtons</strong>
+								<ul>
+					
+										<li class="Optional"><code>options</code></li>
+					
+								</ul>
+					
+						</header>
+					
+					
+					
+					
+					
+					
+					
+							<section>
+								<h1>Parameters:</h1>
+					
+								<ul>
+									<li>
+											<code>[options]</code>
+											<strong>Object</strong>
+											<span>Optional</span>
+										<p>Options</p>
+					
+					
+					
+											<ul>
+												<li>
+														<code>[lang]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Display popup sharing language. Not fully supported by all social networks. Possible values are <code>en</code>, <code>fr</code> or by default is <code>kafe.env.lang</code>.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[url]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Specific url sharing. By default is the current url.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[text]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Specific text sharing. By default is the browser title.</p>
+					
+					
+					
+												</li>
+												<li>
+														<code>[media]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Image url for Pinterest sharing. By default is the link to the tag <code>image_src</code> in the head of the document.</p>
+					
+					
+					
+												</li>
+											</ul>
+					
+									</li>
+								</ul>
+							</section>
+					
+					
+							<section>
+								<h1>Example:</h1>
+								<pre class="code prettyprint"><code>&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;facebook&quot;&gt;Facebook&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;twitter&quot;&gt;&lt;Twitter/span&gt;
+					&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;linkedin&quot;&gt;Linkedin&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;googleplus&quot;&gt;Google+&lt;/span&gt;
+					&lt;span data-kafesocial-action=&quot;share&quot; data-kafesocial-network=&quot;pinterest&quot; data-kafesocial-options='{ &quot;url&quot;:&quot;http://www.flickr.com/photos/kentbrew/6851755809/&quot;, &quot;media&quot;:&quot;http://farm8.staticflickr.com/7027/6851755809_df5b2051c9_z.jpg&quot; }'&gt;Pinterest&lt;/span&gt;
+					&lt;script&gt;
+					    $(function() {
+					        kafe.plugin.social.initShareButtons();
+					    });
+					&lt;/script&gt;
+					</code></pre>
+					
+							</section>
+					</section>
+			</section>
+		</section>
+		<nav>
+			<ul>
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<footer id="Footer"><a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2018 &copy; <a href="https://absolunet.com">Absolunet</a> - All rights reserved.</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>

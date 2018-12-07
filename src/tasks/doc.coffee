@@ -1,77 +1,78 @@
 module.exports = (grunt) ->
+	fs         = require 'fs'
 	preprocess = require 'preprocess'
 	marked     = require 'marked'
 	Y          = require 'yuidocjs'
 
 
 	path = grunt.config.get 'internal.path'
-	pkg  = grunt.config.get 'internal.pkg'
+	pkg  = JSON.parse(fs.readFileSync('./bower.json', 'utf-8'))
 	util = grunt.config.get 'util'
 
 	tmp_local = "#{path.tmp_local}/vendor"
 	src       = path.src.yuidoc
 	src_tmpl  = path.src.tmpl
-	out       = path.out.doc
+	out       = path.out.docs
 	out_root  = path.out.root
 	out_libs  = "#{path.out.dist}"
 
 	# doc data
 	docdata = {
 		package:      pkg.name
-		version:      pkg.version
+		version:      global.pkgVersion
 		description:  pkg.description
 		definition:   pkg.definition
 		repo:         "https://github.com/absolunet/#{pkg.name}"
 		repo_url:     "https://github.com/absolunet/#{pkg.name}/tree/master"
 		repository:   pkg.repository.url
 		bugs:         pkg.bugs.url
-		license:      "https://github.com/absolunet/#{pkg.name}/blob/master/LICENSE.md"
+		license:      "https://github.com/absolunet/#{pkg.name}/blob/master/license"
 		license_name: 'MIT'
 		homepage:     pkg.homepage
 		year:         grunt.template.today 'yyyy'
-		author:       pkg.author.name
-		site:         pkg.author.url
+		author:       pkg.authors[0].name
+		site:         pkg.authors[0].url
 	}
 
 
 	# config
 	grunt.config.set name, data for name, data of {
-		'less.doc': files: [
+		'less.docs': files: [
 			src:  "#{src}/css/core.less"
-			dest: "#{tmp_local}/doc-less.css"
+			dest: "#{tmp_local}/docs-less.css"
 		]
 
-		'cssmin.doc': files: [
+		'cssmin.docs': files: [
 			src: [
 				"#{src}/css/libs/reset.css"
 				"#{src}/css/libs/normalize.css"
 				"#{src}/css/libs/html5boilerplate.css"
-				"#{tmp_local}/doc-less.css"
+				"#{tmp_local}/docs-less.css"
 			]
 			dest: "#{out}/assets/core.css"
 		]
 
 
-		'includes.doc':
+		'includes.docs':
 			options: { includePath: "#{src}/js/" }
 			files: [
 				src:  "#{src}/js/core.js"
-				dest: "#{tmp_local}/doc-core.js"
+				dest: "#{tmp_local}/docs-core.js"
 			]
 
-		'uglify.doc': files: [
-			src:  "#{tmp_local}/doc-core.js"
+		'uglify.docs': files: [
+			src:  "#{tmp_local}/docs-core.js"
 			dest: "#{out}/assets/core.js"
 		]
 
 
-		'watch.doc':
+		'watch.docs':
 			files: [
 				"#{src}/**/*"
 				"!#{src}/tmpl/partials/index.handlebars"
 				"#{src_tmpl}/*.tmpl"
 			]
-			tasks: 'doc'
+			tasks: 'docs'
 	}
 
 
@@ -80,17 +81,6 @@ module.exports = (grunt) ->
 
 
 
-
-
-	# readme
-	grunt.task.registerTask 'basedoc', '', ()->
-		docdata.doc = false;
-
-		preprocess.preprocessFileSync "#{src_tmpl}/readme.tmpl",  "#{out_root}/README.md",  docdata
-		preprocess.preprocessFileSync "#{src_tmpl}/license.tmpl", "#{out_root}/LICENSE.md", docdata
-		preprocess.preprocessFileSync "#{src_tmpl}/bower.tmpl",   "#{out_root}/bower.json", docdata
-		grunt.file.copy "#{src_tmpl}/changelog.tmpl", "#{out_root}/CHANGELOG.md"
-		grunt.log.ok 'Base documentation generated.'
 
 
 	# yuidoc
@@ -100,9 +90,9 @@ module.exports = (grunt) ->
 		info = grunt.config.get 'internal.info'
 
 		# homepage
-		docdata.doc = true;
+		docdata.docs = true;
 
-		grunt.file.write "#{src}/tmpl/partials/index.handlebars", '<div class="Home">' + marked( preprocess.preprocess(grunt.file.read("#{src_tmpl}/readme.tmpl"),docdata).replace('### '+pkg.name, '# '+pkg.name) ) + '</div>'
+		grunt.file.write "#{src}/tmpl/partials/index.handlebars", '<div class="Home">' + marked( grunt.file.read("./readme.md").replace('### '+pkg.name, '# '+pkg.name) ) + '</div>'
 
 
 		# module description
@@ -118,7 +108,7 @@ module.exports = (grunt) ->
 			project:
 				name:        pkg.name
 				description: pkg.description
-				version:     "#{pkg.name} #{pkg.version}"
+				version:     "#{pkg.name} #{global.pkgVersion}"
 				url:         pkg.repository_url
 		}
 
@@ -137,7 +127,7 @@ module.exports = (grunt) ->
 
 
 	# cleanup
-	grunt.task.registerTask 'doc_cleanup', '', ()->
+	grunt.task.registerTask 'docs_cleanup', '', ()->
 		util.delete [
 			"#{out_libs}/**/_*.js"
 			"#{src}/tmpl/partials/index.handlebars"
@@ -153,13 +143,11 @@ module.exports = (grunt) ->
 
 
 	# main task
-	grunt.task.registerTask 'doc', [
-		'basedoc'
+	grunt.task.registerTask 'docs', [
 		'yuidoc'
-		'less:doc'
-		'cssmin:doc'
-		'includes:doc'
-		'uglify:doc'
-		'doc_cleanup'
+		'less:docs'
+		'cssmin:docs'
+		'includes:docs'
+		'uglify:docs'
+		'docs_cleanup'
 	]
-

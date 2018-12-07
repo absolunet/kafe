@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
+
+	<title>dist/url.js - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2018 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.4</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="file">
+				<h1>dist/url.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;url&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
+			
+				var
+					// parse url
+					_parseIt = function(str,type) {
+						switch (type) {
+							case &#x27;params&#x27;:
+								var
+									data  = {},
+									pairs = str.toString().split(&#x27;&amp;&#x27;)
+								;
+								for (var i in pairs) {
+									var e = pairs[i].toString().split(&#x27;=&#x27;);
+									data[e[0]] = decodeURI(e[1]);
+								}
+								return data;
+			
+							case &#x27;path&#x27;:
+								return str.toString().split(&#x27;/&#x27;);
+						}
+					}
+				;
+			
+			
+				/**
+				* ### Version 1.2.0
+				* Manipulation tools for route-based urls.
+				*
+				* @module kafe
+				* @class kafe.url
+				*/
+				var url = {};
+			
+				/**
+				* Parses a querystring as a key/value list and creates a javascript object.
+				*
+				* @method parseSearchParams
+				* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
+				* @return {Object} An object represention of the querystring.
+				* @example
+				*	kafe.url.parseSearchParams(&#x27;?group=players&amp;team=blue&amp;ranking=3&#x27;);
+				*	// returns Object {group: &quot;players&quot;, team: &quot;blue&quot;, ranking: &quot;3&quot;}
+				*/
+				url.parseSearchParams = function(s) {
+					s = (s) ? s : global.location.search;
+					return _parseIt(s.toString().substring(1), &#x27;params&#x27;);
+				};
+			
+			
+				/**
+				* Parses a querystring as a path and creates an ordered array.
+				*
+				* @method parseSearchPath
+				* @param {String} [querystring=CURRENT_LOCATION_SEARCH]
+				* @return {Array(String)} An array represention of the querystring path.
+				* @example
+				*	kafe.url.parseSearchPath(&#x27;?/Players/Teams/Blue&#x27;);
+				*	// returns [&quot;Players&quot;, &quot;Teams&quot;, &quot;Blue&quot;]
+				*/
+				url.parseSearchPath = function(s) {
+					s = (s) ? s : global.location.search;
+					return (s.toString().substring(1,2) == &#x27;/&#x27;) ? _parseIt(s.toString().substring(2), &#x27;path&#x27;) : [];
+				};
+			
+			
+				/**
+				* Parses a hash string as a key/value list and creates a javascript object.
+				*
+				* @method parseHashParams
+				* @param {String} [hash=CURRENT_LOCATION_HASH]
+				* @return {Object} An object represention of the hash string.
+				* @example
+				*	kafe.url.parseHashParams(&#x27;#color=blue&amp;size=large&amp;extras=false&#x27;);
+				*	// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}
+				*/
+				url.parseHashParams = function(s) {
+					s = (s) ? s : global.location.hash;
+					return _parseIt(s.toString().substring(1), &#x27;params&#x27;);
+				};
+			
+			
+				/**
+				* Parses a hash string as a path and creates an ordered array.
+				*
+				* @method parseHashPath
+				* @param {String} [hash=CURRENT_LOCATION_HASH]
+				* @return {Array(String)} An array represention of the hash path.
+				* @example
+				*	kafe.url.parseHashPath(&#x27;#/clothing/man/shirts&#x27;);
+				*	// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]
+				*/
+				url.parseHashPath = function(s) {
+					s = (s) ? s : global.location.hash;
+					return (s.toString().substring(1,2) == &#x27;/&#x27;) ? _parseIt(s.toString().substring(2), &#x27;path&#x27;) : [];
+				};
+			
+			
+				/**
+				* Parses a hashbang (#!) as a key/value list and creates a javascript object.
+				*
+				* @method parseAjaxParams
+				* @param {String} [hashbang=CURRENT_LOCATION_HASH]
+				* @return {Object} An object represention of the hashbang.
+				* @example
+				*	kafe.url.parseAjaxParams(&#x27;#!color=blue&amp;size=large&amp;extras=false&#x27;);
+				*	// returns Object {color: &quot;blue&quot;, size: &quot;large&quot;, extras: &quot;false&quot;}
+				*/
+				url.parseAjaxParams = function(s) {
+					s = (s) ? s : global.location.hash;
+					return (s.toString().substring(1,2) == &#x27;!&#x27;) ? _parseIt(s.toString().substring(2), &#x27;params&#x27;) : {};
+				};
+			
+			
+				/**
+				* Parses a hashbang (#!) as a path and creates an ordered array.
+				*
+				* @method parseAjaxPath
+				* @param {String} [hashbang=CURRENT_LOCATION_HASH]
+				* @return {Array(String)} An array represention of the hashbang path.
+				* @example
+				*	kafe.url.parseAjaxPath(&#x27;#!/clothing/man/shirts&#x27;);
+				*	// returns [&quot;clothing&quot;, &quot;man&quot;, &quot;shirts&quot;]
+				*/
+				url.parseAjaxPath = function(s) {
+					s = (s) ? s : global.location.hash;
+					return (s.toString().substring(1,3) == &#x27;!/&#x27;) ? _parseIt(s.toString().substring(3), &#x27;path&#x27;) : [];
+				};
+			
+			
+				/**
+				* Delay link until promises are resolved.
+				*
+				* @method followLinkWhen
+				* @param {Event} event Original click event
+				* @param {Array} promises Array of promises
+				*
+				* @example
+				*	kafe.url.followLinkWhen(event, [
+				*		kafe.ext.googletagmanager.track(&#x27;checkout-type&#x27;, { type: &#x27;guest&#x27; }),
+				*		kafe.ext.googletagmanager.track(&#x27;checkout-step&#x27;, { number: 2 })
+				*	]);
+				*/
+				url.followLinkWhen = function(event, promises) {
+			
+					var $target = $(event.currentTarget);
+			
+					// Trying to guess if user requested a new window
+					if ( !( event.ctrlKey || event.shiftKey || event.metaKey || (event.button &amp;&amp; event.button == 1) || $target.is(&#x27;[data-external], [target]:not([target=&quot;_self&quot;]):not([target=&quot;_parent&quot;]):not([target=&quot;_top&quot;])&#x27;) )) {
+						event.preventDefault();
+			
+						$.when.apply(this, promises).always(function() {
+							global.location.assign($target.attr(&#x27;href&#x27;));
+						});
+					}
+			
+				};
+			
+			
+				return url;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
+		</section>
+		<nav>
+			<ul>
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<footer id="Footer"><a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2018 &copy; <a href="https://absolunet.com">Absolunet</a> - All rights reserved.</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>

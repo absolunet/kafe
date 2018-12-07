@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
+
+	<title>dist/plugin/menu.js - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2018 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.4</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="file">
+				<h1>dist/plugin/menu.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;plugin.menu&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
+			
+				/**
+				* ### Version 1.1.0
+				* Attaches javascript behaviors to an HTML menu structure to create a *dropdown* style navigation.
+				*
+				* To preserve flexibility, the plugin only controls events, speeds, delays and callbacks. It will only manage a single custom class (&#x60;kafemenu-open&#x60;) on the handle elements upon opening or closing, leaving the positioning, visibility and other asthetic responsabilities to its css.
+				*
+				* @module kafe.plugin
+				* @class kafe.plugin.menu
+				*/
+				var menu = {};
+			
+				/**
+				* Attach behaviors to the menu structure.
+				*
+				* @method init
+				* @param {Object} options Initial configurations.
+				*	@param {String|jQueryObject|DOMElement} options.selector Root element of the menu structure.
+				*	@param {String} [options.handle=&#x27;li&#x27;] Children element of the container that will serve as a handle to open and close the submenu.
+				*	@param {String} [options.submenus=&#x27;ul&#x27;] Children element of the handle that will serve as a submenu, opening and closing when the handle is used.
+				*	@param {String} [options.animation=&#x27;slide&#x27;] Animation used when opening and closing the submenus.
+				*	@param {Number} [options.openSpeed=200] Duration (in milliseconds) of the opening animation.
+				*	@param {Number} [options.openDelay=500] Delay (in milliseconds) used when entering the handle before starting the opening animation.
+				*	@param {Number} [options.closeSpeed=150] Duration (in milliseconds) of the closing animation.
+				*	@param {Number} [options.closeDelay=400] Delay (in milliseconds) used when exiting the handle before starting the closing animation.
+				*	@param {Function} [options.enterCallback] Upon entering a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.
+				*	@param {Function} [options.leaveCallback] Upon exiting a handle, will be triggered after the delay but before the animation. The current submenu is passed as a first argument.
+				*
+				* @example
+				*	// Sample menu structure
+				*	&lt;nav id=&quot;main-menu&quot;&gt;
+				*		&lt;ul&gt;
+				*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu 1&lt;/a&gt;
+				*				&lt;ul&gt;
+				*					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 1.1&lt;/a&gt;&lt;/li&gt;
+				*					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 1.2&lt;/a&gt;&lt;/li&gt;
+				*					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 1.3&lt;/a&gt;&lt;/li&gt;
+				*				&lt;/ul&gt;
+				*			&lt;/li&gt;
+				*			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu 2&lt;/a&gt;
+				*				&lt;ul&gt;
+				*					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 2.1&lt;/a&gt;&lt;/li&gt;
+				*					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 2.2&lt;/a&gt;&lt;/li&gt;
+				*					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Submenu 2.3&lt;/a&gt;&lt;/li&gt;
+				*				&lt;/ul&gt;
+				*			&lt;/li&gt;
+				*		&lt;/ul&gt;
+				*	&lt;/nav&gt;
+				*
+				* @example
+				*	// Attach behaviors using...
+				*	kafe.plugin.menu.init({ selector: &#x27;#main-menu &gt; ul&#x27; });
+				*
+				* @example
+				*	// Or use the jQuery alternative...
+				*	$(&#x27;#main-menu &gt; ul&#x27;).kafeMenu(&#x27;init&#x27;, {});
+				*/
+				menu.init = function() {
+					var
+						options = (arguments) ? arguments[0] : {},
+						c = {
+							$menu:         $(options.selector),
+							handle:        (options.handle) ? options.handle : &#x27;li&#x27;,
+							handleBtn:     (options.handleBtn) ? options.handleBtn : &#x27;a&#x27;,
+							submenus:      (options.submenus) ? options.submenus : &#x27;ul&#x27;,
+							animation:     (options.animation) ? options.animation : &#x27;&#x27;,
+							openSpeed:     !isNaN(Number(options.openSpeed)) ? Number(options.openSpeed) : 200,
+							openDelay:     !isNaN(Number(options.openDelay)) ? Number(options.openDelay) : 500,
+							closeSpeed:    !isNaN(Number(options.closeSpeed)) ? Number(options.closeSpeed) : 150,
+							closeDelay:    !isNaN(Number(options.closeDelay)) ? Number(options.closeDelay) : 400,
+							enterCallback: (typeof(options.enterCallback)  == &#x27;function&#x27;) ? options.enterCallback  : undefined,
+							leaveCallback: (typeof(options.leaveCallback)  == &#x27;function&#x27;) ? options.leaveCallback  : undefined,
+							clickOnly:     !!options.clickOnly
+						}
+					;
+			
+					if (!c.$menu.length) {
+						return false;
+					}
+			
+					var $handles = c.$menu.children(c.handle);
+			
+					$handles
+						.bind(&#x27;kafemenu:open&#x27;, function(){ _openMenu(this, 0); })
+						.bind(&#x27;kafemenu:close&#x27;, function(){ _closeMenu(this, 0); })
+					;
+			
+					if (!c.clickOnly) {
+						$handles
+							.bind(&#x27;mouseenter&#x27;, function(e){ _openMenu(this, c.openDelay); })
+							.bind(&#x27;mouseleave&#x27;, function(e){ _closeMenu(this, c.closeDelay); })
+						;
+					}
+					else
+					{
+						$handles.each(function(){
+							var $handle = $(this);
+							if($handle.children(c.submenus).length &gt; 0) {
+								$handle.children(c.handleBtn).on(&#x27;click&#x27;, function(e){
+									e.preventDefault();
+									e.stopPropagation();
+									var $handle = $(this).parent();
+									if($handle.hasClass(&#x27;kafemenu-open&#x27;)){
+										$handle.trigger(&#x27;kafemenu:close&#x27;);
+										document.location = $(this).attr(&#x27;href&#x27;);
+									}else{
+										$handles.filter(&#x27;.kafemenu-open&#x27;).trigger(&#x27;kafemenu:close&#x27;);
+										$handle.trigger(&#x27;kafemenu:open&#x27;);
+									}
+								});
+							}
+						});
+						$(&#x27;html&#x27;).on(&#x27;click&#x27;, function() {
+							c.$menu.children(c.handle).filter(&#x27;.kafemenu-open&#x27;).trigger(&#x27;kafemenu:close&#x27;);
+						});
+					}
+			
+					_closeMenu = function(_handle, _delay){
+						var
+							$parent = $(_handle),
+							$sub = $parent.children(c.submenus),
+							_clearclass = function() {
+								$parent.removeClass(&#x27;kafemenu-open&#x27;);
+							}
+						;
+			
+						if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
+							clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
+						}
+			
+						if ($sub.length &gt; 0) {
+							$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
+								var returnCallback = true;
+								if (!!c.leaveCallback) {
+									returnCallback = c.leaveCallback($sub);
+								}
+								if (returnCallback) {
+									switch (c.animation) {
+										case &#x27;fade&#x27; :
+											$sub.fadeOut(c.closeSpeed, _clearclass);
+										break;
+			
+										case &#x27;slide&#x27; :
+											$sub.slideUp(c.closeSpeed, _clearclass);
+										break;
+			
+										default :
+											$sub.hide(c.closeSpeed, _clearclass);
+										break;
+									}
+								}
+							}, _delay));
+						}
+					};
+			
+					_openMenu = function(_handle, _delay) {
+						var
+							$parent = $(_handle),
+							$sub = $parent.children(c.submenus)
+						;
+			
+						if ($sub.data(&#x27;kafemenu-timer&#x27;) !== undefined) {
+							clearTimeout($sub.data(&#x27;kafemenu-timer&#x27;));
+						}
+			
+						if ($sub.length &gt; 0) {
+							$sub.data(&#x27;kafemenu-timer&#x27;, setTimeout(function() {
+								$parent.addClass(&#x27;kafemenu-open&#x27;);
+								var returnCallback = true;
+								if (!!c.enterCallback) {
+									returnCallback = c.enterCallback($sub);
+								}
+								if (returnCallback) {
+									switch (c.animation) {
+										case &#x27;fade&#x27; :
+											$sub.fadeIn(c.openSpeed);
+										break;
+			
+										case &#x27;slide&#x27; :
+											$sub.slideDown(c.openSpeed);
+										break;
+			
+										default :
+											$sub.show(c.openSpeed);
+										break;
+									}
+								}
+							}, _delay));
+						}
+					};
+				};
+			
+			
+				// Add as jQuery plugin
+				kafe.fn.plugIntojQuery(&#x27;Menu&#x27;, {
+					init: function(obj, parameters) {
+						menu.init($.extend({}, parameters[0], {selector:obj}));
+					}
+				});
+			
+				return menu;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
+		</section>
+		<nav>
+			<ul>
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<footer id="Footer"><a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2018 &copy; <a href="https://absolunet.com">Absolunet</a> - All rights reserved.</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>

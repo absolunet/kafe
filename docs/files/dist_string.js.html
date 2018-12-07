@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
+
+	<title>dist/string.js - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2018 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.4</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="file">
+				<h1>dist/string.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			//= require &#x27;bower_components/jquery-json/src/jquery.json&#x27;
+			
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;string&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
+			
+				/**
+				* ### Version 1.2.0
+				* Additionnal methods for string manipulation and generation.
+				*
+				* @module kafe
+				* @class kafe.string
+				*/
+				var string = {};
+			
+				/**
+				* Removes accented charaters from a string.
+				*
+				* @method removeAccent
+				* @param {String} string
+				* @return {String} The unaccented string.
+				* @example
+				*	kafe.string.removeAccent(&#x27;Kafe signifie café en créole.&#x27;);
+				*	// returns &quot;Kafe signifie cafe en creole.&quot;
+				*/
+				string.removeAccent = function() {
+					return arguments[0]
+						.replace(/[àáâãäå]/g, &#x27;a&#x27;) .replace(/[ÀÁÂÃÄÅ]/g, &#x27;A&#x27;)
+						.replace(/æ/g, &#x27;ae&#x27;)       .replace(/Æ/g, &#x27;AE&#x27;)
+						.replace(/ç/g, &#x27;c&#x27;)        .replace(/Ç/g, &#x27;C&#x27;)
+						.replace(/[èéêë]/g, &#x27;e&#x27;)   .replace(/[ÈÉÊË]/g, &#x27;E&#x27;)
+						.replace(/[ìíîï]/g, &#x27;i&#x27;)   .replace(/[ÌÍÎÏ]/g, &#x27;I&#x27;)
+						.replace(/ñ/g, &#x27;n&#x27;)        .replace(/Ñ/g, &#x27;N&#x27;)
+						.replace(/[òóôõö]/g, &#x27;o&#x27;)  .replace(/[ÒÓÔÕÖ]/g, &#x27;O&#x27;)
+						.replace(/œ/g, &#x27;oe&#x27;)       .replace(/Œ/g, &#x27;OE&#x27;)
+						.replace(/[ùúûü]/g, &#x27;u&#x27;)   .replace(/[ÙÚÛÜ]/g, &#x27;U&#x27;)
+						.replace(/[ýÿ]/g, &#x27;y&#x27;)     .replace(/[ÝŸ]/g, &#x27;Y&#x27;)
+					;
+				};
+			
+			
+				/**
+				* Transforms a JSON string into a javascript object.
+				*
+				* @method toObject
+				* @param {String} string A JSON string.
+				* @return {Object} A valid javascript object.
+				* @example
+				*	kafe.string.toObject(&#x27;{&quot;UserId&quot;:&quot;456&quot;,&quot;Items&quot;:[&quot;first&quot;, &quot;second&quot;, &quot;last&quot;],&quot;State&quot;:true,&quot;TotalAmount&quot;:52,&quot;Taxes&quot;:[]}&#x27;);
+				*	// returns Object {UserId: &quot;456&quot;, Items: Array[3], State: true, TotalAmount: 52, Taxes: Array[0]}
+				*/
+				string.toObject = function(s) {
+			
+					var cast = function(o) {
+						for (var i in o) {
+							// object
+							if (typeof(o[i]) == &#x27;object&#x27;) {
+								o[i] = cast(o[i]);
+			
+							// date
+							} else if (/^\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(o[i])) {
+								o[i] = new Date(o[i]);
+							}
+						}
+						return o;
+					};
+			
+					return cast($.evalJSON(s));
+				};
+			
+			
+				/**
+				* Generates a .NET random GUID/UUID. (Version 4, random)
+				*
+				* @method generateGuid
+				* @return {String} A random valid GUID/UUID.
+				* @example
+				*	kafe.string.generateGuid();
+				*	// returns &quot;c573f4f3-982a-4046-818a-083757f98804&quot;
+				*/
+				string.generateGuid = function() {
+					return &#x27;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#x27;.replace(/[xy]/g, function(c) {
+						var r = Math.random()*16|0, v = c == &#x27;x&#x27; ? r : (r&amp;0x3|0x8);
+						return v.toString(16);
+					});
+				};
+			
+			
+				return string;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
+		</section>
+		<nav>
+			<ul>
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<footer id="Footer"><a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2018 &copy; <a href="https://absolunet.com">Absolunet</a> - All rights reserved.</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>

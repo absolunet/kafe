@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+	<link rel="shortcut icon"    href="/kafe/assets/favicon.ico">
+	<link rel="image_src"        href="/kafe/assets/share-icon.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="/kafe/assets/touch-icon-180.png" sizes="180x180" >
+
+	<title>dist/ext/foundation.js - kafe</title>
+	<link rel="stylesheet" href="/kafe/assets/core.css">
+
+	<!-- (c) 2018 Absolunet inc. -->
+</head>
+<body>
+	<header id="Header">
+		<h1><a href="/kafe/"><img src="/kafe/assets/logo-kafe.svg" alt="kafe" />kafe 3.2.4</a></h1>
+		<nav>
+			<ul>
+				<li><a href="/kafe/modules/kafe.html">core</a></li>
+				<li><a href="/kafe/modules/kafe.ext.html">extensions</a></li>
+				<li><a href="/kafe/modules/kafe.plugin.html">plugins</a></li>
+				<li><a href="/kafe/modules/kafe.cms.html">cms</a></li>
+			</ul>
+		</nav>
+		<h2><a href="https://github.com/absolunet/kafe/">View on Github</a></h2>
+	</header>
+
+	<div id="Content">
+		<section>
+			<header class="file">
+				<h1>dist/ext/foundation.js</h1>
+				<h2>File</h2>
+			</header>
+			
+			<pre>
+			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.foundation&#x27;, version:&#x27;0.0.1&#x27;, obj:(function(){
+			
+				/**
+				* ### Version 0.0.1
+				* Extra methods for Zurb Foundation.
+				*
+				* @module kafe.ext
+				* @class kafe.ext.foundation
+				*/
+				var foundation = {};
+			
+			
+				/**
+				* Custom equalizer binder.
+				*
+				* @method equalizer
+				* @param {Object} options Options
+				* @param {String|jQueryObject|DOMElement} options.wrapper Selector of list wrapper having the &#x60;data-resize&#x60; attribute.
+				* @param {String} options.item Selector of item to equalize.
+				*	@param {Object} [options.rows] Object of breakpoint classes and number of items per row, &#x27;and up&#x27; inheritance
+				*
+				* @example
+				*	  kafe.ext.foundation.equalizer({
+				*	    wrapper: $(&#x27;[data-component=&quot;list&quot;]&#x27;),
+				*	    item:    &#x27;[data-component=&quot;item&quot;]&#x27;,
+				*	    rows:    {
+				*	      medium: 2,
+				*	      large:  3
+				*	    }
+				*	  });
+				*/
+				foundation.equalizer = function(options) {
+					var $elementList = $(options.wrapper);
+			
+					if ($elementList.length) {
+						$elementList.each(function() {
+							var $this = $(this);
+							var $items = $this.find(options.item);
+			
+							if ($items.length &gt; 1) {
+			
+								// By rows
+								if (options.rows) {
+									var max = &#x27;small&#x27;;
+									Foundation.MediaQuery.queries.forEach(function(size) {
+										if (options.rows[size.name]) {
+											max = size.name;
+										} else {
+											options.rows[size.name] = options.rows[max];
+										}
+									});
+			
+									var $equalizer = new Foundation.Equalizer($this);
+			
+									$this.on(&#x27;resizeme.zf.trigger&#x27;, function() {
+										var data       = [];
+										var itemsByRow = _.chunk(_.flatten($items.toArray()), options.rows[Foundation.MediaQuery.current]);
+			
+										itemsByRow.forEach(function(rowItems) {
+											var row = [];
+			
+											rowItems.forEach(function(item) {
+												var $item = $(item);
+												$item.css(&#x27;height&#x27;, &#x27;auto&#x27;);
+												row.push([item, Math.ceil($item.get(0).offsetHeight)]);
+											});
+			
+											row.push(_.maxBy(row, 1)[1]);
+											data.push(row);
+										});
+			
+										$equalizer.applyHeightByRow(data);
+			
+									}).trigger(&#x27;resizeme.zf.trigger&#x27;);
+			
+								// All the same
+								} else {
+									$items.attr(&#x27;data-equalizer-watch&#x27;, &#x27;&#x27;);
+			
+									// eslint-disable-next-line no-new
+									new Foundation.Equalizer($this);
+								}
+							}
+						});
+					}
+				};
+			
+			
+				return foundation;
+			
+			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			</pre>
+		</section>
+		<nav>
+			<ul>
+			        <li><a href="/kafe/classes/kafe.html">kafe</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.drupal.html">kafe.cms.drupal</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.magento.html">kafe.cms.magento</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.sitecore.html">kafe.cms.sitecore</a></li>
+			        <li><a href="/kafe/classes/kafe.cms.wordpress.html">kafe.cms.wordpress</a></li>
+			        <li><a href="/kafe/classes/kafe.date.html">kafe.date</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.addthis.html">kafe.ext.addthis</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.bbq.html">kafe.ext.bbq</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.colorbox.html">kafe.ext.colorbox</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.disqus.html">kafe.ext.disqus</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.elevatezoom.html">kafe.ext.elevatezoom</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.facebook.html">kafe.ext.facebook</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.flickr.html">kafe.ext.flickr</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.foundation.html">kafe.ext.foundation</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googlemaps.html">kafe.ext.googlemaps</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.googletagmanager.html">kafe.ext.googletagmanager</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.soundcloud.html">kafe.ext.soundcloud</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.twitter.html">kafe.ext.twitter</a></li>
+			        <li><a href="/kafe/classes/kafe.ext.youtube.html">kafe.ext.youtube</a></li>
+			        <li><a href="/kafe/classes/kafe.form.html">kafe.form</a></li>
+			        <li><a href="/kafe/classes/kafe.geolocation.html">kafe.geolocation</a></li>
+			        <li><a href="/kafe/classes/kafe.number.html">kafe.number</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.carousel.html">kafe.plugin.carousel</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.menu.html">kafe.plugin.menu</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.social.html">kafe.plugin.social</a></li>
+			        <li><a href="/kafe/classes/kafe.plugin.sticky.html">kafe.plugin.sticky</a></li>
+			        <li><a href="/kafe/classes/kafe.storage.html">kafe.storage</a></li>
+			        <li><a href="/kafe/classes/kafe.string.html">kafe.string</a></li>
+			        <li><a href="/kafe/classes/kafe.string.encrypt.html">kafe.string.encrypt</a></li>
+			        <li><a href="/kafe/classes/kafe.string.validate.html">kafe.string.validate</a></li>
+			        <li><a href="/kafe/classes/kafe.style.html">kafe.style</a></li>
+			        <li><a href="/kafe/classes/kafe.url.html">kafe.url</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<footer id="Footer"><a href="https://github.com/absolunet/kafe/tree/gh-pages/" class="Site">(site source)</a> 2018 &copy; <a href="https://absolunet.com">Absolunet</a> - All rights reserved.</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/kafe/assets/core.js"></script>
+</body>
+</html>
