@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.sticky', version:'0.1.2', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'plugin.sticky', version:'0.2.0', obj:(function(){
 
 	var
 		$window   = $(global),
@@ -8,7 +8,7 @@
 
 
 	/**
-	* ### Version 0.1.2
+	* ### Version 0.2.0
 	* Sticky box
 	*
 	* @module kafe.plugin

@@ -1,5 +1,5 @@
 /*!
- * kafe 3.2.4
+ * kafe 3.2.5
  * http://absolunet.github.io/kafe/
  *
  * Copyright 2011-2018 Absolunet, https://absolunet.com/
@@ -52,7 +52,7 @@
 
 
 		/**
-		* ### Version 3.2.4
+		* ### Version 3.2.5
 		* kafe core
 		*
 		* @module kafe
@@ -66,7 +66,7 @@
 			* @property VESYON
 			* @type String
 			**/
-			VESYON: '3.2.4',
+			VESYON: '3.2.5',
 
 			/**
 			* kafe author
