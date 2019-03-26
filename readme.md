@@ -4,19 +4,38 @@
 	</a>
 </p>
 
-# kafe ![bower](https://img.shields.io/bower/v/kafe.svg)
+# kafe
+[![npm](https://img.shields.io/npm/v/@absolunet/kafe.svg)](https://www.npmjs.com/package/@absolunet/kafe)
+![Bower](http://img.shields.io/bower/v/kafe.svg)
+[![npm dependencies](https://david-dm.org/absolunet/kafe/status.svg)](https://david-dm.org/absolunet/kafe)
+[![npms](https://badges.npms.io/%40absolunet%2Fkafe.svg)](https://npms.io/search?q=%40absolunet%2Fkafe)
+[![Travis CI](https://travis-ci.com/absolunet/kafe.svg?branch=master)](https://travis-ci.com/absolunet/kafe/builds)
+<!--
+[![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/core-659d32.svg)](https://github.com/absolunet/eslint-config-core)
+-->
+
+
 #### Mixing javascript crops for a perfect flavour.
 > /kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.
 
-## Installation
-```bash
-bower install kafe
-```
 
 ## Dependencies
-- [jQuery](http://jquery.com/)
-- [Lodash](http://lodash.com/)
-- [Modernizr](http://modernizr.com/)
+- [jQuery](https://jquery.com/)
+- [Lodash](https://lodash.com/)
+- [Modernizr](https://modernizr.com/)
+
+
+## Install
+```shell
+$ npm install @absolunet/kafe
+```
+
+or
+
+```shell
+$ bower install kafe
+```
+
 
 
 ## Usage

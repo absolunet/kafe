@@ -1,0 +1,11 @@
+docs
+src
+test
+.editorconfig
+.eslintignore
+.eslintrc.yaml
+.gitignore
+.travis.yml
+bower.json
+gruntfile.coffee
+.DS_Store
