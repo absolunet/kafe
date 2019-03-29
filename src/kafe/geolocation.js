@@ -36,7 +36,7 @@
 	* Methods to access geolocalization information about the client.
 	*
 	* @module <!-- @echo MODULE -->
-	* @class <!-- @echo NAME_FULL --> 
+	* @class <!-- @echo NAME_FULL -->
 	*/
 	var geolocation = {};
 
