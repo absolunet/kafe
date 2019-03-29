@@ -45,10 +45,11 @@
 	*
 	* @method locate
 	* @param {Object} parameters Parameters for the current request.
-	*	@param {String|jQueryObject|DOMElement} [parameters.selector] Element used to show status messages.
-	*	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
-	*	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
-	*	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
+	* 	@param {String|jQueryObject|DOMElement} [parameters.selector] Element used to show status messages.
+	* 	@param {String} [parameters.lang=CURRENT_ENV_LANG] A two character language code.
+	* 	@param {Function} [parameters.success] Callback triggered when geolocalization informations have been successful retrieved. An object containing the informations is passed as the first argument.
+	* 	@param {Function} [parameters.error] Callback triggered on geolocalization errors. The error message is passed as the first argument.
+	* 	@param {Object} [parameters.options] Options given to optimize getCurrentPosition.
 	* @example
 	*	<!-- @echo NAME_FULL -->.locate({
 	*		selector: '#GeoLocStatus', lang: 'en',
@@ -58,17 +59,23 @@
 	*		}
 	*		error: function(msg) {
 	*			console.log('Cannot geoloc: ' + msg);
+	*		},
+	*		options: {
+	*			enableHighAccuracy: false,
+	*			timeout: 5000,
+	*			maximumAge: 0
 	*		}
 	*	});
 	* @example
 	*	$('#GeoLocStatus').<!-- @echo PACKAGE -->('<!-- @echo NAME -->.locate', {});
 	*/
-	geolocation.locate = function(options) {
+	geolocation.locate = function(parameters) {
 		var
-			d               = _dict[_lang(options.lang)],
-			$msg            = $(options.selector),
-			errorCallback   = options.error,
-			successCallback = options.success
+			d               = _dict[_lang(parameters.lang)],
+			$msg            = $(parameters.selector),
+			options         = (parameters.options) ? parameters.options : {},
+			errorCallback   = parameters.error,
+			successCallback = parameters.success
 		;
 
 		// if service available
@@ -99,7 +106,10 @@
 					if (!!errorCallback) {
 						errorCallback({message:msg});
 					}
-				}
+				},
+
+				// Options to use
+				options
 			);
 
 		// if service unavailable
