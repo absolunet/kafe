@@ -24,7 +24,7 @@
 	* @param {Object} options Additional options.
 	*	@param {String|jQueryObject|DOMElement} options.selector Element to stick.
 	*	@param {String} [options.align='auto'] Specify `left` or `right` if your horizontal absolute positioning uses left or right instead of auto.
-	*	@param {Boolean} [options.contains=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
+	*	@param {Boolean} [options.contain=false] If true, the sticky will become scrollable when it reaches the bottom edge of its container.
 	*	@param {String|jQueryObject|DOMElement} [options.container=PARENT] Container in which to constrain the sticky.
 	*	@param {Number} [options.topBuffer=0] Buffer in pixels before sticking occurs.
 	*
