@@ -125,6 +125,15 @@
 					
 					
 												</li>
+												<li>
+														<code>[options]</code>
+														<strong>Object</strong>
+														<span>Optional</span>
+													<p>Options given to optimize getCurrentPosition.</p>
+					
+					
+					
+												</li>
 											</ul>
 					
 									</li>
@@ -142,6 +151,11 @@
 					    }
 					    error: function(msg) {
 					        console.log('Cannot geoloc: ' + msg);
+					    },
+					    options: {
+					        enableHighAccuracy: false,
+					        timeout: 5000,
+					        maximumAge: 0
 					    }
 					});</code></pre>
 					<pre class="code prettyprint"><code>$('#GeoLocStatus').kafe('geolocation.locate', {});</code></pre>
