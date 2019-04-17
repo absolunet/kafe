@@ -1,4 +1,4 @@
-(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'geolocation', version:'1.0.0', obj:(function(){
+(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'geolocation', version:'1.1.0', obj:(function(){
 
 	var
 		// dictonary
@@ -32,7 +32,7 @@
 
 
 	/**
-	* ### Version 1.0.0
+	* ### Version 1.1.0
 	* Methods to access geolocalization information about the client.
 	*
 	* @module kafe

@@ -2,7 +2,7 @@
 	"versions": {
 		"date":                 "1.2.0",
 		"form":                 "1.4.2",
-		"geolocation":          "1.0.0",
+		"geolocation":          "1.1.0",
 		"number":               "1.0.0",
 		"storage":              "1.2.0",
 		"string":               "1.2.0",
