@@ -1,5 +1,5 @@
 module.exports = (grunt) ->
-	global.pkgVersion = '3.2.6'
+	global.pkgVersion = '3.2.8'
 
 	grunt.task.loadNpmTasks task for task in [
 		'grunt-contrib-watch'
