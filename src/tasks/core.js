@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 			const module       = name.split('.');
 			const finalName    = name.substring(0, 1) !== '_' ? module.pop() : '';
 			const finalNameCap = finalName.charAt(0).toUpperCase() + finalName.slice(1);
-			const version      = name === packageName ? global.packageVersion : info.versions[name];
+			const version      = name === packageName ? config.version : info.versions[name];
 			let contents       = grunt.file.read(file);
 
 			contents = preprocess.preprocess(contents, {

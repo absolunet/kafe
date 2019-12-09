@@ -22,7 +22,7 @@ module.exports = (grunt) => {
 	// doc data
 	const docdata = {
 		'package':       packageName,
-		'version':       global.packageVersion,
+		'version':       config.version,
 		'description':   config.description,
 		'definition':    config.definition,
 		'repo':         `https://github.com/absolunet/${packageName}`,
@@ -126,7 +126,7 @@ module.exports = (grunt) => {
 			project: {
 				name: packageName,
 				description: config.description,
-				version: `${packageName} ${global.packageVersion}`,
+				version: `${packageName} ${config.version}`,
 				url: config.repository_url
 			}
 		};

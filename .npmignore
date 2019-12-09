@@ -7,4 +7,5 @@ test
 .gitignore
 .travis.yml
 gruntfile.js
+manager.js
 .DS_Store

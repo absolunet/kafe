@@ -2,8 +2,6 @@
 
 
 module.exports = function(grunt) {
-	global.packageVersion = '3.2.8';
-
 	for (const task of ['grunt-contrib-watch', 'grunt-contrib-less', 'grunt-contrib-cssmin', 'grunt-contrib-jshint', 'grunt-contrib-uglify', 'grunt-includes']) {
 		grunt.task.loadNpmTasks(task);
 	}
