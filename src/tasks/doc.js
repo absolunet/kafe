@@ -13,7 +13,7 @@ module.exports = (grunt) => {
 
 	const [, packageName] = config.name.split('/');
 
-	const temporaryLocal = `${path.tmp_local}/vendor`;
+	const temporaryLocal = `${path.temporaryLocal}/vendor`;
 	const source         = path.source.yuidoc;
 	const sourceTmpl     = path.source.tmpl;
 	const out            = path.out.docs;
