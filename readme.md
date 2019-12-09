@@ -6,13 +6,9 @@
 
 # kafe
 [![npm](https://img.shields.io/npm/v/@absolunet/kafe.svg)](https://www.npmjs.com/package/@absolunet/kafe)
-![Bower](http://img.shields.io/bower/v/kafe.svg)
 [![npm dependencies](https://david-dm.org/absolunet/kafe/status.svg)](https://david-dm.org/absolunet/kafe)
 [![npms](https://badges.npms.io/%40absolunet%2Fkafe.svg)](https://npms.io/search?q=%40absolunet%2Fkafe)
 [![Travis CI](https://travis-ci.com/absolunet/kafe.svg?branch=master)](https://travis-ci.com/absolunet/kafe/builds)
-<!--
-[![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/core-659d32.svg)](https://github.com/absolunet/eslint-config-core)
--->
 
 
 #### Mixing javascript crops for a perfect flavour.
@@ -28,13 +24,6 @@
 ## Install
 ```shell
 $ npm install @absolunet/kafe
-```
-
-or
-
-```shell
-$ bower install kafe
-```
 
 
 

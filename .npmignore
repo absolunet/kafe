@@ -6,6 +6,5 @@ test
 .eslintrc.yaml
 .gitignore
 .travis.yml
-bower.json
-gruntfile.coffee
+gruntfile.js
 .DS_Store
