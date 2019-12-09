@@ -1,4 +1,4 @@
-//= require 'bower_components/colorbox/jquery.colorbox'
+//= require 'vendor/node_modules/jquery-colorbox/jquery.colorbox'
 
 /* @echo header */
 

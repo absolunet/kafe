@@ -46,8 +46,6 @@
 			</header>
 			
 			<pre>
-			//= require &#x27;bower_components/jquery-json/src/jquery.json&#x27;
-			
 			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;string&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
 			
 				/**
@@ -111,7 +109,7 @@
 						return o;
 					};
 			
-					return cast($.evalJSON(s));
+					return cast(JSON.parse(s));
 				};
 			
 			
@@ -135,6 +133,7 @@
 				return string;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

@@ -1,4 +1,4 @@
-//= require bower_components/elevatezoom-plus/src/jquery.ez-plus
+//= require vendor/node_modules/ez-plus/src/jquery.ez-plus
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.elevatezoom', version:'0.0.1', obj:(function(){
 

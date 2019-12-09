@@ -1,4 +1,4 @@
-//= require 'bower_components/jquery.bbq/jquery.ba-bbq'
+//= require 'vendor/node_modules/jquery-bbq/jquery.ba-bbq'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'ext.bbq', version:'0.1.0', obj:(function(){
 

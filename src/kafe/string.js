@@ -1,5 +1,3 @@
-//= require 'bower_components/jquery-json/src/jquery.json'
-
 /* @echo header */
 
 	/**
@@ -63,7 +61,7 @@
 			return o;
 		};
 
-		return cast($.evalJSON(s));
+		return cast(JSON.parse(s));
 	};
 
 

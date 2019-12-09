@@ -46,9 +46,8 @@
 			</header>
 			
 			<pre>
-			//= require &#x27;bower_components/js-cookie/src/js.cookie&#x27;
-			//= require &#x27;bower_components/jquery-json/src/jquery.json&#x27;
-			//= require &#x27;bower_components/kafe/dist/string&#x27;
+			//= require &#x27;vendor/node_modules/js-cookie/src/js.cookie&#x27;
+			//= require &#x27;vendor/node_modules/@absolunet/kafe/dist/string&#x27;
 			
 			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;storage&#x27;, version:&#x27;1.2.0&#x27;, obj:(function(){
 			
@@ -117,7 +116,7 @@
 								}
 							}
 			
-							_getStorageObj(type).setItem(key, $.toJSON(data));
+							_getStorageObj(type).setItem(key, JSON.stringify(data));
 						}
 					},
 			
@@ -621,6 +620,7 @@
 				return storage;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

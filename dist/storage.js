@@ -1,6 +1,5 @@
-//= require 'bower_components/js-cookie/src/js.cookie'
-//= require 'bower_components/jquery-json/src/jquery.json'
-//= require 'bower_components/kafe/dist/string'
+//= require 'vendor/node_modules/js-cookie/src/js.cookie'
+//= require 'vendor/node_modules/@absolunet/kafe/dist/string'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'storage', version:'1.2.0', obj:(function(){
 
@@ -69,7 +68,7 @@
 					}
 				}
 
-				_getStorageObj(type).setItem(key, $.toJSON(data));
+				_getStorageObj(type).setItem(key, JSON.stringify(data));
 			}
 		},
 

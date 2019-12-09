@@ -1,5 +1,3 @@
-//= require 'bower_components/jquery-json/src/jquery.json'
-
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string', version:'1.2.0', obj:(function(){
 
 	/**
@@ -63,7 +61,7 @@
 			return o;
 		};
 
-		return cast($.evalJSON(s));
+		return cast(JSON.parse(s));
 	};
 
 

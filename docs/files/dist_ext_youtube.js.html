@@ -46,7 +46,7 @@
 			</header>
 			
 			<pre>
-			//= require &#x27;bower_components/kafe/dist/url&#x27;
+			//= require &#x27;vendor/node_modules/@absolunet/kafe/dist/url&#x27;
 			
 			(function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:&#x27;ext.youtube&#x27;, version:&#x27;1.1.0&#x27;, obj:(function(){
 			
@@ -72,33 +72,33 @@
 			
 					// parses search results into clean and simple result objects.
 					_simpleSearchResults = function(results) {
-						
+			
 						var simpleResults = [];
 						if (results !== undefined) {
 							$.each(results, function(i, val) {
-								
+			
 								var entry = {};
 			
 								entry.id = (val.id.$t).toString().split(&#x27;/&#x27;).pop();
 								entry.title = val.title.$t;
 								entry.author = val.author[0].name.$t;
 								entry.publishedDate = new Date(val.published.$t);
-								
+			
 								entry.thumbnail = {};
 								entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
 								entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
-									
+			
 								entry.categories = [];
 								$.each(val.category, function(ci, cval) {
 									if (ci &gt; 0)
 										entry.categories.push(cval.term);
 								});
-								
+			
 								simpleResults.push(entry);
-								
+			
 							});
 						}
-							
+			
 						return simpleResults;
 					}
 				;
@@ -112,7 +112,7 @@
 				* @class kafe.ext.youtube
 				*/
 				var youtube = {};
-				
+			
 			
 				/**
 				* Set default Youtube params.
@@ -152,7 +152,7 @@
 				*/
 				youtube.search = function(options, callback) {
 					options = youtube.getParams(options);
-					
+			
 					var
 						path = &#x27;https://gdata.youtube.com/feeds/api/videos?&#x27;,
 						query = &#x27;alt=json-in-script&amp;callback=?&#x27; +
@@ -164,15 +164,15 @@
 					if (options.query) {
 						query += &#x27;&amp;q=&#x27; + encodeURIComponent(options.query);
 					}
-						
+			
 					if (options.author) {
 						query += &#x27;&amp;author=&#x27; + encodeURIComponent(options.author);
 					}
-						
+			
 					if (options.category) {
 						query += &#x27;&amp;category=&#x27; + encodeURIComponent(options.category.join(&#x27;|&#x27;));
 					}
-						
+			
 					$.ajax({
 						url: path + query,
 						dataType: &#x27;json&#x27;,
@@ -184,7 +184,7 @@
 							throw kafe.error(new Error(errorThrown));
 						}
 					});
-					
+			
 				};
 			
 			
@@ -205,13 +205,13 @@
 					if (playlistId.toString().substr(0, 2) == &#x27;PL&#x27;) {
 						playlistId = playlistId.toString().substr(2, playlistId.length);
 					}
-					
+			
 					var
 						playListURL = &#x27;//gdata.youtube.com/feeds/api/playlists/&#x27; + playlistId + &#x27;?v=2&amp;alt=json&amp;callback=?&#x27;,
 						videoURL = &#x27;//www.youtube.com/watch?v=&#x27;,
 						imageURL = &#x27;//img.youtube.com/vi/&#x27;
 					;
-					
+			
 					$.ajax({
 						url: playListURL,
 						dataType: &#x27;json&#x27;,
@@ -246,6 +246,7 @@
 				return youtube;
 			
 			})()}); })(typeof window !== &#x27;undefined&#x27; ? window : this);
+			
 			</pre>
 		</section>
 		<nav>

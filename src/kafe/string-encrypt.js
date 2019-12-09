@@ -1,4 +1,4 @@
-//= require 'bower_components/kafe/dist/string'
+//= require 'vendor/node_modules/@absolunet/kafe/dist/string'
 
 /* @echo header */
 

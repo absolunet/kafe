@@ -1,4 +1,4 @@
-//= require 'bower_components/kafe/dist/url'
+//= require 'vendor/node_modules/@absolunet/kafe/dist/url'
 
 /* @echo header */
 
@@ -24,33 +24,33 @@
 
 		// parses search results into clean and simple result objects.
 		_simpleSearchResults = function(results) {
-			
+
 			var simpleResults = [];
 			if (results !== undefined) {
 				$.each(results, function(i, val) {
-					
+
 					var entry = {};
 
 					entry.id = (val.id.$t).toString().split('/').pop();
 					entry.title = val.title.$t;
 					entry.author = val.author[0].name.$t;
 					entry.publishedDate = new Date(val.published.$t);
-					
+
 					entry.thumbnail = {};
 					entry.thumbnail.large = val.media$group.media$thumbnail[0].url;
 					entry.thumbnail.small = val.media$group.media$thumbnail[1].url;
-						
+
 					entry.categories = [];
 					$.each(val.category, function(ci, cval) {
 						if (ci > 0)
 							entry.categories.push(cval.term);
 					});
-					
+
 					simpleResults.push(entry);
-					
+
 				});
 			}
-				
+
 			return simpleResults;
 		}
 	;
@@ -64,7 +64,7 @@
 	* @class <!-- @echo NAME_FULL -->
 	*/
 	var youtube = {};
-	
+
 
 	/**
 	* Set default Youtube params.
@@ -104,7 +104,7 @@
 	*/
 	youtube.search = function(options, callback) {
 		options = youtube.getParams(options);
-		
+
 		var
 			path = 'https://gdata.youtube.com/feeds/api/videos?',
 			query = 'alt=json-in-script&callback=?' +
@@ -116,15 +116,15 @@
 		if (options.query) {
 			query += '&q=' + encodeURIComponent(options.query);
 		}
-			
+
 		if (options.author) {
 			query += '&author=' + encodeURIComponent(options.author);
 		}
-			
+
 		if (options.category) {
 			query += '&category=' + encodeURIComponent(options.category.join('|'));
 		}
-			
+
 		$.ajax({
 			url: path + query,
 			dataType: 'json',
@@ -136,7 +136,7 @@
 				throw kafe.error(new Error(errorThrown));
 			}
 		});
-		
+
 	};
 
 
@@ -157,13 +157,13 @@
 		if (playlistId.toString().substr(0, 2) == 'PL') {
 			playlistId = playlistId.toString().substr(2, playlistId.length);
 		}
-		
+
 		var
 			playListURL = '//gdata.youtube.com/feeds/api/playlists/' + playlistId + '?v=2&alt=json&callback=?',
 			videoURL = '//www.youtube.com/watch?v=',
 			imageURL = '//img.youtube.com/vi/'
 		;
-		
+
 		$.ajax({
 			url: playListURL,
 			dataType: 'json',

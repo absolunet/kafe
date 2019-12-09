@@ -1,4 +1,4 @@
-//= require bower_components/elevatezoom-plus/src/jquery.ez-plus
+//= require vendor/node_modules/ez-plus/src/jquery.ez-plus
 
 /* @echo header */
 

@@ -1,4 +1,4 @@
-//= require 'bower_components/kafe/dist/string'
+//= require 'vendor/node_modules/@absolunet/kafe/dist/string'
 
 (function(global, undefined) { var kafe = global.kafe, $ = kafe.dependencies.jQuery; kafe.bonify({name:'string.encrypt', version:'1.0.0', obj:(function(){
 

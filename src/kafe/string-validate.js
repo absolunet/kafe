@@ -1,4 +1,4 @@
-//= require 'bower_components/kafe/dist/string'
+//= require 'vendor/node_modules/@absolunet/kafe/dist/string'
 
 /* @echo header */
 
@@ -107,7 +107,7 @@
 
 	/**
 	* Checks if a string is a valid credit card number and fits a specific brand pattern.
-	* 
+	*
 	* Source: [http://www.regular-expressions.info/creditcard.html](http://www.regular-expressions.info/creditcard.html)
 	*
 	* @method isCreditCard

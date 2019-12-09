@@ -29,7 +29,7 @@
     "start": "cd docs; docker run -t -d --rm -v \"$PWD\":/usr/src/app/kafe -p \"4000:4000\" --name ghpages-kafe starefossen/github-pages; sleep 1; open http://localhost:4000/kafe",
     "stop": "cd docs; docker stop ghpages-kafe",
     "build": "grunt",
-    "test": "ava test"
+    "test": "ava test/index.js"
   },
   "devDependencies": {
     "@absolunet/tester": "2.6.10",
