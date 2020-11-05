@@ -46,7 +46,10 @@
 	validate.isEmail = function(str) {
 		str = str.replace(/^\s*|\s*$/g, '');
 		str = str.replace(/^\t*|\t*$/g, '');
-		return (/^\w+([\.\+-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str));
+
+		// Practical implementation of RFC 5322
+		// https://www.regular-expressions.info/email.html
+		return (/^[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(str));
 	};
 
 

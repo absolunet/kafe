@@ -1,8 +1,8 @@
 /*!
- * kafe 3.2.9
+ * kafe 3.2.10
  * https://absolunet.github.io/kafe/
  *
- * Copyright 2011-2019 Absolunet, https://absolunet.com
+ * Copyright 2011-2020 Absolunet, https://absolunet.com
  * Released under the MIT license
  * https://github.com/absolunet/kafe/tree/master/LICENSE.md
  */
@@ -52,7 +52,7 @@
 
 
 		/**
-		* ### Version 3.2.9
+		* ### Version 3.2.10
 		* kafe core
 		*
 		* @module kafe
@@ -66,7 +66,7 @@
 			* @property VESYON
 			* @type String
 			**/
-			VESYON: '3.2.9',
+			VESYON: '3.2.10',
 
 			/**
 			* kafe author
